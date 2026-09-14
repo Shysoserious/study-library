@@ -1,0 +1,16 @@
+# 系统文件
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# 工作目录 / 临时文件
+.workbuddy/
+*.tmp
+
+# 本地构建缓存
+__pycache__/
+
+# 课件 / 教材（PDF、PPT、压缩包等大文件，暂不部署，仅保留在本地）
+*.pdf
+*.pptx
+*.zip

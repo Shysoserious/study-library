@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT2041 Final Exam Review | 期末考前总复习</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans SC', Tahoma, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 56px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white; display: flex; align-items: center; padding: 0 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15); z-index: 1000;
+        }
+        .navbar-title { font-size: 20px; font-weight: bold; }
+        .navbar-sub { margin-left: 12px; font-size: 13px; opacity: 0.7; }
+
+        .sidebar {
+            position: fixed; left: 0; top: 56px; width: 260px;
+            height: calc(100vh - 56px); background: #1a1a2e;
+            overflow-y: auto; padding: 16px 0; z-index: 999;
+        }
+        .sidebar h3 { color: #667eea; padding: 8px 20px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar a {
+            display: block; padding: 7px 20px; color: #b0b0c0;
+            text-decoration: none; font-size: 13px; transition: all 0.2s;
+        }
+        .sidebar a:hover { color: white; background: #252545; }
+        .sidebar a.sub { padding-left: 36px; font-size: 12px; }
+
+        .main-content {
+            margin-left: 260px; margin-top: 56px; padding: 32px 48px;
+            max-width: 960px;
+        }
+        h1 { font-size: 28px; color: #1a1a2e; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid #667eea; }
+        h2 { font-size: 22px; color: #0f3460; margin: 28px 0 12px; }
+        h3 { font-size: 18px; color: #333; margin: 20px 0 8px; }
+
+        .card {
+            margin: 16px 0; padding: 18px 22px; border-radius: 8px;
+            border-left: 5px solid #667eea; background: white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .card.formula { background: #f0f4ff; border-left-color: #4f46e5; }
+        .card.warning { background: #fff8f0; border-left-color: #f59e0b; }
+        .card.tip { background: #f0fdf4; border-left-color: #10b981; }
+        .card.pitfall { background: #fef2f2; border-left-color: #ef4444; }
+        .card.connection { background: #faf5ff; border-left-color: #8b5cf6; }
+
+        .formula-box {
+            background: #eef2ff; border-radius: 6px; padding: 14px 20px;
+            margin: 12px 0; text-align: center; font-size: 16px;
+        }
+        .formula-box.star { background: #fef9c3; }
+
+        .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .tag {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 11px; font-weight: 600; margin-right: 4px;
+        }
+        .tag.hot { background: #fee2e2; color: #dc2626; }
+        .tag.must { background: #fef3c7; color: #d97706; }
+        .tag.easy { background: #dbeafe; color: #2563eb; }
+
+        ul { padding-left: 20px; }
+        li { margin: 4px 0; }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <span class="navbar-title">MAT2041 线性代数</span>
+    <span class="navbar-sub">Final Exam Review · 期末考前总复习</span>
+</nav>
+
+<aside class="sidebar">
+    <h3>核心专题</h3>
+    <a href="#s1">I. 高斯消元 & 线性系统</a>
+    <a href="#s2">II. 矩阵运算 & 逆矩阵</a>
+    <a href="#s3">III. 线性空间 & 子空间</a>
+    <a href="#s4">IV. 基、维数、秩</a>
+    <a href="#s5">V. 四个基本子空间</a>
+    <a href="#s6">VI. 最小二乘</a>
+    <a href="#s7">VII. 正交 & Gram-Schmidt</a>
+    <a href="#s8">VIII. 行列式</a>
+    <a href="#s9">IX. 线性变换</a>
+    <a href="#s10">X. 特征值 & 特征向量</a>
+    <a href="#s11">XI. 谱定理 & 对角化</a>
+    <a href="#s12">XII. SVD</a>
+    <a href="#s13">XIII. 二次型 & 正定性</a>
+    <a href="#s14">XIV. 考试策略</a>
+</aside>
+
+<main class="main-content">
+
+<div style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:white;padding:32px;border-radius:12px;margin-bottom:24px;">
+    <h1 style="color:white;border:none;margin:0 0 8px;">MAT2041 Linear Algebra · Final Exam Review</h1>
+    <p style="opacity:0.85;font-size:15px;">CUHK-Shenzhen · School of Data Science · Spring 2026</p>
+    <p style="opacity:0.7;font-size:13px;margin-top:8px;">27 Lectures · 14 Topics · Key Formulas · Common Pitfalls</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1 -->
+<!-- ============================================================ -->
+<h1 id="s1">I. 高斯消元与线性系统 <span class="tag hot">高频</span></h1>
+
+<div class="card formula">
+<h3>核心公式与概念</h3>
+<ul>
+<li><strong>线性系统的四种表示：</strong> $F_1$（标量）、$F_2$（行向量）、$F_3$（列向量）、$F_0$（矩阵形式 $Ax=b$）</li>
+<li><strong>矩阵-向量乘积的两种视角：</strong> 行形式 $y_i = \langle a^i, x \rangle$；列形式 $Ax = x_1 a_1 + \cdots + x_n a_n$</li>
+<li><strong>Gauss-Jordan Elimination：</strong> 前向消元 → 回代。初等行变换不改变解集</li>
+<li><strong>REF</strong>：行阶梯形（每行首个非零元素是 pivot，pivot 逐行右移，全零行在底部）</li>
+<li><strong>RREF</strong>：行最简阶梯形（REF + 每个 pivot 为 1 + pivot 列其余为 0）</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li><strong>RREF 简化形式：</strong> $[I_k \mid F; 0 \mid 0]$ —— 别忘了零行在底部</li>
+<li><strong>三种 breakdown：</strong> Type 1（$0=1$，无解）、Type 2（$0=0$，无穷多解）、Type 3（行交换可修复）</li>
+<li><strong>解的存在性 ≠ 唯一性：</strong> 相容性（consistency）和解的个数是两个独立问题。$r=m=n$ 才有唯一解</li>
+<li>消元时遇到对角零元素：先尝试行交换，不要直接跳过</li>
+</ul>
+</div>
+
+<div class="card tip">
+<h3>考试建议</h3>
+GJ-E 是基本功，但不一定直接考。更多是隐含在其他题目中（求逆、求零空间、求秩）。务必熟练掌握增广矩阵的写法。
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2 -->
+<!-- ============================================================ -->
+<h1 id="s2">II. 矩阵运算与逆矩阵 <span class="tag hot">高频</span></h1>
+
+<div class="card formula">
+<h3>核心公式</h3>
+<div class="formula-box star">$(AB)^{-1} = B^{-1}A^{-1}$ &nbsp;（顺序反转！）</div>
+<div class="formula-box star">$(A^T)^{-1} = (A^{-1})^T$</div>
+<div class="formula-box star">$A^{-1}_{2\times2} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$</div>
+<ul>
+<li><strong>矩阵乘法不交换：</strong> $AB \neq BA$ 一般情况</li>
+<li><strong>增广矩阵法求逆：</strong> $[A \mid I] \xrightarrow{\text{GJ-E}} [I \mid A^{-1}]$</li>
+<li><strong>LU 分解（无行交换）：</strong> $A = LU$，$L$ 下三角（对角线全 1），$U$ 上三角</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li><strong>$(AB)^T = B^T A^T$</strong>，不是 $A^T B^T$！这和乘积的逆一样顺序反转</li>
+<li><strong>对角矩阵的逆：</strong> $\text{diag}(d_1,...,d_n)^{-1} = \text{diag}(1/d_1,...,1/d_n)$，仅在所有 $d_i \neq 0$ 时存在</li>
+<li><strong>初等矩阵的逆：</strong> Type III 的逆就是把 $\beta$ 变 $-\beta$；Type I 的逆是自身</li>
+<li>LU 分解的前提是消元过程中<strong>不需要行交换</strong>（Pivot 不出现零）</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3 -->
+<!-- ============================================================ -->
+<h1 id="s3">III. 线性空间与子空间 <span class="tag easy">基础</span></h1>
+
+<div class="card formula">
+<h3>子空间判定三步法</h3>
+<ol>
+<li><strong>非空：</strong> $\mathbf{0} \in W$（最快的排除法——不含零向量一定不是子空间）</li>
+<li><strong>加法封闭：</strong> $u, v \in W \Rightarrow u+v \in W$</li>
+<li><strong>数乘封闭：</strong> $u \in W, \alpha \in \mathbb{R} \Rightarrow \alpha u \in W$</li>
+</ol>
+</div>
+
+<div class="card warning">
+<h3>常见子空间判断</h3>
+<ul>
+<li>过原点的直线/平面 → 是子空间</li>
+<li>不过原点的直线/平面 → 不是子空间</li>
+<li>$\{x \in \mathbb{R}^2 : x_1 = 2x_2\}$ → 是（过原点直线）</li>
+<li>$\{x \in \mathbb{R}^2 : x_1 = 1\}$ → 否（不过原点）</li>
+<li>上三角矩阵集合 → 是子空间</li>
+<li>初等矩阵集合 → 不是子空间（零矩阵不在其中，加法不封闭）</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错</h3>
+$\mathbb{R}^2$ 不是 $\mathbb{R}^3$ 的子空间（它们在不同的"宇宙"里）。只能说"同构于 $\mathbb{R}^3$ 中某个二维子空间"。
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4 -->
+<!-- ============================================================ -->
+<h1 id="s4">IV. 基、维数、秩 <span class="tag hot">高频</span></h1>
+
+<div class="card formula">
+<h3>核心定理与公式</h3>
+<ul>
+<li><strong>基的两个条件：</strong> (1) 线性无关 (2) 张成整个空间</li>
+<li><strong>快速判定基（Prop 14.2）：</strong> 若 $\dim(V)=n$，$n$ 个向量要么验证无关，要么验证张成——验证一个就够了</li>
+<li><strong>线性无关判定：</strong> 列排成矩阵 $A$，解 $Ax=0$，仅有零解则无关</li>
+<li>$\dim(N(A)) = n - \text{rank}(A)$</li>
+<li>$\dim(C(A)) = \text{rank}(A) = r$</li>
+<li><strong>行秩 = 列秩 = rank = pivot 个数</strong>（Theorem 14.3，第二个大定理）</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li><strong>Lemma 14.1E：</strong> $\mathbb{R}^n$ 中任意 $n+1$ 个向量必线性相关。常考判断题！</li>
+<li>Span 是一个集合，本身就是一个子空间。不要和基混淆</li>
+<li><strong>解集结构：</strong> $Ax=b$ 的解集 = $x_p + N(A)$。注意这不是子空间（除非 $b=0$）</li>
+<li>$m$ 个向量张成 $\mathbb{R}^n$ 需要 $m \ge n$；$m$ 个向量在 $\mathbb{R}^n$ 中线性无关需要 $m \le n$</li>
+</ul>
+</div>
+
+<div class="card connection">
+<h3>可逆性等价条件全表（11条）</h3>
+$A \in \mathbb{R}^{n \times n}$ 可逆 ⟺ $Ax=0$ 仅有零解 ⟺ $A$ 是初等矩阵之积 ⟺ $A$ 有 $n$ 个 pivot ⟺ $\text{rank}(A)=n$ ⟺ 列线性无关 ⟺ 列张成 $\mathbb{R}^n$ ⟺ 列构成 $\mathbb{R}^n$ 的基 ⟺ $\dim(C(A))=n$ ⟺ $\dim(N(A))=0$ ⟺ $Ax=b$ 对任意 $b$ 有解 ⟺ $\det(A) \neq 0$
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5 -->
+<!-- ============================================================ -->
+<h1 id="s5">V. 四个基本子空间 <span class="tag hot">高频</span></h1>
+
+<div class="card formula">
+<h3>四个基本子空间</h3>
+<table class="comparison-table" style="width:100%;border-collapse:collapse;margin:12px 0;">
+<tr style="background:#667eea;color:white;"><th>子空间</th><th>记号</th><th>所在空间</th><th>维数</th></tr>
+<tr><td>列空间</td><td>$C(A)$</td><td>$\mathbb{R}^m$</td><td>$r$</td></tr>
+<tr><td>零空间</td><td>$N(A)$</td><td>$\mathbb{R}^n$</td><td>$n-r$</td></tr>
+<tr><td>行空间</td><td>$\text{Row}(A)=C(A^T)$</td><td>$\mathbb{R}^n$</td><td>$r$</td></tr>
+<tr><td>左零空间</td><td>$N(A^T)$</td><td>$\mathbb{R}^m$</td><td>$m-r$</td></tr>
+</table>
+</div>
+
+<div class="card connection">
+<h3>正交补关系（极其重要！）</h3>
+<div class="formula-box star">$\text{Row}(A) \perp N(A)$ &nbsp;在 $\mathbb{R}^n$ 中，维数 $r + (n-r) = n$</div>
+<div class="formula-box star">$C(A) \perp N(A^T)$ &nbsp;在 $\mathbb{R}^m$ 中，维数 $r + (m-r) = m$</div>
+</div>
+
+<div class="card tip">
+<h3>理解关键</h3>
+$Ax=0$ 的每一行意味着 $x$ 与矩阵的每一行正交。所以 $N(A)$ 中的向量与所有行正交 → $N(A) \perp \text{Row}(A)$。这是正交补关系的代数本源。
+</div>
+
+<div class="card warning">
+<h3>行满秩 vs 列满秩</h3>
+<ul>
+<li><strong>行满秩 ($r=m$)：</strong> 对任意 $b$<strong>至少一个</strong>解（排除"无解"）</li>
+<li><strong>列满秩 ($r=n$)：</strong> 对任意 $b$<strong>至多一个</strong>解（排除"无穷多解"）</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6 -->
+<!-- ============================================================ -->
+<h1 id="s6">VI. 最小二乘 <span class="tag must">必考</span></h1>
+
+<div class="card formula">
+<h3>三条等价条件</h3>
+<p>$\mathbf{y}$ 是 $\min_x \|Ax-b\|$ 的解 ⟺</p>
+<ol>
+<li>$b - Ay \perp C(A)$（残差垂直于列空间）</li>
+<li>$A^T A y = A^T b$（正规方程）</li>
+<li>$Ay$ 是 $b$ 在 $C(A)$ 上的正交投影</li>
+</ol>
+</div>
+
+<div class="card formula">
+<h3>满列秩公式</h3>
+<div class="formula-box star">若 $A$ 列满秩（列线性无关），则 $y = (A^T A)^{-1} A^T b$，解唯一</div>
+<p>关键引理：$N(A^T A) = N(A)$，所以 $A$ 列满秩 ⇒ $A^T A$ 可逆</p>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li>最小二乘解 $y$ 不等于 $Ax=b$ 的解！只有 $b \in C(A)$ 时两者才一致</li>
+<li>$\min \|Ax-b\|$ 和 $\min \|Ax-b\|^2$ 的解集相同，但最小值不同</li>
+<li>正规方程<strong>一定有解</strong>（即使 $A^T A$ 不可逆），因为 $A^T b \in C(A^T A)$</li>
+<li>列满秩 ⇒ 解唯一；列不满秩 ⇒ 无穷多解（解集 = $y_p + N(A)$）</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7 -->
+<!-- ============================================================ -->
+<h1 id="s7">VII. 正交性与 Gram-Schmidt <span class="tag must">必考</span></h1>
+
+<div class="card formula">
+<h3>正交矩阵</h3>
+<div class="formula-box star">$Q^T Q = I$ 即 $Q^{-1} = Q^T$</div>
+<ul>
+<li><strong>保长：</strong> $\|Qx\| = \|x\|$</li>
+<li><strong>保内积：</strong> $\langle Qx, Qy \rangle = \langle x, y \rangle$</li>
+<li><strong>行列式：</strong> $\det(Q) = \pm 1$</li>
+</ul>
+</div>
+
+<div class="card formula">
+<h3>Gram-Schmidt 正交化</h3>
+<div class="formula-box star">$v_j = \dfrac{u_j - \sum_{i=1}^{j-1} \langle u_j, v_i \rangle v_i}{\|u_j - \sum_{i=1}^{j-1} \langle u_j, v_i \rangle v_i\|}$</div>
+<p>一句话：每一步取新向量，减去它在已有正交方向上的投影，再归一化。</p>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li>$Q^T Q = I$ 但 $Q Q^T \neq I$（除非 $Q$ 是方阵）。瘦矩阵只有左侧是单位阵</li>
+<li>正交集中向量自动线性无关（Prop 17.1），但正交集不一定是基</li>
+<li>Gram-Schmidt：必须先减去所有已有正交方向的投影，再归一化</li>
+<li>正交矩阵的乘积仍是正交矩阵。正交矩阵的逆也是正交矩阵</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8 -->
+<!-- ============================================================ -->
+<h1 id="s8">VIII. 行列式 <span class="tag hot">高频</span></h1>
+
+<div class="card formula">
+<h3>核心公式</h3>
+<div class="formula-box star">$\det(AB) = \det(A) \cdot \det(B)$</div>
+<div class="formula-box star">$\det(A^{-1}) = \frac{1}{\det(A)}$</div>
+<div class="formula-box star">$\det(A^T) = \det(A)$</div>
+<div class="formula-box star">三角矩阵：$\det = $ 对角线元素之积</div>
+</div>
+
+<div class="card warning">
+<h3>行列式性质速查</h3>
+<ul>
+<li>交换两行 → 变号</li>
+<li>某行乘以 $c$ → 行列式乘以 $c$（注意：$n$ 行都乘 $c$ → $\det(cA) = c^n \det(A)$）</li>
+<li>一行加到另一行 → 行列式不变</li>
+<li>某行为零 → $\det = 0$</li>
+<li>两行相同 → $\det = 0$</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li><strong>$\det(A+B) \neq \det(A) + \det(B)$！</strong> 行列式对加法没有简单公式</li>
+<li>$\det(cA) = c^n \det(A)$，不是 $c \det(A)$——每行都被乘了 $c$</li>
+<li>几何意义：$|\det(A)|$ = 列向量构成的平行体体积 = 变换的面积/体积放大倍率</li>
+<li>$\det(A) \neq 0 \iff A$ 可逆（可逆性等价条件第 11 条）</li>
+<li>分块对角：$\det\begin{pmatrix} h & * \\ 0 & B \end{pmatrix} = h \cdot \det(B)$</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 9 -->
+<!-- ============================================================ -->
+<h1 id="s9">IX. 线性变换 <span class="tag easy">基础</span></h1>
+
+<div class="card formula">
+<h3>定义与矩阵表示</h3>
+<ul>
+<li><strong>定义：</strong> $f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)$</li>
+<li><strong>矩阵求法：</strong> $A = [f(e_1), f(e_2), \dots, f(e_n)]$（第 $i$ 列 = 标准基第 $i$ 个向量的像）</li>
+<li><strong>几何判据：</strong> 直线 → 直线，等距 → 等距，原点 → 原点</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li>$f(0) \neq 0$ ⇒ 一定不是线性变换（最快的排除法）</li>
+<li>$\mathbb{R}^n \to \mathbb{R}^m$ 的线性变换必然对应一个 $m \times n$ 矩阵</li>
+<li>如果已知 $T(v_1), T(v_2)$ 且 $\{v_1, v_2\}$ 是一组基，则 $T$ 在整个空间上的作用被唯一确定</li>
+<li>矩阵的列 = 变换后的基向量。列相关 ⇒ 变换退化（降维坍缩）</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 10 -->
+<!-- ============================================================ -->
+<h1 id="s10">X. 特征值与特征向量 <span class="tag must">必考</span></h1>
+
+<div class="card formula">
+<h3>定义</h3>
+<div class="formula-box star">$Ax = \lambda x,\quad x \neq 0$</div>
+<ul>
+<li><strong>特征多项式：</strong> $p_A(\lambda) = \det(\lambda I - A) = 0$</li>
+<li><strong>算法：</strong> 求 $p_A(\lambda)$ → 找根得 $\lambda$ → 解 $(\lambda_i I - A)x = 0$ 得特征向量</li>
+<li><strong>特征空间：</strong> $N(\lambda_i I - A)$，维数 = 几何重数</li>
+</ul>
+</div>
+
+<div class="card formula">
+<h3>关键性质</h3>
+<ul>
+<li>三角矩阵：特征值 = 对角线元素（直接读！）</li>
+<li>$\sum \lambda_i = \text{trace}(A)$；$\prod \lambda_i = \det(A)$</li>
+<li>$\text{EIG}(A^k) = \{\lambda_i^k\}$；$\text{EIG}(A^{-1}) = \{\lambda_i^{-1}\}$</li>
+<li>代数基本定理：$n \times n$ 矩阵在 $\mathbb{C}$ 上恰好有 $n$ 个特征值（计重数）</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li>特征向量必须非零，但特征值可以为零</li>
+<li>$\lambda = 0 \iff A$ 奇异 $\iff \det(A) = 0$</li>
+<li>实矩阵可以有复数特征值（如旋转矩阵 $[0,-1;1,0]$ 有 $\lambda = \pm i$）</li>
+<li>不同特征值对应的特征向量线性无关（可用来构造特征基）</li>
+<li>"特征值集合相同"要用多重集——重数不同则不相等</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 11 -->
+<!-- ============================================================ -->
+<h1 id="s11">XI. 谱定理与对角化 <span class="tag must">必考</span></h1>
+
+<div class="card formula">
+<h3>谱定理（Theorem 23.1）</h3>
+<div class="formula-box star">实对称矩阵 $A = V D V^T = \sum_{j=1}^n \lambda_j v_j v_j^T$</div>
+<p>$V$ 正交矩阵（列是标准正交特征向量），$D$ 实对角矩阵（特征值全为实数）</p>
+</div>
+
+<div class="card formula">
+<h3>对角化条件</h3>
+<div class="formula-box star">$A = SDS^{-1}$ &nbsp;⟺&nbsp; 存在 $n$ 个线性无关的特征向量（特征基）</div>
+<ul>
+<li><strong>充分条件：</strong> $n$ 个互异特征值 ⇒ 一定可对角化</li>
+<li><strong>充要条件：</strong> 每个特征值的几何重数 = 代数重数</li>
+<li><strong>相似矩阵：</strong> $A \sim B$ ⇒ $\text{EIG}(A) = \text{EIG}(B)$（含重数）</li>
+<li><strong>应用：</strong> $A^k = S D^k S^{-1}$（计算 $A^k$ 的神器）</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>常见错误</h3>
+<ul>
+<li>不是所有矩阵都可对角化！例如 $A = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}$（$\lambda=1$ 重数 2，但特征空间仅 1 维）</li>
+<li>谱定理仅适用于<strong>实对称矩阵</strong>。一般矩阵的分解是 $A = V D V^{-1}$，不是 $V^T$</li>
+<li>实对称矩阵的特征值一定实数、特征向量可正交化、一定有正交特征基</li>
+<li>相似矩阵有相同特征值（含重数），但反过来不成立（相同特征值不一定相似）</li>
+</ul>
+</div>
+
+<div class="card connection">
+<h3>谱定理 vs 一般对角化</h3>
+<table class="comparison-table" style="width:100%;border-collapse:collapse;margin:12px 0;">
+<tr style="background:#667eea;color:white;"><th></th><th>实对称矩阵</th><th>一般可对角化矩阵</th></tr>
+<tr><td>分解形式</td><td>$A = V D V^T$</td><td>$A = S D S^{-1}$</td></tr>
+<tr><td>特征值</td><td>全是实数</td><td>可以是复数</td></tr>
+<tr><td>特征向量</td><td>可正交归一化（$V$ 正交）</td><td>线性无关但不一定正交</td></tr>
+<tr><td>不同 $\lambda$ 的特征向量</td><td>自动正交</td><td>线性无关但不一定正交</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 12 -->
+<!-- ============================================================ -->
+<h1 id="s12">XII. 奇异值分解 (SVD) <span class="tag must">必考</span></h1>
+
+<div class="card formula">
+<h3>完整 SVD</h3>
+<div class="formula-box star">$A = U \Sigma V^T$</div>
+<p>$U \in \mathbb{R}^{m \times m}$ 正交，$\Sigma \in \mathbb{R}^{m \times n}$ 对角（奇异值 $\sigma_1 \ge \cdots \ge \sigma_r > 0$），$V \in \mathbb{R}^{n \times n}$ 正交</p>
+</div>
+
+<div class="card formula">
+<h3>紧凑 SVD</h3>
+<div class="formula-box star">$A = U_r \Sigma_r V_r^T = \sum_{i=1}^r \sigma_i u_i v_i^T$</div>
+</div>
+
+<div class="card tip">
+<h3>SVD 与四个基本子空间</h3>
+<ul>
+<li>$u_1,...,u_r$：$C(A)$ 的标准正交基</li>
+<li>$u_{r+1},...,u_m$：$N(A^T)$ 的标准正交基</li>
+<li>$v_1,...,v_r$：$\text{Row}(A)$ 的标准正交基</li>
+<li>$v_{r+1},...,v_n$：$N(A)$ 的标准正交基</li>
+</ul>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li><strong>非零奇异值的个数 = rank(A)</strong> —— 最核心的性质</li>
+<li>$\sigma_i^2 = \lambda_i(A^T A)$（奇异值是 $A^T A$ 特征值的平方根）</li>
+<li>对称半正定矩阵：$\sigma_i = \lambda_i$（SVD 和 EVD 重合）</li>
+<li>对称但非半正定：$\sigma_i = |\lambda_i|$</li>
+<li>一般矩阵：奇异值和特征值没有一一对应，但 $\prod \sigma_i = |\det(A)|$（方阵）</li>
+<li><strong>Frobenius 范数：</strong> $\|A\|_F = \sqrt{\sum \sigma_i^2} = \sqrt{\sum a_{ij}^2}$</li>
+<li><strong>低秩近似：</strong> 保留前 $k$ 个奇异值得到秩 $k$ 的最优近似</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 13 -->
+<!-- ============================================================ -->
+<h1 id="s13">XIII. 二次型与正定性 <span class="tag must">必考</span></h1>
+
+<div class="card formula">
+<h3>二次型</h3>
+<div class="formula-box star">$Q(x) = x^T A x$ &nbsp;（$A$ 必须是对称矩阵）</div>
+<p>交叉项拆分：$x^T A x = \sum a_{ii} x_i^2 + \sum_{i < j} 2a_{ij} x_i x_j$</p>
+<p>反向：$ax_1^2 + 2b x_1 x_2 + c x_2^2 \Rightarrow A = \begin{bmatrix} a & b \\ b & c \end{bmatrix}$（交叉项系数分一半给非对角元）</p>
+</div>
+
+<div class="card formula">
+<h3>正定性判定（$A$ 为实对称矩阵）</h3>
+<div class="grid2">
+<div>
+<p><strong>特征值法：</strong></p>
+<ul>
+<li>PD：所有 $\lambda_i > 0$</li>
+<li>PSD：所有 $\lambda_i \ge 0$</li>
+<li>ND：所有 $\lambda_i < 0$</li>
+<li>NSD：所有 $\lambda_i \le 0$</li>
+<li>Indefinite：有正有负</li>
+</ul>
+</div>
+<div>
+<p><strong>等价条件：</strong></p>
+<ul>
+<li>PD ⟺ $A = R^T R$，$R$ 可逆（Cholesky）</li>
+<li>PSD ⟺ $A = R^T R$（$R$ 不一定可逆）</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="card pitfall">
+<h3>易错点</h3>
+<ul>
+<li>二次型矩阵 <strong>必须对称</strong>——$x^T A x$ 中只有对称部分起作用</li>
+<li>$4x_1 x_2$ 在矩阵 $A$ 中对应 $a_{12} = a_{21} = 2$（不是 4！）</li>
+<li>PD 要求所有特征值严格大于 0，PSD 允许等于 0</li>
+<li>有时用主子式（leading principal minors）判定：PD ⟺ 所有顺序主子式 > 0</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 14 -->
+<!-- ============================================================ -->
+<h1 id="s14">XIV. 考试策略与速查</h1>
+
+<div class="card tip">
+<h3>计算题 checklist</h3>
+<ul>
+<li><strong>求逆矩阵：</strong> 增广矩阵法 $[A|I] \to [I|A^{-1}]$</li>
+<li><strong>LU 分解：</strong> 前向消元 → 记录初等矩阵 → $L = E_1^{-1}...E_k^{-1}$</li>
+<li><strong>求零空间：</strong> RREF → 自由变量参数化 → 写成 Span</li>
+<li><strong>求列空间基：</strong> pivot 列对应的原矩阵列</li>
+<li><strong>最小二乘：</strong> 列满秩 → 正规方程 → 唯一解；列不满秩 → 正规方程 + 找通解</li>
+<li><strong>Gram-Schmidt：</strong> 逐步减投影 → 归一化 → 验证正交性</li>
+<li><strong>特征值/特征向量：</strong> $\det(\lambda I - A) = 0$ → 找根 → 解 $(\lambda_i I - A)x = 0$</li>
+<li><strong>对角化：</strong> 找特征值+特征向量 → 验证是否有 $n$ 个线性无关特征向量 → $A = SDS^{-1}$</li>
+<li><strong>SVD：</strong> 找 $A^T A$ 特征值和特征向量 → $\sigma_i$ → $V$ → $U$ 列 = $Av_i/\sigma_i$</li>
+<li><strong>正定性：</strong> 化对称矩阵 → 求特征值 → 看符号</li>
+</ul>
+</div>
+
+<div class="card warning">
+<h3>T/F 判断题高频陷阱</h3>
+<ul>
+<li>"特征值的和等于特征值的和" —— 陷阱：说的是 $\lambda(A+B) = \lambda(A) + \lambda(B)$，一般不成立</li>
+<li>"如果 $AB$ 可逆，则 $A$ 和 $B$ 都可逆" —— 正确！（方阵时）</li>
+<li>"相似矩阵有相同特征向量" —— <strong>错误</strong>！相似矩阵有相同特征值，但特征向量不同（$v_A = S v_B$）</li>
+<li>"正交矩阵的特征值都是 ±1" —— 错误！可以是模长为 1 的复数（如旋转矩阵 $\lambda = e^{\pm i\theta}$），但对于实正交矩阵，<strong>实特征值</strong>只有 ±1</li>
+<li>"正定矩阵的所有元素都是正的" —— 错误！如 $\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$ 是 PD</li>
+<li>"零空间只包含零向量说明矩阵可逆" —— 对方阵成立，对非方阵不成立</li>
+<li>"$A^T A$ 总是可逆的" —— 错误！当 $A$ 列不满秩时不可逆</li>
+</ul>
+</div>
+
+<div class="card connection">
+<h3>必须背下来的公式</h3>
+<div class="formula-box star">$A^{-1}_{2\times2} = \frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a \end{bmatrix}$</div>
+<div class="formula-box star">$(AB)^{-1} = B^{-1} A^{-1}$，$(AB)^T = B^T A^T$</div>
+<div class="formula-box star">$\dim(N(A)) = n - \text{rank}(A)$</div>
+<div class="formula-box star">$A^T A y = A^T b$（正规方程）</div>
+<div class="formula-box star">$Q^T Q = I$，$Q^{-1} = Q^T$（正交矩阵）</div>
+<div class="formula-box star">$\det(AB) = \det(A)\det(B)$，$\det(A^T) = \det(A)$</div>
+<div class="formula-box star">$\det(\lambda I - A) = 0$（特征多项式）</div>
+<div class="formula-box star">$A = V D V^T$（谱定理，对称矩阵）</div>
+<div class="formula-box star">$A = U \Sigma V^T$（SVD，任意矩阵）</div>
+<div class="formula-box star">$\sum \lambda_i = \text{tr}(A)$，$\prod \lambda_i = \det(A)$</div>
+</div>
+
+<div style="text-align:center;padding:24px;color:#999;font-size:13px;margin-top:32px;">
+    MAT2041 Final Exam Review · Good luck!<br>
+    Covering Lectures 1-27, Spring 2026
+</div>
+
+</main>
+
+<script>
+renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ]
+});
+</script>
+</body>
+</html>

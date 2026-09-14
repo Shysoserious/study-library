@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA 复习笔记 | Lecture 7-10 连续分布·条件概率·MLE·回归</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1a;--text2:#555;--accent:#534AB7;--accent2:#0F6E56;--red:#E24B4A;--amber:#BA7517;--blue:#185FA5;--pink:#C43B7A;--border:#e5e3de;--code-bg:#f3f1ec;--sidebar-bg:#f0eee9;--sidebar-w:260px;}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--card:#252525;--text:#e8e6e0;--text2:#999;--accent:#AFA9EC;--accent2:#5DCAA5;--red:#F09595;--amber:#FAC775;--blue:#85B7EB;--pink:#F29BC1;--border:#333;--code-bg:#2c2c2a;--sidebar-bg:#1f1f1f;}}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-bg);border-right:1px solid var(--border);overflow-y:auto;padding:20px 0;z-index:100;transition:transform .3s;}
+.sidebar .logo{padding:0 20px 16px;font-size:15px;font-weight:700;color:var(--accent);border-bottom:1px solid var(--border);margin-bottom:12px;}
+.sidebar a{display:block;padding:6px 20px;color:var(--text2);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .15s;}
+.sidebar a:hover,.sidebar a.active{color:var(--accent);background:rgba(83,74,183,.06);border-left-color:var(--accent);}
+.sidebar .sec{font-size:12px;font-weight:700;color:var(--text2);padding:14px 20px 6px;text-transform:uppercase;letter-spacing:.5px;}
+.sidebar .sub{padding-left:34px;font-size:12px;}
+.main{margin-left:var(--sidebar-w);padding:30px 40px 60px;}
+.container{max-width:860px;margin:0 auto;}
+.menu-btn{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--accent);color:#fff;border:none;border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;}
+@media(max-width:800px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.main{margin-left:0;padding:20px;}.menu-btn{display:flex;align-items:center;justify-content:center;}}
+h1{font-size:26px;font-weight:700;margin-bottom:6px;color:var(--accent);}
+h2{font-size:21px;font-weight:600;margin:36px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--accent);color:var(--accent);}
+h3{font-size:17px;font-weight:600;margin:22px 0 10px;color:var(--text);}
+h4{font-size:14px;font-weight:600;margin:14px 0 6px;color:var(--text2);}
+p{margin-bottom:11px;}
+.subtitle{color:var(--text2);font-size:14px;margin-bottom:24px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin:14px 0;}
+.card-accent{border-left:4px solid var(--accent);}
+.card-green{border-left:4px solid var(--accent2);}
+.card-red{border-left:4px solid var(--red);}
+.card-amber{border-left:4px solid var(--amber);}
+.card-blue{border-left:4px solid var(--blue);}
+.card-pink{border-left:4px solid var(--pink);}
+.formula{background:var(--code-bg);border-radius:10px;padding:14px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-tip{background:#E1F5EE;color:#0F6E56;}
+.key{color:var(--red);font-weight:600;}
+.eng{color:var(--blue);font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:38px;margin-bottom:14px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.example-box{background:var(--code-bg);border-radius:10px;padding:12px 16px;margin:10px 0;}
+.lecture-divider{background:linear-gradient(135deg,#534AB7,#8B84D8);color:#fff;padding:20px 22px;border-radius:12px;margin:36px 0 18px;}
+.lecture-divider h2{color:#fff;border:none;margin:0;padding:0;font-size:21px;}
+.lecture-divider p{color:#dfd9ff;font-size:12px;margin:3px 0 0;}
+.lecture-divider.orange{background:linear-gradient(135deg,#D8734E,#E69975);}
+.lecture-divider.orange p{color:#fff0e8;}
+.lecture-divider.teal{background:linear-gradient(135deg,#0F6E56,#5DCAA5);}
+.lecture-divider.teal p{color:#d0f5e8;}
+.lecture-divider.rose{background:linear-gradient(135deg,#C43B7A,#E97FAE);}
+.lecture-divider.rose p{color:#ffe0f0;}
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);font-size:13px;}
+th{background:var(--code-bg);font-weight:600;}
+.progress{position:fixed;top:0;left:var(--sidebar-w);right:0;height:3px;background:var(--accent);z-index:99;transition:width .1s;}
+@media(max-width:800px){.progress{left:0;}}
+.nav{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<button class="menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+<a href="#top" class="nav">&uarr;</a>
+
+<nav class="sidebar">
+<div class="logo">&#x1F4CA; DDA Lec 7-10</div>
+
+<div class="sec">Lec 7 &middot; 连续RV</div>
+<a href="#L7">Continuous RV</a>
+<a href="#L7-1" class="sub">1. 连续 vs 离散</a>
+<a href="#L7-2" class="sub">2. CDF</a>
+<a href="#L7-3" class="sub">3. PDF</a>
+<a href="#L7-4" class="sub">4. 均匀分布</a>
+<a href="#L7-5" class="sub">5. 正态分布</a>
+<a href="#L7-6" class="sub">6. 连续RV的均值方差</a>
+
+<div class="sec">Lec 8 &middot; 条件概率深入</div>
+<a href="#L8">Conditional Prob</a>
+<a href="#L8-1" class="sub">1. 条件概率回顾</a>
+<a href="#L8-2" class="sub">2. Monty Hall 问题</a>
+<a href="#L8-3" class="sub">3. Bayes 定理</a>
+<a href="#L8-4" class="sub">4. 核酸检测经典题</a>
+
+<div class="sec">Lec 9 &middot; MLE</div>
+<a href="#L9">Max Likelihood</a>
+<a href="#L9-1" class="sub">1. 统计推断思路</a>
+<a href="#L9-2" class="sub">2. 似然函数定义</a>
+<a href="#L9-3" class="sub">3. MLE 求解步骤</a>
+<a href="#L9-4" class="sub">4. 经典例题</a>
+
+<div class="sec">Lec 10 &middot; 回归分析</div>
+<a href="#L10">Regression</a>
+<a href="#L10-1" class="sub">1. 相关性</a>
+<a href="#L10-2" class="sub">2. 线性回归模型</a>
+<a href="#L10-3" class="sub">3. MLE 推导回归</a>
+<a href="#L10-4" class="sub">4. 残差分析</a>
+
+<div class="sec">速查</div>
+<a href="#summary">核心公式速查</a>
+</nav>
+
+<div class="main">
+<div class="container" id="top">
+
+<h1>连续分布 &middot; 条件概率 &middot; MLE &middot; 回归</h1>
+<p class="subtitle">Lecture 7&ndash;10 | Introduction to Data Science | Prof. Pin Gao | 期末复习专用</p>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 7                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider" id="L7">
+<h2 style="color:#fff;">Lecture 7 &mdash; Continuous Random Variables</h2>
+<p>连续随机变量 &middot; CDF &middot; PDF &middot; 均匀分布 &middot; 正态分布</p>
+</div>
+
+<h2 id="L7-1">1. 连续 vs 离散</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Key Difference</span>
+<h3>核心区别</h3>
+<table>
+<tr><th></th><th>离散 RV</th><th>连续 RV</th></tr>
+<tr><td>Range</td><td>可数集合</td><td>不可数（区间或区间并）</td></tr>
+<tr><td>$P(X=x)$</td><td>$> 0$ 对 range 中的 $x$</td><td><span class="key">= 0</span> 对所有 $x$</td></tr>
+<tr><td>工具</td><td>PMF $f(x) = P(X=x)$</td><td>PDF $f(x)$（概率密度）</td></tr>
+</table>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Important</span>
+<h3>关键理解</h3>
+<p>连续世界中，<span class="highlight">零概率事件 $\neq$ 不可能事件</span>。</p>
+<p>例：$X \sim U[0,1]$，$P(X = 0.5) = 0$，但 $X = 0.5$ 并非不可能！</p>
+<p>因为每个点概率为 0，PMF 不再有用 &mdash; 我们需要新工具。</p>
+</div>
+
+<h2 id="L7-2">2. CDF（累积分布函数）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Formula</span>
+<h3>CDF 定义与性质（重要考点）</h3>
+<div class="formula">$$F(x) = P(X \le x)$$</div>
+<p>性质：</p>
+<p>1. $0 \le F(x) \le 1$</p>
+<p>2. 单调不减</p>
+<p>3. $\lim_{x\to-\infty}F(x) = 0$，$\lim_{x\to+\infty}F(x) = 1$</p>
+<p>4. 计算区间概率：$P(a < X \le b) = F(b) - F(a)$</p>
+<p>对连续 RV：$P(a \le X \le b) = P(a < X < b) = F(b) - F(a)$（端点无所谓）</p>
+</div>
+
+<h2 id="L7-3">3. PDF（概率密度函数）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Formula</span>
+<h3>PDF 定义（重要考点）</h3>
+<p>PDF = CDF 的导数 = "单位长度上的概率集中度"：</p>
+<div class="formula">$$f(x) = F'(x) = \lim_{\Delta x \to 0}\frac{P(x < X \le x+\Delta x)}{\Delta x}$$</div>
+<p>关键关系：</p>
+<div class="formula">$$P(a \le X \le b) = \int_a^b f(x)\,dx$$</div>
+<div class="formula">$$F(x) = \int_{-\infty}^x f(t)\,dt$$</div>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Properties</span>
+<h3>PDF 的性质</h3>
+<p>1. $f(x) \ge 0$ 对所有 $x$</p>
+<p>2. $\int_{-\infty}^{+\infty}f(x)\,dx = 1$</p>
+<p>3. <span class="key">$f(x)$ 可以 $> 1$</span>！它不是概率，是概率密度。</p>
+<p>4. 样本空间 $S = \{x : f(x) > 0\}$</p>
+</div>
+
+<h2 id="L7-4">4. 均匀分布 <span class="eng">Uniform Distribution</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>$X \sim U(a,b)$</h3>
+<div class="grid2">
+<div>
+<h4>PDF</h4>
+<div class="formula">$$f(x) = \begin{cases}\frac{1}{b-a} & a \le x \le b\\0 & \text{otherwise}\end{cases}$$</div>
+</div>
+<div>
+<h4>CDF</h4>
+<div class="formula">$$F(x) = \begin{cases}0 & x < a\\\frac{x-a}{b-a} & a \le x \le b\\1 & x > b\end{cases}$$</div>
+</div>
+</div>
+<table>
+<tr><th>$E[X]$</th><th>$\text{Var}(X)$</th></tr>
+<tr><td>$\dfrac{a+b}{2}$</td><td>$\dfrac{(b-a)^2}{12}$</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>Monte Carlo 方法直觉</h3>
+<p>若 $X \sim U(0,1)$，则 $E[g(X)] = \int_0^1 g(x)\,dx$。</p>
+<p>抽取大量样本 $x_1,\dots,x_n$ 并计算 $\frac{1}{n}\sum g(x_i)$，即可近似积分值。</p>
+<p>这就是 <span class="eng">Monte Carlo simulation</span> 的核心思想。</p>
+</div>
+
+<h2 id="L7-5">5. 正态分布 <span class="eng">Normal Distribution</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Formula</span>
+<h3>$X \sim N(\mu, \sigma^2)$（重要考点）</h3>
+<div class="formula">$$f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$</div>
+<table>
+<tr><th>参数</th><th>含义</th><th>影响</th></tr>
+<tr><td>$\mu$</td><td>均值（中心位置）</td><td>图形左右平移</td></tr>
+<tr><td>$\sigma^2$</td><td>方差（离散程度）</td><td>$\sigma$ 大 &rarr; 图形矮胖；$\sigma$ 小 &rarr; 图形尖瘦</td></tr>
+</table>
+<p>$E[X] = \mu$，$\text{Var}(X) = \sigma^2$</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">CLT</span>
+<h3>中心极限定理 <span class="eng">Central Limit Theorem</span></h3>
+<p>大量独立同分布随机变量的<span class="key">和</span>近似服从正态分布（无论原分布是什么）。</p>
+<p>这解释了为什么正态分布如此常见（身高、误差、噪声...）。</p>
+<p style="font-size:13px;color:var(--text2);">（不需要证明，只需理解直觉）</p>
+</div>
+
+<h2 id="L7-6">6. 连续 RV 的均值与方差</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Formulas</span>
+<h3>从求和到积分</h3>
+<div class="grid2">
+<div>
+<h4>离散（复习）</h4>
+<div class="formula">$$E[X] = \sum_x x\cdot f(x)$$</div>
+<div class="formula">$$\text{Var}(X) = \sum_x(x-\mu)^2 f(x)$$</div>
+</div>
+<div>
+<h4>连续</h4>
+<div class="formula">$$E[X] = \int_{-\infty}^{+\infty}x\cdot f(x)\,dx$$</div>
+<div class="formula">$$\text{Var}(X) = \int_{-\infty}^{+\infty}(x-\mu)^2 f(x)\,dx$$</div>
+</div>
+</div>
+<p>方差恒等式仍成立：$\text{Var}(X) = E[X^2] - (E[X])^2$</p>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 8                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider teal" id="L8">
+<h2 style="color:#fff;">Lecture 8 &mdash; Conditional Probability (Deep Dive)</h2>
+<p>条件概率深入 &middot; Monty Hall &middot; Bayes 定理 &middot; 核酸检测</p>
+</div>
+
+<h2 id="L8-1">1. 条件概率回顾</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Recall</span>
+<h3>条件概率公式</h3>
+<div class="formula">$$P(Y=y|X=x) = \frac{P(Y=y,\,X=x)}{P(X=x)}, \quad P(X=x) > 0$$</div>
+<p>性质：</p>
+<p>• $P(Y=y|X=x) \ge 0$</p>
+<p>• $\sum_y P(Y=y|X=x) = 1$（固定 $x$，对 $y$ 的条件分布仍是合法概率分布）</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>NLP 应用</h3>
+<p>H = 消息中提到"happy"，D = 消息中提到"DDA2001"。</p>
+<p>$P(H) = 0.1$，$P(D) = 0.1$，$P(H,D) = 0.08$</p>
+<div class="example-box">
+<p>$P(H|D) = \frac{P(H,D)}{P(D)} = \frac{0.08}{0.1} = 0.8$</p>
+<p>知道消息提到 DDA2001 后，提到 happy 的概率从 10% 飙升到 80%！</p>
+</div>
+</div>
+
+<h2 id="L8-2">2. Monty Hall 问题（经典考题）</h2>
+
+<div class="card card-pink">
+<span class="tag tag-exam">Classic Problem</span>
+<h3>三门问题</h3>
+<p>三扇门，一扇后有车，两扇后有羊。你选了一扇门后，主持人打开另一扇有羊的门。你要不要换？</p>
+<table>
+<tr><th>门1后面</th><th>门2后面</th><th>门3后面</th><th>不换结果</th><th>换的结果</th></tr>
+<tr><td>羊</td><td>羊</td><td>车</td><td>羊</td><td><span class="key">车</span></td></tr>
+<tr><td>羊</td><td>车</td><td>羊</td><td>羊</td><td><span class="key">车</span></td></tr>
+<tr><td>车</td><td>羊</td><td>羊</td><td>车</td><td>羊</td></tr>
+</table>
+<div class="example-box">
+<p><strong>结论</strong>：$P(\text{不换赢}) = 1/3$，$P(\text{换赢}) = 2/3$</p>
+<p><span class="highlight">应该换！</span>因为主持人的开门给你提供了<span class="key">额外信息</span>。</p>
+</div>
+</div>
+
+<h2 id="L8-3">3. Bayes 定理</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Bayes' Rule</span>
+<h3>Bayes 公式（重要考点）</h3>
+<div class="formula">$$P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}$$</div>
+<p>其中全概率公式：$P(B) = P(B|A)P(A) + P(B|A^c)P(A^c)$</p>
+<p><span class="key">核心意义</span>：已知"原因 $\to$ 结果"的概率，反推"结果 $\to$ 原因"的概率。</p>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Warning</span>
+<h3>$P(B|A) \neq P(A|B)$</h3>
+<p>两者可能<span class="key">差别巨大</span>！下面的核酸检测例子就是经典案例。</p>
+</div>
+
+<h2 id="L8-4">4. 核酸检测经典题（必考）</h2>
+
+<div class="card card-pink">
+<span class="tag tag-exam">Must-Know Example</span>
+<h3>COVID 检测 &mdash; Bayes 定理应用</h3>
+<p>已知：</p>
+<table>
+<tr><th>符号</th><th>含义</th><th>数值</th></tr>
+<tr><td>$P(\text{Infected})$</td><td>感染率</td><td>0.01</td></tr>
+<tr><td>$P(+|\text{Infected})$</td><td>灵敏度（真阳性率）</td><td>0.99</td></tr>
+<tr><td>$P(+|\text{Well})$</td><td>假阳性率</td><td>0.01</td></tr>
+</table>
+<p><strong>求</strong>：$P(\text{Infected}|+)$ = 检测阳性后真的感染的概率？</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Solution</span>
+<h3>详细解题步骤</h3>
+<ol class="steps">
+<li>列出联合概率：
+<table>
+<tr><th></th><th>Infected (0.01)</th><th>Well (0.99)</th></tr>
+<tr><td>$+$</td><td>$0.01\times0.99 = 0.0099$</td><td>$0.99\times0.01 = 0.0099$</td></tr>
+<tr><td>$-$</td><td>$0.01\times0.01 = 0.0001$</td><td>$0.99\times0.99 = 0.9801$</td></tr>
+</table>
+</li>
+<li>计算 $P(+) = 0.0099 + 0.0099 = 0.0198$</li>
+<li>应用 Bayes：
+<div class="formula">$$P(\text{Infected}|+) = \frac{0.0099}{0.0198} = 0.50$$</div>
+</li>
+</ol>
+<div class="example-box">
+<p><span class="key">惊人结论</span>：即使检测灵敏度高达 99%，阳性结果仍只有 50% 概率是真感染！</p>
+<p>原因：$P(\text{Infected})$ 很低（1%），大量假阳性来自 99% 的健康人群。</p>
+<p>这就是 <span class="eng">Base Rate Fallacy</span>（基础概率谬误）。</p>
+</div>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 9                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider rose" id="L9">
+<h2 style="color:#fff;">Lecture 9 &mdash; Maximum Likelihood Estimation</h2>
+<p>最大似然估计 &middot; 参数推断的核心方法</p>
+</div>
+
+<h2 id="L9-1">1. 统计推断思路</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Framework</span>
+<h3>统计推断三要素</h3>
+<ol class="steps">
+<li><strong>样本 Samples</strong>：从真实世界收集的数据 $X_1, X_2, \dots, X_n$</li>
+<li><strong>模型集合</strong>：一组候选模型（参数 $\theta \in \Theta$）</li>
+<li><strong>评价标准</strong>：量化模型好坏的函数（Score function）</li>
+</ol>
+<p>核心思想：<span class="highlight">在候选模型中，选择最可能生成观测数据的那个</span>。</p>
+</div>
+
+<h2 id="L9-2">2. 似然函数定义 <span class="eng">Likelihood Function</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Definition</span>
+<h3>似然函数（重要考点）</h3>
+<p>给定参数 $\theta$，观测到样本 $X_1,\dots,X_n$（假设独立）的概率：</p>
+<div class="formula">$$L(\theta) = \prod_{i=1}^n P(X_i|\theta) \quad\text{(离散)}$$</div>
+<div class="formula">$$L(\theta) = \prod_{i=1}^n f(X_i|\theta) \quad\text{(连续)}$$</div>
+<p><strong>对数似然</strong>（更好算）：</p>
+<div class="formula">$$\ell(\theta) = \log L(\theta) = \sum_{i=1}^n \log P(X_i|\theta)$$</div>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Why Log?</span>
+<h3>为什么取对数？</h3>
+<p>1. 乘法变加法，计算更简单</p>
+<p>2. 对数是单调函数，最大化 $\ell(\theta)$ 等价于最大化 $L(\theta)$</p>
+<p>3. 避免数值下溢（很多小概率相乘 &rarr; 极小数）</p>
+</div>
+
+<h2 id="L9-3">3. MLE 求解步骤</h2>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Procedure</span>
+<h3>MLE 标准流程（必考）</h3>
+<ol class="steps">
+<li>写出似然函数 $L(\theta)$（样本独立则连乘）</li>
+<li>取对数得 $\ell(\theta) = \sum \log f(X_i|\theta)$</li>
+<li>对 $\theta$ 求导，令 $\frac{d\ell}{d\theta} = 0$</li>
+<li>解方程得 $\hat{\theta}_{MLE}$</li>
+<li>验证是最大值（二阶导 $< 0$）</li>
+</ol>
+<p>若 $\Theta$ 是离散集合：直接比较各候选值的似然。</p>
+</div>
+
+<h2 id="L9-4">4. 经典例题</h2>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example 1</span>
+<h3>Bernoulli 分布 MLE</h3>
+<p>$N$ 次试验，$M$ 次成功。$X_i \sim \text{Bernoulli}(p)$。</p>
+<div class="example-box">
+<p>$\ell(p) = M\log p + (N-M)\log(1-p)$</p>
+<p>$\frac{d\ell}{dp} = \frac{M}{p} - \frac{N-M}{1-p} = 0$</p>
+<p>$\hat{p}_{MLE} = \frac{M}{N}$（样本成功率）</p>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example 2</span>
+<h3>离散参数空间</h3>
+<p>药物试验：$p \in \{0.8, 0.9\}$，100 次试验中 81 次成功。</p>
+<div class="example-box">
+<p>$L(0.8) = \binom{100}{81}(0.8)^{81}(0.2)^{19}$</p>
+<p>$L(0.9) = \binom{100}{81}(0.9)^{81}(0.1)^{19}$</p>
+<p>比较：$\frac{L(0.8)}{L(0.9)} = \left(\frac{0.8}{0.9}\right)^{81}\left(\frac{0.2}{0.1}\right)^{19} = (0.889)^{81}\cdot 2^{19}$</p>
+<p>计算发现 $L(0.8) > L(0.9)$，所以 $\hat{p} = 0.8$。</p>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example 3</span>
+<h3>Uniform 分布 MLE</h3>
+<p>$X \sim U(a,b)$，观测到 175, 185, 190, 155。</p>
+<div class="example-box">
+<p>$L(a,b) = \prod \frac{1}{b-a}\cdot\mathbf{1}[a\le X_i\le b] = \frac{1}{(b-a)^4}$（当所有样本在 $[a,b]$ 内时）</p>
+<p>要最大化 $L$，需最小化 $b-a$，同时保证所有点在 $[a,b]$ 内。</p>
+<p>$\hat{a} = \min(X_i) = 155$，$\hat{b} = \max(X_i) = 190$</p>
+<p><span class="key">注意</span>：这里 MLE 不是样本均值！</p>
+</div>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 10                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider orange" id="L10">
+<h2 style="color:#fff;">Lecture 10 &mdash; Regression Analysis</h2>
+<p>相关性 &middot; 线性回归 &middot; MLE视角 &middot; 残差分析</p>
+</div>
+
+<h2 id="L10-1">1. 相关性 <span class="eng">Correlation</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>三种相关关系</h3>
+<table>
+<tr><th>类型</th><th>含义</th><th>图形</th></tr>
+<tr><td><span class="key">正相关</span></td><td>$x$ 增大 &rarr; $y$ 倾向增大</td><td>点云斜向右上</td></tr>
+<tr><td><span class="key">零相关</span></td><td>$x$ 与 $y$ 无线性关系</td><td>点云无方向</td></tr>
+<tr><td><span class="key">负相关</span></td><td>$x$ 增大 &rarr; $y$ 倾向减小</td><td>点云斜向右下</td></tr>
+</table>
+<p>问题：当 $x$ 增加某个量时，$y$ 变化多少？&rarr; 用<span class="eng">regression</span>回答。</p>
+</div>
+
+<h2 id="L10-2">2. 线性回归模型 <span class="eng">Linear Regression</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Model</span>
+<h3>简单线性回归（重要考点）</h3>
+<div class="formula">$$Y = \beta_0 + \beta_1 X + \varepsilon, \quad \varepsilon \sim N(0, \sigma^2)$$</div>
+<p>$\beta_0$ = 截距，$\beta_1$ = 斜率，$\varepsilon$ = 随机噪声。</p>
+<p>假设：</p>
+<p>1. 线性关系</p>
+<p>2. 误差独立同分布 $N(0,\sigma^2)$</p>
+<p>3. 等方差性（homoscedasticity）</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Least Squares</span>
+<h3>最小二乘法 <span class="eng">OLS</span></h3>
+<p>给定数据 $(x_1,y_1),\dots,(x_n,y_n)$，找 $\hat\beta_0,\hat\beta_1$ 最小化残差平方和：</p>
+<div class="formula">$$\min_{\beta_0,\beta_1}\sum_{i=1}^n(y_i - \beta_0 - \beta_1 x_i)^2$$</div>
+<p>解（令偏导 = 0）：</p>
+<div class="formula">$$\hat\beta_1 = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2}, \quad \hat\beta_0 = \bar{y} - \hat\beta_1\bar{x}$$</div>
+</div>
+
+<h2 id="L10-3">3. MLE 推导回归参数</h2>
+
+<div class="card card-accent">
+<span class="tag tag-thm">MLE = OLS</span>
+<h3>MLE 视角下的回归</h3>
+<p>在正态误差假设下：$Y_i | X_i \sim N(\beta_0+\beta_1 x_i,\; \sigma^2)$</p>
+<div class="formula">$$\ell(\beta_0,\beta_1,\sigma^2) = -\frac{n}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum(y_i-\beta_0-\beta_1 x_i)^2$$</div>
+<p>最大化 $\ell$ 关于 $\beta_0,\beta_1$，等价于<span class="highlight">最小化 $\sum(y_i-\beta_0-\beta_1 x_i)^2$</span> &mdash; 即最小二乘法！</p>
+<p><span class="key">结论</span>：在正态误差假设下，MLE = OLS。</p>
+</div>
+
+<h2 id="L10-4">4. 残差分析 <span class="eng">Residual Analysis</span></h2>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Model Check</span>
+<h3>如何检验模型是否正确？</h3>
+<p>残差 $e_i = y_i - \hat{y}_i$。画 $e_i$ vs $x_i$ 的散点图：</p>
+<div class="grid2">
+<div class="card" style="margin:0;">
+<h4>检验线性性</h4>
+<p style="font-size:13px;"><span class="key">Good</span>：残差随机散布在 0 附近</p>
+<p style="font-size:13px;"><span class="key">Bad</span>：残差呈弧形 &rarr; 关系非线性</p>
+</div>
+<div class="card" style="margin:0;">
+<h4>检验等方差</h4>
+<p style="font-size:13px;"><span class="key">Good</span>：残差带宽均匀</p>
+<p style="font-size:13px;"><span class="key">Bad</span>：残差带宽随 $x$ 变化（喇叭形）</p>
+</div>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Summary Flow</span>
+<h3>回归分析完整流程</h3>
+<ol class="steps">
+<li>画散点图，判断是否呈线性趋势</li>
+<li>拟合模型（最小二乘 / MLE）</li>
+<li>残差分析：检验线性性 + 等方差性</li>
+<li>若假设违反：考虑变换或非线性模型</li>
+</ol>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div class="lecture-divider" id="summary">
+<h2 style="color:#fff;">核心公式速查表</h2>
+<p>Lec 7-10 期末必备</p>
+</div>
+
+<div class="card card-accent">
+<h3>连续随机变量</h3>
+<table>
+<tr><th>概念</th><th>公式</th></tr>
+<tr><td>CDF &rarr; 区间概率</td><td>$P(a\le X\le b) = F(b)-F(a)$</td></tr>
+<tr><td>PDF &harr; CDF</td><td>$f(x)=F'(x)$；$F(x)=\int_{-\infty}^x f(t)\,dt$</td></tr>
+<tr><td>连续 E[X]</td><td>$\int x\cdot f(x)\,dx$</td></tr>
+<tr><td>Var(X)</td><td>$E[X^2]-(E[X])^2$</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<h3>常见连续分布</h3>
+<table>
+<tr><th>分布</th><th>PDF</th><th>$E[X]$</th><th>$\text{Var}(X)$</th></tr>
+<tr><td>$U(a,b)$</td><td>$\frac{1}{b-a}$, $x\in[a,b]$</td><td>$\frac{a+b}{2}$</td><td>$\frac{(b-a)^2}{12}$</td></tr>
+<tr><td>$N(\mu,\sigma^2)$</td><td>$\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+</table>
+</div>
+
+<div class="card card-pink">
+<h3>条件概率 &amp; Bayes</h3>
+<table>
+<tr><th>公式</th><th>用途</th></tr>
+<tr><td>$P(A|B) = \frac{P(A\cap B)}{P(B)}$</td><td>条件概率定义</td></tr>
+<tr><td>$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$</td><td>Bayes 定理</td></tr>
+<tr><td>$P(B) = \sum_i P(B|A_i)P(A_i)$</td><td>全概率公式</td></tr>
+</table>
+</div>
+
+<div class="card card-red">
+<h3>MLE &amp; 回归</h3>
+<table>
+<tr><th>公式</th><th>用途</th></tr>
+<tr><td>$\hat\theta = \arg\max \sum\log f(X_i|\theta)$</td><td>MLE 定义</td></tr>
+<tr><td>Bernoulli: $\hat{p} = M/N$</td><td>最常用 MLE</td></tr>
+<tr><td>$\hat\beta_1 = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2}$</td><td>回归斜率</td></tr>
+<tr><td>$\hat\beta_0 = \bar{y}-\hat\beta_1\bar{x}$</td><td>回归截距</td></tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=h.scrollHeight||b.scrollHeight;
+  var pct=st/(sh-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

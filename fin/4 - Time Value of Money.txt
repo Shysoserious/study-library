@@ -1,0 +1,638 @@
+--- Page 0 ---
+FIN2010
+Financial Management
+Lecture 4: Time value of money
+
+--- Page 1 ---
+Lecture 4: Time Value of Money
+Review—Raising Capital
+• Equity Financing:
+–
+Venture capital
+–
+Private equity
+–
+IPO
+•
+Costs: gross spread, underpricing
+–
+SEO
+• Debt Financing:
+–
+Private debt
+–
+Public debt (bond)
+•
+Credit rating
+Asset
+Debt
+Equity
+2
+
+--- Page 2 ---
+Lecture 4: Time Value of Money
+Agenda
+• What is the time value of money (TVM)?
+• TVM of a single cash flow
+–
+APR and EAR
+3
+
+--- Page 3 ---
+Lecture 4: Time Value of Money
+Time Value of Money
+• Money has a time value.
+• Which would you prefer: $10,000 today or $10,000 next year? 
+–
+Obviously, $10,000 today!
+–
+You can take $10,000 now, put the money in the bank that pays 2% interest per year, which 
+will be $10,200 one year from now. 
+–
+In other words, one dollar today is worth more than one dollar tomorrow.
+• You already recognize that there is TIME VALUE OF MONEY!!
+• TIME allows you the opportunity to postpone consumption and 
+earn INTEREST.
+4
+
+--- Page 4 ---
+Lecture 4: Time Value of Money
+Key Concepts
+• Present Value (PV) – what a cash flow is worth at the beginning of an investment period.
+• Future Value (FV) – what a cash flow is worth in the future.
+• Interest rate (r) – “exchange rate” between earlier money and later money.
+
+Discount rate
+
+Cost of capital
+
+Opportunity cost of capital
+
+Required return
+⇒All the different names refer to the same thing!
+⇒Interest rate is the KEY to converting present value to future value (or future value to present value)
+5
+
+--- Page 5 ---
+Lecture 4: Time Value of Money
+Agenda
+• What is the time value of money (TVM)?
+• TVM of a single cash flow
+–
+APR and EAR
+6
+
+--- Page 6 ---
+Lecture 4: Time Value of Money
+Future Values
+• Suppose you invest 1,000 for one year at 5% per year.  What is the future 
+value in one year?
+
+Interest = 1,000*5% = 50
+
+Value in one year = initial investment + interest = 1,000 + 50 = 1,050
+
+Future value (FV) = 1,000(1 + 5%) = 1,050
+7
+0                   
+1
+1000                      
+1000                      
+50
+
+--- Page 7 ---
+Lecture 4: Time Value of Money
+Future Values
+• Suppose you leave the money in for another year.  How much will you have 
+two years from now?
+–
+Simple interest: interest is earned only on 
+•
+the initial investment 
+
+FV with simple interest = 1,000 + 50 + 50 = 1,100
+–
+Compound interest: interest is earned on both
+•
+the initial investment
+•
+the interest from previous period
+
+FV with compound interest= 1050(1+0.05) = 1,102.50
+–
+The extra 2.50 comes from the interest of .05(50) = 2.50 
+earned on the first interest payment
+8
+
+--- Page 8 ---
+Lecture 4: Time Value of Money
+Future Values: General Formula
+• For a compound interest,  𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃(1 + 𝑟𝑟)𝑡𝑡
+• For a simple interest,  𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃(1 + 𝑟𝑟× 𝑡𝑡)
+•
+𝐹𝐹𝐹𝐹= future value
+•
+𝑃𝑃𝑃𝑃= present value
+•
+𝑟𝑟= per period interest rate
+•
+𝑡𝑡= number of periods
+• Suppose you deposit $1,000 in a bank today for five years. The banks pays 
+compound annual interest of 1.55%. How much will you have in five years?
+
+FV = 1,000(1+1.55%)5 = 1,079.94
+• What is the effect of compounding?
+
+Simple interest = 1000 + 1000*5*1.55% = 1077.5
+
+Compounding added 2.44 to the value of the investment
+9
+
+--- Page 9 ---
+Lecture 4: Time Value of Money
+When do We Use Simple/Compound Interest?
+• Simple interest DOES NOT reinvest the interest.
+–
+Is rarely used. 
+–
+E.g., Chinese banks pay simple interest on
+timed deposits.
+•
+If you deposit 1000 into Bank of China
+for 5 years, you will get
+1000 1 + 1.55% ∗5 = 1077.5
+• Compound interest occurs if we DO reinvest the interest
+–
+Is commonly used
+–
+Example: if you owe money, your credit card balance compounds every day
+10
+Bank of China
+Rate (per year)
+Demand Deposit
+0.10%
+3 Months
+0.80%
+6 Months
+1.00%
+1 Year
+1.10%
+2 Years
+1.20%
+3 Years
+1.50%
+5 Years
+1.55%
+
+--- Page 10 ---
+Lecture 4: Time Value of Money
+Present Value
+• Assume that you need $1,000 in 2 years. Let’s examine the process to 
+determine how much you need to deposit today at a discount rate of 7% 
+compounded annually.
+• 𝐹𝐹𝑉𝑉1 =
+𝐹𝐹𝑉𝑉2
+1+𝑟𝑟=
+$1000
+1+7%
+• 𝑃𝑃𝑃𝑃=
+𝐹𝐹𝑉𝑉1
+1+𝑟𝑟=(
+𝐹𝐹𝑉𝑉2
+1+𝑟𝑟) ×
+1
+1+𝑟𝑟=
+𝐹𝐹𝑉𝑉2
+1+𝑟𝑟2 = 𝐹𝐹𝑉𝑉2/ 1 + 𝑟𝑟−2 =
+$1000
+1+7% 2
+• General present value formula: 𝑃𝑃𝑃𝑃= 𝐹𝐹𝑉𝑉𝑡𝑡1 + 𝑟𝑟−𝑡𝑡
+–
+Recall that we had: 𝐹𝐹𝑉𝑉𝑡𝑡= 𝑃𝑃𝑃𝑃1 + 𝑟𝑟𝑡𝑡
+Interest rate is the KEY to 
+converting present value to future value 
+(or future value to present value)
+
+--- Page 11 ---
+Lecture 4: Time Value of Money
+Present Values-Example
+• Suppose you need ¥115,000 to pay your tuition next year. If you can earn 
+7% annually, how much do you need to invest today?
+–
+𝑃𝑃𝑃𝑃= 115,000 1.07 −1 = 107,476.6
+12
+
+--- Page 12 ---
+Lecture 4: Time Value of Money
+Interpretation of PV and FV
+• PV and FV help us establish equivalence between cash now and cash in the future.
+–
+Future Value is the value of a present amount of money at some future time, at a given interest rate.
+–
+Present Value is the value of a future amount of money at present time, at a given interest rate.
+• With a given interest rate, we can use PV and FV to compare cash flow at different points in time.
+–
+Example: If the interest rate is 3%, will you prefer 1,000 today or 1,145.27 in five years?
+–
+FV of 1,000 = 1,000 ∗1 + 3% 5 = 1,159.27. 
+–
+Today                            5 years later
+1,000
+=                 1,159.27
+–
+Therefore, 1,000 today is better than 1,145.27 in five years.
+13
+1,145.27
+
+--- Page 13 ---
+Lecture 4: Time Value of Money
+The Power of Compounding
+• Compound interest grows money much faster compared to simple interest, 
+especially in the long run! 
+
+--- Page 14 ---
+Lecture 4: Time Value of Money
+• Between 1965 and 2012, Berkshire Hathaway (CEO: Warren Buffett) earned 
+an average return of 19.7% per year. 
+• Suppose you invested $1000 with Warren Buffett at the beginning of 1965, how 
+much did you have at the end of 2012?
+• $1000 ∗1 + 19.7% 48 = $5,604,272.2
+• When it comes to investment, stay cool and let time be your best friend!
+The Power of Compounding
+15
+
+--- Page 15 ---
+Lecture 4: Time Value of Money
+One step further: solve for t, r
+• Start with the basic equation: 
+–
+𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃1 + 𝑟𝑟𝑡𝑡
+–
+𝑃𝑃𝑃𝑃= 𝐹𝐹𝐹𝐹1 + 𝑟𝑟−𝑡𝑡
+• If we know three out of four variables, we can solve for: 
+–
+𝑟𝑟=
+𝐹𝐹𝐹𝐹
+𝑃𝑃𝑃𝑃
+1/𝑡𝑡
+−1
+–
+𝑡𝑡=
+ln 𝐹𝐹𝐹𝐹
+𝑃𝑃𝑃𝑃
+ln 1+𝑟𝑟
+17
+
+--- Page 16 ---
+Lecture 4: Time Value of Money
+Number of Periods – Example
+• Suppose you want to buy a new house. You currently have $15,000, and you 
+need $20,000 for the down payment. You can earn 7.5% per year. How long 
+does it take to save enough for the down payment?
+
+𝑃𝑃𝑃𝑃= 15,000
+
+𝐹𝐹𝐹𝐹= 20,000
+
+𝑟𝑟= 7.5%
+
+𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃× 1 + 𝑟𝑟𝑡𝑡
+
+20,000 = 15,000 × 1 + 0.075 𝑡𝑡
+⇒
+𝑡𝑡= ln(20,000/15,000)/ ln(1.075) = 3.98 years
+18
+
+--- Page 17 ---
+Lecture 4: Time Value of Money
+Discount Rate-Example
+• Li Ka-shing’s company bought 1.64 million m2 of land (Yangjiashan) in Chongqing for 2.45B 
+in 2007. His company offered to sell 1.03 million m2 of the land (mostly undeveloped) for 
+20B in 2018. What is the annual rate of return of the land? Assume the per m2 land price is 
+the same for the entire area.
+
+PV(2007) of 1.64 million m2 = 2.45B
+
+FV(2018) of 1.03 million m2 = 20B 
+
+PV(2007) of 1.03 million m2 = 2.45B ∗
+1.03
+1.64 = 1.54B
+
+𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃× 1 + 𝑟𝑟𝑡𝑡
+
+20𝐵𝐵= 1.54𝐵𝐵× 1 + 𝑟𝑟11
+⇒
+𝑟𝑟=
+20
+1.54
+1/11
+– 1 = 26.3%
+19
+
+--- Page 18 ---
+Lecture 4: Time Value of Money
+Agenda
+• What is the time value of money (TVM)?
+• TVM of a single cash flow
+–
+APR and EAR
+20
+
+--- Page 19 ---
+Lecture 4: Time Value of Money
+Annual Percentage Rate (APR)
+• Until now, we focused on annual compounded interest
+• However, interests can be compounded (or interest can be paid) in any frequency
+–
+Credit card: daily
+–
+Home mortgage: monthly
+–
+Bonds: semiannually
+21
+
+--- Page 20 ---
+Lecture 4: Time Value of Money
+Annual Percentage Rate (APR)
+• Interest rate is required by law to be quoted in annual frequency, which is called 
+annual percentage rate (APR)
+• When APR is stated, it always entails information on number of interest paying 
+periods per year (m)
+–
+APR = per period rate * the number of periods per year (m)
+–
+Therefore, per period rate = APR / number of periods per year (m)
+•
+Per-period rate is also called effective rate or effective rate per period
+–
+Example:
+•
+APR of 12% with monthly compounding →m = 12; per period (monthly) rate = 12%/12 = 1% 
+•
+APR of 12% with quarterly compounding →m = 4; per period (quarterly) rate = 12%/4 = 3% 
+•
+APR of 12% with semiannual compounding →m = 2; per period (semiannual) rate = 12%/2 = 6% 
+22
+
+--- Page 21 ---
+Lecture 4: Time Value of Money
+APR vs. Period Rate example
+You should be able to convert between APR and per-period (effective) rate
+• What is the APR if the effective monthly rate is 0.5%?
+
+Per-period rate = 0.5%; m=12
+
+APR = 0.5% * 12 = 6%
+• A home mortgage rate is 9% (APR), and interest is charged monthly. What is the interest rate per month?
+
+APR = 9%; m=12
+
+Per-period rate = 9% / 12 = 0.75%
+• A 6% bond pays interests semiannually. What is the interest rate each period?
+
+Bond interest rate is provided in APR
+
+APR = 6%; m=2
+
+Per-period rate = 6% / 2 = 3%
+23
+
+--- Page 22 ---
+Lecture 4: Time Value of Money
+Should I use APR or effective rate?
+• APR does not truly reflect the actual interest rate per time horizon.
+• When calculating FV from PV (or PV from FV), always use effective (per-period) rate!
+–
+Previously, because it was annually compounded, we used annual interest rate. 
+–
+If compounded daily →use daily interest rate
+–
+If compounded monthly →use monthly interest rate
+–
+If compounded semiannually →use semiannual interest rate
+• 𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃1 + 𝑟𝑟𝑡𝑡
+–
+𝑟𝑟should be the effective rate in each period, that is, 𝑟𝑟=
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+–
+t needs to align with 𝑟𝑟in terms of the definition of a period, that is, 𝑡𝑡= 𝑚𝑚× 𝑛𝑛
+•
+where n is the number of years
+• We can rewrite as: 𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃∗1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚×𝑛𝑛
+• If you are given an EAR: FV = PV × (1 + EAR)ⁿ , with n in years
+24
+
+--- Page 23 ---
+Lecture 4: Time Value of Money
+Effective Annual Rate (EAR)
+• Effective annual rate (EAR): the actual interest rate during the year, after accounting for compounding
+• APR is the quoted interest rate (on paper). EAR is the actual interest rate (you pay).
+• You can always convert APR to EAR using the compounding frequency. 
+• Example: Assume that you borrow $100. What would be the actual amount you pay annually? 
+–
+If compounded annually, annual interest for a $100 debt is $18.99
+–
+If compounded semiannually, annual interest is $100*[(1+0.1899/2)2 -1]= $19.89
+–
+If compounded monthly, annual interest is $100*[ (1+0.1899/12)12 -1]= $20.73
+–
+If compounded daily, annual interest is $100*[ (1+0.1899/365)365 -1]= $20.91
+1 + 𝐸𝐸𝐸𝐸𝐸𝐸= 1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚
+𝐸𝐸𝐸𝐸𝐸𝐸= 1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚
+-1 
+where m is the compounding frequency
+
+--- Page 24 ---
+Lecture 4: Time Value of Money
+Effective Annual Rate (EAR): simple example
+• Basket Wonders (BW) has a $1,000 loan at the bank. The Annual Percentage Rate 
+(APR) is 6% compounded quarterly for 1 year.  What is the Effective Annual Interest 
+Rate (EAR)?
+• 𝐸𝐸𝐸𝐸𝐸𝐸= 1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚
+-1 
+• 𝐸𝐸𝐸𝐸𝐸𝐸=
+1 +
+0.06
+4
+4
+– 1 = 1.0614 −1 = 0.0614 or 6.14%!
+
+--- Page 25 ---
+Lecture 4: Time Value of Money
+EAR-Continuous Compounding
+• Sometimes investments or loans are figured based on continuous 
+compounding. In other words, m goes to infinity
+• 𝐸𝐸𝐸𝐸𝐸𝐸= lim
+𝑚𝑚→∞1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚
+−1 = 𝑒𝑒𝐴𝐴𝐴𝐴𝐴𝐴−1
+• Example: What is the effective annual rate of 7% compounded 
+continuously?
+–
+𝐸𝐸𝐸𝐸𝐸𝐸= 𝑒𝑒7% −1 = 7.25%
+27
+
+--- Page 26 ---
+Lecture 4: Time Value of Money
+EAR vs. APR Example
+28
+12% APR, monthly compounding
+–
+What is the effective interest rate for a one-month period?
+•
+𝑟𝑟1𝑚𝑚= 𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚= 12%
+12 = 1%.
+–
+What is the effective interest rate for a year (EAR)?
+•
+𝑟𝑟1𝑦𝑦𝑜𝑜𝑜𝑜𝐸𝐸𝐸𝐸𝐸𝐸= 1 + 𝑟𝑟1𝑚𝑚
+12 −1 = 12.68%
+–
+What is the effective interest rate for a 2-month period?
+•
+Is this right? 𝑟𝑟1𝑚𝑚= 12%
+6
+= 2%.
+•
+No, APR can only be divided by m (12 in this example) 
+that it is matched with.
+•
+𝑟𝑟2𝑚𝑚= (1 + 𝑟𝑟1𝑚𝑚)2 −1 = 2.01%
+•
+𝑟𝑟2𝑚𝑚= 1 + 𝐸𝐸𝐸𝐸𝐸𝐸2/12 −1 = 1 + 12.68% 2/12 −1 =
+2.01%
+–
+What is the interest rate for a half-month period?
+•
+𝑟𝑟0.5𝑚𝑚= 1 + 𝑟𝑟1𝑚𝑚1/2 −1 = 0.499%
+•
+𝑟𝑟0.5𝑚𝑚= 1 + 𝐸𝐸𝐸𝐸𝐸𝐸1/24 −1 = 0.499%
+12% APR, bi-monthly compounding 
+–
+What is the effective interest rate for a two-month 
+period?
+•
+𝑟𝑟2𝑚𝑚= 12%
+6
+= 2%
+–
+What is the effective interest rate for a year (EAR)?
+•
+𝑟𝑟1𝑦𝑦𝑜𝑜𝑜𝑜𝐸𝐸𝐸𝐸𝐸𝐸= 1 + 𝑟𝑟2𝑚𝑚
+6 −1 = 12.62%
+–
+What is the effective interest rate for a 1-month 
+period?
+•
+Is this right? r1m = 12%
+12 = 1%.
+•
+No, APR can only be divided by m (6 in this 
+example) that it is matched with.
+•
+r1m = 1 + r2m
+1
+2 −1 = 0.995%
+•
+r1m = 1 + 𝐸𝐸𝐸𝐸𝐸𝐸
+1
+12 −1 = 0.995%
+–
+What is the interest rate for a half-month period?
+𝑟𝑟0.5𝑚𝑚= 1 + 𝑟𝑟2𝑚𝑚1/4 −1 = 0.496%
+𝑟𝑟0.5𝑚𝑚= 1 + 𝐸𝐸𝐸𝐸𝐸𝐸1/24 −1 = 0.496%
+𝐸𝐸𝐸𝐸𝐸𝐸= 1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚
+-1 
+𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃∗1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚×𝑛𝑛
+
+--- Page 27 ---
+Lecture 4: Time Value of Money
+Summary
+• Money has time value! 
+–
+One dollar today is worth more than one dollar tomorrow
+–
+Interest rate (discount rate) allows us to convert present value to future value (or future 
+value to present value)
+• TVM of a single cash flow
+–
+APR should always be converted to effective (per-period) rate. 
+–
+𝐹𝐹𝐹𝐹= 𝑃𝑃𝑃𝑃∗1 +
+𝐴𝐴𝐴𝐴𝐴𝐴
+𝑚𝑚
+𝑚𝑚∗𝑛𝑛
+–
+EAR reflects the interest rate the borrower actually pays. 
+
+--- Page 28 ---
+Lecture 4: Time Value of Money
+Next Lecture—Time Value of Money II
+• TVM of cash flow streams 
+• Standardized cash flow streams
+• Examples questions of annuities
+30
+
+
+================================================================
+附录：原 PDF 中嵌入图片内的文字与数据（文字层无法提取，据原图人工转录）
+================================================================
+说明：
+1. 页码为 PDF 页序号，与正文中 `--- Page N ---` 标记一致（即幻灯片页码 = N + 1）。
+2. 以下内容在原 PDF 里是图片（柱状图、引言卡片），直接提取文字层会丢失。
+3. 重要：正文中公式的上下标（指数）在纯文本里会被"压平"，且伪粗体会导致字母重复：
+   ・`$1000 ∗ 1 + 19.7% 48 = $5,604,272.2` 实际为 1000 × (1 + 19.7%)^48 = 5,604,272.2（48 次方，1965→2012 共 48 年）
+   ・`PV(2007) of 1.03 million m2 = 2.45B ∗ 1.03 / 1.64 = 1.54B`（正确）
+   ・`𝐹𝐹𝐹𝐹 = 𝑃𝑃𝑃𝑃 × 1 + 𝑟𝑟𝑡𝑡` 实际为 FV = PV × (1 + r)^t
+   ・`20𝐵𝐵 = 1.54𝐵𝐵 × 1 + 𝑟𝑟11` 实际为 20B = 1.54B × (1 + r)^11
+   ・`𝑟𝑟 = (20 / 1.54)^(1/11) − 1 = 26.3%`
+
+--- Page 13（幻灯片第 14 页）图片：The Power of Compounding 柱状图 ---
+图标题: Future Value of a Single $1,000 Deposit
+横轴: 1st Year / 10th Year / 20th Year / 30th Year
+图例（三组柱）: 10% Simple Interest；7% Compound Interest；10% Compound Interest
+柱高（图上未标数，按图例公式计算得到，与图中柱高一致）:
+  10% simple:   第 10 年 $2,000 / 第 20 年 $3,000 / 第 30 年 $4,000
+  7% compound:  第 10 年 $1,967 / 第 20 年 $3,870 / 第 30 年 $7,612
+  10% compound: 第 10 年 $2,594 / 第 20 年 $6,727 / 第 30 年 $17,449
+（该页文字层已有: "Compound interest grows money much faster compared to simple interest, especially in the long run!"）
+
+--- Page 14（幻灯片第 15 页）图片：两张引言卡片 ---
+卡片 1:
+  "The most powerful force in the world is compound interest."
+  — widely attributed to Albert Einstein
+  There is no evidence he ever said it.
+卡片 2（Warren Buffett 照片）:
+  "My wealth has come from a combination of living in America, some lucky genes, and compound interest."
+  — Warren Buffett
+（该页其余文字，包括 1965–2012 年 Berkshire Hathaway 年均回报 19.7%、复利计算结果与
+ "When it comes to investment, stay cool and let time be your best friend!" 均已在文字层中）
+
+--- Page 17（幻灯片第 19 页）图片：李嘉诚重庆地块案例配图 ---
+配图内容: 和记黄埔地产项目位置图（重庆杨家山地块，标注珠江、嘉陵江、重庆市人民政府、观音桥商圈、
+    黄花园嘉陵江大桥、解放碑商圈、渝中区、长江等）+ 李嘉诚照片；
+    图注: "李嘉诚旗下和记黄埔地产有限公司 2007年以24.5亿元投得重庆市杨家山地块"
+（该页全部文字与公式已在文字层中，公式的指数/伪粗体问题见本附录开头的"说明 3"）

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STA2001 笔记补充 | Ch3-5 遗漏知识点（§5.2 二元变换 / Beta / F 等）</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; color: #333; line-height: 1.8; }
+        html { scroll-behavior: smooth; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(135deg, #c0392b 0%, #8e44ad 100%); color: white; display: flex; align-items: center; padding: 0 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; }
+        .navbar-title { font-size: 22px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: 1100px; margin-left: auto; margin-right: auto; font-size: 17.5px; }
+        .lecture { margin-bottom: 60px; }
+        .lecture-title { font-size: 30px; color: #c0392b; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #c0392b; }
+        .section-title { font-size: 24px; color: #8e44ad; margin: 35px 0 20px 0; padding-left: 15px; border-left: 5px solid #8e44ad; }
+        .card { margin: 20px 0; padding: 20px; border-radius: 8px; border-left: 5px solid #ddd; background-color: #fafafa; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title { font-weight: bold; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+        .en { display: inline-block; background-color: #fff3e0; color: #bf360c; font-family: 'Courier New', Consolas, monospace; font-size: 0.92em; padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600; }
+        .formula-box { background-color: #e8f4fd; border-left: 5px solid #2196F3; border-radius: 6px; padding: 18px 22px; margin: 18px 0; font-size: 17px; text-align: center; overflow-x: auto; }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+        .note { margin-top: 15px; padding: 12px 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px; }
+        p { margin: 10px 0; }
+        .insert-hint { background:#e8f5e9; border-left:5px solid #43a047; border-radius:6px; padding:12px 16px; margin:18px 0; font-size:14px; }
+        .gap-tag { display:inline-block; background:#c0392b; color:#fff; font-size:12px; padding:2px 10px; border-radius:4px; margin-right:8px; font-weight:bold; }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-title">STA2001 笔记补充 · Ch3–Ch5 遗漏</div>
+    <div class="navbar-subtitle">对照 Hogg 9th 教材补齐 §5.2 二元变换 / Beta / F 等</div>
+</nav>
+
+<div class="main-content">
+
+<div class="insert-hint">
+    <strong>怎么用这份补充：</strong>你的笔记 Lec13 讲了 §5.1（一元变换），Lec14 讲了 §5.3（多元 RV），<strong>中间漏掉了教材 §5.2「两个随机变量的变换」</strong>。下面「§5.2 二元变换」应插在 Lec13 与 Lec14 之间；「Beta / F 分布」建议放在 Lec16（t 分布）附近，因为它们和 t、χ² 一样是核心抽样分布。其余为次要补充。
+</div>
+
+<!-- ==================== §5.2 ==================== -->
+<div class="lecture" id="lec52">
+<h1 class="lecture-title">补充 §5.2 | 两个随机变量的变换 <span class="en">Transformations of Two Random Variables</span></h1>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span><span class="gap-tag">缺口</span>雅可比（Jacobian）换元法 — 二元版</div>
+    <p>已知 $(X_1,X_2)$ 的联合 pdf $f(x_1,x_2)$，做可逆变换 $Y_1 = u_1(X_1,X_2)$、$Y_2 = u_2(X_1,X_2)$，其反函数为 $X_1 = v_1(Y_1,Y_2)$、$X_2 = v_2(Y_1,Y_2)$。则 $(Y_1,Y_2)$ 的联合 pdf 为：</p>
+    <div class="formula-box important">
+        $$g(y_1,y_2) = |J|\; f\big(v_1(y_1,y_2),\, v_2(y_1,y_2)\big), \qquad (y_1,y_2)\in S_Y$$
+    </div>
+    <p>其中 <strong>雅可比行列式</strong>：</p>
+    <div class="formula-box">
+        $$J = \det\begin{pmatrix}
+        \dfrac{\partial x_1}{\partial y_1} & \dfrac{\partial x_1}{\partial y_2} \\[8pt]
+        \dfrac{\partial x_2}{\partial y_1} & \dfrac{\partial x_2}{\partial y_2}
+        \end{pmatrix},
+        \qquad |J| \text{ 是绝对值}$$
+    </div>
+    <p class="note">这是 §5.1 一元公式 $g(y)=|v'(y)|\,f(v(y))$ 的直接推广：导数 → 雅可比行列式。难点通常不在求 $J$，而在<strong>确定新支撑集 $S_Y$</strong>（把 $S_X$ 在变换下的像画出来）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例（教材 5.2-2）：$X_1,X_2$ i.i.d. $\text{Exp}(1)$，求 $Y_1=X_1-X_2,\;Y_2=X_1+X_2$ 的联合 pdf</div>
+    <p>联合 pdf：$f(x_1,x_2)=e^{-x_1-x_2},\;x_1,x_2>0$。反解：</p>
+    <div class="formula-box">
+        $$x_1 = \frac{y_1+y_2}{2},\qquad x_2 = \frac{y_2-y_1}{2}$$
+    </div>
+    <p>雅可比：</p>
+    <div class="formula-box">
+        $$J = \det\begin{pmatrix} \tfrac12 & \tfrac12 \\[4pt] -\tfrac12 & \tfrac12 \end{pmatrix} = \frac12$$
+    </div>
+    <p>支撑集：$x_1>0,x_2>0 \;\Rightarrow\; -y_2 < y_1 < y_2,\; y_2>0$。于是</p>
+    <div class="formula-box highlight">
+        $$g(y_1,y_2) = \tfrac12\, e^{-y_2},\qquad -y_2 < y_1 < y_2,\; y_2>0$$
+    </div>
+    <p>边缘积分得 $g_2(y_2)=y_2 e^{-y_2}$（即 $\Gamma(2,1)$），$g_1(y_1)=\tfrac12 e^{-|y_1|}$（Laplace / 双指数分布）。因支撑集非矩形，$Y_1,Y_2$ 不独立。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例（教材 5.2-1）：$f(x_1,x_2)=2,\;0<x_1<x_2<1$，求 $Y_1=X_1/X_2,\;Y_2=X_2$</div>
+    <p>反解 $x_1=y_1y_2,\;x_2=y_2$，雅可比 $J = \det\begin{pmatrix}y_2 & y_1\\ 0 & 1\end{pmatrix}=y_2$。</p>
+    <p>支撑：$0<y_1<1,\;0<y_2<1$。故 $g(y_1,y_2)=|y_2|\cdot 2 = 2y_2$。</p>
+    <p>边缘：$g_1(y_1)=\int_0^1 2y_2\,dy_2 = 1 \Rightarrow Y_1\sim U(0,1)$；$g_2(y_2)=2y_2 \Rightarrow Y_2\sim \text{Beta}(2,1)$。</p>
+    <p class="note">注意：$Y_1=X_1/X_2$ 虽依赖 $Y_2=X_2$，但二者边缘竟独立——概率意义下的独立与代数依赖是两回事。</p>
+</div>
+
+</div><!-- end §5.2 -->
+
+<!-- ==================== Beta ==================== -->
+<div class="lecture" id="lecbeta">
+<h1 class="lecture-title">补充 | Beta 分布 <span class="en">Beta Distribution</span></h1>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span><span class="gap-tag">缺口</span>Beta 分布的来源与定义</div>
+    <p><strong>来源（教材 5.2-3）：</strong>设 $X_1\sim\Gamma(\alpha,\theta)$、$X_2\sim\Gamma(\beta,\theta)$ 独立，则比值 $Y_1=\dfrac{X_1}{X_1+X_2}$ 服从 Beta 分布。这是「两个同尺度伽马量之比」的自然分布，支撑在 $(0,1)$，适合建模比例、概率。</p>
+    <p><strong>pdf（$Y\sim\text{Beta}(\alpha,\beta)$，$\alpha>0,\beta>0$）：</strong></p>
+    <div class="formula-box important">
+        $$f(y) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\, y^{\alpha-1}(1-y)^{\beta-1},\qquad 0<y<1$$
+    </div>
+    <div class="formula-box highlight">
+        $$E[Y] = \frac{\alpha}{\alpha+\beta},\qquad \mathrm{Var}(Y) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$$
+    </div>
+    <p class="note">特例：$\text{Beta}(1,1)=U(0,1)$；$\theta=1$ 时 Beta 与 Gamma 同族（分子分母伽马同尺度）。$\alpha=\beta$ 时关于 $0.5$ 对称。</p>
+</div>
+</div><!-- end Beta -->
+
+<!-- ==================== F ==================== -->
+<div class="lecture" id="lecf">
+<h1 class="lecture-title">补充 | F 分布 <span class="en">F Distribution</span></h1>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span><span class="gap-tag">缺口</span>F 分布的定义（教材 5.2-4）</div>
+    <p>设 $U\sim\chi^2(r_1)$、$V\sim\chi^2(r_2)$ 独立，则</p>
+    <div class="formula-box important">
+        $$F = \frac{U/r_1}{V/r_2} \;\sim\; F(r_1,\, r_2)$$
+    </div>
+    <p>$r_1$ 为<strong>分子</strong>自由度，$r_2$ 为<strong>分母</strong>自由度。F 是 $t$、$\chi^2$ 之外的第三个核心抽样分布，广泛用于 ANOVA 与回归的 F 检验。</p>
+    <p><strong>pdf（形式）：</strong></p>
+    <div class="formula-box">
+        $$f(w)=\frac{(r_1/r_2)^{r_1/2}\,\Gamma\!\big(\frac{r_1+r_2}{2}\big)\,w^{r_1/2-1}}{\Gamma(r_1/2)\Gamma(r_2/2)\,[1+(r_1w/r_2)]^{(r_1+r_2)/2}},\qquad w>0$$
+    </div>
+    <div class="formula-box highlight">
+        $$E[F] = \frac{r_2}{r_2-2}\;(r_2>2),\qquad \mathrm{Var}(F)=\frac{2r_2^2(r_1+r_2-2)}{r_1(r_2-2)^2(r_2-4)}\;(r_2>4)$$
+    </div>
+    <p><strong>重要对称性：</strong>若 $W\sim F(r_1,r_2)$，则 $\dfrac{1}{W}\sim F(r_2,r_1)$。求左尾概率时用：</p>
+    <div class="formula-box">
+        $$P(W\le F_{1-\alpha}(r_1,r_2)) = P\!\left(\frac1W \ge \frac{1}{F_{1-\alpha}(r_1,r_2)}\right) = \alpha$$
+    </div>
+    <p class="note">与 $t$ 的关系：$T\sim t(r)\;\Rightarrow\; T^2 \sim F(1,r)$。所以 $t$ 检验的双侧 $p$ 值与 $F(1,r)$ 检验等价。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>三大抽样分布总表（建议并入 Lec16）</div>
+    <table class="comparison-table" style="width:100%;border-collapse:collapse;background:#fff;">
+        <tr><th style="border:1px solid #ddd;padding:10px;background:#8e44ad;color:#fff;">分布</th><th style="border:1px solid #ddd;padding:10px;background:#8e44ad;color:#fff;">典型构造</th><th style="border:1px solid #ddd;padding:10px;background:#8e44ad;color:#fff;">自由度</th></tr>
+        <tr><td style="border:1px solid #ddd;padding:10px;">$\chi^2(r)$</td><td style="border:1px solid #ddd;padding:10px;">$\sum Z_i^2,\;Z_i\stackrel{\text{i.i.d.}}{\sim}N(0,1)$</td><td style="border:1px solid #ddd;padding:10px;">$r$</td></tr>
+        <tr><td style="border:1px solid #ddd;padding:10px;">$t(r)$</td><td style="border:1px solid #ddd;padding:10px;">$Z/\sqrt{U/r},\;Z\sim N(0,1),\,U\sim\chi^2(r)$ 独立</td><td style="border:1px solid #ddd;padding:10px;">$r$</td></tr>
+        <tr><td style="border:1px solid #ddd;padding:10px;">$F(r_1,r_2)$</td><td style="border:1px solid #ddd;padding:10px;">$\dfrac{U_1/r_1}{U_2/r_2},\;U_i\sim\chi^2(r_i)$ 独立</td><td style="border:1px solid #ddd;padding:10px;">$r_1,r_2$</td></tr>
+    </table>
+</div>
+</div><!-- end F -->
+
+<!-- ==================== Minor: variance formula ==================== -->
+<div class="lecture" id="lecmisc">
+<h1 class="lecture-title">补充 | 次要但常考：方差的协方差展开式</h1>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>不要求独立的方差公式</div>
+    <p>你笔记里 Thm 5.3-2 给了<strong>独立</strong>时 $\mathrm{Var}(\sum a_iX_i)=\sum a_i^2\sigma_i^2$。但更一般的（<strong>不要求独立</strong>）公式是：</p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X\pm Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) \pm 2\,\mathrm{Cov}(X,Y)$$
+    </div>
+    <p>更一般地 $\mathrm{Var}\!\big(\sum a_i X_i\big) = \sum_i a_i^2\mathrm{Var}(X_i) + 2\sum_{i<j} a_i a_j\,\mathrm{Cov}(X_i,X_j)$。配套性质：</p>
+    <div class="formula-box">
+        $$\mathrm{Cov}(X,X)=\mathrm{Var}(X),\quad \mathrm{Cov}(aX,bY)=ab\,\mathrm{Cov}(X,Y)$$
+        $$\mathrm{Cov}(X+Y,Z)=\mathrm{Cov}(X,Z)+\mathrm{Cov}(Y,Z)$$
+    </div>
+    <p class="note">只有「独立」时交叉项才消失（回到 $\sum a_i^2\sigma_i^2$）；若仅「不相关」，$\mathrm{Cov}=0$ 也同样消失，但 $\mathrm{Var}(X\pm Y)=\mathrm{Var}(X)+\mathrm{Var}(Y)$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>选读：§3.4* 额外模型（星标，非必考）</div>
+    <p>教材 §3.4* 还介绍了 Weibull、Gompertz、对数正态、Beta 等「额外连续模型」（寿命分析、可靠性常用）。其中 <strong>Beta 作为建模分布</strong>与上面 §5.2 用雅可比推出来的 Beta 是同一族，只是来源不同。这部分带星号，一般不在核心考试范围，了解即可。</p>
+</div>
+</div><!-- end misc -->
+
+</div><!-- end main-content -->
+</body>
+</html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT1002 Lecture 8-11 | 方阵线性系统理论 & 矩阵逆 & LU分解 & 一般线性系统 & 线性空间</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #667eea; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections {
+            padding-left: 20px; max-height: 500px; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #667eea; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: 960px; margin-left: max(280px, calc(50vw - 340px)); margin-right: auto; font-size: 17.5px; }
+
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #667eea; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #667eea;
+        }
+        .section-title {
+            font-size: 24px; color: #764ba2; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #764ba2;
+        }
+        .subsection-title {
+            font-size: 20px; color: #555; margin: 25px 0 15px 0;
+            padding-left: 12px; border-left: 4px solid #bbb;
+        }
+
+        .card {
+            margin: 20px 0; padding: 20px; border-radius: 8px;
+            border-left: 5px solid #ddd; background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title {
+            font-weight: bold; font-size: 18px; margin-bottom: 10px;
+            display: flex; align-items: center;
+        }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+
+        .en {
+            display: inline-block; background-color: #e3f2fd; color: #1565c0;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+
+        .formula-box {
+            background-color: #e8f4fd; border-left: 5px solid #2196F3;
+            border-radius: 6px; padding: 18px 22px; margin: 18px 0;
+            font-size: 17px; text-align: center; overflow-x: auto;
+        }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li {
+            counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0;
+            position: relative; background: #f8f9fa; border-radius: 6px;
+        }
+        .step-list li::before {
+            content: counter(step); position: absolute; left: 10px; top: 50%;
+            transform: translateY(-50%); background: #667eea; color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-weight: bold; font-size: 14px;
+        }
+
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 15px; }
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2); color: white;
+            padding: 12px; text-align: center;
+        }
+        .comparison-table td { padding: 10px 12px; border: 1px solid #e0e0e0; text-align: center; }
+        .comparison-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .comparison-table tr:hover { background-color: #e3f2fd; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.active { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; }
+            .mobile-menu-btn { display: block; }
+        }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('active')">☰</button>
+    <span class="navbar-title">MAT1002 Lecture 8-11 复习</span>
+    <span class="navbar-subtitle">方阵理论 | 矩阵逆 | LU分解 | 线性空间</span>
+</nav>
+
+<aside class="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture" id="toc-lec8">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec8')">
+                <span class="toc-toggle">▼</span> Lec 8: 解的个数与矩阵逆
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec8-gje">GJ-E 解方阵系统</a></div>
+                <div class="toc-section"><a href="#lec8-solutions">三种解的情况</a></div>
+                <div class="toc-section"><a href="#lec8-inverse-def">矩阵逆的定义</a></div>
+                <div class="toc-section"><a href="#lec8-inverse-prop">逆矩阵性质</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture" id="toc-lec9">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec9')">
+                <span class="toc-toggle">▼</span> Lec 9: LU 分解
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec9-elementary">初等矩阵</a></div>
+                <div class="toc-section"><a href="#lec9-elementary-inv">初等矩阵的逆</a></div>
+                <div class="toc-section"><a href="#lec9-lu">LU 分解推导</a></div>
+                <div class="toc-section"><a href="#lec9-lu-algo">LU 分解算法</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture" id="toc-lec10">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec10')">
+                <span class="toc-toggle">▼</span> Lec 10: 逆的存在性与计算
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec10-pivot-test">Pivot 判定可逆</a></div>
+                <div class="toc-section"><a href="#lec10-eq-test">方程判定可逆</a></div>
+                <div class="toc-section"><a href="#lec10-compute">计算逆矩阵</a></div>
+                <div class="toc-section"><a href="#lec10-equivalent">等价条件汇总</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture" id="toc-lec11">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec11')">
+                <span class="toc-toggle">▼</span> Lec 11: 一般线性系统与线性空间
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec11-rect">矩形系统求解</a></div>
+                <div class="toc-section"><a href="#lec11-linspace">线性空间</a></div>
+                <div class="toc-section"><a href="#lec11-subspace">子空间</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ==================== Lecture 8 ==================== -->
+<div class="lecture" id="lecture8">
+    <h1 class="lecture-title">Lecture 8：方阵线性系统理论 I — 解的个数与矩阵逆</h1>
+
+    <h2 class="section-title" id="lec8-gje">GJ-E 解方阵系统</h2>
+    <p>对于 $n \times n$ 方阵 $A$ 构成的线性系统 $A\mathbf{x} = \mathbf{b}$，使用高斯-约旦消元（GJ-E）求解。</p>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>GJ-E 处理对角线零元素</div>
+        <p>当消元过程中遇到对角线位置为零时，需进行<strong>行交换</strong>（<span class="en">Row Exchange</span>）。将下方具有非零值的行交换到当前行，然后继续消元。</p>
+    </div>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>REF 与 RREF</div>
+        <p><strong>行阶梯形</strong>（<span class="en">Row Echelon Form, REF</span>）：每行的首个非零元素（<span class="en">pivot</span>）位于上一行pivot的右侧；全零行在最下方。</p>
+        <p><strong>行最简阶梯形</strong>（<span class="en">Reduced Row Echelon Form, RREF</span>）：在REF基础上，每个pivot为1，且pivot所在列的其他元素均为0。</p>
+    </div>
+
+    <h2 class="section-title" id="lec8-solutions">三种解的情况</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>方阵系统解的分类</div>
+        <p>对 $n \times n$ 方阵系统 $A\mathbf{x} = \mathbf{b}$，GJ-E 后有三种情况：</p>
+        <table class="comparison-table">
+            <tr><th>Pivot 个数</th><th>解的情况</th><th>条件</th></tr>
+            <tr><td>$n$ 个 pivot</td><td>唯一解</td><td>对任意 $\mathbf{b}$</td></tr>
+            <tr><td>少于 $n$ 个 pivot</td><td>无解或无穷多解</td><td>取决于 $\mathbf{b}$</td></tr>
+        </table>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：判断解的个数</div>
+        <p>设 $A = \begin{pmatrix} 1 & 2 \\ 3 & 6 \end{pmatrix}$，求 $A\mathbf{x} = \mathbf{b}$ 的解。</p>
+        <p>消元：$R_2 \leftarrow R_2 - 3R_1$ 得 $\begin{pmatrix} 1 & 2 \\ 0 & 0 \end{pmatrix}$。只有 1 个 pivot（少于 $n=2$）。</p>
+        <p>若 $\mathbf{b} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$：增广矩阵化简后 $0 = 0$，有无穷多解。</p>
+        <p>若 $\mathbf{b} = \begin{pmatrix} 1 \\ 4 \end{pmatrix}$：增广矩阵化简后 $0 = 1$，无解。</p>
+    </div>
+
+    <h2 class="section-title" id="lec8-inverse-def">矩阵逆的定义</h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>逆矩阵 <span class="en">Inverse Matrix</span></div>
+        <p>设 $A$ 为 $n \times n$ 方阵。若存在矩阵 $B$ 使得：</p>
+        <div class="formula-box important">$$AB = BA = I_n$$</div>
+        <p>则称 $A$ <strong>可逆</strong>（<span class="en">invertible / nonsingular</span>），$B$ 为 $A$ 的逆，记为 $A^{-1}$。</p>
+        <p>若 $A$ 不可逆，则称 $A$ 为<strong>奇异矩阵</strong>（<span class="en">singular</span>）。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>逆的唯一性</div>
+        <p>若 $A$ 可逆，则其逆矩阵唯一。</p>
+        <p><strong>证明思路：</strong>假设 $B, C$ 都是 $A$ 的逆，则 $B = BI = B(AC) = (BA)C = IC = C$。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>单侧逆即为逆（方阵情形）</div>
+        <p>对 $n \times n$ 方阵 $A, B$：若 $AB = I_n$，则 $BA = I_n$，即 $B = A^{-1}$。</p>
+        <p>（此命题在 Lecture 10 给出更完整的证明。）</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 8.1：逆矩阵与唯一解</div>
+        <p>若 $A$ 可逆，则 $A\mathbf{x} = \mathbf{b}$ 对任意 $\mathbf{b}$ 都有唯一解：</p>
+        <div class="formula-box important">$$\mathbf{x} = A^{-1}\mathbf{b}$$</div>
+    </div>
+
+    <h2 class="section-title" id="lec8-inverse-prop">逆矩阵的性质</h2>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>重要性质汇总</div>
+        <table class="comparison-table">
+            <tr><th>性质</th><th>公式</th></tr>
+            <tr><td>逆的逆</td><td>$(A^{-1})^{-1} = A$</td></tr>
+            <tr><td>乘积的逆</td><td>$(AB)^{-1} = B^{-1}A^{-1}$（顺序反转！）</td></tr>
+            <tr><td>转置的逆</td><td>$(A^T)^{-1} = (A^{-1})^T$</td></tr>
+            <tr><td>数乘的逆</td><td>$(cA)^{-1} = \frac{1}{c}A^{-1}$（$c \neq 0$）</td></tr>
+        </table>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>特殊矩阵的逆</div>
+        <p><strong>对角矩阵：</strong>$D = \text{diag}(d_1, \ldots, d_n)$ 可逆 $\Leftrightarrow$ 所有 $d_i \neq 0$，此时 $D^{-1} = \text{diag}(1/d_1, \ldots, 1/d_n)$。</p>
+        <p><strong>三角矩阵：</strong>上（下）三角矩阵可逆 $\Leftrightarrow$ 对角线元素全不为零，其逆仍为同类型三角矩阵。</p>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：$2 \times 2$ 矩阵求逆</div>
+        <p>对 $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$，若 $ad - bc \neq 0$：</p>
+        <div class="formula-box highlight">$$A^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$</div>
+    </div>
+</div>
+
+<!-- ==================== Lecture 9 ==================== -->
+<div class="lecture" id="lecture9">
+    <h1 class="lecture-title">Lecture 9：方阵线性系统理论 II — LU 分解</h1>
+
+    <h2 class="section-title" id="lec9-elementary">初等矩阵 <span class="en">Elementary Matrix</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>初等矩阵的定义</div>
+        <p><strong>初等矩阵</strong>是对单位矩阵 $I$ 施加一次初等行变换得到的矩阵。</p>
+        <p><strong>核心思想：</strong>对矩阵 $M$ 做一次行变换，等价于左乘一个初等矩阵 $E$，即 $EM$ 的结果就是变换后的矩阵。</p>
+        <p><strong>求法：</strong>将该行变换施加到 $I$ 上，得到的就是对应的初等矩阵。</p>
+    </div>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>三类初等矩阵</div>
+        <table class="comparison-table">
+            <tr><th>类型</th><th>操作</th><th>矩阵结构</th><th>形状</th></tr>
+            <tr><td>Type I</td><td>交换 $R_i \leftrightarrow R_j$</td><td>$I$ 中交换第 $i,j$ 行</td><td>非三角</td></tr>
+            <tr><td>Type II</td><td>$R_i \leftarrow cR_i$（$c\neq 0$）</td><td>$I$ 中第 $(i,i)$ 元素改为 $c$</td><td>对角矩阵</td></tr>
+            <tr><td>Type III</td><td>$R_i \leftarrow R_i + \beta R_j$</td><td>$I$ 中第 $(i,j)$ 元素改为 $\beta$</td><td>$i>j$: 下三角<br>$i<j$: 上三角</td></tr>
+        </table>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：写出初等矩阵</div>
+        <p>操作 $R_3 \leftarrow R_3 - 2R_1$（$3\times 3$ 矩阵），对应初等矩阵：</p>
+        <div class="formula-box">$$E = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ -2 & 0 & 1 \end{pmatrix}$$</div>
+        <p>验证：$E$ 就是对 $I_3$ 施加 $R_3 \leftarrow R_3 - 2R_1$ 的结果。此为下三角矩阵（$i=3 > j=1$，消元向下）。</p>
+    </div>
+
+    <h2 class="section-title" id="lec9-elementary-inv">初等矩阵的逆</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>初等矩阵的逆 = 反向操作对应的矩阵</div>
+        <table class="comparison-table">
+            <tr><th>操作</th><th>反向操作</th><th>逆矩阵形状</th></tr>
+            <tr><td>$R_i \leftrightarrow R_j$</td><td>$R_i \leftrightarrow R_j$（相同）</td><td>非三角（自身）</td></tr>
+            <tr><td>$R_i \leftarrow cR_i$</td><td>$R_i \leftarrow \frac{1}{c}R_i$</td><td>对角</td></tr>
+            <tr><td>$R_i \leftarrow R_i + \beta R_j$</td><td>$R_i \leftarrow R_i - \beta R_j$</td><td>与原矩阵同类型三角</td></tr>
+        </table>
+    </div>
+
+    <div class="card warning">
+        <div class="card-title"><span class="card-icon">⚠️</span>易错点</div>
+        <p>所有初等矩阵都是<strong>方阵</strong>且<strong>可逆</strong>。但并非所有初等矩阵都是三角矩阵（Type I 不是）。</p>
+    </div>
+
+    <h2 class="section-title" id="lec9-lu">LU 分解的推导</h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>GJ-E = 矩阵乘法序列</div>
+        <p>GJ-E 的前向消元可以表示为一系列初等矩阵左乘：</p>
+        <div class="formula-box">$$E_k E_{k-1} \cdots E_1 A = U$$</div>
+        <p>其中 $U$ 为上三角矩阵，各 $E_i$ 为初等矩阵（Type II 或 Type III 的"消元向下"类型）。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>LU 分解定理（无行交换情形）</div>
+        <p>若 $n \times n$ 方阵 $A$ 在前向消元中<strong>不需要行交换</strong>，则 $A$ 可以分解为：</p>
+        <div class="formula-box important">$$A = LU$$</div>
+        <p>其中：</p>
+        <p>$L = (E_k E_{k-1} \cdots E_1)^{-1} = E_1^{-1} E_2^{-1} \cdots E_k^{-1}$ 为<strong>下三角矩阵</strong>（<span class="en">Lower triangular</span>）</p>
+        <p>$U$ 为<strong>上三角矩阵</strong>（<span class="en">Upper triangular</span>）</p>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>为什么 $L$ 是下三角？</div>
+        <ol class="step-list">
+            <li>前向消元只用 Type III（$i > j$，消元向下）和 Type II 的初等矩阵 → 它们是下三角或对角</li>
+            <li>下三角矩阵的逆仍为下三角（Lec 7 性质）</li>
+            <li>下三角矩阵的乘积仍为下三角（HW2 结论）</li>
+        </ol>
+    </div>
+
+    <h2 class="section-title" id="lec9-lu-algo">LU 分解算法</h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>Algorithm 9.1：计算 LU 分解</div>
+        <ol class="step-list">
+            <li><strong>前向消元：</strong>对 $A$ 做前向消元得到上三角矩阵 $U$。若需要行交换则<strong>停止</strong>，报告 LU 分解失败。</li>
+            <li><strong>记录初等矩阵：</strong>记录过程中所有初等矩阵 $E_1, \ldots, E_k$。</li>
+            <li><strong>计算 $L$：</strong>$L = E_1^{-1} E_2^{-1} \cdots E_k^{-1}$（可用行变换法计算乘积）。</li>
+            <li><strong>结论：</strong>$A = LU$。</li>
+        </ol>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：$3 \times 3$ LU 分解</div>
+        <p>设 $A = \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 3 \\ 8 & 7 & 9 \end{pmatrix}$</p>
+        <p><strong>Step 1:</strong> 前向消元</p>
+        <p>$R_2 \leftarrow R_2 - 2R_1$，$R_3 \leftarrow R_3 - 4R_1$，$R_3 \leftarrow R_3 + 3R_2$</p>
+        <p>得 $U = \begin{pmatrix} 2 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 2 \end{pmatrix}$（无行交换）</p>
+        <p><strong>Step 2:</strong> 初等矩阵 $E_1$: $R_2 - 2R_1$, $E_2$: $R_3 - 4R_1$, $E_3$: $R_3 + 3R_2$</p>
+        <p><strong>Step 3:</strong> 计算 $L = E_1^{-1}E_2^{-1}E_3^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 4 & -3 & 1 \end{pmatrix}$</p>
+        <p><strong>Step 4:</strong> $A = LU$ 验证正确。</p>
+    </div>
+
+    <div class="card warning">
+        <div class="card-title"><span class="card-icon">⚠️</span>考试注意</div>
+        <p>若消元过程中需要行交换，LU 分解（不含置换矩阵）不存在。需使用 PLU 分解：$PA = LU$，其中 $P$ 为置换矩阵。</p>
+    </div>
+</div>
+
+<!-- ==================== Lecture 10 ==================== -->
+<div class="lecture" id="lecture10">
+    <h1 class="lecture-title">Lecture 10：方阵线性系统理论 III — 逆的存在性与计算</h1>
+
+    <h2 class="section-title" id="lec10-pivot-test">通过 Pivot 判定可逆性</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 10.1：Pivot 判定</div>
+        <p>设 $A$ 为 $n \times n$ 方阵：</p>
+        <div class="formula-box important">$$A \text{ 可逆} \iff \text{GJ-E 中有 } n \text{ 个 pivot}$$</div>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>证明思路（Proposition 1: $n$ pivot $\Rightarrow$ 可逆）</div>
+        <ol class="step-list">
+            <li>若有 $n$ 个 pivot，GJ-E 可将 $A$ 化为 $I_n$：$E_k \cdots E_1 A = I_n$</li>
+            <li>令 $Q = E_k \cdots E_1$，则 $QA = I_n$</li>
+            <li>$Q$ 是初等矩阵之积 → $Q$ 可逆</li>
+            <li>由 $QA = I$ 推出 $A = Q^{-1}$，故 $A^{-1}$ 存在且等于 $Q$</li>
+        </ol>
+    </div>
+
+    <h2 class="section-title" id="lec10-eq-test">通过方程判定可逆性</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 10.2：方程判定</div>
+        <div class="formula-box important">$$A \text{ 可逆} \iff A\mathbf{x} = \mathbf{0} \text{ 仅有唯一解 } \mathbf{x} = \mathbf{0}$$</div>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>证明要点</div>
+        <p><strong>"Only if" part：</strong>若 $A$ 可逆，则 $\mathbf{x} = A^{-1}\mathbf{0} = \mathbf{0}$ 为唯一解（Theorem 8.1）。</p>
+        <p><strong>"If" part（逆否命题法）：</strong>证明逆否命题——若 $A$ 不可逆，则 $A\mathbf{x}=\mathbf{0}$ 不只有唯一解。</p>
+        <p>推理链：$A$ 不可逆 → （Thm 10.1）少于 $n$ 个 pivot → （Lec 7）$A\mathbf{x}=\mathbf{0}$ 有零解或无穷多解 → 不是唯一解。</p>
+    </div>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>逻辑工具：逆否命题</div>
+        <p>命题 "若 $P$ 则 $Q$" 的逆否命题为 "若 $\neg Q$ 则 $\neg P$"。两者等价。</p>
+        <p>当直接证明困难时，可尝试证明逆否命题。</p>
+    </div>
+
+    <h2 class="section-title" id="lec10-compute">计算逆矩阵</h2>
+
+    <h3 class="subsection-title">Algorithm 1：直接用初等矩阵乘积</h3>
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>表达式法</div>
+        <p>若 GJ-E 将 $A$ 化为 $I$：$E_k \cdots E_1 A = I_n$，则：</p>
+        <div class="formula-box">$$A^{-1} = E_k \cdots E_2 E_1$$</div>
+        <p>需要记录所有初等矩阵并计算乘积。</p>
+    </div>
+
+    <h3 class="subsection-title">Algorithm 2：增广矩阵法（常用！）</h3>
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>GJ-E 作用于 $[A \mid I]$</div>
+        <p>核心思想：对 $A$ 做 GJ-E 化为 $I$ 的同时，将<strong>相同的操作</strong>施加到 $I$ 上，$I$ 就变成了 $A^{-1}$。</p>
+        <div class="formula-box important">$$[A \mid I_n] \xrightarrow{\text{GJ-E}} [I_n \mid A^{-1}]$$</div>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：用增广矩阵法求逆</div>
+        <p>求 $A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$ 的逆。</p>
+        <p>构造增广矩阵 $[A \mid I]$，进行 GJ-E：</p>
+        <div class="formula-box">
+            $$\left(\begin{array}{ccc|ccc} 1&1&0&1&0&0 \\ 0&1&1&0&1&0 \\ 1&0&1&0&0&1 \end{array}\right) \xrightarrow{R_3-R_1} \left(\begin{array}{ccc|ccc} 1&1&0&1&0&0 \\ 0&1&1&0&1&0 \\ 0&-1&1&-1&0&1 \end{array}\right)$$
+        </div>
+        <p>继续消元 $R_3+R_2$，$R_1-R_2$，$R_1 - \frac{1}{2}R_3$，$R_2 - \frac{1}{2}R_3$，$R_3 \leftarrow \frac{1}{2}R_3$ 得：</p>
+        <div class="formula-box">
+            $$A^{-1} = \frac{1}{2}\begin{pmatrix} 1 & -1 & 1 \\ 1 & 1 & -1 \\ -1 & 1 & 1 \end{pmatrix}$$
+        </div>
+        <p>验证：$AA^{-1} = I_3$。</p>
+    </div>
+
+    <div class="card warning">
+        <div class="card-title"><span class="card-icon">⚠️</span>考试提醒</div>
+        <p>Algorithm 2 不需要写出初等矩阵，直接做行变换即可——<strong>考试常用方法</strong>。</p>
+        <p>若消元过程中出现对角线全为零且无法行交换修复，则 $A$ 不可逆。</p>
+    </div>
+
+    <h2 class="section-title" id="lec10-equivalent">可逆性等价条件汇总</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 11.1：可逆性等价条件（Lec 10-11 汇总）</div>
+        <p>设 $A \in \mathbb{R}^{n \times n}$，以下条件等价：</p>
+        <ol class="step-list">
+            <li>$A$ 可逆</li>
+            <li>$A\mathbf{x} = \mathbf{0}$ 仅有唯一解 $\mathbf{x} = \mathbf{0}$</li>
+            <li>$A$ 是初等矩阵的乘积</li>
+            <li>GJ-E 对 $A$ 化简的最终形式为 $I_n$</li>
+            <li>$A$ 有 $n$ 个 pivot</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ==================== Lecture 11 ==================== -->
+<div class="lecture" id="lecture11">
+    <h1 class="lecture-title">Lecture 11：一般线性系统理论 I — 矩形系统求解与线性空间</h1>
+
+    <h2 class="section-title" id="lec11-rect">求解矩形（非方阵）系统</h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>矩形系统的 GJ-E</div>
+        <p>对于 $m \times n$（$m \neq n$）矩阵 $A$ 构成的系统 $A\mathbf{x} = \mathbf{b}$：</p>
+        <p>GJ-E 过程与方阵类似：找 pivot → 消元。最终得到 REF 或 RREF。</p>
+        <p><strong>Pivot 列</strong>对应<strong>基本变量</strong>（<span class="en">basic variables</span>）；非 pivot 列对应<strong>自由变量</strong>（<span class="en">free variables</span>）。</p>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>解的结构预览</div>
+        <p>设 $r$ 为 pivot 的个数（即秩 <span class="en">rank</span>），$n$ 为未知数个数：</p>
+        <table class="comparison-table">
+            <tr><th>情况</th><th>条件</th><th>自由变量个数</th></tr>
+            <tr><td>唯一解</td><td>$r = n$ 且相容</td><td>$0$</td></tr>
+            <tr><td>无穷多解</td><td>$r < n$ 且相容</td><td>$n - r$</td></tr>
+            <tr><td>无解</td><td>不相容（某行 $0 = $ 非零）</td><td>—</td></tr>
+        </table>
+    </div>
+
+    <h2 class="section-title" id="lec11-linspace">线性空间 <span class="en">Linear Space / Vector Space</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>线性空间的定义</div>
+        <p>一个集合 $V$（配有加法和数乘运算）若满足以下公理则为<strong>线性空间</strong>：</p>
+        <p><strong>加法封闭：</strong>$\mathbf{u}, \mathbf{v} \in V \Rightarrow \mathbf{u} + \mathbf{v} \in V$</p>
+        <p><strong>数乘封闭：</strong>$\mathbf{u} \in V, \alpha \in \mathbb{R} \Rightarrow \alpha\mathbf{u} \in V$</p>
+        <p>加上加法交换律、结合律、零元素存在、负元素存在、数乘结合律、分配律等公理。</p>
+        <p><strong>核心总结：线性空间 = 对线性组合封闭的集合。</strong></p>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>线性空间的例子</div>
+        <table class="comparison-table">
+            <tr><th>空间</th><th>描述</th><th>加法与数乘</th></tr>
+            <tr><td>$\mathbb{R}^n$</td><td>欧几里得空间</td><td>分量加法、分量数乘</td></tr>
+            <tr><td>$\mathbb{R}^{m \times n}$</td><td>矩阵空间</td><td>矩阵加法、矩阵数乘</td></tr>
+            <tr><td>$P_n$</td><td>次数 $\le n$ 的多项式空间</td><td>多项式加法、数乘</td></tr>
+        </table>
+    </div>
+
+    <h2 class="section-title" id="lec11-subspace">子空间 <span class="en">Subspace</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>子空间的定义（Definition 11.2）</div>
+        <p>设 $V$ 为线性空间。$W \subseteq V$ 称为 $V$ 的<strong>子空间</strong>，若 $W$ 本身也是线性空间。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>子空间判定准则（Proposition 11.2）</div>
+        <p>$W$ 是 $V$ 的子空间，当且仅当以下三条成立：</p>
+        <ol class="step-list">
+            <li><strong>非空：</strong>$W \neq \emptyset$（通常验证 $\mathbf{0} \in W$）</li>
+            <li><strong>加法封闭：</strong>$\mathbf{u}, \mathbf{v} \in W \Rightarrow \mathbf{u} + \mathbf{v} \in W$</li>
+            <li><strong>数乘封闭：</strong>$\mathbf{u} \in W, \alpha \in \mathbb{R} \Rightarrow \alpha\mathbf{u} \in W$</li>
+        </ol>
+        <p><strong>推论：</strong>子空间必须包含零向量 $\mathbf{0}$。若一个集合不含零向量，则它不是子空间。</p>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：判断子空间</div>
+        <table class="comparison-table">
+            <tr><th>集合</th><th>是否子空间</th><th>理由</th></tr>
+            <tr><td>$\{\mathbf{0}\}$</td><td>是</td><td>非空，对加法和数乘封闭</td></tr>
+            <tr><td>$V$ 本身</td><td>是</td><td>显然</td></tr>
+            <tr><td>$\{x \in \mathbb{R}^2 : x_1 = 2x_2\}$</td><td>是</td><td>过原点的直线，封闭</td></tr>
+            <tr><td>$\{x \in \mathbb{R}^2 : x_1 = 1\}$</td><td>否</td><td>不含 $\mathbf{0}$</td></tr>
+            <tr><td>$n \times n$ 上三角矩阵集合</td><td>是</td><td>上三角+上三角=上三角，数乘封闭</td></tr>
+            <tr><td>$n \times n$ 初等矩阵集合</td><td>否</td><td>零矩阵不是初等矩阵；加法不封闭</td></tr>
+        </table>
+    </div>
+
+    <div class="card warning">
+        <div class="card-title"><span class="card-icon">⚠️</span>常见错误</div>
+        <p><strong>不含零向量 → 不是子空间。</strong>这是最快的排除方法。</p>
+        <p>另外，$\mathbb{R}^2 \cup \mathbb{R}^3$ 不是线性空间（无法定义一致的加法）。</p>
+    </div>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>子空间与后续课程的联系</div>
+        <p>Lec 12 将引入<strong>零空间</strong> $N(A) = \{\mathbf{x} : A\mathbf{x} = \mathbf{0}\}$ 和<strong>列空间</strong> $C(A)$——它们都是子空间。</p>
+        <p>解集结构：$A\mathbf{x} = \mathbf{b}$ 的解集 = 特解 $\mathbf{x}_p$ + 零空间 $N(A)$。</p>
+    </div>
+</div>
+
+<!-- ==================== 总结 ==================== -->
+<div class="lecture" id="summary">
+    <h1 class="lecture-title">Lec 8-11 核心知识点总结</h1>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>四讲内容串联</div>
+        <table class="comparison-table">
+            <tr><th>Lecture</th><th>主题</th><th>核心结论</th></tr>
+            <tr><td>Lec 8</td><td>解的个数 & 矩阵逆定义</td><td>$A$ 可逆 → $\mathbf{x}=A^{-1}\mathbf{b}$ 唯一解</td></tr>
+            <tr><td>Lec 9</td><td>初等矩阵 & LU 分解</td><td>$A = LU$（无行交换时）</td></tr>
+            <tr><td>Lec 10</td><td>可逆判定 & 逆的计算</td><td>$[A|I] \to [I|A^{-1}]$</td></tr>
+            <tr><td>Lec 11</td><td>一般系统 & 线性空间/子空间</td><td>子空间判定三条件</td></tr>
+        </table>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>考试高频考点</div>
+        <p><strong>计算题：</strong>LU 分解、增广矩阵法求逆、判断解的个数</p>
+        <p><strong>判断题：</strong>可逆性等价条件、子空间判定（是否含零元素、是否封闭）</p>
+        <p><strong>证明题：</strong>逆否命题法、利用 pivot 个数推导解的情况</p>
+    </div>
+</div>
+
+</main>
+
+<script>
+function toggleLecture(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('collapsed');
+}
+</script>
+
+</body>
+</html>

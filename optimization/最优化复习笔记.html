@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最优化 · 复习笔记（MAT3007 Optimization）</title>
+<style>
+  :root {
+    color-scheme: light;
+    --accent: #2563eb;
+    --accent-dark: #1e40af;
+    --bg: #f6f8fb;
+    --sidebar-bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card-bg: #ffffff;
+    --code-bg: #eef2ff; --code-tx: #4338ca;
+    --th-bg: #eef2ff; --th-tx: #3730a3;
+    --td-even: #fafafa;
+    --en: #0369a1;
+    --hover-bg: #eef2ff;
+    --def-bg: #eff6ff;  --def-bd: #3b82f6;  --def-tx: #1d4ed8;
+    --thm-bg: #f5f3ff;  --thm-bd: #8b5cf6;  --thm-tx: #6d28d9;
+    --ex-bg: #f0fdf4;   --ex-bd: #22c55e;   --ex-tx: #15803d;
+    --warn-bg: #fffbeb; --warn-bd: #f59e0b; --warn-tx: #b45309;
+    --vocab-bg: #fdf2f8;--vocab-bd: #ec4899; --vocab-tx: #be185d;
+    --fig-bg: #ffffff;  --fig-bd: #e5e7eb;
+    --sv-pos: #2563eb;  --sv-neg: #dc2626;  --sv-hl: #16a34a;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --accent: #3b82f6;
+    --accent-dark: #60a5fa;
+    --bg: #0f172a;
+    --sidebar-bg: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --card-bg: #1e293b;
+    --code-bg: #1e293b; --code-tx: #a5b4fc;
+    --th-bg: #1e293b; --th-tx: #93c5fd;
+    --td-even: #1e293b;
+    --en: #7dd3fc;
+    --hover-bg: #334155;
+    --def-bg: #1e3a5f;  --def-bd: #3b82f6;  --def-tx: #93c5fd;
+    --thm-bg: #2e2a5e;  --thm-bd: #8b5cf6;  --thm-tx: #c4b5fd;
+    --ex-bg: #14372a;   --ex-bd: #22c55e;   --ex-tx: #86efac;
+    --warn-bg: #3d2e12; --warn-bd: #f59e0b; --warn-tx: #fcd34d;
+    --vocab-bg: #4a1f3d;--vocab-bd: #ec4899; --vocab-tx: #f9a8d4;
+    --fig-bg: #0f172a;  --fig-bd: #334155;
+    --sv-pos: #60a5fa;  --sv-neg: #f87171;  --sv-hl: #4ade80;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+  /* ===== 侧边导航栏 ===== */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 300px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 24px 16px 40px;
+    z-index: 10;
+  }
+  .sidebar .logo {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .sidebar .sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .sidebar .divider { height: 1px; background: var(--border); margin: 10px 0; }
+  .theme-toggle {
+    display: block;
+    width: 100%;
+    margin: 14px 0 4px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s;
+  }
+  .theme-toggle:hover { background: var(--hover-bg); }
+  .sidebar nav a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 2px;
+    transition: background .12s, color .12s;
+  }
+  .sidebar nav a:hover { background: var(--hover-bg); color: var(--accent-dark); }
+  .sidebar nav a.lv1 {
+    font-weight: 600;
+    margin-top: 12px;
+    color: var(--accent-dark);
+    font-size: 14.5px;
+  }
+  .sidebar nav a.lv2 { padding-left: 24px; }
+  .sidebar nav a.lv3 { padding-left: 38px; font-size: 13px; color: var(--muted); }
+
+  /* ===== 主内容 ===== */
+  .content {
+    margin-left: 300px;
+    padding: 32px 40px 120px;
+  }
+  .content-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  h1.title {
+    font-size: 32px;
+    margin: 0 0 4px;
+    color: var(--accent-dark);
+    letter-spacing: -0.5px;
+  }
+  p.course-meta { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
+
+  h2 { font-size: 26px; margin: 48px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); color: var(--accent-dark); scroll-margin-top: 20px; }
+  h3 { font-size: 20px; margin: 32px 0 10px; color: var(--text); scroll-margin-top: 20px; }
+  h4 { font-size: 17px; margin: 24px 0 8px; color: var(--text); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--code-tx);
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  }
+  table.truth {
+    border-collapse: collapse;
+    margin: 12px auto;
+    font-size: 16px;
+  }
+  table.truth th, table.truth td {
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    text-align: center;
+  }
+  table.truth th { background: var(--th-bg); color: var(--th-tx); font-weight: 600; }
+  table.truth tr:nth-child(even) td { background: var(--td-even); }
+
+  /* 提示框 */
+  .box { border-left: 4px solid; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .box .box-title { font-weight: 700; display: block; margin-bottom: 4px; font-size: 15px; }
+  .def  { background: var(--def-bg);  border-color: var(--def-bd); }
+  .def .box-title  { color: var(--def-tx); }
+  .thm  { background: var(--thm-bg);  border-color: var(--thm-bd); }
+  .thm .box-title  { color: var(--thm-tx); }
+  .ex   { background: var(--ex-bg);   border-color: var(--ex-bd); }
+  .ex .box-title   { color: var(--ex-tx); }
+  .warn { background: var(--warn-bg); border-color: var(--warn-bd); }
+  .warn .box-title { color: var(--warn-tx); }
+
+  /* 英语词汇 */
+  .vocab {
+    background: var(--vocab-bg);
+    border: 1px solid var(--vocab-bd);
+    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 18px 0;
+  }
+  .vocab .vocab-title { font-weight: 700; color: var(--vocab-tx); font-size: 15px; display: block; margin-bottom: 6px; }
+  .vocab ul { margin: 0; padding-left: 20px; }
+  .vocab li { margin: 3px 0; font-size: 15.5px; }
+  .vocab b { color: var(--vocab-tx); }
+
+  /* 行内英文术语 */
+  .en {
+    color: var(--en);
+    font-weight: 500;
+  }
+  .zh { color: var(--muted); font-size: 0.92em; }
+
+  /* 公式块 */
+  .formula {
+    text-align: center;
+    margin: 16px 0;
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .toc a { color: var(--accent-dark); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .toc-title { font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .toc ol { margin: 6px 0; padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+
+  /* ===== 可视化图（内联 SVG，跟随主题）===== */
+  .figure {
+    margin: 22px auto;
+    padding: 16px 16px 8px;
+    background: var(--fig-bg);
+    border: 1px solid var(--fig-bd);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .figure svg { max-width: 100%; height: auto; display: inline-block; }
+  .figcap {
+    margin: 10px 0 4px;
+    font-size: 13.5px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .svg-text { fill: var(--text); font-size: 14px; font-family: inherit; }
+  .svg-muted { fill: var(--muted); font-size: 12px; font-family: inherit; }
+
+  /* ===== 手风琴式课程大索引 ===== */
+  .lecture-group { margin-bottom: 6px; }
+  .lecture-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14.5px;
+    font-weight: 700;
+    font-family: inherit;
+    color: var(--accent-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s, border-color .12s;
+  }
+  .lecture-toggle:hover { background: var(--hover-bg); border-color: var(--accent); }
+  .lecture-toggle .lt-arrow { font-size: 11px; transition: transform .18s; color: var(--muted); }
+  .lecture-group.open .lecture-toggle { background: var(--hover-bg); border-color: var(--accent); }
+  .lecture-group.open .lecture-toggle .lt-arrow { transform: rotate(180deg); }
+  .lecture-body { display: none; padding: 4px 0 2px; }
+  .lecture-group.open .lecture-body { display: block; }
+
+  /* ===== 每课的横幅标题 ===== */
+  .lecture { margin-top: 8px; }
+  .lecture-banner {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 26px 0 10px;
+    scroll-margin-top: 20px;
+  }
+  .lecture-banner .zh { color: var(--muted); font-weight: 500; font-size: 0.82em; }
+
+  @media (max-width: 860px) {
+    .sidebar { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { margin-left: 0; padding: 20px; }
+    .content-inner { max-width: none; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<script>
+(function () {
+  var KEY = 'opt-theme';
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var theme = saved || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  window.__updateThemeBtn = function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.textContent = (document.documentElement.getAttribute('data-theme') === 'dark')
+      ? '切换到亮色模式' : '切换到夜间模式';
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    window.__updateThemeBtn();
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        window.__updateThemeBtn();
+      });
+    }
+  });
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+<script>
+(function () {
+  function initAccordion() {
+    var groups = document.querySelectorAll('.lecture-group');
+    groups.forEach(function (g) {
+      var btn = g.querySelector('.lecture-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var wasOpen = g.classList.contains('open');
+        groups.forEach(function (x) { x.classList.remove('open'); });
+        if (!wasOpen) g.classList.add('open');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordion);
+  } else {
+    initAccordion();
+  }
+})();
+</script>
+</head>
+<body>
+
+<!-- ============ 侧边导航栏 ============ -->
+<aside class="sidebar">
+  <div class="logo">最优化<br>MAT3007 Optimization</div>
+  <div class="sub">CUHK-Shenzhen · 2026 秋季<br>复习笔记（中英对照）</div>
+  <button id="themeToggle" class="theme-toggle" type="button">切换到夜间模式</button>
+  <nav>
+    <div class="lecture-group open">
+      <button class="lecture-toggle" type="button">第1课 · Introduction to Optimization <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#overview">📖 课程概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#part1">Part 1 · 课程介绍 About the Course</a>
+        <a class="lv2" href="#p1-1">1.1 课程信息与考核</a>
+        <a class="lv2" href="#p1-2">1.2 课程大纲</a>
+        <a class="lv2" href="#p1-3">1.3 参考书与学术诚信</a>
+
+        <a class="lv1" href="#part2">Part 2 · 什么是最优化 What is Optimization</a>
+        <a class="lv2" href="#p2-1">2.1 决策 + 目标 + 约束</a>
+        <a class="lv2" href="#p2-2">2.2 例1：最大面积问题</a>
+        <a class="lv2" href="#p2-3">2.3 例2：生产问题</a>
+        <a class="lv2" href="#p2-4">2.4 例3：最短路径问题</a>
+        <a class="lv2" href="#p2-5">2.5 共同要素与优化简史</a>
+        <a class="lv2" href="#p2-6">2.6 AI 辅助学习与建模教训</a>
+
+        <a class="lv1" href="#part3">Part 3 · 基本术语 Basic Terminology</a>
+        <a class="lv2" href="#p3-1">3.1 优化问题的标准形式</a>
+        <a class="lv2" href="#p3-2">3.2 可行点 / 可行集 / 最优值 / 最优解</a>
+        <a class="lv2" href="#p3-3">3.3 几何视角</a>
+        <a class="lv2" href="#p3-4">3.4 极小点的形式化定义</a>
+        <a class="lv2" href="#p3-5">3.5 优化问题的性质与状态</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第2课 · Problem Types and Modeling <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec2-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec2-p1">Part 1 · 四种可能结果</a>
+        <a class="lv2" href="#lec2-p1-1">1.1 不可行 Infeasible</a>
+        <a class="lv2" href="#lec2-p1-2">1.2 有下界但无极小点</a>
+        <a class="lv2" href="#lec2-p1-3">1.3 下无界 Unbounded</a>
+        <a class="lv2" href="#lec2-p1-4">1.4 多个最优解</a>
+        <a class="lv1" href="#lec2-p2">Part 2 · 优化问题的分类</a>
+        <a class="lv2" href="#lec2-p2-1">2.1 有约束 vs 无约束</a>
+        <a class="lv2" href="#lec2-p2-2">2.2 线性 vs 非线性</a>
+        <a class="lv2" href="#lec2-p2-3">2.3 连续 vs 整数</a>
+        <a class="lv1" href="#lec2-p3">Part 3 · 重构与松弛</a>
+        <a class="lv2" href="#lec2-p3-1">3.1 max 的 LP 形式</a>
+        <a class="lv2" href="#lec2-p3-2">3.2 整数规划的连续松弛</a>
+        <a class="lv1" href="#lec2-p4">Part 4 · 建模</a>
+        <a class="lv2" href="#lec2-p4-1">4.1 为什么建模重要</a>
+        <a class="lv2" href="#lec2-p4-2">4.2 建模流程</a>
+        <a class="lv2" href="#lec2-p4-3">4.3 建模模板</a>
+        <a class="lv2" href="#lec2-p4-4">4.4 常见建模错误</a>
+        <a class="lv1" href="#lec2-p5">Part 5 · 建模实例</a>
+        <a class="lv2" href="#lec2-p5-1">5.1 最大面积</a>
+        <a class="lv2" href="#lec2-p5-2">5.2 生产问题</a>
+        <a class="lv2" href="#lec2-p5-3">5.3 最短路径</a>
+        <a class="lv2" href="#lec2-p5-4">5.4 顶点覆盖</a>
+        <a class="lv2" href="#lec2-p5-5">5.5 四个模型对照</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第3课 · Modeling &amp; Linear Programming <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec3-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec3-p1">Part 1 · SVM 的优化建模</a>
+        <a class="lv2" href="#lec3-p1-1">1.1 从标注样本学习</a>
+        <a class="lv2" href="#lec3-p1-2">1.2 特征、样本与点</a>
+        <a class="lv2" href="#lec3-p1-3">1.3 为什么特征缩放重要</a>
+        <a class="lv2" href="#lec3-p1-4">1.4 特征空间中的标注数据</a>
+        <a class="lv2" href="#lec3-p1-5">1.5 预测新申请者</a>
+        <a class="lv2" href="#lec3-p1-6">1.6 分类器实战</a>
+        <a class="lv2" href="#lec3-p1-7">1.7 线性分数与超平面几何</a>
+        <a class="lv2" href="#lec3-p1-8">1.8 归一化与可行性模型</a>
+        <a class="lv2" href="#lec3-p1-9">1.9 间隔与支持向量</a>
+        <a class="lv2" href="#lec3-p1-10">1.10 推导间隔宽度</a>
+        <a class="lv2" href="#lec3-p1-11">1.11 硬间隔 SVM 目标</a>
+        <a class="lv2" href="#lec3-p1-12">1.12 为什么软间隔</a>
+        <a class="lv2" href="#lec3-p1-13">1.13 Hinge 损失</a>
+        <a class="lv2" href="#lec3-p1-14">1.14 软间隔 SVM 模型</a>
+        <a class="lv2" href="#lec3-p1-15">1.15 松弛变量的等价形式</a>
+        <a class="lv2" href="#lec3-p1-16">1.16 从软间隔到 LP</a>
+        <a class="lv1" href="#lec3-p2">Part 2 · 线性规划</a>
+        <a class="lv2" href="#lec3-p2-1">2.1 定义</a>
+        <a class="lv2" href="#lec3-p2-2">2.2 「线性」的含义</a>
+        <a class="lv2" href="#lec3-p2-3">2.3 LP 的几何</a>
+        <a class="lv2" href="#lec3-p2-4">2.4 一般与紧凑形式</a>
+        <a class="lv2" href="#lec3-p2-5">2.5 标准形式</a>
+        <a class="lv2" href="#lec3-p2-6">2.6 为什么 m &lt; n</a>
+        <a class="lv2" href="#lec3-p2-7">2.7 标准形变换</a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<!-- ============ 主内容 ============ -->
+<main class="content">
+<div class="content-inner">
+
+<h1 class="title">最优化 · 复习笔记</h1>
+<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–3</p>
+
+<!-- ============ 第1课 ============ -->
+<div class="lecture" id="lec1">
+<div class="lecture-banner">第1课 · Introduction to Optimization <span class="zh">（最优化引论）</span></div>
+
+<!-- ===== 课程概览 ===== -->
+<section id="overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#part1">Part 1 课程介绍 About the Course</a> —— 课程信息、大纲、考核、学术诚信</li>
+      <li><a href="#part2">Part 2 什么是最优化 What is Optimization</a> —— 三个经典例子、共同要素、优化简史</li>
+      <li><a href="#part3">Part 3 基本术语 Basic Terminology</a> —— 标准形式、可行解、最优值、极小点定义、问题状态</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>最优化（optimization）就是在<b>约束（constraints）</b>下，选择<b>决策变量（decision variables）</b>，使<b>目标函数（objective function）</b>最大化或最小化。任何最优化问题都可拆解为这三个要素。</p>
+  </div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 1 课程介绍 ============ -->
+<!-- ================================================= -->
+<section id="part1">
+<h2>Part 1 · 课程介绍 <span class="zh">About the Course</span></h2>
+
+<h3 id="p1-1">1.1 课程信息与考核</h3>
+<ul>
+  <li><b>课程</b>：MAT3007 Optimization（最优化），教师 <b>Nachuan Xiao</b>（School of Data Science）</li>
+  <li><b>上课时间</b>：周二、周四 8:30–10:00 AM</li>
+  <li><b>办公室</b>：TxB 614；Office hour 周二 3:30–4:30 PM</li>
+  <li><b>助教（TA）</b>：Qingwei Zhang、Youcun Zheng、Pengyu Zuo、Junxi Man、Surui Wang、Zhenchuan Yuan（各有固定答疑时间）</li>
+</ul>
+<table class="truth">
+  <tr><th>考核项目</th><th>占比</th><th>说明</th></tr>
+  <tr><td>作业 Homework</td><td>10%</td><td>约 8 次，去掉最低分，迟交不收</td></tr>
+  <tr><td>期中 Midterm</td><td>45%</td><td>11 月 7 日（周六）14:00–16:00</td></tr>
+  <tr><td>期末 Final</td><td>45%</td><td>教务处统一安排</td></tr>
+</table>
+
+<h3 id="p1-2">1.2 课程大纲 <span class="zh">Course Outline</span></h3>
+<p>本课程介绍最优化理论及应用的基础，分三大块：</p>
+<ol>
+  <li><b>线性优化 Linear optimization</b>：线性规划建模、<span class="en">单纯形法（simplex method）</span>、<span class="en">对偶理论（duality theory）</span></li>
+  <li><b>整数规划 Integer programming</b>：基本模型与算法的简要介绍</li>
+  <li><b>非线性优化 Nonlinear optimization</b>：最优性条件（optimality conditions）与实用算法</li>
+</ol>
+
+<h3 id="p1-3">1.3 参考书与学术诚信</h3>
+<h4>推荐参考书 Recommended references</h4>
+<ul>
+  <li>D. Bertsimas &amp; J. Tsitsiklis, <i>Introduction to Linear Optimization</i></li>
+  <li>S. Boyd &amp; L. Vandenberghe, <i>Convex Optimization</i></li>
+  <li>A. Beck, <i>Introduction to Nonlinear Optimization: Theory, Algorithms, and Applications with MATLAB</i></li>
+  <li>G. Nemhauser &amp; L. Wolsey, <i>Integer and Combinatorial Optimization</i></li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 学术诚信与 AI 使用（Academic Honesty and AI Use）</span>
+  <ul>
+    <li>AI 可用作<b>学习辅助</b>：概念解释、几何直觉、额外练习。</li>
+    <li>从 AI 抄作业答案、提交非本人完成的工作 = <b>学术不端</b>。</li>
+    <li>可以讨论作业题，但<b>每个人必须独立</b>写出提交的解答。</li>
+    <li>考试作弊包括使用未授权材料；CUHK-Shenzhen 对学术不端<b>零容忍</b>。</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 2 什么是最优化 ============ -->
+<!-- ================================================= -->
+<section id="part2">
+<h2>Part 2 · 什么是最优化 <span class="zh">What is Optimization</span></h2>
+
+<div class="def box">
+  <span class="box-title">📌 最优化 Optimization</span>
+  <p><b>最优化</b> = 寻找<b>最大值或最小值</b>（the search for a maximum or minimum）。<br>
+  引用欧拉的话：宇宙中没有任何事情不体现某种「最大或最小」的法则（Nothing at all takes place in the universe in which some rule of maximum or minimum does not appear）。</p>
+</div>
+
+<h3 id="p2-1">2.1 决策 + 目标 + 约束 <span class="zh">Decision + Objective + Constraints</span></h3>
+<p>凡是问「<b>哪种选择最好？</b>」的地方就有最优化。两个关键要素：</p>
+<ul>
+  <li><span class="en"><b>决策变量 decision variables</b></span>：我们能选择什么（速度、预算分配、模型参数……）</li>
+  <li><span class="en"><b>目标 objective</b></span>：如何衡量「好坏」（成本、误差、时间、能量……）</li>
+</ul>
+<p>有时还有 <span class="en"><b>约束 constraints</b></span>：必须遵守的规则（容量、安全、预算）。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 几何图像 Geometric picture</span>
+  <p>把目标想象成一张「<b>高度图 height map</b>」：<b>最小值</b>是最低的山谷，<b>最大值</b>是最高的山峰，<b>约束</b>限制了你允许走动的区域。</p>
+</div>
+
+<h3 id="p2-2">2.2 例1：最大面积问题 <span class="zh">Maximum Area Problem</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 问题</span>
+  <p>你有 <b>80 米</b>栅栏，要围成一个矩形区域，使得面积最大。怎么做？</p>
+</div>
+<p>把故事变成数学问题，三要素：</p>
+<ul>
+  <li><b>决策（Decision）</b>：设矩形边长为 \(x, y\)（米），选择 \(x\ge 0,\ y\ge 0\)。</li>
+  <li><b>目标（Objective）</b>：最大化面积 \(f(x,y) = xy\)。</li>
+  <li><b>约束（Constraints）</b>：总栅栏 80 米 → \(2x+2y=80\)；物理长度 → \(x\ge 0,\ y\ge 0\)。</li>
+</ul>
+<p class="formula">\(\max \; f(x,y)=xy \quad \text{s.t.} \quad 2x+2y=80,\ x\ge 0,\ y\ge 0\)</p>
+
+<h4>把两个决策化成一个</h4>
+<p>由 \(2x+2y=80\) 除以 2 得 \(x+y=40\)，即 \(y=40-x\)。面积变成单变量函数：</p>
+<p class="formula">\(F(x) = x(40-x) = 40x - x^2,\quad 0\le x\le 40\)</p>
+<p>这是<b>开口向下的抛物线</b>，最高点在顶点处。直觉：\(x\) 太小则矩形「太瘦」，\(x\) 接近 40 则 \(y\) 很小，面积又变小，所以峰值在中间。</p>
+<div class="thm box">
+  <span class="box-title">🎯 答案（配方法）</span>
+  <p class="formula">\(A = x(40-x) = 400 - (x-20)^2 \le 400\)</p>
+  <p>因为平方 \((x-20)^2 \ge 0\)，所以每个可行面积都 \(\le 400\)。当 \(x=20\) 时取到等号。<br>
+  <b>答案：</b>\(x = y = 20\)（一个 20×20 的正方形），最大面积 \(A_{\max} = 400\ \text{m}^2\)。</p>
+</div>
+
+<h3 id="p2-3">2.3 例2：生产问题 <span class="zh">Production Problem</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 问题</span>
+  <p>一家公司用三种资源（钢 steel、铁 iron、铜 copper）生产两种合金产品，资源消耗与单位利润如下表。生产多少才能使利润最大？</p>
+  <table class="truth">
+    <tr><th></th><th>Steel 钢</th><th>Iron 铁</th><th>Copper 铜</th><th>Profit 利润</th></tr>
+    <tr><td>Alloy 1（合金1）</td><td>1</td><td>0</td><td>1</td><td>$1</td></tr>
+    <tr><td>Alloy 2（合金2）</td><td>0</td><td>2</td><td>1</td><td>$2</td></tr>
+    <tr><td>Resources 资源</td><td>100</td><td>200</td><td>150</td><td>—</td></tr>
+  </table>
+</div>
+<ul>
+  <li><b>决策变量</b>：\(x_1\) = 合金 1 产量，\(x_2\) = 合金 2 产量，\(x_1\ge 0,\ x_2\ge 0\)。</li>
+  <li><b>目标</b>：最大化利润 \(P(x_1,x_2) = x_1 + 2x_2\)。</li>
+  <li><b>约束</b>：钢 \(x_1\le 100\)；铁 \(2x_2\le 200 \Rightarrow x_2\le 100\)；铜 \(x_1+x_2\le 150\)。</li>
+</ul>
+<p class="formula">\(\max \; x_1 + 2x_2 \quad \text{s.t.} \quad x_1\le 100,\ x_2\le 100,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)</p>
+
+<h4>几何可视化 Geometric visualization</h4>
+<ul>
+  <li>每个不等式描述 \((x_1,x_2)\) 平面上的一个<b>半平面（half-plane）</b>。</li>
+  <li><b>可行集（feasible set）</b> = 所有半平面的交集 → 一个<b>多边形（polygon）</b>。</li>
+  <li>多边形内部任一点都是一个可行的生产计划。</li>
+</ul>
+<p>目标 \(P = x_1+2x_2\)：固定利润水平 \(c\)，满足 \(x_1+2x_2=c\) 的点构成<b>平行线</b>，\(c\) 越大利润越高。把这条线<b>向上平移</b>，直到刚好「碰到」可行域。</p>
+<div class="thm box">
+  <span class="box-title">🎯 答案</span>
+  <p>最优解 \((x_1,x_2) = (50, 100)\)，最大利润 \(P = 50 + 2\times 100 = 250\)。<br>
+  检验：铜用量 \(50+100=150\)（恰好用完），钢 50≤100、铁 100≤100 均满足。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ AI 可能给错：几何检验</span>
+  <p>若 AI 推荐 \((100,100)\)，它违反了铜约束（\(100+100=200>150\)），<b>不可行 infeasible</b>。几何图上它落在可行多边形<b>之外</b>。用几何（或代入检验）可以否决这个不可行的建议。</p>
+</div>
+
+<h3 id="p2-4">2.4 例3：最短路径问题 <span class="zh">Shortest Path Problem</span></h3>
+
+<div class="ex box">
+  <span class="box-title">✏️ 问题（先忘记数学，回到直觉）</span>
+  <p>把图想成一张<b>地图</b>：节点是<b>城市</b>，边是<b>公路</b>，边上的数字是<b>路程长度</b>。问题是：从城市 \(S\) 到城市 \(T\)，走哪几条公路总路程最短？这就是<b>最短路径问题（shortest path problem）</b>。</p>
+</div>
+
+<h4>本讲例子的图（各条边的长度）</h4>
+<p>节点为 \(S, B, C, D, E, F, T\)，无向边的长度如下：</p>
+<table class="truth">
+  <tr><th>边</th><td>S–B</td><td>S–C</td><td>S–D</td><td>B–C</td><td>B–E</td><td>D–E</td><td>C–F</td><td>D–F</td><td>F–E</td><td>E–T</td><td>F–T</td></tr>
+  <tr><th>长度</th><td>4</td><td>2</td><td>3</td><td>3</td><td>6</td><td>5</td><td>3</td><td>2</td><td>1</td><td>2</td><td>4</td></tr>
+</table>
+
+<h4>第一步：决策变量（每一条路一个 0/1 开关）</h4>
+<p>我们事先不知道要走哪条路，所以给<b>每条有向弧（arc）</b>设一个开关变量：</p>
+<p class="formula">\(x_{ij} = \begin{cases} 1, & \text{路线使用弧 } (i,j) \\ 0, & \text{否则} \end{cases}\)</p>
+<p><b>为什么要把「无向边」变成「两条有向弧」？</b>因为从 \(S\) 到 \(T\) 的路线是<b>有方向</b>的。无向边 \(\{i,j\}\) 两个方向都能走，于是拆成 \((i,j)\) 和 \((j,i)\) 两条「单向车道」，各自用一个开关。比如边 \(S\)–\(D\) 拆成 \(S\to D\)（用 \(x_{SD}\) 控制）和 \(D\to S\)（用 \(x_{DS}\) 控制），路线若从 S 走向 D 就令 \(x_{SD}=1\)。</p>
+
+<h4>第二步：目标函数（最小化总路程）</h4>
+<p>每条弧的路程是 \(w_{ij}=w_{ji}>0\)（同一条边两个方向一样长）。总路程 = 所有「被选中弧」的长度之和：</p>
+<p class="formula">\(\displaystyle \min_x \sum_{(i,j)\in A} w_{ij}x_{ij}\)</p>
+<p>因为 \(x_{ij}\) 只在「走这条路」时为 1，其余为 0，所以这个求和正好把走过的路全加起来。</p>
+
+<h4>第三步：约束（流量守恒 —— 最关键的一步）</h4>
+<p>目标函数很简单，难的是<b>保证选出来的弧真的连成一条从 S 到 T 的路</b>。核心直觉：</p>
+<div class="ex box">
+  <span class="box-title">💧 想象送 1 单位「水」从 S 流到 T</span>
+  <p>水顺着选中的弧流动，一条合法路线必须满足：</p>
+  <ul>
+    <li>起点 \(S\) <b>只出不进</b>：净流出（流出 − 流入）= 1</li>
+    <li>终点 \(T\) <b>只进不出</b>：净流出 = −1（即净流入 = 1）</li>
+    <li>其余每个中间节点 <b>流入 = 流出</b>：进多少就出多少，不能凭空消失或凭空出现</li>
+  </ul>
+</div>
+<p>把这份「每个节点的水账」写成等式，就是讲义里的模型：</p>
+<div class="thm box">
+  <span class="box-title">🎯 最短路径的最优化模型（标准写法）</span>
+  <p class="formula">\(\displaystyle \min_x \sum_{(i,j)\in A} w_{ij}x_{ij}\)</p>
+  <p class="formula">\(\text{s.t.} \quad \displaystyle\sum_{u:(v,u)\in A} x_{vu} - \sum_{u:(u,v)\in A} x_{uv} = \begin{cases} 1, & v = S \\ -1, & v = T \\ 0, & \text{otherwise} \end{cases}, \quad \forall v\in V\)</p>
+  <p class="formula">\(x_{ij} \in \{0,1\},\quad \forall (i,j)\in A\)</p>
+</div>
+<p>逐项拆解约束式：</p>
+<ul>
+  <li>\(\sum_{u:(v,u)\in A} x_{vu}\) = 从节点 \(v\) <b>流出</b>的总量（所有「从 \(v\) 出发的弧」的开关之和）</li>
+  <li>\(\sum_{u:(u,v)\in A} x_{uv}\) = 流入节点 \(v\) 的总量</li>
+  <li>两者相减 = \(v\) 的<b>净流出</b>，要求等于 1（S）、−1（T）或 0（其他节点）</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 用具体路径 \(S-D-F-E-T\) 验算一遍</span>
+  <table class="truth">
+    <tr><th>节点</th><th>流入</th><th>流出</th><th>净流出</th><th>要求</th><th>✓</th></tr>
+    <tr><td>S</td><td>0</td><td>1（S→D）</td><td>1</td><td>1</td><td>✓</td></tr>
+    <tr><td>D</td><td>1（S→D）</td><td>1（D→F）</td><td>0</td><td>0</td><td>✓</td></tr>
+    <tr><td>F</td><td>1（D→F）</td><td>1（F→E）</td><td>0</td><td>0</td><td>✓</td></tr>
+    <tr><td>E</td><td>1（F→E）</td><td>1（E→T）</td><td>0</td><td>0</td><td>✓</td></tr>
+    <tr><td>T</td><td>1（E→T）</td><td>0</td><td>−1</td><td>−1</td><td>✓</td></tr>
+  </table>
+  <p>所以流量守恒约束，翻译成人话就是一句话：<b>S 送出一单位、T 收到一单位、中间节点中转不增不减</b>。</p>
+</div>
+
+<h4>为什么最优解一定是一条「路径」、不会有环？</h4>
+<p>\(x_{ij}\in\{0,1\}\) 只要求每个节点「进出平衡」，它<b>允许</b>「一条 S→T 路径再绕一个环」的情形（比如额外绕 D–F–E–D 一圈，每个节点照样进出平衡）。但所有边长都是正数，绕环只会<b>白白增加路程</b>。把环删掉，路程严格变短。于是<b>最优解一定不含环，正好对应一条 S–T 路径</b>。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 数值答案</span>
+  <p>最短路径是 \(S-D-F-E-T\)，总距离 \(3+2+1+2 = 8\)。（另一条等长的 \(S-C-F-E-T\) 也是 8。）交叉验证：到 \(F\) 的最短距离是 5（S–D–F 或 S–C–F），到 \(E\) 的最短距离是 6；\(T\) 只连 \(F\)（长度 4）和 \(E\)（长度 2），故 \(\min\{5+4,\ 6+2\}=8\)。</p>
+</div>
+
+<h4>怎么找出最短路径 —— Dijkstra 算法（补充拓展）</h4>
+<p>上面只是把问题<b>写成了模型</b>；真正「算」出答案要靠算法。本讲的图小、可以目测，稍微大一点就要用 <span class="en"><b>Dijkstra 算法</b></span>——它就是讲义说的「只保存每个节点当前已知的最短距离，不构造完整路线」的方法。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 核心思想：由近及远，逐层「定死」</span>
+  <ul>
+    <li>维护 <code>dist[v]</code> = 目前已知从 S 到 v 的最短距离；<code>prev[v]</code> = 路径上 v 的前一个节点（最后用来回溯路径）。初始 <code>dist[S]=0</code>，其余 = ∞。</li>
+    <li>每一步从<b>尚未确定</b>的节点里挑 <code>dist</code> 最小的那个 \(u\)，把它<b>定死</b>（它的最短距离从此不再变）。</li>
+    <li>用 \(u\) 去<b>松弛（relax）</b>它的邻居 \(v\)：若 \(\text{dist}[u]+w(u,v) < \text{dist}[v]\)，就更新 \(\text{dist}[v]=\text{dist}[u]+w(u,v)\)，并记 \(\text{prev}[v]=u\)。</li>
+    <li>重复直到所有点都定死（或 T 被定死）。</li>
+  </ul>
+</div>
+<p>在本讲的图上逐步演算（列中「—」表示该点已定死，不再更新）：</p>
+<table class="truth">
+  <tr><th>本轮定死(距离)</th><th>到 B</th><th>到 C</th><th>到 D</th><th>到 E</th><th>到 F</th><th>到 T</th><th>发生的变化</th></tr>
+  <tr><td>初始</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td><td>∞</td><td>S=0</td></tr>
+  <tr><td>S (0)</td><td>4</td><td>2</td><td>3</td><td>∞</td><td>∞</td><td>∞</td><td>松弛 S 的邻居 B、C、D</td></tr>
+  <tr><td>C (2)</td><td>4</td><td>—</td><td>3</td><td>∞</td><td>5</td><td>∞</td><td>C→F：2+3=5</td></tr>
+  <tr><td>D (3)</td><td>4</td><td>—</td><td>—</td><td>8</td><td>5</td><td>∞</td><td>D→E：3+5=8；D→F 3+2=5 不更小</td></tr>
+  <tr><td>B (4)</td><td>—</td><td>—</td><td>—</td><td>8</td><td>5</td><td>∞</td><td>B→E：4+6=10，不更新</td></tr>
+  <tr><td>F (5)</td><td>—</td><td>—</td><td>—</td><td>6</td><td>—</td><td>9</td><td>F→E：5+1=6；F→T：5+4=9</td></tr>
+  <tr><td>E (6)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>8</td><td>E→T：6+2=8，比 9 更小</td></tr>
+  <tr><td>T (8)</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>结束，最短距离 = 8</td></tr>
+</table>
+<p><b>回溯路径</b>：\(\text{prev}[T]=E \to \text{prev}[E]=F \to \text{prev}[F]=C \to \text{prev}[C]=S\)，得 \(S-C-F-E-T\)，长度 \(2+3+1+2=8\)。注意：若并列时保留的是 D 而非 C 作为 F 的前驱，则回溯出 \(S-D-F-E-T\)（\(3+2+1+2=8\)）——<b>两条都是最优，并列最短</b>。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 为什么必须边长非负</span>
+  <p>Dijkstra 成立的关键：<b>当前 dist 最小的未确定节点，不可能再被别的未确定节点改小</b>——因为所有边非负，任何尚未确定的节点的路径都至少和它一样长，绕过去只会更远。若有<b>负权边</b>，这个「定死」就失效了，需要改用 Bellman–Ford 或 SPFA。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 效率对比</span>
+  <p>枚举全部路径需检查 \(2^{30}\approx 10.7\) 亿条路线；Dijkstra 用优先队列只需 \(O((V+E)\log V)\)，只维护每个点当前的最短距离，从不枚举完整路线。</p>
+</div>
+
+<h3 id="p2-5">2.5 共同要素与优化简史 <span class="zh">Common Components &amp; History</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 最优化问题的共同要素</span>
+  <ul>
+    <li><b>决策变量 decision variables</b></li>
+    <li><b>目标 objective</b></li>
+    <li><b>约束 constraints</b></li>
+  </ul>
+  <p>最优化 = 在约束下选择决策变量，使目标<b>最大化或最小化</b>（视问题而定），且通常有<b>很强的几何解释</b>。</p>
+</div>
+<p>三个例子的对照：</p>
+<table class="truth">
+  <tr><th>问题</th><th>决策</th><th>目标</th><th>约束</th></tr>
+  <tr><td>最大面积</td><td>长和宽</td><td>最大化面积</td><td>栅栏总长</td></tr>
+  <tr><td>生产问题</td><td>生产计划</td><td>最大化利润</td><td>资源限制</td></tr>
+  <tr><td>最短路径</td><td>S→T 的路径</td><td>最小化总距离</td><td>起点/终点 + 流量守恒</td></tr>
+</table>
+
+<h4>优化简史 History of Optimization</h4>
+<ul>
+  <li><b>古希腊几何</b>：欧几里得（约 300 BC）系统研究几何；Hero of Alexandria（1 世纪 AD）用最短路径论证解释<b>光的反射</b>——这是「在约束（必须碰到镜面）下最小化距离」的早期例子。</li>
+  <li><b>微积分时代（17–18 世纪）</b>：牛顿/莱布尼茨——可微函数的内点最优处<b>导数为零</b>，驻点是待检验的候选点；欧拉——力学与变分法中的优化；拉格朗日——用<b>拉格朗日乘子（Lagrange multipliers）</b>处理约束。</li>
+  <li><b>20 世纪：运筹学与线性规划（LP）</b>：二战（1939–1945）的大规模规划问题推动发展（资源分配、路线调度、雷达检测、物流）。标志性模型是<b>线性规划 LP</b>（目标与约束都是线性的），催生<b>单纯形法（simplex method）</b>等强力算法。</li>
+  <li><b>今天：大数据</b>：问题规模巨大，算法必须<b>可扩展（scalable）</b>、<b>快（fast）</b>、<b>可靠（reliable）</b>；「预测 + 优化」结合（预测需求→规划库存，预测时间→选路，预测风险→安全决策）。</li>
+</ul>
+
+<h3 id="p2-6">2.6 AI 辅助学习与建模教训 <span class="zh">AI &amp; Modeling Lessons</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 建模教训：一词之差</span>
+  <p>「最短」的含义取决于上下文：若边标注是<b>距离</b>，最短路径是 \(S-D-F-E-T\)（距离 8）；若「最短」指<b>时间、成本或风险</b>，当前的边数据就无法回答。一个词就能改变目标函数和模型所需的数据。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 自然语言会留下未完成的模型</span>
+  <p>生产问题里「公司该生产多少？」这句话留下了很多开放问题：是否必须整批生产？客户需求有限制吗？有没有固定启动成本？是否遗漏了其他资源？<br>
+  在讲义假设（连续产量、非负、可全部售出、表格含所有资源）下答案是 \((50,100)\)，利润 250；若要求整批生产，则需要<b>整数变量（integer variables）</b>和不同的求解器。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 求解器选择：结构匹配</span>
+  <table class="truth">
+    <tr><th>问题</th><th>有用结构</th><th>合适方法</th></tr>
+    <tr><td>最大面积</td><td>区间上的单变量</td><td>表格 + 对称性，或一维方法</td></tr>
+    <tr><td>生产问题</td><td>连续变量、线性利润、线性限制</td><td>线性规划求解器（LP solver）</td></tr>
+    <tr><td>最短路径</td><td>非负边长的网络</td><td>专用最短路径算法（如 Dijkstra）</td></tr>
+  </table>
+  <p>若生产必须整批，模型变成整数规划，需要混合整数求解器。好的方法要<b>同时匹配数学结构和问题规模</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 经验节省计算</span>
+  <p>最短路径问题若路线经过 30 个阶段、每阶段 2 条路，则完整路线有 \(2^{30} = 1{,}073{,}741{,}824\) 条，枚举法要检查超十亿种可能。而 Dijkstra 算法只保存每个节点当前已知的最短距离，<b>不构造每条完整路线</b>。类似地，生产问题若扫描密集网格会忽略线性边界，而 LP 求解器直接利用这些边界。</p>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 3 基本术语 ============ -->
+<!-- ================================================= -->
+<section id="part3">
+<h2>Part 3 · 基本术语 <span class="zh">Basic Terminology</span></h2>
+
+<h3 id="p3-1">3.1 优化问题的标准形式 <span class="zh">Standard Form</span></h3>
+<div class="def box">
+  <span class="box-title">📌 抽象形式</span>
+  <p class="formula">\(\min_x \; f(x) \quad \text{s.t.} \quad x \in \Omega\)</p>
+  <ul>
+    <li>\(x\) ⇝ <b>决策变量（决策向量）decision variable / vector</b></li>
+    <li>\(f\) ⇝ <b>目标函数 objective function</b></li>
+    <li>\(\Omega\) ⇝ <b>可行集 feasible set</b>（由约束定义）</li>
+  </ul>
+  <p>视问题而定，也可能<b>最大化</b>目标。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 更具体的常用形式</span>
+  <p class="formula">\(\min_{x\in\mathbb{R}^n} \; f(x) \quad \text{s.t.} \quad g_i(x)\le 0\ (i=1,\dots,m),\quad h_j(x)=0\ (j=1,\dots,p)\)</p>
+  <ul>
+    <li>\(x\in\mathbb{R}^n\) ⇝ 决策变量</li>
+    <li>\(f(x)\) ⇝ 目标函数</li>
+    <li>\(g(x)\le 0\) 表示<b>不等式约束</b>（逐分量理解），\(h(x)=0\) 表示<b>等式约束</b></li>
+  </ul>
+  <p>其中 \(g(x)=(g_1(x),\dots,g_m(x))\in\mathbb{R}^m\)，\(h(x)=(h_1(x),\dots,h_p(x))\in\mathbb{R}^p\)。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 约束的集合写法</span>
+  <p class="formula">\(\Omega := \{x\in\mathbb{R}^n : g_i(x)\le 0\ (i=1,\dots,m),\ h_j(x)=0\ (j=1,\dots,p)\} = \{x\in\mathbb{R}^n : g(x)\le 0,\ h(x)=0\}\)</p>
+</div>
+
+<h3 id="p3-2">3.2 可行点 / 可行集 / 最优值 / 最优解</h3>
+<div class="def box">
+  <span class="box-title">📌 术语 Terminology</span>
+  <ul>
+    <li><span class="en"><b>可行点 feasible point</b></span>：满足所有约束的点 \(x\in\Omega\)。</li>
+    <li><span class="en"><b>可行集 feasible set</b></span>：所有可行点组成的集合 \(\Omega\)。</li>
+    <li><span class="en"><b>最优值 optimal value</b></span>：对可行的最小化问题，\(f^\star := \inf_{x\in\Omega} f(x)\)。下确界（infimum）可以是有限值，也可以是 \(-\infty\)。</li>
+    <li><span class="en"><b>最优解（全局极小点）optimal solution / global minimizer</b></span>：达到 \(f^\star\) 的点 \(x^\star\in\Omega\)。仅当 infimum 有限且被取到时才存在。</li>
+    <li><span class="en"><b>无约束 unconstrained</b></span>：\(\Omega=\mathbb{R}^n\) 或 \(m=p=0\)；否则称为<b>约束优化问题（constrained）</b>。</li>
+  </ul>
+</div>
+
+<h3 id="p3-3">3.3 几何视角 <span class="zh">Geometric View</span></h3>
+<p>定义 \(G_i := \{x : g_i(x)\le 0\}\)、\(H_j := \{x : h_j(x)=0\}\)，则：</p>
+<p class="formula">\(\displaystyle \Omega = \bigcap_{i=1}^{m} G_i \;\cap\; \bigcap_{j=1}^{p} H_j\)</p>
+<div class="ex box">
+  <span class="box-title">✏️ 命题与证明</span>
+  <p><b>Claim.</b> \(\Omega = \bigcap_{i=1}^m \{x: g_i(x)\le 0\} \cap \bigcap_{j=1}^p \{x: h_j(x)=0\}\)。</p>
+  <p><b>Proof.</b></p>
+  <ul>
+    <li>(\(\subseteq\)) 若 \(x\in\Omega\)，由定义 \(g_i(x)\le 0\)（所有 \(i\)）且 \(h_j(x)=0\)（所有 \(j\)），故 \(x\) 属于交集中的每个集合，从而属于它们的交集。</li>
+    <li>(\(\supseteq\)) 若 \(x\) 属于交集，则它同时满足所有不等式与等式，由定义 \(x\in\Omega\)。\(\square\)</li>
+  </ul>
+  <p><b>几何意义</b>：每个约束定义一个集合，可行域是这些集合的<b>交集</b>。每个不等式定义一个区域，每个等式定义一个<b>水平集（level set）</b>；在适当的正则条件下，等式水平集局部是一个曲面。</p>
+</div>
+
+<h3 id="p3-4">3.4 极小点的形式化定义 <span class="zh">Formal Definition: Minimizer</span></h3>
+<p>设 \(\Omega\subseteq\mathbb{R}^n\) 非空，\(f:\Omega\to\mathbb{R}\)。对 \(y\in\mathbb{R}^n\) 和 \(\epsilon>0\)，定义<b>开球（open ball）</b>：</p>
+<p class="formula">\(B_\epsilon(y) := \{x\in\mathbb{R}^n : \|x-y\| < \epsilon\}\)</p>
+<div class="def box">
+  <span class="box-title">📌 点 \(x^*\in\Omega\) 称为</span>
+  <ul>
+    <li><span class="en"><b>局部极小点 local minimizer</b></span>：存在 \(\epsilon>0\) 使对任意 \(x\in\Omega\cap B_\epsilon(x^*)\)，有 \(f(x)\ge f(x^*)\)。</li>
+    <li><span class="en"><b>严格局部极小点 strict local minimizer</b></span>：存在 \(\epsilon>0\) 使对任意 \(x\in(\Omega\cap B_\epsilon(x^*))\setminus\{x^*\}\)，有 \(f(x)>f(x^*)\)。</li>
+    <li><span class="en"><b>全局极小点 global minimizer</b></span>：对任意 \(x\in\Omega\)，有 \(f(x)\ge f(x^*)\)。</li>
+    <li><span class="en"><b>严格全局极小点 strict global minimizer</b></span>：对任意 \(x\in\Omega\setminus\{x^*\}\)，有 \(f(x)>f(x^*)\)。</li>
+  </ul>
+  <p>注：<b>全局极小点 ≡ 全局解 ≡ 最优解</b>。极大化点的定义把不等式方向反过来（\(\ge\) 变 \(\le\)，\(>\) 变 \(<\)）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子：极小点</span>
+  <p>无约束问题：\(\min_{x\in\mathbb{R}} f(x) = x^4 - 9x^2 + 4x - 1\)（曲线有两个局部极小谷）。<br>
+  约束问题：同上目标，但 \(\text{s.t. } x\in[-3,3]\) —— 约束会改变全局极小点的位置（只看区间内）。</p>
+</div>
+
+<h3 id="p3-5">3.5 优化问题的性质与状态 <span class="zh">Properties &amp; Possible States</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 关于优化问题的一些事实</span>
+  <ul>
+    <li>可行集可能<b>为空</b> → 问题<b>不可行（infeasible）</b>。</li>
+    <li>可行的最小化问题可能<b>下无界（unbounded below）</b>，即 \(f^\star = -\infty\)。</li>
+    <li>下确界可能<b>有限但未被取到</b>，此时<b>最优解不存在</b>。</li>
+    <li>当下确界被取到时，极小点可能<b>不唯一</b>，但所有极小点的目标值都是同一个 \(f^\star\)。</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 最小化问题的四种可能状态</span>
+  <ol>
+    <li><b>不可行 Infeasible</b>。</li>
+    <li><b>可行且下无界</b>：\(f^\star = -\infty\)。</li>
+    <li><b>可行、有有限下确界但未被取到</b>。</li>
+    <li><b>可行、有限下确界由一个或多个极小点取到</b>。</li>
+  </ol>
+  <p>⇝ 下一讲：<b>建模 Modeling</b>。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>optimization</b> — 最优化</li>
+    <li><b>decision variable</b> — 决策变量</li>
+    <li><b>objective (function)</b> — 目标（函数）</li>
+    <li><b>constraint</b> — 约束；<b>constraint satisfaction</b> — 约束满足</li>
+    <li><b>maximize / minimize</b> — 最大化 / 最小化</li>
+    <li><b>feasible</b> — 可行的；<b>feasible set / region</b> — 可行集 / 可行域</li>
+    <li><b>infeasible</b> — 不可行的</li>
+    <li><b>optimal value</b> — 最优值；<b>optimal solution</b> — 最优解</li>
+    <li><b>minimizer / maximizer</b> — 极小点 / 极大点</li>
+    <li><b>local / global minimizer</b> — 局部 / 全局极小点</li>
+    <li><b>unconstrained / constrained</b> — 无约束 / 有约束</li>
+    <li><b>infimum (inf)</b> — 下确界；<b>supremum (sup)</b> — 上确界</li>
+    <li><b>unbounded below</b> — 下无界</li>
+    <li><b>open ball</b> — 开球；<b>level set</b> — 水平集</li>
+    <li><b>linear programming (LP)</b> — 线性规划；<b>simplex method</b> — 单纯形法</li>
+    <li><b>duality theory</b> — 对偶理论；<b>integer programming</b> — 整数规划</li>
+    <li><b>nonlinear optimization</b> — 非线性优化；<b>optimality condition</b> — 最优性条件</li>
+    <li><b>gradient</b> — 梯度；<b>backpropagation</b> — 反向传播；<b>loss</b> — 损失</li>
+    <li><b>solver</b> — 求解器；<b>scalable</b> — 可扩展的</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第1课 -->
+
+<!-- ============ 第2课 ============ -->
+<div class="lecture" id="lec2">
+<div class="lecture-banner">第2课 · Problem Types and Modeling <span class="zh">（问题类型与建模）</span></div>
+
+<section id="lec2-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec2-p1">四种可能结果</a> —— 不可行 / 有下界无解 / 无界 / 多解</li>
+      <li><a href="#lec2-p2">优化问题的分类</a> —— 三个独立维度</li>
+      <li><a href="#lec2-p3">重构与松弛</a> —— 精确重构、连续松弛</li>
+      <li><a href="#lec2-p4">建模</a> —— 建模流程、模板、常见错误</li>
+      <li><a href="#lec2-p5">建模实例</a> —— 最大面积、生产、最短路径、顶点覆盖</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>一个数学模型<b>不一定总有唯一有限的最优解</b>。先按「可行？有界？取到？唯一？」四步诊断，再按三个维度分类（<b>有/无约束、线性/非线性、连续/整数</b>），最后动手把自然语言翻译成模型。</p>
+  </div>
+</section>
+
+<section id="lec2-p1">
+<h2>Part 1 · 四种可能结果 <span class="zh">Four Possible Outcomes</span></h2>
+<p>数学模型并不总是有唯一有限的最优解。四种可能结果：</p>
+
+<div class="figure">
+  <svg viewBox="0 0 540 400" width="560" role="img" aria-label="四种可能结果示意图">
+    <!-- ① 不可行 -->
+    <text x="20" y="32" class="svg-text">① 不可行 Infeasible</text>
+    <line x1="20" y1="120" x2="250" y2="120" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="20" y1="120" x2="128" y2="120" style="stroke: var(--sv-neg); stroke-width: 6"/>
+    <line x1="192" y1="120" x2="250" y2="120" style="stroke: var(--sv-neg); stroke-width: 6"/>
+    <text x="74" y="142" class="svg-muted" text-anchor="middle">x ≤ 1</text>
+    <text x="221" y="142" class="svg-muted" text-anchor="middle">x ≥ 2</text>
+    <text x="160" y="100" class="svg-muted" text-anchor="middle" style="fill: var(--sv-neg)">可行集 = ∅</text>
+
+    <!-- ② 有下界但无极小点 -->
+    <text x="285" y="32" class="svg-text">② 有下界但无极小点</text>
+    <line x1="285" y1="160" x2="515" y2="160" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="305" y1="40" x2="305" y2="160" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="305" y1="160" x2="515" y2="160" style="stroke: var(--sv-neg); stroke-width: 1.5" stroke-dasharray="4 4"/>
+    <polyline points="305,40 345,100 405,130 505,148" style="fill: none; stroke: var(--sv-pos); stroke-width: 2"/>
+    <text x="330" y="56" class="svg-muted">y = 1/x,  x ≥ 1</text>
+    <text x="508" y="152" class="svg-muted" text-anchor="end" style="fill: var(--sv-neg)">inf = 0（取不到）</text>
+
+    <!-- ③ 下无界 -->
+    <text x="20" y="227" class="svg-text">③ 下无界 Unbounded</text>
+    <line x1="20" y1="360" x2="250" y2="360" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="70" y1="230" x2="70" y2="360" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="70" y1="290" x2="235" y2="205" style="stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="200" y="180" class="svg-muted" text-anchor="end" style="fill: var(--sv-neg)">y = −x</text>
+    <text x="120" y="250" class="svg-muted">目标可一直减小 ↓</text>
+
+    <!-- ④ 多个最优解 -->
+    <text x="285" y="227" class="svg-text">④ 多个最优解</text>
+    <line x1="305" y1="360" x2="515" y2="360" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="305" y1="230" x2="305" y2="360" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <rect x="305" y="250" width="160" height="80" style="fill: var(--hover-bg); stroke: var(--border); stroke-width: 1"/>
+    <line x1="305" y1="330" x2="465" y2="330" style="stroke: var(--sv-hl); stroke-width: 4"/>
+    <text x="385" y="322" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">整条边 (x₁,1) 都是最优</text>
+    <text x="500" y="345" class="svg-muted" text-anchor="end">目标 min x₂</text>
+  </svg>
+  <div class="figcap">图：优化问题的四种可能结果——① 可行集为空；② 有下界但目标值取不到（inf=0）；③ 目标可无界减小；④ 一整条边都是最优解。</div>
+</div>
+
+<h3 id="lec2-p1-1">1.1 不可行 Infeasible</h3>
+<p>约束彼此矛盾，可行集为空。例：同时要求 \(x\le 1\) 与 \(x\ge 2\)，没有实数同时满足。</p>
+
+<h3 id="lec2-p1-2">1.2 有下界但无极小点 Finite Infimum, No Minimizer</h3>
+<p class="formula">\(\min_x \dfrac{1}{x}\quad \text{s.t. } x\ge 1\)</p>
+<p>可行点 1, 10, 100, 1000, … 对应目标值 1, 0.1, 0.01, 0.001, …。目标随 \(x\) 增大而逼近下界 0，但<b>任何有限可行 \(x\) 都无法使 \(1/x=0\)</b>。于是下确界为 0，却没有最优解取到它。</p>
+
+<h3 id="lec2-p1-3">1.3 下无界 Unbounded Below</h3>
+<p class="formula">\(\min_x -x \quad \text{s.t. } x\ge 0\)</p>
+<p>\(x\) 越大目标越小（0, 10, 100 → 0, −10, −100），可一直进行下去，目标没有有限下界。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 应用解读</span>
+  <p>无界模型常常是<b>遗漏了某个容量、预算或需求上限</b>的信号，但不一定是建模错误。</p>
+</div>
+
+<h3 id="lec2-p1-4">1.4 多个最优解 Multiple Optimal Solutions</h3>
+<p class="formula">\(\min_{x_1,x_2} x_2 \quad \text{s.t. } 0\le x_1\le 4,\ 1\le x_2\le 3\)</p>
+<p>每个点 \((x_1, 1)\)（\(0\le x_1\le 4\)）都是最优的——解不同，但最优值始终是 1。</p>
+
+<div class="thm box">
+  <span class="box-title">🎯 诊断清单（Diagnostic Checklist）</span>
+  <ol>
+    <li><b>可行 Feasible？</b> 至少有一个决策满足所有约束吗？</li>
+    <li><b>有界 Bounded？</b> 目标在优化方向上是否有界？</li>
+    <li><b>取到 Attained？</b> 是否有可行点达到这个有限最优下界？</li>
+    <li><b>唯一 Unique？</b> 是唯一最优解，还是多个解并列？</li>
+  </ol>
+  <p>约束决定「在哪里搜索」，目标决定「哪些可行决策更好」，模型本身决定「最优解是否存在」。</p>
+</div>
+</section>
+
+<section id="lec2-p2">
+<h2>Part 2 · 优化问题的分类 <span class="zh">Classification of Optimization Problems</span></h2>
+<p>三个分类问题，每个回答不同的问题（一个模型从三组各取一个描述）：</p>
+<ol>
+  <li><b>在哪里选？</b> —— <b>无约束 Unconstrained</b>（任意 \(x\in\mathbb{R}^n\) 都可）vs <b>有约束 Constrained</b>（只允许可行集 \(\Omega\) 中的点）。</li>
+  <li><b>公式长什么样？</b> —— <b>线性 Linear</b>（目标与所有约束都是线性）vs <b>非线性 Nonlinear</b>（至少一个公式非线性）。</li>
+  <li><b>变量取什么值？</b> —— <b>连续 Continuous / 整数 Integer / 混合 Mixed</b>。</li>
+</ol>
+
+<h3 id="lec2-p2-1">2.1 有约束 vs 无约束</h3>
+<p>两者都最小化 \((x-2)^2\)：无约束时 \(x=2\) 可行且值为 0；加约束 \(x\ge 5\) 后，最接近的允许点是 \(x=5\)，值为 9。几何结论：<b>约束把最优解推到了允许区间的边界上</b>。</p>
+
+<h3 id="lec2-p2-2">2.2 线性 vs 非线性</h3>
+<ul>
+  <li><b>线性优化（LP）</b>：线性目标 + 线性约束。线性不等式定义<b>半空间 half-space</b>，线性等式定义<b>超平面 hyperplane</b>，交集是<b>多面体 polyhedron</b>。</li>
+  <li>线性目标有<b>平行的水平线（level lines）</b>；在有界多边形上，至少存在一个最优<b>角点（corner）</b>，也可能整条边并列。</li>
+  <li><b>非线性模型（NLP）</b>可能有弯曲的边界或弯曲的水平集。</li>
+</ul>
+
+<h3 id="lec2-p2-3">2.3 连续 vs 整数</h3>
+<p>连续变量取实数；整数变量只取整数。对 \(f(x)=(x-2.2)^2\)：连续选择 \(x=2.2\) 得 \(f=0\)；整数候选最接近 2.2 的是 \(f(2)=0.04\)、\(f(3)=0.64\)，故最佳整数选择是 \(x=2\)。连续选择填满一片区域，整数选择是分开的点。</p>
+
+<div class="def box">
+  <span class="box-title">📌 分类总结</span>
+  <p>三个维度<b>相互独立</b>：一个模型可以同时是「有约束、非线性、连续」。这些标签回答不同问题，互不冲突。<b>课程约定：除非特别说明，决策变量是连续的。</b></p>
+</div>
+</section>
+
+<section id="lec2-p3">
+<h2>Part 3 · 重构与松弛 <span class="zh">Reformulation and Relaxation</span></h2>
+<p>同一个决策问题有时能写成不同的数学形式，而<b>形式会影响能用哪些算法</b>：</p>
+<ul>
+  <li><b>精确重构 Exact reformulation</b>：改变数学形式，但<b>保持最优值</b>，并能恢复原问题的最优决策。</li>
+  <li><b>连续松弛 Continuous relaxation</b>：去掉整数限制，允许更多决策，可能产生原整数模型<b>达不到的更好目标值</b>（它是一个下界，但不是精确替代）。</li>
+</ul>
+
+<h3 id="lec2-p3-1">3.1 线性项的 max 可有 LP 形式</h3>
+<p class="formula">\(\min_{0\le x\le 4} \max\{x,\ 4-x\}\)</p>
+<p>引入辅助变量 \(t\)，使其同时不低于两个表达式：</p>
+<p class="formula">\(\min_{x,t} t \quad \text{s.t. } x\le t,\ 4-x\le t,\ 0\le x\le 4\)</p>
+<p>新的目标与约束都线性，所以这是 LP。在最佳平衡点 \(x = 4-x\)，故 \(x=2,\ t=2\)。<b>LP 是精确重构</b>——与原 max 目标给出相同的决策和值。</p>
+
+<h3 id="lec2-p3-2">3.2 整数规划的连续松弛</h3>
+<p>设 \(x\) 是商品数量，每件成本 5：</p>
+<p class="formula">\(\min_x 5x \quad \text{s.t. } x\ge 3.2,\ x\in\mathbb{Z}\)</p>
+<p>最小可行整数是 \(x=4\)，整数最优 \(x^\star=4\)，值 20。去掉整数限制得连续松弛：</p>
+<p class="formula">\(\min_x 5x \quad \text{s.t. } x\ge 3.2,\ x\in\mathbb{R}\)</p>
+<p>其最优是 \(x=3.2\)，值 16。结论：<b>松弛给出下界 \(16\le 20\)，但它的解对原整数问题不可行</b>。</p>
+</section>
+
+<section id="lec2-p4">
+<h2>Part 4 · 建模 <span class="zh">Modeling</span></h2>
+
+<h3 id="lec2-p4-1">4.1 为什么建模重要 Why Modeling Matters</h3>
+<p>现实问题通常以一句话出现（「工厂应生产多少合金？」），重要细节留白。模型把<b>选择、目标、假设</b>显式化，供求解器搜索前看清。有用的模型要<b>正确（correct）、清晰（clear）、可解（solvable）、稳健（robust）</b>——小的数据误差不应导致不合理的决策。</p>
+
+<h3 id="lec2-p4-2">4.2 建模流程 A Practical Modeling Pipeline</h3>
+<ol>
+  <li><b>明确目标</b>：生产问题要最大化总利润，而不是「多生产」。</li>
+  <li><b>选决策变量</b>：设 \(x_1,x_2\) 为合金 1、2 的产量。</li>
+  <li><b>翻译规则</b>：用钢、铁、铜的库存限制 \(x_1,x_2\)。</li>
+  <li><b>检查模型</b>：计划 \((0,0)\) 可行；\((100,100)\) 不可行（需 200 单位铜）。</li>
+  <li><b>必要时改进公式</b>：只在保持相同含义与允许决策时才化简。</li>
+</ol>
+<div class="ex box">
+  <span class="box-title">✏️ 好习惯</span>
+  <p><b>先用平实的语言描述，每个符号有了具体含义后再引入数学。</b></p>
+</div>
+
+<h3 id="lec2-p4-3">4.3 可复用的建模模板 A Reusable Modeling Template</h3>
+<div class="def box">
+  <span class="box-title">📌 优化模型三行式</span>
+  <p class="formula">choose \(x\)（决策变量） — to minimize/maximize \(f(x)\)（目标） — subject to rules on \(x\)（约束）</p>
+  <ul>
+    <li>决策变量：我们能控制什么？</li>
+    <li>目标：如何比较两个可行决策？</li>
+    <li>约束：哪些决策是允许的？</li>
+  </ul>
+  <p>求解后，把答案<b>代回每个约束</b>、重新计算目标值检验。</p>
+</div>
+
+<h3 id="lec2-p4-4">4.4 常见建模错误 Common Modeling Mistakes</h3>
+<ol>
+  <li><b>数值尺度差</b>：成本变量可能到百万美元，时间变量却小到 0.01 秒（10 毫秒）。把成本以「千美元」、时间以「毫秒」表达可让数值尺度更接近。</li>
+  <li><b>误以为辅助变量让模型变线性</b>：要得到 LP，辅助变量必须用<b>线性约束</b>与原变量连接。<b>凸的分段线性函数</b>常有线性形式，<b>非凸</b>的分段线性规则可能需要二元变量。</li>
+  <li><b>遗漏真实的经营规则</b>：若不加需求上限，生产模型会默认销量无限。</li>
+</ol>
+<div class="warn box">
+  <span class="box-title">⚠️ 重构检查</span>
+  <p>新模型必须<b>保持最优值</b>，并能恢复原问题的最优决策。</p>
+</div>
+</section>
+
+<section id="lec2-p5">
+<h2>Part 5 · 建模实例 <span class="zh">Examples of Modeling</span></h2>
+
+<h3 id="lec2-p5-1">5.1 最大面积（从故事到模型）Maximum Area</h3>
+<p>用 80 米栅栏围矩形，面积最大。</p>
+<ul>
+  <li>决策变量：边长 \(x,y\)；目标：最大化 \(xy\)；约束：\(2x+2y=80\)。</li>
+</ul>
+<p class="formula">\(\max_{x,y} xy \quad \text{s.t. } 2x+2y=80,\ x,y\ge 0\)（有约束、非线性、连续）</p>
+<p>化为一元：\(y=40-x\)，\(A(x)=x(40-x),\ 0\le x\le 40\)。配方法：</p>
+<p class="formula">\(A(x)=40x-x^2 = 400-(x-20)^2 \le 400\)</p>
+<p>当 \(x=20\) 时平方项为零取最大，答案 \(x=y=20\)，最大面积 \(400\ \text{m}^2\)。</p>
+
+<h3 id="lec2-p5-2">5.2 生产问题 Production Problem</h3>
+<table class="truth">
+  <tr><th></th><th>Steel</th><th>Iron</th><th>Copper</th><th>Profit</th></tr>
+  <tr><td>Alloy 1</td><td>1</td><td>0</td><td>1</td><td>$1</td></tr>
+  <tr><td>Alloy 2</td><td>0</td><td>2</td><td>1</td><td>$2</td></tr>
+  <tr><td>Available</td><td>100</td><td>200</td><td>150</td><td>—</td></tr>
+</table>
+<p class="formula">\(\max_{x_1,x_2} x_1+2x_2 \quad \text{s.t. } x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)（线性）</p>
+<p>计划 \((100,100)\) 看似诱人，但用铜 200 &gt; 150，违反 \(x_1+x_2\le 150\)。可行域五个角点利润：</p>
+<p class="formula">\(P(0,0)=0,\ P(100,0)=100,\ P(100,50)=200,\ P(50,100)=250,\ P(0,100)=200\)</p>
+
+<div class="figure">
+  <svg viewBox="0 0 420 380" width="480" role="img" aria-label="生产问题可行域">
+    <!-- 坐标轴 -->
+    <line x1="40" y1="320" x2="400" y2="320" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="396" y="340" class="svg-muted" text-anchor="end">x₁</text>
+    <line x1="40" y1="320" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
+    <!-- 可行域多边形 -->
+    <polygon points="40,320 240,320 240,220 140,120 40,120" style="fill: var(--hover-bg); stroke: var(--accent); stroke-width: 2"/>
+    <!-- 约束线 -->
+    <line x1="240" y1="320" x2="240" y2="40" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
+    <line x1="40" y1="120" x2="400" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="332" y="112" class="svg-muted">x₂ = 100</text>
+    <line x1="40" y1="20" x2="340" y2="320" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="120" y="82" class="svg-muted">x₁ + x₂ = 150</text>
+    <!-- 目标水平线 x1+2x2=250 -->
+    <line x1="40" y1="70" x2="340" y2="220" style="stroke: var(--sv-hl); stroke-width: 1.5" stroke-dasharray="6 4"/>
+    <text x="282" y="188" class="svg-muted" style="fill: var(--sv-hl)">x₁+2x₂ = 250</text>
+    <!-- 角点 -->
+    <circle cx="40" cy="320" r="4" style="fill: var(--muted)"/>
+    <circle cx="240" cy="320" r="4" style="fill: var(--muted)"/>
+    <circle cx="240" cy="220" r="4" style="fill: var(--muted)"/>
+    <circle cx="40" cy="120" r="4" style="fill: var(--muted)"/>
+    <!-- 最优角点 (50,100) -->
+    <circle cx="140" cy="120" r="7" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="152" y="102" class="svg-muted" style="fill: var(--sv-hl)">(50,100)</text>
+  </svg>
+  <div class="figcap">图：生产问题的可行域（蓝色多边形）与五个角点；目标 x₁+2x₂ 在角点 (50,100) 取最大值 250（绿色水平线）。</div>
+</div>
+<p>最优计划：生产 50 单位合金 1、100 单位合金 2，最大利润 \(50+2(100)=250\)。</p>
+
+<h3 id="lec2-p5-3">5.3 最短路径（流量守恒模型）Shortest Path</h3>
+<p>网络 \(S,B,C,D,E,F,T\)，最短路径为 \(S\to D\to F\to E\to T\)，总长 \(3+2+1+2=8\)。</p>
+
+<div class="figure">
+  <svg viewBox="0 0 460 320" width="520" role="img" aria-label="最短路径示意图">
+    <!-- 边（灰色）与最短路径（绿色） -->
+    <line x1="40" y1="160" x2="130" y2="60" style="stroke: var(--border); stroke-width: 2"/>
+    <line x1="40" y1="160" x2="130" y2="160" style="stroke: var(--border); stroke-width: 2"/>
+    <line x1="40" y1="160" x2="130" y2="260" style="stroke: var(--sv-hl); stroke-width: 3.5"/>
+    <line x1="130" y1="60" x2="130" y2="160" style="stroke: var(--border); stroke-width: 2"/>
+    <line x1="130" y1="60" x2="330" y2="60" style="stroke: var(--border); stroke-width: 2"/>
+    <line x1="130" y1="260" x2="330" y2="60" style="stroke: var(--border); stroke-width: 2"/>
+    <line x1="130" y1="160" x2="330" y2="160" style="stroke: var(--border); stroke-width: 2"/>
+    <line x1="130" y1="260" x2="330" y2="160" style="stroke: var(--sv-hl); stroke-width: 3.5"/>
+    <line x1="330" y1="160" x2="330" y2="60" style="stroke: var(--sv-hl); stroke-width: 3.5"/>
+    <line x1="330" y1="60" x2="420" y2="160" style="stroke: var(--sv-hl); stroke-width: 3.5"/>
+    <line x1="330" y1="160" x2="420" y2="160" style="stroke: var(--border); stroke-width: 2"/>
+    <!-- 权重 -->
+    <text x="70" y="100" class="svg-muted">4</text>
+    <text x="76" y="150" class="svg-muted">2</text>
+    <text x="70" y="230" class="svg-muted" style="fill: var(--sv-hl)">3</text>
+    <text x="137" y="112" class="svg-muted">3</text>
+    <text x="224" y="50" class="svg-muted">6</text>
+    <text x="196" y="205" class="svg-muted">5</text>
+    <text x="236" y="150" class="svg-muted">3</text>
+    <text x="238" y="228" class="svg-muted" style="fill: var(--sv-hl)">2</text>
+    <text x="320" y="112" class="svg-muted" style="fill: var(--sv-hl)">1</text>
+    <text x="386" y="92" class="svg-muted" style="fill: var(--sv-hl)">2</text>
+    <text x="378" y="148" class="svg-muted">4</text>
+    <!-- 节点 -->
+    <circle cx="40" cy="160" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="40" y="165" class="svg-text" text-anchor="middle">S</text>
+    <circle cx="130" cy="60" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="130" y="65" class="svg-text" text-anchor="middle">B</text>
+    <circle cx="130" cy="160" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="130" y="165" class="svg-text" text-anchor="middle">C</text>
+    <circle cx="130" cy="260" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="130" y="265" class="svg-text" text-anchor="middle">D</text>
+    <circle cx="330" cy="60" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="330" y="65" class="svg-text" text-anchor="middle">E</text>
+    <circle cx="330" cy="160" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="330" y="165" class="svg-text" text-anchor="middle">F</text>
+    <circle cx="420" cy="160" r="15" style="fill: var(--card-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="420" y="165" class="svg-text" text-anchor="middle">T</text>
+    <!-- 图例 -->
+    <line x1="20" y1="305" x2="52" y2="305" style="stroke: var(--sv-hl); stroke-width: 3.5"/>
+    <text x="62" y="309" class="svg-muted">最短路径</text>
+  </svg>
+  <div class="figcap">图：网络（每条边标权值）与最短路径 S→D→F→E→T（绿色），总长 3+2+1+2=8。</div>
+</div>
+<p>把每条无向边 \(\{i,j\}\) 换成两条有向弧 \((i,j),(j,i)\)，弧集记为 \(A\)。对每条弧定义：</p>
+<p class="formula">\(x_{ij} = \begin{cases}1,& \text{路线使用弧 } i\to j\\ 0,& \text{否则}\end{cases}\)</p>
+<p>目标：最小化总长度 \(\sum_{(i,j)\in A} w_{ij}x_{ij}\)（选中的弧贡献其长度，未用的贡献 0）。</p>
+<p><b>流量守恒</b>：想象沿高亮弧从 S 到 T 送 1 单位「水」，每个节点满足「净流出 − 净流入 = 指定值」：</p>
+<ul>
+  <li>源 S：净流出 \(1-0=1\)（送出一单位）；</li>
+  <li>中间节点 D：\(1-1=0\)（进多少出多少）；</li>
+  <li>未用节点 B：\(0-0=0\)；</li>
+  <li>终点 T：\(0-1=-1\)（收到一单位）。</li>
+</ul>
+<p class="formula">\(\displaystyle\sum_{j:(v,j)\in A} x_{vj} - \sum_{i:(i,v)\in A} x_{iv} = b_v,\quad b_v = \begin{cases}1,& v=S\\ -1,& v=T\\ 0,& \text{否则}\end{cases}\)</p>
+<div class="thm box">
+  <span class="box-title">🎯 最短路径最终模型</span>
+  <p class="formula">\(\displaystyle\min_{\{x_{ij}\}} \sum_{(i,j)\in A} w_{ij}x_{ij}\)</p>
+  <p class="formula">\(\text{s.t. } \displaystyle\sum_{j:(v,j)\in A} x_{vj} - \sum_{i:(i,v)\in A} x_{iv} = b_v,\ \forall v\in V,\quad x_{ij}\in\{0,1\},\ \forall(i,j)\in A\)</p>
+  <p>流量守恒允许额外的环；但所有长度为正，额外环只会增大目标，不会出现在最优解里。<b>模型是线性的</b>；其 LP 松弛 \(0\le x_{ij}\le 1\) 由于网络结构具有整数最优解。答案：\(S\to D\to F\to E\to T\)，最优值 8。</p>
+</div>
+
+<h3 id="lec2-p5-4">5.4 顶点覆盖 Vertex Cover</h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>顶点覆盖（vertex cover）</b>：能「碰到」每条边的节点集合。目标：选尽可能少的节点。</p>
+</div>
+<p>三角形例子：只选节点 1 会漏掉节点 2–3 之间的边；选 \(\{1,2\}\) 覆盖三条边；任何单个节点都会漏掉对边。故三角形的最小顶点覆盖大小为 <b>2</b>。</p>
+<p>对每个节点 \(i\in V\) 定义 \(x_i\in\{0,1\}\)（是否被选）。每条边 \((i,j)\) 的四种取值中，只有 \((x_i,x_j)=(0,0)\) 是禁止的，故边被覆盖当且仅当：</p>
+<p class="formula">\(x_i + x_j \ge 1\)</p>
+<p>（注意：写成等式 \(x_i+x_j=1\) 会错误地禁止「两端都选」。）</p>
+<p class="formula">\(\min_{\{x_i\}} \sum_{i\in V} x_i \quad \text{s.t. } x_i+x_j\ge 1\ \forall(i,j)\in E,\quad x_i\in\{0,1\}\ \forall i\in V\)</p>
+<p>较大图验证：三角形 S–B–D 至少选 2 个；三角形 E–F–T 与前者无公共节点、也至少选 2 个；故每个覆盖至少用 4 个节点。集合 \(\{B,D,E,F\}\) 覆盖每条边且只用 4 个，因此最优，最小覆盖大小为 4。</p>
+
+<div class="figure">
+  <svg viewBox="0 0 440 280" width="460" role="img" aria-label="顶点覆盖示意图">
+    <!-- 边 -->
+    <line x1="70" y1="150" x2="130" y2="50" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="70" y1="150" x2="130" y2="230" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="130" y1="50" x2="130" y2="230" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="300" y1="50" x2="370" y2="150" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="300" y1="50" x2="300" y2="230" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="370" y1="150" x2="300" y2="230" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <!-- 未选中节点 -->
+    <circle cx="70" cy="150" r="16" style="fill: var(--card-bg); stroke: var(--muted); stroke-width: 2"/>
+    <text x="70" y="155" class="svg-text" text-anchor="middle">S</text>
+    <circle cx="300" cy="230" r="16" style="fill: var(--card-bg); stroke: var(--muted); stroke-width: 2"/>
+    <text x="300" y="235" class="svg-text" text-anchor="middle">T</text>
+    <!-- 选中节点（绿色） -->
+    <circle cx="130" cy="50" r="16" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="130" y="55" class="svg-text" text-anchor="middle" style="fill: var(--fig-bg)">B</text>
+    <circle cx="130" cy="230" r="16" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="130" y="235" class="svg-text" text-anchor="middle" style="fill: var(--fig-bg)">D</text>
+    <circle cx="300" cy="50" r="16" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="300" y="55" class="svg-text" text-anchor="middle" style="fill: var(--fig-bg)">E</text>
+    <circle cx="370" cy="150" r="16" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="370" y="155" class="svg-text" text-anchor="middle" style="fill: var(--fig-bg)">F</text>
+    <!-- 图例 -->
+    <circle cx="40" cy="265" r="8" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="54" y="269" class="svg-muted">被选节点（覆盖）</text>
+  </svg>
+  <div class="figcap">图：两个互不相交的三角形；绿色节点 {B,D,E,F} 构成最小顶点覆盖（每条边至少有一个绿端点），大小 4。</div>
+</div>
+
+<h3 id="lec2-p5-5">5.5 四个模型对照 Comparing the Four Models</h3>
+<table class="truth">
+  <tr><th>问题</th><th>决策</th><th>目标</th><th>主要约束</th><th>分类</th></tr>
+  <tr><td>最大面积</td><td>边长 \(x,y\)</td><td>最大化 \(xy\)</td><td>\(2x+2y=80\)；非负</td><td>非线性；连续</td></tr>
+  <tr><td>生产</td><td>合金量 \(x_1,x_2\)</td><td>最大化 \(x_1+2x_2\)</td><td>钢、铁、铜限制</td><td>线性；连续</td></tr>
+  <tr><td>最短路径</td><td>弧选择 \(x_{ij}\)</td><td>最小化总长</td><td>1 单位守恒流量</td><td>线性；二元</td></tr>
+  <tr><td>顶点覆盖</td><td>节点选择 \(x_i\)</td><td>最小化 \(\sum_i x_i\)</td><td>每条边 \(x_i+x_j\ge 1\)</td><td>线性；二元</td></tr>
+</table>
+<p>每行回答同样的四个问题：<b>选什么、优化什么、哪些选择允许、模型是什么数学结构</b>。四个模型都是有约束的，变量与公式区分了它们的类别。</p>
+</section>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>infeasible</b> — 不可行；<b>feasible set</b> — 可行集</li>
+    <li><b>infimum</b> — 下确界；<b>minimizer</b> — 极小点；<b>unbounded below</b> — 下无界</li>
+    <li><b>multiple optimal solutions</b> — 多个最优解；<b>attained</b> — 被取到</li>
+    <li><b>unconstrained / constrained</b> — 无约束 / 有约束</li>
+    <li><b>linear / nonlinear</b> — 线性 / 非线性；<b>continuous / integer / mixed-integer</b> — 连续 / 整数 / 混合整数</li>
+    <li><b>half-space</b> — 半空间；<b>hyperplane</b> — 超平面；<b>polyhedron</b> — 多面体</li>
+    <li><b>level lines / level sets</b> — 水平线 / 水平集；<b>corner</b> — 角点</li>
+    <li><b>exact reformulation</b> — 精确重构；<b>continuous relaxation</b> — 连续松弛</li>
+    <li><b>helper variable</b> — 辅助变量；<b>piecewise-linear</b> — 分段线性</li>
+    <li><b>modeling pipeline</b> — 建模流程；<b>robust</b> — 稳健</li>
+    <li><b>flow conservation</b> — 流量守恒；<b>arc</b> — 弧</li>
+    <li><b>vertex cover</b> — 顶点覆盖；<b>binary variable</b> — 二元变量</li>
+  </ul>
+</div>
+
+</div><!-- /第2课 -->
+
+<!-- ============ 第3课 ============ -->
+<div class="lecture" id="lec3">
+<div class="lecture-banner">第3课 · Modeling &amp; Linear Programming <span class="zh">（建模与线性规划）</span></div>
+
+<section id="lec3-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec3-p1">支持向量机（SVM）的优化建模</a> —— 分类、间隔、hinge 损失、软/硬间隔</li>
+      <li><a href="#lec3-p2">线性规划（LP）</a> —— 定义、几何、标准形与变换</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>用 SVM 这一完整案例展示「<b>几何直觉 → 优化模型</b>」的建模过程，然后系统学习<b>线性规划（LP）</b>：什么是线性、LP 的几何、以及把任意 LP 化到<b>标准形</b>的四条变换。</p>
+  </div>
+</section>
+
+<section id="lec3-p1">
+<h2>Part 1 · SVM 的优化建模 <span class="zh">Optimization Modeling of Support Vector Machine</span></h2>
+
+<h3 id="lec3-p1-1">1.1 从标注样本学习 Learning from Labeled Examples</h3>
+<p>机器学习从数据学规律来做预测；<b>优化是其基石之一</b>。分类预测类别，<b>支持向量机（SVM）</b>是重要方法。例：预测信用卡申请者是否获批。把申请者编码成<b>特征向量 \(x\in\mathbb{R}^n\)</b>，学一个规则 \(\ell(x)\) 输出「批准 (+1) / 拒绝 (−1)」。</p>
+
+<h3 id="lec3-p1-2">1.2 特征、样本与点 Features, Samples, and Points</h3>
+<p>收集 \(m\) 个申请者的历史数据，每行是一个样本 \(x_i^\top\)，每列是一个特征（年龄、性别、薪资、国籍、工龄）。\(X\in\mathbb{R}^{m\times n}\)。特征成为坐标；两个特征时点在平面上，边界可以是线或曲线；线性边界在 3D 是平面、更高维是<b>超平面</b>。目标：用一条对微小特征噪声稳健的边界分开两类。</p>
+
+<h3 id="lec3-p1-3">1.3 为什么特征缩放重要 Why Feature Scaling Matters</h3>
+<p>不同特征单位不同（元、年、二进制）。<b>重缩放坐标会改变特征空间的距离与角度</b>，数值尺度大得多的特征会主导学到的边界。例：薪资约 100000 元，工龄 0–10，不缩放则薪资差异淹没几何。修正常见做法是训练前<b>归一化/标准化</b>。<b>特征缩放改变点云的形状，从而可能改变学到的边界。</b></p>
+
+<h3 id="lec3-p1-4">1.4 特征空间中的标注数据 Labeled Data in Feature Space</h3>
+<p>每个标签 \(y_i\in\{-1,+1\}\) 是申请者 \(i\) 的已知结果。监督学习用输入–输出对 \((x_1,y_1),\dots,(x_m,y_m)\) 学习 \(\ell:\mathbb{R}^n\to\{-1,+1\}\)。要训练预测正确，并对新申请者预测良好。</p>
+
+<h3 id="lec3-p1-5">1.5 预测新申请者 Predicting a New Applicant</h3>
+<p>对新特征向量 \(z\)，两步：</p>
+<p class="formula">\(u(z) = w^\top z + b \in \mathbb{R}\)（实值分数）</p>
+<p class="formula">\(\ell(z) = \begin{cases}+1,& u(z)\ge 0\\ -1,& u(z)<0\end{cases}\)</p>
+<p>边界把特征空间分成预测区域；新点落在哪边决定标签。这里分数为 0 归为 +1。</p>
+
+<h3 id="lec3-p1-6">1.6 分类器实战 Classifier in Action</h3>
+<p>取 \(w=(1,-1)^\top,\ b=0\)，则 \(u(x)=x_1-x_2\)。例：(3,1) → 分数 3−1=2 → +1；(1,3) → 1−3=−2 → −1。直线 \(u(x)=0\) 是<b>决策边界</b>，分数本身不是标签。</p>
+
+<h3 id="lec3-p1-7">1.7 线性分数与超平面几何 Linear Scores &amp; Hyperplane Geometry</h3>
+<p>取 \(u(x)=w^\top x+b\)，决策边界为 \(\{x: w^\top x+b=0\}\)（\(w\neq 0\)）。</p>
+<ul>
+  <li>\(w\) 垂直于边界、指向分数增大的方向；改方向改变朝向；</li>
+  <li>\(w\) 固定时，改 \(b\) 平移边界而不旋转。</li>
+</ul>
+<p>对可分离数据，选分数尺度使 \(u(x_i)\ge +1\)（\(y_i=+1\)）、\(u(x_i)\le -1\)（\(y_i=-1\)）。</p>
+
+<h3 id="lec3-p1-8">1.8 归一化与可行性模型 Normalization &amp; Feasibility Model</h3>
+<p>严格分离要求 \(y_iu(x_i)>0\)；更弱的 \(y_iu(x_i)\ge 0\) 甚至允许 \(w=0,b=0\)。正缩放不改变预测（\(c>0\) 时 \(y_i((cw)^\top x_i + cb)=c\,y_i(w^\top x_i+b)\)）。同一边界有无限多参数对；对有限个严格分离的样本，可重缩放使</p>
+<p class="formula">\(\min_i y_i(w^\top x_i + b) = 1\)</p>
+<p>分数层 \(u(x)=+1\) 与 \(u(x)=-1\) 定义了<b>间隔边界（margin boundaries）</b>。求 \(w,b\) 使 \(y_i(w^\top x_i+b)\ge 1\)（\(i=1,\dots,m\)）——这是<b>可行性问题（feasibility problem）</b>，一种特殊的优化问题；不等式允许很多分离器，目标函数会从中选一个。</p>
+
+<h3 id="lec3-p1-9">1.9 间隔与支持向量 Margin &amp; Support Vectors</h3>
+<ul>
+  <li>两条平行间隔边界分开两类，决策边界 \(w^\top x+b=0\) 位于两者正中间；</li>
+  <li>硬间隔图中，最靠近的训练点<b>触及间隔边界</b>，它们是<b>支持向量（support vectors）</b>；</li>
+  <li>这里「间隔」指整条带宽 \(2/\|w\|\)，每侧宽 \(1/\|w\|\)。SVM 选择<b>最大可行宽度</b>。</li>
+</ul>
+
+<div class="figure">
+  <svg viewBox="0 0 440 320" width="540" role="img" aria-label="SVM 硬间隔示意">
+    <!-- 间隔边界 -->
+    <line x1="20" y1="90" x2="420" y2="90" style="stroke: var(--sv-pos); stroke-width: 2"/>
+    <text x="392" y="80" class="svg-muted" text-anchor="end">w⊤x+b = +1</text>
+    <line x1="20" y1="230" x2="420" y2="230" style="stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="392" y="248" class="svg-muted" text-anchor="end">w⊤x+b = −1</text>
+    <!-- 决策边界 -->
+    <line x1="20" y1="160" x2="420" y2="160" style="stroke: var(--muted); stroke-width: 2" stroke-dasharray="7 5"/>
+    <text x="392" y="152" class="svg-muted" text-anchor="end">w⊤x+b = 0</text>
+    <!-- w 方向箭头 -->
+    <line x1="60" y1="230" x2="60" y2="100" style="stroke: var(--accent); stroke-width: 2"/>
+    <path d="M60,92 L55,106 L65,106 Z" style="fill: var(--accent)"/>
+    <text x="44" y="170" class="svg-muted" text-anchor="end">w</text>
+    <!-- 间隔宽度双箭头 -->
+    <line x1="340" y1="90" x2="340" y2="230" style="stroke: var(--sv-hl); stroke-width: 1.5"/>
+    <path d="M340,84 L335,97 L345,97 Z" style="fill: var(--sv-hl)"/>
+    <path d="M340,236 L335,223 L345,223 Z" style="fill: var(--sv-hl)"/>
+    <text x="350" y="166" class="svg-muted">margin = 2/‖w‖</text>
+    <!-- 正类样本 -->
+    <circle cx="70" cy="45" r="6" style="fill: var(--sv-pos)"/>
+    <circle cx="150" cy="40" r="6" style="fill: var(--sv-pos)"/>
+    <circle cx="250" cy="55" r="6" style="fill: var(--sv-pos)"/>
+    <circle cx="330" cy="40" r="6" style="fill: var(--sv-pos)"/>
+    <!-- 正类支持向量（在 +1 线上） -->
+    <circle cx="110" cy="90" r="8" style="fill: var(--sv-pos); stroke: var(--sv-hl); stroke-width: 2"/>
+    <circle cx="200" cy="90" r="8" style="fill: var(--sv-pos); stroke: var(--sv-hl); stroke-width: 2"/>
+    <!-- 负类样本 -->
+    <circle cx="90" cy="275" r="6" style="fill: var(--sv-neg)"/>
+    <circle cx="180" cy="272" r="6" style="fill: var(--sv-neg)"/>
+    <circle cx="290" cy="280" r="6" style="fill: var(--sv-neg)"/>
+    <circle cx="372" cy="265" r="6" style="fill: var(--sv-neg)"/>
+    <!-- 负类支持向量（在 −1 线上） -->
+    <circle cx="150" cy="230" r="8" style="fill: var(--sv-neg); stroke: var(--sv-hl); stroke-width: 2"/>
+    <circle cx="260" cy="230" r="8" style="fill: var(--sv-neg); stroke: var(--sv-hl); stroke-width: 2"/>
+    <!-- 图例 -->
+    <circle cx="30" cy="305" r="5" style="fill: var(--sv-pos)"/>
+    <text x="42" y="309" class="svg-muted">+1 类</text>
+    <circle cx="112" cy="305" r="5" style="fill: var(--sv-neg)"/>
+    <text x="124" y="309" class="svg-muted">−1 类</text>
+    <circle cx="196" cy="305" r="5" style="fill: none; stroke: var(--sv-hl); stroke-width: 2"/>
+    <text x="208" y="309" class="svg-muted">支持向量</text>
+  </svg>
+  <div class="figcap">图：硬间隔 SVM——间隔边界 w⊤x+b=±1 与居中决策边界 w⊤x+b=0；触及边界的是支持向量，带宽 = 2/‖w‖。</div>
+</div>
+
+<h3 id="lec3-p1-10">1.10 推导间隔宽度 Deriving the Margin Width</h3>
+<p>三条平行超平面 \(H_0: w^\top x+b=0\)，\(H_+: w^\top x+b=1\)，\(H_-: w^\top x+b=-1\)。取 \(x_0\in H_0\)，沿单位法向 \(u=w/\|w\|\) 移动：\(x(t)=x_0+tu\)。其分数</p>
+<p class="formula">\(w^\top x(t)+b = (w^\top x_0+b)+t\,w^\top u = 0 + t\|w\|\)</p>
+<p>到 \(H_+\) 需分数 = 1，故 \(t\|w\|=1 \Rightarrow \text{dist}(H_0,H_+)=1/\|w\|\)。同理另一边也是 \(1/\|w\|\)，于是</p>
+<p class="formula">\(\text{margin width} = \text{dist}(H_-,H_+) = \dfrac{1}{\|w\|}+\dfrac{1}{\|w\|} = \dfrac{2}{\|w\|}\)</p>
+
+<h3 id="lec3-p1-11">1.11 硬间隔 SVM 的等价目标 Hard-margin SVM</h3>
+<p>对含两类、线性可分离的数据，最大化间隔：</p>
+<p class="formula">\(\max_{w,b} \dfrac{2}{\|w\|}\quad \text{s.t. } y_i(w^\top x_i+b)\ge 1,\ i=1,\dots,m\)</p>
+<p>第一步（倒数单调）：\(a&lt;b \Rightarrow 1/a&gt;1/b\)，故最大化 \(2/\|w\| \Leftrightarrow\) 最小化 \(\|w\|\)。第二步（平方保序）：\(0\le t_1&lt;t_2 \Rightarrow t_1^2&lt;t_2^2\)，故最小化 \(\|w\|\Leftrightarrow\) 最小化 \(\frac12\|w\|^2\)：</p>
+<p class="formula">\(\min_{w,b} \dfrac{1}{2}\|w\|^2\quad \text{s.t. } y_i(w^\top x_i+b)\ge 1,\ \forall i\)</p>
+<p>平方范数光滑；\(\|w\|\) 在 0 处不可微。这是<b>非线性（二次目标）、有约束、连续</b>的问题。</p>
+
+<h3 id="lec3-p1-12">1.12 为什么软间隔 Why Soft Margin?</h3>
+<p>硬间隔要求每个 \(i\) 都 \(y_i(w^\top x_i+b)\ge 1\)，当数据不可分（如一个紫点落在负类点三角内）时<b>不可行</b>。软间隔：允许点落在自己间隔内或错误一侧，但对这些违反<b>按大小惩罚</b>。软间隔也可用于可分数据。</p>
+
+<h3 id="lec3-p1-13">1.13 Hinge 损失 Hinge Loss</h3>
+<p>间隔分数 = 线性分数 × 真实标签：\(s_i = y_i u(x_i) = y_i(w^\top x_i+b)\)，目标是 \(s_i\ge 1\)。用 <b>hinge 损失</b>惩罚其缺口：</p>
+<p class="formula">\(L_i = \max\{0,\ 1-s_i\}\)</p>
+<table class="truth">
+  <tr><th>\(s_i\)</th><th>\(L_i\)</th><th>解读</th></tr>
+  <tr><td>\(s_i\ge 1\)</td><td>0</td><td>分类正确、在间隔上或之外</td></tr>
+  <tr><td>\(0&lt;s_i&lt;1\)</td><td>\(1-s_i\in(0,1)\)</td><td>分类正确、但太靠近边界</td></tr>
+  <tr><td>\(s_i=0\)</td><td>1</td><td>恰在决策边界上（预测 +1）</td></tr>
+  <tr><td>\(s_i&lt;0\)</td><td>\(1-s_i&gt;1\)</td><td>分类错误、在错误一侧</td></tr>
+</table>
+<p>正确分类也可能收到正惩罚——当它太靠近边界时。</p>
+
+<h3 id="lec3-p1-14">1.14 软间隔 SVM 模型 Soft-margin SVM Model</h3>
+<p>对 \(\lambda>0\)，平衡「小权重范数」与「hinge 损失」：</p>
+<p class="formula">\(\min_{w,b} \dfrac{\lambda}{2}\|w\|^2 + \sum_{i=1}^{m}\max\{0,\ 1-y_i(w^\top x_i+b)\}\)</p>
+<ul>
+  <li>范数项偏爱更宽的间隔，\(\lambda\) 越大权重越高；</li>
+  <li>损失项惩罚间隔违反（不止错误预测）：例子中损失增大，但两个模型都正确分类 6 个点、错分 2 个。</li>
+</ul>
+
+<h3 id="lec3-p1-15">1.15 松弛变量的等价形式（QP）Slack Variables → QP</h3>
+<p>把每个 \(L_i\) 换成目标中的变量 \(t_i\)，先要求 \(t_i=L_i\)，可放宽为 \(t_i\ge L_i\)。因为最小化 \(\sum_i t_i\) 会把每个 \(t_i\) 压到尽可能小，即 \(t_i=L_i=\max\{0,1-s_i\}\)，最优值与最优 \((w,b)\) 不变。</p>
+<p class="formula">\(t_i \ge \max\{0,1-s_i\} \Leftrightarrow t_i\ge 0 \text{ 且 } s_i+t_i\ge 1\)</p>
+<p class="formula">\(\min_{w,b,t} \dfrac{\lambda}{2}\|w\|^2 + \sum_{i=1}^{m} t_i \quad \text{s.t. } y_i(w^\top x_i+b)+t_i\ge 1,\ t_i\ge 0,\ i=1,\dots,m\)</p>
+<p>每个 \(t_i\) 是<b>松弛变量（slack variable）</b>：允许的间隔分数缺口。\(\lambda>0\) 时这是等价的<b>二次规划（QP）</b>。</p>
+
+<h3 id="lec3-p1-16">1.16 从软间隔到 LP（\(\lambda=0\)）</h3>
+<p>令 \(\lambda=0\)（去掉范数惩罚）得 \(\min_{w,b}\sum_i \max\{0,1-y_i(w^\top x_i+b)\}\)，同样的辅助变量技巧给出等价 LP：</p>
+<p class="formula">\(\min_{w,b,t} \sum_{i=1}^{m} t_i \quad \text{s.t. } y_i(w^\top x_i+b)+t_i\ge 1,\ t_i\ge 0\)</p>
+<p>为什么线性？\(x_i,y_i\) 是常数，\(w^\top x_i=\sum_k w_k x_{ik}\) 对 \(w\) 线性；加 \(b,t_i\) 保持线性；目标 \(\sum_i t_i\) 对 \(w,b,t\) 线性。\(\lambda=0\) 时不再偏好最大间隔。</p>
+<div class="thm box">
+  <span class="box-title">🎯 几何与优化的对应</span>
+  <ul>
+    <li><b>硬间隔</b>：最大化宽度 \(\Leftrightarrow\) 最小化 \(\frac12\|w\|^2\) 且满足全部分离约束；</li>
+    <li><b>软间隔（\(\lambda>0\)）</b>：平衡范数惩罚与 hinge 损失；辅助变量给等价 QP；</li>
+    <li><b>无范数惩罚（\(\lambda=0\)）</b>：hinge 损失最小化有等价 LP 形式。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec3-p2">
+<h2>Part 2 · 线性规划 <span class="zh">Linear Programming</span></h2>
+
+<h3 id="lec3-p2-1">2.1 定义 Definition</h3>
+<div class="def box">
+  <span class="box-title">📌 线性规划（LP）</span>
+  <p><b>线性优化 / 线性规划（LP）</b>：目标与约束函数都对决策变量<b>线性</b>（也允许常数项）。LP 是连续优化的子类。</p>
+  <p class="formula">\(\max_{x_1,x_2} x_1+2x_2 \quad \text{s.t. } x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)</p>
+</div>
+
+<h3 id="lec3-p2-2">2.2 「线性」的含义 What Does "Linear" Mean?</h3>
+<p>线性函数形如 \(a_1x_1+a_2x_2+\cdots+a_nx_n\)（\(a_i\) 为常数）。LP 允许：常数项 \(3x_1-2x_2+5\)（仿射）、乘常数 \(100x_1\)、变量和 \(x_1+x_2+x_3\)。作为书写就非线性：变量乘积 \(x_1x_2\)、非线性幂 \(x_1^2,\sqrt{x_2}\)、绝对值 \(|x_1|\)（可变换，但本身非线性）。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 快速判断</span>
+  <p>形如 \(x_ix_j\)、\(x_i^2\)、\(\sin(x_i)\)、\(\exp(x_i)\)、\(\log(x_i)\) 的项按原写法都不是线性的。</p>
+</div>
+
+<h3 id="lec3-p2-3">2.3 LP 的几何 Geometry of LP</h3>
+<p>两变量下，每个线性不等式描述一个<b>半平面</b>。画边界（如把 \(\le\) 换成 \(=\)），再用测试点（常用 (0,0)）选满足不等式的一侧。可行域 = 所有半平面的交集，是一个<b>凸多面体（convex polyhedron）</b>。关键洞见：<b>线性约束的边界是平的，永不弯曲</b>。</p>
+
+<h3 id="lec3-p2-4">2.4 一般与紧凑形式 General &amp; Compact Formulations</h3>
+<p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x \quad \text{s.t. } A_1x\ge b\ (i\in M_1),\ A_2x\le d\ (i\in M_2),\ A_3x=e\ (i\in M_3),\ x_i\ge 0/\le 0/\text{free}\)</p>
+<p>紧凑形式：\(\min c^\top x\) s.t. \(A_1x\ge b,\ A_2x\le d,\ A_3x=e\)，且 \(x_i\ge 0\ (i\in N_1)\)、\(x_i\le 0\ (i\in N_2)\)、\(x_i\) free \((i\in N_3)\)。\(A_j\) 大小 \(m_j\times n\)；\(\ge,\le,=\) 表示逐分量比较。同样适用于最大化。</p>
+
+<h3 id="lec3-p2-5">2.5 标准形式 Standard Form</h3>
+<div class="def box">
+  <span class="box-title">📌 LP 标准形</span>
+  <p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x \quad \text{s.t. } Ax=b,\ x\ge 0\)</p>
+  <p>\(A\) 是 \(m\times n\) 矩阵、\(b\in\mathbb{R}^m\)。常 \(m&lt;n\)（非必需）。任何 LP 都可用适当变换写成标准形。（本课程沿用 Bertsimas &amp; Tsitsiklis 的标准形定义，其他书可能不同。）</p>
+</div>
+
+<h3 id="lec3-p2-6">2.6 为什么常有 \(m&lt;n\) Why Often m &lt; n?</h3>
+<ul>
+  <li>每个独立等式减少一个自由度；</li>
+  <li>若 \(m=n\) 且 \(A\) 可逆，\(Ax=b\) 有唯一解 \(x=A^{-1}b\)，可能违反 \(x\ge 0\)；</li>
+  <li>要有可优化空间，需要独立等式数少于变量数：\(\operatorname{rank}(A)&lt;n\)，独立行时即 \(m&lt;n\)。</li>
+</ul>
+<p>几何：一致时 \(Ax=b\) 是一个平「片」（仿射子空间），加 \(x\ge 0\) 把它切成多面体可行集。</p>
+
+<h3 id="lec3-p2-7">2.7 标准形变换 Four Transformations</h3>
+<ol>
+  <li><b>max → min</b>：\(\max c^\top x \Leftrightarrow \min (-c)^\top x\)（同约束）。因为最大化一个数等于最小化它的相反数。</li>
+  <li><b>不等式 → 等式</b>：\(Ax\le b\) 用 \(Ax+s=b,\ s\ge 0\)（<b>松弛变量 slack</b>）；\(Ax\ge b\) 用 \(Ax-s=b,\ s\ge 0\)（<b>剩余变量 surplus</b>）。</li>
+  <li><b>\(x_i\le 0\)</b>：令 \(x_i=-y_i,\ y_i\ge 0\)（翻号）。</li>
+  <li><b>\(x_i\) free</b>：令 \(x_i=x_i^+ - x_i^-,\ x_i^+,x_i^-\ge 0\)（拆成两非负变量之差）。</li>
+</ol>
+<div class="ex box">
+  <span class="box-title">✏️ 变换 2 的细节</span>
+  <p>上界 \(x_1+x_2\le 10\)：加松弛 \(x_1+x_2+s=10\)，\(s=10-(x_1+x_2)\)。若等式成立则 \(s=0\)（紧），否则 \(s>0\)（未用容量）。下界 \(x_1+x_2\ge 10\)：\(x_1+x_2-s=10\)，\(s\ge 0\) 衡量超出最低要求的量。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 变换 4 的细节</span>
+  <p>\(x_i=7\) 取 \(x_i^+=7,x_i^-=0\)；\(x_i=-3\) 取 \(x_i^+=0,x_i^-=3\)；\(x_i=0\) 取两者都 0。\((x_i^+,x_i^-)\) 不唯一（如 \(7=8-1\)），但替代保持可行性与目标值。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 变换后跟踪决策变量</span>
+  <p>标准形变换常加入松弛变量 \(s\)、换新变量（翻号）、把自由变量拆成 \(x^+,x^-\)。原变量的可行解通过替代对应新变量的可行解。建议每次变换后写一行「字典」，如：\(x_3\ (\text{free}) = x_3^+ - x_3^-\)，\(s_1 = 150-(x_1+x_2)\)。</p>
+</div>
+</section>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>machine learning</b> — 机器学习；<b>classification</b> — 分类</li>
+    <li><b>support vector machine (SVM)</b> — 支持向量机；<b>support vector</b> — 支持向量</li>
+    <li><b>feature / feature vector</b> — 特征 / 特征向量；<b>label</b> — 标签</li>
+    <li><b>supervised learning</b> — 监督学习；<b>training / prediction</b> — 训练 / 预测</li>
+    <li><b>score</b> — 分数；<b>decision boundary</b> — 决策边界</li>
+    <li><b>feature scaling / normalization / standardization</b> — 特征缩放 / 归一化 / 标准化</li>
+    <li><b>margin / margin boundary</b> — 间隔 / 间隔边界；<b>feasibility problem</b> — 可行性问题</li>
+    <li><b>hard margin / soft margin</b> — 硬间隔 / 软间隔</li>
+    <li><b>hinge loss</b> — hinge（铰链）损失；<b>slack variable</b> — 松弛变量</li>
+    <li><b>quadratic program (QP)</b> — 二次规划；<b>convex</b> — 凸</li>
+    <li><b>linear programming (LP)</b> — 线性规划；<b>affine</b> — 仿射</li>
+    <li><b>half-plane</b> — 半平面；<b>convex polyhedron</b> — 凸多面体</li>
+    <li><b>standard form</b> — 标准形；<b>slack / surplus variable</b> — 松弛 / 剩余变量</li>
+    <li><b>free variable</b> — 自由变量；<b>rank</b> — 秩</li>
+  </ul>
+</div>
+
+</div><!-- /第3课 -->
+
+</div>
+</main>
+</body>
+</html>

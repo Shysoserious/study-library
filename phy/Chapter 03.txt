@@ -1,0 +1,838 @@
+--- Page 0 ---
+PHY1001 Mechanics（力学）
+Instructor:  Ling Han（凌晗）
+School of Science and Engineering (SSE)
+The Chinese University of Hong Kong, Shenzhen
+
+--- Page 1 ---
+Review
+Motion along straight line:
+´ Position and Displacement
+´ Velocity and Speed
+´ Instantaneous and average velocity
+´ Instantaneous and average speed
+´ Acceleration
+´ Instantaneous and average acceleration
+´ Constant Acceleration motion in 1D
+´ Velocity and Position by Integration
+
+--- Page 2 ---
+Chapter 3: Motion in Two or
+Three Dimensions
+Chapter 1
+Copyright © 2014 John Wiley & Sons, Inc. All rights reserved.
+
+--- Page 3 ---
+2 and 3 D Motion
+
+--- Page 4 ---
+Position and Displacement
+´ To locate a particle with a position vector⃗𝑟⃗
+𝑟= 𝑥̂𝚤+ 𝑦̂𝚥+ 𝑧+𝑘
+´ Vector extends from a reference point (usually the origin)
+´ x, y, and z: scalar components
+´ Particle’s displacement: change of the
+position Δ⃗𝑟
+∆⃗𝑟= 𝑟2 −𝑟1
+∆⃗𝑟= 𝑥2 −𝑥1̂ 𝚤+ 𝑦2 −𝑦1̂ 𝚥+ 𝑧2 −𝑧1 +𝑘
+∆⃗𝑟= ∆𝑥̂𝚤+ ∆𝑦̂𝚥+ ∆𝑧+𝑘
+
+--- Page 5 ---
+´ Average Velocity
+´ Instantaneous Velocity
+Average Velocity and
+Instantaneous Velocity⃗
+𝑣𝑎𝑣𝑔= ∆⃗𝑟
+∆𝑡= ∆𝑥
+∆𝑡̂ 𝚤+ ∆𝑦
+∆𝑡̂ 𝚥+ ∆𝑧
+∆𝑡
++𝑘
+Vector with same direction of ∆⃗𝑟⃗
+𝑣= 𝑑⃗𝑟
+𝑑𝑡= 𝑑
+𝑑𝑡𝑥̂𝚤+ 𝑦̂𝚥+ 𝑧+𝑘= 𝑑𝑥
+𝑑𝑡̂ 𝚤+ 𝑑𝑦
+𝑑𝑡̂ 𝚥+ 𝑑𝑧
+𝑑𝑡
++𝑘
+𝒗= 𝒗𝒙̂4 + 𝒗𝒚̂5 + 𝒗𝒛6𝒌
+Direction: always tangent to the
+particle’s path at the particle’s position
+
+--- Page 6 ---
+´ Average Acceleration
+´ Instantaneous Acceleration or Acceleration
+Average Acceleration and 
+Instantaneous Acceleration⃗
+𝑎𝑎𝑣𝑔= ∆⃗𝑣
+∆𝑡
+Vector with same direction of ∆⃗𝑣⃗
+𝑎= 𝑑⃗𝑣
+𝑑𝑡= 𝑑
+𝑑𝑡𝑣$̂𝚤+ 𝑣%̂𝚥+ 𝑣&+𝑘= 𝑑𝑣𝑥
+𝑑𝑡̂ 𝚤+ 𝑑𝑣𝑦
+𝑑𝑡̂ 𝚥+ 𝑑𝑣𝑧
+𝑑𝑡
++𝑘
+𝒂= 𝒂𝒙̂4 + 𝒂𝒚̂5 + 𝒂𝒛6𝒌
+Direction of acceleration
+
+--- Page 7 ---
+Problem
+Check the angle calculated through tan-1
+
+--- Page 8 ---
+⃗𝑟𝑡= 𝑥𝑡̂ 𝚤+ 𝑦(𝑡)̂𝚥
+At t=15s,
+𝑥= 66 𝑚
+𝑦= −57 𝑚⃗
+𝑟= 66 𝑚̂ 𝚤−(57 𝑚)̂𝚥
+In magnitude-angle notation,
+𝑟=
+𝑥! + 𝑦! = 87 𝑚
+𝜃= tan"# 𝑦
+𝑥= −41°
+Clockwise from +ve x-axis
+
+--- Page 9 ---
+𝑣! = 𝑑𝑥
+𝑑𝑡= 𝑑
+𝑑𝑡−0.31𝑡" + 7.2𝑡+ 28 = −0.62𝑡+ 7.2
+𝑣# = 𝑑𝑦
+𝑑𝑡= 𝑑
+𝑑𝑡0.22𝑡" −9.1𝑡+ 30 = 0.44𝑡−9.1
+At t=15s,
+𝑣! = −2.1 𝑚/𝑠
+𝑣# = −2.5 𝑚/𝑠
+In magnitude-angle notation,
+𝑣=
+𝑣!" + 𝑣#" = 3.3 𝑚/𝑠
+𝜃= tan$% 𝑣#
+𝑣!
+= −130°
+Clockwise from +ve x-axis
+
+--- Page 10 ---
+
+--- Page 11 ---
+Describe 2D/3D Motions
+𝒗= 𝑑⃗𝑟
+𝑑𝑡= 𝒗𝒙̂= + 𝒗𝒚̂> + 𝒗𝒛?𝒌
+
+--- Page 12 ---
+Describe 2D/3D Motions
+𝒂= 𝑑⃗𝑣
+𝑑𝑡= 𝒂𝒙̂= + 𝒂𝒚̂> + 𝒂𝒛?𝒌
+
+--- Page 13 ---
+Parallel and Perpendicular
+Components of Acceleration
+´ The acceleration à two components 𝑎∥and 𝑎'
+´ The parallel component 𝑎∥: change in speed
+´ The perpendicular component 𝑎': change in direction
+Parallel
+Component 𝑎∥
+Perpendicular
+Component 𝑎(
+
+--- Page 14 ---
+Parallel and Perpendicular
+Components of Acceleration
+
+--- Page 15 ---
+Projectile Motion
+´ Projectile Motion: A particle moves in a
+vertical plane with initial velocity 𝑣0, but its
+acceleration is always the free-fall
+acceleration a= −𝑔
+´ In projectile motion, the horizontal motion and 
+the vertical motion are independent of each 
+other; that is, neither motion affects each
+other⃗
+𝑣0 = 𝑣0𝑥̂𝚤+ 𝑣0𝑦̂𝚥
+𝑣0𝑥= 𝑣0 cos 𝜃0 and 𝑣0𝑦= 𝑣0 sin 𝜃0
+The⃗𝑟and⃗𝑣change continuously, but⃗𝑎is constant
+and always pointing vertically downward.
+Effects of Air have been eliminated
+
+--- Page 16 ---
+Projectile Motion
+´ Independent Motionè two
+separate 1D problem
+´ Y-axis
+𝑦−𝑦0 = 𝑣0 sin 𝜃0 𝑡−1
+2 𝑔𝑡2
+𝑣𝑦= 𝑣0 sin 𝜃0 −𝑔𝑡
+𝑣𝑦2 = 𝑣0 sin 𝜃0 2 −2g(𝑦−𝑦0)
+´ X-axis (Trajectory)
+𝑥−𝑥0 = (𝑣0 cos 𝜃0) 𝑡
+´ X-Y relationship
+𝑦= tan 𝜃0 𝑥−
+𝑔𝑥2
+2 𝑣0 cos 𝜃0 2
+•
+x0 and y0 are zero.
+•
+𝜃0 is the angle between⃗𝑣and +ve⃗𝑥.
+
+--- Page 17 ---
+The Horizontal Range
+´ The horizontal distance the
+particle has traveled when it
+returns to its initial height, when
+y-y0=0
+𝑅= (𝑣0 cos 𝜃0) 𝑡
+= 2𝑣,
+- sin 𝜃0 cos 𝜃0
+𝑔
+Since sin 2𝜃, = 2𝑠𝑖𝑛𝜃, cos 𝜃,
+𝑅= 𝑣0
+2
+𝑔sin 2𝜃0
+´ Rmax, when 𝜃0 = 45°
+https://phet.colorado.edu/en/simulations/projectile-motion
+
+--- Page 18 ---
+The Maximum Height
+´ The maximum height the particle can reach during
+the projectile motion as shown in previous slide, 𝑣𝑦= 0
+𝑣𝑦= 𝑣0 sin 𝜃0 −𝑔𝑡
+𝑡ℎ= 𝑣0 sin 𝜃0
+𝑔
+𝑦−𝑦0 = 𝑣0 sin 𝜃0 𝑡−1
+2 𝑔𝑡2
+𝐻𝑚𝑎𝑥= 𝑦−𝑦0 = 𝑣0 sin 𝜃0
+2
+2𝑔
+𝑅= -."
+#
+/ sin 𝜃0 cos 𝜃0
+𝐻𝑚𝑎𝑥
+𝑅
+= tan 𝜃0
+4
+The relation between the maximum
+height and horizontal range
+
+--- Page 19 ---
+Problem
+A
+blowgun
+G
+using
+a
+ball
+as
+projectile is aimed at a can. Just as
+the ball leaves the blowgun, the can
+is released. How to aim it, if you
+want the ball to catch the can?
+SOLUTION:
+Assume aims at angle 𝜃, The
+distance is L, and the height is
+H as shown left.
+ℎ= 1
+2 𝑔𝑡2
+𝐻−ℎ= 𝑣0𝑠𝑖𝑛𝜃𝑡−1
+2 𝑔𝑡2
+𝐻= 𝑣0𝑠𝑖𝑛𝜃𝑡
+𝐿= 𝑣0𝑐𝑜𝑠𝜃𝑡
+tan 𝜃= 𝐻
+𝐿
+Aim directly at the can
+𝜽
+H
+L
+
+--- Page 20 ---
+Problem
+𝒚= 𝒕𝒂𝒏𝜽𝟎𝒙−
+𝒈𝒙𝟐
+𝟐𝒗𝟎𝒄𝒐𝒔𝜽𝟎𝟐
+x = 18 m;
+y = 5 - 1.5 = 3.5 m
+v0 = 15.1 m/s
+
+--- Page 21 ---
+Problem
+x = 12 m; tan𝜃0 =
+2
+- ; y = -3 m
+v0 = 9.9 m/s, vland= 12.5 m/s (vx = 8.85 m/s; vy = -8.85 m/s),
+𝜃𝑙𝑎𝑛𝑑= −45°
+𝒚= 𝒕𝒂𝒏𝜽𝟎𝒙−
+𝒈𝒙𝟐
+𝟐𝒗𝟎𝒄𝒐𝒔𝜽𝟎𝟐
+
+--- Page 22 ---
+
+--- Page 23 ---
+Real life is much more 
+complicated
+
+--- Page 24 ---
+Uniform Circular Motion
+´ A particle is in Uniform Circular Motion if it
+travels around a circular or a circular arc
+at constant (uniform) speed.
+´ 𝒗: Constant magnitude, direction always
+tangent to the path
+´ The acceleration associated with uniform
+circular motion is the centripetal
+acceleration 𝒂. Accelerating all the time!
+´ The direction is always pointing to the
+center and the magnitude:
+𝒂=
+𝒗𝟐
+𝒓
+´ T: The period of revolution or simply period
+𝑻= 𝟐𝝅𝒓
+𝒗
+
+--- Page 25 ---
+Velocity
+´ Angle
+𝜽= 𝜽
+´ Velocity⃗
+𝑣= 𝑣3̂𝚤+ 𝑣4̂𝚥
+= −𝑣sin 𝜃̂ 𝚤+ 𝑣cos 𝜃̂ 𝚥
+= −𝑣𝑦𝑝
+𝑟̂
+𝚤+ (𝑣𝑥𝑝
+𝑟)̂𝚥
+
+--- Page 26 ---
+Centripetal Acceleration
+´ Acceleration⃗
+𝑎= 𝑑⃗𝑣
+𝑑𝑡
+= −𝑣
+𝑟
+𝑑𝑦𝑝
+𝑑𝑡̂
+ı + 𝑣
+𝑟
+𝑑𝑥𝑝
+𝑑𝑡̂
+𝚥
+= −𝑣2
+𝑟cos 𝜃̂ 𝚤+ (−𝑣2
+𝑟sin 𝜃)̂𝚥
+𝑎=
+𝑎𝑥2 + 𝑎%2 = 𝑣2
+𝑟
+tan 𝜙= 𝑎𝑦
+𝑎𝑥
+= tan 𝜃
+𝑑𝑦𝑝
+𝑑𝑡= 𝑣4 = 𝑣cos 𝜃;
+𝑑𝑥𝑝
+𝑑𝑡= 𝑣5 = −𝑣sin 𝜃
+•
+𝜙= 𝜃, 
+•
+Direction: along the radius r, 
+pointing towards the circle’s 
+center.
+
+--- Page 27 ---
+Another method
+Magnitude:
+•
+Based on the similar triangle
+∆𝑣
+𝑣= ∆𝑠
+𝑅
+𝑎-./ = ∆𝑣
+∆𝑡= 𝑣
+𝑅× ∆𝑠
+∆𝑡
+𝑎= 𝑣
+𝑅× 𝑑𝑠
+𝑑𝑡= 𝑣"
+𝑅
+Direction:
+•
+The perpendicular component 𝑎' (or⃗𝑎0-1):
+change in direction
+•
+The parallel component is zero
+•
+Always perpendicular to velocity à pointing to
+the center
+
+--- Page 28 ---
+Nonuniform circular motion
+´ The parallel component of a is called tangential
+acceleration
+𝑎2 = 𝑑𝑣
+𝑑𝑡
+´ 𝑎2 changes the speed 𝑣
+
+--- Page 29 ---
+´ What is the magnitude of acceleration, in g units, of a
+pilot whose aircraft enters a horizontal circular turn with a
+velocity of⃗𝑣= (400̂𝚤+ 500̂𝚥) m/s and 24.0 s later, leaves
+the turn with a velocity of⃗𝑣= (−400̂𝚤−500̂𝚥) m/s?
+SOLUTION:
+𝒂= 𝒗𝟐
+𝒓
+𝑻= 𝟐𝝅𝒓
+𝒗
+𝒂= 𝟐𝝅𝒗
+𝑻
+= 𝟐𝝅×
+𝟒𝟎𝟎𝟐+ 𝟓𝟎𝟎𝟐
+𝟐𝟒×𝟐
+𝒎/𝒔= 𝟖𝟑. 𝟖𝟏𝒎/𝒔2
+𝒂≈𝟖. 𝟔𝒈
+Problem
+ ⃗
+𝑣= (400̂𝚤+ 500̂𝚥) m/s⃗
+𝑣= (−400̂𝚤−500̂𝚥) m/s
+
+--- Page 30 ---
+´ “Top gun” pilots have long worried about taking 
+a turn too tightly. As a pilot's body undergoes 
+centripetal acceleration, with the head toward 
+the center of curvature, the blood pressure in the 
+brain decreases, leading to loss of brain function.
+´ There are several warning signs.
+When the 
+centripetal acceleration is 2g or 3g, the pilot 
+feels heavy. At about 4g, the pilot's vision 
+switches to black and white and narrows to 
+“tunnel vision.” If that acceleration is sustained or 
+increased, vision ceases and, soon after, the pilot 
+is unconscious—a condition known as g-LOC for 
+“g-induced loss of consciousness.”
+´ If a pilot caught in a dogfight puts the aircraft 
+into such a tight turn, the pilot goes into g-LOC 
+almost immediately, with no warning signs to 
+signal the danger.
+https://www.bilibili.com/video/BV14h4y1q7bd/?spm_id_from=333.337.search-card.all.click
+7’09’’
+
+--- Page 31 ---
+Relative Motion in One
+Dimension
+´ Reference Frame: A physical object to which we
+attach our coordinate system
+´ A is parked by the side of a highway, watching car P
+speed past. B is driving along the highway at constant
+speed and also watching P. Suppose they both
+measure the position of the car at a given moment.
+Gives:
+𝑥𝑃𝐴= 𝑥]^ + 𝑥^_
+The coordinate xPA of P as measured by 
+A is equal to the coordinate xPB of P as 
+measured by B plus the coordinate xBA 
+of B as measured by A. Note that x is a 
+vector in one dimension.
+
+--- Page 32 ---
+𝑑
+𝑑𝑡𝑥𝑃𝐴= 𝑑
+𝑑𝑡𝑥𝑃𝐵+ 𝑑
+𝑑𝑡𝑥𝐵𝐴
+𝑣𝑃𝐴= 𝑣67 + 𝑣78
+´ The velocity vPA of P as measured by A is equal to the 
+velocity vPB of P as measured by B plus the velocity vBA 
+of B as measured by A. The term vBA is the velocity of
+frame B relative to frame A.
+´ If vBA is constant, which means B is driving at a constant
+speed relative to A.
+𝑑
+𝑑𝑡𝑣𝑃𝐴= 𝑑
+𝑑𝑡𝑣𝑃𝐵+ 𝑑
+𝑑𝑡𝑣𝐵𝐴
+𝑎𝑃𝐴= 𝑎𝑃𝐵+ 𝑎𝐵𝐴= 𝑎./
+´ The acceleration aPA of P as measured by A is equal to 
+the acceleration aPB of P as measured by B plus the 
+acceleration aBA of B as measured by A. 
+´ Observers on different frames of reference that move at
+constant velocity relative to each other will measure the
+same acceleration for a moving particle. (Inertia Frames)
+
+--- Page 33 ---
+B's velocity relative to A is a constant vBA = 52 km/h and 
+car P is moving in the negative direction of the x axis.
+(a) If A measures a constant velocity vPA = -78 km/h for 
+car P, what velocity vPB will B measure?
+SOLUTION:
+𝑣𝑃𝐴= 𝑣89 + 𝑣9:
+−78 = 𝑣89 + 52
+𝑣𝑃𝐵= −130 𝑘𝑚/ℎ
+(b) If car P brakes to a stop relative to A in time t = 10 s at 
+constant acceleration, what is its acceleration aPA 
+relative to A?
+SOLUTION:
+𝑎𝑃𝐴=
+.$%_';.67
+<
+=
+,; ;=> ?@/B
+2, C
+×
+2 @/C
+D.F ?@/B = 2.2 𝑚/𝑠2
+Problem
+
+--- Page 34 ---
+(c) What is the acceleration aPB of car P relative to 
+B during the braking?
+SOLUTION:
+𝑣𝑃𝐵_H = 𝑣8:_H −𝑣9: = 0 −52 = −52 𝑘𝑚/ℎ
+𝑎𝑃𝐵=
+.$(_';.68
+<
+=
+;I-; ;2D, ?@/B
+2, C
+×
+2 @/C
+D.F ?@/B = 2.2 𝑚/𝑠2
+or
+Since vBA is constant,
+𝑎𝑃𝐴= 𝑎𝑃𝐵= 2.2 𝑚/𝑠2
+
+--- Page 35 ---
+Relative Motion in Two
+Dimensions
+´ Two observers A and B are 
+watching moving particle P from 
+the origins of reference frames A 
+and B, while B moves at a 
+constant velocity ⃗𝑣𝐵𝐴 relative to A.⃗
+𝑟𝑃𝐴=⃗𝑟𝑃𝐵+⃗𝑟𝐵𝐴⃗
+𝑣𝑃𝐴=⃗𝑣𝑃𝐵+⃗𝑣𝐵𝐴⃗
+𝑎𝑃𝐴=⃗𝑎𝑃𝐵
+Observers on different frames of
+reference that move at constant
+velocity relative to each other will
+measure the same acceleration for
+a moving particle. (Inertia Frames)
+
+--- Page 36 ---
+Problem
+A plane moves due east while the pilot points the plane somewhat 
+south of east, toward a steady wind that blows to the northeast. 
+The plane has a velocity 𝒗𝑷𝑾 relative to the wind, with a air speed 
+of 215 km/h, directed to angle 𝜽 south of east. The wind has 
+velocity 𝒗𝑾𝑮 relative to the ground with speed 65.0 km/h, directed 
+20.0° east of north. What is the magnitude of the velocity 𝒗𝑷𝑮 of the 
+plane relative to the ground, and what is 𝜽?⃗
+𝑣𝑃𝐺=⃗𝑣𝑃𝑊+⃗𝑣𝑊𝐺
+In N direction,
+0 = 𝑣6<× sin 𝜃+ 𝑣<=×𝑐𝑜𝑠20.0°
+𝜃= −16.5°
+In E direction,
+𝑣𝑃𝐺, 𝐸= 𝑣6<𝑐𝑜𝑠16.5° + 𝑣𝑊𝐺𝑠𝑖𝑛20.0°
+= 228 𝑘𝑚/ℎ⃗
+𝑣𝑃𝐺= (228 ̂𝚤+ 0̂𝚥) km/h
+𝑣𝑃𝐺= 228 𝑘𝑚/ℎ
+http://www.wiley.com/college/halliday/0470469080/simulations/sim44/sim44.html 
+
+--- Page 37 ---
+Summary
+´ Position and Displacement
+´ Average Velocity and Instantaneous 
+Velocity
+´ Average Acceleration and Instantaneous 
+Acceleration
+´ Projectile Motion
+´ Uniform Circular Motion
+´ Relative Motion in One Dimension
+´ Relative Motion in Two Dimension
+∆⃗𝑟= ∆𝑥̂𝚤+ ∆𝑦̂𝚥+ ∆𝑧\𝑘⃗
+𝑣= 𝑣5̂𝚤+ 𝑣4̂𝚥+ 𝑣>\𝑘
+𝑦= tan 𝜃0 𝑥−
+𝑔𝑥2
+2 𝑣0 cos 𝜃0 2
+𝑎= 𝑣2
+𝑟
+𝑇= 2𝜋𝑟
+𝑣⃗
+𝑎= 𝑎5̂𝚤+ 𝑎4̂𝚥+ 𝑎>\𝑘⃗
+𝑟𝑃𝐴=⃗𝑟𝑃𝐵+⃗𝑟𝐵𝐴⃗
+𝑣𝑃𝐴=⃗𝑣𝑃𝐵+⃗𝑣𝐵𝐴⃗
+𝑎𝑃𝐴=⃗𝑎𝑃𝐵
+
+--- Page 38 ---
+Summary
+´ Projectile Motion
+𝑦−𝑦0 = 𝑣0 sin 𝜃0 𝑡−1
+2 𝑔𝑡2
+𝑣𝑦= 𝑣0 sin 𝜃0 −𝑔𝑡
+𝑣𝑦2 = 𝑣0 sin 𝜃0 2 −2g(𝑦−𝑦0)
+𝑥−𝑥0 = (𝑣0 cos 𝜃0) 𝑡
+𝑦= tan 𝜃0 𝑥−
+𝑔𝑥2
+2 𝑣0 cos 𝜃0 2
+
+================================================================
+附录：图片内容逐页转录 + 图说（本文件要喂给"看不到 PDF"的 AI，故图里的信息一并文字化）
+================================================================
+说明：
+1. 页码为 PDF 页序号，与正文 `--- Page N ---` 一致（幻灯片页码 = N + 1）。
+2. 本附录按页覆盖本讲义**全部含图页**。每条分两部分：
+   【图】= 图形内容描述（示意图表达了什么关系、坐标轴、关键标注）；
+   [图内文字] = 原图里能读到的文字，逐字转录（这些文字用文字层提取不到）。
+3. 正文（`--- Page N ---` 段落）已完整提取的要点不在此重复，只补"图里才有的信息"。
+4. 文件末尾附「公式还原对照」：正文里被 PDF 抽字弄坏的上下标与符号的还原表。
+
+
+----------------------------------------------------------------
+第 1 ~ 4 页（复习、封面与引入）
+----------------------------------------------------------------
+--- Page 0（幻灯片第 1 页）---
+【图】封面页背景配图。
+[图内文字] 正文已提取：PHY1001 Mechanics（力学）/ Instructor: Ling Han（凌晗）/
+  School of Science and Engineering (SSE) / The Chinese University of Hong Kong, Shenzhen。
+
+--- Page 3（幻灯片第 4 页）---
+【图】三张照片：① 运动员投篮的连拍（球与手臂上叠加绿色箭头，表示运动的矢量性）；
+  ② Stephen Curry 在比赛中投篮（篮球在空中划出弧线）；③ 一次活动的现场（叠加红色虚线弧
+  表示运动轨迹）。用来说明"2D/3D 运动"。
+[图内文字] 只有标题"2 and 3 D Motion"（正文已提取），图内无可转录文字。
+
+----------------------------------------------------------------
+第 6 ~ 15 页（位置、速度、加速度与分量）
+----------------------------------------------------------------
+--- Page 6（幻灯片第 7 页）---
+【图】一条弯曲的质点轨迹（Path），曲线上某点画出加速度矢量 a 及其分量 a_x、a_y。
+[图内文字] 图中标注："These are the x and y components of the vector at this instant."
+  （这些是该瞬间该矢量的 x、y 分量。）
+  正文已提取：a_avg = Δv/Δt（方向与 Δv 相同）；a = dv/dt = (dv_x/dt) î + (dv_y/dt) ĵ +
+  (dv_z/dt) k̂ ；a = a_x î + a_y ĵ + a_z k̂（Direction of acceleration）。
+
+--- Page 7（幻灯片第 8 页）---
+【图】整页图片：例题题干（正文页只有标题 "Problem" 与一行提示，题干全在图里）。
+[图内文字]
+  A rabbit runs across a parking lot on which a set of coordinate axes has, strangely
+  enough, been drawn. The coordinates (meters) of the rabbit's position as functions of
+  time t (seconds) are given by
+        x = -0.31 t² + 7.2 t + 28            (4-5)
+  and   y =  0.22 t² - 9.1 t + 30.           (4-6)
+  (a) At t = 15 s, what is the rabbit's position vector r in unit-vector notation and in
+      magnitude-angle notation?
+  For the rabbit in the preceding sample problem, find the velocity v at time t = 15 s.
+  底部紫色提示框："Check the angle calculated through tan⁻¹"
+  （原题为 Halliday《Fundamentals of Physics》例题 4-5 / 4-6。）
+
+--- Page 10（幻灯片第 11 页）---
+【图】整页图片：上述例题的加速度求解（教科书页截图，仿羊皮纸底色）。
+[图内文字]
+  For the rabbit in the preceding two sample problems, find the acceleration a at time t = 15 s.
+  We can find a by taking derivatives of the rabbit's velocity components.
+  Calculations: Applying the a_x part of Eq. 4-18 to Eq. 4-13, we find the x component of
+  a to be
+        a_x = dv_x/dt = d/dt (-0.62t + 7.2) = -0.62 m/s².
+  Similarly, applying the a_y part of Eq. 4-18 to Eq. 4-14 yields the y component as
+        a_y = dv_y/dt = d/dt (0.44t - 9.1) = 0.44 m/s².
+  We see that the acceleration does not vary with time (it is a constant) because the time
+  variable t does not appear in the expression for either acceleration component.
+  Equation 4-17 then yields
+        a = (-0.62 m/s²) î + (0.44 m/s²) ĵ,          (Answer)
+        θ = tan⁻¹(a_y/a_x) = tan⁻¹(0.44 / -0.62) = -35°.   -35° + 180° = 145°.
+
+--- Page 11（幻灯片第 12 页）---
+【图】描述 2D/3D 运动的两个三维示意图：左图位置矢量 r 的分解；右图位移矢量 Δr。
+[图内文字]
+  左图："Position P of a particle at a given time has coordinates x, y, z."
+        "Position vector of point P has components x, y, z:  r = x î + y ĵ + z k̂."
+  右图："Position at time t₂"（点 P₂）、"Position at time t₁"（点 P₁）、
+        "Displacement vector Δr points from P₁ to P₂."（位移矢量 Δr 由 P₁ 指向 P₂）、
+        "Particle's path"（质点轨迹）、v_av = Δr/Δt。
+  正文已提取：r = x î + y ĵ + z k̂ ；Δr = r₂ − r₁ ；v = dr/dt = v_x î + v_y ĵ + v_z k̂。
+
+--- Page 12（幻灯片第 13 页）---
+【图】描述加速度的三幅示意图：汽车沿弯道行驶时速度矢量的变化。
+[图内文字]
+  左上："This car accelerates by slowing while rounding a curve. (Its instantaneous
+        velocity changes in both magnitude and direction.)"
+        （这辆车在过弯时减速，说明其瞬时速度的大小与方向都在变。）标出 P₁、v₁、P₂、v₂。
+  右上："To find the car's average acceleration between P₁ and P₂, we first find the change
+        in velocity Δv by subtracting v₁ from v₂. (Notice that v₁ + Δv = v₂.)"
+        矢量图标注 Δv = v₂ − v₁。
+  左下："The average acceleration has the same direction as the change in velocity, Δv."
+        标注 a_av = Δv/Δt。
+  正文已提取：a = dv/dt = a_x î + a_y ĵ + a_z k̂。
+
+--- Page 13（幻灯片第 14 页）---
+【图】加速度分解为"平行分量"与"垂直分量"的两幅矢量对比图。
+[图内文字]
+  左图：Tangent to path at P（P 点处的切线）、Normal to path at P（P 点处的法线）、
+        "Component of a parallel to the path"（a 沿轨迹方向的分量，a∥）、
+        "Component of a perpendicular to the path"（a 垂直轨迹的分量，a⊥）、Particle's path。
+  右上："Changes only magnitude of velocity: speed changes; direction doesn't."
+        → Parallel Component a∥ ，且 v₂ = v₁ + Δv（Δv 与 v₁ 同向）。
+  右下："Changes only direction of velocity: particle follows curved path at constant speed."
+        → Perpendicular Component a⊥ ，标注夹角 φ，v₂ = v₁ + Δv（Δv 与 v₁ 垂直）。
+  正文已提取：The acceleration → two components a∥ and a⊥ / a∥: change in speed /
+  a⊥: change in direction。
+
+--- Page 14（幻灯片第 15 页）---
+【图】本页正文只有标题，全部信息在图里：三种情形下加速度矢量相对法线的指向。
+[图内文字]
+  (a) "When speed is constant along a curved path ... acceleration is normal to the path."
+      （速率不变时，加速度垂直于轨迹 —— 即法线方向。）
+  (b) "When speed is increasing along a curved path ... acceleration points ahead of the
+      normal."（速率增大时，加速度指向法线的前方。）
+  (c) "When speed is decreasing along a curved path ... acceleration points behind the
+      normal."（速率减小时，加速度指向法线的后方。）
+  三幅图均标注 P（质点位置）、v（速度，沿轨迹切线）、a（加速度）、Normal at P（P 点法线）。
+
+----------------------------------------------------------------
+第 16 ~ 24 页（抛体运动）
+----------------------------------------------------------------
+--- Page 16（幻灯片第 17 页）---
+【图】频闪照片：左侧红球做自由落体（竖直下降），右侧黄球做平抛（抛物线），
+  两球在每一帧的高度完全相同 —— 直观说明"水平运动与竖直运动彼此独立"。
+[图内文字] 图片来源：Richard Megna / Fundamental Photographs。
+  正文已提取全部公式：y − y₀ = (v₀ sin θ₀)t − ½gt² ；v_y = v₀ sin θ₀ − gt ；
+  v_y² = (v₀ sin θ₀)² − 2g(y − y₀) ；x − x₀ = (v₀ cos θ₀)t ；
+  y = (tan θ₀)x − gx²/[2(v₀cosθ₀)²]。
+
+--- Page 17（幻灯片第 18 页）---
+【图1】抛物运动轨迹图：横轴 x、纵轴 y；轨迹上标出多个位置处 v 的分量（vₓ 水平、v_y 竖直），
+  顶点处标注 v_y = 0；同时标出射程 R、初速分量 v₀ₓ 与 v₀ᵧ、发射角 θ₀ 与落地角 θ。
+【图2】不同发射角的轨迹对比图：纵轴 y (m) 0~30，横轴 x (m) 0~70，
+  五条曲线分别标注 θ = 70°、θ = 53.1°、θ = 45°、θ = 36.9°、θ = 20°；
+  其中 θ = 45° 射程最远（R_max）。
+[图内文字] 正文已提取：R = (v₀ cos θ₀)t = (2v₀² sin θ₀ cos θ₀)/g ；
+  Since sin 2θ₀ = 2 sin θ₀ cos θ₀ → R = (v₀²/g) sin 2θ₀ ；R_max when θ₀ = 45°。
+  仿真链接：https://phet.colorado.edu/en/simulations/projectile-motion
+
+--- Page 19（幻灯片第 20 页）---
+【图】吹箭打罐示意图：吹箭手在左下，沿 θ 角瞄准；上方用横梁悬挂一个易拉罐（标 Can、h），
+  从枪口到罐的水平距离标 L、竖直高度标 H；一条虚线标 "Zerog path"（真空中的直线瞄准线），
+  实际小球走红色抛物线。
+[图内文字] 图中提示框："The ball and the can fall the same distance h."
+  （小球和罐子下落的距离 h 相同 —— 所以直接瞄准罐子即可命中。）
+  正文已提取题干与推导：h = ½gt² ；H − h = v₀ sinθ·t − ½gt² ；H = v₀ sinθ·t ；
+  L = v₀ cosθ·t ；tan θ = H/L ；结论 "Aim directly at the can"（直接瞄准罐子）。
+
+--- Page 20（幻灯片第 21 页）---
+【图】题干与配图（题目文字全在图里）：一个人站在地面上抛球，出手点离地 1.5 m、
+  与水平成 60°，前方 18 m 处有一道 5 m 高的围栏，球恰好越过栏顶。
+[图内文字]
+  A ball is thrown so that it just clears a 5 meters fence 18 meters away. If it left the
+  hand 1.5 meters above the ground and at an angle of 60° with the horizontal, what was the
+  initial velocity of the ball?
+  正文已提取解答：y = (tan θ₀)x − gx²/[2(v₀cosθ₀)²] ；x = 18 m ；y = 5 − 1.5 = 3.5 m ；
+  v₀ = 15.1 m/s。
+
+--- Page 21（幻灯片第 22 页）---
+【图】题干与配图（题目文字全在图里）：一辆车沿坡度 1:2 的坡道冲出，越过宽 12 m 的
+  水沟落到对岸平台 A，跳出点高 3 m。
+[图内文字]
+  A stunt man is to drive a car across the water-filled gap shown. Determine the car's
+  minimum take velocity, landing velocity and the angle θ of the landing ramp.
+  正文已提取解答：x = 12 m ；tan θ₀ = 1/2 ；y = -3 m ；v₀ = 9.9 m/s ；
+  v_land = 12.5 m/s（v_x = 8.85 m/s，v_y = -8.85 m/s）；θ_land = -45°。
+
+--- Page 22（幻灯片第 23 页）---
+【图】整页图片：标题 "VACUUM AND AIR TRAJECTORIES COMPARED"（真空轨迹与空气轨迹对比），
+  画面为一门炮水平线以上发射：虚线为真空中的对称抛物线，实线为空气中的轨迹
+  （上升段更平缓、下降段更陡，射程更短）。
+[图内文字] 图中标注：VACUUM TRAJECTORY、AIR TRAJECTORY、Highest point of travel（最高点）、
+  Angle of departure（出射角）、Angle of fall（落地角）、Horizontal（水平线）、
+  "More than 1/2 range"（水平线以上部分超过射程的一半）、
+  "Less than 1/2 range"（水平线以下部分不足射程的一半）、
+  Range in air（空气中射程）、Range in a vacuum（真空中射程）。
+  结论：空气阻力使射程明显变短，且轨迹不再上下对称。
+
+--- Page 23（幻灯片第 24 页）---
+【图】整页黑白漫画：一枚炮弹的飞行被三种现实因素影响。
+[图内文字] 标题：Real life is much more complicated（真实情况要复杂得多）。
+  图中三个编号标注：(1) Rotation of earth（地球自转）、(2) Cross wind（侧风）、
+  (3) Drift（偏流）。
+
+----------------------------------------------------------------
+第 25 ~ 29 页（圆周运动）
+----------------------------------------------------------------
+--- Page 24（幻灯片第 25 页）---
+【图】匀速圆周运动示意图：质点在圆轨道上四个位置处的速度 v（沿切线向外）与加速度 a
+  （指向圆心）。
+[图内文字] 图中标注：
+  "The acceleration vector always points toward the center."
+  （加速度矢量永远指向圆心。）
+  "The velocity vector is always tangent to the path."
+  （速度矢量永远沿轨迹切线。）
+  正文已提取：a = v²/r ；T = 2πr/v（周期）。
+
+--- Page 26（幻灯片第 27 页）---
+【图】匀速圆周运动的矢量推导图：上图为圆周上的位置矢量 r(t) 与 r(t+Δt)、位移 Δr、
+  转角 Δθ，以及分解出的 a_x、a_y、a 与角 φ；左下为速度矢量三角形 v(t)、v(t+Δt)、Δv、Δθ；
+  右下为 Δv 的三角形放大图。
+[图内文字] 正文已提取全部推导：a = (−(v/r)(dy_p/dt)) î + ((v/r)(dx_p/dt)) ĵ
+  = (−(v²/r)cos θ) î + (−(v²/r)sin θ) ĵ ；a = √(a_x² + a_y²) = v²/r ；
+  tan φ = a_y/a_x = tan θ ；结论：φ = θ，方向沿半径 r 指向圆心。
+
+--- Page 27（幻灯片第 28 页）---
+【图】"Another method"（相似三角形法）三幅图：
+  (a) 质点在圆周上从 P₁ 到 P₂ 走过弧长 Δs（半径 R，圆心 O，转角 Δφ）；
+  (b) 对应的速度矢量三角形 v₁、v₂、Δv（同样含 Δφ）；
+  (c) 瞬时加速度 a_rad 指向圆心 O。
+[图内文字]
+  (a) "A particle moves a distance Δs at constant speed along a circular path."
+  (b) "The corresponding change in velocity and average acceleration" +
+      "These two triangles are similar."（这两个三角形相似）
+  (c) "The instantaneous acceleration in uniform circular motion always points toward the
+      center of the circle."
+  正文已提取：Δv/v = Δs/R ；a_avg = Δv/Δt = (v/R)(Δs/Δt) ；a = (v/R)(ds/dt) = v²/R ；
+  方向：垂直于速度、指向圆心；平行分量为零。
+
+--- Page 28（幻灯片第 29 页）---
+【图】非匀速圆周运动示意图：一条弯曲轨迹，从曲率中心引出两条半径 r，
+  质点上画出速度 v（切向）、切向加速度 a_t（沿切线）、法向/向心加速度 a_c（指向曲率中心）
+  以及合加速度 a。
+[图内文字] 正文已提取：The parallel component of a is called tangential acceleration
+  a_t = dv/dt ；a_t changes the speed v。
+
+----------------------------------------------------------------
+第 32 ~ 39 页（相对运动）
+----------------------------------------------------------------
+--- Page 31（幻灯片第 32 页）---
+【图】一维相对运动示意：A 停在公路边、B 以恒定速度行驶、P 为被观察的车，
+  图中画出各自的位置坐标与相对位置关系。
+[图内文字] 正文已提取：x_PA = x_PB + x_BA ；v_PA = v_PB + v_BA ；a_PA = a_PB + a_BA = a_BA。
+  链接：一维相对运动的说明性素材（原页面为文字与公式，无额外图内文字）。
+
+--- Page 35（幻灯片第 36 页）---
+【图】二维相对运动示意图：两个坐标系 Frame A 与 Frame B，被观察质点 P，
+  画出 r_PA、r_PB、r_BA 以及 B 相对 A 的速度 v_BA。
+[图内文字] 图中标注：Frame A、Frame B、P、y、x、r_PA、r_PB、r_BA、v_BA。
+  正文已提取：r_PA = r_PB + r_BA ；v_PA = v_PB + v_BA ；a_PA = a_PB ；
+  不同惯性系中观察者测得同一质点的加速度相同（Inertia Frames）。
+
+--- Page 36（幻灯片第 37 页）---
+【图】飞机与风的相对运动矢量图：坐标轴标 N（上）与 E（右）；
+  蓝色箭头水平向右为 v_PG，粉色箭头指向东南偏东为 v_PW，另一箭头为 v_WG（与北成 20°）。
+[图内文字] 图中三处标注：
+  "This is the plane's actual direction of travel."（飞机实际的航向，即 v_PG）
+  "This is the plane's orientation."（机头的朝向，即 v_PW）
+  "This is the wind direction."（风向，即 v_WG）
+  正文已提取题干与解答：v_PG = v_PW + v_WG ；N 方向 0 = v_PW×sinθ + v_WG×cos20.0° →
+  θ = -16.5° ；E 方向 v_PG,E = v_PW cos16.5° + v_WG sin20.0° = 228 km/h ；
+  v_PG = (228 î + 0 ĵ) km/h，大小 228 km/h。
+  仿真链接：http://www.wiley.com/college/halliday/0470469080/simulations/sim44/sim44.html
+
+----------------------------------------------------------------
+公式还原对照（正文由 PDF 文字层线性化产生：上/下标掉行、特殊字体乱码）
+----------------------------------------------------------------
+- `⃗𝑟= 𝑥̂𝚤+ 𝑦̂𝚥+ 𝑧+𝑘` 实为 r = x î + y ĵ + z k（`+` 是 k 的帽号被误提取）。
+- `𝒗= 𝒗𝒙̂4 + 𝒗𝒚̂5 + 𝒗𝒛6𝒌` 实为 v = v_x î + v_y ĵ + v_z k（`̂4`/`̂5`/`6` 为字体错位）。
+- `𝒂= 𝒂𝒙̂4 + 𝒂𝒚̂5 + 𝒂𝒛6𝒌` 实为 a = a_x î + a_y ĵ + a_z k。
+- `𝑎# = 2.0 𝑚𝑠&! −0.10 𝑚𝑠&' 𝑡` 实为 a_x = 2.0 m/s² − (0.10 m/s³)·t。
+- `𝑥= 50 𝑚+ 10 𝑚𝑠&" 𝑡+ 1/2 (2.0 𝑚𝑠&!) 𝑡! −1/6 0.10 𝑚𝑠&' 𝑡'` 实为
+  x = 50 m + (10 m/s)t + ½(2.0 m/s²)t² − (1/6)(0.10 m/s³)t³。
+- `𝑦= tan 𝜃0 𝑥− 𝑔𝑥2/(2(𝑣0 cos 𝜃0)2)` 实为 y = (tan θ₀)x − gx²/[2(v₀cosθ₀)²]。
+- `𝑅= -." # / sin 𝜃0 cos 𝜃0` 实为 R = (2v₀²/g) sin θ₀ cos θ₀。
+- `𝑎-./ = ∆𝑣/∆𝑡` 与 `𝑎= 𝑣/𝑅 × 𝑑𝑠/𝑑𝑡`：`-./` 实为 avg 下标。
+- `𝑎2 = 𝑑𝑣/𝑑𝑡` 中的 `2` 实为 t 下标，即 a_t = dv/dt。
+- 符号/字体错位：`∘`、`-` 在公式中多为减号或上标；`à` 实为箭头"→"；`è` 实为"趋于/取到"；
+  `∅` 实为 φ 或 θ；`+𝑘` / `\𝑘` / `/𝑘` 实为 k̂。
+- `𝑣567` / `𝑣89` 一类连写是框架下标字体错位：第 33~34 页应为 v_PA = v_PB + v_BA 系列。

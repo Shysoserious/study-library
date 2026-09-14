@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT1002 Final Exam 2023 — Questions</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false},
+    {left:'\\[',right:'\\]',display:true},
+    {left:'\\(',right:'\\)',display:false}
+  ],throwOnError:false});"></script>
+<style>
+  :root{
+    --bg:#fafbfc; --panel:#ffffff; --ink:#1f2933; --muted:#5a6878;
+    --accent:#2b6cb0; --accent-soft:#e6f0fb; --line:#e3e8ee; --code:#f4f6f9;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+  aside.sidebar{
+    position:fixed;top:0;left:0;width:250px;height:100vh;
+    background:var(--panel);border-right:1px solid var(--line);
+    overflow-y:auto;padding:24px 18px;
+  }
+  aside.sidebar h2{margin:0 0 14px;font-size:18px;color:var(--accent);
+    border-bottom:2px solid var(--accent-soft);padding-bottom:8px}
+  aside.sidebar .meta{font-size:13px;color:var(--muted);margin-bottom:18px}
+  aside.sidebar ul{list-style:none;margin:0;padding:0}
+  aside.sidebar li{margin:0}
+  aside.sidebar a{
+    display:block;padding:8px 10px;border-radius:6px;text-decoration:none;
+    color:var(--ink);font-size:14px;line-height:1.45;transition:all .15s;
+  }
+  aside.sidebar a:hover{background:var(--accent-soft);color:var(--accent)}
+  aside.sidebar a.bonus{color:#b7791f}
+  main{margin-left:250px;padding:42px 56px 96px;max-width:1080px}
+  header.banner{
+    background:linear-gradient(135deg,#2b6cb0 0%,#4299e1 100%);
+    color:#fff;padding:30px 36px;border-radius:14px;margin-bottom:34px;
+    box-shadow:0 4px 16px rgba(43,108,176,.15);
+  }
+  header.banner h1{margin:0 0 6px;font-size:26px;letter-spacing:.3px}
+  header.banner p{margin:0;opacity:.92;font-size:15px}
+  .instructions{
+    background:#fffaf0;border-left:4px solid #d69e2e;padding:18px 24px;
+    border-radius:8px;margin-bottom:34px;font-size:15.5px;
+  }
+  .instructions h3{margin:0 0 10px;font-size:16px;color:#975a16}
+  .instructions ol{margin:0;padding-left:22px}
+  .instructions li{margin:4px 0}
+  .qcard{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:28px 32px;margin-bottom:30px;
+    box-shadow:0 1px 3px rgba(15,23,42,.04);
+  }
+  .qhead{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px;
+  }
+  .qnum{font-size:21px;font-weight:700;color:var(--accent)}
+  .qpts{
+    display:inline-block;padding:3px 10px;background:var(--accent-soft);
+    color:var(--accent);border-radius:14px;font-size:13px;font-weight:600;
+  }
+  .qpts.bonus{background:#fefcbf;color:#975a16}
+  .qbody p{margin:10px 0}
+  .qbody ol.parts{padding-left:24px;margin:10px 0}
+  .qbody ol.parts > li{margin:14px 0}
+  .qbody .hint{color:var(--muted);font-style:italic;font-size:15.5px}
+  footer{
+    margin-top:60px;padding-top:24px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:14px;text-align:center;
+  }
+  /* mobile fallback */
+  @media (max-width: 800px){
+    aside.sidebar{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+    main{margin-left:0;padding:24px 18px}
+  }
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h2>MAT1002 · 2023</h2>
+  <div class="meta">Final Examination<br>May 13, 2023 · Total 132 pts</div>
+  <ul>
+    <li><a href="#q1">Q1 · Short Questions [27]</a></li>
+    <li><a href="#q2">Q2 · Limits [15]</a></li>
+    <li><a href="#q3">Q3 · Piecewise Partials [6]</a></li>
+    <li><a href="#q4">Q4 · Tangent Plane &amp; Normal [6]</a></li>
+    <li><a href="#q5">Q5 · Min Distance to Plane [6]</a></li>
+    <li><a href="#q6">Q6 · Lagrange on Sphere [8]</a></li>
+    <li><a href="#q7">Q7 · Double Integrals [12]</a></li>
+    <li><a href="#q8">Q8 · Spherical Volume [8]</a></li>
+    <li><a href="#q9">Q9 · Change of Variables [8]</a></li>
+    <li><a href="#q10">Q10 · Conservative Field [12]</a></li>
+    <li><a href="#q11">Q11 · Green's Theorem [8]</a></li>
+    <li><a href="#q12">Q12 · Stokes' Theorem [8]</a></li>
+    <li><a href="#q13">Q13 · Divergence Theorem [8]</a></li>
+    <li><a class="bonus" href="#q14">Q14 · Bonus Proof [6]</a></li>
+  </ul>
+</aside>
+
+<main>
+  <header class="banner">
+    <h1>MAT1002 Final Examination — 2023</h1>
+    <p>Saturday, May 13, 2023 · Time: 13:30 – 16:30 · Maximum Score: 132</p>
+  </header>
+
+  <div class="instructions">
+    <h3>Notes and Instructions</h3>
+    <ol>
+      <li>No books, no notes, no dictionaries, and no calculators.</li>
+      <li>The maximum score of this examination is <strong>132</strong>.</li>
+      <li>There are <strong>13 regular questions</strong> (with parts) and <strong>one bonus question</strong>. The bonus may compensate for lost marks.</li>
+      <li>The symbol <strong>[N]</strong> at the beginning of a question indicates that it is worth N points.</li>
+      <li>Show your intermediate steps except Question 1.</li>
+      <li>Express irrational numbers in exact forms (e.g. $\sqrt{2}$ instead of $1.414\ldots$, $\ln 2$ instead of $0.693\ldots$).</li>
+    </ol>
+  </div>
+
+  <section id="q1" class="qcard">
+    <div class="qhead"><span class="qnum">Question 1</span><span class="qpts">[27 pts]</span><span>Short questions — no intermediate step required.</span></div>
+    <div class="qbody">
+      <ol class="parts" type="i">
+        <li>Suppose that we substitute spherical coordinates
+          $$x=\rho\sin\varphi\cos\theta,\quad y=\rho\sin\varphi\sin\theta,\quad z=\rho\cos\varphi$$
+          in a differentiable function $w=f(x,y,z)$. Find $\dfrac{\partial w}{\partial \theta}$.</li>
+        <li>Let $f(x,y,z)=x^2+\tfrac{1}{2}y^2+z^2$. Find the unit direction in which $f$ increases the most rapidly at the point $P=(1,1,1)$.</li>
+        <li>Consider $f$ and $P$ in (ii). Find the directional derivative of $f$ at $P$ in the direction of $\langle 0,2,-1\rangle$.</li>
+        <li>Find the quadratic approximation of $f(x,y)=2\cos x\cos y$ centered at the origin according to Taylor's formula.</li>
+        <li>True (T) or False (F)? The following integral exists as a real number:
+          $$\iint_{x^2+y^2\le 1}\frac{1}{x^2+y^2}\,dA.$$</li>
+        <li>Rewrite the integral
+          $$\int_0^1\!\!\int_{-1}^0\!\!\int_0^{y^2} dx\,dy\,dz$$
+          as an equivalent iterated integral in the order of $dz\,dx\,dy$.</li>
+        <li>Suppose $f(x,y,z)=x^2+y+yz$. Then $\operatorname{div}(\nabla f)=\nabla\cdot(\nabla f)=(\;\;)$.</li>
+        <li>Find the first four nonzero terms in the Taylor series of
+          $$\dfrac{x}{\sqrt[3]{1+x}}$$
+          centered at $0$.</li>
+        <li>True (T) or False (F)? If a convergent alternating series $\displaystyle\sum_{n=1}^{\infty}(-1)^n u_n$ satisfies $u_n>0$ for all $n$ and $\lim_{n\to\infty}u_n=0$, then $\{u_n\}$ will be eventually nonincreasing, that is, there exists $N$ such that
+          $$u_N\ge u_{N+1}\ge u_{N+2}\ge\cdots$$</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q2" class="qcard">
+    <div class="qhead"><span class="qnum">Question 2</span><span class="qpts">[15 pts]</span><span>Determine the following limits. If a limit exists (as a real number), find its value and show steps; otherwise, explain why it does not exist.</span></div>
+    <div class="qbody">
+      <ol class="parts" type="i">
+        <li>$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{\sin x+\cos y}{x+y}.$</li>
+        <li>$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^3-y^3}{x^2+y^2}.$</li>
+        <li>$\displaystyle\lim_{(r,\theta)\to(1,0)}\dfrac{r\sin\theta}{r^2-1}.$</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q3" class="qcard">
+    <div class="qhead"><span class="qnum">Question 3</span><span class="qpts">[6 pts]</span></div>
+    <div class="qbody">
+      <p>Let
+      $$f(x,y)=\begin{cases}y^3,& y\ge 0\\ -y^2,& y<0\end{cases}$$
+      be defined for all $(x,y)\in\mathbb{R}^2$. Find $f_{xx}$, $f_{xy}$, and $f_{yy}$, and state the domain for each second-order partial derivative above.</p>
+    </div>
+  </section>
+
+  <section id="q4" class="qcard">
+    <div class="qhead"><span class="qnum">Question 4</span><span class="qpts">[6 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the surface $S$ given by $x^2+2y^2+z^2=4$. Find the tangent plane $M$ and normal line $L$ to the surface $S$ at the point $(1,1,1)$.</p>
+    </div>
+  </section>
+
+  <section id="q5" class="qcard">
+    <div class="qhead"><span class="qnum">Question 5</span><span class="qpts">[6 pts]</span></div>
+    <div class="qbody">
+      <p>Find the point on the plane $2x+y-z=4$ that has minimum distance from the origin $(0,0,0)$.</p>
+    </div>
+  </section>
+
+  <section id="q6" class="qcard">
+    <div class="qhead"><span class="qnum">Question 6</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Suppose that the temperature (in degree Celsius) at the point $(x,y,z)$ is given by $T(x,y,z)=xyz^2$. Find the points of highest and lowest temperature on the sphere $x^2+y^2+z^2=4$.</p>
+    </div>
+  </section>
+
+  <section id="q7" class="qcard">
+    <div class="qhead"><span class="qnum">Question 7</span><span class="qpts">[6+6 pts]</span><span>Evaluate the following integrals.</span></div>
+    <div class="qbody">
+      <ol class="parts" type="i">
+        <li>$\displaystyle\iint_R (2x-1-y)\,dA$, where $R$ is the region bounded by the curve $y=2\sqrt{x}$, the $y$-axis, and the line $y=4x-2$.</li>
+        <li>$\displaystyle\int_0^{\infty}\dfrac{e^{-x}-e^{-2x}}{x}\,dx.$ <span class="hint">(Hint. Double integral?)</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q8" class="qcard">
+    <div class="qhead"><span class="qnum">Question 8</span><span class="qpts">[6+2 pts]</span></div>
+    <div class="qbody">
+      <p>Let $S$ be the sphere centered at $(x,y,z)=(0,0,1)$ with radius $1$. Consider the solid $E$ that is inside the sphere $S$ and bounded from above by the cone $z=\sqrt{x^2+y^2}$.</p>
+      <ol class="parts" type="i">
+        <li>Find an iterated integral using the spherical coordinate that calculates the volume of the solid $E$.</li>
+        <li>Evaluate the integral in (i).</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q9" class="qcard">
+    <div class="qhead"><span class="qnum">Question 9</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the integral sum
+      $$\int_1^2\!\!\int_{1/y}^{y}(x^2+y^2)\,dx\,dy+\int_2^4\!\!\int_{y/4}^{4/y}(x^2+y^2)\,dx\,dy.$$
+      Rewrite the integral over a region in the $uv$-plane by using the transformation $x=u/v,\;y=uv$. <strong>DO NOT evaluate the integral.</strong></p>
+    </div>
+  </section>
+
+  <section id="q10" class="qcard">
+    <div class="qhead"><span class="qnum">Question 10</span><span class="qpts">[4+4+4 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the vector field
+      $$\mathbf{F}(x,y,z)=\left\langle e^{x}\cos y+\ln z,\;-e^{ax}\sin y,\;\frac{bx}{z}\right\rangle$$
+      on the domain $D=\{(x,y,z)\mid z>0\}$, where $a$ and $b$ are two constants. Suppose that $\mathbf{F}$ is conservative on $D$.</p>
+      <ol class="parts" type="i">
+        <li>Determine the values of $a$ and $b$.</li>
+        <li>Find a potential function of $\mathbf{F}$.</li>
+        <li>If $\mathbf{F}$ is a force field, find the work done by $\mathbf{F}$ on the particle that moves from the point $(2,\pi,1)$ to $(0,3,2)$ along the line segment joining them.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q11" class="qcard">
+    <div class="qhead"><span class="qnum">Question 11</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Find the circulation and flux of the field $\mathbf{F}(x,y)=\langle x^2,y^2\rangle$ around and across the closed semicircular path that consists of the upper half semicircle from $(a,0)$ to $(-a,0)$ followed by the line segment on the $x$-axis from $(-a,0)$ to $(a,0)$.</p>
+    </div>
+  </section>
+
+  <section id="q12" class="qcard">
+    <div class="qhead"><span class="qnum">Question 12</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the vector field $\mathbf{F}=\operatorname{curl}\mathbf{A}=\nabla\times\mathbf{A}$, where
+      $$\mathbf{A}=\mathbf{A}(x,y,z)=\left\langle y+\sqrt{z},\;e^{xyz},\;\cos(xz)\right\rangle.$$
+      Compute the outward (upward) flux of $\mathbf{F}$ through the hemisphere
+      $$x^2+y^2+z^2=1,\;z\ge 0.$$</p>
+    </div>
+  </section>
+
+  <section id="q13" class="qcard">
+    <div class="qhead"><span class="qnum">Question 13</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the vector field
+      $$\mathbf{F}(x,y,z)=\left\langle 2x^3+y^3,\;y^3+z^3,\;3y^2 z\right\rangle.$$
+      Compute the outward flux of $\mathbf{F}$ through the surface formed by the paraboloid $z=1-x^2-y^2,\;z\ge 0$, and the disk $x^2+y^2\le 1,\;z=0$.</p>
+    </div>
+  </section>
+
+  <section id="q14" class="qcard">
+    <div class="qhead"><span class="qnum">Question 14</span><span class="qpts bonus">[Bonus, 6 pts]</span></div>
+    <div class="qbody">
+      <p>Let $D$ be an open region in the $xy$-plane and let $f$ be a function continuous on $D$. Suppose that the double integral of $f$ over any rectangular subregion $R\subset D$ is zero, i.e.,
+      $$\iint_R f(x,y)\,dA=0.$$
+      Prove that $f(x,y)=0$ for all $(x,y)\in D$.</p>
+    </div>
+  </section>
+
+  <footer>MAT1002 Final 2023 — Question paper · Light-theme reading copy</footer>
+</main>
+
+</body>
+</html>

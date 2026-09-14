@@ -1,0 +1,15 @@
+{
+  "name": "理科学习库",
+  "short_name": "理科学习库",
+  "description": "李思源的理科学习资料库：各科复习笔记与课件。",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fbfaf7",
+  "theme_color": "#1f4e79",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

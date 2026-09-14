@@ -1,0 +1,1125 @@
+--- Page 0 ---
+FIN2010
+Financial Management
+Lecture 3: Raising Capital
+
+--- Page 1 ---
+Lecture 3: Raising Capital
+Review—What is a Firm
+• Organizational forms
+2
+Initial 
+Capital 
+(RMB)
+Limited 
+Liability
+Tax
+Management
+Transfer 
+Ownership
+Raising
+Capital
+Sole 
+Proprietorship
+0
+No
+Individual
+Full control
+N/A
+Difficult
+Partnership
+0
+No
+Individual
+Shared
+Difficult
+Difficult
+LP
+0
+Mixed
+Individual
+Shared
+Difficult
+Easier
+LLC
+500,000
+Yes
+Corporate
+Shared
+Difficult
+Easier
+Corporation
+Private:10M
+Public: 50M
+Yes
+Corporate
+Separation
+Easy
+Easiest
+
+--- Page 2 ---
+Lecture 3: Raising Capital
+Review—What is a Firm
+• Separation of ownership and management
+–
+Investors elect the board, the board chooses the CEO
+• Agency problem
+–
+Theoretical goals of the manager: maximize shareholders’ wealth.
+–
+Reality: maximize his/her own value 
+3
+Firm
+Investors
+Vote
+Selects
+
+--- Page 3 ---
+Lecture 3: Raising Capital
+Firms and the Financial Market
+4
+Venture rounds
+Source: Crunchbase
+Example: the fundraising path of Facebook
+Announced Date
+Funding Type
+Money Raised
+Lead Investors
+Valuation
+9/1/2004
+Angel Round
+$0.5M
+Peter Thiel
+5/1/2005
+Series A
+$12.7M
+Accel Partners
+$87.5M
+3/31/2006
+Series B
+$27.5M
+Greylock Partners
+$500M
+10/24/2007
+Series C
+$240M
+Microsoft
+$15B
+11/30/2007
+Series C
+$60M
+Horizons Ventures
+1/15/2008
+Series C
+$15M
+Global Founders Capital
+3/27/2008
+Series C
+$60M
+Horizons Ventures
+5/1/2008
+Debt Financing
+$100M
+TriplePoint Capital
+5/26/2009
+Series D
+$200M
+DST Global
+$10B
+6/28/2010
+Secondary Market
+$120M
+Elevation Partners
+$14B
+1/21/2011
+Private Equity Round
+$1.5B
+DST Global, Goldman 
+Sachs
+$50B
+5/18/2012
+Initial Public Offering
+$16.0B
+N/A
+$104B
+12/19/2013
+Seasoned Equity 
+Offering
+$4B
+Public market: 
+IPO and SEO
+PE rounds
+
+--- Page 4 ---
+Lecture 3: Raising Capital
+Agenda – Raising Capital
+• Debt and Equity
+• Equity Financing
+–
+Venture Capital
+–
+Private Equity
+–
+Initial Public Offering
+–
+Seasoned Equity Offering
+• Debt Financing
+–
+Different types of debt
+–
+Credit Ratings
+5
+
+--- Page 5 ---
+Lecture 3: Raising Capital
+Debt and Equity
+• Debt: borrowing contract 
+–
+Specific amount of money
+–
+Specific maturity date (when firm pays back)
+–
+Must be paid back
+• Equity: ownership contract
+–
+Grows (or shrinks) with firm earnings
+–
+Does not need to be paid back
+6
+Asset
+Debt
+Equity
+
+--- Page 6 ---
+Lecture 3: Raising Capital
+How Debt and Equity Evolves
+• Cuihua starts a new restaurant with ￥1000.
+• She makes ￥1000 by selling pancakes
+7
+Asset
+1000
+Equity
+1000
+Asset
+2000
+Equity
+2000
+
+--- Page 7 ---
+Lecture 3: Raising Capital
+Asset
+2000
+How Debt and Equity Evolves (2)
+• Seeing the growth of the business, 
+Cuihua borrows ￥2000 from the 
+bank.
+• Next year, she makes ￥2000.
+8
+Equity
+2000
+Asset
+6000
+Equity
+4000
+Debt
+2000
+Asset
+4000
+Debt
+2000
+When a firm makes money, equity 
+grows, and debt stays the same!
+
+--- Page 8 ---
+Lecture 3: Raising Capital
+Debt
+2000
+How Debt and Equity Evolves (3)
+• In the meantime, the debt amount 
+has grown to ￥2200 due to interest.
+–
+Equity becomes 3800 
+• Next year, she loses ￥1500. The 
+debt grows to ￥2400.
+–
+Equity becomes 2100
+9
+Asset
+4500
+Equity
+2100
+Debt
+2400
+Asset
+6000
+Equity is equal to whatever is left 
+over after paying the debt!
+Equity
+4000
+Equity
+3800
+Debt
+2200
+
+--- Page 9 ---
+Lecture 3: Raising Capital
+Debt vs. Equity Investing
+Debt
+Equity
+Cash Flow
+Fixed
+Uncertain
+Claim to profit
+Paid First
+Paid Last
+Voting Rights
+No
+Yes
+Claim to assets if 
+bankrupt
+Paid First
+Paid Last
+Upside Potential
+Limited
+Unlimited
+Risks
+Low
+High
+Required return
+Low
+High
+10
+Principal
+Interest
+Interest+Principal
+Purchase price
+…
+
+--- Page 10 ---
+Lecture 3: Raising Capital
+Agenda – Raising Capital
+• Debt and Equity
+• Equity Financing
+–
+Venture Capital
+–
+Private Equity
+–
+Initial Public Offering
+–
+Seasoned Equity Offering
+• Debt Financing
+–
+Different types of debt
+–
+Credit Ratings
+11
+
+--- Page 11 ---
+Lecture 3: Raising Capital
+How Does Equity Financing Work?
+• Two owners A and B both invest $1M to start a firm. Each owns 5 shares. 
+• To further grow, the firm need to raise capital by issuing new shares. Suppose C is 
+willing to invest $2M.
+–
+Based on a valuation of $10M or $1M/share, $2M = 2 new shares. 
+–
+Total # of shares = 12 shares
+–
+Total firm value = $12M
+12
+A
+50%
+B
+50%
+Total value = $1M
+as the firm grows
+A
+50%
+B
+50%
+Total value = $10M
+A
+42%
+B
+42%
+C
+16%
+There is a change 
+in ownership
+
+--- Page 12 ---
+Lecture 3: Raising Capital
+How Does Equity Financing Work?
+• What if C is only willing to pay $1.5M (instead of $2M) for 2 shares?
+–
+Total firm value = $10M + $1.5M = $11.5M. 
+–
+A’s wealth = $11.5M * 5/12 = $4.79M. Same for B.
+–
+Compared to before the new share issuance, A and B’s wealth both shrink from $5M to $4.79M.This 
+is because the firm sold 2 shares to C at a lower price ($1.5M<2M). This is called dilution.
+• Selling existing shares: suppose B decides to sell a half of his shares to D. 
+–
+No change in value. 
+–
+Only change in ownership.
+13
+A
+42%
+B
+42%
+C
+16%
+A
+42%
+B
+21%
+C
+16%
+D
+21%
+Only selling new shares
+lead to change in firm value
+
+--- Page 13 ---
+Lecture 3: Raising Capital
+Venture Capital (VC) Financing
+Announced Date
+Funding Type
+Money Raised
+Lead Investors
+Valuation
+9/1/2004
+Angel Round
+$0.5M
+Peter Thiel
+5/1/2005
+Series A
+$12.7M
+Accel Partners
+$87.5M
+3/31/2006
+Series B
+$27.5M
+Greylock Partners
+$500M
+10/24/2007
+Series C
+$240M
+Microsoft
+$15B
+11/30/2007
+Series C
+$60M
+Horizons Ventures
+1/15/2008
+Series C
+$15M
+Global Founders Capital
+3/27/2008
+Series C
+$60M
+Horizons Ventures
+5/1/2008
+Debt Financing
+$100M
+TriplePoint Capital
+5/26/2009
+Series D
+$200M
+DST Global
+$10B
+6/28/2010
+Secondary Market
+$120M
+Elevation Partners
+$14B
+1/21/2011
+Private Equity Round
+$1.5B
+DST Global, Goldman 
+Sachs
+$50B
+5/18/2012
+Initial Public Offering
+$16.0B
+N/A
+$104B
+12/19/2013
+Seasoned Equity 
+Offering
+$4B
+
+--- Page 14 ---
+Lecture 3: Raising Capital
+Venture Capital (VC) Financing
+• What: a type of financing that individual investors or financial institutions provide to 
+small, early-stage, emerging firms.
+• Goal: capture very high return from the very few companies that succeed, while most 
+of the other companies fail.
+• Securities used:
+–
+Equity
+–
+Convertible debt: can be converted to a set number of shares of a stock at certain dates 
+•
+Protected on the downside, can capture the upside
+•
+Example: Peter Thiel gave Facebook $500,000 for a convertible debt in seed round, which could be 
+exchanged into 10.2% of the company
+15
+(=angel round)
+
+--- Page 15 ---
+Lecture 3: Raising Capital
+Venture Capital (VC) Financing
+• Exit: an investor (e.g. VC) sells his or her 
+stake in a firm to realize his/her gains (or 
+losses)
+• Exit options:
+–
+Acquisition (Acquired by others)
+–
+Initial Public Offering (become a 
+public firm) 
+–
+Liquidation (the firm goes bankrupt)
+16
+Source
+Return of VC funds
+
+--- Page 16 ---
+Lecture 3: Raising Capital
+China VC Investment
+17
+
+--- Page 17 ---
+Lecture 3: Raising Capital
+VC Types: Affluent Investors
+• Provide (1) seed stage (also called angel round) funding, and (2) guidance
+• Example: Facebook 
+Invested in the seed 
+round and series A
+Helped with timing and 
+selection of the subsequent 
+financing rounds
+Peter Thiel
+18
+
+--- Page 18 ---
+Lecture 3: Raising Capital
+VC Types: Venture Capital Funds
+• Funded by partners or the public, invest in startups
+Top VC investors in China
+19
+
+--- Page 19 ---
+Lecture 3: Raising Capital
+VC Types: Large Corporations
+• Corporations also play a big role in venture capital funding
+–
+To acquire innovative technologies
+–
+To protect the company value by taking over competitors
+Example: 
+GV (Google Ventures)
+400 portfolio companies
+20
+
+--- Page 20 ---
+Lecture 3: Raising Capital
+VC Types: Large Corporations
+21
+
+--- Page 21 ---
+Lecture 3: Raising Capital
+Agenda – Raising Capital
+• Debt and Equity
+• Equity Financing
+–
+Venture Capital
+–
+Private Equity
+–
+Initial Public Offering
+–
+Seasoned Equity Offering
+• Debt Financing
+–
+Different types of debt
+–
+Credit Ratings
+22
+
+--- Page 22 ---
+Lecture 3: Raising Capital
+Private Equity
+Announced Date
+Funding Type
+Money Raised
+Lead Investors
+Valuation
+9/1/2004
+Angel Round
+$0.5M
+Peter Thiel
+5/1/2005
+Series A
+$12.7M
+Accel Partners
+$87.5M
+3/31/2006
+Series B
+$27.5M
+Greylock Partners
+$500M
+10/24/2007
+Series C
+$240M
+Microsoft
+$15B
+11/30/2007
+Series C
+$60M
+Horizons Ventures
+1/15/2008
+Series C
+$15M
+Global Founders Capital
+3/27/2008
+Series C
+$60M
+Horizons Ventures
+5/1/2008
+Debt Financing
+$100M
+TriplePoint Capital
+5/26/2009
+Series D
+$200M
+DST Global
+$10B
+6/28/2010
+Secondary Market
+$120M
+Elevation Partners
+$14B
+1/21/2011
+Private Equity Round
+$1.5B
+DST Global, Goldman 
+Sachs
+$50B
+5/18/2012
+Initial Public Offering
+$16.0B
+N/A
+$104B
+12/19/2013
+Seasoned Equity 
+Offering
+$4B
+
+--- Page 23 ---
+Lecture 3: Raising Capital
+Private Equity
+24
+• Definition: financial institutions that directly invest in private companies or 
+engage in buyouts of public companies, resulting in the delisting of public 
+equity. 
+• Differences between PE vs. VC:
+–
+Firm type: matured firms vs. early-stage companies
+–
+PE also invests in early-stage firms, but typically 
+in later rounds.
+–
+Industry: all industries vs. innovative industries 
+(e.g. high-tech, bio-tech, clean energy…)
+–
+Investment size: large vs. small
+
+--- Page 24 ---
+Lecture 3: Raising Capital
+PE Firms - Example
+25
+International PE firms
+Chinese PE firms
+
+--- Page 25 ---
+Lecture 3: Raising Capital
+Initial Public Offering (IPO)
+• What: the process that a private company goes public
+–
+By going public, the shares can now be traded on an public 
+exchange (e.g., NYSE, Shenzhen Stock exchange)
+–
+Anyone (the general public) can invest in this company
+–
+The company is subjected to more stringent disclosure rules
+• Why:
+–
+To have better access to financing
+–
+The value of the equity is typically higher
+•
+Why? (1) Increased demand. (2) Increased liquidity.
+•
+With higher valuation: 
+•
+shares can be used to award employees; 
+•
+shares can be used to buy another company
+–
+Better brand recognition
+26
+
+--- Page 26 ---
+Lecture 3: Raising Capital
+In which public exchange do firms go IPO?
+27
+Mega size IPOs in HKEX:
+•
+2019: 
+- Alibaba
+- China Tower Corporation
+•
+2018: 
+- Xiaomi
+- Meituan…
+
+--- Page 27 ---
+Lecture 3: Raising Capital
+IPO Process
+28
+1. Managers and the board approve
+2. Find investment banks
+3. Conduct due diligence
+4. File prospectus (招股说明书) 
+and seek approval from the 
+regulator (e.g. CSRC and SEC)
+5. Road show: find buyers, decide IPO price
+6. Buyers buy at IPO price
+7. Shares start trading on exchanges
+Primary Market
+Secondary Market
+证监会(CSRC)
+Filing of Alibaba
+
+--- Page 28 ---
+Lecture 3: Raising Capital
+IPO Issuing Costs – Direct cost
+• Gross spread: 
+–
+The fees that underwriters receive for arranging and underwriting an 
+offering of equity (or debt).
+–
+7% is the norm
+–
+Larger (about 9%) for small offerings (<$10M)
+–
+Smaller (about 5%) for large offerings (>$500M). Facebook only paid 1.1%  
+or $176 million.
+• Other expense: filing fee, legal fee, tax, etc.
+29
+
+--- Page 29 ---
+Lecture 3: Raising Capital
+IPO Costs – Indirect cost 
+• One of the largest IPOs in history: Alibaba (2014-9-19) sold 368 million shares at 
+$68/share and raised $25B in total
+–
+First day price in the secondary market：$93.89 
+• IPO underpricing: first-day closing price - initial offering price.
+–
+Underpricing represents indirect cost for firms. Also called “money left on the 
+table”.
+• Indirect cost = ($93.89-$68)/share * 368 million
+=$9.5 billion
+• Direct cost (underwriter fee)= $ 300 million 
+30
+Indirect cost is usually 
+much higher than direct cost!
+
+--- Page 30 ---
+Lecture 3: Raising Capital
+Underpricing History
+Alibaba is not an isolated 
+instance. Historically, 
+there has been an 
+average underpricing of 
+about 19% in the US.
+31
+
+--- Page 31 ---
+Lecture 3: Raising Capital
+Underpricing Around the Globe
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+80%
+90%
+100%
+110%
+120%
+130%
+140%
+150%
+Average first-day returns
+Average first-day returns on non-European IPOs
+32
+Not only in the US, but 
+also around the world
+
+--- Page 32 ---
+Lecture 3: Raising Capital
+Why is There Persistent Underpricing?
+• On average, it’s impossible for there to be overpricing—there will be no buyers for 
+IPO shares. Investing in IPO markets is risky, and underpricing compensates buyers 
+for the risks.
+–
+Underpricing is a natural phenomenon!
+• Another question: Is the underpricing too much? 
+–
+Probably true for China: 80% for the entire sample period[ref]
+–
+Reason: Until 2023, regulation set upper bounds on IPO prices (~23 times 
+earnings), which was too rigid for many firms.
+33
+
+--- Page 33 ---
+Lecture 3: Raising Capital
+Seasoned Equity Offering
+• Additional equity issuance after IPO
+–
+Example: Facebook issued 27M new shares after it was included into the S&P 
+500.[1]
+• A stylized finding about SEO
+–
+Short term impact: stock price usually drops by about 3% upon SEO 
+announcements.
+–
+Why? 
+(1)Increased supply. 
+(2)Adverse selection: investors would think that the manager would only issue shares if he/she thinks 
+the stock is overpriced.
+–
+Long term: firms that have undergone SEO underperform peer firms in the next 5 
+years.[2]
+34
+
+--- Page 34 ---
+Lecture 3: Raising Capital
+Agenda – Raising Capital
+• Debt and Equity
+• Equity Financing
+–
+Venture Capital
+–
+Private Equity
+–
+Initial Public Offering
+–
+Seasoned Equity Offering
+• Debt Financing
+–
+Different types of debt
+–
+Credit Ratings
+35
+
+--- Page 35 ---
+Lecture 3: Raising Capital
+Debt Financing-Different Types of Debt
+• Private debt
+–
+Bank loan: borrowers v.s. banks
+–
+P2P: borrowers v.s. individuals
+–
+Trade credit: debt between suppliers and firms
+–
+..
+• Public debt
+–
+Publicly traded debt is also called bond
+–
+Depending on who the issuer (borrower) is, bond can be classified as corporate bond (firms), 
+treasury bond (central government), municipal bond (local government)
+36
+
+--- Page 36 ---
+Lecture 3: Raising Capital
+Corporate Bond Issuance Process
+• Manager decides to issue bond
+• Talk to investment banks about the best strategy
+–
+Investment banks know what bonds (maturity, coupon type, callable or not, etc.) investors want
+• (Get a rating from a rating agency)
+• File registration with the regulatory body (e.g. CSRC or SEC)
+37
+
+--- Page 37 ---
+Lecture 3: Raising Capital
+Credit Ratings
+• Definition: an evaluation of the 
+credit risk of a given borrower, 
+predicting their ability to pay back 
+the debt (=how likely is it for the 
+borrower to go bankrupt?).
+• Major rating agencies 
+–
+China：大公、中诚信、联合、
+上海新世纪. 
+–
+US: S&P, Moody’s, Fitch
+• The higher the rating (closer to 
+AAA), the safer the bond
+Investment grade: 85% of money, 50% of issues (in 
+the US)
+Default rates
+38
+
+--- Page 38 ---
+Lecture 3: Raising Capital
+Can We Fully Trust the Rating Agencies?
+Companies pay to get rated. -> Rating agencies want to please the 
+company, but not the investors.
+Another example of agency problem!
+97% of Chinese 
+bonds are rated 
+AA or AAA
+39
+
+--- Page 39 ---
+Lecture 3: Raising Capital
+Summary
+• Debt vs equity
+–
+Debt: fixed maturity, fixed cash flow, paid first when bankrupt
+–
+Equity: no maturity, uncertain cash flow, paid after debt holders
+•
+Which one requires higher return? Why?
+• Equity financing
+–
+VC rounds, PE rounds, Initial public offering (IPO)
+•
+Why does VC invest in a lot of firms? What instrument do they use?
+•
+What are the costs of IPO?
+• Debt financing
+–
+Public debt: bonds
+•
+Issued with the help of investment banks
+•
+Credit rating
+40
+
+--- Page 40 ---
+Lecture 3: Raising Capital
+Next Time—Time value of money
+• What is the time value of money (TVM)?
+• TVM of a single cash flow
+–
+APR and EAR
+• TVM of cash flow streams
+41
+
+
+================================================================
+附录：原 PDF 中嵌入图片内的文字与数据（文字层无法提取，据原图人工转录）
+================================================================
+说明：
+1. 页码为 PDF 页序号，与正文中 `--- Page N ---` 标记一致（即幻灯片页码 = N + 1）。
+2. 以下内容在原 PDF 里是图片（表格截图、图表、新闻截图、机构 logo 墙），
+   直接提取文字层会完全丢失，故在此补全。
+3. 正文中若干页出现的重复字母（例如 𝐹𝐹𝐹𝐹 = 𝑃𝑃𝑃𝑃）是 PDF 伪粗体造成的
+   编码伪影，括号内给出的才是真实公式。
+
+--- Page 15（幻灯片第 16 页）图片：Table 1 Descriptive statistics ---
+Rounds（融资轮次）: 61,356
+Companies（公司数）: 18,237
+Company Outcomes（公司结局）:
+  IPO: 10.4%
+  Acquisition（被收购）: 23.4%
+  Liquidation（清算）: 15.9%
+  Unknown（未知）: 50.4%
+页面另含两个超链接：Source；Return of VC funds
+
+--- Page 16（幻灯片第 17 页）图片：中国创投融资趋势图（KPMG） ---
+主标题: China sees its own record AI emblematic financings
+图内标题: Venture financing in China，2020–Q2'26
+坐标: 左轴 Deal value ($B) / 右轴 Deal count；柱状 = Deal value ($B)，折线 = Deal count
+按季度 Deal value（十亿美元）:
+  2020: Q1 12.9 | Q2 18.9 | Q3 26.5 | Q4 38.5
+  2021: Q1 34.8 | Q2 31.3 | Q3 38.6 | Q4 41.4
+  2022: Q1 27.7 | Q2 18.5 | Q3 25.3 | Q4 22.2
+  2023: Q1 18.6 | Q2 15.9 | Q3 15.3 | Q4 17.0
+  2024: Q1 16.8 | Q2 10.7 | Q3 12.3 | Q4 18.4
+  2025: Q1 11.4 | Q2 10.5 | Q3 15.1 | Q4 17.1
+  2026: Q1 22.5 | Q2 35.1
+Deal count 折线（图上未标注数值，以下为读图近似值）:
+  2020 Q1 约 1,000 笔 → 2020 Q3–Q4 峰值约 2,300 笔 → 2021 Q4 约 2,100 笔
+  → 2022 Q4–2023 Q2 低点约 1,700 笔 → 2023 Q4 约 1,900 笔
+  → 2025 Q4 约 2,100 笔 → 2026 Q2 约 1,500 笔
+来源: Source: KPMG Private Enterprise analysis of PitchBook data, Q2'26. Data as of June 30, 2026.
+      PitchBook data is proprietary and subject to final internal validation prior to publication.
+
+--- Page 18（幻灯片第 19 页）图片：两幅排行榜/卡片 ---
+(a) Investors in the Top 100 VC-Backed US Tech Exits，Q1 2013 – Q2 2015（列：# of Exits）
+  Accel Partners 14
+  New Enterprise Associates 11
+  Sequoia Capital 11
+  Sapphire Ventures 10
+  Kleiner Perkins Caufield & Byers 10
+  Institutional Venture Partners 9
+  Battery Ventures 8
+  Norwest Venture Partners 7
+  Foundation Capital 7
+  Benchmark Capital 7
+  Insight Venture Partners 6
+  Index Ventures 6
+  Meritech Capital Partners 6
+  DAG Ventures 6
+  Redpoint Ventures 6
+  Felicis Ventures 6
+  Intel Capital 6
+  General Catalyst Partners 5
+  Spark Capital 5
+  以下 1–2 行在原图中被校徽遮挡，仅可辨识数字 4 以及：US Venture Partners 5、Adams Street Partners 5
+
+(b) Top VC investors in China（机构卡片：简介 / 成立年份 / 地点 / 官网）
+  Qiming Venture Partners（Venture Capital）
+    简介: investing in Technology & Consumer and Healthcare industries at the early and growth stages.
+    成立: 2006 | 地点: Shanghai | 官网: qimingvc.com
+  ZhenFund（Venture Capital）
+    简介: invests in future technology, AI, enterprise service, healthcare, new consumption, and mobile internet among other sectors.
+    成立: 2011 | 地点: Beijing | 官网: zhenfund.com
+  Matrix Partners China（Venture Capital）
+    简介: builds long-term relationships with entrepreneurs and helps them build significant companies.
+    成立: 1977 | 地点: Beijing | 官网: matrixpartners.com.cn/
+  Shenzhen Capital Group（Government Office / Private Equity Firm / Venture Capital）
+    简介: focused on cultivating national industries and shaping national brands.
+    地点: Shenzhen | 官网: szvc.com.cn/
+  Shunwei Capital（Venture Capital）
+    简介: focused primarily on early-to-mid-stage investments in China's internet industry.
+    地点: Beijing | 官网: shunwei.com
+
+--- Page 20（幻灯片第 21 页）图片：CB Insights 独角兽投资关系图 ---
+标题: CHINA UNICORNS BACKED BY BAIDU, ALIBABA, TENCENT, & JD
+四大中心节点（原图 logo）: 百度 Baidu、阿里巴巴 Alibaba Group、京东 JD.com、腾讯 Tencent
+图中标注的被投独角兽（按原图可辨识度转录，坐标由左至右）:
+  Meitu Technology（美团）、51Xinyongka（51 信用卡）、Mia.com（美丽说）、
+  Koudai Gouwu（口袋购物）、Kuaishou（快手）、Zhong An Insurance（众安保险）、
+  Dianping（大众点评）、iCarbonX、iTutorGroup、Ele.me（饿了么）、
+  Xiaohongshu（小红书）、Homelink（链家）、URWork（优客工场）、
+  Didi Chuxing（滴滴出行）、Huochebang（货车帮）、Guahao Technology Co.（挂号网）、
+  Wanli Technology、MOJ/Mob、China Internet Plus（中国互联网+）、
+  Panduoduo（拼多多）、ofo、Ant Financial（蚂蚁金服）、Zhuba（小字，字迹模糊）
+注: 图中部分小字标签分辨率有限，以上为可辨识结果；除 BAT+JD 四个中心节点外，
+    关系图表达的即是"这些独角兽由 BAT/JD 投资"这一事实。
+
+--- Page 24（幻灯片第 25 页）图片：PE 机构 logo 墙 ---
+International PE firms（国际 PE）: Blackstone、TPG、KKR、The Carlyle Group
+Chinese PE firms（中国 PE）: 高瓴资产、朱雀投资、申毅投资、Windsor Capital 温莎资本、
+  星石投资、望正资本、重阳投资 CHONGYANG、中欧基金、和聚投资、
+  mti MegaTrust Investment、展博投资、华夏基金、源乐晟资产、
+  springs capital 淡水泉投资、华泰证券（上海）资产管理有限公司
+
+--- Page 26（幻灯片第 27 页）图片：Top-performing global stock exchanges ---
+Funds raised by top five exchanges（前五大交易所募资额）:
+  2019: USD 143.7 billion（占全部募资额 73%）
+  2018: USD 130.4 billion（占全部募资额 61%）
+2019 年排名（IPO proceeds，USD billion）:
+  1 HKEX 37.2 | 2 NASDAQ 27.5 | 3 NYSE 27.1 | 4 Saudi Stock Exchange 26.6 | 5 Shanghai Stock Exchange 25.3
+2018 年排名（IPO proceeds，USD billion）:
+  1 HKEX 36.9 | 2 NYSE 27.5 | 3 Tokyo Stock Exchange 26.7 | 4 NASDAQ 25.5 | 5 Frankfurt Stock Exchange 13.8
+注(1): All analysis is based on data as at 8 Dec 2019, adjusted to numbers of confirmed listings up to 13 Dec 2019,
+       unless otherwise stated. Source: Bloomberg and KPMG analysis.
+注(2): Adjusted for the expected listing of Saudi Aramco on Dec 11 for USD 25.6B (before over-allotment).
+（该页右侧 "Mega size IPOs in HKEX: 2019 Alibaba / China Tower Corporation；2018 Xiaomi / Meituan…" 已在文字层中）
+
+--- Page 30（幻灯片第 31 页）图片：Table 1. Mean First-day Returns and Money Left on the Table, 1980–2025 ---
+表头说明: The sample is IPOs with an offer price of at least $5.00, excluding ADRs, unit offers, SPACs, closed-end funds, REITs,
+natural resource limited partnerships, small best efforts offers, banks and S&Ls, and stocks not listed on CRSP
+(CRSP includes Amex, NYSE, and NASDAQ stocks). Proceeds exclude overallotment options. The amount of money left on
+the table is defined as the closing market price on the first day of trading minus the offer price, multiplied by the shares offered.
+列: Year | Number of IPOs | Mean First-day Return (Equal-weighted / Proceeds-weighted) | Median First-day Return | Aggregate Amount Left on the Table | Aggregate Proceeds
+  1980 71 14.3% 20.0% 6.9% $0.18b $0.91b
+  1981 192 5.9% 5.7% 0.3% $0.13b $2.31b
+  1982 77 11.0% 13.3% 3.7% $0.13b $1.00b
+  1983 451 9.9% 9.4% 2.5% $0.84b $8.89b
+  1984 171 3.7% 2.5% 0.0% $0.05b $2.02b
+  1985 186 6.4% 5.6% 2.8% $0.23b $4.09b
+  1986 393 6.1% 5.1% 1.1% $0.68b $13.40b
+  1987 285 5.6% 5.7% 1.3% $0.66b $11.68b
+  1988 105 5.5% 3.4% 2.3% $0.13b $3.88b
+  1989 116 8.0% 4.7% 4.0% $0.27b $5.81b
+  1990 110 10.8% 8.1% 5.6% $0.34b $4.24b
+  1991 286 11.9% 9.7% 7.5% $1.50b $15.39b
+  1992 412 10.3% 8.0% 4.4% $1.82b $22.69b
+  1993 510 12.7% 11.2% 6.3% $3.52b $31.44b
+  1994 402 9.6% 8.3% 4.2% $1.43b $17.18b
+  1995 462 21.4% 17.5% 13.2% $4.90b $27.93b
+  1996 677 17.2% 16.1% 10.0% $6.76b $42.05b
+  1997 474 14.0% 14.4% 9.4% $4.56b $31.76b
+  1998 283 21.9% 15.6% 8.9% $5.25b $33.66b
+  1999 476 71.2% 57.4% 37.5% $37.11b $64.67b
+  2000 380 56.3% 45.8% 27.9% $29.68b $64.80b
+  2001 80 14.0% 8.4% 10.2% $2.97b $35.29b
+  2002 66 9.1% 5.1% 8.2% $1.13b $22.03b
+  2003 63 11.7% 10.4% 8.7% $1.00b $9.54b
+  2004 173 12.3% 12.4% 7.1% $3.86b $31.19b
+  2005 159 10.3% 9.3% 5.8% $2.64b $28.23b
+  2006 157 12.1% 13.0% 5.6% $3.95b $30.48b
+  2007 159 14.0% 13.9% 6.8% $4.95b $35.66b
+  2008 21 5.7% 24.7% -1.7% $5.63b $22.76b
+  2009 41 9.8% 11.1% 5.7% $1.46b $13.17b
+  2010 91 9.4% 6.2% 3.1% $1.84b $29.82b
+  2011 81 13.9% 13.0% 8.5% $3.51b $26.97b
+  2012 93 17.7% 8.9% 11.1% $2.75b $31.11b
+  2013 158 20.9% 19.0% 13.0% $7.89b $41.56b
+  2014 206 15.5% 12.8% 5.8% $5.40b $42.20b
+  2015 118 19.2% 18.9% 10.3% $4.16b $22.00b
+  2016 75 14.5% 14.2% 5.0% $1.77b $12.52b
+  2017 106 12.9% 16.0% 9.0% $3.68b $22.98b
+  2018 134 18.6% 19.1% 11.6% $6.39b $33.47b
+  2019 113 23.5% 17.6% 17.9% $6.95b $39.28b
+  2020 165 41.6% 47.9% 26.2% $29.66b $61.86b
+  2021 311 32.1% 24.0% 17.0% $28.65b $119.36b
+  2022 38 48.9% 14.2% 9.3% $0.99b $6.99b
+  2023 54 11.9% 16.1% -0.5% $1.92b $11.92b
+  2024 72 15.3% 18.1% 7.2% $3.72b $20.49b
+  2025 90 29.3% 33.6% 13.7% $13.11b $38.97b
+  1980–2025 9,343 19.0% 20.6% 7.0% $250.1b $1,190.0b
+（该页左侧蓝字 "Alibaba is not an isolated instance. Historically, there has been an average
+ underpricing of about 19% in the US." 已在文字层中）
+
+--- Page 38（幻灯片第 39 页）图片：两则新闻截图 ---
+(a) 华尔街见闻（wallstreetcn.com）报道截图
+    作者: 张韬 | 时间: 2015年07月27日 08:57:28 | 浏览量: 8712
+    标题: 97%的债券获最高评级？国内债市评级引质疑
+    正文:
+    ・97%的中国债券的评级不是 AA 就是 AAA，而且同一公司的债券在国内外评级差别巨大，究竟是怎么回事？
+    ・以恒大地产集团为例，其在国内发行的债券评级为 AAA，但其在海外发行的 30 亿美元的债券评级却还不到投资级别。
+    ・像恒大这样在国内外发行的债券的评级出现巨大差别，让国际投资者对中国正在对外开放的债市感到怀疑。
+    ・投资管理公司 Legal & General Investment Management 信用分析师 Ben Bennett 向《华尔街日报》表示，
+      他们对中国的评级公司表示怀疑，他们更愿意相信国际上的三大主流评级机构。
+    ・中国自 2010 年起至今向国际投资者开放了 3% 的债权市场，但只有中国评级机构才能对债券评级。
+      目前，97% 的人民币计价的债券拥有 AA 和 AAA 的最高评级。
+    分享按钮: 微博 / QQ / 微信 / LinkedIn
+(b) SEC 新闻稿截图
+    标题: SEC Announces Charges Against Standard & Poor's for Fraudulent Ratings Misconduct
+    FOR IMMEDIATE RELEASE 2015-10 | Washington D.C., Jan. 21, 2015
+    正文要点: SEC 宣布对 Standard & Poor's Ratings Services 在部分商业抵押贷款支持证券（CMBS）评级中
+    的欺诈性不当行为提起一系列联邦证券法违规指控。S&P 同意支付超过 5,800 万美元与 SEC 和解，
+    并额外支付 1,900 万美元以了结纽约州总检察长办公室（1,200 万美元）与
+    马萨诸塞州总检察长办公室（700 万美元）提起的平行案件。

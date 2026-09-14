@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA2001 Final Exam 2024 — Pure Questions</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f8f7f4;color:#1a1a1a;line-height:1.9;font-size:17px;}
+.sidebar{position:fixed;top:0;left:0;width:250px;height:100vh;background:#f0eee9;border-right:1px solid #ddd;overflow-y:auto;padding:24px 0;}
+.sidebar-title{padding:0 20px 16px;font-size:16px;font-weight:700;color:#534AB7;border-bottom:1px solid #ddd;margin-bottom:12px;}
+.sidebar a{display:block;padding:8px 20px;color:#333;text-decoration:none;font-size:14px;border-left:3px solid transparent;}
+.sidebar a:hover{color:#534AB7;background:rgba(83,74,183,0.06);border-left-color:#534AB7;}
+.main{margin-left:250px;padding:36px 50px 80px;}
+.container{max-width:880px;margin:0 auto;}
+h1{font-size:30px;font-weight:700;margin-bottom:6px;color:#534AB7;}
+.subtitle{color:#666;font-size:16px;margin-bottom:8px;}
+.header-info{background:#fff;border:1px solid #e5e3de;border-radius:12px;padding:18px 22px;margin:18px 0;font-size:16px;}
+.header-info p{margin-bottom:4px;}
+.q{margin:30px 0;background:#fff;border:1px solid #e5e3de;border-radius:14px;padding:24px 26px;}
+.q-title{font-size:20px;font-weight:700;color:#534AB7;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #534AB7;}
+.q-title .pts{font-weight:400;font-size:15px;color:#888;}
+.q-sub{font-size:17px;font-weight:600;margin:14px 0 6px;}
+p{margin-bottom:10px;}
+.instructions{background:#f0eee9;border-radius:12px;padding:18px 22px;margin:18px 0;font-size:15px;}
+.instructions p{margin-bottom:4px;}
+ol,ul{padding-left:26px;margin-bottom:8px;}
+li{margin-bottom:5px;}
+table{width:100%;border-collapse:collapse;margin:12px 0;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #e5e3de;font-size:15px;}
+th{background:#f3f1ec;font-weight:600;}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<div class="sidebar">
+<div class="sidebar-title">DDA2001 2024 Exam</div>
+<a href="#q1">Q1 — KNN (9 pts)</a>
+<a href="#q2">Q2 — Logistic Regression (14 pts)</a>
+<a href="#q3">Q3 — Gradient Descent (10 pts)</a>
+<a href="#q4">Q4 — Convex Sets (15 pts)</a>
+<a href="#q5">Q5 — Convex Functions (10 pts)</a>
+<a href="#q6">Q6 — Integrated Problem (26 pts)</a>
+<a href="#q7">Q7 — Newsvendor (16 pts)</a>
+</div>
+
+<div class="main">
+<div class="container">
+
+<h1>DDA2001: Introduction to Data Science</h1>
+<p class="subtitle">Final Exam &mdash; SDS, CUHK(SZ) &mdash; May 15, 2024</p>
+
+<div class="instructions">
+<p><strong>Instructions:</strong></p>
+<p>1. The time duration is 120 minutes.</p>
+<p>2. The total mark is 100 points.</p>
+<p>3. There are 7 questions in total, please check.</p>
+<p>4. Please write down your calculations and statements clearly and in detail.</p>
+<p>5. Give answers up to 2 decimal places where appropriate.</p>
+<p>6. You should answer the questions in the answer sheet in sequential order.</p>
+<p>7. Please submit the test paper and answer sheet together at the end.</p>
+</div>
+
+<div class="header-info">
+<p><strong>Student ID:</strong> ________________________</p>
+<p><strong>Name:</strong> ________________________</p>
+</div>
+
+<!-- ============= Q1 ============= -->
+<div class="q" id="q1">
+<div class="q-title">Question 1 &mdash; KNN <span class="pts">(9 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(3 points)</span></div>
+<p>Explain the process of classifying a new data point using KNN.</p>
+<div class="q-sub">(b) <span class="pts">(3 points)</span></div>
+<p>Describe how the choice of $K$ affects the performance of the KNN algorithm.</p>
+<div class="q-sub">(c) <span class="pts">(3 points)</span></div>
+<p>Give one solution to determine a proper value of $K$.</p>
+</div>
+
+<!-- ============= Q2 ============= -->
+<div class="q" id="q2">
+<div class="q-title">Question 2 &mdash; Logistic Regression <span class="pts">(14 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(2 points)</span></div>
+<p>Consider a binary classification problem. Explain the concept of logistic regression in supervised learning; in other words, what does logistic regression try to model?</p>
+<div class="q-sub">(b)</div>
+<p>Let $y_i$ denote the class label (0 or 1) for the $i$-th data point $\mathbf{x}_i \in \mathbb{R}^3$ ($\mathbf{x}_i = (x_{i1}, x_{i2}, x_{i3})$), and $\boldsymbol{\theta} \in \mathbb{R}^3$ ($\boldsymbol{\theta} = (\theta_1, \theta_2, \theta_3)$) are model parameters. In other words,</p>
+$$P(y_i = 1 \mid \mathbf{x}_i, \boldsymbol{\theta}) = \frac{1}{1 + e^{-\sum_{j=1}^3 \theta_j x_{ij}}}$$
+<div class="q-sub">i. <span class="pts">(4 points)</span></div>
+<p>What is the log-likelihood function for $n$ data points, i.e., $(\mathbf{x}_i, y_i)$, $i = 1,\dots,n$? Explain in detail.</p>
+<div class="q-sub">ii. <span class="pts">(4 points)</span></div>
+<p>Show whether the log-likelihood function, denoted as $\ell(\boldsymbol{\theta})$, is a convex or concave function with respect to $\boldsymbol{\theta}$. Explain in detail.</p>
+<div class="q-sub">(c) <span class="pts">(4 points)</span></div>
+<p>Describe how to estimate the optimal value of $\boldsymbol{\theta}^*$ given $(\mathbf{x}_i, y_i)$, $i = 1, \dots, n$, by maximizing the log-likelihood function $\ell(\boldsymbol{\theta})$. Please briefly provide the algorithm, including initialization, updating formula, and stopping rules. Note that in your answer, you don't need to explicitly compute $\frac{\partial\ell(\boldsymbol{\theta})}{\partial\boldsymbol{\theta}}$ using the mathematical formula of $\ell(\boldsymbol{\theta})$. When you want to indicate the gradient, please directly use $\frac{\partial\ell(\boldsymbol{\theta})}{\partial\boldsymbol{\theta}}$. Also, let's assume that the step size is a constant, denoted as $\eta$.</p>
+</div>
+
+<!-- ============= Q3 ============= -->
+<div class="q" id="q3">
+<div class="q-title">Question 3 &mdash; Gradient Descent Method <span class="pts">(10 points)</span></div>
+<p>Let's maximize the function $f(x) = -x^2/2 + x$ through the gradient descent method. We fix the learning rate in the algorithm as a constant, $\alpha$. Assume that the initial value of $x$ is $x^{(0)} = 2$ and $x^{(t)}$ is the value of $x$ after the $t$-th iteration of gradient descent. The stopping rule is $|x^{(t+1)} - x^{(t)}| \le \epsilon$, where $\epsilon$ is a non-negative constant.</p>
+<div class="q-sub">(a) Let $\epsilon = 1/1000$. In each of the following situations, will the final output be the optimal solution? Explain the reasons.</div>
+<div class="q-sub">i. <span class="pts">(1 point)</span> $\alpha = 0$.</div>
+<div class="q-sub">ii. <span class="pts">(1 point)</span> $\alpha = 1$.</div>
+<div class="q-sub">iii. <span class="pts">(1 point)</span> $\alpha = 2$.</div>
+<div class="q-sub">iv. <span class="pts">(2 points)</span> $\alpha = 1/2$.</div>
+<div class="q-sub">(b) <span class="pts">(5 points)</span> Let $\epsilon = 0$. For what range of $\alpha$ will $\lim_{t\to\infty} x^{(t)}$ converge to the optimal solution? Explain the reasons.</div>
+</div>
+
+<!-- ============= Q4 ============= -->
+<div class="q" id="q4">
+<div class="q-title">Question 4 &mdash; Convex Sets <span class="pts">(15 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(5 points)</span></div>
+<p>Let $f(\mathbf{x})$ be a convex function and $S$ a convex set. Then the optimization problem $\min_{\mathbf{x} \in S} f(\mathbf{x})$ is a convex optimization problem. Let $C \subseteq S$ be the set of points such that $\mathbf{x} \in C$ if and only if $\mathbf{x}$ is an optimal solution to the problem. Show that $C$ is a convex set.</p>
+<div class="q-sub">(b) <span class="pts">(5 points)</span></div>
+<p>Show that the set $S$ given by $S = \{(x, y) \mid x^2 \le 5 - 2y^2\}$ is a convex set.</p>
+<div class="q-sub">(c) <span class="pts">(5 points)</span></div>
+<p>Let $S_1 \subseteq \mathbb{R}^n$ and $S_2 \subseteq \mathbb{R}^n$ be two convex sets. Show that $S = \{\mathbf{x} + \mathbf{y} \mid \mathbf{x} \in S_1, \mathbf{y} \in S_2\}$ is a convex set.</p>
+</div>
+
+<!-- ============= Q5 ============= -->
+<div class="q" id="q5">
+<div class="q-title">Question 5 &mdash; Convex Functions <span class="pts">(10 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(5 points)</span></div>
+<p>Given a vector $\mathbf{x} \in \mathbb{R}^n$, let $|\mathbf{x}|$ denote the vector with $|\mathbf{x}|_i = |x_i|$ (i.e., $|\mathbf{x}|$ is the absolute value of $\mathbf{x}$, componentwise). Let $|\mathbf{x}|_{[i]}$ denote the $i$-th largest component of $|\mathbf{x}|$. In other words, $|\mathbf{x}|_{[1]}, |\mathbf{x}|_{[2]}, \dots, |\mathbf{x}|_{[n]}$ are the absolute values of the components of $\mathbf{x}$, sorted in non-increasing order. Show that</p>
+$$f(\mathbf{x}) = \sum_{i=1}^r \alpha_i |\mathbf{x}|_{[i]}$$
+<p>is a convex function of $\mathbf{x}$, where $\alpha_i = 2n - i$ and $r \le n$ is a positive integer. Explain the reasons.</p>
+<div class="q-sub">(b) <span class="pts">(5 points)</span></div>
+<p>For what range of $a$ will function $f(x) = ax^3 + 6\ln x$ be a real-valued convex function within interval $(a^2, \infty)$? Explain the reasons.</p>
+</div>
+
+<!-- ============= Q6 ============= -->
+<div class="q" id="q6">
+<div class="q-title">Question 6 &mdash; Probability + Statistics + Optimization + Machine Learning <span class="pts">(26 points)</span></div>
+<p>An airline company would like to calculate the demand when it sets the price of the flight from Beijing to Shanghai as $p$. Suppose an arriving potential customer would purchase the ticket if and only if his willingness-to-pay (WTP) is higher than the posted price $p$. Also assume that a potential customer's WTP $X$ is random, following a distribution with a continuous cumulative distribution function $F(x) = P(X \le x)$. It is known that $F(x) = 0$ if $x \le 1$.</p>
+<div class="q-sub">(a) <span class="pts">(2 points)</span></div>
+<p>For the random experiment of an arriving potential customer buying the ticket or not at price $p \ge 1$, describe the sample space and the probability associated with each outcome.</p>
+<div class="q-sub">(b) <span class="pts">(2 points)</span></div>
+<p>Suppose there is a total of $n$ arriving potential customers, and each customer's purchase decision is independent of each other. Consider the random variable $D$ denoting the total number of sales from $n$ arriving customers under posted price $p \ge 1$ (assume that the total number of flight tickets to sell is larger than $n$). What is the distribution of $D$? Give its mean and variance.</p>
+<div class="q-sub">(c) <span class="pts">(3 points)</span></div>
+<p>Consider the mean of $D$ in the previous question. Obviously, it depends on the posted price $p$. We denote the expected demand as $d(p)$. Suppose for each ticket sold, the airline company incurs a cost of $c \ge 0$ to prepare the flight service. If the airline company wants to set its posted price $p \ge 1$ to maximize the expected profit, write down the formulation of this optimization problem.</p>
+<p>i. What's the decision variable?<br>ii. What's the objective function?<br>iii. What's the constraint?</p>
+<div class="q-sub">(d) <span class="pts">(3 points)</span></div>
+<p>The profit of the previous part depends on the customers' WTP distribution $F$. Suppose $F$ is twice continuously differentiable. Give the second order condition under which the profit-maximization problem's objective is concave in $p \in [1, \infty)$.</p>
+<div class="q-sub">(e)</div>
+<p>The company would like to estimate the relationship between mean demand $d(p)$ and price $p \ge 1$ using the constant elasticity demand function $d(p) = ap^b$, where $a > 0$ and $b < 0$ are parameters to be determined.</p>
+<div class="q-sub">i. <span class="pts">(4 points)</span></div>
+<p>Given that $d(p) = ap^b$ for $p \ge 1$, calculate the value of $n$ and the customer's WTP distribution $F$.</p>
+<div class="q-sub">ii. <span class="pts">(4 points)</span></div>
+<p>If the price is set as $p$, the expected consumer surplus of a representative consumer is defined as $E[\max\{X - p, 0\}]$. Calculate the expected consumer surplus for one representative consumer when $d(p) = ap^b$ and $b < -1$.</p>
+<div class="q-sub">iii. <span class="pts">(4 points)</span></div>
+<p>Given past price and demand data $(D_1, p_1), (D_2, p_2), \dots, (D_m, p_m)$ under $m$ different price experiments, the company would like to estimate the values of the parameters $a$ and $b$ using MLE. More specifically, it is assumed that the actual demand under posted price $p$ is normally distributed with mean $ap^b$ and known variance $\sigma^2$ ($\sigma$ is small enough so that the chance of demand being negative can be neglected). Write down the log-likelihood function to estimate the parameters $a$ and $b$. (You don't need to solve it.)</p>
+<div class="q-sub">(f) <span class="pts">(4 points)</span></div>
+<p>Suppose the airline company can identify all the arrival and purchase (or not) histories with customer ID in the past year. The number of arrivals $A_i$ and number of purchases $B_i$ of each customer $i = 1, 2, \dots, I$ are recorded as follows: $(A_1, B_1), (A_2, B_2), \dots, (A_I, B_I)$. Describe how we can use the K-means clustering approach to cluster the $I$ customers into $K$ segments.</p>
+</div>
+
+<!-- ============= Q7 ============= -->
+<div class="q" id="q7">
+<div class="q-title">Question 7 &mdash; The Newsvendor's Problem: MLE + Convex Optimization <span class="pts">(16 points)</span></div>
+<p>A newspaper vendor faces the task of determining the optimal quantity of newspapers to stock, given uncertain demand $D$. The cost structure for ordering newspapers is as follows: the first twelve copies incur a cost of $8 per copy, while any additional copies beyond twelve incur a cost of $5 per copy. Each sold copy yields a revenue of $10 for the vendor, while each unsold copy has a salvage value of $2$. Remark: for ease of analysis, we allow the vendor to order a non-integer number of copies.</p>
+<div class="q-sub">(a) <span class="pts">(4 points)</span></div>
+<p>Given that the demand $D$ follows a uniform distribution with a support of $[\theta, 2\theta]$, where $\theta$ is unknown, the objective is to estimate the maximum likelihood estimator (MLE) of $\theta$. Five samples of $D$ are provided: $\{12, 15, 13, 20, 14\}$. Calculate the MLE of $\theta$. Explain the result in detail.</p>
+<div class="q-sub">(b) <span class="pts">(8 points)</span></div>
+<p>Assuming that $D$ follows a uniform distribution with a support of $[\theta, 2\theta]$, where $\theta$ is the MLE obtained in (a), calculate the vendor's optimal order decision. Explain the result in detail.</p>
+<div class="q-sub">(c) <span class="pts">(4 points)</span></div>
+<p>For (b), what is the vendor's optimal order decision, assuming that the vendor can only order an integer number of copies? Explain the result in detail.</p>
+</div>
+
+</div>
+</div>
+</body>
+</html>

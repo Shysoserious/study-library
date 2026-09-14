@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture 28 — 期末总复习课</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Noto Sans SC', Tahoma, sans-serif;
+            background: #f0f2f5; color: #333; line-height: 1.8;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 56px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white; display: flex; align-items: center; padding: 0 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15); z-index: 1000;
+        }
+        .navbar-title { font-size: 20px; font-weight: bold; }
+        .navbar-sub { margin-left: 12px; font-size: 13px; opacity: 0.7; }
+
+        .sidebar {
+            position: fixed; left: 0; top: 56px; width: 240px;
+            height: calc(100vh - 56px); background: #1a1a2e;
+            overflow-y: auto; padding: 16px 0; z-index: 999;
+        }
+        .sidebar a {
+            display: block; padding: 8px 24px; color: #b0b0c0;
+            text-decoration: none; font-size: 13px; transition: all 0.2s;
+        }
+        .sidebar a:hover { color: white; background: #252545; }
+        .sidebar h3 { color: #667eea; padding: 8px 24px; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        .main-content { margin-left: 240px; margin-top: 56px; padding: 32px 48px; max-width: 900px; }
+        h1 { font-size: 28px; color: #1a1a2e; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 3px solid #667eea; }
+        h2 { font-size: 22px; color: #0f3460; margin: 28px 0 10px; }
+        h3 { font-size: 18px; color: #444; margin: 20px 0 8px; }
+
+        .card {
+            margin: 14px 0; padding: 18px 22px; border-radius: 8px;
+            background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border-left: 5px solid #667eea;
+        }
+        .card.red { border-left-color: #ef4444; background: #fef2f2; }
+        .card.amber { border-left-color: #f59e0b; background: #fffbeb; }
+        .card.green { border-left-color: #10b981; background: #f0fdf4; }
+        .card.purple { border-left-color: #8b5cf6; background: #faf5ff; }
+        .card.blue { border-left-color: #3b82f6; background: #eff6ff; }
+
+        .formula-box {
+            background: #eef2ff; border-radius: 6px; padding: 12px 18px;
+            margin: 8px 0; text-align: center; font-size: 15px;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+        th { background: #667eea; color: white; padding: 10px; text-align: center; font-size: 13px; }
+        td { padding: 8px 10px; border: 1px solid #e5e7eb; text-align: center; }
+        tr:nth-child(even) { background: #f9fafb; }
+
+        .tag {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 11px; font-weight: 600; margin: 0 2px;
+        }
+        .tag.r { background: #fee2e2; color: #dc2626; }
+        .tag.g { background: #d1fae5; color: #059669; }
+        .tag.b { background: #dbeafe; color: #2563eb; }
+
+        ul, ol { padding-left: 22px; }
+        li { margin: 3px 0; }
+
+        .exam-banner {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white; padding: 20px 28px; border-radius: 10px; margin-bottom: 20px;
+        }
+        .exam-banner h2 { color: white; margin: 0 0 8px; }
+        .exam-banner .meta { font-size: 14px; opacity: 0.9; }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <span class="navbar-title">Lecture 28</span>
+    <span class="navbar-sub">期末总复习课 · Reviewing Session</span>
+</nav>
+
+<aside class="sidebar">
+    <h3>内容导航</h3>
+    <a href="#exam">考试信息</a>
+    <a href="#roadmap">课程路线图</a>
+    <a href="#segment1">Segment 1: 线性系统</a>
+    <a href="#segment2">Segment 2: 中间篇章</a>
+    <a href="#segment3">Segment 3: 特征值与相关</a>
+    <a href="#decompositions">三种分解对比</a>
+    <a href="#computation">计算流程</a>
+    <a href="#proofs">证明技巧</a>
+    <a href="#mistakes">常见错误</a>
+    <a href="#review">复习自测题</a>
+</aside>
+
+<main class="main-content">
+
+<!-- ==================== EXAM INFO ==================== -->
+<div class="exam-banner" id="exam">
+    <h2>Final Exam · 期末考试</h2>
+    <div class="meta">
+        <strong>日期：</strong>2026年5月14日（周四）&nbsp;&nbsp;
+        <strong>时间：</strong>13:30 – 16:00（150 分钟）<br>
+        <strong>形式：</strong>闭卷 · 无 cheat sheet · 无电子设备<br>
+        <strong>范围：</strong>Lecture 1–27（约 40%–80% 来自 Lec 16–27）
+    </div>
+</div>
+
+<!-- ==================== ROADMAP ==================== -->
+<h1 id="roadmap">课程三大篇章</h1>
+
+<div class="card blue">
+    <h3>Segment 1：求解线性系统（Lec 3–15）</h3>
+    <p>GJ-E → 解的结构 → 线性空间/子空间 → 基、维数、秩 → 四个基本子空间</p>
+    <p><strong>核心能力：</strong>会算 GJ-E、会判断解的个数、会求四个子空间、会证明子空间</p>
+</div>
+
+<div class="card green">
+    <h3>Segment 2：三个相对独立的部分（Lec 16–21）</h3>
+    <p>A. 最小二乘 & 正交性（Lec 16–18）<br>
+    B. 行列式（Lec 18–20）——<strong>重要工具！</strong><br>
+    C. 线性变换（Lec 20–21）——从更高视角看矩阵</p>
+</div>
+
+<div class="card purple">
+    <h3>Segment 3：特征值与相关内容（Lec 22–27）</h3>
+    <p>特征值（Lec 22–24）→ 奇异值（Lec 25–26）→ 正定矩阵与二次型（Lec 27）</p>
+    <p><strong>联系：</strong>Segment 3 大量运用 Segment 2 的知识——行列式用于特征多项式、正交概念用于谱定理、线性变换视角用于理解特征向量</p>
+</div>
+
+<!-- ==================== SEGMENT 1 ==================== -->
+<h1 id="segment1">Segment 1 快速回顾：线性系统</h1>
+
+<div class="card">
+    <h3>Matrix × Vector 的四形式（贯穿全课程！）</h3>
+    <div class="formula-box">$F_0$: $Ax = b$（矩阵形式）&nbsp;&nbsp;|&nbsp;&nbsp;$F_1$: 标量方程 &nbsp;&nbsp;|&nbsp;&nbsp;$F_2$: 行向量内积 &nbsp;&nbsp;|&nbsp;&nbsp;$F_3$: 列的线性组合</div>
+    <p>考试中每道题几乎都要用到其中一种形式，尤其是 $F_3$（列的线性组合），它直接联系到列空间 $C(A)$。</p>
+</div>
+
+<div class="card blue">
+    <h3>分块乘法：合法分块 + 结果形式</h3>
+    <table>
+        <tr><th>$A$ 的分块形式</th><th>$B$ 的分块形式</th><th>结果</th></tr>
+        <tr><td>整体矩阵</td><td>整体矩阵</td><td>$AB$</td></tr>
+        <tr><td>整体矩阵</td><td>$[b_1, b_2, \dots, b_k]$</td><td>$[Ab_1, Ab_2, \dots, Ab_k]$</td></tr>
+        <tr><td>$[a^1; a^2; \dots; a^m]$（行分块）</td><td>整体矩阵</td><td>$[a^1 B; a^2 B; \dots; a^m B]$</td></tr>
+        <tr><td>$[a_1, a_2, \dots, a_n]$（列分块）</td><td>$[b^{1T}; b^{2T}; \dots; b^{nT}]$（行分块）</td><td>$\sum a_i b^{iT}$（外积和）</td></tr>
+    </table>
+</div>
+
+<div class="card">
+    <h3>RREF 揭示的结构</h3>
+    <ul>
+        <li>Pivot 列 → 基本变量（$r$ 个）</li>
+        <li>非 pivot 列 → 自由变量（$n - r$ 个）</li>
+        <li>$r = m = n$ → 唯一解；$r < n$ → 无穷多解；矛盾行 → 无解</li>
+        <li>解集 = 特解 $+$ 零空间：$S = x_p + N(A)$</li>
+    </ul>
+</div>
+
+<div class="card green">
+    <h3>四个基本子空间（必考！）</h3>
+    <table>
+        <tr><th>子空间</th><th>符号</th><th>所在空间</th><th>维数</th><th>正交补</th></tr>
+        <tr><td>列空间</td><td>$C(A)$</td><td>$\mathbb{R}^m$</td><td>$r$</td><td>$N(A^T)$</td></tr>
+        <tr><td>零空间</td><td>$N(A)$</td><td>$\mathbb{R}^n$</td><td>$n-r$</td><td>$C(A^T)$</td></tr>
+        <tr><td>行空间</td><td>$C(A^T)$</td><td>$\mathbb{R}^n$</td><td>$r$</td><td>$N(A)$</td></tr>
+        <tr><td>左零空间</td><td>$N(A^T)$</td><td>$\mathbb{R}^m$</td><td>$m-r$</td><td>$C(A)$</td></tr>
+    </table>
+</div>
+
+<!-- ==================== SEGMENT 2 ==================== -->
+<h1 id="segment2">Segment 2 快速回顾：中间篇章</h1>
+
+<div class="card amber">
+    <h3>投影与最小二乘（Lec 16-17）</h3>
+    <p><strong>三个等价条件：</strong></p>
+    <ol>
+        <li>$b - Ay \perp C(A)$（几何：残差垂直于列空间）</li>
+        <li>$A^T A y = A^T b$（代数：正规方程）</li>
+        <li>$Ay$ 是 $b$ 在 $C(A)$ 上的投影</li>
+    </ol>
+    <p>列满秩时 $y = (A^T A)^{-1} A^T b$，解唯一。</p>
+</div>
+
+<div class="card">
+    <h3>正交矩阵（Lec 17-18）</h3>
+    <div class="formula-box">$Q^T Q = I$，即 $Q^{-1} = Q^T$</div>
+    <p>为什么重要？<strong>正交矩阵让计算变简单。</strong>投影到正交基上直接是各分量之和：$\text{proj}(b) = \sum (q_i^T b) q_i$</p>
+</div>
+
+<div class="card blue">
+    <h3>行列式（Lec 18-20）——重要工具</h3>
+    <ul>
+        <li><strong>几何：</strong> $\det(A)$ = 列向量构成的平行体体积</li>
+        <li><strong>线性变换：</strong> $\det(A)$ = 体积缩放比率</li>
+        <li>$\det(AB) = \det(A) \det(B)$</li>
+        <li>$\det(A) \neq 0 \iff A$ 可逆</li>
+        <li>行列式在后半段大量出现：特征多项式、正定性判定</li>
+    </ul>
+</div>
+
+<div class="card green">
+    <h3>线性变换（Lec 20-21）：把矩阵看作变换</h3>
+    <ul>
+        <li>$A$ 的列 = 标准基变换后的像</li>
+        <li>行列式 = 体积缩放比</li>
+        <li>特征向量 = 方向不变的向量</li>
+        <li>奇异向量 = 伸缩到正交输出方向的向量</li>
+    </ul>
+</div>
+
+<!-- ==================== SEGMENT 3 ==================== -->
+<h1 id="segment3">Segment 3 快速回顾：特征值与相关</h1>
+
+<div class="card purple">
+    <h3>特征值与特征向量（Lec 22-24）</h3>
+    <div class="formula-box">$AV = DV \iff Av_i = \lambda_i v_i,\quad i=1,\dots,n$</div>
+    <p>$A$ 可对角化 ⟺ 存在特征基（$n$ 个线性无关的特征向量）。不是所有方阵都可对角化！</p>
+    <p><strong>工具链：</strong> 特征多项式 $\det(\lambda I - A) = 0$ → 求根 → 解 $(\lambda_i I - A)x = 0$</p>
+</div>
+
+<div class="card">
+    <h3>对称矩阵的 EVD（谱定理）</h3>
+    <div class="formula-box">$A^T = A \Longrightarrow A = V D V^T = \sum \lambda_i v_i v_i^T$</div>
+    <p>$V$ 正交矩阵（$V^T V = I$），$D$ 实对角阵。特征值全为实数，特征向量可正交归一化。</p>
+</div>
+
+<div class="card blue">
+    <h3>SVD：最通用的分解</h3>
+    <div class="formula-box">$A = U \Sigma V^T = \sum_{i=1}^r \sigma_i u_i v_i^T$</div>
+    <p>适用任意矩阵（不必方阵、不必对称）。$A v_i = \sigma_i u_i$（右奇异向量 $v_i$ 通过 $A$ 变成 $u_i$，伸缩 $\sigma_i$ 倍）。</p>
+</div>
+
+<!-- ==================== THREE DECOMPOSITIONS ==================== -->
+<h1 id="decompositions">三种分解对比（必考！）</h1>
+
+<div class="card red">
+    <table>
+        <tr>
+            <th></th>
+            <th>对角化</th>
+            <th>EVD</th>
+            <th>Full SVD</th>
+        </tr>
+        <tr>
+            <td><strong>形式</strong></td>
+            <td>$A = S D S^{-1}$</td>
+            <td>$A = V D V^T$</td>
+            <td>$A = U \Sigma V^T$</td>
+        </tr>
+        <tr>
+            <td><strong>适用矩阵</strong></td>
+            <td>部分方阵</td>
+            <td>对称矩阵</td>
+            <td><strong>任意矩阵</strong></td>
+        </tr>
+        <tr>
+            <td><strong>中间</strong></td>
+            <td>对角</td>
+            <td>对角</td>
+            <td>矩形对角</td>
+        </tr>
+        <tr>
+            <td><strong>左右</strong></td>
+            <td>可逆矩阵</td>
+            <td>正交矩阵</td>
+            <td>正交矩阵</td>
+        </tr>
+        <tr>
+            <td><strong>向量形式</strong></td>
+            <td>—</td>
+            <td>$\sum \lambda_i v_i v_i^T$</td>
+            <td>$\sum \sigma_i u_i v_i^T$</td>
+        </tr>
+    </table>
+    <p style="margin-top:10px;color:#dc2626;"><strong>记忆诀窍：</strong>条件越松 → 分解形式越复杂。对称矩阵条件最强 → 左右都是正交阵。任意矩阵条件最松 → 需要两个正交阵 + 矩形对角阵。</p>
+</div>
+
+<div class="card amber">
+    <h3>SVD 内部的对映关系</h3>
+    <div class="formula-box">
+        $A v_1 = \sigma_1 u_1, \dots, A v_r = \sigma_r u_r$<br>
+        $A v_{r+1} = \dots = A v_n = 0$<br>
+        $A^T u_{r+1} = \dots = A^T u_m = 0$
+    </div>
+</div>
+
+<!-- ==================== COMPUTATION ==================== -->
+<h1 id="computation">Part II：计算流程速查</h1>
+
+<div class="card green">
+    <h3>1. 解线性系统 $Ax = b$</h3>
+    <p>增广矩阵 $[A \mid b]$ → GJ-E → RREF → 判断解的情况 → 写出解集</p>
+</div>
+
+<div class="card green">
+    <h3>2. 求 $N(A)$</h3>
+    <p>解 $Ax = 0$ → RREF → 自由变量参数化 → 写成 Span 形式</p>
+</div>
+
+<div class="card green">
+    <h3>3. 求逆矩阵</h3>
+    <p>$[A \mid I] \xrightarrow{\text{GJ-E}} [I \mid A^{-1}]$</p>
+    <p style="color:#888;font-size:13px;">验证：$A A^{-1} = I$</p>
+</div>
+
+<div class="card green">
+    <h3>4. 计算正交基与投影</h3>
+    <p>从一组基出发 → Gram-Schmidt（逐步减投影 → 归一化）</p>
+    <p>有了正交基 $Q = [q_1,\dots,q_k]$，投影公式：$\text{proj}(b) = \sum (q_i^T b) q_i = Q Q^T b$</p>
+</div>
+
+<div class="card green">
+    <h3>5. 最小二乘解</h3>
+    <p>列满秩：直接正规方程 $A^T A y = A^T b$，唯一解<br>
+    列不满秩：正规方程 + 通解。若已知 SVD，LS 解更容易算。</p>
+</div>
+
+<div class="card green">
+    <h3>6. 求特征值/特征向量</h3>
+    <p>Step 1: 特征多项式 $\det(\lambda I - A) = 0$，求根<br>
+    Step 2: 对每个 $\lambda_i$，解 $(\lambda_i I - A)x = 0$，写特征空间</p>
+    <p style="color:#ef4444;">常见错误：把 0 写成特征向量（不允许）；只写一个特征向量而不写整个特征空间</p>
+</div>
+
+<div class="card green">
+    <h3>7. 矩阵动力学（计算 $A^k$）</h3>
+    <p>Step 1: 对角化 $A = S D S^{-1}$<br>
+    Step 2: 求 $S^{-1}$<br>
+    Step 3: $A^k = S D^k S^{-1}$<br>
+    Step 4: $z_k = A^k z_0$</p>
+    <p>若 $A$ 有 $n$ 个互异特征值 → 一定可对角化 → $S$ 可逆。</p>
+</div>
+
+<div class="card green">
+    <h3>8. 计算 Full SVD</h3>
+    <p>Step 1: 求 $A^T A$ 的特征值 → $\sigma_i = \sqrt{\lambda_i}$<br>
+    Step 2: 求右奇异向量 $v_i$（$A^T A$ 的特征向量 + $N(A)$ 的正交基）<br>
+    Step 3: 求左奇异向量 $u_i = A v_i / \sigma_i$（$i=1,\dots,r$）+ $N(A^T)$ 的正交基</p>
+</div>
+
+<!-- ==================== PROOF TIPS ==================== -->
+<h1 id="proofs">Part III：证明题技巧</h1>
+
+<div class="card blue">
+    <h3>通用策略</h3>
+    <ol>
+        <li><strong>改写为"条件 ⇒ 结论"：</strong>列出所有已知条件，明确要证明的结论</li>
+        <li><strong>写出定义和性质：</strong>先把牵扯到的定义写出来（如"子空间需要满足三条"）</li>
+        <li><strong>用简单例子试：</strong>比如先证 $n=2$ 的情况，找感觉</li>
+        <li><strong>标出维度：</strong>如果公式看起来复杂，给每个分量写上维度</li>
+    </ol>
+</div>
+
+<div class="card purple">
+    <h3>子空间证明套路</h3>
+    <p>三步法：(1) 零向量在集合中；(2) 加法封闭；(3) 数乘封闭。<br>
+    经典例子：证明 $N(A)$ 是子空间、证明 $C(A)$ 是子空间。</p>
+</div>
+
+<div class="card purple">
+    <h3>线性无关和基的证明</h3>
+    <p>要证基，需要证明：<strong>线性无关</strong> + <strong>张成空间</strong>。<br>
+    若 $\dim(V) = n$，$n$ 个向量只需验证其中一条（Prop 14.2）。</p>
+</div>
+
+<div class="card purple">
+    <h3>特征值证明三工具</h3>
+    <ol>
+        <li>定义：$Ax = \lambda x$</li>
+        <li>特征多项式：$\det(\lambda I - A)$</li>
+        <li>对对称矩阵：EVD $A = V D V^T$</li>
+    </ol>
+    <p>经典证明：(a) $0$ 是特征值 ⟺ $A$ 不可逆；(b) 相似矩阵有相同特征值；(c) 对称矩阵不同特征值的特征向量正交。</p>
+</div>
+
+<div class="card purple">
+    <h3>正定性证明</h3>
+    <p>对对称矩阵，最常用的技巧：令 $y = Q^T x$，则 $x^T A x = x^T V D V^T x = y^T D y = \sum \lambda_i y_i^2$。<br>
+    其他工具：定义、特征值判定、$A = R^T R$ 判定。</p>
+</div>
+
+<!-- ==================== MISTAKES ==================== -->
+<h1 id="mistakes">Part IV：常见错误（来自 Lecture 28）</h1>
+
+<div class="card red">
+    <h3>维度错误</h3>
+    <ul>
+        <li><strong>$uv$</strong>（两个列向量直接乘）——维度不匹配，无效</li>
+        <li>必须熟悉：$Av$（矩阵乘向量）、$u^T B$（行向量乘矩阵）的维度</li>
+        <li>行空间是<strong>输入空间</strong>，对应 $n$（后一个维度）</li>
+    </ul>
+</div>
+
+<div class="card red">
+    <h3>乘积顺序错误</h3>
+    <ul>
+        <li>$AB$ 存在 $\not\Rightarrow$ $BA$ 存在</li>
+        <li>一般 $AB \neq BA$（极少情况才相等）</li>
+        <li>$(AB)^T \neq A^T B^T$（正确的是 $B^T A^T$）</li>
+        <li>$(AB)^{-1} \neq A^{-1} B^{-1}$（正确的是 $B^{-1} A^{-1}$）</li>
+        <li>$(Au)^T \neq A^T u^T$</li>
+    </ul>
+</div>
+
+<div class="card red">
+    <h3>不检查前提条件就用公式</h3>
+    <ul>
+        <li>$A^{-1}$ 存在才可以用</li>
+        <li>谱定理只适用于实对称矩阵（$A = V D V^T$ 中的 $V$ 是正交矩阵，一般对角化是 $S D S^{-1}$）</li>
+        <li>LU 分解的前提是无行交换</li>
+        <li>Gram-Schmidt 的前提是输入向量线性无关</li>
+        <li>$\det(AB) = \det(A)\det(B)$ 要求 $A,B$ 是方阵（否则无法各自取行列式）</li>
+    </ul>
+</div>
+
+<div class="card amber">
+    <h3>概念混淆</h3>
+    <ul>
+        <li>特征向量 ≠ 零向量（但特征值可以为 0）</li>
+        <li>写特征向量时不能只写一个，要写特征空间（参数化）</li>
+        <li>正定性不能靠看矩阵元素正负！例：$\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$ 有负元素但是 PD</li>
+        <li>$Q^T Q = I$ 但 $Q Q^T \neq I$（除非 $Q$ 是方阵）</li>
+    </ul>
+</div>
+
+<!-- ==================== SELF-TEST ==================== -->
+<h1 id="review">复习自测题（来自 Lecture 28）</h1>
+
+<div class="card blue">
+    <ol>
+        <li>你能概括本学期有哪些主要计算题型吗？</li>
+        <li>特征值的 3 讲（Lec 22-24）分别讲了什么？用一两句话概括每讲，然后总结整体主题。</li>
+        <li>证明题的主要框架有哪些？</li>
+        <li>Segment 2 的哪些知识在 Segment 3 中被用到了？（例如：行列式 → 特征多项式，正交矩阵 → 谱定理的正交特征基）</li>
+        <li>本学期讨论了哪些应用？（列5个：捕食者模型、数据压缩、投影、最小二乘拟合、二次型优化）</li>
+    </ol>
+</div>
+
+<div style="text-align:center;padding:32px;color:#999;font-size:13px;">
+    Lecture 28 · Reviewing Session<br>
+    Instructors: L01 Cosme Louart, L02 Junfeng Wu, L03&L04 Ruoyu Sun
+</div>
+
+</main>
+
+<script>
+renderMathInElement(document.body, {
+    delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+    ]
+});
+</script>
+</body>
+</html>

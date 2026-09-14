@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT1002 Lec 1-5 复习 | 数列与级数</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+
+        /* Top Navigation Bar */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #667eea; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections {
+            padding-left: 20px; max-height: 500px; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #667eea; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 60px; padding: 40px 60px; max-width: 960px;
+            margin-left: max(280px, calc(50vw - 340px)); margin-right: auto;
+            font-size: 17.5px;
+        }
+
+        /* Lecture Section */
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #667eea; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #667eea;
+        }
+        .section-title {
+            font-size: 24px; color: #764ba2; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #764ba2;
+        }
+        .subsection-title {
+            font-size: 20px; color: #555; margin: 25px 0 15px 0;
+            padding-left: 12px; border-left: 4px solid #bbb;
+        }
+
+        /* Cards */
+        .card {
+            margin: 20px 0; padding: 20px; border-radius: 8px;
+            border-left: 5px solid #ddd; background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title {
+            font-weight: bold; font-size: 18px; margin-bottom: 10px;
+            display: flex; align-items: center;
+        }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+
+        /* English term tag */
+        .en {
+            display: inline-block; background-color: #e3f2fd; color: #1565c0;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background-color: #e8f4fd; border-left: 5px solid #2196F3;
+            border-radius: 6px; padding: 18px 22px; margin: 18px 0;
+            font-size: 17px; text-align: center; overflow-x: auto;
+        }
+        .formula-box.highlight {
+            background-color: #fffde7; border-left-color: #fbc02d;
+        }
+        .formula-box.important {
+            background-color: #fce4ec; border-left-color: #e91e63;
+        }
+
+        /* Step / Process */
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li {
+            counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0;
+            position: relative; background: #f8f9fa; border-radius: 6px;
+        }
+        .step-list li::before {
+            content: counter(step); position: absolute; left: 10px; top: 50%;
+            transform: translateY(-50%); background: #667eea; color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-weight: bold; font-size: 14px;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd; padding: 12px; text-align: center;
+        }
+        .comparison-table th {
+            background-color: #667eea; color: white; font-weight: bold;
+        }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+        .comparison-table td:first-child { text-align: left; }
+
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+
+        /* Extra utility styles */
+        .imp{background:#fff0f0;border-left:4px solid #f44336;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .warn{background:#fff8f0;border-left:4px solid #ff9800;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .note-green{background:#f1f8f5;border-left:4px solid #4caf50;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .tip-teal{background:#e0f7fa;border-left:4px solid #00bcd4;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .moral{background:linear-gradient(135deg,#fff8e1,#fce4ec);border:2px solid #e91e63;border-radius:8px;padding:14px 18px;margin:12px 0;text-align:center}
+        .moral strong{font-size:17px;color:#880e4f}
+        .case-box{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+        .case{flex:1;min-width:160px;padding:12px;border-radius:9px;font-size:15px}
+        .c-green{background:#e8f5e9;border:1px solid #81c784}
+        .c-blue{background:#e3f2fd;border:1px solid #90caf9}
+        .c-red{background:#ffebee;border:1px solid #ef9a9a}
+        .c-yellow{background:#fff8e1;border:1px solid #ffcc02}
+        .sd{height:4px;background:linear-gradient(90deg,#667eea,#764ba2,#00bcd4);border-radius:2px;margin:32px 0}
+        .sd2{height:2px;background:linear-gradient(90deg,#b39ddb,#80cbc4);border-radius:1px;margin:20px 0}
+
+        /* Solution block */
+        .solution {
+            margin-top: 12px; padding: 12px 16px; background: #f9fbe7;
+            border-radius: 6px; border: 1px dashed #c5e1a5;
+        }
+        .solution-label { font-weight: bold; color: #689f38; margin-bottom: 8px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; max-width: 100%; font-size: 15px; }
+            .navbar-title { font-size: 18px; }
+            .menu-toggle { display: block !important; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">☰</button>
+        <div class="navbar-title">MAT1002 数列与级数复习</div>
+        <div class="navbar-subtitle">Lectures 1-5 Integrated Review</div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <!-- Lecture 1 -->
+            <div class="toc-lecture">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec1" style="color:inherit;text-decoration:none;">Lec 1 - 无穷数列</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s1-1">数列的定义</a></div>
+                    <div class="toc-section"><a href="#s1-2">收敛与发散</a></div>
+                    <div class="toc-section"><a href="#s1-3">极限运算法则</a></div>
+                    <div class="toc-section"><a href="#s1-4">夹逼定理与连续函数</a></div>
+                    <div class="toc-section"><a href="#s1-5">六个常用极限</a></div>
+                    <div class="toc-section"><a href="#s1-6">递推数列</a></div>
+                    <div class="toc-section"><a href="#s1-7">有界数列</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 2 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec2" style="color:inherit;text-decoration:none;">Lec 2 - 单调数列与级数</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s2-1">单调收敛定理</a></div>
+                    <div class="toc-section"><a href="#s2-2">无穷级数的定义</a></div>
+                    <div class="toc-section"><a href="#s2-3">几何级数</a></div>
+                    <div class="toc-section"><a href="#s2-4">伸缩级数</a></div>
+                    <div class="toc-section"><a href="#s2-5">级数性质</a></div>
+                    <div class="toc-section"><a href="#s2-6">第 n 项判别法</a></div>
+                    <div class="toc-section"><a href="#s2-7">积分判别法</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 3 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec3" style="color:inherit;text-decoration:none;">Lec 3 - 比较法与绝对收敛</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s3-1">直接比较判别法</a></div>
+                    <div class="toc-section"><a href="#s3-2">极限比较判别法</a></div>
+                    <div class="toc-section"><a href="#s3-3">绝对收敛</a></div>
+                    <div class="toc-section"><a href="#s3-4">比值判别法</a></div>
+                    <div class="toc-section"><a href="#s3-5">根值判别法</a></div>
+                    <div class="toc-section"><a href="#s3-6">交替级数判别法</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 4 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec4" style="color:inherit;text-decoration:none;">Lec 4 - 条件收敛与幂级数</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s4-1">交替级数近似</a></div>
+                    <div class="toc-section"><a href="#s4-2">条件收敛</a></div>
+                    <div class="toc-section"><a href="#s4-3">重排定理</a></div>
+                    <div class="toc-section"><a href="#s4-4">幂级数</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 5 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec5" style="color:inherit;text-decoration:none;">Lec 5 - 收敛半径与 Taylor 级数</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s5-1">收敛半径</a></div>
+                    <div class="toc-section"><a href="#s5-2">幂级数运算</a></div>
+                    <div class="toc-section"><a href="#s5-3">逐项微分与积分</a></div>
+                    <div class="toc-section"><a href="#s5-4">Taylor 级数</a></div>
+                    <div class="toc-section"><a href="#s5-5">Taylor 定理与余项</a></div>
+                    <div class="toc-section"><a href="#s5-6">常见 Maclaurin 展开</a></div>
+                </div>
+            </div>
+
+            <!-- Placeholder: Lec 6+ -->
+            <div class="toc-lecture collapsed" style="opacity:0.5;">
+                <div class="toc-lecture-title">
+                    <span class="toc-toggle">▼</span> Lec 6+（待添加）
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <div class="main-content">
+
+<!-- ================================================================ -->
+<!--                         LECTURE 1                                -->
+<!-- ================================================================ -->
+<div class="lecture" id="lec1">
+<h1 class="lecture-title">Lecture 1 — 无穷数列 (Infinite Sequences)</h1>
+
+<h2 class="section-title" id="s1-1">1.1 数列的定义 (§10.1)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：数列 (Sequence)</div>
+    <p><span class="en">Sequence</span> 是一个定义在正整数集上的函数 $a: \mathbb{Z}^+ \to \mathbb{R}$，记作 $\{a_n\}_{n=1}^{\infty}$ 或简记 $\{a_n\}$。</p>
+    <p>每个正整数 $n$ 对应一个实数 $a_n$，称为数列的第 $n$ 项（<span class="en">n-th term</span>）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> 常见数列举例</div>
+    <p>$a_n = \dfrac{1}{n}$：$1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots \to 0$</p>
+    <p>$a_n = (-1)^{n+1}$：$1, -1, 1, -1, \ldots$（振荡，发散）</p>
+    <p>$a_n = \dfrac{n-1}{n}$：$0, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \ldots \to 1$</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s1-2">1.2 收敛与发散</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：数列的极限 ($\varepsilon$-$N$ 定义)</div>
+    <p>数列 $\{a_n\}$ <span class="en">converges</span> 到 $L$，记 $\lim_{n \to \infty} a_n = L$，如果：</p>
+    <div class="formula-box important">
+        $$\forall\, \varepsilon > 0,\; \exists\, N \in \mathbb{Z}^+,\; \text{使得} \; n > N \implies |a_n - L| < \varepsilon$$
+    </div>
+    <p>直觉理解：无论给多小的"误差容限" $\varepsilon$，从某一项以后，所有 $a_n$ 都落在 $(L - \varepsilon,\; L + \varepsilon)$ 内。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> 发散到 $\pm\infty$</div>
+    <p>$\lim_{n \to \infty} a_n = \infty$：$\forall\, M > 0,\;\exists\, N,\; n > N \implies a_n > M$。</p>
+    <p>$\lim_{n \to \infty} a_n = -\infty$：$\forall\, M < 0,\;\exists\, N,\; n > N \implies a_n < M$。</p>
+    <p>发散到 $\pm\infty$ 仍然是<strong>发散</strong>的（<span class="en">diverge</span>），只是发散的方式更具体。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s1-3">1.3 极限运算法则</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.1.1：数列极限的运算法则</div>
+    <p>若 $\lim a_n = A$，$\lim b_n = B$，则：</p>
+    <div class="formula-box">
+        $$\lim(a_n \pm b_n) = A \pm B, \quad \lim(a_n \cdot b_n) = A \cdot B, \quad \lim\frac{a_n}{b_n} = \frac{A}{B} \;(B \neq 0)$$
+    </div>
+    <p>此外：$\lim(c \cdot a_n) = c \cdot A$（常数倍）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.1.3：连续函数定理</div>
+    <p>若 $\lim_{n \to \infty} a_n = L$，且 $f$ 在 $L$ 处连续，则：</p>
+    <div class="formula-box">
+        $$\lim_{n \to \infty} f(a_n) = f(L)$$
+    </div>
+    <p>例如：$\lim a_n = L \implies \lim \sqrt{a_n} = \sqrt{L}$（当 $L \geq 0$）。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s1-4">1.4 夹逼定理与实变量函数联系</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.1.2：夹逼定理 (Sandwich / Squeeze Theorem)</div>
+    <p>若当 $n \geq n_0$ 时 $a_n \leq b_n \leq c_n$，且 $\lim a_n = \lim c_n = L$，则：</p>
+    <div class="formula-box highlight">
+        $$\lim_{n \to \infty} b_n = L$$
+    </div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.1.4：与实变量函数的联系</div>
+    <p>若 $\lim_{x \to \infty} f(x) = L$，且 $a_n = f(n)$，则 $\lim_{n \to \infty} a_n = L$。</p>
+    <p>这意味着可以用 <span class="en">L'Hôpital's Rule</span> 来计算数列极限（先把 $n$ 换成连续变量 $x$）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 技巧：L'Hôpital 在数列中的应用</div>
+    <p>例如：$\lim_{n\to\infty} \dfrac{\ln n}{n}$。令 $f(x) = \dfrac{\ln x}{x}$，这是 $\frac{\infty}{\infty}$ 型，用 L'Hôpital：</p>
+    <p>$$\lim_{x\to\infty}\frac{\ln x}{x} = \lim_{x\to\infty}\frac{1/x}{1} = 0$$</p>
+    <p>所以 $\lim_{n\to\infty}\frac{\ln n}{n} = 0$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s1-5">1.5 六个常用极限</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.1.5：六个常用极限</div>
+    <table class="comparison-table">
+        <tr><th>#</th><th>极限</th><th>条件</th></tr>
+        <tr><td>①</td><td>$\displaystyle\lim_{n\to\infty}\frac{\ln n}{n} = 0$</td><td>—</td></tr>
+        <tr><td>②</td><td>$\displaystyle\lim_{n\to\infty} n^{1/n} = 1$</td><td>—</td></tr>
+        <tr><td>③</td><td>$\displaystyle\lim_{n\to\infty} x^{1/n} = 1$</td><td>$x > 0$</td></tr>
+        <tr><td>④</td><td>$\displaystyle\lim_{n\to\infty} x^n = 0$</td><td>$|x| < 1$</td></tr>
+        <tr><td>⑤</td><td>$\displaystyle\lim_{n\to\infty}\left(1 + \frac{x}{n}\right)^n = e^x$</td><td>$x \in \mathbb{R}$</td></tr>
+        <tr><td>⑥</td><td>$\displaystyle\lim_{n\to\infty}\frac{x^n}{n!} = 0$</td><td>$x \in \mathbb{R}$</td></tr>
+    </table>
+</div>
+
+<div class="imp">
+    <strong>⚠️ 第⑥个特别重要：</strong>$n!$ 增长比任何指数函数 $x^n$ 都快！这在后面 Taylor 级数余项趋于零的证明中非常关键。
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s1-6">1.6 递推定义的数列</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> 递推数列 (Recursively Defined Sequences)</div>
+    <p>有些数列通过<span class="en">recursive formula</span>定义：给定 $a_1$，以及 $a_{n+1} = f(a_n)$ 的递推关系。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example：连分数</div>
+    <p>$a_1 = 1$，$a_{n+1} = 1 + \dfrac{1}{1+a_n}$。</p>
+    <p><strong>求极限的方法：</strong>假设极限 $L$ 存在，两边取极限：</p>
+    <p>$$L = 1 + \frac{1}{1+L} = \frac{2+L}{1+L}$$</p>
+    <p>解方程 $L(1+L) = 2+L$，即 $L^2 = 2$，得 $L = \sqrt{2}$（取正值）。</p>
+</div>
+
+<div class="warn">
+    <strong>⚠️ 注意：</strong>上面的方法假设极限存在。要严格证明，还需要用单调收敛定理（Lec 2）证明数列有界且单调。
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s1-7">1.7 有界数列</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：有界 (Bounded)</div>
+    <p><span class="en">Upper bound</span>（上界）：$\exists\, M,\;\forall\, n,\; a_n \leq M$。</p>
+    <p><span class="en">Lower bound</span>（下界）：$\exists\, m,\;\forall\, n,\; a_n \geq m$。</p>
+    <p><span class="en">Bounded</span>（有界）：同时有上界和下界，即 $\exists\, M > 0,\;\forall\, n,\; |a_n| \leq M$。</p>
+    <p><span class="en">Least upper bound</span>（上确界）= sup，<span class="en">Greatest lower bound</span>（下确界）= inf。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> 收敛 $\Rightarrow$ 有界</div>
+    <p>若 $\{a_n\}$ 收敛，则 $\{a_n\}$ 有界。</p>
+    <p><strong>证明思路：</strong>设 $\lim a_n = L$。取 $\varepsilon = 1$，则存在 $N$ 使得 $n > N$ 时 $|a_n - L| < 1$，即 $|a_n| < |L| + 1$。令 $M = \max\{|a_1|, |a_2|, \ldots, |a_N|, |L|+1\}$，则 $|a_n| \leq M$ 对所有 $n$ 成立。</p>
+</div>
+
+<div class="imp">
+    <strong>⚠️ 反之不成立！</strong>有界 $\not\Rightarrow$ 收敛。反例：$a_n = (-1)^n$ 有界（$|a_n| \leq 1$），但发散。
+</div>
+
+</div><!-- end lecture 1 -->
+
+<div class="sd"></div>
+
+<!-- ================================================================ -->
+<!--                         LECTURE 2                                -->
+<!-- ================================================================ -->
+<div class="lecture" id="lec2">
+<h1 class="lecture-title">Lecture 2 — 单调数列与无穷级数</h1>
+
+<h2 class="section-title" id="s2-1">2.1 单调收敛定理</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：单调数列</div>
+    <p><span class="en">Nondecreasing</span>（非递减）：$a_1 \leq a_2 \leq a_3 \leq \cdots$</p>
+    <p><span class="en">Nonincreasing</span>（非递增）：$a_1 \geq a_2 \geq a_3 \geq \cdots$</p>
+    <p>非递减或非递增的数列统称 <span class="en">monotonic</span>（单调）数列。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.1.6：单调收敛定理 (Monotone Convergence Theorem)</div>
+    <div class="formula-box important">
+        单调 + 有界 $\Longrightarrow$ 收敛
+    </div>
+    <p>具体地：非递减 + 有上界 $\Rightarrow$ 收敛到 $\sup a_n$；非递增 + 有下界 $\Rightarrow$ 收敛到 $\inf a_n$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 用法：证明递推数列收敛</div>
+    <ol class="step-list">
+        <li>证明数列单调（如用 $a_{n+1} - a_n \geq 0$ 或 $a_{n+1}/a_n \leq 1$）</li>
+        <li>证明数列有界（如用数学归纳法证 $a_n \leq M$）</li>
+        <li>由单调收敛定理知极限 $L$ 存在</li>
+        <li>在递推关系中令 $n \to \infty$，解方程求 $L$</li>
+    </ol>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s2-2">2.2 无穷级数 (§10.2)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：无穷级数与部分和</div>
+    <p>给定数列 $\{a_n\}$，<span class="en">infinite series</span> $\displaystyle\sum_{n=1}^{\infty} a_n$ 的第 $k$ 个 <span class="en">partial sum</span>（部分和）为：</p>
+    <div class="formula-box">
+        $$S_k = \sum_{n=1}^{k} a_n = a_1 + a_2 + \cdots + a_k$$
+    </div>
+    <p>若部分和数列 $\{S_k\}$ 收敛到 $S$，则级数 <span class="en">converges</span>，且 $\displaystyle\sum_{n=1}^{\infty} a_n = S$。</p>
+    <p>若 $\{S_k\}$ 发散，则级数 <span class="en">diverges</span>。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s2-3">2.3 几何级数 (Geometric Series)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> 几何级数</div>
+    <div class="formula-box important">
+        $$\sum_{n=0}^{\infty} ar^n = \frac{a}{1-r}, \quad |r| < 1$$
+    </div>
+    <p>当 $|r| \geq 1$ 时，级数发散。</p>
+    <p><strong>推导：</strong>$S_k = a \cdot \dfrac{1 - r^k}{1 - r}$。当 $|r| < 1$ 时，$r^k \to 0$，所以 $S_k \to \dfrac{a}{1-r}$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example</div>
+    <p>$\displaystyle\sum_{n=0}^{\infty}\frac{1}{2^n} = \frac{1}{1-1/2} = 2$</p>
+    <p>$\displaystyle\sum_{n=1}^{\infty}\left(\frac{-1}{3}\right)^n = \frac{-1/3}{1-(-1/3)} = -\frac{1}{4}$</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s2-4">2.4 伸缩级数 (Telescoping Series)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> 伸缩级数</div>
+    <p>形如 $\displaystyle\sum_{n=1}^{\infty}(b_n - b_{n+1})$ 的级数。部分和大量抵消：</p>
+    <div class="formula-box">
+        $$S_k = (b_1 - b_2) + (b_2 - b_3) + \cdots + (b_k - b_{k+1}) = b_1 - b_{k+1}$$
+    </div>
+    <p>因此 $\displaystyle\sum_{n=1}^{\infty}(b_n - b_{n+1}) = b_1 - \lim_{k\to\infty}b_{k+1}$（若极限存在）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example</div>
+    <p>$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)}$。用部分分式：$\frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}$。</p>
+    <p>$S_k = 1 - \frac{1}{k+1} \to 1$。所以 $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)} = 1$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s2-5">2.5 级数的性质</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 5.2.8（课堂编号）：线性性质</div>
+    <p>若 $\sum a_n = A$，$\sum b_n = B$ 都收敛，则：</p>
+    <div class="formula-box">
+        $$\sum (a_n \pm b_n) = A \pm B, \quad \sum c\,a_n = c\,A$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">⚠️</span> 注意</div>
+    <p><strong>起始下标的改变</strong>（<span class="en">index shifting</span>）不影响收敛性，只影响级数的值。</p>
+    <p>删除或增加有限项不影响级数是否收敛。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s2-6">2.6 第 $n$ 项判别法</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> The $n$-th Term Test for Divergence</div>
+    <div class="formula-box important">
+        $$\text{若}\;\lim_{n\to\infty}a_n \neq 0 \;\text{（或极限不存在）}\;\Longrightarrow\;\sum a_n\;\text{发散}$$
+    </div>
+    <p>等价地（逆否命题）：若 $\sum a_n$ 收敛，则 $\lim a_n = 0$。</p>
+</div>
+
+<div class="imp">
+    <strong>⚠️ 极其重要的易错点：</strong>$\lim a_n = 0$ <strong>不能</strong>推出 $\sum a_n$ 收敛！经典反例：调和级数 $\sum \frac{1}{n}$ 发散，但 $\frac{1}{n} \to 0$。
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">🔗</span> 非负级数的部分和特征</div>
+    <p>若 $a_n \geq 0$，则 $S_k = S_{k-1} + a_k \geq S_{k-1}$，所以 $\{S_k\}$ 非递减。</p>
+    <p>因此 $\sum a_n$（$a_n \geq 0$）收敛 $\iff$ $\{S_k\}$ 有上界。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s2-7">2.7 积分判别法 (§10.3)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Integral Test（积分判别法）</div>
+    <p>设 $f$ 在 $[1, \infty)$ 上连续、正值、递减，且 $a_n = f(n)$。则：</p>
+    <div class="formula-box important">
+        $$\sum_{n=1}^{\infty} a_n \;\text{收敛}\;\iff\;\int_1^{\infty} f(x)\,dx \;\text{收敛}$$
+    </div>
+    <p><strong>原理：</strong>用矩形面积和积分面积的比较。$\int_1^{k+1}f(x)\,dx \leq S_k \leq a_1 + \int_1^{k}f(x)\,dx$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> $p$-级数 ($p$-Series)</div>
+    <div class="formula-box highlight">
+        $$\sum_{n=1}^{\infty}\frac{1}{n^p}\;\text{收敛}\;\iff\;p > 1$$
+    </div>
+    <p>$p = 1$：调和级数（<span class="en">harmonic series</span>），发散。</p>
+    <p>$p = 2$：$\sum 1/n^2 = \pi^2/6$（Basel 问题）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 积分判别法的误差估计</div>
+    <p>若用 $S_n$ 近似 $S = \sum a_k$，则余项 $R_n = S - S_n$ 满足：</p>
+    <div class="formula-box">
+        $$\int_{n+1}^{\infty}f(x)\,dx \leq R_n \leq \int_n^{\infty}f(x)\,dx$$
+    </div>
+    <p>这给出了截断误差的上下界。</p>
+</div>
+
+</div><!-- end lecture 2 -->
+
+<div class="sd"></div>
+
+<!-- ================================================================ -->
+<!--                         LECTURE 3                                -->
+<!-- ================================================================ -->
+<div class="lecture" id="lec3">
+<h1 class="lecture-title">Lecture 3 — 比较判别法与绝对收敛</h1>
+
+<h2 class="section-title" id="s3-1">3.1 直接比较判别法 (§10.4)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Direct Comparison Test</div>
+    <p>设 $0 \leq a_n \leq c_n$（$\forall\, n$）：</p>
+    <div class="case-box">
+        <div class="case c-green">
+            若 $\sum c_n$ 收敛，则 $\sum a_n$ 也收敛（"大的收敛 $\Rightarrow$ 小的也收敛"）
+        </div>
+        <div class="case c-red">
+            若 $\sum a_n$ 发散，则 $\sum c_n$ 也发散（"小的发散 $\Rightarrow$ 大的也发散"）
+        </div>
+    </div>
+    <p><strong>证明思路：</strong>$a_n \leq c_n \Rightarrow S_k^{(a)} \leq S_k^{(c)}$。若 $\sum c_n$ 收敛，则 $\{S_k^{(a)}\}$ 有上界，由单调收敛定理知 $\sum a_n$ 收敛。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example</div>
+    <p>$\displaystyle\sum\frac{1}{n^2 + n}$ 收敛吗？因为 $\frac{1}{n^2+n} \leq \frac{1}{n^2}$，而 $\sum\frac{1}{n^2}$ 收敛（$p=2>1$），所以原级数收敛。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s3-2">3.2 极限比较判别法</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Limit Comparison Test</div>
+    <p>设 $a_n > 0$，$b_n > 0$，令 $\displaystyle L = \lim_{n\to\infty}\frac{a_n}{b_n}$。</p>
+    <div class="case-box">
+        <div class="case c-green">
+            <strong>$0 < L < \infty$：</strong>$\sum a_n$ 和 $\sum b_n$ 同敛散（<span class="en">both converge or both diverge</span>）
+        </div>
+        <div class="case c-blue">
+            <strong>$L = 0$：</strong>$\sum b_n$ 收敛 $\Rightarrow$ $\sum a_n$ 收敛
+        </div>
+        <div class="case c-yellow">
+            <strong>$L = \infty$：</strong>$\sum b_n$ 发散 $\Rightarrow$ $\sum a_n$ 发散
+        </div>
+    </div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 选取 $b_n$ 的技巧</div>
+    <p>保留 $a_n$ 中增长最快的项作为 $b_n$。例如：</p>
+    <p>$a_n = \dfrac{2n+1}{n^3 - n + 1}$，主项为 $\dfrac{2n}{n^3} = \dfrac{2}{n^2}$，选 $b_n = \dfrac{1}{n^2}$（$p$-级数，收敛）。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s3-3">3.3 绝对收敛 (§10.5)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：绝对收敛 vs 条件收敛</div>
+    <p><span class="en">Absolutely convergent</span>（绝对收敛）：$\sum |a_n|$ 收敛。</p>
+    <p><span class="en">Conditionally convergent</span>（条件收敛）：$\sum a_n$ 收敛，但 $\sum |a_n|$ 发散。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Absolute Convergence Test</div>
+    <div class="formula-box important">
+        $$\sum |a_n|\;\text{收敛}\;\Longrightarrow\;\sum a_n\;\text{收敛}$$
+    </div>
+    <p>即：绝对收敛 $\Rightarrow$ 收敛。（反之不成立！）</p>
+    <p><strong>证明：</strong>令 $b_n = a_n + |a_n|$，则 $0 \leq b_n \leq 2|a_n|$。由比较判别法，$\sum b_n$ 收敛。因此 $\sum a_n = \sum b_n - \sum |a_n|$ 收敛。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s3-4">3.4 比值判别法 (Ratio Test)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Ratio Test（比值判别法）</div>
+    <p>令 $\displaystyle\rho = \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|$。</p>
+    <div class="case-box">
+        <div class="case c-green">
+            <strong>$\rho < 1$：</strong>$\sum a_n$ 绝对收敛
+        </div>
+        <div class="case c-red">
+            <strong>$\rho > 1$（或 $= \infty$）：</strong>$\sum a_n$ 发散
+        </div>
+        <div class="case c-yellow">
+            <strong>$\rho = 1$：</strong>无法判断（<span class="en">inconclusive</span>）
+        </div>
+    </div>
+    <p><strong>证明思路（$\rho < 1$）：</strong>取 $r$ 使得 $\rho < r < 1$。从某项起 $|a_{n+1}| < r|a_n|$，因此 $|a_n| < r^{n-N}|a_N|$，与几何级数比较即可。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 适用场景</div>
+    <p>Ratio Test 特别适合含有 <strong>$n!$</strong>、<strong>$a^n$</strong>（指数）或<strong>乘积结构</strong>的项。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s3-5">3.5 根值判别法 (Root Test)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Root Test（根值判别法）</div>
+    <p>令 $\displaystyle\rho = \lim_{n\to\infty}\sqrt[n]{|a_n|}$。</p>
+    <div class="case-box">
+        <div class="case c-green">
+            <strong>$\rho < 1$：</strong>$\sum a_n$ 绝对收敛
+        </div>
+        <div class="case c-red">
+            <strong>$\rho > 1$（或 $= \infty$）：</strong>$\sum a_n$ 发散
+        </div>
+        <div class="case c-yellow">
+            <strong>$\rho = 1$：</strong>无法判断
+        </div>
+    </div>
+    <p>适用于 $a_n$ 中有 $n$ 次幂的情况，如 $a_n = \left(\frac{n}{2n+1}\right)^n$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s3-6">3.6 交替级数判别法 (§10.6)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：交替级数</div>
+    <p><span class="en">Alternating series</span> 形如 $\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}u_n = u_1 - u_2 + u_3 - u_4 + \cdots$，其中 $u_n > 0$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Thm 10.6.15：Alternating Series Test（Leibniz 判别法）</div>
+    <p>若满足以下两个条件：</p>
+    <div class="formula-box important">
+        $$\text{① } u_n \geq u_{n+1} \;\text{（单调递减）}\qquad \text{② } \lim_{n\to\infty}u_n = 0$$
+    </div>
+    <p>则交替级数 $\sum(-1)^{n+1}u_n$ 收敛。</p>
+    <p><strong>证明思路：</strong>考虑偶数部分和 $S_{2k}$。$S_{2k} = (u_1 - u_2) + (u_3 - u_4) + \cdots + (u_{2k-1} - u_{2k})$，每个括号 $\geq 0$，所以 $\{S_{2k}\}$ 非递减。又 $S_{2k} = u_1 - (u_2 - u_3) - \cdots - (u_{2k-2} - u_{2k-1}) - u_{2k} \leq u_1$，有上界。由单调收敛定理，$\{S_{2k}\}$ 收敛到某 $S$。因为 $S_{2k+1} = S_{2k} + u_{2k+1} \to S + 0 = S$，所以 $\{S_k\}$ 也收敛到 $S$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> 经典例子</div>
+    <p><span class="en">Alternating harmonic series</span>：$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots = \ln 2$。</p>
+    <p>$u_n = 1/n$ 单调递减且趋于 $0$，满足条件。这是<strong>条件收敛</strong>（$\sum 1/n$ 发散）。</p>
+</div>
+
+</div><!-- end lecture 3 -->
+
+<div class="sd"></div>
+
+<!-- ================================================================ -->
+<!--                         LECTURE 4                                -->
+<!-- ================================================================ -->
+<div class="lecture" id="lec4">
+<h1 class="lecture-title">Lecture 4 — 条件收敛与幂级数入门</h1>
+
+<h2 class="section-title" id="s4-1">4.1 交替级数的近似与误差</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Alternating Series Approximation</div>
+    <p>对满足 Leibniz 判别法条件的交替级数 $\sum(-1)^{n+1}u_n$，用前 $k$ 项和 $S_k$ 近似总和 $L$：</p>
+    <div class="formula-box important">
+        $$|L - S_k| < u_{k+1}$$
+    </div>
+    <p>即误差不超过<strong>第一个被舍弃的项</strong>。</p>
+    <p>此外，$L$ 总位于 $S_k$ 和 $S_{k+1}$ 之间。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example</div>
+    <p>用 $\sum_{n=1}^{4}\frac{(-1)^{n+1}}{n}$ 近似 $\ln 2$：</p>
+    <p>$S_4 = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} = \frac{7}{12} \approx 0.5833$。</p>
+    <p>误差 $< u_5 = \frac{1}{5} = 0.2$。（实际 $\ln 2 \approx 0.6931$）</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s4-2">4.2 条件收敛 (Conditional Convergence)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition</div>
+    <p>级数 $\sum a_n$ 是 <span class="en">conditionally convergent</span>（条件收敛）的，如果：</p>
+    <p>$\sum a_n$ 收敛，但 $\sum |a_n|$ 发散。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> 交替 $p$-级数的分类</div>
+    <table class="comparison-table">
+        <tr><th>级数</th><th>$p$ 的范围</th><th>收敛类型</th></tr>
+        <tr><td>$\sum\frac{(-1)^{n+1}}{n^p}$</td><td>$p > 1$</td><td>绝对收敛（$\sum 1/n^p$ 收敛）</td></tr>
+        <tr><td>$\sum\frac{(-1)^{n+1}}{n^p}$</td><td>$0 < p \leq 1$</td><td>条件收敛（交替级数法通过，但 $\sum 1/n^p$ 发散）</td></tr>
+        <tr><td>$\sum\frac{(-1)^{n+1}}{n^p}$</td><td>$p \leq 0$</td><td>发散（$a_n \not\to 0$）</td></tr>
+    </table>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s4-3">4.3 重排定理 (Rearrangements)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Riemann 重排定理</div>
+    <p>若 $\sum a_n$ 是<strong>条件收敛</strong>的，则通过适当重排各项的顺序，可以使新级数收敛到<strong>任意指定的值</strong>（甚至可以使之发散）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> 绝对收敛的重排不变性</div>
+    <p>若 $\sum a_n$ <strong>绝对收敛</strong>，则任何重排后的级数仍收敛，且收敛到<strong>相同的值</strong>。</p>
+</div>
+
+<div class="moral">
+    <strong>核心教训：绝对收敛比条件收敛"安全"得多！条件收敛的级数求和依赖于加法顺序。</strong>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s4-4">4.4 幂级数 (§10.7)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：幂级数</div>
+    <p><span class="en">Power series</span> 关于 $x = a$（<span class="en">center</span>）：</p>
+    <div class="formula-box">
+        $$\sum_{n=0}^{\infty}c_n(x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + \cdots$$
+    </div>
+    <p>当 $a = 0$ 时简化为 $\sum c_n x^n$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example：确定收敛域</div>
+    <p>$\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$。用 Ratio Test：</p>
+    <p>$\displaystyle\rho = \lim_{n\to\infty}\left|\frac{x^{n+1}}{(n+1)!}\cdot\frac{n!}{x^n}\right| = \lim_{n\to\infty}\frac{|x|}{n+1} = 0 < 1$</p>
+    <p>对所有 $x$ 都成立。所以级数对所有 $x \in \mathbb{R}$ 收敛（这就是 $e^x$！）。</p>
+</div>
+
+</div><!-- end lecture 4 -->
+
+<div class="sd"></div>
+
+<!-- ================================================================ -->
+<!--                         LECTURE 5                                -->
+<!-- ================================================================ -->
+<div class="lecture" id="lec5">
+<h1 class="lecture-title">Lecture 5 — 收敛半径与 Taylor 级数</h1>
+
+<h2 class="section-title" id="s5-1">5.1 收敛半径 (Radius of Convergence)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> 收敛半径存在定理</div>
+    <p>对任意幂级数 $\sum c_n(x-a)^n$，恰好有以下三种情况之一成立：</p>
+    <div class="case-box">
+        <div class="case c-green">
+            <strong>情况 1：</strong>存在 $R > 0$，使得 $|x-a| < R$ 时绝对收敛，$|x-a| > R$ 时发散
+        </div>
+        <div class="case c-blue">
+            <strong>情况 2：</strong>$R = \infty$，对所有 $x$ 收敛
+        </div>
+        <div class="case c-red">
+            <strong>情况 3：</strong>$R = 0$，仅在 $x = a$ 处收敛
+        </div>
+    </div>
+    <p>$R$ 称为 <span class="en">radius of convergence</span>（收敛半径）。</p>
+</div>
+
+<div class="imp">
+    <strong>⚠️ 端点需要单独检验！</strong>在 $x = a \pm R$ 处，级数可能收敛也可能发散，必须逐个代入检查。收敛区间可能是 $(a-R,a+R)$、$[a-R,a+R)$、$(a-R,a+R]$ 或 $[a-R,a+R]$ 中的任何一种。
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example</div>
+    <p>$\displaystyle\sum_{n=1}^{\infty}\frac{x^n}{n}$。Ratio Test：$\rho = |x|$。</p>
+    <p>$|x| < 1$ 时收敛，$|x| > 1$ 时发散。$R = 1$。</p>
+    <p>端点检查：$x = 1$：$\sum 1/n$（调和级数，发散）。$x = -1$：$\sum(-1)^n/n$（交替调和级数，收敛）。</p>
+    <p>收敛区间：$[-1, 1)$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s5-2">5.2 幂级数的运算</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> 幂级数的加减、乘法、代换</div>
+    <p><strong>加减：</strong>$\sum a_n x^n \pm \sum b_n x^n = \sum(a_n \pm b_n)x^n$（在两者共同收敛区间上）。</p>
+    <p><strong>乘法（Cauchy 乘积）：</strong>$\left(\sum a_n x^n\right)\left(\sum b_n x^n\right) = \sum_{n=0}^{\infty}\left(\sum_{k=0}^{n}a_k b_{n-k}\right)x^n$。</p>
+    <p><strong>代换：</strong>若 $\sum c_n x^n$ 在 $|x| < R$ 上收敛，则可用 $g(x)$ 代替 $x$，只要 $|g(x)| < R$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s5-3">5.3 逐项微分与积分</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> 逐项微分与积分定理</div>
+    <p>若 $f(x) = \sum_{n=0}^{\infty}c_n(x-a)^n$ 在 $|x-a| < R$（$R > 0$）上收敛，则：</p>
+    <div class="formula-box important">
+        $$f'(x) = \sum_{n=1}^{\infty}n\,c_n(x-a)^{n-1}, \quad |x-a| < R$$
+    </div>
+    <div class="formula-box important">
+        $$\int f(x)\,dx = C + \sum_{n=0}^{\infty}\frac{c_n}{n+1}(x-a)^{n+1}, \quad |x-a| < R$$
+    </div>
+    <p>微分和积分后的级数具有<strong>相同的收敛半径</strong> $R$（但端点行为可能改变！）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example：推导 $\ln(1+x)$</div>
+    <p>从几何级数出发：$\dfrac{1}{1+x} = \sum_{n=0}^{\infty}(-1)^n x^n$，$|x| < 1$。</p>
+    <p>两边积分：</p>
+    <p>$$\ln(1+x) = \int_0^x\frac{dt}{1+t} = \sum_{n=0}^{\infty}\frac{(-1)^n x^{n+1}}{n+1} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots$$</p>
+    <p>收敛区间：$(-1, 1]$（$x = 1$ 时为交替调和级数，收敛到 $\ln 2$）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">📝</span> Example：推导 $\arctan x$</div>
+    <p>$\dfrac{1}{1+x^2} = \sum_{n=0}^{\infty}(-1)^n x^{2n}$，$|x| < 1$。</p>
+    <p>积分：$\arctan x = \sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{2n+1} = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots$，$|x| \leq 1$。</p>
+    <p>取 $x = 1$：$\arctan 1 = \frac{\pi}{4} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots$（Leibniz 公式）。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s5-4">5.4 Taylor 级数 (§10.8)</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Taylor 级数的推导</div>
+    <p>假设 $f(x) = \sum_{n=0}^{\infty}c_n(x-a)^n$。反复对 $x = a$ 求值：</p>
+    <p>$f(a) = c_0$，$f'(a) = c_1$，$f''(a) = 2c_2$，$f'''(a) = 6c_3$，$\ldots$</p>
+    <p>因此 $c_n = \dfrac{f^{(n)}(a)}{n!}$。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📖</span> Definition：Taylor 级数与 Maclaurin 级数</div>
+    <div class="formula-box important">
+        $$f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n \quad \text{(Taylor series about } x = a\text{)}$$
+    </div>
+    <p>当 $a = 0$ 时，称为 <span class="en">Maclaurin series</span>：$\displaystyle\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n$。</p>
+    <p><span class="en">Taylor polynomial</span> of degree $n$：$T_n(x) = \displaystyle\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s5-5">5.5 Taylor 定理与余项 (§10.9)</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Taylor's Theorem（Taylor 定理）</div>
+    <p>若 $f$ 在包含 $a$ 的区间上有 $n+1$ 阶导数，则：</p>
+    <div class="formula-box">
+        $$f(x) = T_n(x) + R_n(x)$$
+    </div>
+    <p>其中余项（<span class="en">remainder</span>）为 <span class="en">Lagrange form</span>：</p>
+    <div class="formula-box important">
+        $$R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$$
+    </div>
+    <p>其中 $c$ 介于 $a$ 和 $x$ 之间（$c$ 的具体值未知）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> Taylor 级数 = $f(x)$ 的充分条件</div>
+    <div class="formula-box highlight">
+        $$\text{若}\;\lim_{n\to\infty}R_n(x) = 0\;\text{，则}\;f(x) = \sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n$$
+    </div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 误差估计</div>
+    <p>若 $|f^{(n+1)}(t)| \leq M$ 对所有 $t$ 在 $a$ 和 $x$ 之间成立，则：</p>
+    <div class="formula-box">
+        $$|R_n(x)| \leq \frac{M\,|x-a|^{n+1}}{(n+1)!}$$
+    </div>
+    <p>由于 $\dfrac{|x-a|^{n+1}}{(n+1)!} \to 0$（Thm 10.1.5 第⑥个极限），只要 $M$ 可以控制，$R_n \to 0$。</p>
+</div>
+
+<div class="sd2"></div>
+
+<h2 class="section-title" id="s5-6">5.6 常见 Maclaurin 展开</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">🔴</span> 必须记住的 Maclaurin 级数</div>
+    <table class="comparison-table">
+        <tr><th>函数</th><th>Maclaurin 展开</th><th>收敛域</th></tr>
+        <tr><td>$e^x$</td><td>$\displaystyle\sum_{n=0}^{\infty}\frac{x^n}{n!}$</td><td>$(-\infty, +\infty)$</td></tr>
+        <tr><td>$\sin x$</td><td>$\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!}$</td><td>$(-\infty, +\infty)$</td></tr>
+        <tr><td>$\cos x$</td><td>$\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{(2n)!}$</td><td>$(-\infty, +\infty)$</td></tr>
+        <tr><td>$\dfrac{1}{1-x}$</td><td>$\displaystyle\sum_{n=0}^{\infty}x^n$</td><td>$(-1, 1)$</td></tr>
+        <tr><td>$\ln(1+x)$</td><td>$\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n+1}x^n}{n}$</td><td>$(-1, 1]$</td></tr>
+        <tr><td>$\arctan x$</td><td>$\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{2n+1}$</td><td>$[-1, 1]$</td></tr>
+    </table>
+</div>
+
+<div class="moral">
+    <strong>记住这张表！这些是 Taylor 级数相关题目的基础构件，几乎所有问题都可以从这几个出发通过代换、微分、积分得到。</strong>
+</div>
+
+<!-- ================================================================ -->
+<!--              SUMMARY：收敛判别法速查                              -->
+<!-- ================================================================ -->
+
+<div class="sd"></div>
+
+<h2 class="section-title" id="summary">总结：级数收敛判别法速查表</h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">📋</span> 判别法一览</div>
+    <table class="comparison-table">
+        <tr><th>判别法</th><th>适用条件</th><th>判定</th><th>注意事项</th></tr>
+        <tr><td><strong>$n$-th Term Test</strong></td><td>任意级数</td><td>$\lim a_n \neq 0 \Rightarrow$ 发散</td><td>只能判发散，不能判收敛</td></tr>
+        <tr><td><strong>几何级数</strong></td><td>$\sum ar^n$</td><td>$|r|<1$: 收敛到 $\frac{a}{1-r}$</td><td>直接公式</td></tr>
+        <tr><td><strong>$p$-级数</strong></td><td>$\sum 1/n^p$</td><td>$p>1$: 收敛</td><td>$p=1$ 发散（调和级数）</td></tr>
+        <tr><td><strong>积分判别法</strong></td><td>$f$ 正、连续、递减</td><td>$\sum a_n$ 与 $\int f$ 同敛散</td><td>还能估计误差</td></tr>
+        <tr><td><strong>直接比较</strong></td><td>$0 \leq a_n \leq c_n$</td><td>大收敛→小收敛</td><td>需找到合适的比较级数</td></tr>
+        <tr><td><strong>极限比较</strong></td><td>$a_n, b_n > 0$</td><td>$0 < L < \infty$: 同敛散</td><td>最灵活的比较法</td></tr>
+        <tr><td><strong>Ratio Test</strong></td><td>含 $n!$, $a^n$ 的项</td><td>$\rho < 1$: 绝对收敛</td><td>$\rho = 1$ 无法判断</td></tr>
+        <tr><td><strong>Root Test</strong></td><td>含 $n$ 次幂的项</td><td>$\rho < 1$: 绝对收敛</td><td>$\rho = 1$ 无法判断</td></tr>
+        <tr><td><strong>交替级数法</strong></td><td>$\sum(-1)^{n+1}u_n$</td><td>$u_n$ 递减且 $\to 0$: 收敛</td><td>只判收敛，不判绝对收敛</td></tr>
+    </table>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 选择判别法的策略</div>
+    <ol class="step-list">
+        <li>先检查 $\lim a_n \neq 0$？ → 直接判发散</li>
+        <li>是几何级数 or $p$-级数？ → 直接用公式</li>
+        <li>含 $n!$ 或 $a^n$？ → Ratio Test</li>
+        <li>含 $(\cdots)^n$？ → Root Test</li>
+        <li>交替正负？ → 交替级数判别法</li>
+        <li>像已知级数？ → 极限比较判别法</li>
+        <li>能找到上界/下界？ → 直接比较判别法</li>
+        <li>能写成 $f(n)$ 的形式且 $f$ 可积？ → 积分判别法</li>
+    </ol>
+</div>
+
+</div><!-- end lecture 5 -->
+
+</div><!-- end main-content -->
+
+<script>
+function toggleLecture(el) {
+    const lecture = el.closest('.toc-lecture');
+    if (lecture) lecture.classList.toggle('collapsed');
+}
+
+// Mobile menu
+document.getElementById('menuToggle').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('open');
+});
+</script>
+</body>
+</html>

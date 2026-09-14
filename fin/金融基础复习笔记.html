@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金融基础 · 复习笔记（FIN2010 Financial Management）</title>
+<style>
+  :root {
+    color-scheme: light;
+    --accent: #2563eb;
+    --accent-dark: #1e40af;
+    --bg: #f6f8fb;
+    --sidebar-bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card-bg: #ffffff;
+    --code-bg: #eef2ff; --code-tx: #4338ca;
+    --th-bg: #eef2ff; --th-tx: #3730a3;
+    --td-even: #fafafa;
+    --en: #0369a1;
+    --hover-bg: #eef2ff;
+    --def-bg: #eff6ff;  --def-bd: #3b82f6;  --def-tx: #1d4ed8;
+    --thm-bg: #f5f3ff;  --thm-bd: #8b5cf6;  --thm-tx: #6d28d9;
+    --ex-bg: #f0fdf4;   --ex-bd: #22c55e;   --ex-tx: #15803d;
+    --warn-bg: #fffbeb; --warn-bd: #f59e0b; --warn-tx: #b45309;
+    --vocab-bg: #fdf2f8;--vocab-bd: #ec4899; --vocab-tx: #be185d;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --accent: #3b82f6;
+    --accent-dark: #60a5fa;
+    --bg: #0f172a;
+    --sidebar-bg: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --card-bg: #1e293b;
+    --code-bg: #1e293b; --code-tx: #a5b4fc;
+    --th-bg: #1e293b; --th-tx: #93c5fd;
+    --td-even: #1e293b;
+    --en: #7dd3fc;
+    --hover-bg: #334155;
+    --def-bg: #1e3a5f;  --def-bd: #3b82f6;  --def-tx: #93c5fd;
+    --thm-bg: #2e2a5e;  --thm-bd: #8b5cf6;  --thm-tx: #c4b5fd;
+    --ex-bg: #14372a;   --ex-bd: #22c55e;   --ex-tx: #86efac;
+    --warn-bg: #3d2e12; --warn-bd: #f59e0b; --warn-tx: #fcd34d;
+    --vocab-bg: #4a1f3d;--vocab-bd: #ec4899; --vocab-tx: #f9a8d4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+  /* ===== 侧边导航栏 ===== */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 300px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 24px 16px 40px;
+    z-index: 10;
+  }
+  .sidebar .logo {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .sidebar .sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .sidebar .divider { height: 1px; background: var(--border); margin: 10px 0; }
+  .theme-toggle {
+    display: block;
+    width: 100%;
+    margin: 14px 0 4px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s;
+  }
+  .theme-toggle:hover { background: var(--hover-bg); }
+  .sidebar nav a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 2px;
+    transition: background .12s, color .12s;
+  }
+  .sidebar nav a:hover { background: var(--hover-bg); color: var(--accent-dark); }
+  .sidebar nav a.lv1 {
+    font-weight: 600;
+    margin-top: 12px;
+    color: var(--accent-dark);
+    font-size: 14.5px;
+  }
+  .sidebar nav a.lv2 { padding-left: 24px; }
+  .sidebar nav a.lv3 { padding-left: 38px; font-size: 13px; color: var(--muted); }
+
+  /* ===== 手风琴式课程大索引 ===== */
+  .lecture-group { margin-bottom: 6px; }
+  .lecture-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14.5px;
+    font-weight: 700;
+    font-family: inherit;
+    color: var(--accent-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s, border-color .12s;
+  }
+  .lecture-toggle:hover { background: var(--hover-bg); border-color: var(--accent); }
+  .lecture-toggle .lt-arrow { font-size: 11px; transition: transform .18s; color: var(--muted); }
+  .lecture-group.open .lecture-toggle { background: var(--hover-bg); border-color: var(--accent); }
+  .lecture-group.open .lecture-toggle .lt-arrow { transform: rotate(180deg); }
+  .lecture-body { display: none; padding: 4px 0 2px; }
+  .lecture-group.open .lecture-body { display: block; }
+
+  /* ===== 主内容 ===== */
+  .content {
+    margin-left: 300px;
+    padding: 32px 40px 120px;
+  }
+  .content-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  h1.title {
+    font-size: 32px;
+    margin: 0 0 4px;
+    color: var(--accent-dark);
+    letter-spacing: -0.5px;
+  }
+  p.course-meta { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
+
+  /* ===== 每课的横幅标题 ===== */
+  .lecture { margin-top: 8px; }
+  .lecture-banner {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 26px 0 10px;
+    scroll-margin-top: 20px;
+  }
+  .lecture-banner .zh { color: var(--muted); font-weight: 500; font-size: 0.82em; }
+
+  h2 { font-size: 26px; margin: 48px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); color: var(--accent-dark); scroll-margin-top: 20px; }
+  h3 { font-size: 20px; margin: 32px 0 10px; color: var(--text); scroll-margin-top: 20px; }
+  h4 { font-size: 17px; margin: 24px 0 8px; color: var(--text); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--code-tx);
+    font-family: "SF Mono", "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 14px 0;
+  }
+  pre code { background: none; padding: 0; color: var(--code-tx); }
+  table.truth {
+    border-collapse: collapse;
+    margin: 12px auto;
+    font-size: 16px;
+  }
+  table.truth th, table.truth td {
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    text-align: center;
+  }
+  table.truth th { background: var(--th-bg); color: var(--th-tx); font-weight: 600; }
+  table.truth tr:nth-child(even) td { background: var(--td-even); }
+
+  /* 提示框 */
+  .box { border-left: 4px solid; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .box .box-title { font-weight: 700; display: block; margin-bottom: 4px; font-size: 15px; }
+  .def  { background: var(--def-bg);  border-color: var(--def-bd); }
+  .def .box-title  { color: var(--def-tx); }
+  .thm  { background: var(--thm-bg);  border-color: var(--thm-bd); }
+  .thm .box-title  { color: var(--thm-tx); }
+  .ex   { background: var(--ex-bg);   border-color: var(--ex-bd); }
+  .ex .box-title   { color: var(--ex-tx); }
+  .warn { background: var(--warn-bg); border-color: var(--warn-bd); }
+  .warn .box-title { color: var(--warn-tx); }
+
+  /* 英语词汇 */
+  .vocab {
+    background: var(--vocab-bg);
+    border: 1px solid var(--vocab-bd);
+    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 18px 0;
+  }
+  .vocab .vocab-title { font-weight: 700; color: var(--vocab-tx); font-size: 15px; display: block; margin-bottom: 6px; }
+  .vocab ul { margin: 0; padding-left: 20px; }
+  .vocab li { margin: 3px 0; font-size: 15.5px; }
+  .vocab b { color: var(--vocab-tx); }
+
+  /* 行内英文术语 */
+  .en { color: var(--en); font-weight: 500; }
+  .zh { color: var(--muted); font-size: 0.92em; }
+
+  /* 公式块 */
+  .formula { text-align: center; margin: 16px 0; overflow-x: auto; padding: 4px 0; }
+
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .toc a { color: var(--accent-dark); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .toc-title { font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .toc ol { margin: 6px 0; padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+
+  @media (max-width: 860px) {
+    .sidebar { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { margin-left: 0; padding: 20px; }
+    .content-inner { max-width: none; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<script>
+(function () {
+  var KEY = 'fin-theme';
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var theme = saved || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  window.__updateThemeBtn = function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.textContent = (document.documentElement.getAttribute('data-theme') === 'dark')
+      ? '切换到亮色模式' : '切换到夜间模式';
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    window.__updateThemeBtn();
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        window.__updateThemeBtn();
+      });
+    }
+  });
+})();
+</script>
+<script>
+(function () {
+  function initAccordion() {
+    var groups = document.querySelectorAll('.lecture-group');
+    groups.forEach(function (g) {
+      var btn = g.querySelector('.lecture-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var wasOpen = g.classList.contains('open');
+        // 手风琴：先全部收起
+        groups.forEach(function (x) { x.classList.remove('open'); });
+        // 再展开当前项（若它原本开着，则保持收起状态）
+        if (!wasOpen) g.classList.add('open');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordion);
+  } else {
+    initAccordion();
+  }
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<!-- ============ 侧边导航栏 ============ -->
+<aside class="sidebar">
+  <div class="logo">金融基础<br>FIN2010</div>
+  <div class="sub">Financial Management<br>CUHK-Shenzhen · 2026 秋季<br>复习笔记（中英对照）</div>
+  <button id="themeToggle" class="theme-toggle" type="button">切换到夜间模式</button>
+  <nav>
+    <div class="lecture-group open">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第1课 · What is Finance?</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#fin1-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#fin1-p1">Part 1 · 借款人与投资者</a>
+        <a class="lv2" href="#fin1-p1-1">1.1 金融是什么</a>
+        <a class="lv2" href="#fin1-p1-2">1.2 谁是借款人</a>
+        <a class="lv2" href="#fin1-p1-3">1.3 为什么借款：加速增长</a>
+        <a class="lv2" href="#fin1-p1-4">1.4 谁是投资者</a>
+        <a class="lv2" href="#fin1-p1-5">1.5 养老基金与资管公司</a>
+
+        <a class="lv1" href="#fin1-p2">Part 2 · 金融业创造价值吗</a>
+        <a class="lv2" href="#fin1-p2-1">2.1 金融业创造价值吗</a>
+        <a class="lv2" href="#fin1-p2-2">2.2 价值创造一：高效配置资源</a>
+        <a class="lv2" href="#fin1-p2-3">2.3 价值创造二：促成交易</a>
+        <a class="lv2" href="#fin1-p2-4">2.4 证券产品</a>
+
+        <a class="lv1" href="#fin1-p3">Part 3 · 金融机构</a>
+        <a class="lv2" href="#fin1-p3-1">3.1 为什么需要中间人</a>
+        <a class="lv2" href="#fin1-p3-2">3.2 谁是中间人</a>
+        <a class="lv2" href="#fin1-p3-3">3.3 金融业的工作岗位</a>
+
+        <a class="lv1" href="#fin1-p4">Part 4 · 关于本课程</a>
+        <a class="lv2" href="#fin1-p4-1">4.1 本学期计划</a>
+        <a class="lv2" href="#fin1-p4-2">4.2 课程目标</a>
+        <a class="lv2" href="#fin1-p4-3">4.3 教材与考核</a>
+        <a class="lv2" href="#fin1-p4-4">4.4 小组项目</a>
+
+        <a class="lv1" href="#fin1-p5">Part 5 · 总结</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第2课 · What is a Firm?</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#fin2-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#fin2-p1">Part 1 · 企业的组织形式</a>
+        <a class="lv2" href="#fin2-p1-1">1.1 组织形式概览</a>
+        <a class="lv2" href="#fin2-p1-2">1.2 个体户 Sole Proprietorship</a>
+        <a class="lv2" href="#fin2-p1-3">1.3 合伙企业 Partnership</a>
+        <a class="lv2" href="#fin2-p1-4">1.4 有限合伙企业 Limited Partnership</a>
+        <a class="lv2" href="#fin2-p1-5">1.5 股份有限公司 Corporation</a>
+        <a class="lv2" href="#fin2-p1-6">1.6 公司的主要特征</a>
+        <a class="lv2" href="#fin2-p1-7">1.7 私营与上市公司</a>
+        <a class="lv2" href="#fin2-p1-8">1.8 有限责任公司 LLC</a>
+        <a class="lv2" href="#fin2-p1-9">1.9 五种形式对比</a>
+        <a class="lv2" href="#fin2-p1-10">1.10 如何选择最合适的形式</a>
+
+        <a class="lv1" href="#fin2-p2">Part 2 · 公司的组织结构</a>
+        <a class="lv2" href="#fin2-p2-1">2.1 所有权与管理权分离</a>
+        <a class="lv2" href="#fin2-p2-2">2.2 京东股权结构示例</a>
+        <a class="lv2" href="#fin2-p2-3">2.3 财务管理的目标</a>
+        <a class="lv2" href="#fin2-p2-4">2.4 公司社会责任 CSR</a>
+
+        <a class="lv1" href="#fin2-p3">Part 3 · 代理问题</a>
+        <a class="lv2" href="#fin2-p3-1">3.1 代理问题</a>
+        <a class="lv2" href="#fin2-p3-2">3.2 CEO 想要什么</a>
+        <a class="lv2" href="#fin2-p3-3">3.3 代理问题无处不在</a>
+        <a class="lv2" href="#fin2-p3-4">3.4 安然公司案例</a>
+        <a class="lv2" href="#fin2-p3-5">3.5 缓解代理问题的方法</a>
+
+        <a class="lv1" href="#fin2-p4">Part 4 · 总结</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第3课 · Raising Capital</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#fin3-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#fin3-p1">Part 1 · 债务与股权</a>
+        <a class="lv2" href="#fin3-p1-1">1.1 债务 vs 股权</a>
+        <a class="lv2" href="#fin3-p1-2">1.2 债务与股权如何演变</a>
+        <a class="lv2" href="#fin3-p1-3">1.3 债务 vs 股权投资对比</a>
+
+        <a class="lv1" href="#fin3-p2">Part 2 · 股权融资</a>
+        <a class="lv2" href="#fin3-p2-1">2.1 股权融资如何运作</a>
+        <a class="lv2" href="#fin3-p2-2">2.2 稀释 Dilution</a>
+        <a class="lv2" href="#fin3-p2-3">2.3 风险投资 VC</a>
+        <a class="lv2" href="#fin3-p2-4">2.4 风险投资的类型</a>
+        <a class="lv2" href="#fin3-p2-5">2.5 私募股权 PE</a>
+        <a class="lv2" href="#fin3-p2-6">2.6 首次公开发行 IPO</a>
+        <a class="lv2" href="#fin3-p2-7">2.7 IPO 的成本</a>
+        <a class="lv2" href="#fin3-p2-8">2.8 增发 SEO</a>
+
+        <a class="lv1" href="#fin3-p3">Part 3 · 债务融资</a>
+        <a class="lv2" href="#fin3-p3-1">3.1 债务类型</a>
+        <a class="lv2" href="#fin3-p3-2">3.2 公司债发行流程</a>
+        <a class="lv2" href="#fin3-p3-3">3.3 信用评级</a>
+
+        <a class="lv1" href="#fin3-p4">Part 4 · 总结</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第4课 · Time Value of Money</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#fin4-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#fin4-p1">Part 1 · 什么是货币的时间价值</a>
+        <a class="lv2" href="#fin4-p1-1">1.1 货币的时间价值</a>
+        <a class="lv2" href="#fin4-p1-2">1.2 关键概念</a>
+
+        <a class="lv1" href="#fin4-p2">Part 2 · 单一现金流的 TVM</a>
+        <a class="lv2" href="#fin4-p2-1">2.1 终值 FV</a>
+        <a class="lv2" href="#fin4-p2-2">2.2 单利与复利</a>
+        <a class="lv2" href="#fin4-p2-3">2.3 现值 PV</a>
+        <a class="lv2" href="#fin4-p2-4">2.4 PV 与 FV 的解读</a>
+        <a class="lv2" href="#fin4-p2-5">2.5 复利的力量</a>
+        <a class="lv2" href="#fin4-p2-6">2.6 求解 t 与 r</a>
+
+        <a class="lv1" href="#fin4-p3">Part 3 · APR 与 EAR</a>
+        <a class="lv2" href="#fin4-p3-1">3.1 年百分率 APR</a>
+        <a class="lv2" href="#fin4-p3-2">3.2 用 APR 还是有效利率</a>
+        <a class="lv2" href="#fin4-p3-3">3.3 有效年利率 EAR</a>
+        <a class="lv2" href="#fin4-p3-4">3.4 连续复利</a>
+        <a class="lv2" href="#fin4-p3-5">3.5 EAR vs APR 例题</a>
+
+        <a class="lv1" href="#fin4-p4">Part 4 · 总结</a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<!-- ============ 主内容 ============ -->
+<main class="content">
+<div class="content-inner">
+
+<h1 class="title">金融基础 · 复习笔记</h1>
+<p class="course-meta">FIN2010 Financial Management · 中英对照 · 覆盖 Lecture 1–2</p>
+
+<!-- ============ 第1课 ============ -->
+<div class="lecture" id="lec1">
+<div class="lecture-banner">第1课 · What is Finance? <span class="zh">（金融是什么）</span></div>
+
+<!-- ===== 本讲概览 ===== -->
+<section id="fin1-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#fin1-p1">借款人与投资者</a> —— 金融的图景、谁在借钱、谁在投资</li>
+      <li><a href="#fin1-p2">金融业创造价值吗</a> —— 高效配置资源、促成交易、证券产品</li>
+      <li><a href="#fin1-p3">金融机构</a> —— 中间人的作用与金融业岗位</li>
+      <li><a href="#fin1-p4">关于本课程</a> —— 学期计划、目标、考核</li>
+      <li><a href="#fin1-p5">总结</a></li>
+    </ol>
+  </div>
+  <div class="def box">
+    <span class="box-title">📌 金融是什么（What is Finance?）</span>
+    <p><b>金融 = 研究如何让钱从「有闲钱的投资者」高效地流向「需要钱的借款人」的学问</b>，以及围绕这一过程的所有相关问题。</p>
+    <p class="formula">Investors（投资者，有钱）\(\longrightarrow\) Financial Industry（金融业）\(\longrightarrow\) Borrowers（借款人，需要钱）</p>
+  </div>
+</section>
+
+<!-- ============ Part 1 借款人与投资者 ============ -->
+<section id="fin1-p1">
+<h2>Part 1 · 借款人与投资者 <span class="zh">Investors and Borrowers</span></h2>
+
+<h3 id="fin1-p1-1">1.1 金融是什么 <span class="zh">What is Finance?</span></h3>
+<p>金融的核心图景由三部分组成：</p>
+<ul>
+  <li><b>Borrowers</b>（借款人）——需要钱的一方；</li>
+  <li><b>Investors</b>（投资者）——有钱的一方；</li>
+  <li><b>Financial Industry</b>（金融业）——把两者连接起来的中间环节。</li>
+</ul>
+
+<h3 id="fin1-p1-2">1.2 谁是借款人 <span class="zh">Who are the Borrowers?</span></h3>
+<p>借款人主要有三类：<b>政府（Government）、企业（Business）、家庭（Household）</b>。</p>
+<p>（数据来源：World Bank、中国财政部，截至 2022 年底；<b>数字不需要记</b>，看量级即可。）</p>
+<table class="truth">
+  <tr><th>负债主体</th><th>美国 US</th><th>中国 China</th></tr>
+  <tr><td>中央政府 Central Gov.</td><td>$34.8 T</td><td>$3.74 T</td></tr>
+  <tr><td>地方政府 Local Gov.</td><td>$4.0 T</td><td>$5.07 T</td></tr>
+  <tr><td>GDP</td><td>$25.5 T</td><td>$18.0 T</td></tr>
+</table>
+<table class="truth">
+  <tr><th>企业融资</th><th>美国 US</th><th>中国 China</th></tr>
+  <tr><td>股权 Equity</td><td>$46.2 T</td><td>$10.7 T</td></tr>
+  <tr><td>债券 Bond</td><td>$10.4 T</td><td>$29.8 T</td></tr>
+</table>
+<table class="truth">
+  <tr><th>家庭贷款</th><th>美国 US</th><th>中国 China</th></tr>
+  <tr><td>房贷 Home Loan</td><td>$17.3 T</td><td>$7.5 T</td></tr>
+  <tr><td>车贷 Auto Loan</td><td>$1.6 T</td><td>$0.03 T</td></tr>
+</table>
+
+<h3 id="fin1-p1-3">1.3 为什么借款：加速增长 <span class="zh">Why Borrow — To Accelerate Growth!</span></h3>
+<p>用<b>喜茶（HEYTEA）</b>的例子说明「借钱能加速增长」：</p>
+<ul>
+  <li>假设一家喜茶分店<b>一年的利润 = 开一家新店的成本</b>。</li>
+  <li>如果不借钱，店主只能靠利润滚动，<b>门店数每年翻一倍</b>（1 → 2 → 4 → 8 …）。</li>
+  <li>现实中喜茶通过<b>借钱开店</b>，扩张速度远快于自筹资金。</li>
+</ul>
+<table class="truth">
+  <tr><th>年份 Year</th><th>不负债门店数<br>Stores—No debt</th><th>实际门店数<br>Actual Stores</th><th>融资方 Financed by</th></tr>
+  <tr><td>2012</td><td>1</td><td>1</td><td>—</td></tr>
+  <tr><td>2013</td><td>2</td><td>4</td><td>—</td></tr>
+  <tr><td>2014</td><td>4</td><td>9</td><td>—</td></tr>
+  <tr><td>2015</td><td>8</td><td>15</td><td>—</td></tr>
+  <tr><td>2016</td><td>16</td><td>50</td><td>IDG Capitals</td></tr>
+  <tr><td>2017</td><td>32</td><td>80</td><td>—</td></tr>
+  <tr><td>2018</td><td>64</td><td>163</td><td>Black Ant Capital, Meituan</td></tr>
+</table>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p><b>这就是金融有用的原因之一：借贷让企业能以远超自身积累的速度扩张。</b></p>
+</div>
+
+<h3 id="fin1-p1-4">1.4 谁是投资者 <span class="zh">Who are the Investors?</span></h3>
+<ul>
+  <li><b>个人 Individuals</b> —— 直接投资。</li>
+  <li><b>机构 Institutions</b> —— 养老基金 Pension Funds、保险 Insurance、其他（捐赠基金 Endowments、主权基金 Sovereign Funds、企业 Firms 等）。</li>
+  <li>机构常常<b>通过基金经理（Money Managers）来投资</b>，包括：<b>共同基金 Mutual funds、对冲基金 Hedge funds、风险投资 Venture capitals、私募股权 Private equities</b>。</li>
+</ul>
+
+<h3 id="fin1-p1-5">1.5 养老基金与资管公司 <span class="zh">Pension Funds &amp; Money Managers</span></h3>
+<p><b>养老基金（养老金）</b>的运作模式：向年轻人按月收取缴费，等他们年老时（更多）返还。<b>投资目标是满足未来的给付义务（meet future obligations）。</b></p>
+<table class="truth">
+  <tr><th>国家</th><th>基金</th><th>资产（十亿美元）</th></tr>
+  <tr><td>美国</td><td>联邦老年与遗属保险信托基金（社会保障）</td><td>$2,619</td></tr>
+  <tr><td>澳大利亚</td><td>澳大利亚国家养老金计划</td><td>$2,568</td></tr>
+  <tr><td>日本</td><td>政府养老金投资基金（GPIF）</td><td>$1,790</td></tr>
+  <tr><td>挪威</td><td>挪威政府养老基金</td><td>$1,356</td></tr>
+  <tr><td>加拿大</td><td>加拿大养老金计划与 CPP 投资委员会</td><td>$570</td></tr>
+  <tr><td>中国</td><td>全国社会保障基金</td><td>$405</td></tr>
+</table>
+<p><b>全球资产管理公司（Global Money Management Firms）</b>的商业模式：<b>替别人管钱、收管理费</b>，管理费通常是<b>资产管理规模（AUM, assets under management）的 0.1%–1%</b>。投资目标是<b>通过跑赢对手来最大化 AUM</b>。</p>
+<table class="truth">
+  <tr><th>排名</th><th>公司</th><th>国家</th><th>AUM（十亿美元）</th></tr>
+  <tr><td>1</td><td>BlackRock 贝莱德</td><td>美国</td><td>9,090</td></tr>
+  <tr><td>2</td><td>Vanguard Group</td><td>美国</td><td>7,600</td></tr>
+  <tr><td>3</td><td>Fidelity Investments</td><td>美国</td><td>4,240</td></tr>
+  <tr><td>4</td><td>UBS Group</td><td>瑞士</td><td>3,960</td></tr>
+  <tr><td>5</td><td>State Street Global Advisors</td><td>美国</td><td>3,600</td></tr>
+  <tr><td>6</td><td>Morgan Stanley</td><td>美国</td><td>3,131</td></tr>
+  <tr><td>7</td><td>JPMorgan Chase</td><td>美国</td><td>3,006</td></tr>
+  <tr><td>8</td><td>Goldman Sachs 高盛</td><td>美国</td><td>2,672</td></tr>
+  <tr><td>10</td><td>Allianz Group</td><td>德国</td><td>2,364</td></tr>
+</table>
+<p><b>中国资产管理公司：</b></p>
+<table class="truth">
+  <tr><th>排名</th><th>公司</th><th>AUM（万亿元人民币）</th></tr>
+  <tr><td>1</td><td>国寿资管 China Life Asset Management</td><td>5.37</td></tr>
+  <tr><td>2</td><td>平安资管 Ping An Asset Management</td><td>5.03</td></tr>
+  <tr><td>3</td><td>泰康资管 Taikang Insurance Group</td><td>3.40</td></tr>
+  <tr><td>4</td><td>招银理财 CMB Wealth Management</td><td>2.55</td></tr>
+  <tr><td>8</td><td>易方达 E Funds Management</td><td>1.62</td></tr>
+  <tr><td>10</td><td>建信基金管理 CCB Principal Asset Management</td><td>1.17</td></tr>
+</table>
+</section>
+
+<!-- ============ Part 2 金融业创造价值吗 ============ -->
+<section id="fin1-p2">
+<h2>Part 2 · 金融业创造价值吗 <span class="zh">Does Finance Create Value?</span></h2>
+
+<h3 id="fin1-p2-1">2.1 金融业创造价值吗 <span class="zh">Does Financial Industry Create Value?</span></h3>
+<p>表面上看，金融业似乎<b>只转移财富、不创造财富</b>。这是真的吗？<b>不是！</b>金融业通过许多方式创造价值，最重要的两个渠道是：</p>
+<ol>
+  <li><b>高效配置资源（Allocating resources efficiently）</b></li>
+  <li><b>促成交易（Making deals happen）</b></li>
+</ol>
+<p>其他渠道包括：</p>
+<ul>
+  <li>提供<b>流动性（liquidity）</b>——让人可以随时交易；</li>
+  <li>提供<b>信息（information）</b>；</li>
+  <li><b>稳定市场、降低风险（stabilizing the market and reducing risks）</b>。</li>
+</ul>
+
+<h3 id="fin1-p2-2">2.2 价值创造一：高效配置资源 <span class="zh">Allocating Resources Efficiently</span></h3>
+<p>假设有两家公司：</p>
+<ul>
+  <li><b>公司 A</b> 能把 1 美元在一年内变成 2 美元；</li>
+  <li><b>公司 B</b> 能把 1 美元在一年内变成 1.1 美元。</li>
+</ul>
+<p>如果我们有 $100 要分配给这两家公司：</p>
+<ol>
+  <li>一个<b>金融业高效</b>的经济体会把全部 $100 投给公司 A，一年后社会拥有 <b>$200</b>。</li>
+  <li>一个<b>金融业低效</b>的经济体可能各投 $50，一年后社会只有 <b>$155</b>。</li>
+</ol>
+<div class="warn box">
+  <span class="box-title">⚠️ 挑战</span>
+  <p><b>如何识别哪家是公司 A、哪家是公司 B？</b> —— 关键技能：<b>理解并能够对世界建模（understand and be able to model the world）。</b></p>
+</div>
+
+<h3 id="fin1-p2-3">2.3 价值创造二：促成交易 <span class="zh">Making Deals Happen (Promoting Growth)</span></h3>
+<p>把「有钱但没项目的投资者」和「有项目但没钱的借款人」撮合起来：</p>
+<ul>
+  <li>投资者：有资金但缺盈利项目，<b>要求较低的回报</b>；</li>
+  <li>借款人：需要资金来执行盈利项目，<b>能赚取高回报</b>。</li>
+</ul>
+<p>资金循环：投资者提供<b>现金 Cash</b> → 换取<b>证券 Securities</b> → 项目执行产生回报 → 以<b>分红或利息（Dividends or interest）</b>返还，剩余作为<b>留存收益（Retained earnings）</b>。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 三个挑战</span>
+  <ol>
+    <li>去哪找投资者和借款人？</li>
+    <li>怎么知道借款人能还款、不会卷款跑路？</li>
+    <li>怎么说服投资者投资？</li>
+  </ol>
+  <p>关键技能：<b>维护客户关系，具备很强的人际交往与沟通能力。</b></p>
+</div>
+
+<h3 id="fin1-p2-4">2.4 证券产品 <span class="zh">What Securities do People Use?</span></h3>
+<p>金融市场里的产品叫做<b>证券（securities）</b>，分三大类：</p>
+<ul>
+  <li><b>股权 Equity</b>（拥有企业的一部分）——<b>股票 Stock</b>。</li>
+  <li><b>债务 Debt</b>（偿付金额固定）——<b>债券 Bond、抵押贷款 Mortgage</b>。</li>
+  <li><b>衍生品 Derivatives</b>（偿付金额取决于未来市场价格）——<b>远期与期货 Forward / Futures、期权 Option、互换 Swap</b>等。</li>
+</ul>
+</section>
+
+<!-- ============ Part 3 金融机构 ============ -->
+<section id="fin1-p3">
+<h2>Part 3 · 金融机构 <span class="zh">Financial Institutions</span></h2>
+
+<h3 id="fin1-p3-1">3.1 为什么需要中间人 <span class="zh">Why do We Need the Middleman?</span></h3>
+<p>以 100 个投资者、10 个借款人为例：</p>
+<ul>
+  <li>没有中间人：需要 <b>1000</b> 次谈判；</li>
+  <li>有中间人：只需 <b>110</b> 次——<b>更高效！</b></li>
+</ul>
+<p>中间人还带来<b>专业化（specialization）</b>，提供有用服务：</p>
+<ul>
+  <li><b>尽职调查 Due diligence</b>（收集借款人信息）</li>
+  <li><b>风险分担、分散化、流动性 Risk sharing / diversification / liquidity</b></li>
+  <li><b>顾问 Advisory</b></li>
+  <li><b>监控 Monitoring</b></li>
+</ul>
+
+<h3 id="fin1-p3-2">3.2 谁是中间人 <span class="zh">Who are the Middlemen?</span></h3>
+<p>金融业大致分两部分：</p>
+<ul>
+  <li><b>卖方 Sell Side</b>（提供服务）：商业银行 Commercial Banks、投行 Investment Banks（如中金 CICC、高盛 Goldman Sachs）、券商 Brokerage Firms（如招商证券 CMSC）、数据商 Data Vendors（如 Wind、Bloomberg）、交易所 Exchanges（如深交所）。</li>
+  <li><b>买方 Buy Side</b>（有钱）：基金经理 Money Managers。</li>
+</ul>
+
+<h3 id="fin1-p3-3">3.3 金融业的工作岗位 <span class="zh">Jobs in the Financial Industry</span></h3>
+<table class="truth">
+  <tr><th>机构类型</th><th>任务 Tasks</th><th>优点 Good</th><th>缺点 Bad</th></tr>
+  <tr>
+    <td><b>买方机构</b><br>Buy Side</td>
+    <td style="text-align:left">管理现金流以满足未来给付；管理投资风险；挑选好的基金经理委托投资</td>
+    <td style="text-align:left">工作量/工时较轻；有权力、受尊重</td>
+    <td style="text-align:left">薪酬通常不如卖方；成长空间有限；难进（可能要人脉）</td>
+  </tr>
+  <tr>
+    <td><b>基金经理</b><br>Money Managers</td>
+    <td style="text-align:left">创造优异投资业绩（高效配置资源）；量化模型、基本面分析；说服投资者投钱（建立信任）</td>
+    <td style="text-align:left">表现好则薪酬极高；周围都是聪明人</td>
+    <td style="text-align:left">薪酬与业绩挂钩、压力大；容易被炒</td>
+  </tr>
+  <tr>
+    <td><b>投资银行</b><br>Investment Banking</td>
+    <td style="text-align:left">一级市场：帮公司融资或做交易（IPO、并购、清算）；交易：满足对冲需求</td>
+    <td style="text-align:left">薪酬极高（很大部分是奖金）；能接触重要人物；好的退出选项</td>
+    <td style="text-align:left">工作时间极长；有时有毒的工作环境</td>
+  </tr>
+  <tr>
+    <td><b>商业银行</b><br>Commercial Banking</td>
+    <td style="text-align:left">与储户打交道；给借款人放贷；向投资者卖投资产品赚激励费；管理风险</td>
+    <td style="text-align:left">稳定（难被炒）；岗位多、易跳槽</td>
+    <td style="text-align:left">薪酬通常不高；可能无聊</td>
+  </tr>
+</table>
+<p>其他机构：</p>
+<ul>
+  <li><b>券商 Brokers</b> —— 帮客户进入金融市场，提供研究；</li>
+  <li><b>数据商 Data Vendors</b> —— 向其他参与者提供数据；</li>
+  <li><b>交易所 Exchanges</b> —— 技术平台，对监管者负责；</li>
+  <li><b>做市商 Market makers</b> —— 维持市场流动性；</li>
+  <li><b>套利者 Arbitrageurs</b> —— 纠正错误定价。</li>
+</ul>
+</section>
+
+<!-- ============ Part 4 关于本课程 ============ -->
+<section id="fin1-p4">
+<h2>Part 4 · 关于本课程 <span class="zh">About This Course</span></h2>
+
+<h3 id="fin1-p4-1">4.1 本学期计划 <span class="zh">Plan for this Semester</span></h3>
+<ol>
+  <li><b>基础工具</b>（第 1–6 讲）——货币的时间价值、制度知识。</li>
+  <li><b>投资者的问题</b>（第 7–13、15–16 讲）——资产估值（债券与股票）、风险与收益、金融衍生品、个人投资。</li>
+  <li><b>期中考试 Midterm</b></li>
+  <li><b>企业的问题</b>（第 17–23 讲）——资本结构、资本成本、项目估值。</li>
+  <li><b>AI 与投资</b>（第 25–26 讲）。</li>
+  <li><b>期末考试 Final</b></li>
+</ol>
+<p class="formula">「每个人一生中都会在某个时刻成为投资者！」「如果你打算创业，这门课很有用。」</p>
+
+<h3 id="fin1-p4-2">4.2 课程目标 <span class="zh">Course Objectives</span></h3>
+<ul>
+  <li><b>知识 Knowledge</b>：理解金融业在做什么。</li>
+  <li><b>框架 Framework</b>：学习量化金融问题的框架——<b>量化（quantifying）= 用数字和方程解释问题</b>。</li>
+  <li><b>应用 Application</b>：学会做理性的财务决策——评估（该买这套房/这只股票吗）、规划（要有 X 金额，我需要……）、识破骗局。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">🧭 设定正确的预期（Setting the Correct Expectation）</span>
+  <p>社会科学（social science）与自然科学不同，<b>无法精确描述世界</b>。那我们为什么还要学？</p>
+  <ul>
+    <li>它<b>远胜于纯粹靠猜</b>；</li>
+    <li>你得先学<b>原始模型（primitive models）</b>，将来才能发展出更高级的模型。</li>
+  </ul>
+</div>
+
+<h3 id="fin1-p4-3">4.3 教材与考核 <span class="zh">Materials &amp; Grading</span></h3>
+<p><b>教材</b>：<span class="en">Fundamentals of Corporate Finance</span>（Ross、Westerfield、Jordan 著）——非必买，但对没有金融基础的同学强烈推荐。</p>
+<p><b>计算器</b>：普通计算器即可；对 CFA 感兴趣可考虑 TI BA II Plus；<b>可编程计算器在期中和期末不允许使用</b>。</p>
+<p><b>考核（Grading）：</b></p>
+<table class="truth">
+  <tr><th>项目</th><th>占比</th></tr>
+  <tr><td>参与 Participation</td><td>5%（每次 0.25%）</td></tr>
+  <tr><td>作业 Homework</td><td>15%（每周在线选择题 5% + 习题集 10%）</td></tr>
+  <tr><td>小组项目 Group project</td><td>15%</td></tr>
+  <tr><td>期中 Midterm</td><td>30%</td></tr>
+  <tr><td>期末 Final</td><td>35%</td></tr>
+</table>
+
+<h3 id="fin1-p4-4">4.4 小组项目 <span class="zh">Group Project</span></h3>
+<ul>
+  <li>占 15%。</li>
+  <li>目标：运用理论评估一个投资机会。</li>
+  <li>形式：一份 8–15 页（含图表）的报告。</li>
+  <li>4–5 人一组，<b>2026-10-31 前组队</b>；<b>截止 2026-12-13 23:59</b>（可能随进度调整）。</li>
+</ul>
+</section>
+
+<!-- ============ Part 5 总结 ============ -->
+<section id="fin1-p5">
+<h2>Part 5 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 本讲要点</span>
+  <ul>
+    <li><b>什么是金融？</b> 研究如何让钱高效地从投资者流向借款人，以及相关的所有问题。</li>
+    <li><b>投资者与借款人是谁？</b> 投资者：个人与机构；借款人：政府、企业、家庭。</li>
+    <li><b>金融业创造什么价值？</b> 高效配置资源；促成交易以促进增长。</li>
+    <li><b>行业由什么构成？</b> 商业银行；买方机构与基金经理；券商、投行、数据商、交易所等。</li>
+  </ul>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>finance</b> — 金融；<b>financial industry</b> — 金融业</li>
+    <li><b>borrower</b> — 借款人；<b>investor</b> — 投资者</li>
+    <li><b>allocate resources</b> — 配置资源；<b>make deals happen</b> — 促成交易</li>
+    <li><b>liquidity</b> — 流动性；<b>information</b> — 信息</li>
+    <li><b>pension fund</b> — 养老基金；<b>insurance</b> — 保险；<b>endowment</b> — 捐赠基金；<b>sovereign fund</b> — 主权基金</li>
+    <li><b>money manager</b> — 基金经理；<b>mutual fund</b> — 共同基金；<b>hedge fund</b> — 对冲基金</li>
+    <li><b>venture capital</b> — 风险投资；<b>private equity</b> — 私募股权</li>
+    <li><b>assets under management (AUM)</b> — 资产管理规模；<b>management fee</b> — 管理费</li>
+    <li><b>security</b> — 证券；<b>equity</b> — 股权；<b>stock</b> — 股票</li>
+    <li><b>debt</b> — 债务；<b>bond</b> — 债券；<b>mortgage</b> — 抵押贷款</li>
+    <li><b>derivative</b> — 衍生品；<b>forward / futures</b> — 远期 / 期货；<b>option</b> — 期权；<b>swap</b> — 互换</li>
+    <li><b>middleman</b> — 中间人；<b>due diligence</b> — 尽职调查</li>
+    <li><b>risk sharing / diversification</b> — 风险分担 / 分散化；<b>monitoring</b> — 监控</li>
+    <li><b>commercial bank</b> — 商业银行；<b>investment bank</b> — 投资银行</li>
+    <li><b>brokerage firm</b> — 券商；<b>data vendor</b> — 数据商；<b>exchange</b> — 交易所</li>
+    <li><b>sell side / buy side</b> — 卖方 / 买方；<b>market maker</b> — 做市商；<b>arbitrageur</b> — 套利者</li>
+    <li><b>time value of money</b> — 货币的时间价值；<b>quantifying</b> — 量化</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第1课 -->
+
+<!-- ============ 第2课 ============ -->
+<div class="lecture" id="lec2">
+<div class="lecture-banner">第2课 · What is a Firm? <span class="zh">（企业是什么）</span></div>
+
+<!-- ===== 本讲概览 ===== -->
+<section id="fin2-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#fin2-p1">企业的组织形式</a> —— 个体户、合伙、LP、LLC、公司五种形式</li>
+      <li><a href="#fin2-p2">公司的组织结构</a> —— 所有权与管理权分离、财务目标、CSR</li>
+      <li><a href="#fin2-p3">代理问题</a> —— 委托—代理冲突及缓解方法</li>
+      <li><a href="#fin2-p4">总结</a></li>
+    </ol>
+  </div>
+  <div class="def box">
+    <span class="box-title">📌 本讲主题</span>
+    <p>企业（firm）有哪些<b>组织形式（organizational forms）</b>？公司的<b>组织结构（organization structure）</b>如何？以及由此产生的<b>代理问题（agency problems）</b>。</p>
+  </div>
+</section>
+
+<!-- ============ Part 1 企业的组织形式 ============ -->
+<section id="fin2-p1">
+<h2>Part 1 · 企业的组织形式 <span class="zh">Organizational Forms of a Firm</span></h2>
+
+<h3 id="fin2-p1-1">1.1 组织形式概览 <span class="zh">Forms of Business Organization</span></h3>
+<p>企业有四种基本形式：<b>个体户（sole proprietorship）、合伙（partnership）、有限责任公司（LLC）、股份有限公司（corporation）</b>。</p>
+<p>它们在许多方面不同：</p>
+<ul>
+  <li>注册所需的<b>初始资本</b>；</li>
+  <li>是否是<b>法人（legal entity）</b>；</li>
+  <li><b>有限责任（limited liability）还是无限责任（unlimited liability）</b>；</li>
+  <li><b>税（tax）</b>；</li>
+  <li><b>控制权（control rights）</b>；</li>
+  <li>转让所有权、融资的难易程度。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p><b>作为投资者，你需要搞清楚自己进入的是一笔什么样的交易！</b></p>
+</div>
+
+<h3 id="fin2-p1-2">1.2 个体户 <span class="zh">Sole Proprietorship（个体户）</span></h3>
+<p>例子：王翠花开了个煎饼摊。<b>个体户是最简单的企业形式，只有一个所有者</b>——企业和所有者是<b>同一个实体</b>。</p>
+<ul>
+  <li><b>优点</b>：容易启动（初始资本 0 要求、手续少）；只交个人所得税；对企业完全掌控。</li>
+  <li><b>缺点</b>：<b>无限责任</b>——若顾客吃出病来起诉你，你独自负责，赔偿<b>没有上限</b>；资源有限（资本、人力等）。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 细节</span>
+  <p>在中国，个体户最多可雇 <b>7 名员工</b>；仍需要注册企业。</p>
+</div>
+
+<h3 id="fin2-p1-3">1.3 合伙企业 <span class="zh">Partnership（合伙企业）</span></h3>
+<p><b>合伙 = 个体户 + 2 个以上的所有者。</b>例子：王翠花遇到李富贵，现在他们一起卖煎饼和包子。</p>
+<ul>
+  <li><b>优点</b>：更多资源（资本、人力）；只需交个人所得税。</li>
+  <li><b>缺点</b>：无限责任；<b>控制权之争</b>（翠花想卖甜豆腐、富贵想卖咸豆腐）；<b>难融资</b>（马斯克不会投——他投 $100,000，若顾客吃出病来，因为无限责任他可能损失数百万）。</li>
+</ul>
+
+<h3 id="fin2-p1-4">1.4 有限合伙企业 <span class="zh">Limited Partnership（LP，有限合伙企业）</span></h3>
+<p>在 LP 中有两类合伙人：</p>
+<ul>
+  <li><b>普通合伙人 General partner (GP)</b>：至少一人，承担<b>无限责任</b>并经营企业；</li>
+  <li><b>有限合伙人 Limited partners (LP)</b>：其余合伙人承担<b>有限责任</b>，通常不经营企业。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 作用</span>
+  <p>LP 让<b>向投资者融资变得更容易</b>：在有限责任下，最坏情况你只损失投入的钱。这是<b>基金经理（如风投、私募）常用的形式</b>。</p>
+</div>
+<p>例子：马斯克喜欢他们的包子、想投资，于是他们成立有限合伙、开起了餐厅。</p>
+
+<h3 id="fin2-p1-5">1.5 股份有限公司 <span class="zh">Corporation（股份有限公司）</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>公司（corporation）是一个正式的法人（legal entity），独立于其所有者、与其所有者相区别。</b></p>
+</div>
+<p>例子：他们的餐厅很成功，开始开连锁店，需要更多资本，于是注册了股份有限公司。</p>
+
+<h3 id="fin2-p1-6">1.6 公司的主要特征 <span class="zh">Key Features of Corporations</span></h3>
+<ul>
+  <li><b>最大优点：非常容易融资</b>——所有投资者有限责任、所有权易转让（公司不需其他所有者同意；其他形式需多数同意）。</li>
+  <li><b>缺点</b>：初始资本高（私营 ¥10M、公众 ¥50M）；<b>双重征税</b>（公司税：中国 25%；美国特朗普第一届任期后 21%，之前 35%；所有者在领薪水或分红时再次被征税）。</li>
+  <li><b>其他特征</b>：所有权与管理权分离（后面讨论）。</li>
+</ul>
+
+<h3 id="fin2-p1-7">1.7 私营与上市公司 <span class="zh">Corporation — Private and Public</span></h3>
+<ul>
+  <li><b>私营 Private</b>：由私人持有的公司。</li>
+  <li><b>公众 Public</b>：股票在交易所交易；公众公司受<b>更严格的监管和信息披露规则</b>约束。</li>
+</ul>
+
+<h3 id="fin2-p1-8">1.8 有限责任公司 <span class="zh">Limited Liability Company（LLC，有限责任公司）</span></h3>
+<p>LLC 是<b>结合了公司与合伙特点的混合形式</b>：</p>
+<ul>
+  <li><b>法人</b>——有限责任；在中国<b>双重征税</b>（在美国等一些国家按个人税）；</li>
+  <li>启动资本相对少（中国 ¥500k）；</li>
+  <li>可以转让所有权，但较难（需多数同意）；</li>
+  <li>适合中小企业（中国：2–50 名所有者）——例子：连锁餐厅、制造企业。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 定位</span>
+  <p>LLC 是「<b>好的中间地带</b>」：比合伙更安全，比公司更简单、更便宜。</p>
+</div>
+
+<h3 id="fin2-p1-9">1.9 五种形式对比 <span class="zh">Comparison</span></h3>
+<table class="truth">
+  <tr><th>形式</th><th>初始资本<br>(RMB)</th><th>有限责任</th><th>税</th><th>管理</th><th>转让所有权</th><th>融资</th></tr>
+  <tr><td>个体户<br>Sole Proprietorship</td><td>0</td><td>否</td><td>个人所得税</td><td>完全掌控</td><td>不适用</td><td>困难</td></tr>
+  <tr><td>合伙<br>Partnership</td><td>0</td><td>否</td><td>个人所得税</td><td>所有者共享</td><td>困难</td><td>困难</td></tr>
+  <tr><td>有限合伙<br>LP</td><td>0</td><td>混合</td><td>个人所得税</td><td>所有者共享</td><td>困难</td><td>相对容易</td></tr>
+  <tr><td>有限责任公司<br>LLC</td><td>500,000</td><td>是</td><td>双重征税</td><td>所有者共享</td><td>困难</td><td>相对容易</td></tr>
+  <tr><td>股份有限公司<br>Corporation</td><td>私营 10M<br>公众 50M</td><td>是</td><td>双重征税</td><td>管理权与所有权分离</td><td>容易</td><td>最容易</td></tr>
+</table>
+
+<h3 id="fin2-p1-10">1.10 如何选择最合适的形式 <span class="zh">The Most Suitable Business Form?</span></h3>
+<p>注意：<b>不是所有企业都必须走「个体户 → 合伙 → LP → LLC → 公司」的路径</b>。为满足企业需求，你可以从任意一点开始。</p>
+<ul>
+  <li>赖女士和女儿打算在港中深门口卖水果 → 适合<span class="zh">个体户</span>；</li>
+  <li>滴滴出行科技公司 → 适合<span class="zh">股份有限公司</span>；</li>
+  <li>一群资本有限、提供咨询和编程服务的程序员 → 适合<span class="zh">合伙 / LLC</span>。</li>
+</ul>
+</section>
+
+<!-- ============ Part 2 公司的组织结构 ============ -->
+<section id="fin2-p2">
+<h2>Part 2 · 公司的组织结构 <span class="zh">Organization Structure of a Corporation</span></h2>
+
+<h3 id="fin2-p2-1">2.1 所有权与管理权分离 <span class="zh">Ownership and Management are Separated</span></h3>
+<p>公司的治理链条：</p>
+<p class="formula">投资者 Investors \(\xrightarrow{\text{投票 Vote}}\) 董事会 \(\xrightarrow{\text{选择 Selects}}\) CEO → 管理公司</p>
+<ul>
+  <li>投资者投票组成<b>董事会（board）</b>，代表投资者；</li>
+  <li>董事会选择 <b>CEO</b> 及其他高管；</li>
+  <li>CEO 管理公司。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 关键</span>
+  <p><b>投资者不能直接决定公司如何运营！</b></p>
+</div>
+
+<h3 id="fin2-p2-2">2.2 京东股权结构示例 <span class="zh">Ownership structure of JD.com, Inc.</span></h3>
+<p>京东（JD）是「所有者 Owners」与「管理者 Managers」分离的典型示例（数据源：Yahoo Finance）。</p>
+
+<h3 id="fin2-p2-3">2.3 财务管理的目标 <span class="zh">Financial Management Goals</span></h3>
+<ul>
+  <li><b>投资者想要什么？</b> 最大化回报 → 希望管理层<b>最大化企业价值（maximize firm value）</b>。</li>
+  <li><b>CEO 的目标应该是什么？</b> 首要目标：<b>最大化股价 / 股东财富（maximize stock price or shareholders' wealth）</b>。</li>
+  <li><b>CEO 如何实现目标？</b>
+    <ul>
+      <li><b>增加收入</b>：抢占市场份额、开拓新市场；</li>
+      <li><b>最小化成本</b>：内部——更高效地管理员工；外部——与供应商谈更好的交易。</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="fin2-p2-4">2.4 公司社会责任 <span class="zh">Financial Management Goals and CSR</span></h3>
+<p>自 1950 年代起、尤其 2000 年后，人们开始重新思考「目标是否只应是最大化股东价值」：</p>
+<ul>
+  <li>通常企业价值上升 = 整个社会受益；</li>
+  <li>但当企业价值上升 → 某些<b>利益相关者（stakeholders，尤其是弱势群体）受损</b>时，就成了问题。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 CSR（Corporate Social Responsibility，公司社会责任）</span>
+  <p>企业在追求经济目标的同时，应当<b>道德地经营、积极地为社会做贡献</b>。本质上，经理在试图最大化企业价值时，应当有一个<b>边界</b>——法律可能无法覆盖所有方面。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子：坏行为会受到惩罚</span>
+  <p>2016 年 5 月 2 日，百度股价下跌 <b>7.92%</b>（市值蒸发 ¥349 亿）。<b>公司社会责任很重要！</b></p>
+</div>
+</section>
+
+<!-- ============ Part 3 代理问题 ============ -->
+<section id="fin2-p3">
+<h2>Part 3 · 代理问题 <span class="zh">Agency Problems</span></h2>
+
+<h3 id="fin2-p3-1">3.1 代理问题 <span class="zh">Agency Problem</span></h3>
+<ul>
+  <li><b>委托人 Principal</b>：所有者；</li>
+  <li><b>代理人 Agent</b>：被委托管理任务的人；</li>
+  <li><b>代理关系 Agency relationship</b>：委托人雇代理人代表其利益——例如股东（委托人）雇经理（代理人）经营公司。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>代理问题（Agency Problem）：委托人和代理人可能有不同的目标！</b></p>
+</div>
+
+<h3 id="fin2-p3-2">3.2 CEO 想要什么 <span class="zh">What does the CEO want?</span></h3>
+<ul>
+  <li><b>理论上</b>：最大化股东价值；</li>
+  <li><b>现实中</b>：最大化自身价值，包括：
+    <ul>
+      <li>把公司做大（<b>帝国构建 empire building</b>）——大公司的 CEO 通常薪酬更高；</li>
+      <li>建立个人声誉——把公司做大、以「能管大公司」闻名；</li>
+      <li>做慈善以博得<b>慈善家（philanthropist）</b>名声；</li>
+      <li>个人享受——买私人飞机、高尔夫俱乐部会员；</li>
+      <li><b>挪用公款（embezzlement）</b>——把合同给 CEO 家族拥有的公司。</li>
+    </ul>
+  </li>
+</ul>
+<p>这些目标中，有的与股东<b>一致（Aligned）</b>，有的<b>冲突（Conflicting）</b>。</p>
+
+<h3 id="fin2-p3-3">3.3 代理问题无处不在 <span class="zh">Agency Problems are Prevalent at All Levels</span></h3>
+<p>考虑一个简单场景：我们的公司以成本 $100 生产一件商品，顾客 C 愿付 $200。</p>
+<ul>
+  <li><b>回扣/贿赂 Kickback/bribery</b>：顾客可以给我们的销售代表回扣——若她每少收 $1，就从 C 直接拿 $0.5。</li>
+  <li><b>挪用公款 Embezzlement</b>：CEO 成立一家新公司，以 $101 从我们公司买下商品，再以 $200 卖给 C。</li>
+  <li><b>信息泄露 Information Leakage</b>：员工告诉 C 我们的生产成本只有 $100，于是 C 现在只愿付 $105。</li>
+  <li><b>破坏性竞争 Destructive competition</b>：另一地区的销售代表可能想通过报更低价格抢走这笔交易。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 一句调侃</span>
+  <p>「在一家公司里，三分之一的人干活，三分之一的人什么都不干，还有三分之一的人阻止前三分之一的人干活。」</p>
+</div>
+
+<h3 id="fin2-p3-4">3.4 安然公司案例 <span class="zh">Real Example — Enron's Fall</span></h3>
+<p><b>安然丑闻（The Enron Scandal）</b>：</p>
+<ul>
+  <li>2000 年，安然位列《财富》「美国 100 家最佳雇主」第 22 名；</li>
+  <li>但所有光鲜的数字都是<b>假的</b>，2001 年破产，投资者血本无归；</li>
+  <li>另一方面，管理层在崩溃前<b>套现了 $681M</b>——而 2000 年宣称的（其实不存在的）利润只有 $979M。</li>
+</ul>
+<table class="truth">
+  <tr><th>职位 Title</th><th>姓名 Name</th><th>1998</th><th>1999</th><th>2000</th></tr>
+  <tr><td>董事长 Chairman</td><td>Kenneth L. Lay</td><td>$22,110,142</td><td>$49,812,093</td><td>$141,657,120</td></tr>
+  <tr><td>CEO</td><td>Jeffrey K. Skilling</td><td>$7,855,243</td><td>$50,377,980</td><td>$72,602,725</td></tr>
+  <tr><td>批发业务 CEO</td><td>Mark A. Frevert</td><td>$4,851,516</td><td>$9,199,342</td><td>$35,803,880</td></tr>
+  <tr><td>宽带业务 CEO</td><td>Kenneth D. Rice</td><td>$4,320,694</td><td>$1,585,951</td><td>$22,447,662</td></tr>
+  <tr><td>运输业务 CEO</td><td>Stanley C. Horton</td><td>$2,221,877</td><td>$7,319,515</td><td>$23,648,826</td></tr>
+</table>
+
+<h3 id="fin2-p3-5">3.5 缓解代理问题的方法 <span class="zh">Ways to Alleviate the Agency Problem</span></h3>
+<ul>
+  <li><b>管理层薪酬 Managerial compensation</b>：用激励让管理层与股东利益一致——常用激励包括<b>奖金 bonus、股票 stocks、期权 options</b>。</li>
+  <li><b>监控 Monitoring</b>（盯着经理）：
+    <ul>
+      <li>内部：用规章制度限制每个人的权力；</li>
+      <li>董事会：可以撤换 CEO；</li>
+      <li>股东：卖股票、利用媒体、起诉、投票；</li>
+      <li>贷款人（银行等）：债务契约 debt covenants、拒绝续贷。</li>
+    </ul>
+  </li>
+  <li><b>外部控制 Outside control</b>：被收购的威胁（threat of takeover）；劳动力供给（工人拒绝为名声差的公司工作）。</li>
+</ul>
+</section>
+
+<!-- ============ Part 4 总结 ============ -->
+<section id="fin2-p4">
+<h2>Part 4 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 本讲要点</span>
+  <ul>
+    <li><b>组织形式</b>：个体户、合伙、有限合伙、LLC、公司——在初始资本、有限责任、税、管理、转让、融资上各有取舍。</li>
+    <li><b>企业的财务决策</b>：目标是最大化企业价值。</li>
+    <li><b>代理问题</b>：CEO 与股东的目标冲突。</li>
+  </ul>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>firm</b> — 企业、公司；<b>organizational form</b> — 组织形式</li>
+    <li><b>sole proprietorship</b> — 个体户；<b>partnership</b> — 合伙企业</li>
+    <li><b>limited partnership (LP)</b> — 有限合伙企业；<b>general partner (GP) / limited partner (LP)</b> — 普通合伙人 / 有限合伙人</li>
+    <li><b>limited liability company (LLC)</b> — 有限责任公司；<b>corporation</b> — 股份有限公司</li>
+    <li><b>legal entity</b> — 法人；<b>limited / unlimited liability</b> — 有限责任 / 无限责任</li>
+    <li><b>initial capital</b> — 初始资本；<b>control rights</b> — 控制权</li>
+    <li><b>transfer ownership</b> — 转让所有权；<b>raise capital</b> — 融资</li>
+    <li><b>double tax</b> — 双重征税；<b>corporate tax</b> — 公司税</li>
+    <li><b>private / public firm</b> — 私营 / 公众公司；<b>disclosure rules</b> — 信息披露规则</li>
+    <li><b>ownership and management</b> — 所有权与管理权；<b>board (of directors)</b> — 董事会</li>
+    <li><b>shareholders' wealth</b> — 股东财富；<b>stock price</b> — 股价</li>
+    <li><b>stakeholder</b> — 利益相关者；<b>CSR (Corporate Social Responsibility)</b> — 公司社会责任</li>
+    <li><b>principal</b> — 委托人；<b>agent</b> — 代理人；<b>agency problem</b> — 代理问题</li>
+    <li><b>empire building</b> — 帝国构建；<b>philanthropist</b> — 慈善家</li>
+    <li><b>embezzlement</b> — 挪用公款；<b>kickback / bribery</b> — 回扣 / 贿赂</li>
+    <li><b>information leakage</b> — 信息泄露；<b>managerial compensation</b> — 管理层薪酬</li>
+    <li><b>monitoring</b> — 监控；<b>debt covenant</b> — 债务契约；<b>takeover</b> — 收购</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第2课 -->
+
+<!-- ============ 第3课 ============ -->
+<div class="lecture" id="lec3">
+<div class="lecture-banner">第3课 · Raising Capital <span class="zh">（融资）</span></div>
+
+<section id="fin3-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#fin3-p1">债务与股权</a> —— 两种融资契约的区别与演变</li>
+      <li><a href="#fin3-p2">股权融资</a> —— VC、PE、IPO、SEO</li>
+      <li><a href="#fin3-p3">债务融资</a> —— 债务类型、发债流程、信用评级</li>
+      <li><a href="#fin3-p4">总结</a></li>
+    </ol>
+  </div>
+  <div class="def box">
+    <span class="box-title">📌 本讲主题</span>
+    <p>企业如何<b>融资（raising capital）</b>？两大渠道：<b>债务（debt）</b>与<b>股权（equity）</b>；股权融资又有 VC、PE、IPO、SEO 等阶段，债务融资有私募债、公募债（债券）及信用评级。</p>
+  </div>
+</section>
+
+<section id="fin3-p1">
+<h2>Part 1 · 债务与股权 <span class="zh">Debt and Equity</span></h2>
+
+<h3 id="fin3-p1-1">1.1 债务 vs 股权 <span class="zh">Debt and Equity</span></h3>
+<div class="def box">
+  <span class="box-title">📌 两种融资契约</span>
+  <ul>
+    <li><b>债务 Debt</b>：借款契约——约定<b>具体金额</b>、<b>具体到期日（maturity date）</b>、<b>必须偿还</b>。</li>
+    <li><b>股权 Equity</b>：所有权契约——<b>随企业盈利增长（或缩水）</b>、<b>无需偿还</b>。</li>
+  </ul>
+</div>
+<p>资产负债表（balance sheet）恒等式：</p>
+<p class="formula">Asset（资产）= Debt（债务）+ Equity（股权）</p>
+
+<h3 id="fin3-p1-2">1.2 债务与股权如何演变 <span class="zh">How Debt and Equity Evolves</span></h3>
+<p>用翠花开餐厅的例子看债务与股权随经营的变化：</p>
+<ol>
+  <li>翠花以 ¥1000 开新餐厅（资产 1000 = 股权 1000），卖煎饼赚 ¥1000（资产 2000 = 股权 2000）。</li>
+  <li>看到生意增长，她向银行借 ¥2000（资产 4000 = 股权 2000 + 债务 2000）；次年赚 ¥2000（资产 6000 = 股权 4000 + 债务 2000）。</li>
+  <li>期间债务因利息涨到 ¥2200（股权变为 3800）；次年亏 ¥1500，债务涨到 ¥2400，股权变为 2100，资产 4500。</li>
+</ol>
+<div class="thm box">
+  <span class="box-title">🎯 两条关键规律</span>
+  <ul>
+    <li><b>企业赚钱时，股权增长、债务不变</b>（When a firm makes money, equity grows, and debt stays the same）。</li>
+    <li><b>股权 = 还完债务后剩下的部分</b>（Equity is whatever is left over after paying the debt）。</li>
+  </ul>
+</div>
+
+<h3 id="fin3-p1-3">1.3 债务 vs 股权投资对比 <span class="zh">Debt vs. Equity Investing</span></h3>
+<table class="truth">
+  <tr><th>维度</th><th>债务 Debt</th><th>股权 Equity</th></tr>
+  <tr><td>现金流 Cash Flow</td><td>固定 Fixed</td><td>不确定 Uncertain</td></tr>
+  <tr><td>对利润的索取权 Claim to profit</td><td>先偿付 Paid First</td><td>后偿付 Paid Last</td></tr>
+  <tr><td>投票权 Voting Rights</td><td>无 No</td><td>有 Yes</td></tr>
+  <tr><td>破产时对资产的索取权</td><td>先偿付 First</td><td>后偿付 Last</td></tr>
+  <tr><td>上行空间 Upside Potential</td><td>有限 Limited</td><td>无限 Unlimited</td></tr>
+  <tr><td>风险 Risks</td><td>低 Low</td><td>高 High</td></tr>
+  <tr><td>要求回报率 Required return</td><td>低 Low</td><td>高 High</td></tr>
+</table>
+<p>现金流结构：债务方收到本金 + 利息（固定）；股权方付出购买价、收到不确定的回报。</p>
+</section>
+
+<section id="fin3-p2">
+<h2>Part 2 · 股权融资 <span class="zh">Equity Financing</span></h2>
+
+<h3 id="fin3-p2-1">2.1 股权融资如何运作 <span class="zh">How Does Equity Financing Work?</span></h3>
+<ul>
+  <li>所有者 A、B 各投 $1M 创业，各持 5 股（各 50%）。</li>
+  <li>为扩张需发行新股融资，C 愿投 $2M。按估值 $10M（即 $1M/股），$2M = 2 新股。</li>
+  <li>总股数 = 12 股，企业总价值 = $12M。</li>
+  <li>股权变为：A 42%、B 42%、C 16%。<b>发生了所有权变化。</b></li>
+</ul>
+<p class="formula">企业成长：A 50% / B 50%（总值 $1M）→ A 50% / B 50%（总值 $10M）→ A 42% / B 42% / C 16%（总值 $12M）</p>
+
+<h3 id="fin3-p2-2">2.2 稀释 <span class="zh">Dilution</span></h3>
+<p>如果 C 只愿为 2 股付 $1.5M（而不是 $2M）会怎样？</p>
+<ul>
+  <li>企业总价值 = $10M + $1.5M = $11.5M。</li>
+  <li>A 的财富 = $11.5M × 5/12 = $4.79M（B 同理）。</li>
+  <li>与发新股前相比，A、B 的财富都从 $5M 缩水到 $4.79M——因为企业以更低价格（$1.5M &lt; $2M）把 2 股卖给 C。这叫做<b>稀释（dilution）</b>。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 卖老股 vs 发新股</span>
+  <p>若 B 把自己的一半股份卖给 D（不发行新股）：<b>价值不变，只有所有权改变</b>。A 42% / B 21% / C 16% / D 21%。<b>只有发行新股才会改变企业价值。</b></p>
+</div>
+
+<h3 id="fin3-p2-3">2.3 风险投资 VC <span class="zh">Venture Capital (VC) Financing</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>风险投资（VC）</b>：个人投资者或金融机构向<b>小型的、早期的、新兴企业</b>提供的一种融资。</p>
+</div>
+<ul>
+  <li><b>目标</b>：从极少数成功的公司获取极高回报，而其余大多数公司会失败。</li>
+  <li><b>使用的证券</b>：
+    <ul>
+      <li><b>股权 Equity</b>；</li>
+      <li><b>可转换债 Convertible debt</b>：可在特定日期转换成固定数量的股票——<b>下行有保护、上行可获利</b>。例子：Peter Thiel 在种子轮给 Facebook $500,000 的可转换债，可换成公司 10.2% 股份。</li>
+    </ul>
+  </li>
+  <li><b>退出 Exit</b>：投资者卖掉股份以兑现收益（或亏损）。退出方式：<b>被收购 Acquisition、上市 IPO、清算 Liquidation</b>。</li>
+</ul>
+<p>Facebook 的融资路径（Source: Crunchbase）：</p>
+<table class="truth">
+  <tr><th>公告日期</th><th>融资类型</th><th>融资额</th><th>领投</th><th>估值</th></tr>
+  <tr><td>2004-09-01</td><td>天使轮 Angel Round</td><td>$0.5M</td><td>Peter Thiel</td><td>—</td></tr>
+  <tr><td>2005-05-01</td><td>A 轮 Series A</td><td>$12.7M</td><td>Accel Partners</td><td>$87.5M</td></tr>
+  <tr><td>2006-03-31</td><td>B 轮 Series B</td><td>$27.5M</td><td>Greylock Partners</td><td>$500M</td></tr>
+  <tr><td>2007-10-24</td><td>C 轮 Series C</td><td>$240M</td><td>Microsoft</td><td>$15B</td></tr>
+  <tr><td>2008-05-01</td><td>债务融资 Debt Financing</td><td>$100M</td><td>TriplePoint Capital</td><td>—</td></tr>
+  <tr><td>2009-05-26</td><td>D 轮 Series D</td><td>$200M</td><td>DST Global</td><td>$10B</td></tr>
+  <tr><td>2010-06-28</td><td>二级市场 Secondary Market</td><td>$120M</td><td>Elevation Partners</td><td>$14B</td></tr>
+  <tr><td>2011-01-21</td><td>私募股权轮 PE Round</td><td>$1.5B</td><td>DST Global, Goldman Sachs</td><td>$50B</td></tr>
+  <tr><td>2012-05-18</td><td>首次公开发行 IPO</td><td>$16.0B</td><td>N/A</td><td>$104B</td></tr>
+  <tr><td>2013-12-19</td><td>增发 SEO</td><td>$4B</td><td>—</td><td>—</td></tr>
+</table>
+<p>VC 投资的结局统计（61,356 轮、18,237 家公司）：<b>IPO 10.4%、被收购 23.4%、清算 15.9%、未知 50.4%</b>——正因多数失败，VC 才要靠极少数成功者获取极高回报。</p>
+
+<h3 id="fin3-p2-4">2.4 风险投资的类型 <span class="zh">VC Types</span></h3>
+<ul>
+  <li><b>富裕的个人投资者 Affluent Investors</b>：提供（1）种子期（即天使轮）资金和（2）指导。例子：Peter Thiel 投资了 Facebook 的种子轮和 A 轮，并帮助后续融资的时机与选择。</li>
+  <li><b>风险投资基金 Venture Capital Funds</b>：由合伙人或公众出资，投资初创企业。中国顶级 VC：启明创投 Qiming、真格基金 ZhenFund、经纬中国 Matrix Partners China、深创投、顺为资本 Shunwei 等。</li>
+  <li><b>大公司 Large Corporations</b>：为获取创新技术、或通过吞并竞争对手来保护企业价值。例子：GV（Google Ventures）投了 400 家组合公司。</li>
+</ul>
+
+<h3 id="fin3-p2-5">2.5 私募股权 PE <span class="zh">Private Equity</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>私募股权（PE）</b>：直接<b>投资私营公司</b>或<b>对上市公司进行收购（导致退市）</b>的金融机构。</p>
+</div>
+<p><b>PE 与 VC 的区别：</b></p>
+<table class="truth">
+  <tr><th>维度</th><th>VC</th><th>PE</th></tr>
+  <tr><td>公司类型</td><td>早期公司 early-stage</td><td>成熟公司 matured（也投早期，但通常更晚的轮次）</td></tr>
+  <tr><td>行业</td><td>创新行业（高科技、生物科技、清洁能源…）</td><td>所有行业</td></tr>
+  <tr><td>投资规模</td><td>小</td><td>大</td></tr>
+</table>
+<p>国际 PE：Blackstone、TPG、KKR、The Carlyle Group；中国 PE：高瓴、朱雀、重阳等。</p>
+
+<h3 id="fin3-p2-6">2.6 首次公开发行 IPO <span class="zh">Initial Public Offering (IPO)</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>IPO</b>：私营公司<b>上市（goes public）</b>的过程——股份可在公开交易所（如纽交所 NYSE、深交所）交易，任何人都能投资，公司受<b>更严格的信息披露规则</b>约束。</p>
+</div>
+<p><b>为什么要上市？</b></p>
+<ul>
+  <li>更好的融资渠道；</li>
+  <li>股权价值通常更高——原因：(1) 需求增加 (2) 流动性增加。高估值下，股份可用来<b>奖励员工</b>、<b>收购其他公司</b>；</li>
+  <li>更好的品牌知名度。</li>
+</ul>
+<p><b>IPO 流程（7 步）：</b></p>
+<ol>
+  <li>管理层与董事会批准；</li>
+  <li>找投资银行；</li>
+  <li>尽职调查；</li>
+  <li>提交招股说明书（prospectus）并寻求监管机构（证监会 CSRC / SEC）批准；</li>
+  <li>路演 road show：找买家、定 IPO 价；</li>
+  <li>买家按 IPO 价买入；</li>
+  <li>股份在交易所开始交易。</li>
+</ol>
+<p>其中 1–6 步属<b>一级市场（Primary Market）</b>，第 7 步属<b>二级市场（Secondary Market）</b>。港交所（HKEX）大型 IPO：2019 年阿里巴巴、中国铁塔；2018 年小米、美团等。</p>
+
+<h3 id="fin3-p2-7">2.7 IPO 的成本 <span class="zh">IPO Costs — Direct and Indirect</span></h3>
+<p><b>直接成本（Direct cost）：</b></p>
+<ul>
+  <li><b>总差价 Gross spread</b>：承销商（underwriters）为安排并承销股票（或债券）发行收取的费用。<b>7% 是常态</b>；小额发行（&lt;$10M）更高（约 9%）；大额发行（&gt;$500M）更低（约 5%）。Facebook 只付了 1.1%（$176M）。</li>
+  <li>其他费用：申报费、律师费、税费等。</li>
+</ul>
+<p><b>间接成本（Indirect cost）——IPO 抑价（underpricing）：</b></p>
+<div class="def box">
+  <span class="box-title">📌 IPO 抑价</span>
+  <p><b>IPO underpricing = 首日收盘价 − 发行价</b>。抑价是企业的一种间接成本，也叫「<b>留在桌上的钱（money left on the table）</b>」。</p>
+</div>
+<p>阿里案例（史上最大 IPO 之一）：2014-09-19 以 $68/股卖出 3.68 亿股、募资 $25B；首日二级市场收盘价 $93.89。</p>
+<ul>
+  <li>间接成本 = ($93.89 − $68)/股 × 3.68 亿 = <b>$9.5 billion</b>；</li>
+  <li>直接成本（承销费）= $300 million。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 结论</span>
+  <p><b>间接成本通常远高于直接成本！</b></p>
+</div>
+<p>抑价的历史：美国历史平均抑价约 <b>19%</b>；全球亦然；中国整个样本期约 <b>80%</b>——原因是直到 2023 年监管对 IPO 定价设了上限（约 23 倍市盈率），对很多企业过于僵化。</p>
+<div class="thm box">
+  <span class="box-title">🎯 为什么持续存在抑价？</span>
+  <p>平均而言不可能存在<b>溢价（overpricing）</b>——否则没人买 IPO 股份。投资 IPO 市场有风险，<b>抑价是对买家承担风险的补偿</b>。所以抑价是<b>自然现象</b>。</p>
+</div>
+
+<h3 id="fin3-p2-8">2.8 增发 SEO <span class="zh">Seasoned Equity Offering (SEO)</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>SEO（增发）</b>：IPO 之后的<b>额外股权发行</b>。例子：Facebook 在被纳入 S&amp;P 500 后又发行了 2700 万新股。</p>
+</div>
+<p>关于 SEO 的典型发现：</p>
+<ul>
+  <li><b>短期</b>：公告 SEO 时股价通常跌约 3%。原因：(1) 供给增加；(2) <b>逆向选择 adverse selection</b>——投资者认为经理只会在认为股价被高估时才会发股。</li>
+  <li><b>长期</b>：做过 SEO 的公司未来 5 年表现逊于同行。</li>
+</ul>
+</section>
+
+<section id="fin3-p3">
+<h2>Part 3 · 债务融资 <span class="zh">Debt Financing</span></h2>
+
+<h3 id="fin3-p3-1">3.1 债务类型 <span class="zh">Different Types of Debt</span></h3>
+<ul>
+  <li><b>私募债 Private debt</b>：银行贷款 bank loan（借款人 vs 银行）；P2P（借款人 vs 个人）；贸易信用 trade credit（供应商与企业之间）…</li>
+  <li><b>公募债 Public debt</b>：公开交易的债务又叫<b>债券 bond</b>。按发行人（借款人）分类：<b>公司债 corporate bond（企业）、国债 treasury bond（中央政府）、市政债 municipal bond（地方政府）</b>。</li>
+</ul>
+
+<h3 id="fin3-p3-2">3.2 公司债发行流程 <span class="zh">Corporate Bond Issuance Process</span></h3>
+<ol>
+  <li>经理决定发债；</li>
+  <li>与投资银行讨论最佳策略（投行知道投资者想要什么样的债券——期限、票息类型、是否可赎回等）；</li>
+  <li>（向评级机构获取评级）；</li>
+  <li>向监管机构（证监会 CSRC / SEC）提交注册。</li>
+</ol>
+
+<h3 id="fin3-p3-3">3.3 信用评级 <span class="zh">Credit Ratings</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>信用评级</b>：对某借款人<b>信用风险（credit risk）</b>的评估，预测其偿还债务的能力（= 借款人破产的可能性有多大）。</p>
+</div>
+<ul>
+  <li><b>主要评级机构</b>：中国——大公、中诚信、联合、上海新世纪；美国——S&amp;P（标准普尔）、Moody's（穆迪）、Fitch（惠誉）。</li>
+  <li><b>评级越高（越接近 AAA），债券越安全</b>。投资级（investment grade）：美国市场 85% 的资金、50% 的发行。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 能完全信任评级机构吗？</span>
+  <p>公司<b>付费</b>来获得评级 → 评级机构想<b>取悦公司，而非投资者</b>。这是<b>代理问题的又一个例子</b>！</p>
+  <ul>
+    <li>中国 97% 的债券被评为 AA 或 AAA（恒大国内债 AAA、海外债却不到投资级）。</li>
+    <li>SEC 指控 S&amp;P 在部分 CMBS 评级中存在欺诈性不当行为，S&amp;P 支付超 $58M 与 SEC 和解。</li>
+  </ul>
+</div>
+</section>
+
+<section id="fin3-p4">
+<h2>Part 4 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 本讲要点</span>
+  <ul>
+    <li><b>债务 vs 股权</b>：债务有固定期限、固定现金流、破产时先偿付；股权无期限、现金流不确定、在债权人之后偿付。<b>谁要求更高回报？为什么？</b>——股权（风险更高、后偿付、上行无限）。</li>
+    <li><b>股权融资</b>：VC 轮、PE 轮、IPO。VC 为什么投很多公司？用什么工具？（分散风险；股权 + 可转换债）。IPO 的成本？（直接：承销费 gross spread；间接：抑价 underpricing，通常更高）。</li>
+    <li><b>债务融资</b>：公募债（债券）——借助投行发行 + 信用评级。</li>
+  </ul>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>raising capital</b> — 融资；<b>debt</b> — 债务；<b>equity</b> — 股权</li>
+    <li><b>maturity date</b> — 到期日；<b>balance sheet</b> — 资产负债表</li>
+    <li><b>dilution</b> — 稀释；<b>valuation</b> — 估值；<b>share</b> — 股份</li>
+    <li><b>venture capital (VC)</b> — 风险投资；<b>private equity (PE)</b> — 私募股权</li>
+    <li><b>convertible debt</b> — 可转换债；<b>seed round / angel round</b> — 种子轮 / 天使轮</li>
+    <li><b>exit</b> — 退出；<b>acquisition</b> — 收购；<b>liquidation</b> — 清算</li>
+    <li><b>initial public offering (IPO)</b> — 首次公开发行；<b>go public</b> — 上市</li>
+    <li><b>prospectus</b> — 招股说明书；<b>road show</b> — 路演</li>
+    <li><b>primary / secondary market</b> — 一级 / 二级市场</li>
+    <li><b>gross spread</b> — 总差价（承销费）；<b>underwriter</b> — 承销商</li>
+    <li><b>underpricing</b> — 抑价；<b>money left on the table</b> — 留在桌上的钱</li>
+    <li><b>seasoned equity offering (SEO)</b> — 增发；<b>adverse selection</b> — 逆向选择</li>
+    <li><b>bank loan</b> — 银行贷款；<b>trade credit</b> — 贸易信用；<b>bond</b> — 债券</li>
+    <li><b>corporate / treasury / municipal bond</b> — 公司债 / 国债 / 市政债</li>
+    <li><b>credit rating</b> — 信用评级；<b>credit risk</b> — 信用风险；<b>investment grade</b> — 投资级</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第3课 -->
+
+<!-- ============ 第4课 ============ -->
+<div class="lecture" id="lec4">
+<div class="lecture-banner">第4课 · Time Value of Money <span class="zh">（货币的时间价值）</span></div>
+
+<section id="fin4-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#fin4-p1">什么是货币的时间价值</a> —— TVM、PV/FV/利率</li>
+      <li><a href="#fin4-p2">单一现金流的 TVM</a> —— 单利/复利、终值/现值、求解 t 与 r</li>
+      <li><a href="#fin4-p3">APR 与 EAR</a> —— 年百分率、有效年利率、连续复利</li>
+      <li><a href="#fin4-p4">总结</a></li>
+    </ol>
+  </div>
+  <div class="def box">
+    <span class="box-title">📌 本讲主题</span>
+    <p>货币有<b>时间价值（time value of money, TVM）</b>——今天的一块钱比明天的一块钱更值钱。利率（interest rate）是把现值与终值互相转换的钥匙。</p>
+  </div>
+</section>
+
+<section id="fin4-p1">
+<h2>Part 1 · 什么是货币的时间价值 <span class="zh">What is the Time Value of Money?</span></h2>
+
+<h3 id="fin4-p1-1">1.1 货币的时间价值 <span class="zh">Time Value of Money</span></h3>
+<p>你更想要<b>今天的 $10,000</b> 还是<b>明年的 $10,000</b>？</p>
+<ul>
+  <li>显然是今天！把 $10,000 存进年利率 2% 的银行，一年后就是 <b>$10,200</b>。</li>
+  <li>换句话说：<b>今天的一美元比明天的一美元更值钱</b>。</li>
+  <li><b>时间（TIME）给了你推迟消费、赚取利息（INTEREST）的机会</b>——这就是货币的时间价值。</li>
+</ul>
+
+<h3 id="fin4-p1-2">1.2 关键概念 <span class="zh">Key Concepts</span></h3>
+<ul>
+  <li><b>现值 Present Value (PV)</b>：某笔现金流在<b>投资期初</b>的价值。</li>
+  <li><b>终值 Future Value (FV)</b>：某笔现金流在<b>未来</b>的价值。</li>
+  <li><b>利率 Interest rate (r)</b>：早期货币与后期货币之间的「<b>汇率 exchange rate</b>」。</li>
+</ul>
+<p>利率有很多别名，指的都是同一个东西：<b>贴现率 discount rate、资本成本 cost of capital、资本的机会成本 opportunity cost of capital、要求回报率 required return</b>。</p>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p><b>利率是把现值转换为终值（或把终值转换为现值）的关键。</b></p>
+</div>
+</section>
+
+<section id="fin4-p2">
+<h2>Part 2 · 单一现金流的 TVM <span class="zh">TVM of a Single Cash Flow</span></h2>
+
+<h3 id="fin4-p2-1">2.1 终值 FV <span class="zh">Future Values</span></h3>
+<p>投资 1,000 一年，年利率 5%，一年后的终值是多少？</p>
+<ul>
+  <li>利息 = 1,000 × 5% = 50；</li>
+  <li>一年后价值 = 本金 + 利息 = 1,000 + 50 = 1,050；</li>
+  <li>\(FV = 1000(1 + 5\%) = 1050\)。</li>
+</ul>
+
+<h3 id="fin4-p2-2">2.2 单利与复利 <span class="zh">Simple vs. Compound Interest</span></h3>
+<p>再放一年，两年后有多少？</p>
+<ul>
+  <li><b>单利 Simple interest</b>：利息只对<b>初始投资</b>计——\(FV = 1000 + 50 + 50 = 1100\)。</li>
+  <li><b>复利 Compound interest</b>：利息对<b>初始投资 + 前期利息</b>一起计——\(FV = 1050(1+0.05) = 1102.50\)。</li>
+  <li>多出的 $2.50 来自第一笔利息再生的利息：\(0.05 \times 50 = 2.50\)。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 一般公式</span>
+  <p class="formula">复利：\(FV = PV(1+r)^t\)　　（单利：\(FV = PV(1 + r \times t)\)）</p>
+  <p>其中 \(FV\) = 终值，\(PV\) = 现值，\(r\) = 每期利率，\(t\) = 期数。</p>
+</div>
+<p><b>例题</b>：今天存 $1,000 五年，银行年复利 1.55%，五年后有多少？</p>
+<ul>
+  <li>\(FV = 1000(1+1.55\%)^5 = 1079.94\)；</li>
+  <li>单利：\(1000 + 1000 \times 5 \times 1.55\% = 1077.5\)；</li>
+  <li>复利使投资多增值了 $2.44。</li>
+</ul>
+<p><b>何时用单利/复利？</b></p>
+<ul>
+  <li><b>单利不把利息再投资</b>，很少用——例如中国银行定期存款付单利（5 年 1.55%，存 1000 得 1077.5）。</li>
+  <li><b>复利会把利息再投资</b>，很常用——例如信用卡欠款每天都复利。</li>
+</ul>
+
+<h3 id="fin4-p2-3">2.3 现值 PV <span class="zh">Present Value</span></h3>
+<p>假设你两年后需要 $1,000，年贴现率 7%（按年复利），今天需存多少？</p>
+<p class="formula">\(PV = FV_t (1+r)^{-t}\)　　（回忆：\(FV_t = PV(1+r)^t\)）</p>
+<p><b>例题</b>：明年需交 ¥115,000 学费，年收益率 7%，今天需投多少？</p>
+<p class="formula">\(PV = 115{,}000 \times 1.07^{-1} = 107{,}476.6\)</p>
+
+<h3 id="fin4-p2-4">2.4 PV 与 FV 的解读 <span class="zh">Interpretation of PV and FV</span></h3>
+<p>PV 和 FV 帮我们在「现在的钱」和「未来的钱」之间建立<b>等价关系</b>。给定利率，就能比较不同时点的现金流。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例题</span>
+  <p>利率 3% 时，你更想要<b>今天的 1,000</b> 还是<b>五年后的 1,145.27</b>？</p>
+  <p>\(FV = 1000 \times (1+3\%)^5 = 1159.27\)，而 1,159.27 &gt; 1,145.27，所以<b>今天的 1,000 更好</b>。</p>
+</div>
+
+<h3 id="fin4-p2-5">2.5 复利的力量 <span class="zh">The Power of Compounding</span></h3>
+<p>复利（尤其长期）比单利增长快得多：</p>
+<table class="truth">
+  <tr><th>策略</th><th>第 10 年</th><th>第 20 年</th><th>第 30 年</th></tr>
+  <tr><td>10% 单利</td><td>$2,000</td><td>$3,000</td><td>$4,000</td></tr>
+  <tr><td>7% 复利</td><td>$1,967</td><td>$3,870</td><td>$7,612</td></tr>
+  <tr><td>10% 复利</td><td>$2,594</td><td>$6,727</td><td>$17,449</td></tr>
+</table>
+<p>巴菲特案例：1965–2012 年伯克希尔（CEO 巴菲特）年均回报 19.7%。1965 年初投 $1000，2012 年底有多少？</p>
+<p class="formula">\(1000 \times (1+19.7\%)^{48} = 5{,}604{,}272.2\)</p>
+<div class="ex box">
+  <span class="box-title">✏️ 名言</span>
+  <p>「世界上最强大的力量是复利。」——广泛归于爱因斯坦（但无证据表明他说过）；「我的财富来自生在美国、幸运的基因，以及复利。」——沃伦·巴菲特。</p>
+  <p><b>投资时保持冷静，让时间成为你最好的朋友！</b></p>
+</div>
+
+<h3 id="fin4-p2-6">2.6 求解 t 与 r <span class="zh">Solve for t, r</span></h3>
+<p>从基本方程 \(FV = PV(1+r)^t\) 出发，已知四个变量中的三个，可解出另一个：</p>
+<p class="formula">\(r = \left(\dfrac{FV}{PV}\right)^{1/t} - 1\)　　\(t = \dfrac{\ln(FV/PV)}{\ln(1+r)}\)</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例题一：求期数</span>
+  <p>想买房，现有 $15,000，首付需 $20,000，年收益率 7.5%，要存多久？</p>
+  <p>\(20{,}000 = 15{,}000 \times (1+0.075)^t \Rightarrow t = \dfrac{\ln(20000/15000)}{\ln(1.075)} = 3.98\) 年。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例题二：求贴现率（李嘉诚地块）</span>
+  <p>李嘉诚旗下公司 2007 年以 24.5 亿买下重庆杨家山 164 万 m² 土地，2018 年提出以 200 亿卖出其中 103 万 m²（多数未开发）。假设每 m² 地价相同，年回报率是多少？</p>
+  <ul>
+    <li>2007 年 164 万 m² 的 PV = 24.5 亿；2018 年 103 万 m² 的 FV = 200 亿；</li>
+    <li>2007 年 103 万 m² 的 PV = \(2.45B \times \dfrac{1.03}{1.64} = 1.54B\)；</li>
+    <li>\(20B = 1.54B \times (1+r)^{11} \Rightarrow r = \left(\dfrac{20}{1.54}\right)^{1/11} - 1 = 26.3\%\)。</li>
+  </ul>
+</div>
+</section>
+
+<section id="fin4-p3">
+<h2>Part 3 · APR 与 EAR <span class="zh">APR and EAR</span></h2>
+
+<h3 id="fin4-p3-1">3.1 年百分率 APR <span class="zh">Annual Percentage Rate (APR)</span></h3>
+<p>到目前为止我们假设按年复利。但利息可以<b>按任意频率</b>复利（或支付）：信用卡按天、房贷按月、债券按半年。</p>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>年百分率（APR）</b>：法律规定利率必须<b>按年频率报价</b>。APR 总蕴含「每年付息次数 \(m\)」的信息：</p>
+  <p class="formula">\(APR = \text{每期利率} \times m\)　　⇒　\(\text{每期利率} = \dfrac{APR}{m}\)</p>
+  <p>每期利率也叫<b>有效利率（effective rate，或每期有效利率）</b>。</p>
+</div>
+<p>例子（APR = 12%）：</p>
+<ul>
+  <li>按月复利：\(m=12\)，月利率 = 12%/12 = <b>1%</b>；</li>
+  <li>按季复利：\(m=4\)，季利率 = 12%/4 = <b>3%</b>；</li>
+  <li>按半年复利：\(m=2\)，半年利率 = 12%/2 = <b>6%</b>。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ APR 与每期利率转换</span>
+  <ul>
+    <li>有效月利率 0.5%，APR =？ → 0.5% × 12 = <b>6%</b>。</li>
+    <li>房贷利率 9%（APR）按月计息，月利率 =？ → 9%/12 = <b>0.75%</b>。</li>
+    <li>6% 的债券每半年付息，每期利率 =？ → 债券利率按 APR 报，6%/2 = <b>3%</b>。</li>
+  </ul>
+</div>
+
+<h3 id="fin4-p3-2">3.2 用 APR 还是有效利率 <span class="zh">Should I Use APR or Effective Rate?</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 规则</span>
+  <p>APR 不能真实反映每个时间段的实际利率。<b>计算 FV / PV 时，永远用有效（每期）利率！</b></p>
+</div>
+<p class="formula">\(FV = PV(1+r)^t\)，其中 \(r = \dfrac{APR}{m}\)（每期有效利率），\(t = m \times n\)（\(n\) 为年数）</p>
+<p class="formula">⇒ \(FV = PV \left(1 + \dfrac{APR}{m}\right)^{m \times n}\)；若给的是 EAR：\(FV = PV(1+EAR)^n\)（\(n\) 为年数）</p>
+
+<h3 id="fin4-p3-3">3.3 有效年利率 EAR <span class="zh">Effective Annual Rate (EAR)</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>有效年利率（EAR）</b>：考虑复利后，一年<b>实际</b>的利率。APR 是<b>报价</b>利率（纸面上），EAR 是<b>实际支付</b>的利率。</p>
+  <p class="formula">\(1 + EAR = \left(1 + \dfrac{APR}{m}\right)^{m} \Rightarrow EAR = \left(1 + \dfrac{APR}{m}\right)^{m} - 1\)</p>
+</div>
+<p>例子：借 $100，APR 18.99%，一年实际付多少利息？</p>
+<ul>
+  <li>按年复利：$18.99；</li>
+  <li>按半年复利：\(100 \times [(1+0.1899/2)^2 - 1] = 19.89\)；</li>
+  <li>按月复利：\(100 \times [(1+0.1899/12)^{12} - 1] = 20.73\)；</li>
+  <li>按天复利：\(100 \times [(1+0.1899/365)^{365} - 1] = 20.91\)。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 简单例题</span>
+  <p>Basket Wonders 有 $1,000 贷款，APR 6% 按季复利 1 年，EAR =？</p>
+  <p>\(EAR = \left(1 + \dfrac{0.06}{4}\right)^4 - 1 = 1.0614 - 1 = 6.14\%\)。</p>
+</div>
+
+<h3 id="fin4-p3-4">3.4 连续复利 <span class="zh">Continuous Compounding</span></h3>
+<p>有时投资/贷款按<b>连续复利（continuous compounding）</b>计算，即 \(m \to \infty\)：</p>
+<p class="formula">\(EAR = \lim_{m \to \infty} \left(1 + \dfrac{APR}{m}\right)^{m} - 1 = e^{APR} - 1\)</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例题</span>
+  <p>7% 连续复利的有效年利率？ \(EAR = e^{7\%} - 1 = 7.25\%\)。</p>
+</div>
+
+<h3 id="fin4-p3-5">3.5 EAR vs APR 例题 <span class="zh">EAR vs. APR Example</span></h3>
+<p><b>12% APR、按月复利（m=12）：</b></p>
+<ul>
+  <li>一个月有效利率：\(r_{1m} = \dfrac{APR}{m} = \dfrac{12\%}{12} = 1\%\)。</li>
+  <li>一年（EAR）：\(r_{1yr} = (1 + r_{1m})^{12} - 1 = 12.68\%\)。</li>
+  <li>两个月有效利率：不是 \(12\%/6 = 2\%\)！APR 只能除以它所匹配的 \(m\)（此处 12）。正确：\(r_{2m} = (1+r_{1m})^2 - 1 = 2.01\%\)。</li>
+  <li>半个月有效利率：\(r_{0.5m} = (1+r_{1m})^{1/2} - 1 = 0.499\%\)。</li>
+</ul>
+<p><b>12% APR、按双月复利（m=6）：</b></p>
+<ul>
+  <li>两个月有效利率：\(r_{2m} = \dfrac{12\%}{6} = 2\%\)。</li>
+  <li>一年（EAR）：\(r_{1yr} = (1+r_{2m})^6 - 1 = 12.62\%\)。</li>
+  <li>一个月有效利率：不是 \(12\%/12 = 1\%\)！正确：\(r_{1m} = (1+r_{2m})^{1/2} - 1 = 0.995\%\)。</li>
+  <li>半个月有效利率：\(r_{0.5m} = (1+r_{2m})^{1/4} - 1 = 0.496\%\)。</li>
+</ul>
+</section>
+
+<section id="fin4-p4">
+<h2>Part 4 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 本讲要点</span>
+  <ul>
+    <li><b>货币有时间价值</b>——今天的一美元比明天的一美元更值钱；利率（贴现率）能把现值与终值互相转换。</li>
+    <li><b>单一现金流的 TVM</b>：APR 总要转换为有效（每期）利率；\(FV = PV\left(1+\dfrac{APR}{m}\right)^{m \times n}\)；EAR 反映借款人实际支付的利率。</li>
+  </ul>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>time value of money (TVM)</b> — 货币的时间价值</li>
+    <li><b>present value (PV)</b> — 现值；<b>future value (FV)</b> — 终值</li>
+    <li><b>interest rate</b> — 利率；<b>discount rate</b> — 贴现率；<b>cost of capital</b> — 资本成本</li>
+    <li><b>opportunity cost of capital</b> — 资本的机会成本；<b>required return</b> — 要求回报率</li>
+    <li><b>simple interest</b> — 单利；<b>compound interest</b> — 复利</li>
+    <li><b>annual percentage rate (APR)</b> — 年百分率；<b>effective annual rate (EAR)</b> — 有效年利率</li>
+    <li><b>compounding frequency</b> — 复利频率；<b>per-period rate</b> — 每期利率</li>
+    <li><b>continuous compounding</b> — 连续复利</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第4课 -->
+
+</div>
+</main>
+</body>
+</html>

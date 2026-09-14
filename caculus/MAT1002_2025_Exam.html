@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT1002 Final Exam 2025 — Questions</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false},
+    {left:'\\[',right:'\\]',display:true},
+    {left:'\\(',right:'\\)',display:false}
+  ],throwOnError:false});"></script>
+<style>
+  :root{
+    --bg:#fafbfc; --panel:#ffffff; --ink:#1f2933; --muted:#5a6878;
+    --accent:#2f855a; --accent-soft:#e6f4ec; --line:#e3e8ee; --code:#f4f6f9;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+  aside.sidebar{
+    position:fixed;top:0;left:0;width:250px;height:100vh;
+    background:var(--panel);border-right:1px solid var(--line);
+    overflow-y:auto;padding:24px 18px;
+  }
+  aside.sidebar h2{margin:0 0 14px;font-size:18px;color:var(--accent);
+    border-bottom:2px solid var(--accent-soft);padding-bottom:8px}
+  aside.sidebar .meta{font-size:13px;color:var(--muted);margin-bottom:18px}
+  aside.sidebar ul{list-style:none;margin:0;padding:0}
+  aside.sidebar a{
+    display:block;padding:8px 10px;border-radius:6px;text-decoration:none;
+    color:var(--ink);font-size:14px;line-height:1.45;transition:all .15s;
+  }
+  aside.sidebar a:hover{background:var(--accent-soft);color:var(--accent)}
+  main{margin-left:250px;padding:42px 56px 96px;max-width:1080px}
+  header.banner{
+    background:linear-gradient(135deg,#2f855a 0%,#48bb78 100%);
+    color:#fff;padding:30px 36px;border-radius:14px;margin-bottom:34px;
+    box-shadow:0 4px 16px rgba(47,133,90,.18);
+  }
+  header.banner h1{margin:0 0 6px;font-size:26px;letter-spacing:.3px}
+  header.banner p{margin:0;opacity:.92;font-size:15px}
+  .instructions{
+    background:#fffaf0;border-left:4px solid #d69e2e;padding:18px 24px;
+    border-radius:8px;margin-bottom:34px;font-size:15.5px;
+  }
+  .instructions h3{margin:0 0 10px;font-size:16px;color:#975a16}
+  .instructions ol{margin:0;padding-left:22px}
+  .instructions li{margin:4px 0}
+  .qcard{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:28px 32px;margin-bottom:30px;
+    box-shadow:0 1px 3px rgba(15,23,42,.04);
+  }
+  .qhead{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px;
+  }
+  .qnum{font-size:21px;font-weight:700;color:var(--accent)}
+  .qpts{
+    display:inline-block;padding:3px 10px;background:var(--accent-soft);
+    color:var(--accent);border-radius:14px;font-size:13px;font-weight:600;
+  }
+  .qbody p{margin:10px 0}
+  .qbody ol.parts{padding-left:24px;margin:10px 0}
+  .qbody ol.parts > li{margin:14px 0}
+  .qbody .hint{color:var(--muted);font-style:italic;font-size:15.5px}
+  footer{
+    margin-top:60px;padding-top:24px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:14px;text-align:center;
+  }
+  @media (max-width: 800px){
+    aside.sidebar{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+    main{margin-left:0;padding:24px 18px}
+  }
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h2>MAT1002 · 2025</h2>
+  <div class="meta">Final Examination<br>May 13, 2025 · Total 132 pts</div>
+  <ul>
+    <li><a href="#q1">Q1 · Short Questions [27]</a></li>
+    <li><a href="#q2">Q2 · Limits [15]</a></li>
+    <li><a href="#q3">Q3 · Second-order Partials [6]</a></li>
+    <li><a href="#q4">Q4 · Tangent Plane &amp; Normal [6]</a></li>
+    <li><a href="#q5">Q5 · Min Distance to Line [6]</a></li>
+    <li><a href="#q6">Q6 · Critical Points [8]</a></li>
+    <li><a href="#q7">Q7 · Double Integrals [12]</a></li>
+    <li><a href="#q8">Q8 · Cylindrical Volume [8]</a></li>
+    <li><a href="#q9">Q9 · Change of Variables [8]</a></li>
+    <li><a href="#q10">Q10 · Conservative Field [12]</a></li>
+    <li><a href="#q11">Q11 · Flux &amp; Circulation [8]</a></li>
+    <li><a href="#q12">Q12 · Divergence Theorem [8]</a></li>
+    <li><a href="#q13">Q13 · Stokes' Theorem [8]</a></li>
+  </ul>
+</aside>
+
+<main>
+  <header class="banner">
+    <h1>MAT1002 Final Examination — 2025</h1>
+    <p>Tuesday, May 13, 2025 · Time: 13:30 – 16:30 · Maximum Score: 132</p>
+  </header>
+
+  <div class="instructions">
+    <h3>Notes and Instructions</h3>
+    <ol>
+      <li>No books, no notes, no dictionaries, and no calculators.</li>
+      <li>The maximum score of this examination is <strong>132</strong>.</li>
+      <li>There are <strong>13 questions</strong> (with parts) in total.</li>
+      <li>The symbol <strong>[N]</strong> at the beginning of a question indicates that it is worth N points.</li>
+      <li>Show your intermediate steps except Question 1.</li>
+      <li>Express irrational numbers in exact forms (e.g. $\sqrt{2}$ instead of $1.414\ldots$, $\ln 2$ instead of $0.693\ldots$).</li>
+    </ol>
+  </div>
+
+  <section id="q1" class="qcard">
+    <div class="qhead"><span class="qnum">Question 1</span><span class="qpts">[27 pts]</span><span>Short questions — no intermediate step required.</span></div>
+    <div class="qbody">
+      <ol class="parts" type="i">
+        <li>True (T) or False (F): The 3D space without the origin is a simply connected region.</li>
+        <li>True (T) or False (F): Suppose the function $z=f(x,y)$ is continuous with respect to $x$ for any fixed $y$, and continuous with respect to $y$ for any fixed $x$, then it is a continuous function.</li>
+        <li>True (T) or False (F): The vector field $\mathbf{F}=\left(\dfrac{x}{x^2+y^2},\dfrac{y}{x^2+y^2}\right)$ passes the component test, thus it is conservative in its domain.</li>
+        <li>True (T) or False (F): Suppose $z=f(x,y)$ is continuous function on the region $R$ where $R=R_1\cup R_2$. Then we have
+          $$\iint_R f(x,y)\,dA=\iint_{R_1} f(x,y)\,dA+\iint_{R_2} f(x,y)\,dA.$$</li>
+        <li>Rewrite the following integral in <em>Cylindrical coordinates</em>, in the order of $dz\,d\theta\,dr$:
+          $$\int_{-1}^1\!\!\int_0^{\sqrt{1-x^2}}\!\!\int_0^{x^2+y^2} f(x,y,z)\,dz\,dy\,dx.$$</li>
+        <li>Find the directional derivative for the function $w=xy+\cos z-\dfrac{y}{x}$ at the point $(2,1,0)$ in the direction $\left(\tfrac{1}{3},\tfrac{2}{3},\tfrac{2}{3}\right)$.</li>
+        <li>Find the direction (the unit vector) that is parallel to both the plane $3x-2y+z=0$ and $x+y-3z=0$.</li>
+        <li>Find the quadratic approximation at $(0,0)$ of $z=\ln(1+x)\sin(y)$.</li>
+        <li>Compute $\displaystyle\sum_{n=1}^{\infty}\dfrac{2n+1}{n!}=(\;\;)$.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q2" class="qcard">
+    <div class="qhead"><span class="qnum">Question 2</span><span class="qpts">[15 pts]</span><span>Determine the following limits. If the limit exists (as a real number), find the value and show your steps; otherwise, explain why it does not exist.</span></div>
+    <div class="qbody">
+      <ol class="parts" type="i">
+        <li>$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{\sin(xy)}{x^2+y^2}.$</li>
+        <li>$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^2 y}{x^4+y^2}.$</li>
+        <li>$\displaystyle\lim_{(r,\theta)\to(0,\pi/2)}\dfrac{r\cos\theta}{r^2+1}.$</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q3" class="qcard">
+    <div class="qhead"><span class="qnum">Question 3</span><span class="qpts">[6 pts]</span></div>
+    <div class="qbody">
+      <p>If $f(x,y)=x\sin y+y\ln x$, find the second-order derivatives:
+      $$\dfrac{\partial^2 f}{\partial x^2},\quad\dfrac{\partial^2 f}{\partial y\,\partial x},\quad\dfrac{\partial^2 f}{\partial y^2},\quad\dfrac{\partial^2 f}{\partial x\,\partial y}.$$</p>
+    </div>
+  </section>
+
+  <section id="q4" class="qcard">
+    <div class="qhead"><span class="qnum">Question 4</span><span class="qpts">[6 pts]</span></div>
+    <div class="qbody">
+      <p>Let surface $S$ be characterized by the equation $z=x^2-y^2$. Find the tangent plane $M$ and normal line $L$ to the surface at point $(2,1,3)$.</p>
+    </div>
+  </section>
+
+  <section id="q5" class="qcard">
+    <div class="qhead"><span class="qnum">Question 5</span><span class="qpts">[6 pts]</span></div>
+    <div class="qbody">
+      <p>Find the point on the intersection line between plane $2x+y-z=4$ and plane $x+y+z=3$ that has minimum distance from the origin $(0,0,0)$.</p>
+    </div>
+  </section>
+
+  <section id="q6" class="qcard">
+    <div class="qhead"><span class="qnum">Question 6</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Find and classify the critical points (as local maxima, local minima, or saddle points) of the function:
+      $$f(x,y)=x^3+y^3-3xy.$$</p>
+    </div>
+  </section>
+
+  <section id="q7" class="qcard">
+    <div class="qhead"><span class="qnum">Question 7</span><span class="qpts">[6+6 pts]</span><span>Evaluate the following integrals.</span></div>
+    <div class="qbody">
+      <ol class="parts" type="a">
+        <li>$\displaystyle\iint_R (3-x-y)\,dA$, where $R$ is the region enclosed by the parabola $y=x^2$ and the line $y=x+2$.</li>
+        <li>$\displaystyle\int_0^3\!\!\int_{\sqrt{x/3}}^{1} e^{y^3}\,dy\,dx.$</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q8" class="qcard">
+    <div class="qhead"><span class="qnum">Question 8</span><span class="qpts">[4+4 pts]</span></div>
+    <div class="qbody">
+      <p>Consider a solid bounded from below by a sphere of radius one centered at the origin and from above by the paraboloid $z=1-x^2-y^2$.</p>
+      <ol class="parts" type="a">
+        <li>Express the volume of the solid in terms of a triple integral in cylindrical coordinates.</li>
+        <li>Find the volume of the solid by evaluating the integral in (a).</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q9" class="qcard">
+    <div class="qhead"><span class="qnum">Question 9</span><span class="qpts">[3+5 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the integral
+      $$\int_0^{2/3}\!\!\int_y^{2(1-y)}(x+2y)e^{y-x}\,dx\,dy.$$</p>
+      <ol class="parts" type="a">
+        <li>Sketch the integration region $R$ in the $xy$-plane.</li>
+        <li>Using the transformation $u=x+2y,\;v=x-y$, express it as an integral over a suitable region $G$ in the $uv$-plane, and sketch the region $G$. <strong>(DO NOT evaluate the integral.)</strong></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q10" class="qcard">
+    <div class="qhead"><span class="qnum">Question 10</span><span class="qpts">[4+4+4 pts]</span></div>
+    <div class="qbody">
+      <ol class="parts" type="a">
+        <li>For what values of $b$ and $c$ will
+          $$\mathbf{F}=(y^2+2cxz)\,\mathbf{i}+y(bx+cz)\,\mathbf{j}+(y^2+cx^2)\,\mathbf{k}$$
+          be a gradient field?</li>
+        <li>Find a potential function of
+          $$\mathbf{F}=(y^2+4xz)\,\mathbf{i}+(2xy+2yz)\,\mathbf{j}+(y^2+2x^2)\,\mathbf{k}.$$</li>
+        <li>If $\mathbf{F}$ in (b) is a force field, find the work done by $\mathbf{F}$ on the particle that moves from the point $(0,0,0)$ to $(1,2,2)$ along the line segment joining them.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q11" class="qcard">
+    <div class="qhead"><span class="qnum">Question 11</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <ol class="parts" type="a">
+        <li>Find the flux of the field $\mathbf{F}(x,y)=\langle x,y\rangle$ across the closed path consisting of:
+          <ol>
+            <li>The right semicircle from $(0,2)$ to $(0,-2)$;</li>
+            <li>The line segment on the $y$-axis from $(0,-2)$ to $(0,2)$.</li>
+          </ol>
+        </li>
+        <li>Find the circulation of the field $\mathbf{F}(x,y)=\langle -y,x\rangle$ around the closed path consisting of:
+          <ol>
+            <li>The right semicircle from $(0,2)$ to $(0,-2)$ (clockwise);</li>
+            <li>The line segment on the $y$-axis from $(0,-2)$ to $(0,2)$.</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="q12" class="qcard">
+    <div class="qhead"><span class="qnum">Question 12</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the vector field $\mathbf{F}(x,y,z)=\langle x^2 y,\;y^2 z,\;z^2 x\rangle$. Compute the outward flux of $\mathbf{F}$ through the surface of the cube bounded by the planes $x=0,\;x=1,\;y=0,\;y=1,\;z=0$, and $z=1$.</p>
+    </div>
+  </section>
+
+  <section id="q13" class="qcard">
+    <div class="qhead"><span class="qnum">Question 13</span><span class="qpts">[8 pts]</span></div>
+    <div class="qbody">
+      <p>Consider the vector field $\mathbf{F}(x,y,z)=\langle y^2,\;z^2,\;x^2\rangle$. Let $S$ be the part of the paraboloid $z=4-x^2-y^2$ that lies above the $xy$-plane, oriented upward. The boundary of $S$ is the curve $C$ (a circle in the $xy$-plane). Compute the surface integral
+      $$\iint_S (\nabla\times\mathbf{F})\cdot \mathbf{n}\,d\sigma$$
+      using Stokes' Theorem.</p>
+    </div>
+  </section>
+
+  <footer>MAT1002 Final 2025 — Question paper · Light-theme reading copy</footer>
+</main>
+
+</body>
+</html>

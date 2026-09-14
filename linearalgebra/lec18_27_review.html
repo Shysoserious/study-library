@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT1002 Lecture 18-27 | Gram-Schmidt & 行列式 & 线性变换 & 特征值 & 谱分解 & 对角化 & 奇异值 & 二次型</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #667eea; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections {
+            padding-left: 20px; max-height: 500px; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #667eea; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: 960px; margin-left: max(280px, calc(50vw - 340px)); margin-right: auto; font-size: 17.5px; }
+
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #667eea; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #667eea;
+        }
+        .section-title {
+            font-size: 24px; color: #764ba2; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #764ba2;
+        }
+        .subsection-title {
+            font-size: 20px; color: #555; margin: 25px 0 15px 0;
+            padding-left: 12px; border-left: 4px solid #bbb;
+        }
+
+        .card {
+            margin: 20px 0; padding: 20px; border-radius: 8px;
+            border-left: 5px solid #ddd; background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title {
+            font-weight: bold; font-size: 18px; margin-bottom: 10px;
+            display: flex; align-items: center;
+        }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+
+        .en {
+            display: inline-block; background-color: #e3f2fd; color: #1565c0;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+
+        .formula-box {
+            background-color: #e8f4fd; border-left: 5px solid #2196F3;
+            border-radius: 6px; padding: 18px 22px; margin: 18px 0;
+            font-size: 17px; text-align: center; overflow-x: auto;
+        }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li {
+            counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0;
+            position: relative; background: #f8f9fa; border-radius: 6px;
+        }
+        .step-list li::before {
+            content: counter(step); position: absolute; left: 10px; top: 50%;
+            transform: translateY(-50%); background: #667eea; color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-weight: bold; font-size: 14px;
+        }
+
+        .diagram-container {
+            text-align: center; margin: 20px 0; padding: 15px;
+            background: white; border-radius: 8px; border: 1px solid #e0e0e0;
+        }
+        .diagram-caption { text-align: center; font-size: 13px; color: #888; margin-top: 8px; }
+
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd; padding: 12px; text-align: center;
+        }
+        .comparison-table th { background-color: #667eea; color: white; font-weight: bold; }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+
+        .note {
+            margin-top: 15px; padding: 12px 15px; background-color: #fff3cd;
+            border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px;
+        }
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+
+        .equiv-list { list-style: none; padding: 0; margin: 10px 0; }
+        .equiv-list li { padding: 6px 12px; margin: 4px 0; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #667eea; }
+        .equiv-list li .num { display: inline-block; font-weight: bold; color: #667eea; width: 28px; }
+
+        /* Interactive SVG */
+        svg text { font-family: 'Segoe UI', sans-serif; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; max-width: 100%; font-size: 15px; }
+            .navbar-title { font-size: 18px; }
+            .menu-toggle { display: block !important; }
+        }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">&#9776;</button>
+    <div class="navbar-title">MAT1002 线性代数复习</div>
+    <div class="navbar-subtitle">Lecture 18-27 | Gram-Schmidt · 行列式 · 线性变换 · 特征值 · 谱分解 · 对角化 · 奇异值 · 二次型</div>
+</nav>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture">
+            <div class="toc-lecture-title active" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 18 - Gram-Schmidt & 行列式I
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L18-review">回顾：正交基与投影</a></div>
+                <div class="toc-section"><a href="#L18-gs-idea">G-S 核心思想</a></div>
+                <div class="toc-section"><a href="#L18-gs-k2">推导：k=2 情形</a></div>
+                <div class="toc-section"><a href="#L18-gs-k3">推导：k=3 情形</a></div>
+                <div class="toc-section"><a href="#L18-gs-algo">正式算法</a></div>
+                <div class="toc-section"><a href="#L18-det-motivation">行列式的几何动机</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 19 - 行列式II
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L19-P1">P1：行列式对每行线性</a></div>
+                <div class="toc-section"><a href="#L19-decompose">P1 应用：分解计算</a></div>
+                <div class="toc-section"><a href="#L19-P2">P2：分块对角矩阵</a></div>
+                <div class="toc-section"><a href="#L19-P3">P3：行交换变号</a></div>
+                <div class="toc-section"><a href="#L19-cofactor">余子式展开与递归定义</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 20 - 行列式III & 线性变换I
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L20-review">回顾：行列式基本性质</a></div>
+                <div class="toc-section"><a href="#L20-advanced">进阶性质 P20</a></div>
+                <div class="toc-section"><a href="#L20-invertibility">行列式与可逆性</a></div>
+                <div class="toc-section"><a href="#L20-motivation">线性变换的动机</a></div>
+                <div class="toc-section"><a href="#L20-definition">线性变换的定义</a></div>
+                <div class="toc-section"><a href="#L20-matrix">线性变换的矩阵</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 21 - 线性变换II
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L21-matrix-view">矩阵即线性变换</a></div>
+                <div class="toc-section"><a href="#L21-basis">变换特征：基的变化</a></div>
+                <div class="toc-section"><a href="#L21-dependent">退化情形：列相关</a></div>
+                <div class="toc-section"><a href="#L21-det-geo">行列式的几何再释</a></div>
+                <div class="toc-section"><a href="#L21-exercises">例题与方法总结</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 22 - 特征值与特征向量 I
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L22-review">回顾：线性变换的矩阵</a></div>
+                <div class="toc-section"><a href="#L22-eigen-def">特征值与特征向量定义</a></div>
+                <div class="toc-section"><a href="#L22-char-poly">特征多项式</a></div>
+                <div class="toc-section"><a href="#L22-algorithm">Algorithm 22.1</a></div>
+                <div class="toc-section"><a href="#L22-triangular">三角矩阵的捷径</a></div>
+                <div class="toc-section"><a href="#L22-count">特征值的个数</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 23 - 谱分解
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L23-multiset">多重集与重数</a></div>
+                <div class="toc-section"><a href="#L23-eigenbasis">特征基</a></div>
+                <div class="toc-section"><a href="#L23-complex">复数域上的线性空间</a></div>
+                <div class="toc-section"><a href="#L23-matrix-form">AV = VD 矩阵形式</a></div>
+                <div class="toc-section"><a href="#L23-orthonormal">正交特征基与对称矩阵</a></div>
+                <div class="toc-section"><a href="#L23-spectral">谱定理</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 24 - 对角化
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L24-dynamics">动机：演化动力学</a></div>
+                <div class="toc-section"><a href="#L24-similar">相似矩阵</a></div>
+                <div class="toc-section"><a href="#L24-similar-eigen">相似矩阵的特征值</a></div>
+                <div class="toc-section"><a href="#L24-diagonalizable">可对角化定义与条件</a></div>
+                <div class="toc-section"><a href="#L24-Ak">A^k 的计算</a></div>
+                <div class="toc-section"><a href="#L24-application">应用：捕食者-猎物模型</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 25 - 特征值IV & 奇异值I
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L25-eigen-props">特征值的和与积</a></div>
+                <div class="toc-section"><a href="#L25-eig-multiset">EIG 多重集与矩阵幂</a></div>
+                <div class="toc-section"><a href="#L25-rank1">秩-1 矩阵分解</a></div>
+                <div class="toc-section"><a href="#L25-rankr">秩-r 矩阵分解</a></div>
+                <div class="toc-section"><a href="#L25-compression">数据压缩动机</a></div>
+                <div class="toc-section"><a href="#L25-compact-svd">紧凑 SVD</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 26 - 奇异值 II (Full SVD)
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L26-review">回顾：紧凑 SVD</a></div>
+                <div class="toc-section"><a href="#L26-frobenius">Frobenius 范数</a></div>
+                <div class="toc-section"><a href="#L26-approx">低秩近似与压缩</a></div>
+                <div class="toc-section"><a href="#L26-lt">线性变换视角</a></div>
+                <div class="toc-section"><a href="#L26-full-svd">完整 SVD</a></div>
+                <div class="toc-section"><a href="#L26-four-subspaces">四个基本子空间</a></div>
+                <div class="toc-section"><a href="#L26-three-decomp">三种分解对比</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 27 - 二次型 & 正定矩阵
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L27-quadratic">二次型定义</a></div>
+                <div class="toc-section"><a href="#L27-reverse">反向：表达式→矩阵</a></div>
+                <div class="toc-section"><a href="#L27-definite-def">正定/负定矩阵定义</a></div>
+                <div class="toc-section"><a href="#L27-diagonal-case">对角矩阵的判定</a></div>
+                <div class="toc-section"><a href="#L27-eigenvalue">特征值判定法</a></div>
+                <div class="toc-section"><a href="#L27-conic">应用：二次曲线</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="main-content">
+
+<!-- ==================== LECTURE 18 ==================== -->
+<div class="lecture" id="lec18">
+<h1 class="lecture-title">Lecture 18 &mdash; Gram-Schmidt 过程 & 行列式 I</h1>
+
+<h2 class="section-title" id="L18-review">回顾：标准正交基与投影</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 17.3 标准正交基 <span class="en">Orthonormal Basis</span></div>
+    <p>向量集 $S=\{v_1,\dots,v_n\}$ 是线性空间 $V$ 的<strong>标准正交基</strong>，需满足：</p>
+    <p>(1) $S$ 是<strong>标准正交集</strong>：$\langle v_i, v_j\rangle = \begin{cases}1, & i=j\\0, & i\neq j\end{cases}$</p>
+    <p>(2) $S$ 中的向量构成 $V$ 的基。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 17.1 & 17.2：正交基下的表示与投影</div>
+    <p><strong>Thm 17.1（表示）：</strong>设 $\{u_1,\dots,u_n\}$ 是 $\mathbb{R}^n$ 的标准正交基，则</p>
+    <div class="formula-box">
+        $$v = \sum_{i=1}^{n} \langle v, u_i\rangle\, u_i$$
+    </div>
+    <p><strong>Thm 17.2（投影）：</strong>设 $\{w_1,\dots,w_k\}$ 是子空间 $W$ 的标准正交基，则 $v$ 到 $W$ 的投影为</p>
+    <div class="formula-box highlight">
+        $$p = \text{Proj}_W(v) = \sum_{i=1}^{k} \langle v, w_i\rangle\, w_i$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>投影到直线（一维子空间）</div>
+    <p>计算 $b$ 在 $\text{span}\{u\}$ 上的投影：设 $p=\alpha u$，由 $u^\top(b-p)=0$ 解得</p>
+    <div class="formula-box">
+        $$p = \frac{u^\top b}{\|u\|^2}\, u$$
+    </div>
+    <p>用 Thm 17.2 验证：正交基为 $v=\frac{u}{\|u\|}$，则 $p = \langle b, v\rangle v = \frac{u^\top b}{\|u\|^2} u$，结果一致。</p>
+</div>
+
+<h2 class="section-title" id="L18-gs-idea">Gram-Schmidt 核心思想</h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>关键问题：正交基一定存在吗？</div>
+    <p>给定子空间 $S$ 的任意一组基 $\{u_1,\dots,u_k\}$，能否找到 $S$ 的<strong>标准正交基</strong>？</p>
+    <p><strong>回答：</strong>一定存在！Gram-Schmidt 过程就是从任意基出发，逐步构建标准正交基的算法。</p>
+    <p><strong>核心想法（归纳法）：</strong>每一步取新向量，减去它在已有正交方向上的投影，剩余部分就垂直于所有旧方向，最后归一化。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="400" height="200" viewBox="0 0 400 200">
+        <!-- u1 vector -->
+        <line x1="30" y1="170" x2="180" y2="120" stroke="#4caf50" stroke-width="3" marker-end="url(#arrGS_g)"/>
+        <text x="185" y="115" font-size="14" fill="#4caf50" font-weight="bold">u₁</text>
+        <!-- u2 vector -->
+        <line x1="30" y1="170" x2="120" y2="30" stroke="#2196F3" stroke-width="3" marker-end="url(#arrGS_b)"/>
+        <text x="125" y="25" font-size="14" fill="#2196F3" font-weight="bold">u₂</text>
+        <!-- projection p1 -->
+        <line x1="30" y1="170" x2="105" y2="145" stroke="#ff9800" stroke-width="2" stroke-dasharray="6"/>
+        <text x="75" y="162" font-size="12" fill="#ff9800">p₁</text>
+        <!-- u2 - p1 (perpendicular) -->
+        <line x1="105" y1="145" x2="120" y2="30" stroke="#e91e63" stroke-width="3" marker-end="url(#arrGS_r)"/>
+        <text x="130" y="90" font-size="13" fill="#e91e63" font-weight="bold">u₂−p₁</text>
+        <!-- right angle -->
+        <rect x="100" y="135" width="10" height="10" fill="none" stroke="#e91e63" stroke-width="1.5" transform="rotate(-18,105,145)"/>
+        <!-- label -->
+        <text x="260" y="60" font-size="14" fill="#333">新向量 − 旧方向投影</text>
+        <text x="260" y="82" font-size="14" fill="#333">= 垂直于旧方向的分量</text>
+        <text x="260" y="110" font-size="13" fill="#e91e63" font-weight="bold">→ 归一化得到 v₂</text>
+        <defs>
+            <marker id="arrGS_g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4caf50"/></marker>
+            <marker id="arrGS_b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2196F3"/></marker>
+            <marker id="arrGS_r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#e91e63"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">Gram-Schmidt 的几何直觉：减去投影，保留垂直分量，再归一化</div>
+</div>
+
+<h2 class="section-title" id="L18-gs-k2">推导：k=2 情形</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128295;</span>k=2：从 $\{u_1, u_2\}$ 构造正交基</div>
+    <p>目标：找标准正交集 $\{v_1, v_2\}$ 使得 $\text{span}\{v_1,v_2\}=\text{span}\{u_1,u_2\}$。</p>
+    <p><strong>Step 1：</strong>直接归一化第一个向量</p>
+    <div class="formula-box">$$v_1 = \frac{u_1}{\|u_1\|}$$</div>
+    <p><strong>Step 2：</strong>找 $v_2$，要求 (i) 正交于 $v_1$，(ii) 在 $\text{span}\{u_1,u_2\}$ 中，(iii) 范数为 1。</p>
+    <p>方向：$u_2 - p_1$，其中 $p_1 = \text{Proj}_{\text{span}\{u_1\}}(u_2)=\langle u_2, v_1\rangle v_1$</p>
+    <div class="formula-box highlight">$$v_2 = \frac{u_2 - p_1}{\|u_2 - p_1\|}, \quad p_1 = \langle u_2, v_1\rangle\, v_1$$</div>
+</div>
+
+<h2 class="section-title" id="L18-gs-k3">推导：k=3 情形</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128295;</span>k=3：增加第三个向量</div>
+    <p>已有 $\{v_1,v_2\}$ 是 $\text{span}\{u_1,u_2\}$ 的标准正交基。需找 $v_3$ 使得</p>
+    <p>(i) $v_3 \perp v_1, v_2$；(ii) $v_3 \in \text{span}\{u_1,u_2,u_3\}$；(iii) $\|v_3\|=1$。</p>
+    <p>方向：$u_3 - p_2$，其中 $p_2 = \text{Proj}_{\text{span}\{u_1,u_2\}}(u_3)$。</p>
+    <div class="formula-box highlight">
+        $$v_3 = \frac{u_3 - p_2}{\|u_3 - p_2\|}, \quad p_2 = \langle u_3, v_1\rangle v_1 + \langle u_3, v_2\rangle v_2$$
+    </div>
+</div>
+
+<div class="diagram-container">
+    <svg width="420" height="240" viewBox="0 0 420 240">
+        <!-- axes hint -->
+        <g transform="translate(50,200)">
+            <!-- u1 -->
+            <line x1="0" y1="0" x2="140" y2="-20" stroke="#4caf50" stroke-width="3" marker-end="url(#arrGS3_g)"/>
+            <text x="145" y="-15" font-size="13" fill="#4caf50" font-weight="bold">u₁</text>
+            <!-- u2 -->
+            <line x1="0" y1="0" x2="80" y2="-100" stroke="#2196F3" stroke-width="3" marker-end="url(#arrGS3_b)"/>
+            <text x="85" y="-100" font-size="13" fill="#2196F3" font-weight="bold">u₂</text>
+            <!-- u3 -->
+            <line x1="0" y1="0" x2="60" y2="-180" stroke="#9c27b0" stroke-width="3" marker-end="url(#arrGS3_p)"/>
+            <text x="65" y="-183" font-size="13" fill="#9c27b0" font-weight="bold">u₃</text>
+            <!-- plane span{u1,u2} -->
+            <polygon points="-10,5 150,-18 220,-115 60,-92" fill="rgba(102,126,234,0.08)" stroke="#667eea" stroke-width="1" stroke-dasharray="4"/>
+            <text x="160" y="-65" font-size="11" fill="#667eea">span{u₁,u₂}</text>
+            <!-- p2 projection -->
+            <line x1="0" y1="0" x2="70" y2="-70" stroke="#ff9800" stroke-width="2" stroke-dasharray="5"/>
+            <circle cx="70" cy="-70" r="3" fill="#ff9800"/>
+            <text x="78" y="-62" font-size="11" fill="#ff9800">p₂</text>
+            <!-- u3 - p2 -->
+            <line x1="70" y1="-70" x2="60" y2="-180" stroke="#e91e63" stroke-width="3" marker-end="url(#arrGS3_r)"/>
+            <text x="30" y="-130" font-size="12" fill="#e91e63" font-weight="bold">u₃−p₂</text>
+        </g>
+        <!-- label -->
+        <text x="280" y="60" font-size="13" fill="#333">$v_3$ 垂直于 span{$u_1,u_2$} 平面</text>
+        <text x="280" y="82" font-size="13" fill="#333">方向 = $u_3$ 减去在平面上的投影</text>
+        <defs>
+            <marker id="arrGS3_g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4caf50"/></marker>
+            <marker id="arrGS3_b" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#2196F3"/></marker>
+            <marker id="arrGS3_p" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#9c27b0"/></marker>
+            <marker id="arrGS3_r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#e91e63"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">k=3 情形：$u_3$ 减去在 span{$u_1,u_2$} 平面上的投影 $p_2$，得到垂直分量</div>
+</div>
+
+<h2 class="section-title" id="L18-gs-algo">Gram-Schmidt 正式算法</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Algorithm 18.1：Gram-Schmidt 正交化</div>
+    <p><strong>输入：</strong>子空间 $S$ 的基 $\{u_1,\dots,u_k\}$</p>
+    <p><strong>输出：</strong>$S$ 的标准正交基 $\{v_1,\dots,v_k\}$</p>
+    <ul class="step-list">
+        <li>$v_1 = \dfrac{u_1}{\|u_1\|}$</li>
+        <li><strong>对 $j=2,3,\dots,k$：</strong><br/>
+            计算投影 $p_{j-1} = \displaystyle\sum_{i=1}^{j-1}\langle u_j, v_i\rangle\, v_i$<br/>
+            计算垂直分量 $w_j = u_j - p_{j-1}$<br/>
+            归一化 $v_j = \dfrac{w_j}{\|w_j\|}$
+        </li>
+    </ul>
+    <div class="formula-box important">
+        $$v_j = \frac{u_j - \sum_{i=1}^{j-1}\langle u_j, v_i\rangle\, v_i}{\left\|u_j - \sum_{i=1}^{j-1}\langle u_j, v_i\rangle\, v_i\right\|}$$
+    </div>
+    <p><strong>一句话记忆：</strong>新向量减去在已有正交方向上的投影，再归一化。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>关键保证</div>
+    <p>在每一步 $j$ 结束时：$\text{span}\{v_1,\dots,v_j\}=\text{span}\{u_1,\dots,u_j\}$。</p>
+    <p>因此最终 $\{v_1,\dots,v_k\}$ 张成的空间与原始基 $\{u_1,\dots,u_k\}$ 完全相同。</p>
+</div>
+
+<h2 class="section-title" id="L18-det-motivation">行列式的几何动机</h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>2×2 行列式 $ad-bc$ 是什么？</div>
+    <p>对于 $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$，$ad-bc$ 恰好是列向量 $(a,c)^\top$ 与 $(b,d)^\top$ 构成的<strong>平行四边形面积</strong>（带符号）。</p>
+    <p>$ad-bc=0$ 意味着面积为零，即两个列向量共线 → 矩阵不可逆。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Question 18.1：推广到 $n\times n$</div>
+    <p>能否找到函数 $\det(\cdot)$ 使得 $\det(A)\neq 0 \iff A$ 可逆？</p>
+    <p><strong>答案：</strong>$\det(A)$ = 列向量构成的<strong>平行多面体的体积</strong>。体积为零 ↔ 向量线性相关 ↔ 不可逆。</p>
+    <p><strong>计算思路：</strong>先探索"体积"应满足的性质（Properties），再从性质推导出计算公式（Formula）。</p>
+</div>
+
+</div><!-- end lecture 18 -->
+
+
+<!-- ==================== LECTURE 19 ==================== -->
+<div class="lecture" id="lec19">
+<h1 class="lecture-title">Lecture 19 &mdash; 行列式 II</h1>
+
+<h2 class="section-title" id="L19-P1">Property P1：行列式对每行线性</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>P1：行列式是每行的线性函数</div>
+    <p>行列式对矩阵的<strong>每一行</strong>分别满足线性性（固定其他行不变）。</p>
+    <p><strong>(P1.1) 缩放 Scaling：</strong>某行乘以 $t$，行列式乘以 $t$</p>
+    <div class="formula-box">
+        $$\begin{vmatrix}ta&tb\\c&d\end{vmatrix} = t\begin{vmatrix}a&b\\c&d\end{vmatrix}$$
+    </div>
+    <p>一般：$\begin{vmatrix}tv_1\\v_2\\\vdots\\v_m\end{vmatrix}=t\begin{vmatrix}v_1\\v_2\\\vdots\\v_m\end{vmatrix}$（对任意行同理）</p>
+    <p><strong>(P1.2) 求和 Summing：</strong>某行为两行之和，行列式等于两个行列式之和</p>
+    <div class="formula-box">
+        $$\begin{vmatrix}a_1+a_2&b_1+b_2\\c&d\end{vmatrix} = \begin{vmatrix}a_1&b_1\\c&d\end{vmatrix}+\begin{vmatrix}a_2&b_2\\c&d\end{vmatrix}$$
+    </div>
+</div>
+
+<div class="diagram-container">
+    <svg width="480" height="200" viewBox="0 0 480 200">
+        <!-- P1.1 geometric: scaling row → scaling area -->
+        <g transform="translate(20,170)">
+            <polygon points="0,0 60,-20 100,-80 40,-60" fill="rgba(76,175,80,0.15)" stroke="#4caf50" stroke-width="2"/>
+            <text x="50" y="-85" font-size="12" fill="#4caf50">面积 = S</text>
+            <line x1="0" y1="0" x2="60" y2="-20" stroke="#4caf50" stroke-width="2" marker-end="url(#arrP1_g)"/>
+            <text x="65" y="-12" font-size="11" fill="#4caf50">(a,b)</text>
+            <line x1="0" y1="0" x2="40" y2="-60" stroke="#2196F3" stroke-width="2" marker-end="url(#arrP1_b)"/>
+            <text x="10" y="-63" font-size="11" fill="#2196F3">(c,d)</text>
+        </g>
+        <!-- arrow -->
+        <text x="200" y="90" font-size="16" fill="#764ba2">行1 × 2</text>
+        <line x1="175" y1="100" x2="250" y2="100" stroke="#764ba2" stroke-width="2" marker-end="url(#arrP1_p)"/>
+        <!-- scaled -->
+        <g transform="translate(270,170)">
+            <polygon points="0,0 120,-40 160,-100 40,-60" fill="rgba(233,30,99,0.12)" stroke="#e91e63" stroke-width="2"/>
+            <text x="80" y="-105" font-size="12" fill="#e91e63">面积 = 2S</text>
+            <line x1="0" y1="0" x2="120" y2="-40" stroke="#e91e63" stroke-width="2" marker-end="url(#arrP1_r)"/>
+            <text x="125" y="-32" font-size="11" fill="#e91e63">(2a,2b)</text>
+            <line x1="0" y1="0" x2="40" y2="-60" stroke="#2196F3" stroke-width="2" marker-end="url(#arrP1_b2)"/>
+            <text x="10" y="-63" font-size="11" fill="#2196F3">(c,d)</text>
+        </g>
+        <defs>
+            <marker id="arrP1_g" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4caf50"/></marker>
+            <marker id="arrP1_b" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#2196F3"/></marker>
+            <marker id="arrP1_p" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#764ba2"/></marker>
+            <marker id="arrP1_r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#e91e63"/></marker>
+            <marker id="arrP1_b2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#2196F3"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">P1.1 几何理解：一行放大 $t$ 倍 → 平行四边形面积放大 $t$ 倍</div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>重要区分：行线性 ≠ 矩阵线性</div>
+    <p>$\det(A+B)\neq\det(A)+\det(B)$！行列式只是<strong>对每行分别</strong>线性，不是对整个矩阵线性。</p>
+    <p>例如所有行都乘以 $c$，对 $n\times n$ 矩阵：$\det(cA) = c^n \det(A)$，而不是 $c\det(A)$。</p>
+</div>
+
+<h2 class="section-title" id="L19-decompose">P1 的应用：分解计算行列式</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>利用 P1 逐行分解</div>
+    <p>把第一行 $[a_1, a_2, a_3]$ 用标准基表示：$[a_1,0,0]+[0,a_2,0]+[0,0,a_3]$</p>
+    <p>由 P1.2：</p>
+    <div class="formula-box">
+        $$\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}=\begin{vmatrix}a_1&0&0\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}+\begin{vmatrix}0&a_2&0\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}+\begin{vmatrix}0&0&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}$$
+    </div>
+    <p>对每一行都这样展开后，再结合 P2 和 P3 可递归计算出行列式。</p>
+</div>
+
+<h2 class="section-title" id="L19-P2">Property P2：分块对角矩阵 & 零行推论</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>P2：分块对角（上三角）行列式</div>
+    <p>若矩阵具有分块上三角结构 $A=\begin{pmatrix}h&\ast\\0&B\end{pmatrix}$，其中 $h$ 为标量，则</p>
+    <div class="formula-box">
+        $$\det(A) = h \cdot \det(B)$$
+    </div>
+    <p>几何直觉：一个维度独立于其他维度（"高"独立于"底面"），则体积 = 高 × 底面体积。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Corollary of P1：零行 → det = 0</div>
+    <p>若方阵 $A$ 有某行（或某列）全为零，则 $\det(A)=0$。</p>
+    <p><strong>几何：</strong>3D 中某向量为零 → 平行体退化为 2D 物体 → 体积为 0。</p>
+    <p><strong>代数：</strong>零行 = $0\times$ 零行，由 P1.1 得 $\det = 0 \cdot \det = 0$。</p>
+</div>
+
+<h2 class="section-title" id="L19-P3">Property P3：行交换变号</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>P3：交换两行，行列式变号</div>
+    <div class="formula-box">
+        $$\det(E_{R_i\leftrightarrow R_j}\, A) = -\det(A)$$
+    </div>
+    <p>交换两行 = 改变"朝向"（正/负方向），带符号体积取反。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>由 P3 推出的重要推论</div>
+    <p><strong>Cor 19.1：</strong>加一行的倍数到另一行，行列式不变：$\det(E_{R_i+\alpha R_j}\, A) = \det(A)$</p>
+    <p>这是因为高斯消元的初等行变换不改变行列式（原理：行线性 + 行交换变号 → 相同行则 det=0 → 加倍数不改变）。</p>
+    <p><strong>Cor 19.2：</strong>某行乘以 $\alpha$，行列式乘 $\alpha$：$\det(E_{\alpha R_i}\, A) = \alpha\cdot\det(A)$（P1.1 的直接应用）。</p>
+</div>
+
+<h2 class="section-title" id="L19-cofactor">余子式展开与递归定义</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>递归定义：从性质到公式</div>
+    <p>利用 P1（逐行分解为标准基）+ P2（分块化简）+ P3（行交换变号），可推导出：</p>
+    <div class="formula-box important">
+        $$\det(A) = \sum_{j=1}^{n}(-1)^{1+j}\, a_{1j}\,\det(M_{1j})$$
+    </div>
+    <p>其中 $M_{1j}$ 是删去第 1 行第 $j$ 列后的 $(n-1)\times(n-1)$ 子阵（<span class="en">minor</span>）。</p>
+    <p>这就是<strong>按第一行的余子式展开</strong>（Cofactor Expansion），把 $n$ 阶行列式化为 $n$ 个 $(n-1)$ 阶行列式之和。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>推导思路回顾</div>
+    <p>完整链条：<strong>几何动机（体积）→ 性质（P1, P2, P3）→ 分解 → 递归公式</strong></p>
+    <p>行列式不是凭空定义出来的，而是从"平行体体积应满足什么性质"出发，自然推导得到的计算公式。</p>
+</div>
+
+</div><!-- end lecture 19 -->
+
+
+<!-- ==================== LECTURE 20 ==================== -->
+<div class="lecture" id="lec20">
+<h1 class="lecture-title">Lecture 20 &mdash; 行列式 III & 线性变换 I</h1>
+
+<!-- Review -->
+<h2 class="section-title" id="L20-review">回顾：行列式的定义与基本性质</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>行列式的递归定义 <span class="en">Determinant</span></div>
+    <p>设 $A \in \mathbb{R}^{n \times n}$ 为方阵，$M_{ij}$ 是删去第 $i$ 行第 $j$ 列后的 $(n-1)\times(n-1)$ 子阵（<span class="en">minor</span>，余子式）。</p>
+    <div class="formula-box">
+        $$\det(A) = \sum_{j=1}^{n} (-1)^{1+j} \det(M_{1j}) \cdot a_{1j}$$
+    </div>
+    <p>这是<strong>按第一行展开</strong>的递归定义：把 $n$ 阶行列式分解为 $n$ 个 $(n-1)$ 阶行列式的加权和，直到降为 $1\times1$ 标量。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>Lec 19 基本性质一览</div>
+    <table class="comparison-table">
+        <tr><th>性质</th><th>内容</th><th>效果</th></tr>
+        <tr><td><strong>P19.0</strong> 转置</td><td>$\det(A^\top)=\det(A)$</td><td>行性质 ↔ 列性质</td></tr>
+        <tr><td><strong>P19.1</strong> 行/列线性</td><td>对每行每列分别线性</td><td>可逐行拆分</td></tr>
+        <tr><td><strong>P19.2</strong> 分块</td><td>$A=\begin{pmatrix}h&0\\0&B\end{pmatrix}\Rightarrow\det(A)=h\cdot\det(B)$</td><td>分块三角阵</td></tr>
+        <tr><td><strong>P19.3</strong> 交换</td><td>交换两行 → $\det$ 变号</td><td>$\det(E_{R_i\leftrightarrow R_j}A)=-\det(A)$</td></tr>
+        <tr><td><strong>Cor 19.1</strong></td><td>加一行的倍数到另一行 → $\det$ 不变</td><td>消元不改变 det</td></tr>
+        <tr><td><strong>Cor 19.2</strong></td><td>某行乘 $\alpha$ → $\det$ 乘 $\alpha$</td><td>$\det(E_{\alpha R_i}A)=\alpha\cdot\det(A)$</td></tr>
+    </table>
+</div>
+
+<!-- Part I: Advanced Properties -->
+<h2 class="section-title" id="L20-advanced">Part I：行列式进阶性质</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>P20.1 三角矩阵 <span class="en">Triangular Matrix</span></div>
+    <p>若 $A$ 为三角阵（上三角或下三角），对角元为 $a_{11},\dots,a_{nn}$，则</p>
+    <div class="formula-box important">
+        $$\det(A) = a_{11} \cdot a_{22} \cdots a_{nn}$$
+    </div>
+    <p>即<strong>对角元素之积</strong>。这也意味着对角阵 $\det(\text{diag}(d_1,\dots,d_n))=d_1\cdots d_n$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>P20.2 乘积公式 <span class="en">Product Rule</span></div>
+    <p>对任意 $A, B \in \mathbb{R}^{n\times n}$：</p>
+    <div class="formula-box important">
+        $$\det(AB) = \det(A)\cdot\det(B)$$
+    </div>
+    <p>行列式把矩阵乘法变成了数的乘法——这是一个从矩阵到标量的<strong>乘法同态</strong>。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>数值验证</div>
+    <p>$A=\begin{pmatrix}1&2\\3&4\end{pmatrix},\; B=\begin{pmatrix}2&0\\1&1\end{pmatrix}$</p>
+    <p>$AB=\begin{pmatrix}4&2\\10&4\end{pmatrix}$，$\det(AB)=4\cdot4-2\cdot10=-4$</p>
+    <p>$\det(A)=1\cdot4-2\cdot3=-2$，$\det(B)=2\cdot1-0\cdot1=2$</p>
+    <p>$\det(A)\cdot\det(B)=(-2)(2)=-4$ &nbsp;<span class="check">&#10003;</span></p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>P20.3 逆矩阵 <span class="en">Inverse</span></div>
+    <p>若 $A$ 可逆，则</p>
+    <div class="formula-box important">
+        $$\det(A^{-1}) = \frac{1}{\det(A)}$$
+    </div>
+    <p><strong>证明思路：</strong>由 $A\cdot A^{-1}=I$ 两边取 det，利用 P20.2 得 $\det(A)\det(A^{-1})=\det(I)=1$。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>常见误区：det(A+B) ≠ det(A)+det(B)</div>
+    <p>行列式对<strong>矩阵加法</strong>没有类似的简单公式！只对<strong>乘法</strong>有好性质。</p>
+    <p>总结：行列式与各种运算的关系：</p>
+    <table class="comparison-table">
+        <tr><th>运算</th><th>行列式公式</th></tr>
+        <tr><td>$A \cdot B$</td><td>$\det(AB)=\det(A)\det(B)$</td></tr>
+        <tr><td>$A^{-1}$</td><td>$\det(A^{-1})=1/\det(A)$</td></tr>
+        <tr><td>$A^\top$</td><td>$\det(A^\top)=\det(A)$</td></tr>
+        <tr><td>$A+B$</td><td><span class="cross">无简单公式</span></td></tr>
+    </table>
+</div>
+
+<!-- Invertibility -->
+<h2 class="section-title" id="L20-invertibility">行列式与可逆性</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>核心命题：$\det(A)\neq 0 \iff A$ 可逆</div>
+    <p><strong>几何视角：</strong>$\det(A)$ = 列向量构成的平行体的（有符号）体积。体积为零 ↔ 降维退化 ↔ 列向量线性相关 ↔ 不可逆。</p>
+    <p><strong>代数视角：</strong>高斯消元将 $A$ 化为上三角 $U$，每步初等行变换只乘以 $\pm1$ 或非零标量，因此 $|A|=(-1)^c\alpha|U|$，其中 $|U|$ 是主元之积。故 $|A|\neq0$ 当且仅当所有主元非零 ↔ 有 $n$ 个主元 ↔ $A$ 可逆。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>可逆性等价条件大全（11条）</div>
+    <p>设 $A\in\mathbb{R}^{n\times n}$，以下条件等价：</p>
+    <ul class="equiv-list">
+        <li><span class="num">1.</span> $A$ 可逆</li>
+        <li><span class="num">2.</span> $Ax=0$ 只有零解 $x=0$</li>
+        <li><span class="num">3.</span> $A$ 是初等矩阵之积</li>
+        <li><span class="num">4.</span> $A$ 有 $n$ 个主元，即 $\text{rank}(A)=n$</li>
+        <li><span class="num">5.</span> $A$ 的列张成 $\mathbb{R}^n$</li>
+        <li><span class="num">6.</span> $A$ 的列线性无关</li>
+        <li><span class="num">7.</span> $A$ 的列构成 $\mathbb{R}^n$ 的基</li>
+        <li><span class="num">8.</span> $\dim(C(A))=n$</li>
+        <li><span class="num">9.</span> $\dim(N(A))=0$，即 $N(A)=\{0\}$</li>
+        <li><span class="num">10.</span> $Ax=b$ 对任意 $b$ 有解</li>
+        <li><span class="num">11.</span> $\det(A)\neq 0$ &nbsp;&larr; <strong style="color:#e91e63">新增！</strong></li>
+    </ul>
+</div>
+
+<!-- Motivation for LT -->
+<h2 class="section-title" id="L20-motivation">Part II：线性变换的动机</h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128247;</span>日常操作中的变换</div>
+    <p>手机上的缩放（zoom）和旋转（rotate）照片——这些操作的数学本质是什么？</p>
+    <p><strong>缩放 Zoom：</strong>每个像素点 $(x,y)\mapsto(2x,2y)$，即乘以一个矩阵 $\begin{pmatrix}2&0\\0&2\end{pmatrix}$。</p>
+    <p><strong>旋转 Rotate：</strong>每个点 $(x,y)$ 绕原点旋转角度 $\theta$，对应矩阵 $\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}$。</p>
+    <p>它们都是<strong>线性变换</strong>的实例！</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="560" height="200" viewBox="0 0 560 200">
+        <!-- Zoom -->
+        <rect x="20" y="60" width="60" height="60" fill="none" stroke="#2196F3" stroke-width="2"/>
+        <text x="50" y="50" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Zoom ×2</text>
+        <line x1="100" y1="90" x2="140" y2="90" stroke="#e91e63" stroke-width="2" marker-end="url(#arrowRed)"/>
+        <rect x="150" y="30" width="120" height="120" fill="none" stroke="#2196F3" stroke-width="2"/>
+        <text x="210" y="170" text-anchor="middle" font-size="12" fill="#888">$(x,y)\mapsto(2x,2y)$</text>
+
+        <!-- Rotate -->
+        <circle cx="380" cy="90" r="40" fill="none" stroke="#4caf50" stroke-width="2"/>
+        <line x1="380" y1="90" x2="408" y2="62" stroke="#4caf50" stroke-width="2"/>
+        <line x1="430" y1="90" x2="470" y2="90" stroke="#e91e63" stroke-width="2" marker-end="url(#arrowRed)"/>
+        <text x="380" y="50" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">Rotate θ</text>
+        <circle cx="520" cy="90" r="40" fill="none" stroke="#4caf50" stroke-width="2"/>
+        <line x1="520" y1="90" x2="560" y2="62" stroke="#4caf50" stroke-width="2" stroke-dasharray="5"/>
+        <line x1="520" y1="90" x2="536" y2="53" stroke="#f44336" stroke-width="2"/>
+
+        <defs>
+            <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                <polygon points="0 0, 10 3.5, 0 7" fill="#e91e63"/>
+            </marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">缩放与旋转：日常变换的数学本质</div>
+</div>
+
+<!-- Definition of LT -->
+<h2 class="section-title" id="L20-definition">线性变换的定义</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Definition 20.1：线性变换 <span class="en">Linear Transformation</span></div>
+    <p>设 $V, W$ 为线性空间，映射 $f: V \to W$ 若满足</p>
+    <div class="formula-box highlight">
+        $$f(\alpha \mathbf{x} + \beta \mathbf{y}) = \alpha f(\mathbf{x}) + \beta f(\mathbf{y}), \quad \forall \alpha,\beta \in \mathbb{R},\; \forall \mathbf{x},\mathbf{y}\in V$$
+    </div>
+    <p>则称 $f$ 为从 $V$ 到 $W$ 的<strong>线性变换</strong>。</p>
+    <p>一句话概括：<strong style="color:#e91e63">变换后的线性组合 = 线性组合的变换</strong>。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128269;</span>几何验证法（三条规则）</div>
+    <p>线性变换可通过几何直观来判断：</p>
+    <p><strong>Rule 1：</strong>直线映为直线（Lines → Lines）</p>
+    <p><strong>Rule 2：</strong>等距点映为等距点（Equally spaced → Equally spaced）</p>
+    <p><strong>Rule 3：</strong>原点映为原点（Origin → Origin）</p>
+    <div class="note">如果 $f(0)\neq 0$，则 $f$ 一定不是线性变换。例如投影到集合 $\{(x_1,x_2)\mid x_1+x_2=1\}$ 上就不是线性变换，因为 $T(0,0)\neq(0,0)$。</div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Theorem 20.1：$\mathbb{R}^n\to\mathbb{R}^m$ 的线性变换都可用矩阵表示</div>
+    <p>对任意线性变换 $f:\mathbb{R}^n\to\mathbb{R}^m$，存在矩阵 $A\in\mathbb{R}^{m\times n}$，使得 $f(\mathbf{x})=A\mathbf{x}$。</p>
+</div>
+
+<!-- Computing Matrix -->
+<h2 class="section-title" id="L20-matrix">计算线性变换的矩阵</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128295;</span>Algorithm 20.1：从变换到矩阵</div>
+    <ul class="step-list">
+        <li>取 $\mathbb{R}^n$ 的标准基 $\{\mathbf{e}_1, \mathbf{e}_2, \dots, \mathbf{e}_n\}$</li>
+        <li>计算每个基向量的像 $f(\mathbf{e}_i) \in \mathbb{R}^m$</li>
+        <li>排列成矩阵 $A = [f(\mathbf{e}_1), f(\mathbf{e}_2), \dots, f(\mathbf{e}_n)]$</li>
+    </ul>
+    <div class="formula-box">
+        $$f(\mathbf{x}) = \sum_i x_i f(\mathbf{e}_i) = A\mathbf{x}$$
+    </div>
+    <p><strong>关键洞察：</strong>矩阵的第 $i$ 列就是标准基第 $i$ 个向量的像。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>E1：投影到 $x_1$ 轴</div>
+    <p>$T(x_1,x_2)=(x_1, 0)$ &mdash; 是线性变换。</p>
+    <p>$T(\mathbf{e}_1)=(1,0)$，$T(\mathbf{e}_2)=(0,0)$</p>
+    <div class="formula-box">$$A = \begin{pmatrix}1&0\\0&0\end{pmatrix}$$</div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>E3：投影到子空间 $x_1+x_2=0$</div>
+    <p>子空间 $W$ 由向量 $\mathbf{w}=(1,-1)$ 张成，标准正交基 $\mathbf{u}=\frac{1}{\sqrt{2}}(1,-1)$。</p>
+    <p>投影公式：$T(\mathbf{y})=\text{proj}_W(\mathbf{y})=(\mathbf{u}^\top\mathbf{y})\mathbf{u}$</p>
+    <p>展开计算：$T(y_1,y_2)=\left(\frac{y_1-y_2}{2},\; -\frac{y_1-y_2}{2}\right)$</p>
+    <div class="formula-box">$$A = \begin{pmatrix}\frac{1}{2}&-\frac{1}{2}\\[4pt]-\frac{1}{2}&\frac{1}{2}\end{pmatrix}$$</div>
+</div>
+
+</div><!-- end lecture 20 -->
+
+
+<!-- ==================== LECTURE 21 ==================== -->
+<div class="lecture" id="lec21">
+<h1 class="lecture-title">Lecture 21 &mdash; 线性变换 II</h1>
+
+<h2 class="section-title" id="L21-matrix-view">矩阵即线性变换：双向关系</h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128260;</span>Transformation ↔ Matrix 对应</div>
+    <p><strong>正向：</strong>给定线性变换 $f:\mathbb{R}^n\to\mathbb{R}^m$</p>
+    <p>→ 矩阵 $A=[f(\mathbf{e}_1),\dots,f(\mathbf{e}_n)]\in\mathbb{R}^{m\times n}$，使得 $f(\mathbf{x})=A\mathbf{x}$</p>
+    <p><strong>反向：</strong>给定矩阵 $A=[\mathbf{a}_1,\dots,\mathbf{a}_n]\in\mathbb{R}^{m\times n}$</p>
+    <p>→ 定义 $f(\mathbf{x})=A\mathbf{x}$ 就是线性变换，其中 $f(\mathbf{e}_i)=\mathbf{a}_i$（$A$ 的列）</p>
+    <div class="formula-box highlight">
+        $$\boxed{f:\mathbb{R}^n\to\mathbb{R}^m \;\longleftrightarrow\; A\in\mathbb{R}^{m\times n}}$$
+    </div>
+    <p>矩阵不仅是<strong>数据</strong>，更是<strong>变换</strong>！</p>
+</div>
+
+<h2 class="section-title" id="L21-basis">变换特征 1：基的变化</h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#127912;</span>从正方网格到平行四边形网格</div>
+    <p>以 $A=\begin{pmatrix}1&3\\2&1\end{pmatrix}$ 为例：</p>
+    <p>输入空间：标准基 $\mathbf{e}_1,\mathbf{e}_2$ 构成的正方网格（"Square tile"）。</p>
+    <p>输出空间：$A\mathbf{e}_1=\begin{pmatrix}1\\2\end{pmatrix}$，$A\mathbf{e}_2=\begin{pmatrix}3\\1\end{pmatrix}$ 构成的平行四边形网格。</p>
+    <p><strong>矩阵的列 = 变换后的基向量</strong>。线性变换把正方形瓦片拉伸、旋转为平行四边形瓦片。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="560" height="220" viewBox="0 0 560 220">
+        <!-- Input grid -->
+        <g transform="translate(50,180)">
+            <line x1="0" y1="0" x2="0" y2="-150" stroke="#ccc" stroke-width="1"/>
+            <line x1="0" y1="0" x2="150" y2="0" stroke="#ccc" stroke-width="1"/>
+            <!-- e1 -->
+            <line x1="0" y1="0" x2="50" y2="0" stroke="#4caf50" stroke-width="3" marker-end="url(#arrG)"/>
+            <text x="55" y="15" font-size="13" fill="#4caf50" font-weight="bold">e₁</text>
+            <!-- e2 -->
+            <line x1="0" y1="0" x2="0" y2="-50" stroke="#f44336" stroke-width="3" marker-end="url(#arrR)"/>
+            <text x="-20" y="-52" font-size="13" fill="#f44336" font-weight="bold">e₂</text>
+            <!-- grid -->
+            <rect x="0" y="-50" width="50" height="50" fill="rgba(102,126,234,0.1)" stroke="#667eea" stroke-width="1"/>
+        </g>
+        <text x="100" y="210" text-anchor="middle" font-size="12" fill="#888">输入空间（正方形）</text>
+
+        <!-- Arrow -->
+        <text x="280" y="100" text-anchor="middle" font-size="28" fill="#764ba2" font-weight="bold">A</text>
+        <line x1="240" y1="108" x2="310" y2="108" stroke="#764ba2" stroke-width="3" marker-end="url(#arrP)"/>
+
+        <!-- Output grid -->
+        <g transform="translate(360,180)">
+            <line x1="0" y1="0" x2="0" y2="-150" stroke="#ccc" stroke-width="1"/>
+            <line x1="0" y1="0" x2="170" y2="0" stroke="#ccc" stroke-width="1"/>
+            <!-- Ae1 = (1,2) -->
+            <line x1="0" y1="0" x2="35" y2="-70" stroke="#4caf50" stroke-width="3" marker-end="url(#arrG)"/>
+            <text x="42" y="-72" font-size="11" fill="#4caf50">Ae₁=(1,2)</text>
+            <!-- Ae2 = (3,1) -->
+            <line x1="0" y1="0" x2="105" y2="-35" stroke="#f44336" stroke-width="3" marker-end="url(#arrR)"/>
+            <text x="108" y="-38" font-size="11" fill="#f44336">Ae₂=(3,1)</text>
+            <!-- parallelogram -->
+            <polygon points="0,0 35,-70 140,-105 105,-35" fill="rgba(102,126,234,0.1)" stroke="#667eea" stroke-width="1"/>
+        </g>
+        <text x="440" y="210" text-anchor="middle" font-size="12" fill="#888">输出空间（平行四边形）</text>
+
+        <defs>
+            <marker id="arrG" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#4caf50"/></marker>
+            <marker id="arrR" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#f44336"/></marker>
+            <marker id="arrP" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#764ba2"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">矩阵 $A$ 将标准基变换为 $A$ 的列向量，正方网格变为平行四边形网格</div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128204;</span>变换特征 2：坐标不变性</div>
+    <p>$A$ 将 $(-1)\mathbf{e}_1+2\mathbf{e}_2$ 映射为 $(-1)A\mathbf{e}_1+2\cdot A\mathbf{e}_2$。</p>
+    <p>即：在新坐标系（以 $A\mathbf{e}_1,A\mathbf{e}_2$ 为基）下，像的坐标仍然是 $(-1,2)$——<strong>坐标保持不变</strong>，变的是基向量本身。</p>
+</div>
+
+<h2 class="section-title" id="L21-dependent">退化情形：列线性相关</h2>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>列相关 → 降维坍缩</div>
+    <p>若 $A$ 的列线性相关（例如 $A=\begin{pmatrix}2&-2\\1&-1\end{pmatrix}$），则变换后的基向量共线，二维平面被压扁为一条直线。</p>
+    <p>像集 $\{A\mathbf{x} : \mathbf{x}\in\mathbb{R}^2\} = C(A) = \text{span}\begin{pmatrix}2\\1\end{pmatrix}$，即列空间。</p>
+    <p>此时 $\det(A)=0$：体积被压缩为零。</p>
+</div>
+
+<h2 class="section-title" id="L21-det-geo">行列式的几何再解释</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#127760;</span>det(A) = 体积变化率</div>
+    <p>从线性变换的角度重新看行列式：</p>
+    <p>$|\det(A)|$ = 变换 $\mathbf{x}\mapsto A\mathbf{x}$ 的<strong>面积/体积变化倍率</strong>。</p>
+    <div class="formula-box important">
+        $$|\det(A)| = \frac{\text{变换后区域面积}}{\text{原始区域面积}}$$
+    </div>
+    <p>单位正方形面积 = 1 → 经 $A$ 变换后的平行四边形面积 = $|\det(A)|$。</p>
+    <p>如果原区域总面积为 $S$，变换后面积为 $S\cdot|\det(A)|$。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="480" height="180" viewBox="0 0 480 180">
+        <!-- Input -->
+        <g transform="translate(30,140)">
+            <rect x="0" y="-40" width="40" height="40" fill="rgba(102,126,234,0.2)" stroke="#667eea" stroke-width="2"/>
+            <text x="20" y="-45" text-anchor="middle" font-size="11" fill="#667eea">面积=1</text>
+            <rect x="40" y="-80" width="40" height="40" fill="rgba(102,126,234,0.1)" stroke="#667eea" stroke-width="1"/>
+            <rect x="40" y="-40" width="40" height="40" fill="rgba(102,126,234,0.1)" stroke="#667eea" stroke-width="1"/>
+            <rect x="0" y="-80" width="40" height="40" fill="rgba(102,126,234,0.1)" stroke="#667eea" stroke-width="1"/>
+        </g>
+        <text x="70" y="170" text-anchor="middle" font-size="12" fill="#888">总面积 S</text>
+
+        <text x="215" y="85" text-anchor="middle" font-size="22" fill="#764ba2" font-weight="bold">×A</text>
+        <line x1="180" y1="90" x2="250" y2="90" stroke="#764ba2" stroke-width="3" marker-end="url(#arrP2)"/>
+
+        <!-- Output -->
+        <g transform="translate(290,140)">
+            <polygon points="0,0 25,-50 95,-70 70,-20" fill="rgba(233,30,99,0.15)" stroke="#e91e63" stroke-width="2"/>
+            <text x="47" y="-75" text-anchor="middle" font-size="11" fill="#e91e63">面积=|det(A)|</text>
+        </g>
+        <text x="360" y="170" text-anchor="middle" font-size="12" fill="#888">总面积 S·|det(A)|</text>
+
+        <defs>
+            <marker id="arrP2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#764ba2"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">线性变换 $A$ 将面积放大 $|\det(A)|$ 倍</div>
+</div>
+
+<!-- Exercises & Methods -->
+<h2 class="section-title" id="L21-exercises">例题方法总结</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128295;</span>两类问题与四种方法</div>
+
+    <h3 class="subsection-title">Type 1：已知是线性变换，求矩阵</h3>
+    <p><strong>T1M1</strong>：直接写出表达式，凑成 $A\mathbf{x}$ 的形式读出 $A$。</p>
+    <p><strong>T1M2</strong>：使用 Algorithm 20.1，计算 $f(\mathbf{e}_i)$ 拼成矩阵。</p>
+
+    <h3 class="subsection-title">Type 2：需先验证是否线性变换</h3>
+    <p><strong>T2M1</strong>（不太常用）：先用定义验证线性性，再用 Algorithm 20.1 求矩阵。适用于旋转等几何变换。</p>
+    <p><strong>T2M2</strong>（常用）：推导出表达式，凑成 $A\mathbf{x}$ 形式。如果能写成 $A\mathbf{x}$，则自动说明是线性变换。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>E3-b：投影到 $x_1+x_2=0$ —— 完整演示 T2M2</div>
+    <p><strong>Step 1：</strong>子空间 $W$ 是直线 $x_1+x_2=0$，方向向量 $\mathbf{w}=(1,-1)$。标准正交基 $\mathbf{u}=\frac{1}{\sqrt{2}}(1,-1)$。</p>
+    <p><strong>Step 2：</strong>写出投影公式：</p>
+    <p>$T(\mathbf{y})=(\mathbf{u}^\top\mathbf{y})\mathbf{u} = \frac{y_1-y_2}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}\frac{y_1-y_2}{2}\\-\frac{y_1-y_2}{2}\end{pmatrix}$</p>
+    <p><strong>Step 3：</strong>写成矩阵形式：</p>
+    <div class="formula-box">
+        $$T\begin{pmatrix}y_1\\y_2\end{pmatrix}=\begin{pmatrix}\frac{1}{2}&-\frac{1}{2}\\[4pt]-\frac{1}{2}&\frac{1}{2}\end{pmatrix}\begin{pmatrix}y_1\\y_2\end{pmatrix}$$
+    </div>
+    <p><strong>结论：</strong>$T$ 是线性变换（因为能写成 $A\mathbf{x}$），矩阵 $A=\begin{pmatrix}1/2&-1/2\\-1/2&1/2\end{pmatrix}$。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>E2：投影到 $x_1+x_2=1$ 不是线性变换</div>
+    <p>目标集 $\{(x_1,x_2)\mid x_1+x_2=1\}$ 不是子空间（不过原点），所以投影到这个集合上<strong>不可能</strong>是线性变换。快速判断：$T(0,0)\neq(0,0)$。</p>
+</div>
+
+</div><!-- end lecture 21 -->
+
+<!-- ==================== LECTURE 22 ==================== -->
+<div class="lecture" id="lec22">
+<h1 class="lecture-title">Lecture 22 &mdash; 特征值与特征向量 (Eigenvalues &amp; Eigenvectors I)</h1>
+
+<h2 class="section-title" id="L22-review">回顾：线性变换的矩阵表示</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Algorithm 21.1（非欧式空间的矩阵表示）</div>
+    <p>给定线性变换 $T: V \to W$，求矩阵表示：</p>
+    <ol class="step-list">
+        <li>选择输入空间 $V$ 的基 $Y = \{v_1, \ldots, v_n\}$ 和输出空间 $W$ 的基 $Z = \{w_1, \ldots, w_m\}$</li>
+        <li>对每个 $v_j$，将 $T(v_j)$ 用 $Z$ 表示：$T(v_j) = a_{1j}w_1 + \cdots + a_{mj}w_m$，写出坐标 $\mathbf{a}_j = (a_{1j}, \ldots, a_{mj})^T$</li>
+        <li>组成矩阵 $A = [\mathbf{a}_1, \ldots, \mathbf{a}_n] \in \mathbb{R}^{m \times n}$，即 $T$ 关于基 $Y, Z$ 的矩阵表示</li>
+    </ol>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example：求导数的矩阵表示</div>
+    <p>$T(u) = u'$ 是从 $P_2$ 到 $P_1$ 的线性变换。$P_2$ 的基为 $\{1, x, x^2\}$，$P_1$ 的基为 $\{1, x\}$。</p>
+    <p><strong>解：</strong>$T(1) = 0 = 0 \cdot 1 + 0 \cdot x$，$T(x) = 1 = 1 \cdot 1 + 0 \cdot x$，$T(x^2) = 2x = 0 \cdot 1 + 2 \cdot x$</p>
+    <div class="formula-box">
+        $$A = \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}$$
+    </div>
+    <p>验证：$A \begin{bmatrix} c \\ b \\ a \end{bmatrix} = \begin{bmatrix} b \\ 2a \end{bmatrix}$，对应 $(a + bx + cx^2)' = b + 2ax$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>核心思想</div>
+    <p>一旦为输入/输出空间选定基，线性变换就变成了矩阵乘法！即使是多项式空间、矩阵空间等<strong>非欧式空间</strong>也适用。</p>
+</div>
+
+<h2 class="section-title" id="L22-eigen-def">特征值与特征向量</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 21.1 特征值与特征向量 <span class="en">Eigenvalue &amp; Eigenvector</span></div>
+    <p>人们天然想理解"变化中什么是不变的"——旋转中的旋转轴、化学变化中的原子守恒。</p>
+    <p>对于矩阵 $A$（线性变换），我们问：<strong>哪些向量经过 $A$ 作用后方向不变？</strong></p>
+    <p>设 $A \in \mathbb{C}^{n \times n}$ 是方阵。若存在标量 $\lambda$（$\in \mathbb{R}$ 或 $\mathbb{C}$）和<strong>非零</strong>向量 $x$ 使得</p>
+    <div class="formula-box important">
+        $$Ax = \lambda x$$
+    </div>
+    <p>则称 $\lambda$ 为 <span class="en">eigenvalue</span>（特征值），$x$ 为对应于 $\lambda$ 的 <span class="en">eigenvector</span>（特征向量）。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="560" height="200" viewBox="0 0 560 200">
+        <defs>
+            <marker id="ahE1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#667eea"/></marker>
+            <marker id="ahE2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#f44336"/></marker>
+        </defs>
+        <text x="140" y="18" text-anchor="middle" font-size="13" fill="#888">x 不是特征向量</text>
+        <line x1="40" x2="260" y1="120" y2="120" stroke="#ddd" stroke-width="1"/>
+        <line x1="140" x2="140" y1="30" y2="190" stroke="#ddd" stroke-width="1"/>
+        <line x1="140" y1="120" x2="210" y2="70" stroke="#667eea" stroke-width="2.5" marker-end="url(#ahE1)"/>
+        <text x="215" y="65" font-size="12" fill="#667eea" font-weight="600">x</text>
+        <line x1="140" y1="120" x2="190" y2="40" stroke="#f44336" stroke-width="2.5" marker-end="url(#ahE2)"/>
+        <text x="195" y="36" font-size="12" fill="#f44336" font-weight="600">Ax</text>
+        <text x="420" y="18" text-anchor="middle" font-size="13" fill="#888">x 是特征向量</text>
+        <line x1="320" x2="540" y1="120" y2="120" stroke="#ddd" stroke-width="1"/>
+        <line x1="420" x2="420" y1="30" y2="190" stroke="#ddd" stroke-width="1"/>
+        <line x1="420" y1="120" x2="480" y2="75" stroke="#667eea" stroke-width="2.5" marker-end="url(#ahE1)"/>
+        <text x="485" y="72" font-size="12" fill="#667eea" font-weight="600">x</text>
+        <line x1="420" y1="120" x2="520" y2="45" stroke="#f44336" stroke-width="2.5" marker-end="url(#ahE2)"/>
+        <text x="525" y="42" font-size="12" fill="#f44336" font-weight="600">Ax = λx</text>
+        <line x1="420" y1="120" x2="540" y2="30" stroke="#ccc" stroke-width="1" stroke-dasharray="4,3"/>
+    </svg>
+    <div class="diagram-caption">左：$Ax$ 改变了 $x$ 的方向（不是特征向量）；右：$Ax$ 只缩放 $x$，方向不变（是特征向量）</div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>关键要求</div>
+    <p>特征向量 $x$ 必须是<strong>非零</strong>向量！零向量满足 $A \cdot 0 = \lambda \cdot 0$ 对任何 $\lambda$ 成立，没有意义。</p>
+    <p>但特征值 $\lambda$ <strong>可以是 $0$</strong>（此时 $Ax = 0$，即 $x \in N(A)$）。</p>
+</div>
+
+<h2 class="section-title" id="L22-char-poly">特征多项式 <span class="en">Characteristic Polynomial</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>特征多项式的推导</div>
+    <p>由 $Ax = \lambda x$ 可得 $(\lambda I - A)x = 0$。要有非零解 $x$，需要：</p>
+    <div class="formula-box important">
+        $$\det(\lambda I - A) = 0$$
+    </div>
+    <p>定义 <span class="en">characteristic polynomial</span>（特征多项式）：</p>
+    <div class="formula-box">
+        $$p_A(\lambda) = \det(\lambda I - A)$$
+    </div>
+    <p>这是关于 $\lambda$ 的 $n$ 次多项式。特征值就是这个多项式的根。</p>
+</div>
+
+<div class="note">
+    <strong>注意：</strong>有些教材写 $\det(A - \lambda I)$，两者只差一个 $(-1)^n$ 的系数，根（特征值）是一样的。本课用 $\det(\lambda I - A)$。
+</div>
+
+<h2 class="section-title" id="L22-algorithm">Algorithm 22.1：求特征值和特征向量</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Algorithm 22.1</div>
+    <ol class="step-list">
+        <li><strong>求特征值：</strong>解方程 $\det(\lambda I - A) = 0$，得到 $n$ 个根 $\lambda_1, \ldots, \lambda_n$（计重数，可能是复数）</li>
+        <li><strong>求特征向量：</strong>对每个 $\lambda_i$，求 <span class="en">eigenspace</span>（特征空间）$N(\lambda_i I - A)$，即解齐次方程组 $(\lambda_i I - A)x = 0$</li>
+    </ol>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>特征空间 <span class="en">Eigenspace</span></div>
+    <p>对于特征值 $\lambda_i$，特征空间定义为：</p>
+    <div class="formula-box">
+        $$N(\lambda_i I - A) = \{x \in \mathbb{C}^n : Ax = \lambda_i x\}$$
+    </div>
+    <p>特征空间是一个<strong>子空间</strong>（包含零向量），其中所有非零向量都是特征向量。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example 1：上三角矩阵</div>
+    <p>求 $A = \begin{bmatrix} 1 & 2 \\ 0 & 3 \end{bmatrix}$ 的特征值和特征向量。</p>
+    <p><strong>Step 1：</strong>特征多项式</p>
+    <div class="formula-box">
+        $$\det(\lambda I - A) = \det \begin{bmatrix} \lambda - 1 & -2 \\ 0 & \lambda - 3 \end{bmatrix} = (\lambda - 1)(\lambda - 3) = 0$$
+    </div>
+    <p>所以 $\lambda_1 = 1$，$\lambda_2 = 3$。</p>
+    <p><strong>Step 2：</strong>求特征向量</p>
+    <p>对 $\lambda_1 = 1$：解 $(I - A)x = 0$：$\begin{bmatrix} 0 & -2 \\ 0 & -2 \end{bmatrix} x = 0 \Rightarrow x_2 = 0$，特征向量 $x = t\begin{bmatrix} 1 \\ 0 \end{bmatrix}$</p>
+    <p>对 $\lambda_2 = 3$：解 $(3I - A)x = 0$：$\begin{bmatrix} 2 & -2 \\ 0 & 0 \end{bmatrix} x = 0 \Rightarrow x_1 = x_2$，特征向量 $x = t\begin{bmatrix} 1 \\ 1 \end{bmatrix}$</p>
+</div>
+
+<h2 class="section-title" id="L22-triangular">三角矩阵的捷径</h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>三角矩阵的特征值 = 对角线元素</div>
+    <p>上三角或下三角矩阵的特征值就是<strong>对角线元素</strong>！因为 $\det(\lambda I - A)$ 就是对角线元素之积。</p>
+    <p>上例中 $A = \begin{bmatrix} 1 & 2 \\ 0 & 3 \end{bmatrix}$ 是上三角的，特征值直接就是 $1, 3$，无需展开计算。</p>
+</div>
+
+<h2 class="section-title" id="L22-count">特征值的个数</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>代数基本定理的推论 <span class="en">Fundamental Theorem of Algebra</span></div>
+    <p>任何 $n \times n$ 矩阵（无论实数还是复数）都<strong>恰好有 $n$ 个复数特征值</strong>（计重数）。</p>
+    <div class="formula-box">
+        $$p_A(\lambda) = \prod_{j=1}^{k} (\lambda - \lambda_j)^{m_j}, \quad \sum_{j=1}^{k} m_j = n$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>实矩阵可能有复数特征值</div>
+    <p>例如旋转矩阵 $\begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ 的特征值是 $\pm i$。只有在复数域上才保证有 $n$ 个根。</p>
+</div>
+
+</div><!-- end lecture 22 -->
+
+<!-- ==================== LECTURE 23 ==================== -->
+<div class="lecture" id="lec23">
+<h1 class="lecture-title">Lecture 23 &mdash; 谱分解 (Spectral Decomposition)</h1>
+
+<h2 class="section-title" id="L23-multiset">多重集与重数 <span class="en">Multiset &amp; Multiplicity</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Multiset（多重集）</div>
+    <p><span class="en">Multiset</span>（多重集）是集合的推广，允许元素重复出现。用 $\#\{a_1, a_2, \ldots\}$ 表示。</p>
+    <p><span class="en">Multiplicity</span>（重数）：元素在多重集中出现 $k$ 次，则其重数为 $k$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example：多重集与特征值</div>
+    <p>$A = \begin{bmatrix} 1&0&0\\0&1&0\\0&0&2 \end{bmatrix}$ 的特征值多重集为 $\#\{1, 1, 2\}$（$\lambda=1$ 重数 2，$\lambda=2$ 重数 1）</p>
+    <p>$B = \begin{bmatrix} 1&0\\0&2 \end{bmatrix}$ 的特征值多重集为 $\#\{1, 2\}$（$\lambda=1$ 重数 1）</p>
+    <p>虽然都有特征值 $1, 2$，但多重集不同，所以<strong>不能说 $A, B$ 有相同的特征值</strong>。</p>
+</div>
+
+<h2 class="section-title" id="L23-eigenbasis">特征基 <span class="en">Eigenbasis</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def：特征基 <span class="en">Eigenbasis</span></div>
+    <p><span class="en">Eigenbasis</span>（特征基）是指 $n \times n$ 矩阵的一组特征向量，它们能构成 $\mathbb{C}^n$ 的基。</p>
+    <p>即：找到 $n$ 个线性无关的特征向量 $\{v_1, \ldots, v_n\}$。</p>
+</div>
+
+<table class="comparison-table">
+    <tr><th>情况</th><th>特征基存在</th><th>特征基不存在</th></tr>
+    <tr>
+        <td><strong>条件</strong></td>
+        <td>能找到 $n$ 个线性无关的特征向量</td>
+        <td>找不到 $n$ 个线性无关的特征向量</td>
+    </tr>
+    <tr>
+        <td><strong>例子</strong></td>
+        <td>$A = \begin{bmatrix} 3&2\\3&-2 \end{bmatrix}$：$\lambda_1=4, \lambda_2=-3$<br>$v_1 = (2,1)^T$，$v_2 = (1,-3)^T$，构成基</td>
+        <td>$A = \begin{bmatrix} 1&1\\0&1 \end{bmatrix}$：$\lambda=1$（重数 2）<br>特征空间仅 1 维，无法构成基</td>
+    </tr>
+    <tr>
+        <td><strong>原因</strong></td>
+        <td>每个特征值的特征空间维数足够</td>
+        <td>特征空间维数 &lt; 重数</td>
+    </tr>
+</table>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example：$A = \begin{bmatrix}1&1\\0&1\end{bmatrix}$ — 特征基不存在</div>
+    <p><strong>Step 1：</strong>特征多项式</p>
+    <div class="formula-box">
+        $$\det(\lambda I - A) = (\lambda-1)^2 = 0 \implies \lambda = 1 \text{（重数 2）}$$
+    </div>
+    <p><strong>Step 2：</strong>特征空间 $N(I - A) = N\begin{bmatrix}0&-1\\0&0\end{bmatrix}$</p>
+    <div class="formula-box">
+        $$\begin{bmatrix}0&-1\\0&0\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix} = \begin{bmatrix}0\\0\end{bmatrix} \iff x_2 = 0$$
+    </div>
+    <p>特征空间 $= \text{span}\left\{\begin{bmatrix}1\\0\end{bmatrix}\right\}$，维数为 1 &lt; 重数 2。</p>
+    <p><strong>结论：</strong>所有特征向量都是 $(1,0)^T$ 的标量倍，只能张成一维空间，<strong>无法构成 $\mathbb{R}^2$ 或 $\mathbb{C}^2$ 的基</strong>。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example：复数特征值 — $A = \begin{bmatrix}0&1\\-1&0\end{bmatrix}$</div>
+    <p><strong>特征多项式：</strong>$\det(\lambda I - A) = \lambda^2 + 1 = 0 \implies \lambda_1 = i,\ \lambda_2 = -i$</p>
+    <p>$\lambda_1 = i$：$v_1 = \begin{bmatrix}1\\i\end{bmatrix}$，$\lambda_2 = -i$：$v_2 = \begin{bmatrix}1\\-i\end{bmatrix}$</p>
+    <p>$\{v_1, v_2\}$ 构成 $\mathbb{C}^2$ 的基 —— <strong>特征基存在</strong>！虽然特征值是复数。</p>
+</div>
+
+<h2 class="section-title" id="L23-complex">复数域上的线性空间</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 23.3 复数域上的线性空间</div>
+    <p>与实数域定义几乎一样，只是将"标量 $\in \mathbb{R}$"改为"标量 $\in \mathbb{C}$"。满足同样 8 条公理。</p>
+    <p>例：$\mathbb{C}^n$ 是 $\mathbb{C}$ 上的线性空间。$\mathbb{R}^n$ <strong>不是</strong> $\mathbb{C}$ 上的线性空间（$i \cdot (1,0)^T = (i,0)^T \notin \mathbb{R}^n$）。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>复数基本概念</div>
+    <table class="comparison-table">
+        <tr><th>概念</th><th>定义</th><th>例子</th></tr>
+        <tr><td><span class="en">complex number</span> 复数</td><td>$z = a + bi$，$i = \sqrt{-1}$</td><td>$3 + 2i$</td></tr>
+        <tr><td><span class="en">conjugate</span> 共轭</td><td>$\bar{z} = a - bi$</td><td>$\overline{3+2i} = 3-2i$</td></tr>
+        <tr><td><span class="en">modulus</span> 模</td><td>$|z| = \sqrt{a^2+b^2} = \sqrt{z \bar{z}}$</td><td>$|3+2i| = \sqrt{13}$</td></tr>
+    </table>
+    <p>复向量的范数：若 $z = (z_1, \ldots, z_n) \in \mathbb{C}^n$，则 $\|z\|^2 = \bar{z}^T z = |z_1|^2 + \cdots + |z_n|^2$</p>
+    <p><strong>推论：</strong>$z = 0 \iff \bar{z}^T z = 0$</p>
+</div>
+
+<h2 class="section-title" id="L23-matrix-form">AV = VD 矩阵形式</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Lemma 23.1（特征方程 → 矩阵形式）</div>
+    <p>若 $Av_1 = \lambda_1 v_1,\ \ldots,\ Av_n = \lambda_n v_n$，令 $V = [v_1, \ldots, v_n]$，$D = \text{diag}(\lambda_1, \ldots, \lambda_n)$，则：</p>
+    <div class="formula-box important">
+        $$AV = VD$$
+    </div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>证明思路</div>
+    <p>$AV = A[v_1, \ldots, v_n] = [Av_1, \ldots, Av_n] = [\lambda_1 v_1, \ldots, \lambda_n v_n]$</p>
+    <p>$VD = [v_1, \ldots, v_n] \cdot \text{diag}(\lambda_1, \ldots, \lambda_n) = [\lambda_1 v_1, \ldots, \lambda_n v_n]$</p>
+    <p>关键：<strong>右乘对角阵 $D$</strong> = 把 $V$ 的每一<strong>列</strong>乘以对应的 $\lambda_j$。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="500" height="120" viewBox="0 0 500 120">
+        <rect x="10" y="15" width="50" height="50" rx="4" fill="rgba(102,126,234,0.15)" stroke="#667eea" stroke-width="1.5"/>
+        <text x="35" y="45" text-anchor="middle" font-size="16" font-weight="600" fill="#667eea">A</text>
+        <rect x="70" y="15" width="50" height="50" rx="4" fill="rgba(33,150,243,0.12)" stroke="#2196F3" stroke-width="1.5"/>
+        <text x="95" y="45" text-anchor="middle" font-size="16" font-weight="600" fill="#2196F3">V</text>
+        <text x="140" y="48" font-size="22" fill="#666">=</text>
+        <rect x="160" y="15" width="50" height="50" rx="4" fill="rgba(33,150,243,0.12)" stroke="#2196F3" stroke-width="1.5"/>
+        <text x="185" y="45" text-anchor="middle" font-size="16" font-weight="600" fill="#2196F3">V</text>
+        <rect x="220" y="15" width="50" height="50" rx="4" fill="rgba(76,175,80,0.12)" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="245" y="45" text-anchor="middle" font-size="16" font-weight="600" fill="#4caf50">D</text>
+        <text x="30" y="90" font-size="11" fill="#888">n×n</text>
+        <text x="70" y="90" font-size="11" fill="#888">特征向量列</text>
+        <text x="220" y="90" font-size="11" fill="#888">特征值对角阵</text>
+    </svg>
+    <div class="diagram-caption">$AV = VD$：将 $n$ 个特征方程统一写成矩阵乘法</div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Lemma 23.2（矩阵形式 → 特征方程）</div>
+    <p>若 $AV = VD$，其中 $D = \text{diag}(\lambda_1, \ldots, \lambda_n)$，$V = [v_1, \ldots, v_n]$，</p>
+    <p>则 $Av_j = \lambda_j v_j$ 对所有 $j = 1, \ldots, n$ 成立。（即两个引理互为逆命题）</p>
+</div>
+
+<h2 class="section-title" id="L23-orthonormal">正交特征基与对称矩阵</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>正交特征基 <span class="en">Orthonormal Eigenbasis</span></div>
+    <p>如果特征基 $\{v_1, \ldots, v_n\}$ 还是 $\mathbb{R}^n$ 的<span class="en">orthonormal basis</span>（标准正交基），则称之为<strong>正交特征基</strong>。</p>
+    <p>此时 $V = [v_1, \ldots, v_n]$ 是<span class="en">orthogonal matrix</span>（正交矩阵），满足 $V^TV = I$，即 $V^{-1} = V^T$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Claim 23.1（正交特征基 ⟺ 对称矩阵）</div>
+    <p>实矩阵 $A$ 的特征向量能构成 $\mathbb{R}^n$ 的正交特征基 $\iff$ $A = VDV^T$，其中 $D$ 是实对角阵，$V$ 是实正交矩阵。</p>
+    <p><strong>证明（"⇒" 方向）：</strong></p>
+    <ol class="step-list">
+        <li>$V = [v_1, \ldots, v_n]$ 是正交矩阵（$V^TV = I$）</li>
+        <li>因为 $A, v_j$ 都是实的，$Av_j = \lambda_j v_j$ 说明 $\lambda_j \in \mathbb{R}$</li>
+        <li>由 Lemma 23.1：$AV = VD$</li>
+        <li>两边右乘 $V^{-1} = V^T$：$A = VDV^T$</li>
+    </ol>
+    <p><strong>推论：</strong>$A^T = (VDV^T)^T = VD^TV^T = VDV^T = A$，所以 $A$ 必须是<strong>对称矩阵</strong>。反之？谱定理说 YES！</p>
+</div>
+
+<h2 class="section-title" id="L23-spectral">谱定理 <span class="en">Spectral Theorem</span></h2>
+
+<div class="card theorem" style="border-left-width:6px;">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Theorem 23.1 — 谱定理 <span class="en">Spectral Theorem</span></div>
+    <p>任何<strong>实对称矩阵</strong> $A$ 都可以写成：</p>
+    <div class="formula-box important">
+        $$A = VDV^T = \sum_{j=1}^n \lambda_j v_j v_j^T$$
+    </div>
+    <p>其中 $D = \text{diag}(\lambda_1, \ldots, \lambda_n)$ 是实对角矩阵，$V = [v_1, \ldots, v_n]$ 是实正交矩阵。</p>
+    <p>这称为 $A$ 的 <span class="en">eigenvalue decomposition (EVD)</span> 或 <span class="en">eigendecomposition</span>。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="520" height="140" viewBox="0 0 520 140">
+        <rect x="10" y="30" width="55" height="55" rx="6" fill="rgba(102,126,234,0.15)" stroke="#667eea" stroke-width="2"/>
+        <text x="37" y="63" text-anchor="middle" font-size="18" font-weight="700" fill="#667eea">A</text>
+        <text x="80" y="63" font-size="22" fill="#666">=</text>
+        <rect x="100" y="30" width="55" height="55" rx="6" fill="rgba(33,150,243,0.12)" stroke="#2196F3" stroke-width="2"/>
+        <text x="127" y="63" text-anchor="middle" font-size="18" font-weight="700" fill="#2196F3">V</text>
+        <rect x="165" y="30" width="55" height="55" rx="6" fill="rgba(76,175,80,0.12)" stroke="#4caf50" stroke-width="2"/>
+        <text x="192" y="63" text-anchor="middle" font-size="18" font-weight="700" fill="#4caf50">D</text>
+        <rect x="230" y="30" width="55" height="55" rx="6" fill="rgba(33,150,243,0.12)" stroke="#2196F3" stroke-width="2"/>
+        <text x="257" y="53" text-anchor="middle" font-size="16" font-weight="700" fill="#2196F3">V</text>
+        <text x="272" y="48" font-size="11" font-weight="700" fill="#2196F3">T</text>
+        <text x="37" y="107" text-anchor="middle" font-size="10" fill="#888">对称</text>
+        <text x="127" y="107" text-anchor="middle" font-size="10" fill="#888">正交</text>
+        <text x="192" y="107" text-anchor="middle" font-size="10" fill="#888">对角</text>
+        <text x="257" y="107" text-anchor="middle" font-size="10" fill="#888">正交</text>
+        <text x="310" y="63" font-size="18" fill="#666">=</text>
+        <text x="340" y="63" font-size="15" fill="#764ba2" font-weight="600">Σ λⱼ vⱼvⱼᵀ</text>
+    </svg>
+    <div class="diagram-caption">谱分解：对称矩阵 $A$ 分解为正交矩阵 $V$、对角阵 $D$ 和 $V^T$ 的乘积</div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>实对称矩阵的三大性质</div>
+    <table class="comparison-table">
+        <tr><th>性质</th><th>实对称矩阵</th><th>一般矩阵</th></tr>
+        <tr><td><strong>Property 1</strong></td><td><span class="check">&#10004;</span> 所有特征值都是实数</td><td><span class="cross">&#10008;</span> 特征值可能是复数</td></tr>
+        <tr><td><strong>Property 2</strong></td><td><span class="check">&#10004;</span> 特征空间可由实特征向量张成</td><td><span class="cross">&#10008;</span> 特征向量可能是复向量</td></tr>
+        <tr><td><strong>Property 3</strong></td><td><span class="check">&#10004;</span> 特征向量可构成正交标准基</td><td><span class="cross">&#10008;</span> 特征向量可能无法构成基</td></tr>
+    </table>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example：对称矩阵的谱分解</div>
+    <p>$A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$</p>
+    <p><strong>Step 1（特征值）：</strong></p>
+    <div class="formula-box">
+        $$\det(\lambda I - A) = (\lambda-2)^2 - 1 = (\lambda-3)(\lambda-1) = 0 \implies \lambda_1 = 3,\ \lambda_2 = 1$$
+    </div>
+    <p><strong>Step 2（特征向量，归一化）：</strong></p>
+    <p>$\lambda_1 = 3$：$(3I-A)x = 0 \Rightarrow v_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}$</p>
+    <p>$\lambda_2 = 1$：$(I-A)x = 0 \Rightarrow v_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}$</p>
+    <p>验证正交性：$v_1 \cdot v_2 = 0$，$\|v_1\| = \|v_2\| = 1$。</p>
+    <p><strong>Step 3（谱分解）：</strong></p>
+    <div class="formula-box highlight">
+        $$A = 3 \cdot \frac{1}{2}\begin{bmatrix}1\\1\end{bmatrix}\begin{bmatrix}1&1\end{bmatrix} + 1 \cdot \frac{1}{2}\begin{bmatrix}1\\-1\end{bmatrix}\begin{bmatrix}1&-1\end{bmatrix} = \begin{bmatrix}2&1\\1&2\end{bmatrix}\ \checkmark$$
+    </div>
+    <p><strong>结论：</strong>$V = \frac{1}{\sqrt{2}}\begin{bmatrix}1&1\\1&-1\end{bmatrix}$，$D = \begin{bmatrix}3&0\\0&1\end{bmatrix}$，$A = VDV^T$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>几何直觉</div>
+    <p>对称矩阵 $A$ 作用在正交特征基上只是"拉伸"每个方向（乘以 $\lambda_j$），不改变方向，也不改变正交性。所以"瓷砖"（由基向量确定的区域）的形状始终是矩形，只是边长变了。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>常见易错点</div>
+    <p>1. 忘记特征向量必须非零</p>
+    <p>2. 三角矩阵的特征值直接看对角线（别展开计算）</p>
+    <p>3. "有相同的特征值"要包含重数（用多重集理解）</p>
+    <p>4. 特征基不一定存在，但实对称矩阵总有正交特征基</p>
+    <p>5. $A = VDV^T$ 仅对实对称矩阵成立，一般矩阵的分解是 $A = VDV^{-1}$（如果可对角化）</p>
+</div>
+
+</div><!-- end lecture 23 -->
+
+<!-- ==================== LECTURE 24 ==================== -->
+<div class="lecture" id="lec24">
+<h1 class="lecture-title">Lecture 24 &mdash; 特征值 III：对角化 <span class="en">Eigenvalue III: Diagonalization</span></h1>
+
+<!-- ===== Section: 动机 ===== -->
+<h2 class="section-title" id="L24-dynamics">动机：演化动力学 <span class="en">Motivation: Evolution Dynamics</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>核心问题</div>
+    <p>许多实际系统（种群动态、传染病传播、经济模型……）都可以写成<strong>离散时间递推</strong>的形式：</p>
+    <div class="formula-box">
+        $$z_{k+1} = A\,z_k$$
+    </div>
+    <p>其中 $z_k\in\mathbb{R}^n$ 是第 $k$ 步的<span class="en">状态向量 (state vector)</span>，$A\in\mathbb{R}^{n\times n}$ 是<span class="en">转移矩阵 (transition matrix)</span>。</p>
+    <p>关键疑问：当 $k\to\infty$ 时，$z_k$ 会趋向 $\infty$、趋向 $0$、还是震荡？——答案取决于 $A$ 的<strong>特征值</strong>。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#128221;</span>捕食者-猎物模型 <span class="en">Predator-Prey Model</span></div>
+    <p>草原上有<strong>兔子</strong>（猎物 $x_t$）和<strong>狼</strong>（捕食者 $y_t$），参数如下：</p>
+    <table class="comparison-table">
+        <thead><tr><th>角色</th><th>参数</th><th>含义</th></tr></thead>
+        <tbody>
+            <tr><td>兔子</td><td>$\alpha_1=1.2$</td><td>自然增长率（每年增长 20%）</td></tr>
+            <tr><td>兔子</td><td>$\alpha_2=-0.2$</td><td>被捕食影响（每只狼每年减少 0.2 只兔子）</td></tr>
+            <tr><td>狼</td><td>$\beta_1=0.3$</td><td>捕食收益率（每只兔子养活 0.3 只狼）</td></tr>
+            <tr><td>狼</td><td>$\beta_2=0.5$</td><td>自然存活率（50% 存活）</td></tr>
+        </tbody>
+    </table>
+    <p>递推方程的矩阵形式：</p>
+    <div class="formula-box">
+        $$z_{t+1} = \begin{pmatrix}x_{t+1}\\y_{t+1}\end{pmatrix} = \underbrace{\begin{pmatrix}1.2 & -0.2\\0.3 & 0.5\end{pmatrix}}_{A}\begin{pmatrix}x_t\\y_t\end{pmatrix}$$
+    </div>
+    <p>初始状态 $z_0 = (100,\,40)^T$ 时，前几步数值如下：</p>
+    <table class="comparison-table">
+        <thead><tr><th>$k$</th><th>$x_k$（兔子）</th><th>$y_k$（狼）</th></tr></thead>
+        <tbody>
+            <tr><td>0</td><td>100.0</td><td>40.0</td></tr>
+            <tr><td>1</td><td>112.0</td><td>50.0</td></tr>
+            <tr><td>2</td><td>124.4</td><td>58.6</td></tr>
+            <tr><td>3</td><td>137.56</td><td>66.62</td></tr>
+            <tr><td>4</td><td>151.748</td><td>74.578</td></tr>
+        </tbody>
+    </table>
+    <p>逐步迭代虽然可行，但<strong>无法直接看出长期趋势</strong>。我们需要 $z_k = A^k z_0$ 的<strong>封闭公式</strong>——这就是对角化的用武之地。</p>
+</div>
+
+<!-- ===== Section: 相似矩阵 ===== -->
+<h2 class="section-title" id="L24-similar">相似矩阵 <span class="en">Similar Matrices</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 24.1 相似矩阵 <span class="en">Similar Matrix</span></div>
+    <p>设 $A, B \in \mathbb{R}^{n\times n}$。若存在<strong>可逆矩阵</strong> $S\in\mathbb{R}^{n\times n}$ 使得</p>
+    <div class="formula-box">
+        $$A = S\,B\,S^{-1}$$
+    </div>
+    <p>则称 $A$ 与 $B$ <strong>相似</strong>（<span class="en">similar</span>），记作 $A \sim B$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#128221;</span>相似矩阵的例子</div>
+    <p>$A = \begin{pmatrix}1&1\\0&2\end{pmatrix}$ 与 $B = \begin{pmatrix}1&0\\0&2\end{pmatrix}$ 相似，取 $S = \begin{pmatrix}1&1\\0&1\end{pmatrix}$ 即可验证：</p>
+    <div class="formula-box">
+        $$S B S^{-1} = \begin{pmatrix}1&1\\0&1\end{pmatrix}\begin{pmatrix}1&0\\0&2\end{pmatrix}\begin{pmatrix}1&-1\\0&1\end{pmatrix} = \begin{pmatrix}1&1\\0&2\end{pmatrix} = A$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>注意</div>
+    <p>若矩阵 $A$ 与<strong>单位矩阵</strong> $I$ 相似，则 $A = S I S^{-1} = S S^{-1} = I$，即 $A$ 本身就是单位矩阵。</p>
+</div>
+
+<!-- ===== Section: 相似矩阵的特征值 ===== -->
+<h2 class="section-title" id="L24-similar-eigen">相似矩阵的特征值 <span class="en">Eigenvalues of Similar Matrices</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Claim 24.1 相似矩阵共享特征值</div>
+    <p>设 $A, B \in \mathbb{R}^{n\times n}$ 相似（$A = SBS^{-1}$），则：</p>
+    <p>若 $\lambda$ 是 $A$ 的特征值，则 $\lambda$ 也是 $B$ 的特征值。</p>
+    <p><strong>证明：</strong>设 $Ax = \lambda x$（$x \neq 0$），则</p>
+    <div class="step-list">
+        <div class="step">$SBS^{-1}x = \lambda x$</div>
+        <div class="step">两边左乘 $S^{-1}$：$B(S^{-1}x) = \lambda(S^{-1}x)$</div>
+        <div class="step">令 $y = S^{-1}x$，因 $S$ 可逆且 $x\neq 0$，故 $y\neq 0$</div>
+        <div class="step">因此 $By = \lambda y$，即 $\lambda$ 是 $B$ 的特征值 $\square$</div>
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Claim 24.1 还不够强</div>
+    <p>Claim 24.1 只证明了"$A$ 的特征值 $\subseteq$ $B$ 的特征值"以及反过来，但<strong>没有考虑重数</strong>（multiplicity）。例如 $A$ 的特征值集合 $\{1,1,2\}$ 和 $B$ 的 $\{1,2,2\}$ 互相包含，但多重集不同。</p>
+    <p>我们需要更强的结论——Prop 24.1。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Prop 24.1 相似矩阵有相同的特征值（含重数）</div>
+    <p>若 $A, B \in \mathbb{R}^{n\times n}$ 相似，则 $\mathrm{EIG}(A) = \mathrm{EIG}(B)$（作为<span class="en">多重集 multiset</span>）。</p>
+    <p><strong>证明思路：</strong>通过<strong>特征多项式</strong>：</p>
+    <div class="step-list">
+        <div class="step">设 $B = S^{-1}AS$，令 $p_A(\lambda) = \det(\lambda I - A)$，$p_B(\lambda) = \det(\lambda I - B)$</div>
+        <div class="step">$p_B(\lambda) = \det(\lambda I - B) = \det(\lambda I - S^{-1}AS)$</div>
+        <div class="step">$= \det\bigl(S^{-1}(\lambda I - A)S\bigr)$（因为 $S^{-1}(\lambda I)S = \lambda I$）</div>
+        <div class="step">$= \det(S^{-1})\cdot\det(\lambda I - A)\cdot\det(S)$（行列式的乘法性质）</div>
+        <div class="step">$= \det(\lambda I - A) = p_A(\lambda)$（因为 $\det(S^{-1})\det(S) = 1$）</div>
+    </div>
+    <p>特征多项式相同 $\Rightarrow$ 根（含重数）相同 $\Rightarrow$ $\mathrm{EIG}(A) = \mathrm{EIG}(B)$ $\square$</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>证明中的关键工具</div>
+    <p>这个证明用到了三个工具：(1) 特征值的定义；(2) 特征多项式 $p_A(\lambda) = \det(\lambda I - A)$；(3) 行列式的乘法性质 $\det(AB) = \det(A)\det(B)$。</p>
+</div>
+
+<!-- ===== Section: 可对角化 ===== -->
+<h2 class="section-title" id="L24-diagonalizable">可对角化 <span class="en">Diagonalizable</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 24.2 可对角化 <span class="en">Diagonalizable</span></div>
+    <p>矩阵 $A \in \mathbb{R}^{n\times n}$（或 $\mathbb{C}^{n\times n}$）称为<strong>可对角化的</strong>，若 $A$ 与某个<strong>对角矩阵</strong> $D$ 相似，即存在可逆矩阵 $S$ 使得</p>
+    <div class="formula-box">
+        $$A = S\,D\,S^{-1} \quad\Longleftrightarrow\quad S^{-1}AS = D$$
+    </div>
+    <p>其中 $D = \mathrm{diag}(\lambda_1,\dots,\lambda_n)$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Thm 25.1 可对角化 $\Longleftrightarrow$ 存在特征基</div>
+    <p>$A \in \mathbb{C}^{n\times n}$ 可对角化 $\Longleftrightarrow$ $A$ 拥有一组<strong>特征基</strong>（<span class="en">eigenbasis</span>），即由 $n$ 个线性无关的特征向量组成的基。</p>
+    <p><strong>理解：</strong>若 $A = SDS^{-1}$，则 $S$ 的列 $v_1,\dots,v_n$ 恰好是 $A$ 的 $n$ 个线性无关特征向量：</p>
+    <div class="formula-box">
+        $$AS = SD \quad\Longleftrightarrow\quad Av_j = \lambda_j v_j,\quad j=1,\dots,n$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>不是所有矩阵都可对角化</div>
+    <p>例如 $A = \begin{pmatrix}0&1\\0&0\end{pmatrix}$ 的特征值为 $\lambda = 0$（重数 2），但特征空间 $N(0\cdot I - A) = N(-A)$ 的维度只有 1，无法凑出 2 个线性无关的特征向量。因此 $A$ <strong>不可对角化</strong>。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Prop 25.2 $n$ 个不同特征值 $\Rightarrow$ 可对角化</div>
+    <p>若 $A \in \mathbb{C}^{n\times n}$ 有 $n$ 个<strong>互不相同</strong>的特征值，则 $A$ 可对角化。</p>
+    <p><strong>直觉：</strong>每个不同的特征值至少提供一个特征向量，且来自不同特征值的特征向量一定线性无关（Lec 22 中已证），因此恰好得到 $n$ 个线性无关特征向量，构成特征基。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>对角化的判定流程</div>
+    <div class="step-list">
+        <div class="step">求特征多项式 $p_A(\lambda) = \det(\lambda I - A)$，找到所有特征值 $\lambda_1,\dots,\lambda_k$ 及其<strong>代数重数</strong>（<span class="en">algebraic multiplicity</span>）</div>
+        <div class="step">对每个 $\lambda_i$，求特征空间 $N(\lambda_i I - A)$ 的维度，即<strong>几何重数</strong>（<span class="en">geometric multiplicity</span>）</div>
+        <div class="step">若每个特征值的几何重数 = 代数重数，则可对角化；否则不可</div>
+        <div class="step"><strong>快捷判断：</strong>若有 $n$ 个不同特征值，直接可对角化</div>
+    </div>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>与谱定理的联系</div>
+    <p>Lec 23 的<strong>谱定理</strong>说：任何实对称矩阵 $A$ 都可以写成 $A = VDV^T$，其中 $V$ 是正交矩阵。这是对角化的<strong>特殊情形</strong>：</p>
+    <table class="comparison-table">
+        <thead><tr><th></th><th>一般对角化</th><th>谱定理（实对称矩阵）</th></tr></thead>
+        <tbody>
+            <tr><td>分解形式</td><td>$A = SDS^{-1}$</td><td>$A = VDV^T$</td></tr>
+            <tr><td>$S$ 的要求</td><td>可逆即可</td><td>正交矩阵（$V^{-1}=V^T$）</td></tr>
+            <tr><td>特征值</td><td>可能是复数</td><td>一定是实数</td></tr>
+            <tr><td>特征向量</td><td>线性无关</td><td>标准正交</td></tr>
+            <tr><td>是否总成立</td><td>不一定</td><td>实对称矩阵<strong>一定</strong>可对角化</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ===== Section: A^k 的计算 ===== -->
+<h2 class="section-title" id="L24-Ak">$A^k$ 的计算 <span class="en">Computing $A^k$</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>$A^k$ 的对角化公式</div>
+    <p>若 $A = SDS^{-1}$（可对角化），则</p>
+    <div class="formula-box">
+        $$A^k = S\,D^k\,S^{-1}$$
+    </div>
+    <p><strong>推导：</strong></p>
+    <div class="step-list">
+        <div class="step">$A^2 = (SDS^{-1})(SDS^{-1}) = SD(S^{-1}S)DS^{-1} = SD^2S^{-1}$</div>
+        <div class="step">归纳可得 $A^k = SD^kS^{-1}$</div>
+        <div class="step">而 $D^k = \mathrm{diag}(\lambda_1^k, \lambda_2^k, \dots, \lambda_n^k)$ 计算极其简单</div>
+    </div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>为什么对角化让 $A^k$ 变简单？</div>
+    <p>直接算 $A^k$ 需要做 $k-1$ 次矩阵乘法，复杂度 $O(kn^3)$。对角化后只需要：</p>
+    <div class="step-list">
+        <div class="step">一次性求 $S$ 和 $D$（特征分解）</div>
+        <div class="step">对角矩阵的 $k$ 次幂：每个对角元素直接取 $k$ 次方</div>
+        <div class="step">做两次矩阵乘法：$S \cdot D^k \cdot S^{-1}$</div>
+    </div>
+    <p>更重要的是，可以得到<strong>封闭公式</strong>（closed-form expression），直接分析 $k\to\infty$ 的行为。</p>
+</div>
+
+<!-- ===== Section: 应用 ===== -->
+<h2 class="section-title" id="L24-application">应用：捕食者-猎物模型 <span class="en">Application: Predator-Prey Model</span></h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#128221;</span>完整求解过程</div>
+    <p>回到捕食者-猎物模型，$A = \begin{pmatrix}1.2&-0.2\\0.3&0.5\end{pmatrix}$，$z_0 = (100,40)^T$。</p>
+
+    <p><strong>Step 1：求特征值</strong></p>
+    <div class="formula-box">
+        $$p_A(\lambda) = \det(\lambda I - A) = (\lambda - 1.2)(\lambda - 0.5) + 0.06 = \lambda^2 - 1.7\lambda + 0.66$$
+    </div>
+    <p>解得 $\lambda_1 = 1.1$，$\lambda_2 = 0.6$。（两个不同的特征值，因此 $A$ 可对角化）</p>
+
+    <p><strong>Step 2：求特征向量</strong></p>
+    <p>对 $\lambda_1 = 1.1$：解 $(1.1I - A)x = 0$：</p>
+    <div class="formula-box">
+        $$\begin{pmatrix}-0.1&0.2\\-0.3&0.6\end{pmatrix}x = 0 \quad\Rightarrow\quad v_1 = \begin{pmatrix}2\\1\end{pmatrix}$$
+    </div>
+    <p>对 $\lambda_2 = 0.6$：解 $(0.6I - A)x = 0$：</p>
+    <div class="formula-box">
+        $$\begin{pmatrix}-0.6&0.2\\-0.3&0.1\end{pmatrix}x = 0 \quad\Rightarrow\quad v_2 = \begin{pmatrix}1\\3\end{pmatrix}$$
+    </div>
+
+    <p><strong>Step 3：对角化</strong></p>
+    <div class="formula-box">
+        $$S = \begin{pmatrix}2&1\\1&3\end{pmatrix},\quad D = \begin{pmatrix}1.1&0\\0&0.6\end{pmatrix},\quad A = SDS^{-1}$$
+    </div>
+
+    <p><strong>Step 4：$z_k$ 的封闭公式</strong></p>
+    <div class="formula-box">
+        $$z_k = A^k z_0 = S D^k S^{-1} z_0 = S \begin{pmatrix}1.1^k&0\\0&0.6^k\end{pmatrix} S^{-1} z_0$$
+    </div>
+    <p>先计算 $S^{-1}z_0$：$S^{-1} = \frac{1}{5}\begin{pmatrix}3&-1\\-1&2\end{pmatrix}$，所以</p>
+    <div class="formula-box">
+        $$S^{-1}z_0 = \frac{1}{5}\begin{pmatrix}3&-1\\-1&2\end{pmatrix}\begin{pmatrix}100\\40\end{pmatrix} = \begin{pmatrix}52\\-4\end{pmatrix}$$
+    </div>
+    <p>因此：</p>
+    <div class="formula-box">
+        $$z_k = S\begin{pmatrix}52\cdot 1.1^k\\-4\cdot 0.6^k\end{pmatrix} = 52\cdot 1.1^k \begin{pmatrix}2\\1\end{pmatrix} - 4\cdot 0.6^k\begin{pmatrix}1\\3\end{pmatrix}$$
+    </div>
+    <p>即：</p>
+    <div class="formula-box">
+        $$\begin{cases}x_k = 104\cdot 1.1^k - 4\cdot 0.6^k \\[4pt] y_k = 52\cdot 1.1^k - 12\cdot 0.6^k\end{cases}$$
+    </div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>长期行为分析</div>
+    <p>由封闭公式，当 $k\to\infty$：</p>
+    <div class="step-list">
+        <div class="step">$\lambda_1 = 1.1 > 1$：$1.1^k \to \infty$（主导项，<strong>指数增长</strong>）</div>
+        <div class="step">$\lambda_2 = 0.6 < 1$：$0.6^k \to 0$（衰减项，可忽略）</div>
+        <div class="step">因此 $z_k \approx 52\cdot 1.1^k\begin{pmatrix}2\\1\end{pmatrix}$，即兔子和狼都<strong>指数增长</strong></div>
+        <div class="step">比例趋于 $x_k : y_k \approx 2:1$（沿特征向量 $v_1$ 的方向）</div>
+    </div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>长期行为的一般判据</div>
+    <p>对于 $z_k = A^k z_0$，设 $A$ 的特征值为 $\lambda_1,\dots,\lambda_n$，则长期行为由<strong>最大特征值</strong>（<span class="en">dominant eigenvalue</span>）$\lambda_{\max}$ 决定：</p>
+    <table class="comparison-table">
+        <thead><tr><th>$|\lambda_{\max}|$</th><th>行为</th></tr></thead>
+        <tbody>
+            <tr><td>$|\lambda_{\max}| > 1$</td><td>$z_k$ 指数增长 $\to \infty$</td></tr>
+            <tr><td>$|\lambda_{\max}| = 1$</td><td>$z_k$ 有界（可能周期性或收敛）</td></tr>
+            <tr><td>$|\lambda_{\max}| < 1$</td><td>$z_k \to 0$（系统衰减）</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>考试易错点</div>
+    <p>1. 对角化的<strong>列顺序</strong>：$S$ 的第 $j$ 列 $v_j$ 必须对应 $D$ 的第 $j$ 个对角元素 $\lambda_j$，顺序不能乱</p>
+    <p>2. $A = SDS^{-1}$ 中 $S$ 是特征向量矩阵（不是 $S^{-1}$），不要搞反</p>
+    <p>3. "有相同的特征值"要包含<strong>重数</strong>（用多重集理解），仅证 Claim 24.1 不够，需要 Prop 24.1</p>
+    <p>4. 不是所有矩阵都可对角化，但有 $n$ 个不同特征值一定可以</p>
+    <p>5. 实对称矩阵的分解 $A = VDV^T$ 与一般对角化 $A = SDS^{-1}$ 不同：前者的 $V$ 是正交矩阵</p>
+</div>
+
+</div><!-- end lecture 24 -->
+
+<!-- ==================== LECTURE 25 ==================== -->
+<div class="lecture" id="lec25">
+<h1 class="lecture-title">Lecture 25 &mdash; 特征值 IV & 奇异值 I <span class="en">Eigenvalue IV &amp; Singular Value I</span></h1>
+
+<!-- ===== Section: 特征值的和与积 ===== -->
+<h2 class="section-title" id="L25-eigen-props">特征值的和与积 <span class="en">Sum &amp; Product of Eigenvalues</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>迹 <span class="en">Trace</span></div>
+    <p>矩阵 $A \in \mathbb{R}^{n\times n}$（或 $\mathbb{C}^{n\times n}$）的<strong>迹</strong>定义为主对角线元素之和：</p>
+    <div class="formula-box">
+        $$\mathrm{tr}(A) = \sum_{i=1}^{n} a_{ii}$$
+    </div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Prop 24.1 特征值之和 = 迹</div>
+    <p>设 $A \in \mathbb{R}^{n\times n}$（或 $\mathbb{C}^{n\times n}$）的特征值为 $\lambda_1, \dots, \lambda_n$（含重数），则</p>
+    <div class="formula-box highlight">
+        $$\sum_{i=1}^{n} \lambda_i = \sum_{i=1}^{n} a_{ii} = \mathrm{tr}(A)$$
+    </div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Prop 24.2 特征值之积 = 行列式</div>
+    <p>设 $A \in \mathbb{R}^{n\times n}$（或 $\mathbb{C}^{n\times n}$）的特征值为 $\lambda_1, \dots, \lambda_n$（含重数），则</p>
+    <div class="formula-box highlight">
+        $$\prod_{i=1}^{n} \lambda_i = \det(A)$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>复特征值的验证</div>
+    <p>设 $A = \begin{pmatrix}5 & -18 \\ 1 & -1\end{pmatrix}$，则 $\det(A) = 5\cdot(-1) - (-18)\cdot 1 = 13$，$\mathrm{tr}(A) = 5 + (-1) = 4$。</p>
+    <p>特征多项式：</p>
+    <div class="formula-box">
+        $$p_A(\lambda) = \det(\lambda I - A) = \begin{vmatrix}5-\lambda & -18 \\ 1 & -1-\lambda\end{vmatrix} = \lambda^2 - 4\lambda + 13$$
+    </div>
+    <p>解得 $\lambda_1 = 2 - 3i$，$\lambda_2 = 2 + 3i$（复共轭对）。</p>
+    <p><strong>验证：</strong></p>
+    <p>$\lambda_1 + \lambda_2 = (2-3i) + (2+3i) = 4 = \mathrm{tr}(A)$ &#10004;</p>
+    <p>$\lambda_1 \cdot \lambda_2 = (2-3i)(2+3i) = 4 + 9 = 13 = \det(A)$ &#10004;</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>2×2 矩阵的快速判断</div>
+    <p>对于 $A \in \mathbb{R}^{2\times 2}$，特征多项式为</p>
+    <div class="formula-box">
+        $$p_A(\lambda) = \lambda^2 - \mathrm{tr}(A)\,\lambda + \det(A)$$
+    </div>
+    <p>因此只需要知道<strong>迹</strong>和<strong>行列式</strong>就能直接写出特征多项式，不用展开计算。</p>
+</div>
+
+<!-- ===== Section: EIG 多重集与矩阵幂 ===== -->
+<h2 class="section-title" id="L25-eig-multiset">EIG 多重集与矩阵幂 <span class="en">EIG Multiset &amp; Matrix Power</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>EIG 多重集 <span class="en">Eigenvalue Multiset</span></div>
+    <p>$\mathrm{EIG}(A)$ 是矩阵 $A$ 的特征值<strong>多重集</strong>（<span class="en">multiset</span>），即特征值可以重复出现。</p>
+    <p>记号：$\mathrm{EIG}(A) = \#\{\lambda_1, \lambda_2, \dots, \lambda_n\}$（$\#$ 表示多重集）。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>"相同特征值" 需要考虑重数</div>
+    <p>例如 $A = \begin{pmatrix}1&0&0\\0&2&0\\0&0&2\end{pmatrix}$ 和 $B = \begin{pmatrix}1&0&0\\0&1&0\\0&0&2\end{pmatrix}$，虽然特征值都是 $1$ 和 $2$，但 $\mathrm{EIG}(A) = \#\{1,2,2\} \neq \#\{1,1,2\} = \mathrm{EIG}(B)$。</p>
+    <p>所以 $A$ 和 $B$ <strong>不具有相同的特征值</strong>（多重集意义下）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Prop 24.3 矩阵幂与逆的特征值</div>
+    <p>设 $A \in \mathbb{C}^{n\times n}$，$\mathrm{EIG}(A) = \#\{\lambda_1, \lambda_2, \dots, \lambda_n\}$，$k$ 为正整数，则：</p>
+    <div class="formula-box highlight">
+        $$\text{(a)}\quad \mathrm{EIG}(A^k) = \#\{\lambda_1^k, \lambda_2^k, \dots, \lambda_n^k\}$$
+    </div>
+    <div class="formula-box highlight">
+        $$\text{(b)}\quad \text{若 } A^{-1} \text{ 存在，则 } \mathrm{EIG}(A^{-1}) = \#\{\lambda_1^{-1}, \lambda_2^{-1}, \dots, \lambda_n^{-1}\}$$
+    </div>
+    <p><strong>直觉：</strong>若 $Ax = \lambda x$，则 $A^k x = \lambda^k x$（同一个特征向量），即 $x$ 也是 $A^k$ 关于特征值 $\lambda^k$ 的特征向量。类似地，$A^{-1}x = \lambda^{-1}x$。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>与 Lec 24 对角化的联系</div>
+    <p>若 $A = SDS^{-1}$，则 $A^k = SD^kS^{-1}$，其中 $D^k = \mathrm{diag}(\lambda_1^k, \dots, \lambda_n^k)$。这与 Prop 24.3(a) 完全一致——对角化不仅给出计算公式，也自然地解释了矩阵幂的特征值变化规律。</p>
+</div>
+
+<!-- ===== Section: 秩-1 矩阵分解 ===== -->
+<h2 class="section-title" id="L25-rank1">秩-1 矩阵分解 <span class="en">Rank-1 Matrix Decomposition</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>秩-1 矩阵 <span class="en">Rank-1 Matrix</span></div>
+    <p>任何秩为 1 的矩阵都可以写成<strong>外积</strong>（<span class="en">outer product</span>）的形式：</p>
+    <div class="formula-box highlight">
+        $$A = \mathbf{u}\mathbf{v}^T$$
+    </div>
+    <p>其中 $\mathbf{u} \in \mathbb{R}^{m\times 1}$，$\mathbf{v} \in \mathbb{R}^{n\times 1}$。</p>
+    <p><strong>等价理解：</strong></p>
+    <p>&bull; 每一<strong>列</strong>都是 $\mathbf{u}$ 的倍数（只有一个独立的列方向）</p>
+    <p>&bull; 每一<strong>行</strong>都是 $\mathbf{v}^T$ 的倍数（只有一个独立的行方向）</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>秩-1 矩阵示例</div>
+    <div class="formula-box">
+        $$\begin{pmatrix}1\\2\\4\end{pmatrix}\begin{pmatrix}1&0&3\end{pmatrix} = \begin{pmatrix}1&0&3\\2&0&6\\4&0&12\end{pmatrix}$$
+    </div>
+    <p>这个 $3\times 3$ 矩阵的秩为 1，因为所有列都是 $\begin{pmatrix}1\\2\\4\end{pmatrix}$ 的倍数。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>秩-2 矩阵 = 两个秩-1 矩阵之和</div>
+    <p>若 $A \in \mathbb{R}^{m\times n}$ 的秩为 2，设 $\mathbf{x}_1, \mathbf{x}_2$ 是 $C(A)$ 的基，则每列 $\mathbf{a}_i = y_{i1}\mathbf{x}_1 + y_{i2}\mathbf{x}_2$。</p>
+    <p>将所有列合在一起：</p>
+    <div class="formula-box">
+        $$A = [\mathbf{x}_1, \mathbf{x}_2]\begin{pmatrix}y_{11}&\cdots&y_{1n}\\y_{21}&\cdots&y_{2n}\end{pmatrix} = \mathbf{x}_1\mathbf{y}_1^T + \mathbf{x}_2\mathbf{y}_2^T$$
+    </div>
+    <p>即两个秩-1 矩阵之和。</p>
+</div>
+
+<!-- ===== Section: 秩-r 矩阵分解 ===== -->
+<h2 class="section-title" id="L25-rankr">秩-r 矩阵分解 <span class="en">Rank-r Decomposition</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Prop 25.1 秩-r 分解</div>
+    <p>设 $A = [\mathbf{a}_1, \dots, \mathbf{a}_n] \in \mathbb{R}^{m\times n}$ 的秩为 $r$，则：</p>
+    <div class="formula-box highlight">
+        $$\text{(i)}\quad A = \sum_{j=1}^{r} \mathbf{x}_j \mathbf{y}_j^T$$
+    </div>
+    <p>其中 $\mathbf{x}_j$ 线性无关，$\mathbf{y}_j$ 线性无关。</p>
+    <div class="formula-box highlight">
+        $$\text{(ii)}\quad A = XY^T$$
+    </div>
+    <p>其中 $X = [\mathbf{x}_1,\dots,\mathbf{x}_r] \in \mathbb{R}^{m\times r}$，$Y = [\mathbf{y}_1,\dots,\mathbf{y}_r] \in \mathbb{R}^{n\times r}$，两者的秩均为 $r$。</p>
+    <p><strong>(iii) 空间关系：</strong></p>
+    <p>$\mathrm{Row}(A) = \mathrm{Row}(Y^T) = \mathrm{span}\{\mathbf{y}_1, \dots, \mathbf{y}_r\}$</p>
+    <p>$C(A) = C(X) = \mathrm{span}\{\mathbf{x}_1, \dots, \mathbf{x}_r\}$</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>从列空间角度理解</div>
+    <p>$A$ 的秩为 $r$ 意味着列空间 $C(A)$ 的维度为 $r$。取 $C(A)$ 的一组基 $\{\mathbf{x}_1,\dots,\mathbf{x}_r\}$，每一列 $\mathbf{a}_i$ 都可以被这组基线性表示，系数恰好构成 $Y^T$ 的各列。</p>
+    <p>因此 $A = XY^T$ 本质上是在说：一个秩-$r$ 矩阵可以分解为 $r$ 个秩-1 矩阵之和。</p>
+</div>
+
+<!-- ===== Section: 数据压缩动机 ===== -->
+<h2 class="section-title" id="L25-compression">数据压缩动机 <span class="en">Motivation: Data Compression</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>图像即矩阵 <span class="en">Image as Matrix</span></div>
+    <p>一幅灰度图像可以看作一个 $m\times n$ 的矩阵 $A$，其中每个元素 $a_{ij} \in [0,255]$ 表示像素灰度值。</p>
+    <p>数据矩阵可以非常<strong>巨大</strong>（如 $1024\times 1024$ 就有约 100 万个数），如何存储和传输是关键问题。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>国旗压缩示例</div>
+    <p>考虑法国国旗（三色竖条纹），矩阵 $A$ 的每一列是<strong>常数</strong>（同色条纹中所有像素相同），因此只有三种不同的列，即 $\mathrm{rank}(A) = 1$。</p>
+    <p>将 $A$ 写成 $\mathbf{u}\mathbf{v}^T$：</p>
+    <table class="comparison-table">
+        <thead><tr><th>方式</th><th>存储量</th><th>$m=n=1024$ 时</th></tr></thead>
+        <tbody>
+            <tr><td>原始矩阵 $A$</td><td>$m \times n$ 个数</td><td>$\approx 10^6$（1M）</td></tr>
+            <tr><td>秩-1 分解 $\mathbf{u}\mathbf{v}^T$</td><td>$m + n$ 个数</td><td>$\approx 2048$（2K）</td></tr>
+        </tbody>
+    </table>
+    <p>压缩比约 $500 : 1$！只需要存储 $\mathbf{u}$（$m$ 个数）和 $\mathbf{v}$（$n$ 个数）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>秩-$r$ 近似的存储量</div>
+    <p>若 $A \in \mathbb{R}^{m\times n}$ 的秩为 $r$，用 $A = XY^T$（$X \in \mathbb{R}^{m\times r}$，$Y \in \mathbb{R}^{n\times r}$）存储，需要 $r(m+n)$ 个数。</p>
+    <p>当 $r \ll \min(m,n)$ 时，$r(m+n) \ll mn$，实现<strong>显著压缩</strong>。</p>
+    <p>核心问题：现实图像通常满秩（$r = \min(m,n)$），那么如何用<strong>低秩近似</strong>来逼近？这正是 <strong>SVD</strong> 要解决的。</p>
+</div>
+
+<!-- ===== Section: 紧凑 SVD ===== -->
+<h2 class="section-title" id="L25-compact-svd">紧凑 SVD <span class="en">Compact SVD</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>奇异值与紧凑 SVD <span class="en">Singular Values &amp; Compact SVD</span></div>
+    <p>设 $A \in \mathbb{R}^{m\times n}$，秩为 $r$。$A$ 的<strong>紧凑 SVD</strong>（<span class="en">Compact Singular Value Decomposition</span>）为：</p>
+    <div class="formula-box important">
+        $$A = U_r \Sigma_r V_r^T$$
+    </div>
+    <p>其中：</p>
+    <p>&bull; $U_r \in \mathbb{R}^{m\times r}$：列为<strong>左奇异向量</strong>（<span class="en">left singular vectors</span>），满足 $U_r^T U_r = I_r$</p>
+    <p>&bull; $\Sigma_r = \mathrm{diag}(\sigma_1, \sigma_2, \dots, \sigma_r) \in \mathbb{R}^{r\times r}$：对角元素为<strong>奇异值</strong>（<span class="en">singular values</span>），$\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$</p>
+    <p>&bull; $V_r \in \mathbb{R}^{n\times r}$：列为<strong>右奇异向量</strong>（<span class="en">right singular vectors</span>），满足 $V_r^T V_r = I_r$</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>紧凑 SVD 的展开形式</div>
+    <p>紧凑 SVD 可以展开为 $r$ 个秩-1 矩阵之和：</p>
+    <div class="formula-box highlight">
+        $$A = \sum_{j=1}^{r} \sigma_j \mathbf{u}_j \mathbf{v}_j^T$$
+    </div>
+    <p>这正是 Prop 25.1 的<strong>特殊形式</strong>，其中 $\mathbf{x}_j = \sigma_j \mathbf{u}_j$，$\mathbf{y}_j = \mathbf{v}_j$。</p>
+    <p><strong>特殊之处：</strong></p>
+    <p>&bull; $\mathbf{u}_j$ 之间<strong>两两正交</strong>且单位长度</p>
+    <p>&bull; $\mathbf{v}_j$ 之间<strong>两两正交</strong>且单位长度</p>
+    <p>&bull; 奇异值 $\sigma_j$ 按从大到小排列</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>与谱定理（EVD）的对比</div>
+    <table class="comparison-table">
+        <thead><tr><th></th><th>谱定理 (EVD)</th><th>紧凑 SVD</th></tr></thead>
+        <tbody>
+            <tr><td>适用范围</td><td>$n\times n$ 实对称矩阵</td><td>任意 $m\times n$ 矩阵</td></tr>
+            <tr><td>分解形式</td><td>$A = VDV^T = \sum \lambda_j \mathbf{v}_j\mathbf{v}_j^T$</td><td>$A = U_r\Sigma_r V_r^T = \sum \sigma_j \mathbf{u}_j\mathbf{v}_j^T$</td></tr>
+            <tr><td>对角元素</td><td>特征值 $\lambda_j$（可为负）</td><td>奇异值 $\sigma_j > 0$</td></tr>
+            <tr><td>基向量</td><td>同一组正交特征向量 $V$</td><td>两组正交向量 $U_r, V_r$</td></tr>
+            <tr><td>矩阵限制</td><td>必须方阵且对称</td><td>无限制</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>SVD 用于数据压缩</div>
+    <p>核心思想：用前 $k$ 个奇异值的部分和来<strong>近似</strong>原矩阵：</p>
+    <div class="formula-box">
+        $$A \approx A_k = \sum_{j=1}^{k} \sigma_j \mathbf{u}_j \mathbf{v}_j^T \quad (k < r)$$
+    </div>
+    <p>由于 $\sigma_1 \geq \sigma_2 \geq \cdots$，前几个奇异值往往集中了矩阵的"主要信息"，截断后面小奇异值带来的误差很小。</p>
+    <p><strong>存储量：</strong>$k(m + n + 1)$ 个数（$k$ 个 $\mathbf{u}_j$、$k$ 个 $\mathbf{v}_j$、$k$ 个 $\sigma_j$），远小于原始的 $mn$。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>考试要点</div>
+    <p>1. <strong>特征值之和 = 迹</strong>，<strong>特征值之积 = 行列式</strong>——这两个性质对复特征值同样成立</p>
+    <p>2. $\mathrm{EIG}(A)$ 是多重集，"相同特征值"必须考虑<strong>重数</strong></p>
+    <p>3. $A^k$ 的特征值是原特征值的 $k$ 次方，$A^{-1}$ 的特征值是原特征值的倒数</p>
+    <p>4. 秩-1 矩阵 $= \mathbf{u}\mathbf{v}^T$，秩-$r$ 矩阵 $= \sum_{j=1}^r \mathbf{x}_j \mathbf{y}_j^T = XY^T$</p>
+    <p>5. 紧凑 SVD 中 $U_r, V_r$ 的列分别<strong>正交归一</strong>，奇异值 $\sigma_j > 0$ 且<strong>递减排列</strong></p>
+    <p>6. SVD 适用于<strong>任意矩阵</strong>（不要求方阵、不要求对称），这是与 EVD 的核心区别</p>
+</div>
+
+</div><!-- end lecture 25 -->
+
+<!-- ==================== LECTURE 26 ==================== -->
+<div class="lecture" id="lec26">
+<h1 class="lecture-title">Lecture 26 &mdash; 奇异值 II：完整 SVD <span class="en">Singular Values II: Full SVD</span></h1>
+
+<!-- ===== Section: 回顾 ===== -->
+<h2 class="section-title" id="L26-review">回顾：紧凑 SVD <span class="en">Review: Compact SVD</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Thm 25.1 紧凑 SVD <span class="en">Compact SVD</span></div>
+    <p>任意矩阵 $A \in \mathbb{R}^{m\times n}$，秩为 $r$，可以写成：</p>
+    <div class="formula-box important">
+        $$A = \sum_{j=1}^{r} \sigma_j \mathbf{u}_j \mathbf{v}_j^T = U_r \Sigma_r V_r^T$$
+    </div>
+    <p>其中：</p>
+    <p>&bull; $U_r = [\mathbf{u}_1, \dots, \mathbf{u}_r] \in \mathbb{R}^{m\times r}$：列正交单位向量（<span class="en">orthogonal unit-norm columns</span>）</p>
+    <p>&bull; $V_r = [\mathbf{v}_1, \dots, \mathbf{v}_r] \in \mathbb{R}^{n\times r}$：列正交单位向量</p>
+    <p>&bull; $\Sigma_r = \mathrm{diag}(\sigma_1, \dots, \sigma_r) \in \mathbb{R}_+^{r\times r}$：对角矩阵，$\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$</p>
+    <p>关键关系：$\mathrm{Row}(A) = \mathrm{span}\{\mathbf{v}_1, \dots, \mathbf{v}_r\} \subseteq \mathbb{R}^n$，$C(A) = \mathrm{span}\{\mathbf{u}_1, \dots, \mathbf{u}_r\} \subseteq \mathbb{R}^m$。</p>
+</div>
+
+<!-- ===== Section: Frobenius 范数 ===== -->
+<h2 class="section-title" id="L26-frobenius">Frobenius 范数 <span class="en">Frobenius Norm</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Frobenius 范数的定义</div>
+    <p>对于矩阵 $A = (a_{ij})_{m\times n}$，其<strong>Frobenius 范数</strong>定义为：</p>
+    <div class="formula-box important">
+        $$\|A\|_F \triangleq \sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n} a_{ij}^2}$$
+    </div>
+    <p>直觉上就是把矩阵所有元素"拉平"成一个长向量后取二范数。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Frobenius 范数与奇异值的关系</div>
+    <p><strong>Claim：</strong>$\|A\|_F = \sqrt{\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2}$</p>
+    <p>即矩阵的 Frobenius 范数等于所有奇异值的平方和的平方根。这一结论说明奇异值完整地刻画了矩阵的"大小"。</p>
+</div>
+
+<!-- ===== Section: 低秩近似 ===== -->
+<h2 class="section-title" id="L26-approx">低秩近似与压缩 <span class="en">Low-Rank Approximation & Compression</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>截断 SVD 近似</div>
+    <p>实际中矩阵的秩 $r$ 往往很大，但可以<strong>丢弃小奇异值对应的分量</strong>进行近似：</p>
+    <div class="formula-box highlight">
+        $$A \approx \hat{A}_k = \sum_{j=1}^{k} \sigma_j \mathbf{u}_j \mathbf{v}_j^T \quad (k < r)$$
+    </div>
+    <p>近似误差为：</p>
+    <div class="formula-box">
+        $$\|A - \hat{A}_k\|_F = \sqrt{\sigma_{k+1}^2 + \cdots + \sigma_r^2}$$
+    </div>
+    <p>当 $\sigma_{k+1}, \dots, \sigma_r$ 很小时，截断后误差很小，实现了<strong>数据压缩</strong>。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>压缩示例</div>
+    <p>若 $A = \mathbf{u}_1\mathbf{v}_1^T + 0.01\,\mathbf{u}_2\mathbf{v}_2^T$（$\sigma_1 = 1, \sigma_2 = 0.01$），</p>
+    <p>取 $\hat{A} = \mathbf{u}_1 \mathbf{v}_1^T$（秩-1 近似），则 $\|A - \hat{A}\|_F = 0.01$，非常好的近似。</p>
+</div>
+
+<!-- ===== Section: 线性变换视角 ===== -->
+<h2 class="section-title" id="L26-lt">线性变换视角 <span class="en">SVD from Linear Transformation Perspective</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>行空间到列空间的映射</div>
+    <p>紧凑 SVD 告诉我们：$A\mathbf{v}_i = \sigma_i \mathbf{u}_i$，即</p>
+    <div class="formula-box highlight">
+        $$A\mathbf{v}_1 = \sigma_1 \mathbf{u}_1, \quad A\mathbf{v}_2 = \sigma_2 \mathbf{u}_2, \quad \dots, \quad A\mathbf{v}_r = \sigma_r \mathbf{u}_r$$
+    </div>
+    <p>线性变换 $f(x) = Ax$ 将<strong>输入方向</strong> $\mathbf{v}_i$（正交）映射为<strong>输出方向</strong> $\mathbf{u}_i$（正交），拉伸因子为 $\sigma_i$。</p>
+    <p>直觉：SVD 将矩阵乘法分解为"旋转 → 拉伸 → 旋转"三步操作。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>紧凑 SVD 的局限</div>
+    <p>紧凑 SVD 只描述了 $A$ 在行空间 $\mathrm{Row}(A)$ 上的行为（$r$ 个方向），但没有说明 $A$ 对<strong>零空间</strong> $N(A)$ 中向量的作用。</p>
+    <p>为了描述 $A$ 在<strong>整个输入空间</strong> $\mathbb{R}^n$ 上的行为，需要引入<strong>完整 SVD</strong>。</p>
+</div>
+
+<!-- ===== Section: 完整 SVD ===== -->
+<h2 class="section-title" id="L26-full-svd">完整 SVD <span class="en">Full SVD</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>从紧凑到完整：扩展基</div>
+    <p>以 $A \in \mathbb{R}^{4\times 3}$，$\mathrm{rank}(A) = 2$ 为例。紧凑 SVD 给出 $\mathbf{v}_1, \mathbf{v}_2$（行空间的正交基）和 $\mathbf{u}_1, \mathbf{u}_2$（列空间的正交基）。</p>
+    <p><strong>输入空间扩展：</strong>选 $\mathbf{v}_3 \perp \mathrm{Row}(A)$，使 $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ 构成 $\mathbb{R}^3$ 的标准正交基。</p>
+    <p>由于 $\mathbf{v}_3 \in N(A)$（零空间），所以 $A\mathbf{v}_3 = \mathbf{0}$。</p>
+    <p><strong>输出空间扩展：</strong>选 $\mathbf{u}_3, \mathbf{u}_4 \perp C(A)$，使 $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3, \mathbf{u}_4$ 构成 $\mathbb{R}^4$ 的标准正交基。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>完整 SVD 定理 <span class="en">Full SVD Theorem</span></div>
+    <p>任意矩阵 $A \in \mathbb{R}^{m\times n}$，秩为 $r$，可分解为：</p>
+    <div class="formula-box important">
+        $$A = U \Sigma V^T$$
+    </div>
+    <p>其中：</p>
+    <p>&bull; $U = [\mathbf{u}_1, \dots, \mathbf{u}_m] \in \mathbb{R}^{m\times m}$：<strong>正交矩阵</strong>（$U^TU = UU^T = I_m$）</p>
+    <p>&bull; $V = [\mathbf{v}_1, \dots, \mathbf{v}_n] \in \mathbb{R}^{n\times n}$：<strong>正交矩阵</strong>（$V^TV = VV^T = I_n$）</p>
+    <p>&bull; $\Sigma \in \mathbb{R}^{m\times n}$：<strong>矩形对角矩阵</strong>，对角元素为 $\sigma_1 \geq \cdots \geq \sigma_r > 0$，其余为 $0$</p>
+    <div class="formula-box">
+        $$\Sigma = \begin{pmatrix} \sigma_1 & & \\ & \ddots & \\ & & \sigma_r \\ & \mathbf{0} & \end{pmatrix}_{m\times n}$$
+    </div>
+    <p>注意 $\Sigma$ 是 $m\times n$ 的<strong>矩形</strong>矩阵，不再是方阵（与紧凑 SVD 的 $\Sigma_r$ 不同）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>矩阵形式推导</div>
+    <p>从 $AV = U\Sigma$ 出发（因为 $V$ 正交），两边右乘 $V^T$：</p>
+    <div class="formula-box">
+        $$A = U\Sigma V^T$$
+    </div>
+    <p>向量形式展开：</p>
+    <div class="formula-box highlight">
+        $$A = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T + \cdots + \sigma_r \mathbf{u}_r \mathbf{v}_r^T$$
+    </div>
+    <p>其中额外的 $\sigma_{r+1} = \cdots = \sigma_{\min(m,n)} = 0$，对应的项为零不出现在求和中。</p>
+</div>
+
+<!-- ===== Section: 四个基本子空间 ===== -->
+<h2 class="section-title" id="L26-four-subspaces">四个基本子空间与 SVD <span class="en">Four Fundamental Subspaces vs. Full SVD</span></h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>SVD 与四个子空间的完美对应</div>
+    <p>设 $A \in \mathbb{R}^{m\times n}$，$\mathrm{rank}(A) = r$，完整 SVD 为 $A = U\Sigma V^T$。</p>
+    <p><strong>输入空间 $\mathbb{R}^n$ 的分解：</strong></p>
+    <p>&bull; $\mathrm{Row}(A) = \mathrm{span}\{\mathbf{v}_1, \dots, \mathbf{v}_r\}$（行空间，维度 $r$）</p>
+    <p>&bull; $N(A) = \mathrm{span}\{\mathbf{v}_{r+1}, \dots, \mathbf{v}_n\}$（零空间，维度 $n-r$）</p>
+    <p>&bull; $\mathbb{R}^n = \mathrm{Row}(A) \oplus N(A)$</p>
+    <p><strong>输出空间 $\mathbb{R}^m$ 的分解：</strong></p>
+    <p>&bull; $C(A) = \mathrm{span}\{\mathbf{u}_1, \dots, \mathbf{u}_r\}$（列空间，维度 $r$）</p>
+    <p>&bull; $N(A^T) = \mathrm{span}\{\mathbf{u}_{r+1}, \dots, \mathbf{u}_m\}$（左零空间，维度 $m-r$）</p>
+    <p>&bull; $\mathbb{R}^m = C(A) \oplus N(A^T)$</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>映射关系全景图</div>
+    <p>矩阵 $A$ 作为线性变换的全部行为：</p>
+    <p>&bull; <strong>行空间 → 列空间：</strong>$A\mathbf{v}_i = \sigma_i \mathbf{u}_i$（$i = 1, \dots, r$），正交基映射为正交基，伸缩因子 $\sigma_i$</p>
+    <p>&bull; <strong>零空间 → $\{\mathbf{0}\}$：</strong>$A\mathbf{v}_j = \mathbf{0}$（$j = r+1, \dots, n$），零空间中的向量全部被"压扁"为零向量</p>
+</div>
+
+<!-- ===== Section: 三种分解对比 ===== -->
+<h2 class="section-title" id="L26-three-decomp">三种分解对比 <span class="en">Three Decompositions Comparison</span></h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>对角化 vs EVD vs Full SVD</div>
+    <table class="comparison-table">
+        <thead><tr><th></th><th>对角化 <span class="en">Diagonalization</span></th><th>EVD（谱分解）</th><th>完整 SVD</th></tr></thead>
+        <tbody>
+            <tr><td><strong>形式</strong></td><td>$A = SDS^{-1}$</td><td>$A = VDV^T$</td><td>$A = U\Sigma V^T$</td></tr>
+            <tr><td><strong>适用矩阵</strong></td><td>部分方阵</td><td>实对称矩阵</td><td><strong>任意矩形矩阵</strong></td></tr>
+            <tr><td><strong>中间部分</strong></td><td>对角矩阵（方阵）</td><td>对角矩阵（方阵）</td><td>矩形对角矩阵</td></tr>
+            <tr><td><strong>左右矩阵</strong></td><td>可逆矩阵 $S$</td><td>正交矩阵 $V$</td><td>正交矩阵 $U, V$</td></tr>
+            <tr><td><strong>向量形式</strong></td><td>N/A</td><td>$\sum_{j=1}^{n} \lambda_j \mathbf{v}_j \mathbf{v}_j^T$</td><td>$\sum_{j=1}^{r} \sigma_j \mathbf{u}_j \mathbf{v}_j^T$</td></tr>
+            <tr><td><strong>对角元素</strong></td><td>特征值（可为负/复数）</td><td>特征值（实数）</td><td>奇异值（$\geq 0$）</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Lecture 26 考试要点</div>
+    <p>1. <strong>Frobenius 范数</strong>：$\|A\|_F = \sqrt{\sum a_{ij}^2} = \sqrt{\sigma_1^2 + \cdots + \sigma_r^2}$</p>
+    <p>2. <strong>低秩近似误差</strong>：$\|A - \hat{A}_k\|_F = \sqrt{\sigma_{k+1}^2 + \cdots + \sigma_r^2}$</p>
+    <p>3. 完整 SVD 中 $U$ 是 $m\times m$ 正交矩阵，$V$ 是 $n\times n$ 正交矩阵，$\Sigma$ 是 $m\times n$ <strong>矩形</strong>对角矩阵</p>
+    <p>4. SVD 将行空间正交基映射到列空间正交基，零空间映射到 $\{\mathbf{0}\}$</p>
+    <p>5. SVD 适用于<strong>任意矩阵</strong>（最强分解），EVD 只适用于对称矩阵，对角化要求特殊方阵</p>
+    <p>6. 奇异值 $\sigma_i \geq 0$，特征值 $\lambda_i$ 可以为任意实数甚至复数</p>
+</div>
+
+</div><!-- end lecture 26 -->
+
+<!-- ==================== LECTURE 27 ==================== -->
+<div class="lecture" id="lec27">
+<h1 class="lecture-title">Lecture 27 &mdash; 二次型与正定矩阵 <span class="en">Quadratic Form & Positive Definite Matrix</span></h1>
+
+<!-- ===== Section: 二次型定义 ===== -->
+<h2 class="section-title" id="L27-quadratic">二次型 <span class="en">Quadratic Form</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 27.1 二次型 <span class="en">Quadratic Form</span></div>
+    <p>对于任意实对称矩阵 $A$，定义<strong>二次型</strong>（<span class="en">quadratic form</span>）为：</p>
+    <div class="formula-box important">
+        $$f(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$$
+    </div>
+    <p>其中 $\mathbf{x} \in \mathbb{R}^n$。结果是一个<strong>标量</strong>（实数）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>计算二次型</div>
+    <p><strong>例1：</strong>$A = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$，则</p>
+    <p>$f(x) = \begin{pmatrix} x_1 & x_2 \end{pmatrix}\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = 2x_1^2 + 3x_2^2$</p>
+    <p><strong>例2：</strong>$A = \begin{pmatrix} 1 & -2 \\ -2 & 4 \end{pmatrix}$，则</p>
+    <p>$f(x) = x_1^2 - 2x_1 x_2 - 2x_1 x_2 + 4x_2^2 = x_1^2 - 4x_1 x_2 + 4x_2^2$</p>
+    <p><strong>例3：</strong>$A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$，则 $f(x) = x_1^2 + 2x_2^2 + x_3^2 + 2x_1 x_2 + 2x_2 x_3$</p>
+    <p>（注意对称矩阵中 $a_{ij}$ 和 $a_{ji}$ 都贡献 $x_i x_j$ 项，合起来系数为 $2a_{ij}$）</p>
+</div>
+
+<!-- ===== Section: 反向 ===== -->
+<h2 class="section-title" id="L27-reverse">反向：表达式 → 矩阵 <span class="en">Reverse Direction</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>从多项式反推对称矩阵</div>
+    <p>给定二次多项式 $f(x) = \sum_{i,j} c_{ij} x_i x_j$，构造对称矩阵 $A$ 使得 $f(x) = \mathbf{x}^T A \mathbf{x}$：</p>
+    <ul class="step-list">
+        <li><strong>对角元素：</strong>$a_{ii}$ = $x_i^2$ 的系数</li>
+        <li><strong>非对角元素：</strong>$a_{ij} = a_{ji}$ = $x_i x_j$ 的系数的<strong>一半</strong>（因为 $a_{ij}$ 和 $a_{ji}$ 都贡献）</li>
+    </ul>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>反向示例</div>
+    <p>$f(x) = 2x_1^2 - 7x_1 x_2 + 8x_2^2$，写成二次型 $f(x) = \mathbf{x}^T A \mathbf{x}$：</p>
+    <p>$a_{11} = 2$，$a_{22} = 8$，$a_{12} = a_{21} = -7/2 = -3.5$</p>
+    <div class="formula-box">
+        $$A = \begin{pmatrix} 2 & -3.5 \\ -3.5 & 8 \end{pmatrix}$$
+    </div>
+</div>
+
+<!-- ===== Section: 正定/负定矩阵定义 ===== -->
+<h2 class="section-title" id="L27-definite-def">正定 / 负定矩阵 <span class="en">Positive / Negative Definite Matrices</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 27.2 正定矩阵（第一部分）<span class="en">Definite Matrices I</span></div>
+    <p>实对称矩阵 $A$ 是：</p>
+    <p>&bull; <strong>正半定</strong>（<span class="en">PSD, positive semidefinite</span>）：$\mathbf{x}^T A \mathbf{x} \geq 0$，$\forall \mathbf{x} \in \mathbb{R}^n$，记为 $A \succeq 0$</p>
+    <p>&bull; <strong>正定</strong>（<span class="en">PD, positive definite</span>）：$\mathbf{x}^T A \mathbf{x} > 0$，$\forall \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$，记为 $A \succ 0$</p>
+    <p>&bull; <strong>不定</strong>（<span class="en">indefinite</span>）：$\exists\, \mathbf{x}, \mathbf{y}$ 使得 $\mathbf{x}^T A \mathbf{x} < 0 < \mathbf{y}^T A \mathbf{y}$</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Def 27.3 负定矩阵（第二部分）<span class="en">Definite Matrices II</span></div>
+    <p>实对称矩阵 $A$ 是：</p>
+    <p>&bull; <strong>负半定</strong>（<span class="en">NSD, negative semidefinite</span>）：$\mathbf{x}^T A \mathbf{x} \leq 0$，$\forall \mathbf{x} \in \mathbb{R}^n$，记为 $A \preceq 0$</p>
+    <p>&bull; <strong>负定</strong>（<span class="en">ND, negative definite</span>）：$\mathbf{x}^T A \mathbf{x} < 0$，$\forall \mathbf{x} \in \mathbb{R}^n \setminus \{\mathbf{0}\}$，记为 $A \prec 0$</p>
+</div>
+
+<!-- ===== Section: 对角矩阵判定 ===== -->
+<h2 class="section-title" id="L27-diagonal-case">对角矩阵的判定 <span class="en">Diagonal Matrix Case</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>对角矩阵的正定性判定</div>
+    <p>设 $D = \mathrm{diag}(\alpha_1, \dots, \alpha_n)$，则 $x^T D x = \alpha_1 x_1^2 + \cdots + \alpha_n x_n^2$。</p>
+    <p>&bull; $D \succeq 0$ $\iff$ $\alpha_1 \geq 0, \dots, \alpha_n \geq 0$（所有对角元素非负）</p>
+    <p>&bull; $D \succ 0$ $\iff$ $\alpha_1 > 0, \dots, \alpha_n > 0$（所有对角元素严格正）</p>
+    <p>&bull; $D$ 不定 $\iff$ 存在 $\alpha_i > 0$ 且 $\alpha_j < 0$（有正有负）</p>
+    <p>&bull; $D \preceq 0$ $\iff$ $\alpha_1 \leq 0, \dots, \alpha_n \leq 0$</p>
+    <p>&bull; $D \prec 0$ $\iff$ $\alpha_1 < 0, \dots, \alpha_n < 0$</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>五种类型的对角矩阵实例</div>
+    <p>&bull; <strong>PD：</strong>$\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$（全正）</p>
+    <p>&bull; <strong>PSD：</strong>$\begin{pmatrix} 2 & 0 \\ 0 & 0 \end{pmatrix}$, $\begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$（非负，有零）</p>
+    <p>&bull; <strong>Indefinite：</strong>$\begin{pmatrix} 3 & 0 \\ 0 & -2 \end{pmatrix}$, $\begin{pmatrix} -3 & 0 \\ 0 & -7 \end{pmatrix}$（有正有负）</p>
+    <p>&bull; <strong>ND：</strong>$\begin{pmatrix} -2 & 0 \\ 0 & -5 \end{pmatrix}$（全负）</p>
+    <p>&bull; <strong>NSD：</strong>$\begin{pmatrix} -2 & 0 \\ 0 & 0 \end{pmatrix}$（非正，有零）</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>仅看元素正负不够！</div>
+    <p><strong>错误判断：</strong>"$A$ 的所有 $a_{ij} > 0$ $\Rightarrow$ $A$ 正定"——这是<strong>错误</strong>的！</p>
+    <p><strong>反例：</strong>$A = \begin{pmatrix} 1 & 5 \\ 5 & 2 \end{pmatrix}$，所有元素为正，但</p>
+    <p>$x^T A x = x_1^2 + 2x_2^2 + 10x_1 x_2$。取 $x_1 = 1, x_2 = -1$ 时 $x^TAx = 1 + 2 - 10 = -7 < 0$。</p>
+    <p>所以 $A$ 不是正定的。对一般（非对角）矩阵，不能仅看元素正负来判定。</p>
+</div>
+
+<!-- ===== Section: 特征值判定 ===== -->
+<h2 class="section-title" id="L27-eigenvalue">特征值判定法 <span class="en">Eigenvalue Criterion</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#128220;</span>Thm 27.1 正定的等价条件 <span class="en">PD Equivalent Conditions</span></div>
+    <p>对于任意实对称矩阵 $A$，以下条件<strong>等价</strong>：</p>
+    <p>a) $A$ 正定（$A \succ 0$）</p>
+    <p>b) $A$ 的所有特征值都<strong>为正</strong>（$\lambda_1 > 0, \dots, \lambda_n > 0$）</p>
+    <p>c) $A$ 可以写成 $A = R^T R$，其中 $R$ 是某个<strong>可逆</strong>矩阵</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>推广到其他类型</div>
+    <p>&bull; $A \succeq 0$（正半定）$\iff$ 所有特征值 $\geq 0$</p>
+    <p>&bull; $A \prec 0$（负定）$\iff$ 所有特征值 $< 0$</p>
+    <p>&bull; $A \preceq 0$（负半定）$\iff$ 所有特征值 $\leq 0$</p>
+    <p>&bull; $A$ 不定 $\iff$ 特征值既有正又有负</p>
+    <p>因此判定正定性只需要计算<strong>有限个</strong>特征值，而不需要检验无穷多个 $\mathbf{x}$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>证明思路：对角矩阵情形</div>
+    <p><strong>Claim：</strong>$D = \mathrm{diag}(\alpha_1, \dots, \alpha_n)$ 满足 $x^T D x \geq 0, \forall x$ $\iff$ $\alpha_1, \dots, \alpha_n \geq 0$。</p>
+    <p><strong>证明：</strong></p>
+    <p>($\Leftarrow$) 若 $\alpha_i \geq 0$，则 $x^T D x = \alpha_1 x_1^2 + \cdots + \alpha_n x_n^2 \geq 0$，显然成立。</p>
+    <p>($\Rightarrow$) 若 $x^T D x \geq 0$ 对所有 $x$ 成立，取 $x = e_j$（标准基向量），则 $0 \leq e_j^T D e_j = \alpha_j$，所以 $\alpha_j \geq 0$。</p>
+    <p>对一般对称矩阵，利用谱定理 $A = VDV^T$ 做变量替换 $y = V^T x$ 即可归结到对角情形。</p>
+</div>
+
+<!-- ===== Section: 二次曲线 ===== -->
+<h2 class="section-title" id="L27-conic">应用：二次曲线 <span class="en">Application: Conics</span></h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>二次型与二次曲线的联系</div>
+    <p>二维平面上的二次曲线方程 $ax_1^2 + bx_1 x_2 + cx_2^2 = 1$ 可以写成二次型：</p>
+    <div class="formula-box">
+        $$\mathbf{x}^T A \mathbf{x} = 1, \quad A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}$$
+    </div>
+    <p>曲线的形状由矩阵 $A$ 的<strong>特征值</strong>决定：</p>
+    <p>&bull; 两个特征值都为正 → <strong>椭圆</strong>（<span class="en">ellipse</span>）</p>
+    <p>&bull; 一正一负 → <strong>双曲线</strong>（<span class="en">hyperbola</span>）</p>
+    <p>&bull; 一个为零 → <strong>抛物线</strong>（<span class="en">parabola</span>）/ 退化情形</p>
+    <p>利用谱分解 $A = VDV^T$ 做坐标旋转 $\mathbf{y} = V^T\mathbf{x}$，方程变为 $\lambda_1 y_1^2 + \lambda_2 y_2^2 = 1$——这就是<strong>标准形</strong>，曲线的主轴方向由特征向量给出。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Lecture 27 考试要点</div>
+    <p>1. 二次型 $f(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$，其中 $A$ 必须是<strong>实对称</strong>矩阵</p>
+    <p>2. 反向构造：$x_i^2$ 的系数为 $a_{ii}$，$x_i x_j$ 的系数为 $2a_{ij}$（$i \neq j$）</p>
+    <p>3. 正定 $\iff$ 所有特征值为正；正半定 $\iff$ 所有特征值 $\geq 0$</p>
+    <p>4. <strong>不能</strong>仅看矩阵元素正负来判定正定性（反例：所有元素为正但不定）</p>
+    <p>5. 正定矩阵 $A = R^T R$（$R$ 可逆），实际上可取 $R = \Sigma^{1/2}V^T$（由谱分解构造）</p>
+    <p>6. 二次曲线通过谱分解做坐标旋转化为标准形，特征值决定曲线类型</p>
+    <p>7. 之前证明 SVD 时用过的关系 $B^T B x = 0 \Rightarrow x^T B^T B x = 0 \Rightarrow \|Bx\|^2 = 0 \Rightarrow Bx = 0$，其中 $x^T B^T B x$ 就是二次型</p>
+</div>
+
+</div><!-- end lecture 27 -->
+
+</div><!-- end main-content -->
+
+<script>
+function toggleLecture(el) {
+    const lecture = el.parentElement;
+    lecture.classList.toggle('collapsed');
+}
+// Mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('open');
+});
+// Active highlight
+document.querySelectorAll('.toc-section a').forEach(a => {
+    a.addEventListener('click', function(){
+        document.querySelectorAll('.toc-section').forEach(s => s.style.borderLeftColor = 'transparent');
+        this.parentElement.style.borderLeftColor = '#667eea';
+    });
+});
+</script>
+</body>
+</html>

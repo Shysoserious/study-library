@@ -1,0 +1,1401 @@
+--- Page 0 ---
+PHY1001 Mechanics（力学）
+Instructor:  Ling Han（凌晗）
+School of Science and Engineering (SSE)
+The Chinese University of Hong Kong, Shenzhen
+
+--- Page 1 ---
+´ Self-Learning, ASK!
+´ Language: English in classes, 
+tutorials, homework and 
+exams.
+´ Please mute your cellphones
+Welcome
+
+--- Page 2 ---
+Instructor: Dr. Ling Han
+´Office: TC413a
+´Phone: 0755-23519537
+´Email: linghan@cuhk.edu.cn
+´Office Hour:
+Tue Morning 10:30-11:30 pm.
+Before Midterm/Final, extra office hours will be 
+provided
+
+--- Page 3 ---
+Blackboard
+n Announcements
+q Important Notices, like midterm/final arrangements
+n Course Contents
+q Lecture Materials
+n The PPT files will be uploaded before the lectures
+q Homework Assignments 
+n Online submission links. 
+q Tutorial Notes
+n TAs will upload their notes/detailed solutions after 
+homework deadline.
+n Discussion Board - asking and answering questions
+
+--- Page 4 ---
+Assessment Scheme
+Scientific Calculator
+Component
+% weight
+In Lecture Quiz
+10% 
+Homework 
+Assignments 
+20%
+Mid term
+30%
+Final
+40%
+
+--- Page 5 ---
+In lecture quizzes
+´ In-lecture quizzes, random pop-up quizzes
+´ We will be conducting several quizzes with 
+questions about the teaching style, your learning 
+experience, and related topics. Your feedback 
+will remain anonymous, and your personal 
+information will remain secure. This input will be 
+used strictly to enhance teaching quality and 
+improve the overall learning experience. Your 
+input will be highly appreciated!
+
+--- Page 6 ---
+Homework Assignments
+´ Homework will be released Weekly through BB unless otherwise 
+stated. The deadline is Sun evening 23:59pm stated clearly in BB.
+´ NO LATE SUBMISSION! ZERO Marks
+´You can drop the worst.
+´Supporting materials are required for other cases.
+´ Do homework in English and on an A4 size paper
+´Clear handwriting, scanned into PDF format
+´You can write in the Ipad Good Notes or other apps, saved in 
+PDF format.
+´ The problems will be covered in TUT before deadline.
+´ Tut will start from the 2nd Week!!!
+
+--- Page 7 ---
+Textbook and Recommended
+Reading Materials
+Textbook Book: 
+´ H. Young and R. Freedman, Sears & Zemansky’s 
+University Physics: with Modern Physics (14th edition), 
+Pearson Education. 
+Recommended:
+´ • Halliday, R. Resnick, and J. Walker, Fundamentals of 
+Physics (10th edition), John Wiley & Sons. 
+´ Other reading materials posted on Blackboard– Share 
+yours!
+
+--- Page 8 ---
+Midterm/Final Examinations
+´ Midterm: Chapter 1 – 10 (to be confirmed) in end of Oct or
+early Nov
+´ Final Exam: All chapters, but focus on Chapter 10 – 16, time
+and date will be released by Registry.
+´ Do Examinations in English with clear handwriting. Please 
+do NOT use pencil.
+´ You can bring
+´An A4 size, double-sided reference paper
+´Paper dictionary if necessary
+´Scientific Calculator!!!
+
+--- Page 9 ---
+Week
+Chapters
+Contents
+1
+1-3
+Units, Physical Quantities, and Vectors;
+Motion Along Straight Line; Motion in 2 and 3 Dimensions
+2
+4-5
+Newton’s Law of motion; Applying Newton’s Laws
+3
+6-7
+Work and Kinetic Energy;
+Potential Energy and Conservation of Energy
+4
+8
+Momentum, Impulse, and collisions
+5
+9
+Rotation of Rigid bodies
+6
+9-10
+Rotation of Rigid bodies; Dynamics of Rotational Motion
+7
+10
+Dynamics of Rotational Motion
+8
+11,12
+Equilibrium and Elasticity; Fluid Mechanics
+9
+13
+Gravitation-I
+10
+13,14
+Gravitation-II; Periodic Motion-I
+11
+14
+Periodic Motion-II
+12
+15
+Mechanical Wave-I
+13
+15,16
+Wave-I & Sound and Hearing-I
+14
+16
+Sound and Hearing-II
+Centralized Final Exam
+
+--- Page 10 ---
+Introduction to Physics
+´ What is physics?
+´Studies matter and its motion and behavior through space
+and time, the related entities of energy and force.
+´Mechanics: the branch of applied mathematics dealing with 
+motion and forces producing motion.
+´ How the world works/how the universe behaves
+´ What can physics do?
+´Everything！
+´ What has it got to do with our life (connection with real world)?
+´Numerous applications
+´Various career paths
+No theory is ever regarded as the
+final or ultimate truth!
+
+--- Page 11 ---
+墨子号卫星（ Quantum 
+Science Satellite ）
+光纤（optical fibre, 
+Charles kuen kao ）
+AI
+太阳能（Solar cell）
+
+--- Page 12 ---
+Newtonian Mechanics
+´ Physics (Mechanics): Classic Mechanics (Newtonian
+Mechanics), quantum mechanics, Electrodynamics,
+statistical thermodynamics…
+´ Newtonian Mechanics: Describe slow motion of
+macroscopic objects
+´ Based on application of Newton‘s Laws of Motion which
+assume that the concepts of distance, time, and mass,
+are absolute.
+´ Motion in an inertial frame (惯性系)
+
+--- Page 13 ---
+Chapter 1: Units, Physical
+Quantities, and Vectors
+Chapter 1
+Copyright © 2014 John Wiley & Sons, Inc. All rights reserved.
+
+--- Page 14 ---
+Why need Measurement?
+Physics and engineering are based on the precise 
+measurement of physical quantities
+Standards and Units for measurement
+Accessible
+Invariable
+A physical quantity without 
+a unit is meaningless
+
+--- Page 15 ---
+Good Standards
+l Accessible, so precise measurements can be taken
+l Invariable, so measurements do not change overtime
+
+--- Page 16 ---
+In 1971, the 14th General Conference on 
+Weights and Measures picked seven quantities 
+as base quantities, thereby forming the basis of 
+the International System of Units, abbreviated SI 
+from its French name and popularly known as 
+the metric system. 
+
+--- Page 17 ---
+Needs for accuracy in science have driven 
+changes in the standards for units
+Even a small percent 
+error can have 
+spectacular results!
+
+--- Page 18 ---
+Without clocks of extreme accuracy, the Global Positioning System 
+(GPS) that is now vital to worldwide navigation would be useless.
+Needs for accuracy in science have driven 
+changes in the standards for units
+https://en.wikipedia.org/wiki/Global_Positioning_System
+https://www.youtube.com/watch?v=FU_pY2sT
+wTA
+
+--- Page 19 ---
+Base Quantities
+´ 7 fundamental quantities
+´ Assigned standards with SI
+units as shown below
+´ Define other physical
+quantities
+o Velocity
+V=Distance/Time
+Unit: m/s
+o Power
+1 watt = 1 W = 1 kg·m2/s3
+𝑃=
+!"#$
+%&'( =
+)∗+
+% =
+'∗,∗+
+%
+m: mass, kg
+a: accelerating velocity, m/s2
+S: distance, m
+t: time, s
+
+--- Page 20 ---
+l Standards of time in the past have included:
+1. Rotation of Earth
+2. Quartz vibrations
+•
+In 1967, the 13th General Conference on Weights and Measures
+adopted a standard second based on the atomic clock:
+•
+Atomic clocks (cesium Cs), with time signals sent out by 
+radio so others can calibrate their clocks
+Time
+One second is the time taken by 9 192 631 770 oscillations of 
+light (of a specified wavelength) emitted by cesium-133 atom. 
+
+--- Page 21 ---
+The variation in the length of a day 
+as measured by an atomic clock:
+l
+The vertical scale here amounts 
+to only 3 ms, or 0.003 s.
+l
+This shows the precision of 
+atomic clocks, and the relative 
+imprecision of Earth's rotation 
+(affected by tides, winds)
+
+--- Page 22 ---
+In the past, 1 meter has been defined by:
+1. One ten-millionth of the distance from the North 
+pole to the equator
+2. A platinum-iridium standard meter bar kept in 
+France
+3. 1 650 763.73 wavelengths of an emission line of Kr-
+86 （Krypton，氪）
+Length
+
+--- Page 23 ---
+Length
+´Today: 
+The meter is the length of the path traveled by light in 
+vacuum during a time interval of 1/299 792 458 of a 
+second.
+c = 299,792,458 m/s
+1s
+
+--- Page 24 ---
+Scale
+1 nm- Tennis ball
+1 Tennis ball - earth
+
+--- Page 25 ---
+
+--- Page 26 ---
+
+--- Page 27 ---
+
+--- Page 28 ---
+Previous standards of Mass
+l The standard kilogram is a cylinder of platinum and iridium 
+stored in France.
+l Accurate copies have been sent around the world; other masses 
+can be measured by comparing them against these copies
+Current Standard
+Mass
+The carbon-12 atom, by international agreement, has been assigned 
+a mass of 12 atomic mass units (u). The relation between u and 
+kg is 
+1 u = 1.6605402 x 10-27 kg
+1 𝑢/𝑎𝑡𝑜𝑚= 1 𝑔/𝑚𝑜𝑙
+6.02×10!" 𝑎𝑡𝑜𝑚= 1 𝑚𝑜𝑙
+Avogadro's number
+
+--- Page 29 ---
+
+--- Page 30 ---
+Unit prefixes
+Table below shows some larger and smaller units for the  
+fundamental quantities.
+
+--- Page 31 ---
+l Scientific notation employs powers of 10 to write large or 
+small numbers
+l A conversion factor is
+l A ratio of units that is equal to 1
+l Used to convert between units
+l Units obey the same algebraic rules as variables and numbers
+Using and Converting Units
+
+--- Page 32 ---
+Density
+l Mass per unit volume is called density 
+￥100，000，000 in ￥100 à Vol?
+For new ￥100, Mass = 1.15 g
+Density = 966 kg/m3
+
+--- Page 33 ---
+For used ￥100,
+Vol. can be nearly
+2 m3
+´ For 100 millions:
+𝑉𝑜𝑙. = 1×10!
+100 × 𝑀𝑎𝑠𝑠
+𝑑𝑒𝑛𝑠𝑖𝑡𝑦
+= 10"× 1.15×10#$ 𝑘𝑔
+966 𝑘𝑔/𝑚$
+= 1.19 𝑚$
+
+--- Page 34 ---
+Uncertainty and Significant
+Figures
+´ Ruler: 135 mm, only reliable to 1 mm.
+´ Caliper: 135.00 mm
+´ Significant Figures:
+The uncertainty
+(error) is indicated
+by number of digits.
+´ 135 mm à 3 significant figures à
+uncertainty is about 1 mm
+´ 135.00 mm à 5 significant figures à
+uncertainty is about 0.01 mm
+´ Significant figures are not decimal places
+´ 0.00356 has 5 decimal places, 3 significant figures
+
+--- Page 35 ---
+l In general, tailing zeros are not significant 
+l Usually, 3000 m: only 1 significant figure!  
+l Use scientific notation 3.000 x 103 m (4)  or   3 x 103 m (1)
+l Multiplication or division:
+l Result can have no more significant figures than the factor
+with the fewest SF.
+1.23568×4.2 = 5.1898856 = 5.2
+l Addition or subtraction:
+l Number of SF is determined by the term with the largest
+uncertainty.
+27.153 + 138.2 −11.74 = 153.6
+Uncertainty and Significant Figures
+
+--- Page 36 ---
+Estimate and Order of Magnitude
+The world’s largest ball of string is about 2 m in radius.  
+Estimate the total length of the string. Diameters of the string
+is around 0.004 m.
+𝑉= 4𝜋
+3 𝑅. = 𝜋(𝑑
+2)/𝐿
+𝐿= 16𝑅.
+3𝑑/ ≈2.6×100 𝑚
+≈3×100 𝑚 
+(1 significant figure)
+
+--- Page 37 ---
+Vectors and Scalars
+´ A vector has both a magnitude and a 
+direction, e.g. displacement, velocity, and 
+acceleration.  
+eg. GPS, describing motion in 3-D
+´ Physical quantities such as temperature, 
+pressure, energy, mass, time, etc. are 
+scalars because they involve magnitudes 
+only. 
+
+--- Page 38 ---
+Vectors
+´ Displacement vector: change of the
+position
+´ The purple array indicate the
+displacement vector graphically.
+´ Nothing about the actual path, only the
+overall effect of the motion
+´ The vectors with same direction and
+length/magnitude can be shifted
+
+--- Page 39 ---
+Adding Vectors
+Geometrically
+´ Vector Sum, Head-to-tail, from the tail of⃗𝑎
+to the head of 𝑏⃗
+𝑠=⃗𝑎+ 𝑏⃗
+𝑎+ 𝑏= 𝑏+⃗𝑎
+´ More than 2 vectors, group at any orders⃗
+𝑎+ 𝑏+⃗𝑐=⃗𝑎+( 𝑏+⃗𝑐)
+
+--- Page 40 ---
+Adding Vectors
+Geometrically
+´ Adding - 𝑏has the same effect of
+subtracting 𝑏⃗
+𝑑=⃗𝑎- 𝑏=⃗𝑎+ (-𝑏)⃗
+𝑑+ 𝑏=⃗𝑎or⃗𝑎= ⃗𝑑+ 𝑏
+
+--- Page 41 ---
+Important Properties
+7 or 1 m⃗
+𝑎+ 𝑏= 𝑏+⃗𝑎
+Commutative Law
+(⃗𝑎+ 𝑏) +⃗𝑐=⃗𝑎+( 𝑏+⃗𝑐)
+Associative Law⃗
+𝑑=⃗𝑎- 𝑏=⃗𝑎+ (-𝑏)
+Vector Subtraction
+
+--- Page 42 ---
+Components of Vectors
+´ Place the vector in
+a 2-dimensional
+rectangular
+coordinate system
+(x-y)
+´ Component: the
+projection of the
+vector on axes
+
+--- Page 43 ---
+Components of Vectors
+´ The components of vectors have same
+direction
+x
+y
+2
+y
+2
+x
+y
+x
+a
+a
+tan
+and
+a
+a
+a
+,
+sin
+a
+a
+and
+cos
+a
+a
+=
++
+=
+=
+=
+q
+q
+q
+-ve angle
++ve angle
+
+--- Page 44 ---
+Unit Vectors
+´ A unit vector has a magnitude of 1 and points in a 
+particular direction
+´ The unit vectors in the positive directions of the x, y, and 
+z axes are shown below
+a right-hand coordinate system
+
+--- Page 45 ---
+Unit Vectors⃗
+𝑎= 𝑎3̂𝚤+ 𝑎ŷ𝚥
+
+--- Page 46 ---
+Adding Vectors by
+Components
+´ Combine their components axis by axis
+´ Also apply to vector subtractions
+
+--- Page 47 ---
+Problem
+´ Three Vectors⃗𝑎, 𝑏, 𝑎𝑛𝑑⃗𝑐, what is the
+vector sum⃗𝑟?
+,jˆ)
+m
+9.2
+(
+iˆ
+)
+m
+6.1
+(
+b
+,jˆ)
+m
+5.1
+(
+iˆ
+)
+m
+2.4
+(
+a
++
+-
+=
+-
+=
+
+
+.jˆ)
+m
+7.3
+(
+c
+-
+=
+
+SOLUTION: 
+m
+6.2
+0
+m
+6.1
+m
+2.4
+c
+b
+a
+r
+x
+x
+x
+x
+=
++
+-
+=
++
++
+=
+m
+3.2
+m
+7.3
+m
+9.2
+m
+5.1
+c
+b
+a
+r
+y
+y
+y
+y
+-
+=
+-
++
+-
+=
++
++
+=
+,jˆ
+)
+m
+3.2
+(
+iˆ
+)
+m
+6.2
+(
+r
+-
+=
+
+m
+5.3
+)
+m
+3.2
+(
+)
+m
+6.2
+(
+r
+2
+2
+»
+-
++
+=
+
+41
+m
+6.2
+m
+3.2
+tan 1
+-
+=
+÷÷
+ø
+ö
+çç
+è
+æ -
+=
+-
+q
+
+--- Page 48 ---
+Multiplying Vectors
+´ Multiplying a vector by a scalar
+´Vector with same or opposite direction
+´ Multiplying a vector by a vector
+´The scalar (or dot) product
+´Scalar
+´The vector (or cross) product
+´Vector with direction determined by
+right-hand rule
+
+--- Page 49 ---
+Scalar or Dot Product
+f
+cos
+b
+a
+b
+a
+=
+×
+
+
+a
+b
+b
+a
+,
+b
+a
+b
+a
+b
+a
+b
+a
+),
+kˆ
+b
+jˆ
+b
+iˆ
+b
+(
+)
+kˆ
+a
+jˆ
+a
+iˆ
+a(
+b
+a
+z
+z
+y
+y
+x
+x
+z
+y
+x
+z
+y
+x
+
+
+
+
+
+
+
+
+×
+=
+×
++
++
+=
+×
++
++
+×
++
++
+=
+×
+cos∅= cos(360°-∅)
+
+--- Page 50 ---
+Vector or Cross Product
+´Magnitude⃗
+𝑐=⃗𝑎× 𝑏
+𝑐= 𝑎𝑏sin ∅
+∅: the smaller of the two angles
+between the vectors, since
+sin ∅≠sin(360° −∅)
+´If ∅= 90°, c è Max
+´If ∅= 0° or 180°, c è 0⃗
+𝑐=⃗𝑎× 𝑏= 0
+Parallel or
+antiparallel
+
+--- Page 51 ---
+´Direction
+´Right-Hand Rule
+𝒂× 𝒃= −(𝒃× 𝒂)
+.ˆ
+)
+(
+ˆ
+)
+(
+ˆ
+)
+(
+),
+ˆ
+ˆ
+ˆ
+(
+)ˆ
+ˆ
+ˆ
+(
+k
+a
+b
+b
+a
+j
+b
+a
+b
+a
+i
+a
+b
+b
+a
+b
+a
+k
+b
+j
+b
+i
+b
+k
+a
+j
+a
+i
+a
+b
+a
+y
+x
+y
+x
+z
+x
+x
+z
+z
+y
+z
+y
+z
+y
+x
+z
+y
+x
+-
++
+-
++
+-
+=
+´
++
++
+´
++
++
+=
+´
+
+
+
+
+
+--- Page 52 ---
+⃗𝑎× 𝑏= 𝑎𝑥̂𝚤+ 𝑎%̂𝚥+ 𝑎&H𝑘× 𝑏𝑥̂𝚤+ 𝑏%̂𝚥+ 𝑏&H𝑘
+= 𝑎𝑥𝑏𝑥̂𝚤×̂𝚤+ 𝑎𝑥𝑏𝑦̂𝚤×̂𝚥+ 𝑎'𝑏&̂𝚤×H𝑘+ 𝑎%𝑏'̂𝚥×̂𝚤+ 𝑎𝑦𝑏𝑦̂𝚥×̂𝚥+
+𝑎%𝑏&̂𝚥×H𝑘+ 𝑎&𝑏'H𝑘×̂𝚤+ 𝑎&𝑏%H𝑘×̂𝚥+ 𝑎𝑧𝑏𝑧H𝑘×H𝑘
+= 𝑎𝑥𝑏𝑦H𝑘−𝑎'𝑏&̂𝚥−𝑎%𝑏'H𝑘+ 𝑎%𝑏&̂𝚤+ 𝑎&𝑏'̂𝚥−𝑎&𝑏%̂𝚤
+= 𝑎𝑦𝑏𝑧−𝑎&𝑏%̂ 𝚤+ 𝑎𝑧𝑏𝑥−𝑎'𝑏&̂ 𝚥+ (𝑎𝑥𝑏𝑦−𝑎%𝑏')H𝑘̂
+𝚤×̂𝚤=̂ 𝚥×̂𝚥= 9𝑘×9𝑘= 0̂
+𝚤×̂𝚥= 9𝑘= −̂𝚥×̂𝚤,̂
+ȷ×9𝑘=̂ 𝚤= −9𝑘×̂𝚥,
+9𝑘×̂𝚤= ̂ȷ = −̂𝚤×9𝑘
+
+--- Page 53 ---
+Vector Product
+´ Cross Product⃗
+𝑐 =̂
+𝚤̂
+𝚥
+/𝑘
+𝑎!
+𝑎"
+𝑎#
+𝑏!
+𝑏"
+𝑏#
+=̂ 𝚤
+𝑎"
+𝑎#
+𝑏"
+𝑏#
++̂ 𝚥
+𝑎#
+𝑎!
+𝑏#
+𝑏!
++ /𝑘
+𝑎!
+𝑎"
+𝑏!
+𝑏"
+= 𝑎𝑦𝑏𝑧−𝑎#𝑏"̂ 𝚤+ 𝑎𝑧𝑏𝑥−𝑎!𝑏#̂ 𝚥+ (𝑎𝑥𝑏𝑦
+−𝑎"𝑏!)/𝑘
+Area = 𝑐= 𝑎𝑏𝑠𝑖𝑛𝜃
+´ *Triple Products
+𝑉𝑜𝑙= |⃗𝐴· 𝐵×⃗𝐶| = |𝐵·⃗𝐶×⃗𝐴|
+= |⃗𝐶·⃗𝐴×𝐵|
+𝜃⃗
+𝑎
+𝑏
+
+--- Page 54 ---
+Cross Products
+´ Tips
+´Arrange vectors tail-to-tail: you must shift 
+the vectors in the tail-to-tail arrangement
+(or move them to the same origin in x-y-z
+coordinate system) 
+´Twist your right hand to apply the Right-
+Hand Rule
+
+--- Page 55 ---
+Problem
+If⃗𝑎= 3̂𝚤−4̂𝚥and 𝑏= −2̂𝚤+ 3-𝑘, what is⃗𝑐=⃗𝑎×𝑏?
+SOLUTION:⃗
+𝑎× 𝑏= 𝑎𝑦𝑏𝑧−𝑎&𝑏%̂ 𝚤+ 𝑎𝑧𝑏𝑥−𝑎'𝑏&̂ 𝚥+ (𝑎'𝑏% −𝑎%𝑏')H𝑘
+kˆ
+8
+jˆ
+9
+iˆ
+12
+)
+kˆ
+3
+iˆ
+2
+(
+x
+)jˆ
+4
+iˆ
+3
+(
+c
+-
+-
+-
+=
++
+-
+-
+=
+
+K𝒄⊥N𝒂𝒂𝒏𝒅K𝒄⊥R𝒃;
+A cross product gives a perpendicular vector;
+Or a vector perpendicular to the plane formed by⃗
+𝑎𝑎𝑛𝑑𝑏
+
+--- Page 56 ---
+cos ∅= −cos(∅+ 20°)
+Problem
+
+--- Page 57 ---
+Summary
+Measurement
+l
+Defined by relationships to 
+base quantities
+l
+Each defined by a standard, 
+and given a unit 
+SI Units
+l
+International System of Units
+l
+Each base unit has an 
+accessible standard of 
+measurement
+Length
+l
+Meter is defined by the 
+distance traveled by light in 
+a vacuum in a specified 
+time interval
+Changing Units
+l
+Use chain-link conversions
+l
+Write conversion factors as 
+unity
+l
+Manipulate units as 
+algebraic quantities
+
+--- Page 58 ---
+Summary
+Time
+l
+Second is defined in terms of 
+oscillations of light emitted 
+by a cesium-133 source
+l
+Atomic clocks are used as 
+the time standard
+Density
+l
+Mass/volume
+Mass
+l
+Kilogram is defined in terms 
+of a platinum-iridium 
+standard mass
+l
+Atomic-scale masses are 
+measured in u, defined as 
+mass of a carbon-12 atom
+
+--- Page 59 ---
+Vector Calculation Summary
+´ Addition and subtraction:⃗
+𝑐=⃗𝑎+ 𝑏= 𝑏+⃗𝑎and⃗𝑑=⃗𝑎- 𝑏=⃗𝑎+ (-𝑏)
+𝑐! = 𝑎! + 𝑏!, 𝑐" = 𝑎" + 𝑏", 𝑐# = 𝑎# + 𝑏#
+´ Dot product (Scalar)
+𝑐=⃗𝑎· b = 𝑎𝑏𝑐𝑜𝑠𝜃= 𝑎!𝑏! + 𝑎"𝑏" + 𝑎#𝑏#̂
+𝚤·̂ 𝚤=̂ 𝚥·̂ 𝚥= /𝑘· /𝑘= 1̂
+𝚤·̂ 𝚥=̂ 𝚥· /𝑘= /𝑘·̂ 𝚤= 0
+´ Vector product (RHR à direction)⃗
+𝑐=⃗𝑎×𝑏= 𝑎𝑦𝑏𝑧−𝑎#𝑏"̂ 𝚤+ 𝑎𝑧𝑏𝑥−𝑎!𝑏#̂ 𝚥+ (𝑎𝑥𝑏𝑦−𝑎"𝑏!)/𝑘̂
+𝚤×̂𝚤=̂ 𝚥×̂𝚥= /𝑘×/𝑘= 0̂
+𝚤×̂𝚥= /𝑘= −̂𝚥×̂𝚤,̂ ȷ×/𝑘=̂ 𝚤= −/𝑘×̂𝚥, /𝑘×̂𝚤= ̂ȷ = −̂𝚤×/𝑘
+𝑐= 𝑎𝑏𝑠𝑖𝑛𝜃=
+𝑐!$ + 𝑐"$ + 𝑐#$
+𝑐! = 𝑎𝑦𝑏𝑧−𝑎#𝑏", 𝑐" = 𝑎𝑧𝑏𝑥−𝑎!𝑏#, 𝑐# = 𝑎𝑥𝑏𝑦−𝑎"𝑏!
+Double
+Check!
+
+--- Page 60 ---
+*Additional Information
+´ You can study it, if you are interested in it.
+
+--- Page 61 ---
+
+--- Page 62 ---
+Try by
+yourselves!
+
+--- Page 63 ---
+Gradient(梯度), Divergence
+(散度) & Curl (旋度)
+
+================================================================
+附录：图片内容逐页转录 + 图说（本文件要喂给"看不到 PDF"的 AI，故图里的信息一并文字化）
+================================================================
+说明：
+1. 页码为 PDF 页序号，与正文 `--- Page N ---` 一致（幻灯片页码 = N + 1）。
+2. 本附录按页覆盖本讲义**全部含图页**。每条分两部分：
+   【图】= 图形内容描述（示意图表达了什么关系、坐标轴、关键标注）；
+   [图内文字] = 原图里能读到的文字，逐字转录（这些文字用文字层提取不到）。
+3. 正文（`--- Page N ---` 段落）已完整提取的要点不在此重复，只补"图里才有的信息"。
+4. 文件末尾附「公式还原对照」：正文里被 PDF 抽字弄坏的上下标与符号的还原表。
+
+
+----------------------------------------------------------------
+第 1 ~ 13 页（课程介绍与封面）
+----------------------------------------------------------------
+--- Page 0（幻灯片第 1 页）---
+【图】封面页背景配图（校园/学科意象拼贴）。
+[图内文字] 正文已提取：PHY1001 Mechanics（力学）/ Instructor: Ling Han（凌晗）/
+  School of Science and Engineering (SSE) / The Chinese University of Hong Kong, Shenzhen。
+
+--- Page 1（幻灯片第 2 页）---
+【图】课程平台与学习方式的图标装饰。
+[图内文字] 正文已提取：Self-Learning, ASK! / Language: English in classes, tutorials,
+  homework and exams. / Please mute your cellphones / Welcome。
+
+--- Page 4（幻灯片第 5 页）---
+【图】右侧一张 Windows「科学计算器」截图（含 度/弧度/梯度 切换、sinh/cosh/tanh、x^y、
+  x^3、x!、ln、log、π、Exp、F-E、Mod 等按键）。
+[图内文字] 图下标注：Scientific Calculator。
+  左侧成绩构成表正文已提取：In Lecture Quiz 10% / Homework Assignments 20% /
+  Mid term 30% / Final 40%。
+
+--- Page 11（幻灯片第 12 页）---
+【图】四张"物理与生活"的配图，中英对照标注：
+[图内文字]
+  · 光纤（optical fibre, Charles kuen kao）  —— 图左，光纤束中飞出地球与数据流
+  · 太阳能（Solar cell）  —— 图右上，太阳能电池板
+  · 墨子号卫星（Quantum Science Satellite）  —— 图左下，卫星在轨示意
+  · AI  —— 图右下，为 2024 年诺贝尔物理学奖官方插画：
+      "THE NOBEL PRIZE IN PHYSICS 2024"
+      "John J. Hopfield    Geoffrey E. Hinton"
+      "for foundational discoveries and inventions that enable machine learning
+       with artificial neural networks"
+      "THE ROYAL SWEDISH ACADEMY OF SCIENCES"
+      （即：2024 年诺贝尔物理学奖授予 John J. Hopfield 与 Geoffrey E. Hinton，
+        表彰其"使基于人工神经网络的机器学习成为可能的奠基性发现与发明"，瑞典皇家科学院。）
+
+--- Page 14（幻灯片第 15 页）---
+【图】三张视错觉图，用来说明"人的感官不可靠，所以必须精确定义测量标准"：
+  (1) 棋盘/明暗错觉图；(2) 艾宾浩斯式大小错觉（一圈大圆点围着一个绿点 vs 一圈小圆点围着
+  一个紫点，两者实际一样大）；(3) 缪勒-莱尔式箭头错觉（两条等长线段因端点箭头方向不同而
+  看起来不等长）。
+[图内文字] 正文已提取：Physics and engineering are based on the precise measurement of
+  physical quantities / Standards and Units for measurement / A physical quantity without
+  a unit is meaningless / Accessible / Invariable。
+
+--- Page 15（幻灯片第 16 页）---
+【图】卡通图：上排是身高各异的女性、下排是身高各异的男性，整幅图被打了一个大红叉。
+  含义：人（或任何会变化的实物）不能充当"标准"，因为标准必须
+  **Accessible（可获取）** 且 **Invariable（不随时间变化）**。
+
+--- Page 16（幻灯片第 17 页）---
+【图】秦始皇画像 + 三件古代计量器具，配中文标注"度"（尺）、"量"（量器）、"衡"（衡器）。
+  用于呼应"统一度量衡"的历史背景。
+
+----------------------------------------------------------------
+第 17 ~ 36 页（第 1 章 正文：单位、物理量与矢量）
+----------------------------------------------------------------
+--- Page 17（幻灯片第 18 页）---
+【图1】左手拿卷尺量一个圆盘：标注直径 135 mm、周长 424 mm。
+[图内文字] 图下说明："The measured values have only three significant figures, so their
+  calculated ratio (π) also has only three significant figures."
+  （测量值只有 3 位有效数字，所以由它们算出的比值 π 也只能有 3 位有效数字。）
+【图2】照片：桥梁/机械垮塌现场。
+[图内文字] 图下说明（正文已提取）："Even a small percent error can have spectacular
+  results!"（一个很小的百分比误差也能造成惊人的后果。）
+
+--- Page 18（幻灯片第 19 页）---
+【图】GPS 定位原理示意图（原图文字全部在图片里，文字层没有）：
+  一颗 GPS 接收机在地面，收到 4 颗卫星的信号，每条连线标注 DISTANCE（距离）。
+[图内文字]
+  ① Each satellite broadcast radio signals with their location, statuses and precise
+     time information.（每颗卫星广播携带自身位置、状态与精确时间信息的无线电信号。）
+  ② GPS radio signal travels at speed of light ~ 300,000 km/h.
+     （GPS 无线信号以光速传播 ~ 300,000 km/h —— 原幻灯片如此写，按语境应为 ~300,000 km/s。）
+  ③ GPS device receives radio signals, noting their exact time of arrival and uses these
+     to calculate its distance from each satellite it can see.
+     （GPS 设备接收信号并记录其精确到达时刻，据此算出到每颗可见卫星的距离。）
+  ④ Once a GPS receiver knows its distance from at least 4 satellites, it uses geometry
+     to determine its exact location on Earth in 3D.
+     （一旦接收机知道到至少 4 颗卫星的距离，就能用几何学在三维中确定自己的精确位置。）
+  图中标注：DISTANCE（×4）、GPS RECEIVER。
+[图内文字] 正文已提取：Without clocks of extreme accuracy, the Global Positioning System
+  (GPS) that is now vital to worldwide navigation would be useless.
+  链接：https://www.youtube.com/watch?v=FU_pY2sTwTA ；
+        https://en.wikipedia.org/wiki/Global_Positioning_System
+
+--- Page 19（幻灯片第 20 页）---
+【图】左下一张表格「Table 1. SI base units」（列头：Base quantity | Name SI base unit | Symbol；
+  图中"length / mass / time"三行被红圈标出），右侧是"用基本量导出其他量"的算例。
+[图内文字] Table 1. SI base units：
+    length                    meter      m
+    mass                      kilogram   kg
+    time                      second     s
+    electric current          ampere     A
+    thermodynamic temperature kelvin     K
+    amount of substance       mole       mol
+    luminous intensity        candela    cd
+  右侧（文字层已提取，此处补正写法）：1 watt = 1 W = 1 kg·m²/s³ ；
+    P = Work/time = (F·s)/t = (m·a·s)/t ；其中 m 为质量(kg)、a 为"加速的速率"(m/s²)、
+    S 为距离(m)、t 为时间(s)。
+
+--- Page 21（幻灯片第 22 页）---
+【图】折线图：横轴为年份 1980 / 1981 / 1982 / 1983，纵轴标注
+  "Difference between length of day and exactly 24 hours (ms)"（实际日长与整 24 小时的差，单位
+  毫秒），纵轴范围 +1 ~ +4 ms，曲线在 +1.5 ~ +3.6 ms 之间剧烈波动。
+[图内文字] 正文已提取：The vertical scale here amounts to only 3 ms, or 0.003 s. /
+  This shows the precision of atomic clocks, and the relative imprecision of Earth's
+  rotation (affected by tides, winds)。
+
+--- Page 23（幻灯片第 24 页）---
+【图】"(b) Measuring the meter"：光源（Light source）向右发光，两个时刻标记 0:00 s 与 1 s
+  之间画出光波，中间双向箭头标注光的行程。
+[图内文字] "Light travels exactly 299,792,458 m in 1 s."（光在 1 s 内恰好走过 299,792,458 m）
+  图片来源：© 2012 Pearson Education, Inc.
+  正文已提取：The meter is the length of the path traveled by light in vacuum during a
+  time interval of 1/299 792 458 of a second. / c = 299,792,458 m/s。
+
+--- Page 24（幻灯片第 25 页）---
+【图】Scale（尺度）图。上半为纳米标尺，下半为大尺度实物对照。
+[图内文字] 纳米标尺（横轴单位 Nanometers，刻度 10^-1 → 10^8）上依次标注：
+    Atom、Glucose（葡萄糖）、Antibody（抗体）、Virus（病毒）、Bacteria（细菌）、
+    Cancer cell（癌细胞）、A period（句号）、Tennis ball（网球）。
+  下半大尺度图：
+    (a) 10^26 m  Limit of the observable universe（可观测宇宙的边界）
+    (b) 10^11 m  Distance to the sun（到太阳的距离）
+    (c) 10^7  m  Diameter of the earth（地球直径）
+    (d) 1     m  Human dimensions（人的尺度）
+    (e) 10^-5 m  Diameter of a red blood cell（红细胞直径）
+    (f) 10^-10 m Radius of an atom（原子半径）
+    (g) 10^-14 m Radius of an atomic nucleus（原子核半径）
+  右侧文字（正文已提取）：1 nm - Tennis ball ；1 Tennis ball - earth
+  （即"1 nm 之于网球"相当于"1 个网球之于地球"的尺度比）。
+
+--- Page 25（幻灯片第 26 页）---
+【图】太阳耀斑（日珥/日冕物质抛射）特写照片，右下角嵌一张完整太阳盘面小图。
+[图内文字] 照片内标注："Earth shown for size comparison"（标出地球位置以作大小对比）。
+
+--- Page 26（幻灯片第 27 页）---
+【图】表格「Table 1-3  Some Approximate Lengths」，整页原图，文字层为空。
+[图内文字] Measurement | Length in Meters：
+    Distance to the first galaxies formed ..... 2 × 10^26
+    Distance to the Andromeda galaxy .......... 2 × 10^22
+    Distance to the nearby star Proxima Centauri .. 4 × 10^16
+    Distance to Pluto ......................... 6 × 10^12
+    Radius of Earth ........................... 6 × 10^6
+    Height of Mt. Everest ..................... 9 × 10^3
+    Thickness of this page .................... 1 × 10^-4
+    Length of a typical virus ................. 1 × 10^-8
+    Radius of a hydrogen atom ................. 5 × 10^-11
+    Radius of a proton ........................ 1 × 10^-15
+
+--- Page 27（幻灯片第 28 页）---
+【图】表格「Table 1-4  Some Approximate Time Intervals」，左右两栏，整页原图。
+[图内文字] Measurement | Time Interval in Seconds ：
+    左栏：Lifetime of the proton (predicted) 3 × 10^40 / Age of the universe 5 × 10^17 /
+      Age of the pyramid of Cheops 1 × 10^11 / Human life expectancy 2 × 10^9 /
+      Length of a day 9 × 10^4
+    右栏：Time between human heartbeats 8 × 10^-1 / Lifetime of the muon 2 × 10^-6 /
+      Shortest lab light pulse 1 × 10^-16 / Lifetime of the most unstable particle 1 × 10^-23 /
+      The Planck time(a) 1 × 10^-43
+    脚注 (a)：This is the earliest time after the big bang at which the laws of physics as
+      we know them can be applied.（这是大爆炸之后、我们已知的物理定律最早能够适用的时刻。）
+
+--- Page 28（幻灯片第 29 页）---
+【图】右上角照片：国际计量局（BIPM）保管的国际千克原器——铂铱合金圆柱体。
+[图内文字] 图片来源：Courtesy Bureau International des Poids et Mesures。
+  正文已提取当前标准：The carbon-12 atom ... assigned a mass of 12 atomic mass units (u).
+  1 u = 1.6605402 × 10^-27 kg ；6.02×10^23 atom = 1 mol（Avogadro's number）；
+  1 u/atom = 1 g/mol。
+
+--- Page 29（幻灯片第 30 页）---
+【图】表格「Table 1-5  Some Approximate Masses」，整页原图。
+[图内文字] Object | Mass in Kilograms：
+    Known universe 1 × 10^53 / Our galaxy 2 × 10^41 / Sun 2 × 10^30 / Moon 7 × 10^22 /
+    Asteroid Eros 5 × 10^15 / Small mountain 1 × 10^12 / Ocean liner 7 × 10^7 /
+    Elephant 5 × 10^3 / Grape 3 × 10^-3 / Speck of dust 7 × 10^-10 /
+    Penicillin molecule 5 × 10^-17 / Uranium atom 4 × 10^-25 / Proton 2 × 10^-27 /
+    Electron 9 × 10^-31
+
+--- Page 30（幻灯片第 31 页）---
+【图】表格「Table 1.1  Some Units of Length, Mass, and Time」，三列（Length / Mass / Time），
+  整页原图。
+[图内文字]
+  Length:
+    1 nanometer  = 1 nm  = 10^-9 m  (a few times the size of the largest atom)
+    1 micrometer = 1 μm  = 10^-6 m  (size of some bacteria and living cells)
+    1 millimeter = 1 mm  = 10^-3 m  (diameter of the point of a ballpoint pen)
+    1 centimeter = 1 cm  = 10^-2 m  (diameter of your little finger)
+    1 kilometer  = 1 km  = 10^3 m   (a 10-minute walk)
+  Mass:
+    1 microgram = 1 μg = 10^-6 g = 10^-9 kg  (mass of a very small dust particle)
+    1 milligram = 1 mg = 10^-3 g = 10^-6 kg  (mass of a grain of salt)
+    1 gram      = 1 g  = 10^-3 kg            (mass of a paper clip)
+  Time:
+    1 nanosecond  = 1 ns = 10^-9 s  (time for light to travel 0.3 m)
+    1 microsecond = 1 μs = 10^-6 s  (time for space station to move 8 mm)
+    1 millisecond = 1 ms = 10^-3 s  (time for sound to travel 0.35 m)
+  正文已提取：Unit prefixes — Table below shows some larger and smaller units for the
+  fundamental quantities.
+
+--- Page 33（幻灯片第 34 页）---
+【图】电视剧《人民的名义》中赵德汉"现金墙"场景截图（字幕"面币思过"），
+  用来直观展示"1 亿元百元钞票"的体积。
+[图内文字] 公式（文字层已提取，此处写正）：For 100 millions:
+  Vol. = (1×10^8 / 100) × Mass/density = 10^6 × (1.15×10^-3 kg) / (966 kg/m³) = 1.19 m³。
+  For used ¥100, Vol. can be nearly 2 m³（若用旧钞，体积可近 2 m³）。
+
+--- Page 34（幻灯片第 35 页）---
+【图1】游标卡尺实物照片。【图2】卷尺量圆盘示意（同 Page 17：135 mm / 424 mm）。
+[图内文字] 正文已提取：Ruler: 135 mm, only reliable to 1 mm. / Caliper: 135.00 mm /
+  Significant Figures: The uncertainty (error) is indicated by number of digits. /
+  135 mm → 3 significant figures → uncertainty about 1 mm /
+  135.00 mm → 5 significant figures → uncertainty about 0.01 mm /
+  Significant figures are not decimal places / 0.00356 has 5 decimal places, 3 significant
+  figures。
+
+--- Page 36（幻灯片第 37 页）---
+【图】"世界最大线球"的照片（约 2 m 半径）。
+[图内文字] 正文已提取题干：The world's largest ball of string is about 2 m in radius.
+  Estimate the total length of the string. Diameters of the string is around 0.004 m.
+  公式（写正）：
+    V = (4π/3)R³ = π(d/2)² L
+    L = 16R³/(3d²) ≈ 2.6×10^6 m ≈ 3×10^6 m（1 significant figure）
+
+--- Page 39（幻灯片第 40 页）---
+【图】矢量加法示意：右上为"从 a 的尾连到 b 的头"得到合矢量（三角形法则）；
+  下方三幅说明**相加顺序任意**，结果相同。
+[图内文字] 图中标注：Start、Finish、Vector sum、a + b、b + a；
+  提示框："You get the same vector result for any order of adding the vectors."
+  （无论按什么顺序相加，得到的合矢量都一样。）
+  正文已提取：s = a + b ；a + b = b + a ；a + b + c = a + (b + c)。
+
+--- Page 41（幻灯片第 42 页）---
+【图】三条矢量运算律的排版图 + 底部一个「Checkpoint 1」思考题框（题目只在图里）。
+[图内文字] Checkpoint 1:
+  "The magnitudes of displacements a and b are 3 m and 4 m, respectively, and c = a + b.
+   Considering various orientations of a and b, what are (a) the maximum possible magnitude
+   for c and (b) the minimum possible magnitude?"
+  （位移 a、b 的大小分别为 3 m 和 4 m，c = a + b。考虑 a、b 的各种取向，
+   求 c 可能的最大与最小大小。）
+  答案（正文只提取到这一行）：7 or 1 m。
+  三条运算律（正文已提取）：a + b = b + a（Commutative Law）；
+  (a + b) + c = a + (b + c)（Associative Law）；d = a − b = a + (−b)（Vector Subtraction）。
+
+--- Page 42（幻灯片第 43 页）---
+【图】矢量分量示意：(a)(b) 两种取向下的 a_x、a_y 投影；(c) 分量与矢量构成直角三角形。
+[图内文字] 图中标注："This is the x component of the vector." /
+  "This is the y component of the vector." /
+  "The components and the vector form a right triangle."
+  正文已提取：Place the vector in a 2-dimensional rectangular coordinate system (x-y) /
+  Component: the projection of the vector on axes。
+
+--- Page 43（幻灯片第 44 页）---
+【图】一个具体矢量的分量图（带网格）：矢量 b 指向第四象限。
+[图内文字] 图中标注：+ve angle / -ve angle 、b_x = 7 m 、b_y = -5 m（注意是负值）、
+  "This is the x component of the vector." / "This is the y component of the vector."
+  正文（写正）：a_x = a cos θ ，a_y = a sin θ ；a = √(a_x² + a_y²)；
+  tan θ = a_y / a_x（图中正负角分别对应第二、第四象限）。
+
+--- Page 44（幻灯片第 45 页）---
+【图1】右手直角坐标系中三个单位矢量 î、ĵ、k̂ 沿 x、y、z 轴指向的示意。
+[图内文字] "The unit vectors point along axes." /
+  Figure 3.13  "Unit vectors î, ĵ, and k̂ define the directions of a right-handed
+  coordinate system."（单位矢量 î、ĵ、k̂ 定义右手坐标系的方向。）
+【图2】照片：右手摆出三指互相垂直的手势，叠加红箭头标出 x、y、z 轴。
+[图内文字] "a right-hand coordinate system"（右手坐标系）。
+
+--- Page 45（幻灯片第 46 页）---
+【图】单位矢量分解图：(a)(b) 两种画法展示 a_x、a_y 与 a 的三角形关系。
+[图内文字] 图中标注："This is the x vector component." / "This is the y vector component."；
+  公式（写正）：a = a_x î + a_y ĵ。
+
+--- Page 52（幻灯片第 53 页）---
+【图】左下角为右手直角坐标系图标（x、y、z 轴与 î、ĵ、k̂ 的指向）。
+[图内文字] 正文已提取叉积展开推导（写正）：
+  a × b = (a_x î + a_y ĵ + a_z k̂) × (b_x î + b_y ĵ + b_z k̂)
+        = a_x b_x (î×î) + a_x b_y (î×ĵ) + a_x b_z (î×k̂) + a_y b_x (ĵ×î) + a_y b_y (ĵ×ĵ)
+          + a_y b_z (ĵ×k̂) + a_z b_x (k̂×î) + a_z b_y (k̂×ĵ) + a_z b_z (k̂×k̂)
+        = a_x b_y k̂ − a_x b_z ĵ − a_y b_x k̂ + a_y b_z î + a_z b_x ĵ − a_z b_y î
+        = (a_y b_z − a_z b_y) î + (a_z b_x − a_x b_z) ĵ + (a_x b_y − a_y b_x) k̂
+  单位矢量关系：î×î = ĵ×ĵ = k̂×k̂ = 0 ；î×ĵ = k̂ = −ĵ×î ；ĵ×k̂ = î = −k̂×ĵ ；
+  k̂×î = ĵ = −î×k̂。
+
+--- Page 53（幻灯片第 54 页）---
+【图1】平行四边形（由 a、b 张成），高用虚线画出，夹角 θ —— 表示叉积大小 = 面积。
+【图2】由 A、B、C 三矢量张成的平行六面体，标注 B×C（垂直 B、C 平面）、夹角 φ、θ。
+[图内文字] 正文已提取（写正）：
+  c = | î  ĵ  k̂ ; a_x a_y a_z ; b_x b_y b_z |
+    = î (a_y b_z − a_z b_y) + ĵ (a_z b_x − a_x b_z) + k̂ (a_x b_y − a_y b_x)
+    = (a_y b_z − a_z b_y) î + (a_z b_x − a_x b_z) ĵ + (a_x b_y − a_y b_x) k̂
+  Area = c = a b sin θ
+  *Triple Products: Vol = |A · (B×C)| = |B · (C×A)| = |C · (A×B)|
+
+--- Page 59（幻灯片第 60 页）---
+【图】右手坐标系与矢量运算示意图（与前面 Page 39/44/52 的图为同一组）。
+[图内文字] 正文已完整提取"Vector Calculation Summary"的全部公式与"Double Check!"提示。
+
+----------------------------------------------------------------
+第 61 ~ 64 页（附加内容，三页整页图片）
+----------------------------------------------------------------
+--- Page 61（幻灯片第 62 页）---
+【图】整页图片：「Products of Vectors — Triple Products」，含平行六面体示意图。
+[图内文字]
+  • Triple Products
+    The volume of the parallelepiped formed by vectors A, B and C is determined by their
+    triple scalar product  A · (B × C)  as shown in the following diagram.
+  图中标注：B × C（垂直于 B、C 所在平面的向量）、A、C、B、夹角 φ（A 与 B×C 之间）、
+  夹角 θ（B 与 C 之间）。
+
+--- Page 62（幻灯片第 63 页）---
+【图】整页图片：「Products of Vectors — Triple Vector Product」。
+[图内文字]
+  • Triple Products
+    For three vectors A, B and C; the Triple Vector Product can be expressed as:
+        A × (B × C) = (A · C) B − (A · B) C          （旁注：Try by yourselves!）
+    It is easily to show that
+        A × (B × C) ≠ (A × B) × C   in general.
+
+--- Page 63（幻灯片第 64 页）---
+【图】整页图片：「Gradient(梯度), Divergence(散度) & Curl(旋度)」，红色手写风格公式。
+[图内文字]
+  • Gradient for a scalar field  f(x, y, z)
+      ∇f = (∂f/∂x) î + (∂f/∂y) ĵ + (∂f/∂z) k̂
+    旁注：∇ is an operator（算符），~ d/dr 或 (∂/∂x, ∂/∂y, ∂/∂z)
+  • Divergence for a vector field  F(x,y,z) = F_x(x,y,z) î + F_y(x,y,z) ĵ + F_z(x,y,z) k̂
+      ∇ · F = ∂F_x/∂x + ∂F_y/∂y + ∂F_z/∂z
+  • Curl for a vector field
+      ∇ × F = | î   ĵ   k̂ ; ∂/∂x ∂/∂y ∂/∂z ; F_x F_y F_z |
+            = (∂F_z/∂y − ∂F_y/∂z) î − (∂F_z/∂x − ∂F_x/∂z) ĵ + (∂F_y/∂x − ∂F_x/∂y) k̂
+
+----------------------------------------------------------------
+公式还原对照（正文由 PDF 文字层线性化产生：上/下标掉行、特殊字体乱码）
+----------------------------------------------------------------
+- 上标被压平：`m/s2` → m/s²；`t2`/`t.` → t²；`10-27` → 10^-27；`x2 + y2` → x² + y²。
+- 下标被拆到下一行：`a x`/`a y`/`a z` 实为 a_x / a_y / a_z；`x1`/`x2` 实为 x₁ / x₂；
+  `v0` 实为 v₀；`a!`/`a"`/`a#` 实为 a_x / a_y / a_z（下标字体错位）。
+- 特殊字体乱码：`3̂𝚤` / `ŷ𝚥` / `&H𝑘` 实为 î / ĵ / k̂；`⃗𝑎` 为向量 a；`q` 实为 θ；
+  `à` 实为箭头"→"；`è` 实为"趋于/取到"。
+- 列表符号：`´`、`l`、`n`、`q`、`•` 均为 PPT 项目符号被逐个提取，不是正文内容。
+- Page 19：`1 𝑢/𝑎𝑡𝑜𝑚= 1 𝑔/𝑚𝑜𝑙` 实为 1 u/atom = 1 g/mol；
+  `6.02×10!" 𝑎𝑡𝑜𝑚= 1 𝑚𝑜𝑙` 实为 6.02×10^23 atom = 1 mol。
+- Page 36：`𝑉= 4𝜋/3 𝑅.` 实为 V = (4π/3)R³；`𝐿= 16𝑅./3𝑑/` 实为 L = 16R³/(3d²)。
+- Page 33：`𝑉𝑜𝑙. = 1×10! / 100 × 𝑀𝑎𝑠𝑠/𝑑𝑒𝑛𝑠𝑖𝑡𝑦 = 10"× 1.15×10#$ 𝑘𝑔 / 966 𝑘𝑔/𝑚$ = 1.19 𝑚$`
+  实为 Vol. = (1×10^8/100) × Mass/density = 10^6 × (1.15×10^-3 kg)/(966 kg/m³) = 1.19 m³。

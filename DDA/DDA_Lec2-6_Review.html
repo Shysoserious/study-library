@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA 复习笔记 | Lecture 2-6 概率论基础</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1a;--text2:#555;--accent:#534AB7;--accent2:#0F6E56;--red:#E24B4A;--amber:#BA7517;--blue:#185FA5;--pink:#C43B7A;--border:#e5e3de;--code-bg:#f3f1ec;--sidebar-bg:#f0eee9;--sidebar-w:260px;}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--card:#252525;--text:#e8e6e0;--text2:#999;--accent:#AFA9EC;--accent2:#5DCAA5;--red:#F09595;--amber:#FAC775;--blue:#85B7EB;--pink:#F29BC1;--border:#333;--code-bg:#2c2c2a;--sidebar-bg:#1f1f1f;}}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-bg);border-right:1px solid var(--border);overflow-y:auto;padding:20px 0;z-index:100;transition:transform .3s;}
+.sidebar .logo{padding:0 20px 16px;font-size:15px;font-weight:700;color:var(--accent);border-bottom:1px solid var(--border);margin-bottom:12px;}
+.sidebar a{display:block;padding:6px 20px;color:var(--text2);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .15s;}
+.sidebar a:hover,.sidebar a.active{color:var(--accent);background:rgba(83,74,183,.06);border-left-color:var(--accent);}
+.sidebar .sec{font-size:12px;font-weight:700;color:var(--text2);padding:14px 20px 6px;text-transform:uppercase;letter-spacing:.5px;}
+.sidebar .sub{padding-left:34px;font-size:12px;}
+
+.main{margin-left:var(--sidebar-w);padding:30px 40px 60px;}
+.container{max-width:860px;margin:0 auto;}
+
+.menu-btn{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--accent);color:#fff;border:none;border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;}
+@media(max-width:800px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;padding:20px;}
+  .menu-btn{display:flex;align-items:center;justify-content:center;}
+}
+
+h1{font-size:26px;font-weight:700;margin-bottom:6px;color:var(--accent);}
+h2{font-size:21px;font-weight:600;margin:36px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--accent);color:var(--accent);}
+h3{font-size:17px;font-weight:600;margin:22px 0 10px;color:var(--text);}
+h4{font-size:14px;font-weight:600;margin:14px 0 6px;color:var(--text2);}
+p{margin-bottom:11px;}
+.subtitle{color:var(--text2);font-size:14px;margin-bottom:24px;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin:14px 0;}
+.card-accent{border-left:4px solid var(--accent);}
+.card-green{border-left:4px solid var(--accent2);}
+.card-red{border-left:4px solid var(--red);}
+.card-amber{border-left:4px solid var(--amber);}
+.card-blue{border-left:4px solid var(--blue);}
+.card-pink{border-left:4px solid var(--pink);}
+
+.formula{background:var(--code-bg);border-radius:10px;padding:14px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-tip{background:#E1F5EE;color:#0F6E56;}
+
+.key{color:var(--red);font-weight:600;}
+.eng{color:var(--blue);font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:38px;margin-bottom:14px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+.example-box{background:var(--code-bg);border-radius:10px;padding:12px 16px;margin:10px 0;}
+
+.lecture-divider{background:linear-gradient(135deg,#534AB7,#8B84D8);color:#fff;padding:20px 22px;border-radius:12px;margin:36px 0 18px;}
+.lecture-divider h2{color:#fff;border:none;margin:0;padding:0;font-size:21px;}
+.lecture-divider p{color:#dfd9ff;font-size:12px;margin:3px 0 0;}
+.lecture-divider.orange{background:linear-gradient(135deg,#D8734E,#E69975);}
+.lecture-divider.orange p{color:#fff0e8;}
+.lecture-divider.teal{background:linear-gradient(135deg,#0F6E56,#5DCAA5);}
+.lecture-divider.teal p{color:#d0f5e8;}
+.lecture-divider.rose{background:linear-gradient(135deg,#C43B7A,#E97FAE);}
+.lecture-divider.rose p{color:#ffe0f0;}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);font-size:13px;}
+th{background:var(--code-bg);font-weight:600;}
+
+.kcards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}
+.kcard{text-align:center;padding:12px 8px;border-radius:10px;border:2px solid var(--border);font-size:12px;}
+.kcard .kv{font-size:18px;font-weight:700;color:var(--accent);}
+.kcard .kd{margin-top:3px;color:var(--text2);font-size:11px;}
+@media(max-width:700px){.kcards{grid-template-columns:1fr 1fr;}}
+
+.progress{position:fixed;top:0;left:var(--sidebar-w);right:0;height:3px;background:var(--accent);z-index:99;transition:width .1s;}
+@media(max-width:800px){.progress{left:0;}}
+.nav{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<button class="menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+<a href="#top" class="nav">&uarr;</a>
+
+<nav class="sidebar">
+<div class="logo">&#x1F4CA; DDA Lec 2-6</div>
+
+<div class="sec">Lec 2 &middot; 课程概论</div>
+<a href="#L2">Introduction</a>
+<a href="#L2-1" class="sub">1. 数据科学技能</a>
+<a href="#L2-2" class="sub">2. 概率 vs 统计 vs ML</a>
+<a href="#L2-3" class="sub">3. 自动贩卖机案例</a>
+
+<div class="sec">Lec 3 &middot; 基础概率</div>
+<a href="#L3">Elementary Probability</a>
+<a href="#L3-1" class="sub">1. 概率的定义</a>
+<a href="#L3-2" class="sub">2. 样本空间与事件</a>
+<a href="#L3-3" class="sub">3. 集合运算</a>
+<a href="#L3-4" class="sub">4. 概率函数与加法</a>
+<a href="#L3-5" class="sub">5. Joint &amp; Disjoint</a>
+
+<div class="sec">Lec 4 &middot; 条件概率与RV</div>
+<a href="#L4">Conditional Prob &amp; RV</a>
+<a href="#L4-1" class="sub">1. 条件概率</a>
+<a href="#L4-2" class="sub">2. 独立性</a>
+<a href="#L4-3" class="sub">3. 随机变量</a>
+<a href="#L4-4" class="sub">4. 期望</a>
+<a href="#L4-5" class="sub">5. CDF</a>
+<a href="#L4-6" class="sub">6. 方差</a>
+
+<div class="sec">Lec 5 &middot; 公式</div>
+<a href="#L5">Useful Formulas</a>
+<a href="#L5-1" class="sub">1. 期望的线性性</a>
+<a href="#L5-2" class="sub">2. 方差恒等式</a>
+<a href="#L5-3" class="sub">3. Hat Check 问题</a>
+
+<div class="sec">Lec 6 &middot; 离散分布</div>
+<a href="#L6">Discrete Distributions</a>
+<a href="#L6-1" class="sub">1. Bernoulli 分布</a>
+<a href="#L6-2" class="sub">2. Binomial 分布</a>
+<a href="#L6-3" class="sub">3. Geometric 分布</a>
+<a href="#L6-4" class="sub">4. 应用例题</a>
+</nav>
+
+<div class="main">
+<div class="container" id="top">
+
+<h1>概率论基础 &middot; 离散分布</h1>
+<p class="subtitle">Lecture 2&ndash;6 | Introduction to Data Science | Prof. Pin Gao | 期末复习专用</p>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 2                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider" id="L2">
+<h2 style="color:#fff;">Lecture 2 &mdash; Introduction to Data Science</h2>
+<p>数据科学导论 &mdash; 技能、思路、与应用案例</p>
+</div>
+
+<h2 id="L2-1">1. 数据科学需要的技能</h2>
+
+<div class="card card-accent">
+<div class="kcards">
+<div class="kcard"><div class="kv">Prob</div><div class="kd">概率论</div></div>
+<div class="kcard"><div class="kv">Stats</div><div class="kd">统计学</div></div>
+<div class="kcard"><div class="kv">ML</div><div class="kd">机器学习</div></div>
+</div>
+<div class="kcards">
+<div class="kcard"><div class="kv">Optim</div><div class="kd">优化</div></div>
+<div class="kcard"><div class="kv">Code</div><div class="kd">编程</div></div>
+<div class="kcard"><div class="kv">Sim</div><div class="kd">仿真模拟</div></div>
+</div>
+</div>
+
+<h2 id="L2-2">2. 概率 vs 统计 vs ML</h2>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Core Distinction</span>
+<h3>概率与统计的区别</h3>
+<table>
+<tr><th></th><th>概率 Probability</th><th>统计 Statistics</th></tr>
+<tr><td><strong>方向</strong></td><td>模型 &rarr; 数据</td><td>数据 &rarr; 模型</td></tr>
+<tr><td><strong>问题</strong></td><td>给定数据生成过程，结果有什么性质？</td><td>给定观测结果，数据生成过程是什么？</td></tr>
+<tr><td><strong>例子</strong></td><td>公平硬币抛10次，得到5次正面的概率？</td><td>观察到10次全反面，硬币公平吗？</td></tr>
+</table>
+</div>
+
+<div class="card card-pink">
+<span class="tag tag-exam">Example</span>
+<h3>盲盒例题 (Blind Box)</h3>
+<p>10人各买1个盲盒，被告知 Harry Potter 和 Voldemort 各 50%。结果10人全得到 Voldemort。</p>
+<div class="example-box">
+<p><strong>概率角度</strong>：若 $p=0.5$，则 $P(\text{全V}) = (0.5)^{10} < 0.001$</p>
+<p><strong>统计角度</strong>：观测到极不可能的结果 &rarr; 我们有理由怀疑 $p \neq 0.5$（卖家在说谎）</p>
+</div>
+<p>这个例子很好地展示了：<span class="highlight">概率是从模型推结果，统计是从结果推模型</span>。</p>
+</div>
+
+<h2 id="L2-3">3. 自动贩卖机案例</h2>
+
+<div class="card card-green">
+<span class="tag tag-tip">Application</span>
+<h3>库存决策问题</h3>
+<p>$N$ 种商品，$X_i$ = 第 $i$ 种商品的随机日需求，$C_i$ = 补货后库存量。</p>
+<p>实际销量 $= \min(X_i, C_i)$。目标：</p>
+<div class="formula">$$\max_{C_1,\dots,C_N} \sum_{i=1}^N r_i \cdot E[\min(X_i, C_i)]$$</div>
+<p>三种建模方法：</p>
+<table>
+<tr><th>方法</th><th>思路</th><th>特点</th></tr>
+<tr><td>频率直方图</td><td>直接用历史频率</td><td>太细碎，噪声多，参数多</td></tr>
+<tr><td><span class="key">概率模型</span></td><td>假设需求服从某分布（如对数正态），少量参数描述</td><td>可解释，简洁</td></tr>
+<tr><td>ML 方法</td><td>不指定分布，直接学 inventory &rarr; expected revenue</td><td>灵活但需更多数据</td></tr>
+</table>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 3                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider teal" id="L3">
+<h2 style="color:#fff;">Lecture 3 &mdash; Elementary Probability Theory</h2>
+<p>基础概率论 &mdash; 样本空间、事件、概率函数</p>
+</div>
+
+<h2 id="L3-1">1. 概率的定义 <span class="eng">Definition of Probability</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>什么是概率？</h3>
+<p><span class="eng">Random experiment</span>（随机实验）：每次以相同方式重复，但可能产生不同结果的实验。</p>
+<p><span class="eng">Probability</span>（概率）：量化随机实验中某个结果发生的可能性。</p>
+<p><span class="highlight">频率解释</span>：若将实验重复无穷多次，某个结果出现的频率收敛到一个数 &mdash; 这就是概率。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>掷骰子频率实验</h3>
+<p>掷公平骰子，得到 2 的概率 = $1/6$。</p>
+<p>掷 10 次：频率可能偏离 $1/6$（随机波动）</p>
+<p>掷 1000 次：频率更接近 $1/6$</p>
+<p>掷 100000 次：频率非常接近 $1/6$</p>
+<p><span class="key">大数定律直觉</span>：实验次数 &rarr; &infin; 时，频率 &rarr; 概率。</p>
+</div>
+
+<h2 id="L3-2">2. 样本空间与事件</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Terminology</span>
+<h3>核心术语</h3>
+<table>
+<tr><th>术语</th><th>英文</th><th>定义</th></tr>
+<tr><td>结果</td><td><span class="eng">Outcome</span></td><td>随机实验的一个<span class="key">单一</span>可能结果（包含完整信息）；两个outcome不能同时发生</td></tr>
+<tr><td>样本空间</td><td><span class="eng">Sample Space $S$</span></td><td>所有可能 outcome 的集合</td></tr>
+<tr><td>事件</td><td><span class="eng">Event</span></td><td>outcome 的子集；我们关心的"某个条件是否满足"</td></tr>
+</table>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Key Point</span>
+<h3>离散 vs 连续样本空间</h3>
+<table>
+<tr><th>类型</th><th>特征</th><th>例子</th></tr>
+<tr><td><span class="key">Discrete</span></td><td>可列举 (countable)</td><td>掷骰子 $S=\{1,2,3,4,5,6\}$</td></tr>
+<tr><td><span class="key">Continuous</span></td><td>不可列举</td><td>明天最高温度、到达时间</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>盲盒样本空间</h3>
+<p>买两个盲盒（H = Harry Potter, V = Voldemort）。</p>
+<p>每个结果是有序对（第一个盒子的结果, 第二个盒子的结果）。</p>
+<p>$S = \{HH, HV, VH, VV\}$（4个outcome）</p>
+</div>
+
+<h2 id="L3-3">3. 集合运算 <span class="eng">Set Operations</span></h2>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Operations</span>
+<h3>三种基本运算</h3>
+<table>
+<tr><th>运算</th><th>符号</th><th>含义</th></tr>
+<tr><td>并集 <span class="eng">Union</span></td><td>$A \cup B$</td><td>$A$ 或 $B$ 至少一个发生</td></tr>
+<tr><td>交集 <span class="eng">Intersection</span></td><td>$A \cap B$</td><td>$A$ 和 $B$ 同时发生</td></tr>
+<tr><td>补集 <span class="eng">Complement</span></td><td>$A^c$</td><td>$A$ 不发生</td></tr>
+</table>
+<h4>重要性质</h4>
+<p>• $(A^c)^c = A$</p>
+<p>• $A \cup B = B \cup A$，$A \cap B = B \cap A$</p>
+<p>• <span class="key">De Morgan</span>：$(A\cup B)^c = A^c \cap B^c$，$(A\cap B)^c = A^c \cup B^c$</p>
+</div>
+
+<h2 id="L3-4">4. 概率函数与加法法则</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Axioms</span>
+<h3>概率公理</h3>
+<p>对离散样本空间 $S$，概率函数 $P$ 满足：</p>
+<p>1. $0 \le P(\text{outcome}) \le 1$，对每个 outcome</p>
+<p>2. $\sum_{\text{all outcomes}} P(\text{outcome}) = 1$</p>
+<p>3. 对事件 $A$：$P(A) = \sum_{\text{outcomes} \in A} P(\text{outcome})$</p>
+</div>
+
+<div class="card card-red">
+<span class="tag tag-thm">Addition Rule</span>
+<h3>加法法则（重要考点）</h3>
+<div class="formula">$$P(A \cup B) = P(A) + P(B) - P(A \cap B)$$</div>
+<p>特别地，若 $A \cap B = \varnothing$（互斥事件）：</p>
+<div class="formula">$$P(A \cup B) = P(A) + P(B)$$</div>
+<p>补集法则：$P(A^c) = 1 - P(A)$</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>概率计算练习</h3>
+<p>样本空间 $S = \{a,b,c,d\}$，$P(a)=0.1$，$P(b)=0.3$，$P(c)=0.5$，$P(d)=?$</p>
+<div class="example-box">
+<p><strong>解</strong>：$P(d) = 1 - 0.1 - 0.3 - 0.5 = 0.1$（概率之和 = 1）</p>
+</div>
+</div>
+
+<h2 id="L3-5">5. Joint &amp; Disjoint 事件</h2>
+
+<div class="card card-blue">
+<span class="tag tag-def">Definition</span>
+<h3>互斥 vs 联合事件</h3>
+<table>
+<tr><th></th><th>Disjoint（互斥）</th><th>Joint（可联合）</th></tr>
+<tr><td>含义</td><td>$A \cap B = \varnothing$，不可能同时发生</td><td>$A \cap B \neq \varnothing$，可能同时发生</td></tr>
+<tr><td>加法</td><td>$P(A\cup B) = P(A)+P(B)$</td><td>$P(A\cup B) = P(A)+P(B)-P(A\cap B)$</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>抛两次硬币</h3>
+<p>$S = \{HH, HT, TH, TT\}$，每个概率 $= 0.25$。</p>
+<table>
+<tr><th>事件对</th><th>$P(A)$</th><th>$P(B)$</th><th>$P(A\cup B)$</th><th>$P(A\cap B)$</th><th>类型</th></tr>
+<tr><td>H1, T1</td><td>0.5</td><td>0.5</td><td>1</td><td>0</td><td><span class="key">Disjoint</span></td></tr>
+<tr><td>H1, H2</td><td>0.5</td><td>0.5</td><td>0.75</td><td>0.25</td><td><span class="key">Joint</span></td></tr>
+</table>
+<p>H1 = "第一次正面"，T1 = "第一次反面" &rarr; 不可能同时发生，互斥。</p>
+<p>H1 = "第一次正面"，H2 = "第二次正面" &rarr; HH 同时满足，非互斥。</p>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 4                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider rose" id="L4">
+<h2 style="color:#fff;">Lecture 4 &mdash; Conditional Probability &amp; Random Variables</h2>
+<p>条件概率、独立性、随机变量、期望与方差</p>
+</div>
+
+<h2 id="L4-1">1. 条件概率 <span class="eng">Conditional Probability</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>条件概率公式</h3>
+<div class="formula">$$P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0$$</div>
+<p>含义：在已知 $B$ 发生的条件下，$A$ 发生的概率。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Derived</span>
+<h3>乘法法则</h3>
+<div class="formula">$$P(A \cap B) = P(A|B) \cdot P(B) = P(B|A) \cdot P(A)$$</div>
+</div>
+
+<h2 id="L4-2">2. 独立性 <span class="eng">Independence</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Definition</span>
+<h3>事件独立性（重要考点）</h3>
+<p>$A$ 和 $B$ 独立 $\iff$</p>
+<div class="formula">$$P(A \cap B) = P(A) \cdot P(B)$$</div>
+<p>等价于：$P(A|B) = P(A)$（知道 $B$ 不改变 $A$ 的概率）。</p>
+<p><span class="key">注意</span>：独立 $\neq$ 互斥！互斥意味着一个发生另一个不发生（反而是最依赖的情况）。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>掷两个骰子</h3>
+<p><strong>依赖的例子</strong>：$A$: 第一个数=1，$B$: 两数之和>2</p>
+<p>$P(A)=1/6$，$P(B)=35/36$，$P(A\cap B)=5/36$</p>
+<p>$P(A)\cdot P(B) = 35/216 \neq 5/36$ &rarr; <span class="key">不独立</span></p>
+
+<p><strong>独立的例子</strong>：$A$: 第一个数为偶数，$B$: 两数之和为偶数</p>
+<p>$P(A)=1/2$，$P(B)=1/2$，$P(A\cap B)=1/4$</p>
+<p>$P(A)\cdot P(B) = 1/4 = P(A\cap B)$ &rarr; <span class="key">独立</span></p>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-thm">N experiments</span>
+<h3>多个独立实验</h3>
+<p>$N$ 个实验互相独立，则联合概率 = 各概率之积：</p>
+<div class="formula">$$P(w_1=x_1, w_2=x_2, \dots, w_N=x_N) = \prod_{i=1}^N P(w_i = x_i)$$</div>
+</div>
+
+<h2 id="L4-3">3. 离散随机变量 <span class="eng">Discrete Random Variable</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>随机变量</h3>
+<p><span class="eng">Random variable</span> $X$：将 outcome 映射为数值的函数。$X: S \to \mathbb{R}$。</p>
+<p>它告诉我们<span class="highlight">"哪个 outcome 发生了，以及它对应什么量"</span>。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-def">PMF</span>
+<h3>概率质量函数 <span class="eng">Probability Mass Function</span></h3>
+<div class="formula">$$f(x) = P(X = x)$$</div>
+<p>性质：</p>
+<p>1. $f(x) \ge 0$ 对所有 $x$</p>
+<p>2. $\sum_{x \in \text{Range}} f(x) = 1$</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>掷骰子赌博</h3>
+<p>掷骰子：若结果 $\in\{1,2\}$ 赚 \$1；若 $\in\{3,4\}$ 赚 \$5；若 $\in\{5,6\}$ 亏 \$3。</p>
+<p>定义 $X$ = 收益，则 $X$ 的 PMF：</p>
+<table>
+<tr><th>$x$</th><th>$1$</th><th>$5$</th><th>$-3$</th></tr>
+<tr><td>$f(x)$</td><td>$2/6$</td><td>$2/6$</td><td>$2/6$</td></tr>
+</table>
+</div>
+
+<h2 id="L4-4">4. 期望 <span class="eng">Expectation / Mean</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Formula</span>
+<h3>期望（重要考点）</h3>
+<p><strong>动机</strong>：玩很多局，平均赚多少？</p>
+<div class="formula">$$E[X] = \sum_{x \in \text{Range}} x \cdot f(x) = \sum_{x \in \text{Range}} x \cdot P(X=x)$$</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>掷硬币游戏</h3>
+<p>Game 1：正面赢 \$2，反面亏 \$1。</p>
+<div class="example-box">
+<p>$E[X] = 2 \times 0.5 + (-1) \times 0.5 = 0.5$</p>
+<p>平均每局赚 \$0.5。</p>
+</div>
+</div>
+
+<h2 id="L4-5">5. 累积分布函数 <span class="eng">CDF</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>CDF 定义与性质</h3>
+<div class="formula">$$F(x) = P(X \le x)$$</div>
+<p>性质：</p>
+<p>1. $0 \le F(x) \le 1$</p>
+<p>2. $F$ 单调不减：$x \le y \implies F(x) \le F(y)$</p>
+<p>3. 若 $F(x) = F(y)$ 且 $x < y$，则 $P(x < X \le y) = 0$</p>
+<p>4. <span class="key">$P(X=x) \neq 0$ 仅在 CDF 有跳跃的点</span></p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>从 CDF 读取 PMF</h3>
+<p>CDF 在 $x=-2$ 处跳 0.2，在 $x=0$ 处跳 0.5，在 $x=2$ 处跳 0.3。</p>
+<div class="example-box">
+<p>Range = $\{-2, 0, 2\}$</p>
+<p>$f(-2) = 0.2$，$f(0) = 0.5$，$f(2) = 0.3$</p>
+</div>
+</div>
+
+<h2 id="L4-6">6. 方差 <span class="eng">Variance</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Formula</span>
+<h3>方差（重要考点）</h3>
+<p><strong>动机</strong>：量化"随机变量偏离均值的平均程度" &mdash; 衡量<span class="key">风险</span>。</p>
+<div class="formula">$$\text{Var}(X) = E[(X - E[X])^2] = \sum_x (x - E[X])^2 \cdot f(x)$$</div>
+<p>计算步骤：先算 $E[X]$，再算上式。</p>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Financial Intuition</span>
+<h3>金融直觉</h3>
+<p>两支股票平均收益率相同（10%），但波动不同。</p>
+<p>方差大 &rarr; 更可能产生大亏损 &rarr; <span class="key">风险更高</span>。</p>
+<p>投资目标：最大化 Average Return $-$ Risk（Markowitz Model 核心思想）。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>两个游戏的风险对比</h3>
+<p><strong>Game 1</strong>：正面赢 \$3，反面亏 \$1。$E[X] = 1$。</p>
+<div class="example-box">
+<p>$\text{Var}(X) = (3-1)^2 \times 0.5 + (-1-1)^2 \times 0.5 = 2+2 = 4$</p>
+</div>
+<p><strong>Game 2</strong>：正面赢 \$1000000003，反面亏 \$1000000001。$E[X] = 1$。</p>
+<div class="example-box">
+<p>均值相同，但方差极大！虽然"平均"赚 \$1，但一次亏损就是 10 亿。</p>
+<p>理性人会选 Game 1（低风险）。</p>
+</div>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 5                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider orange" id="L5">
+<h2 style="color:#fff;">Lecture 5 &mdash; Some Useful Formulas</h2>
+<p>期望的线性性 &middot; 方差恒等式 &middot; Hat Check 经典问题</p>
+</div>
+
+<h2 id="L5-1">1. 期望的线性性 <span class="eng">Linearity of Expectation</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Key Formula</span>
+<h3>线性性公式（最重要的工具之一）</h3>
+<p>无论随机变量之间是否独立，<span class="key">总是</span>成立：</p>
+<div class="formula">$$E[X_1 + X_2 + \dots + X_n] = E[X_1] + E[X_2] + \dots + E[X_n]$$</div>
+<div class="formula">$$E[aX + b] = aE[X] + b$$</div>
+<p>这是计算复杂期望的<span class="highlight">最强工具</span>：将复杂变量拆分为简单变量之和。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>生日配对问题</h3>
+<p>$n$ 个学生，生日独立均匀分布在 365 天。求期望的"共同生日对数"。</p>
+<div class="example-box">
+<p><strong>解法</strong>：对每对 $(i,j)$（共 $\binom{n}{2}$ 对），定义指示变量：</p>
+<p>$X_{ij} = \begin{cases}1 & \text{如果 }i,j\text{ 同一天生日}\\0 & \text{否则}\end{cases}$</p>
+<p>$P(X_{ij}=1) = 1/365$</p>
+<p>$E[\text{总对数}] = E\left[\sum_{i<j}X_{ij}\right] = \sum_{i<j}E[X_{ij}] = \binom{n}{2}\cdot\frac{1}{365}$</p>
+<p>利用线性性，<span class="key">无需考虑各对之间是否独立</span>！</p>
+</div>
+</div>
+
+<h2 id="L5-2">2. 方差恒等式 <span class="eng">Variance Identity</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Key Formula</span>
+<h3>方差计算的简化公式（必记）</h3>
+<div class="formula">$$\text{Var}(X) = E[X^2] - (E[X])^2$$</div>
+<p>证明：展开 $E[(X-\mu)^2] = E[X^2 - 2\mu X + \mu^2] = E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2$</p>
+<p><span class="key">实用性</span>：避免先算 $E[X]$ 再逐项算 $(x-E[X])^2$。直接分别算 $E[X]$ 和 $E[X^2]$ 即可。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>用恒等式求方差</h3>
+<p>$X$ 取值：$P(X=1) = 0.3$，$P(X=2) = 0.5$，$P(X=4) = 0.2$</p>
+<div class="example-box">
+<p>$E[X] = 1(0.3)+2(0.5)+4(0.2) = 0.3+1+0.8 = 2.1$</p>
+<p>$E[X^2] = 1(0.3)+4(0.5)+16(0.2) = 0.3+2+3.2 = 5.5$</p>
+<p>$\text{Var}(X) = 5.5 - (2.1)^2 = 5.5 - 4.41 = 1.09$</p>
+</div>
+</div>
+
+<h2 id="L5-3">3. Hat Check 问题（经典例题）</h2>
+
+<div class="card card-pink">
+<span class="tag tag-exam">Classic Problem</span>
+<h3>帽子归还问题</h3>
+<p>$n$ 个人把帽子交给服务员，服务员随机归还。期望有多少人拿到自己的帽子？</p>
+<div class="example-box">
+<p><strong>解法</strong>（线性性）：令 $X_i = \begin{cases}1 & \text{第 }i\text{ 个人拿到自己的帽子}\\0 & \text{否则}\end{cases}$</p>
+<p>$P(X_i = 1) = \frac{1}{n}$（随机归还，自己的帽子在任何位置等概率）</p>
+<p>$E[\text{总人数}] = E\left[\sum_{i=1}^n X_i\right] = \sum_{i=1}^n E[X_i] = n \cdot \frac{1}{n} = \boxed{1}$</p>
+</div>
+<p><span class="highlight">无论 $n$ 多大，期望都是 1！</span>这个结果很反直觉，但线性性使证明极为简洁。</p>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 6                           -->
+<!-- =========================================================== -->
+<div class="lecture-divider" id="L6">
+<h2 style="color:#fff;">Lecture 6 &mdash; Discrete Distributions</h2>
+<p>三大离散分布：Bernoulli &middot; Binomial &middot; Geometric</p>
+</div>
+
+<h2 id="L6-1">1. Bernoulli 分布（伯努利分布）</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>Bernoulli$(p)$</h3>
+<p>单次试验，成功概率 $p$，失败概率 $1-p$。</p>
+<table>
+<tr><th>Range</th><th>PMF</th><th>$E[X]$</th><th>$\text{Var}(X)$</th></tr>
+<tr><td>$\{0, 1\}$</td><td>$f(1)=p,\; f(0)=1-p$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+</table>
+<p><strong>场景</strong>：买一个盲盒是否得到 Harry Potter；一分钟内是否有顾客到达。</p>
+</div>
+
+<h2 id="L6-2">2. Binomial 分布（二项分布）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Definition &amp; Formula</span>
+<h3>Binomial$(n, p)$（重要考点）</h3>
+<p>$n$ 次独立 Bernoulli 试验中，成功次数 $X$ 的分布。</p>
+<table>
+<tr><th>Range</th><th>PMF</th><th>$E[X]$</th><th>$\text{Var}(X)$</th></tr>
+<tr><td>$\{0,1,2,\dots,n\}$</td><td>$f(k)=\binom{n}{k}p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-tip">Derivation</span>
+<h3>用线性性推导 $E[X]$ 和 $\text{Var}(X)$</h3>
+<p>$X = X_1 + X_2 + \dots + X_n$，其中 $X_i \sim \text{Bernoulli}(p)$ 独立。</p>
+<div class="formula">$$E[X] = \sum_{i=1}^n E[X_i] = np$$</div>
+<p>由于 $X_i$ 独立，方差可加：</p>
+<div class="formula">$$\text{Var}(X) = \sum_{i=1}^n \text{Var}(X_i) = np(1-p)$$</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>二项式系数的验证</h3>
+<p>为什么 $\sum_{k=0}^n f(k) = 1$？</p>
+<div class="example-box">
+<p>$\sum_{k=0}^n \binom{n}{k}p^k(1-p)^{n-k} = (p + (1-p))^n = 1^n = 1$ &nbsp;（二项式定理）</p>
+</div>
+</div>
+
+<h2 id="L6-3">3. Geometric 分布（几何分布）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Definition &amp; Formula</span>
+<h3>Geometric$(p)$（重要考点）</h3>
+<p>重复独立 Bernoulli 试验直到<span class="key">第一次成功</span>所需的试验次数。</p>
+<table>
+<tr><th>Range</th><th>PMF</th><th>$E[X]$</th><th>$\text{Var}(X)$</th></tr>
+<tr><td>$\{1, 2, 3, \dots\}$</td><td>$f(k) = (1-p)^{k-1}p$</td><td>$\dfrac{1}{p}$</td><td>$\dfrac{1-p}{p^2}$</td></tr>
+</table>
+<p><strong>直觉</strong>：前 $k-1$ 次失败（各概率 $1-p$），第 $k$ 次成功（概率 $p$）。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-tip">Verification</span>
+<h3>为什么 $\sum_{k=1}^\infty f(k) = 1$？</h3>
+<div class="example-box">
+<p>$\sum_{k=1}^\infty (1-p)^{k-1}p = p \cdot \sum_{j=0}^\infty (1-p)^j = p \cdot \frac{1}{1-(1-p)} = p \cdot \frac{1}{p} = 1$</p>
+<p>（几何级数求和公式）</p>
+</div>
+</div>
+
+<div class="card card-accent">
+<span class="tag tag-thm">Derivation</span>
+<h3>$E[X] = 1/p$ 的推导（辅助函数法）</h3>
+<p>定义 $H(p) = \sum_{k=1}^\infty (1-p)^k = \frac{1-p}{p}$</p>
+<p>对 $p$ 求导：$H'(p) = -\frac{1}{p^2}$</p>
+<p>注意 $E[X] = \sum_{k=1}^\infty k(1-p)^{k-1}p = -pH'(p) = \frac{1}{p}$</p>
+</div>
+
+<h2 id="L6-4">4. 应用例题</h2>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example 1</span>
+<h3>盲盒问题三连</h3>
+<p>每个盲盒有概率 $p$ 得到 Harry Potter。</p>
+<table>
+<tr><th>问题</th><th>分布</th><th>答案</th></tr>
+<tr><td>一次购买是否得到 H？</td><td>Bernoulli$(p)$</td><td>$P(X=1)=p$</td></tr>
+<tr><td>买 $n$ 个得到几个 H？</td><td>Binomial$(n,p)$</td><td>$E = np$</td></tr>
+<tr><td>买多少个才第一次得到 H？</td><td>Geometric$(p)$</td><td>$E = 1/p$</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example 2</span>
+<h3>商店顾客到达</h3>
+<p>每分钟有概率 $p$ 来一个顾客（简化模型）。</p>
+<table>
+<tr><th>问题</th><th>分布</th></tr>
+<tr><td>某一分钟是否来顾客</td><td>Bernoulli$(p)$</td></tr>
+<tr><td>前 $N$ 分钟共来多少顾客</td><td>Binomial$(N,p)$</td></tr>
+<tr><td>第一位顾客在第几分钟来</td><td>Geometric$(p)$</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example 3</span>
+<h3>退款问题</h3>
+<p>买方买 10 件产品，每件有概率 $p$ 为次品。有 $k$ 件次品则退款 \$5$k$。求平均退款额。</p>
+<div class="example-box">
+<p>次品数 $X \sim \text{Binomial}(10, p)$。退款额 $= 5X$。</p>
+<p>$E[5X] = 5E[X] = 5 \times 10p = 50p$</p>
+<p>例如 $p=0.1$：平均退款 \$5。</p>
+</div>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div class="lecture-divider orange" id="summary">
+<h2 style="color:#fff;">核心公式速查表</h2>
+<p>Lec 2-6 期末必备</p>
+</div>
+
+<div class="card card-accent">
+<h3>概率基础</h3>
+<table>
+<tr><th>公式</th><th>条件</th></tr>
+<tr><td>$P(A \cup B) = P(A)+P(B)-P(A\cap B)$</td><td>加法法则</td></tr>
+<tr><td>$P(A^c) = 1-P(A)$</td><td>补集法则</td></tr>
+<tr><td>$P(A|B) = \frac{P(A\cap B)}{P(B)}$</td><td>条件概率</td></tr>
+<tr><td>$P(A\cap B) = P(A)\cdot P(B)$</td><td>当 $A,B$ 独立时</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<h3>期望与方差</h3>
+<table>
+<tr><th>公式</th><th>说明</th></tr>
+<tr><td>$E[X] = \sum_x x\cdot f(x)$</td><td>期望定义</td></tr>
+<tr><td>$E[aX+b] = aE[X]+b$</td><td>线性性</td></tr>
+<tr><td>$E[X_1+\dots+X_n] = \sum E[X_i]$</td><td><span class="key">总是成立</span>（无需独立）</td></tr>
+<tr><td>$\text{Var}(X) = E[X^2]-(E[X])^2$</td><td>方差恒等式</td></tr>
+<tr><td>$\text{Var}(aX+b) = a^2\text{Var}(X)$</td><td>方差缩放</td></tr>
+</table>
+</div>
+
+<div class="card card-pink">
+<h3>三大离散分布</h3>
+<table>
+<tr><th>分布</th><th>PMF $f(k)$</th><th>$E[X]$</th><th>$\text{Var}(X)$</th></tr>
+<tr><td>Bernoulli$(p)$</td><td>$f(1)=p,\,f(0)=1-p$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+<tr><td>Binomial$(n,p)$</td><td>$\binom{n}{k}p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+<tr><td>Geometric$(p)$</td><td>$(1-p)^{k-1}p$</td><td>$\frac{1}{p}$</td><td>$\frac{1-p}{p^2}$</td></tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=h.scrollHeight||b.scrollHeight;
+  var pct=st/(sh-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

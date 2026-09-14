@@ -1,0 +1,637 @@
+--- Page 0 ---
+FIN2010
+Financial Management
+Lecture 2: What is a Firm?
+
+--- Page 1 ---
+Lecture 4: What is a Firm
+Review — What is Finance?
+Borrowers who need money
+Financial Industry
+Investors who have money
+
+--- Page 2 ---
+Lecture 4: What is a Firm
+Review — Financial Institutions
+3
+Commercial Banks
+Money Managers
+Financial Market
+Exchanges (e.g. Shenzhen Stock Exchange)
+Investment banks (CICC (中金), Goldman Sachs)
+Brokerage firms (e.g. CMSC (招商证券))
+Data vendors (e.g. Wind, Bloomberg)
+Borrowers
+Individuals
+Institutions
+Sell Side
+(Offer service)
+Buy Side
+(Have money)
+
+--- Page 3 ---
+Lecture 4: What is a Firm
+Agenda
+• Organizational Forms of a Firm
+–
+Sole proprietorship
+–
+Partnership
+–
+Limited liability company (LLC)
+–
+Corporation
+• Organization Structure of a Corporation
+• Agency Problems
+4
+
+--- Page 4 ---
+Lecture 4: What is a Firm
+Forms of Business Organization
+• Sole proprietorship, partnership, LLC, and corporation
+• They differ in many aspects: 
+–
+Initial capital required for registration
+–
+Legal entity (法人) or not
+•
+Limited liability (有限责任) or unlimited liability (无限责任)
+•
+Tax
+–
+The control rights (控制权)
+–
+Transferring ownership
+–
+Raising capital
+–
+…
+• As an investor, you need to understand what deal you are getting into!
+5
+
+--- Page 5 ---
+Lecture 4: What is a Firm
+Sole Proprietorship                        
+个体户
+6
+Cuihua Wang starts a pancake booth.
+Sole proprietorship: the simplest form of business. Only one owner.
+-
+The business and the owner are the same entity. 
+
+--- Page 6 ---
+Lecture 4: What is a Firm
+Sole Proprietorship
+•
+What is good about sole proprietorship?
+–
+Easy to start: 0 requirement for initial capital; little paperwork.
+–
+Only pay personal income tax.
+–
+Full control over the business.
+•
+What are some potential problems?
+–
+Unlimited liability: if a customer gets sick and sues you, you are 
+solely responsible, and there is no upper limit on how much you 
+need to compensate.
+–
+Limited resource (capital, human resource, etc.).
+•
+In China, sole proprietorship can hire up to 7 employees.
+7
+Still need to register your business
+
+--- Page 7 ---
+Lecture 4: What is a Firm
+Partnership                                   
+合伙企业
+8
+Partnership = sole proprietorship with 2+ owners
+Cuihua Wang meets Fugui Li. Now they sell pancakes and baozi.
+
+--- Page 8 ---
+Lecture 4: What is a Firm
+Partnership
+•
+What is good about partnership?
+–
+More resource (capital, human resource).
+–
+Only need to pay personal income tax
+•
+What are some potential problems?
+–
+Unlimited liability
+–
+Fight over control rights 
+•
+Example: Cuihua wants to sell sweet tofu;
+Fugui wants to sell salty tofu.
+–
+Hard to raise capital 
+•
+Example: Elon Musk is not going to invest,
+because if he invests $100,000, he may
+lose millions if customers get sick.
+due to unlimited liability
+9
+
+--- Page 9 ---
+Lecture 4: What is a Firm
+Limited Partnership (LP)
+In LP, there are two types of partners:
+• General partner (GP) : at least one who bears unlimited liability and runs the 
+business
+• Limited partners (LP): other partners who bear limited liability and usually do not 
+run the business
+• Makes it easier to raise capital from investors!
+• Under limited liability, you only lose what you’ve invested in the worst case scenario
+• The typical form used by money managers (such as venture capital and private equity)
+10
+Elon Musk loves their Baozi and wants to invest. 
+They form a limited partnership and now opens a 
+restaurant.
+有限合伙企业
+
+--- Page 10 ---
+Lecture 4: What is a Firm
+Corporation
+• Corporation: a formal legal entity (法人), separate and distinct 
+from its owners.
+11
+Their restaurant is so successful, and they 
+start opening chains. Now they need 
+additional capital, so they registered a 
+corporation for their business.
+股份有限公司
+
+--- Page 11 ---
+Lecture 4: What is a Firm
+Key Features of Corporations
+Biggest advantage: very easy to raise capital
+–
+Limited liability for all investors.
+–
+Easy to transfer ownership
+•
+Corporation: does not need other owners to agree
+•
+All other forms: majority must agree
+Downsides:
+–
+High initial capital: private ￥10M, public ￥50M
+–
+Pays double tax
+•
+Corporate tax: China: 25%; US: 21% after Trump (1st term), 35% before Trump
+•
+Owners get taxed again when receiving salary or payouts
+•
+Other Features
+–
+Separation of ownership and management (discussed later today)
+12
+
+--- Page 12 ---
+Lecture 4: What is a Firm
+Corporation—Private and Public
+• Can be private or public
+• Private: a firm held under private ownership.
+• Public: stocks are traded in the exchanges. Public firms are subject to stricter 
+regulations and disclosure rules. 
+13
+Private firms
+Public firms
+
+--- Page 13 ---
+Lecture 4: What is a Firm
+Limited Liability Company (LLC)
+• A hybrid form of business organizations that combines features of both a corporation 
+and a partnership. 
+–
+Legal entity
+•
+Limited liability
+•
+Double taxed in China
+•
+Individual taxes in some countries such as U.S.
+–
+Require relatively little capital to start (￥500k in China) 
+–
+Possible to transfer ownership, but difficult (need majority to agree)
+• Suited for small and medium sized firms (China: 2-50 owners)
+–
+Example: restaurant chains, manufacturing firms
+14
+有限责任公司
+Produces
+Partnership
+Corporate
+Corporate
+Corporate
+Partnership
+Good ‘middle ground’: safer than a partnership, 
+but simpler and cheaper than a corporation.
+
+--- Page 14 ---
+Lecture 4: What is a Firm
+Comparison
+Initial 
+Capital 
+(RMB)
+Limited 
+Liability
+Tax
+Management
+Transfer 
+Ownership
+Raising
+Capitals
+Sole Proprietorship
+0
+No
+Individual income tax
+Full control
+N/A
+Difficult
+Partnership
+0
+No
+Individual income tax
+Shared by owners
+Difficult
+Difficult
+LP
+0
+Mixed
+Individual income tax
+Shared by owners
+Difficult
+Relatively 
+easy
+LLC
+500,000
+Yes
+Double taxes
+Shared by owners
+Difficult
+Relatively 
+easy
+Corporation
+Private:10M
+Public: 50M
+Yes
+Double taxes
+Separation of management
+and ownership
+Easy
+Easiest
+Chinese regulations on Partnership
+Differences among LLP, LLC and Corporation
+LLC vs. Corporation in China
+
+--- Page 15 ---
+Lecture 4: What is a Firm
+The Most Suitable Business Form?
+Note: not all business has to follow the path of 
+sole proprietorship →partnership →LP →LLC →Corporation
+To meet the needs of the business, you can start at any point.
+• Ms. Lai and her daughter plan to sell fruits in front of CUHK (SZ)  
+• Didi Chuxing Technology Co.
+• A small group of programmers with limited capital, providing consulting and coding service
+16
+
+--- Page 16 ---
+Lecture 4: What is a Firm
+Agenda
+• Organizational Forms of a Firm
+–
+Sole proprietorship
+–
+Partnership
+–
+Limited liability company (LLC)
+–
+Corporation
+• Organization Structure of a Corporation
+• Agency Problems
+17
+
+--- Page 17 ---
+Lecture 4: What is a Firm
+Corporations: Ownership and Management are Separated
+18
+Firm
+Investors
+Vote
+Selects
+-
+Investors vote to form a board that represents the investors.
+-
+The board chooses a CEO and other top executives.
+-
+The CEO manages the firm.
+Investors cannot directly decide how a firm runs!
+
+--- Page 18 ---
+Lecture 4: What is a Firm
+Ownership structure of JD.com, Inc. (JD)
+19
+Data source: https://finance.yahoo.com/quote/JD/holders?p=JD
+Owners
+Managers
+
+--- Page 19 ---
+Lecture 4: What is a Firm
+Financial Management Goals
+• What do investors want?
+–
+Maximize return.
+–
+Which means they want the management team to maximize firm value.
+• What should be the CEO’s goal?
+–
+Primary goal:  maximize stock price or shareholders’ wealth
+• How should the CEO achieve the goal?
+–
+Increase revenue
+•
+Gain market share
+•
+Expand to new markets
+–
+Minimize cost
+•
+Internal: manage workers more efficiently
+•
+External: negotiate better deals from suppliers
+20
+
+--- Page 20 ---
+Lecture 4: What is a Firm
+Financial Management Goals and CSR
+• Starting from 1950s, and especially after 2000, people are rethinking whether the 
+goal should be only to maximize shareholders’ value. 
+–
+Typically, firm value increase = the whole society benefits.   
+–
+It becomes a problem when firm value increase →some stakeholders (especially the weak) suffers. 
+•
+Stakeholders that receive main attention includes employees, consumers, and the environment.
+• CSR (Corporate Social Responsibility): firms should operate ethically and contribute 
+positively to the society while pursuing economics objectives.
+–
+Essentially, there should be a boundary on things that the manager can do when trying to 
+maximize the firm value. 
+–
+Laws may not be able to cover every aspect.
+21
+
+--- Page 21 ---
+Lecture 4: What is a Firm
+Example: Bad Behaviors will be Punished
+22
+On May 2nd, 2016, stock price of Baidu decreased by 7.92% (￥34.9 billion). 
+Corporate social responsibility matters!
+
+--- Page 22 ---
+Lecture 4: What is a Firm
+Agenda
+• Organizational Forms of a Firm
+–
+Sole proprietorship
+–
+Partnership
+–
+Limited liability company (LLC)
+–
+Corporation
+• Organization Structure of a Corporation
+• Agency Problems
+23
+
+--- Page 23 ---
+Lecture 4: What is a Firm
+Agency Problem
+• Principal: the owner
+• Agent: who is delegated the tasks of 
+management
+• Agency relationship
+–
+The relationship exists when a 
+principal hires an agent to represent 
+his/her interests
+–
+For example: stockholders 
+(principals) hire managers (agents) 
+to run the company
+• Agency Problem: the principal and 
+the agent might have different 
+objectives!
+24
+Investors
+Manager
+Firm
+
+--- Page 24 ---
+Lecture 4: What is a Firm
+What does the CEO want?
+• Supposedly: maximize shareholders’ value
+• Reality: maximize his/her own value
+–
+Manage the firm well and get rewarded
+–
+Make the firm bigger (empire building)
+•
+Larger firms typically pay more to CEOs.
+–
+Build personal reputation 
+•
+Make firms bigger and be known for being able to manage large firms.
+•
+Pursue charity so that he/she can be known as philanthropist (慈善家).
+–
+Personal enjoyment
+•
+Buy private airplane, golf club memberships.
+–
+Embezzlement (挪用公款)
+•
+Give contracts to a firm owned by the CEO’s family.
+25
+Aligned
+Conflicting
+Objective is: 
+
+--- Page 25 ---
+Lecture 4: What is a Firm
+Agency Problems are Prevalent at All Levels! (not just CEOs)
+• Consider a simple scenario: our firm can produce a good with cost=$100, a 
+customer C is willing to pay $200 for the good.
+–
+Kickback/bribery: The customer can offer our sales representative a rebate. That is, if she 
+charges $1 less, she gets $0.5 directly from C.
+–
+Embezzlement: Our CEO sets up a new firm that purchases the good for $101 from our firm 
+and sells to C for $200.
+–
+Information Leakage: Our worker tells C that our production cost is only $100, so C is only 
+willing to pay $105 now.
+–
+Destructive competition: Our sales representative for a different region may want to steal the 
+deal by offering a lower price.
+“In a firm, one third of people do work, one third do nothing, and one third prevents the first third from 
+doing anything.”
+26
+
+--- Page 26 ---
+Lecture 4: What is a Firm
+Real Example — Enron’s Fall
+The Enron Scandal – A Simple Overview
+• Fortune: #22 on the “100 Best Companies to Work For in America”, 2000.
+• But all the shining numbers were fake, and it went bankrupt in 2001. Investors lost all 
+their money.
+• On the other hand, the management team pocketed $681M right before its 
+collapse[1] [2].
+–
+The stated (actually nonexistent) profit was only $979M for 2000.
+[ref]
+27
+Total Compensation
+Title
+Name
+1998
+1999
+2000
+Chairman
+Kenneth L. Lay
+$22,110,142 
+$49,812,093 
+$141,657,120 
+CEO
+Jeffrey K. Skilling
+$7,855,243 
+$50,377,980 
+$72,602,725 
+Wholesale CEO
+Mark A. Frevert
+$4,851,516 
+$9,199,342 
+$35,803,880 
+Broadband CEO
+Kenneth D. Rice
+$4,320,694 
+$1,585,951 
+$22,447,662 
+Transportation CEO Stanley C. Horton
+$2,221,877 
+$7,319,515 
+$23,648,826 
+
+--- Page 27 ---
+Lecture 4: What is a Firm
+Ways to Alleviate the Agency Problem
+• Managerial compensation
+–
+Incentives can be used to align management and stockholder interests
+–
+Commonly used incentives include bonus, stocks, and options
+• Monitoring (watch over the managers)
+–
+Internal: limit the power of each person with rules and regulations
+–
+Board: can replace the CEO
+–
+Shareholders: sell shares, use media, sue, vote
+–
+Lenders (banks, etc.): debt covenants, refuse to renew loan
+• Outside control
+–
+Threat of takeover
+–
+Labor supply (workers refuse to work for a firm with bad reputation)
+28
+
+--- Page 28 ---
+Lecture 4: What is a Firm
+Summary
+• Organizational forms
+• Financial decisions of a firm
+–
+Goal: maximize firm value
+• Agency Problem
+–
+Conflicting objectives of the CEO and the shareholders 
+29
+Initial 
+Capital 
+(RMB)
+Limited 
+Liability
+Tax
+Management
+Transfer 
+Ownership
+Raising
+Capitals
+Sole 
+Proprietorship
+0
+No
+Individual
+Full control
+N/A
+Difficult
+Partnership
+0
+No
+Individual
+Shared
+Difficult
+Difficult
+LP
+0
+Mixed
+Individual
+Shared
+Difficult
+Easier
+LLC
+500,000
+Yes
+Corporate
+Shared
+Difficult
+Easier
+Corporation
+Private:10M
+Public: 50M
+Yes
+Corporate
+Separation
+Easy
+Easiest
+
+--- Page 29 ---
+Lecture 4: What is a Firm
+Next Time—Raising Capital
+• Debt and Equity
+• Equity Financing
+–
+Venture Capital
+–
+Initial Public Offering
+–
+IPO Underpricing
+–
+Seasoned Equity Offering
+• Debt Financing
+–
+Different types of debt
+–
+Credit Ratings
+30
+

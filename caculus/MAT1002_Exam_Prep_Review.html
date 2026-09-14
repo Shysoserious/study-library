@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT1002 考前复习提纲 · 高频考点与必背知识</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false},
+    {left:'\\[',right:'\\]',display:true},
+    {left:'\\(',right:'\\)',display:false}
+  ],throwOnError:false});"></script>
+<style>
+  :root{
+    --bg:#fafbfc; --panel:#ffffff; --ink:#1f2933; --muted:#5a6878;
+    --accent:#9b2c2c; --accent-soft:#fff5f5;
+    --blue:#2b6cb0; --blue-soft:#e6f0fb;
+    --green:#2f855a; --green-soft:#e6f4ec;
+    --orange:#c05621; --orange-soft:#fff7ed;
+    --purple:#6b46c1; --purple-soft:#ede7f6;
+    --gold:#975a16; --gold-soft:#fffaf0;
+    --line:#e3e8ee;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+  aside.sidebar{
+    position:fixed;top:0;left:0;width:250px;height:100vh;
+    background:var(--panel);border-right:1px solid var(--line);
+    overflow-y:auto;padding:22px 16px;
+  }
+  aside.sidebar h2{margin:0 0 4px;font-size:18px;color:var(--accent);letter-spacing:.3px}
+  aside.sidebar .sub{font-size:12px;color:var(--muted);margin-bottom:14px}
+  aside.sidebar h3.group{
+    margin:18px 4px 6px;font-size:12.5px;text-transform:uppercase;
+    letter-spacing:1px;font-weight:700;color:var(--muted);
+    border-left:3px solid var(--accent);padding-left:8px;
+  }
+  aside.sidebar ul{list-style:none;margin:0;padding:0}
+  aside.sidebar a{
+    display:block;padding:6px 10px;border-radius:6px;text-decoration:none;
+    color:var(--ink);font-size:13.5px;line-height:1.4;transition:all .15s;
+  }
+  aside.sidebar a:hover{background:var(--accent-soft);color:var(--accent)}
+  main{margin-left:250px;padding:42px 56px 96px;max-width:1100px}
+  header.banner{
+    background:linear-gradient(135deg,#7b1f1f 0%,#9b2c2c 50%,#c05621 100%);
+    color:#fff;padding:32px 36px;border-radius:14px;margin-bottom:34px;
+    box-shadow:0 6px 20px rgba(155,44,44,.25);
+  }
+  header.banner h1{margin:0 0 8px;font-size:28px;letter-spacing:.3px}
+  header.banner p{margin:0;opacity:.94;font-size:15px;line-height:1.7}
+
+  /* Section styles */
+  section.module{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:30px 34px;margin-bottom:32px;
+    box-shadow:0 1px 4px rgba(15,23,42,.05);
+  }
+  section.module > h2{
+    margin:0 0 8px;font-size:24px;letter-spacing:.3px;
+    padding-bottom:14px;border-bottom:3px solid;
+  }
+  section.module .lechead{
+    display:inline-block;font-size:13px;color:#fff;padding:4px 14px;
+    border-radius:14px;font-weight:700;margin-bottom:14px;
+  }
+  /* color variants */
+  .m-blue h2{color:var(--blue);border-color:var(--blue)}
+  .m-blue .lechead{background:var(--blue)}
+  .m-green h2{color:var(--green);border-color:var(--green)}
+  .m-green .lechead{background:var(--green)}
+  .m-orange h2{color:var(--orange);border-color:var(--orange)}
+  .m-orange .lechead{background:var(--orange)}
+  .m-purple h2{color:var(--purple);border-color:var(--purple)}
+  .m-purple .lechead{background:var(--purple)}
+  .m-gold h2{color:var(--gold);border-color:var(--gold)}
+  .m-gold .lechead{background:var(--gold)}
+  .m-red h2{color:var(--accent);border-color:var(--accent)}
+  .m-red .lechead{background:var(--accent)}
+
+  /* sub-blocks */
+  .topic{
+    margin:18px 0 10px;padding:10px 16px;border-radius:8px;
+    background:#f7fafc;border-left:5px solid #94a3b8;font-weight:700;font-size:17px;
+  }
+  .formula-card{
+    background:#f0f9ff;border-left:4px solid var(--blue);
+    padding:14px 22px;border-radius:6px;margin:14px 0;
+  }
+  .formula-card .label{
+    font-size:12.5px;font-weight:700;color:var(--blue);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;
+  }
+  .trap-card{
+    background:#fff5f5;border-left:4px solid var(--accent);
+    padding:14px 22px;border-radius:6px;margin:14px 0;
+  }
+  .trap-card .label{
+    font-size:12.5px;font-weight:700;color:var(--accent);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;
+  }
+  .tip-card{
+    background:#fffaf0;border-left:4px solid var(--gold);
+    padding:14px 22px;border-radius:6px;margin:14px 0;
+  }
+  .tip-card .label{
+    font-size:12.5px;font-weight:700;color:var(--gold);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;
+  }
+  .template-card{
+    background:#f0fff4;border-left:4px solid var(--green);
+    padding:14px 22px;border-radius:6px;margin:14px 0;
+  }
+  .template-card .label{
+    font-size:12.5px;font-weight:700;color:var(--green);
+    text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;
+  }
+  .freq-tag{
+    display:inline-block;background:var(--accent);color:#fff;
+    font-size:12px;font-weight:700;padding:2px 8px;border-radius:10px;
+    margin-left:8px;letter-spacing:.5px;
+  }
+  .freq-tag.mid{background:var(--gold)}
+  .freq-tag.low{background:#94a3b8}
+  ul.tight,ol.tight{margin:8px 0;padding-left:24px}
+  ul.tight li,ol.tight li{margin:4px 0}
+  table.ref{
+    width:100%;border-collapse:collapse;margin:14px 0;font-size:15.5px;
+  }
+  table.ref th,table.ref td{
+    border:1px solid var(--line);padding:10px 14px;text-align:left;vertical-align:top;
+  }
+  table.ref th{background:#edf2f7;font-weight:700;color:#2d3748}
+  table.ref tr:nth-child(even) td{background:#fafbfc}
+  /* checklist */
+  .checklist{
+    background:linear-gradient(180deg,#fff5f5 0%,#fff7ed 100%);
+    border:2px dashed var(--accent);border-radius:12px;padding:24px 32px;
+    margin:24px 0;
+  }
+  .checklist h3{margin:0 0 14px;color:var(--accent);font-size:20px}
+  .checklist .item{
+    display:flex;align-items:flex-start;gap:12px;margin:10px 0;
+  }
+  .checklist .box{
+    flex-shrink:0;width:20px;height:20px;border:2px solid var(--accent);
+    border-radius:4px;margin-top:6px;background:#fff;
+  }
+  /* highlight numbers */
+  .hot{
+    display:inline-block;background:#fee2e2;color:#991b1b;
+    font-weight:700;padding:1px 8px;border-radius:6px;font-size:14.5px;
+  }
+  /* Footer */
+  footer{
+    margin-top:60px;padding-top:24px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:14px;text-align:center;
+  }
+  @media (max-width: 900px){
+    aside.sidebar{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+    main{margin-left:0;padding:24px 18px}
+  }
+  .katex{font-size:1.05em !important}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h2>考前复习提纲</h2>
+  <div class="sub">MAT1002 · 高频考点 + 必背知识</div>
+
+  <h3 class="group">总览</h3>
+  <ul>
+    <li><a href="#hot-topics">高频考点全景</a></li>
+    <li><a href="#question-pattern">题型分布与时间</a></li>
+  </ul>
+
+  <h3 class="group">模块一 多元基础</h3>
+  <ul>
+    <li><a href="#lec1-5">Lec 1-5 极限/偏导/连续</a></li>
+  </ul>
+
+  <h3 class="group">模块二 微分学</h3>
+  <ul>
+    <li><a href="#lec7-10">Lec 7-10 梯度/切平面</a></li>
+  </ul>
+
+  <h3 class="group">模块三 优化与级数</h3>
+  <ul>
+    <li><a href="#lec11-15">Lec 11-15 Taylor/极值</a></li>
+  </ul>
+
+  <h3 class="group">模块四 重积分</h3>
+  <ul>
+    <li><a href="#lec13-17">Lec 13-17 多重积分</a></li>
+  </ul>
+
+  <h3 class="group">模块五 向量场</h3>
+  <ul>
+    <li><a href="#lec17-25">Lec 17-25 三大定理</a></li>
+  </ul>
+
+  <h3 class="group">备考工具</h3>
+  <ul>
+    <li><a href="#traps">常见陷阱清单</a></li>
+    <li><a href="#templates">解题模板</a></li>
+    <li><a href="#checklist">考前 24 小时清单</a></li>
+  </ul>
+</aside>
+
+<main>
+
+<header class="banner">
+  <h1>MAT1002 期末考前复习提纲</h1>
+  <p>基于 2023 + 2025 真题统计，结合全部 Lecture 内容</p>
+  <p style="margin-top:6px">高频考点 · 必背公式 · 易错陷阱 · 解题模板 · 24 小时冲刺清单</p>
+</header>
+
+<!-- ============ 高频考点全景 ============ -->
+<section id="hot-topics" class="module m-red">
+  <span class="lechead">总览 · OVERVIEW</span>
+  <h2>一、高频考点全景：试卷必考的 13 个核心模块</h2>
+  <p>把 2023 + 2025 共 27 道大题（含 Bonus）映射到 Lecture 模块，每个模块的考察频率如下表。<strong>红色 [必考]</strong> 表示两年都至少一题，<strong>黄色 [常考]</strong> 表示几乎必考但形式可变。</p>
+
+  <table class="ref">
+    <thead>
+      <tr><th>核心模块</th><th>2023 出现</th><th>2025 出现</th><th>占比</th><th>频率</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>① 二元极限（路径检验、极坐标）</td><td>Q2 (15 分)</td><td>Q2 (15 分)</td><td>~11%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>② 偏导数与 Clairaut 定理</td><td>Q3 (6 分) + Q1(vii)</td><td>Q3 (6 分) + Q1(ii)</td><td>~6%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>③ 切平面与法线</td><td>Q4 (6 分)</td><td>Q4 (6 分)</td><td>~5%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>④ 梯度 + 方向导数</td><td>Q1(ii,iii)</td><td>Q1(vi)</td><td>~4-7%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑤ Taylor 二次近似</td><td>Q1(iv)</td><td>Q1(viii)</td><td>~2%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑥ 极值（Lagrange / Hessian）</td><td>Q5+Q6 (14 分)</td><td>Q5+Q6 (14 分)</td><td>~11%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑦ 二重积分（含换序 / 反常）</td><td>Q7 (12 分)</td><td>Q7 (12 分)</td><td>~9%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑧ 三重积分（柱/球坐标）</td><td>Q8 (8 分) + Q1(vi)</td><td>Q8 (8 分) + Q1(v)</td><td>~7%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑨ 变量代换 + Jacobian</td><td>Q9 (8 分)</td><td>Q9 (8 分)</td><td>~6%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑩ 保守场 + 势函数 + 做功</td><td>Q10 (12 分)</td><td>Q10 (12 分)</td><td>~9%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑪ Green 定理（2D 通量/环量）</td><td>Q11 (8 分)</td><td>Q11 (8 分)</td><td>~6%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑫ Stokes 定理</td><td>Q12 (8 分)</td><td>Q13 (8 分)</td><td>~6%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>⑬ Divergence 定理</td><td>Q13 (8 分)</td><td>Q12 (8 分)</td><td>~6%</td><td><span class="hot">必考</span></td></tr>
+      <tr><td>级数（Taylor / 二项 / e^x）</td><td>Q1(viii,ix)</td><td>Q1(ix)</td><td>~3-5%</td><td><span class="freq-tag mid">常考</span></td></tr>
+      <tr><td>概念辨析 T/F（连通性、可加性）</td><td>Q1(v,ix)</td><td>Q1(i-iv)</td><td>~6-12%</td><td><span class="freq-tag mid">常考</span></td></tr>
+      <tr><td>证明题（连续性、积分零定理）</td><td>Q14 Bonus (6 分)</td><td>—</td><td>~4%</td><td><span class="freq-tag low">偶考</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip-card">
+    <div class="label">★ 关键启示</div>
+    <p>13 个「必考」模块覆盖了 <strong>~95% 的分值</strong>。考前如果时间紧，<strong>先把这 13 个模块的标准题型练熟</strong>，比追求覆盖全部内容更有效率。</p>
+  </div>
+</section>
+
+<!-- ============ 题型分布 ============ -->
+<section id="question-pattern" class="module m-gold">
+  <span class="lechead">总览 · TIME PLAN</span>
+  <h2>二、题型分布与时间分配建议</h2>
+
+  <table class="ref">
+    <thead>
+      <tr><th>题号</th><th>题型</th><th>分值</th><th>建议时间</th><th>关键提醒</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Q1</td><td>9 个短问题（混合 T/F + 计算）</td><td>27</td><td>30-35 min</td><td>无需展示步骤；T/F 错也只扣 1-2 分，不要纠结</td></tr>
+      <tr><td>Q2</td><td>三个二元极限</td><td>15</td><td>15-20 min</td><td>必有 1 题 DNE，2 题用极坐标 / 直接代入</td></tr>
+      <tr><td>Q3</td><td>二阶偏导数</td><td>6</td><td>5-8 min</td><td>送分题；分段函数注意衔接点</td></tr>
+      <tr><td>Q4</td><td>切平面与法线</td><td>6</td><td>5-7 min</td><td>送分题；写清切平面方程 + 参数化法线</td></tr>
+      <tr><td>Q5</td><td>距离最小化</td><td>6</td><td>8-10 min</td><td>用法向量法或 Lagrange 都可</td></tr>
+      <tr><td>Q6</td><td>极值（Hessian / Lagrange）</td><td>8</td><td>10-12 min</td><td>分类别讨论；不漏 $D=0$ 情形</td></tr>
+      <tr><td>Q7</td><td>二重积分（区域 + 技巧）</td><td>12</td><td>15-20 min</td><td>必有换序或参数积分技巧；先画图</td></tr>
+      <tr><td>Q8</td><td>三重积分（柱/球坐标体积）</td><td>8</td><td>10-12 min</td><td>找曲面交线确定积分域，写对体积元</td></tr>
+      <tr><td>Q9</td><td>变量代换 + Jacobian</td><td>8</td><td>10-12 min</td><td>边界对应映射 + Jacobian 取绝对值</td></tr>
+      <tr><td>Q10</td><td>保守场三步走</td><td>12</td><td>15-18 min</td><td>判定条件 + 势函数 + $\phi(B)-\phi(A)$</td></tr>
+      <tr><td>Q11-13</td><td>Green / Stokes / Divergence</td><td>24</td><td>30-35 min</td><td>选最简单的方法（直接 vs 定理）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip-card">
+    <div class="label">★ 时间策略</div>
+    <ul class="tight">
+      <li><strong>180 分钟 / 132 分</strong> ≈ 1.36 分钟/分。</li>
+      <li><strong>前 35 分钟解决 Q1（27 分）</strong>是最佳节奏。</li>
+      <li>遇到卡壳的题（如复杂的反常积分、非标准变换），<strong>先标记，跳到下一题</strong>，最后回头。</li>
+      <li>留 <strong>15 分钟</strong> 复查 Q1（短题最容易抄错符号、漏 $\rho^2\sin\varphi$ 等小错）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Lec 1-5 ============ -->
+<section id="lec1-5" class="module m-blue">
+  <span class="lechead">Lec 1-5 · 多元基础</span>
+  <h2>三、多元极限、偏导、连续性</h2>
+
+  <div class="topic">3.1 多元极限的判定流程<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">必背流程</div>
+    <ol class="tight">
+      <li><strong>先尝试代入</strong>：若分母 $\to$ 非零数，直接代入即可（如 2025 Q2(iii)）。</li>
+      <li><strong>分子非零、分母 $\to 0$</strong> $\Rightarrow$ 极限不存在（如 2023 Q2(i)）。</li>
+      <li><strong>$0/0$ 不定型</strong> 选择路径检验：
+        <ul class="tight">
+          <li>线性路径 $y=kx$。</li>
+          <li>抛物路径 $y=kx^2$（针对 $\frac{x^2 y}{x^4+y^2}$ 这类）。</li>
+          <li>$y=mx^n$ 一般幂路径。</li>
+        </ul>
+      不同路径得到不同极限 $\Rightarrow$ DNE。</li>
+      <li><strong>同路径 + 极坐标</strong>：$x=r\cos\theta,\,y=r\sin\theta$；若可写成 $r\cdot g(\theta)$ 且 $|g(\theta)|$ 有界，则 $\to 0$。</li>
+      <li><strong>夹逼定理</strong>：常用 $|x|\le\sqrt{x^2+y^2}$，$|xy|\le\frac{1}{2}(x^2+y^2)$。</li>
+    </ol>
+  </div>
+
+  <div class="trap-card">
+    <div class="label">⚠ 常见陷阱</div>
+    <ul class="tight">
+      <li><strong>抛物路径陷阱</strong>：分子分母都含 $x^4$ 或 $y^2$ 时，仅用 $y=kx$ 极限可能为 $0$，但 $y=kx^2$ 给出依赖 $k$ 的值。<strong>必须再试抛物路径</strong>（2025 Q2(ii)）。</li>
+      <li><strong>分离连续 ≠ 联合连续</strong>：经典反例 $f=\frac{xy}{x^2+y^2}$（$f(0,0)=0$）每个轴上连续但联合不连续（2025 Q1(ii)）。</li>
+    </ul>
+  </div>
+
+  <div class="topic">3.2 偏导与 Clairaut 定理<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">Clairaut（Schwarz）定理</div>
+    <p>若 $f_{xy}$ 与 $f_{yx}$ 在某点附近<strong>都连续</strong>，则两者相等。
+    $$f_{xy}=f_{yx}.$$
+    实操中：算出 $f_x$ 求 $\partial_y$ 得 $f_{xy}$，算出 $f_y$ 求 $\partial_x$ 得 $f_{yx}$，<strong>互相验证一定相等</strong>，否则一定算错。</p>
+  </div>
+  <div class="trap-card">
+    <div class="label">⚠ 分段函数衔接处</div>
+    <p>对于分段函数（2023 Q3 的 $f$），衔接线 $y=0$ 上的偏导<strong>必须用差商定义</strong>计算：
+    $$f_y(x_0,0)=\lim_{h\to 0}\frac{f(x_0,h)-f(x_0,0)}{h}.$$
+    要分别计算 $h\to 0^+$ 与 $h\to 0^-$，两侧不一致则该点偏导不存在。这是 2023 Q3 中 $f_{yy}$ 在 $y=0$ 处不存在的原因。</p>
+  </div>
+
+  <div class="topic">3.3 连续性与简单连通性概念<span class="freq-tag mid">常考</span></div>
+  <div class="formula-card">
+    <div class="label">必背的概念辨析</div>
+    <ul class="tight">
+      <li><strong>简单连通</strong>：每条闭合曲线都能在区域内连续收缩到一点。
+        <ul class="tight">
+          <li>$\mathbb R^2\setminus\{0\}$：<strong>不</strong>简单连通（围绕原点的圈无法收缩）。</li>
+          <li>$\mathbb R^3\setminus\{0\}$：<strong>简单</strong>连通（3D 中可"绕开"挖掉的点）。</li>
+          <li>$\mathbb R^3\setminus\{z$ 轴$\}$：<strong>不</strong>简单连通。</li>
+        </ul></li>
+      <li><strong>积分区域可加性的成立条件</strong>：$R=R_1\cup R_2\Rightarrow\iint_R=\iint_{R_1}+\iint_{R_2}$ 仅当 $R_1\cap R_2$ 为<strong>零测集</strong>（如一条线段）。重叠面积非零时双重计数（2025 Q1(iv)）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Lec 7-10 ============ -->
+<section id="lec7-10" class="module m-green">
+  <span class="lechead">Lec 7-10 · 微分学</span>
+  <h2>四、梯度、方向导数、切平面</h2>
+
+  <div class="topic">4.1 梯度与方向导数<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">必背公式</div>
+    <p><strong>梯度</strong>：$\nabla f=\left(\frac{\partial f}{\partial x_1},\dots,\frac{\partial f}{\partial x_n}\right)$。</p>
+    <p><strong>方向导数</strong>（$\hat u$ 必须是单位向量）：
+    $$D_{\hat u}f=\nabla f\cdot\hat u=|\nabla f|\cos\theta.$$</p>
+    <p><strong>关键事实</strong>：
+    <ul class="tight">
+      <li>梯度方向 = 增长最快方向，最大增长率 $=|\nabla f|$。</li>
+      <li>$-\nabla f$ 方向 = 下降最快方向。</li>
+      <li>梯度<strong>垂直于等值面</strong>（这是切平面公式的根本来源）。</li>
+      <li>$D_{\hat u}f=0\Leftrightarrow\hat u$ 沿等值面切方向（2023 Q1(iii)）。</li>
+    </ul></p>
+  </div>
+  <div class="trap-card">
+    <div class="label">⚠ 容易丢分的地方</div>
+    <ul class="tight">
+      <li><strong>题目给的方向向量未必是单位向量</strong>，必须先归一化（除以 $|\mathbf v|$）。</li>
+      <li>验证：2025 Q1(vi) 题目给的 $(1/3,2/3,2/3)$ 是单位向量（$1/9+4/9+4/9=1$），可以直接用。但要养成验证习惯。</li>
+    </ul>
+  </div>
+
+  <div class="topic">4.2 切平面与法线（两套公式）<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">隐式曲面 $F(x,y,z)=c$</div>
+    <p>法向量 $\mathbf n=\nabla F(P_0)$。
+    <br>切平面：$F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0$。
+    <br>法线：$(x,y,z)=P_0+t\nabla F(P_0)$。</p>
+  </div>
+  <div class="formula-card">
+    <div class="label">显式曲面 $z=f(x,y)$</div>
+    <p>法向量 $\mathbf n=(f_x(P_0),\,f_y(P_0),\,-1)$（或反向 $(-f_x,-f_y,1)$）。
+    <br>切平面：$z-z_0=f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)$。
+    <br>法线：$(x,y,z)=(x_0,y_0,z_0)+t(f_x,f_y,-1)$。</p>
+  </div>
+  <div class="tip-card">
+    <div class="label">★ 转换技巧</div>
+    <p>显式 $z=f(x,y)$ 总能改写为隐式 $F=z-f(x,y)=0$。这时 $\nabla F=(-f_x,-f_y,1)$，与显式公式一致。两种方法等价；考试用哪个看具体形式：
+    <ul class="tight">
+      <li>题目给 $z=x^2-y^2$ 这类，直接用显式公式（2025 Q4）。</li>
+      <li>题目给 $x^2+2y^2+z^2=4$ 这类，用隐式 $\nabla F$（2023 Q4）。</li>
+    </ul></p>
+  </div>
+
+  <div class="topic">4.3 链式法则<span class="freq-tag mid">常考</span></div>
+  <div class="formula-card">
+    <div class="label">多元链式法则</div>
+    <p>若 $w=f(x,y,z)$，$x,y,z$ 都依赖参数 $t$（或更多变量），则
+    $$\frac{\partial w}{\partial t}=f_x\frac{\partial x}{\partial t}+f_y\frac{\partial y}{\partial t}+f_z\frac{\partial z}{\partial t}.$$
+    <strong>球坐标特例</strong>（2023 Q1(i)）：$\partial z/\partial\theta=0$，所以 $\partial w/\partial\theta=-y f_x+x f_y$。</p>
+  </div>
+
+  <div class="topic">4.4 叉积与方向<span class="freq-tag mid">常考</span></div>
+  <div class="formula-card">
+    <div class="label">两平面交线方向</div>
+    <p>若两平面法向量为 $\mathbf n_1,\mathbf n_2$，则交线方向为
+    $$\mathbf d=\mathbf n_1\times\mathbf n_2.$$
+    单位方向 $\hat d=\mathbf d/|\mathbf d|$（也可取相反方向，2025 Q1(vii)）。</p>
+    <p>叉积分量公式：
+    $$\mathbf a\times\mathbf b=\det\begin{pmatrix}\mathbf i&\mathbf j&\mathbf k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{pmatrix}.$$</p>
+  </div>
+</section>
+
+<!-- ============ Lec 11-15 ============ -->
+<section id="lec11-15" class="module m-orange">
+  <span class="lechead">Lec 11-15 · 优化与级数</span>
+  <h2>五、Taylor、极值、级数</h2>
+
+  <div class="topic">5.1 二元 Taylor 展开<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">二阶 Taylor（在 $(a,b)$ 处）</div>
+    $$f(a+h,b+k)\approx f(a,b)+f_x h+f_y k+\tfrac{1}{2}\!\left(f_{xx}h^2+2f_{xy}hk+f_{yy}k^2\right)+\cdots$$
+    <p>在 $(0,0)$ 处的二次近似：
+    $$Q(x,y)=f(0,0)+f_x(0,0)x+f_y(0,0)y+\tfrac{1}{2}\big(f_{xx}(0,0)x^2+2f_{xy}(0,0)xy+f_{yy}(0,0)y^2\big).$$</p>
+  </div>
+  <div class="tip-card">
+    <div class="label">★ 速算技巧（乘积形）</div>
+    <p>对 $f=g(x)\cdot h(y)$，把 $g,h$ 分别展到 1-2 阶，相乘后保留 $\le n$ 阶项。<br>
+    例：$\ln(1+x)\sin y=(x-\frac{x^2}{2}+\cdots)(y-\frac{y^3}{6}+\cdots)$，二次保留 $xy$（其它都 $\ge 3$ 阶），得 $Q=xy$（2025 Q1(viii)）。</p>
+  </div>
+
+  <div class="topic">5.2 无约束极值：Hessian 判别<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">二元二阶判别</div>
+    <p>设 $\nabla f(x_0,y_0)=\mathbf 0$（临界点），令
+    $$D=f_{xx}(x_0,y_0)\,f_{yy}(x_0,y_0)-[f_{xy}(x_0,y_0)]^2.$$
+    判别：
+    <ul class="tight">
+      <li>$D>0,\,f_{xx}>0$：<strong>局部极小</strong>。</li>
+      <li>$D>0,\,f_{xx}<0$：<strong>局部极大</strong>。</li>
+      <li>$D<0$：<strong>鞍点</strong>。</li>
+      <li>$D=0$：<strong>判别失效</strong>，需更高阶分析或特殊讨论。</li>
+    </ul></p>
+  </div>
+
+  <div class="topic">5.3 约束极值：Lagrange 乘子<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">单约束 Lagrange</div>
+    <p>极值化 $f$ 在 $g=c$ 上 $\Leftrightarrow$ 解
+    $$\nabla f=\lambda\nabla g,\quad g=c.$$
+    解出所有候选点后，<strong>代回 $f$ 比较大小</strong>（紧致集上必取到最值）。</p>
+  </div>
+  <div class="formula-card">
+    <div class="label">多约束</div>
+    <p>极值化 $f$ 在 $g_1=c_1,g_2=c_2$ 上 $\Leftrightarrow$ $\nabla f=\lambda_1\nabla g_1+\lambda_2\nabla g_2$。</p>
+  </div>
+  <div class="trap-card">
+    <div class="label">⚠ Lagrange 易错</div>
+    <ul class="tight">
+      <li><strong>退化情形必须单独讨论</strong>：例如 $\nabla T=\lambda\nabla g$ 中变量为 $0$ 的情况（2023 Q6 的 $z=0$ 退化分支）。</li>
+      <li>解方程时常用<strong>消去法</strong>（一式比另一式），但要注意不能两边除以可能为 $0$ 的量。</li>
+      <li>边界（端点）分别讨论 — 紧致区域上极值可能在边界。</li>
+    </ul>
+  </div>
+
+  <div class="topic">5.4 距离最小化（替代 Lagrange 的简洁解法）<span class="freq-tag">必考</span></div>
+  <div class="template-card">
+    <div class="label">模板：原点到平面 $ax+by+cz=d$ 最近点</div>
+    <p>沿法向量方向参数化：$(at,bt,ct)$。代入平面：$(a^2+b^2+c^2)t=d\Rightarrow t=\frac{d}{a^2+b^2+c^2}$。最近点 $(at,bt,ct)$。距离 $|d|/\sqrt{a^2+b^2+c^2}$（2023 Q5）。</p>
+  </div>
+  <div class="template-card">
+    <div class="label">模板：原点到直线最近点</div>
+    <p>(1) 把交线参数化（用一个变量 $t$）；(2) 写 $D^2(t)=x(t)^2+y(t)^2+z(t)^2$；(3) 求 $\frac{d}{dt}D^2=0$ 解 $t$；(4) 代回得点（2025 Q5）。</p>
+  </div>
+
+  <div class="topic">5.5 级数（必背常用展开）<span class="freq-tag mid">常考</span></div>
+  <div class="formula-card">
+    <div class="label">必背 Taylor 级数（在 $0$ 处）</div>
+    <ul class="tight">
+      <li>$e^x=\sum\frac{x^n}{n!}=1+x+\frac{x^2}{2}+\frac{x^3}{6}+\cdots$</li>
+      <li>$\sin x=x-\frac{x^3}{6}+\frac{x^5}{120}-\cdots$</li>
+      <li>$\cos x=1-\frac{x^2}{2}+\frac{x^4}{24}-\cdots$</li>
+      <li>$\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots\;(|x|<1)$</li>
+      <li>$\frac{1}{1-x}=\sum x^n=1+x+x^2+\cdots\;(|x|<1)$</li>
+      <li><strong>二项级数</strong>：$(1+x)^\alpha=\sum_{n=0}^\infty\binom{\alpha}{n}x^n$，其中 $\binom{\alpha}{n}=\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}$。</li>
+    </ul>
+  </div>
+  <div class="tip-card">
+    <div class="label">★ $\sum$ 级数求和技巧</div>
+    <p>2025 Q1(ix) $\sum\frac{2n+1}{n!}$ 拆分技巧：
+    <ul class="tight">
+      <li>$\sum_{n=0}^\infty\frac{1}{n!}=e$。</li>
+      <li>$\sum_{n=1}^\infty\frac{n}{n!}=\sum_{n=1}^\infty\frac{1}{(n-1)!}=e$。</li>
+      <li>$\sum_{n=2}^\infty\frac{n(n-1)}{n!}=\sum_{n=2}^\infty\frac{1}{(n-2)!}=e$。</li>
+    </ul>
+    一般任何形如 $\sum\frac{P(n)}{n!}$ 的级数都可拆成这些已知和。</p>
+  </div>
+
+  <div class="topic">5.6 交错级数<span class="freq-tag low">偶考</span></div>
+  <div class="formula-card">
+    <div class="label">Leibniz 判别法</div>
+    <p>若 $u_n>0$、$u_n$ 单调递减、$u_n\to 0$，则 $\sum(-1)^n u_n$ 收敛。<br>
+    <strong>注意</strong>：这是充分条件，不是必要。即收敛交错级数的 $u_n$ 不一定单调（2023 Q1(ix) 答案 F）。</p>
+  </div>
+</section>
+
+<!-- ============ Lec 13-17 ============ -->
+<section id="lec13-17" class="module m-purple">
+  <span class="lechead">Lec 13-17 · 多重积分</span>
+  <h2>六、二重 / 三重积分与变量代换</h2>
+
+  <div class="topic">6.1 二重积分的关键步骤<span class="freq-tag">必考</span></div>
+  <div class="template-card">
+    <div class="label">模板：四步法</div>
+    <ol class="tight">
+      <li><strong>画区域</strong>：找出所有边界曲线交点。</li>
+      <li><strong>选积分顺序</strong>：观察被积函数对哪个变量积分最简单（如 $e^{y^3}$ 必须先对 $x$ 积分 — 2025 Q7(b)）。</li>
+      <li><strong>定上下限</strong>：外层是常数区间，内层是函数区间。</li>
+      <li><strong>逐层计算</strong>：先内后外。</li>
+    </ol>
+  </div>
+
+  <div class="topic">6.2 极坐标 / 柱坐标 / 球坐标<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">极坐标 (2D)</div>
+    $x=r\cos\theta,\;y=r\sin\theta,\;\;\boxed{dA=r\,dr\,d\theta}.$
+  </div>
+  <div class="formula-card">
+    <div class="label">柱坐标 (3D)</div>
+    $x=r\cos\theta,\;y=r\sin\theta,\;z=z,\;\;\boxed{dV=r\,dr\,d\theta\,dz}.$
+  </div>
+  <div class="formula-card">
+    <div class="label">球坐标 (3D)</div>
+    $x=\rho\sin\varphi\cos\theta,\;y=\rho\sin\varphi\sin\theta,\;z=\rho\cos\varphi,\;\;\boxed{dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta}.$
+    <p style="margin-top:8px">其中 $\rho\ge 0,\;0\le\varphi\le\pi,\;0\le\theta\le 2\pi$。</p>
+  </div>
+  <div class="trap-card">
+    <div class="label">⚠ 体积元最常忘记的因子</div>
+    <ul class="tight">
+      <li>极坐标 / 柱坐标：忘记乘 $r$。 2025 Q1(v) 答案明确说明"漏 $r$ 扣 1 分"。</li>
+      <li>球坐标：忘记乘 $\rho^2\sin\varphi$。</li>
+    </ul>
+  </div>
+
+  <div class="topic">6.3 变量代换与 Jacobian<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">公式</div>
+    <p>变换 $x=x(u,v),\,y=y(u,v)$，则
+    $$dx\,dy=\left|\frac{\partial(x,y)}{\partial(u,v)}\right|du\,dv,\quad\frac{\partial(x,y)}{\partial(u,v)}=\det\begin{pmatrix}x_u&x_v\\y_u&y_v\end{pmatrix}.$$
+    <strong>取绝对值</strong>是关键。还有反向公式 $\frac{\partial(x,y)}{\partial(u,v)}=\frac{1}{\partial(u,v)/\partial(x,y)}$（更便捷时使用）。</p>
+  </div>
+  <div class="template-card">
+    <div class="label">模板：变量代换四步</div>
+    <ol class="tight">
+      <li><strong>把每条边界 $\to (u,v)$ 表达</strong>。如 2023 Q9 中 $y=1$ 变成 $uv=1$。</li>
+      <li><strong>画 $(u,v)$ 区域 $G$</strong>。</li>
+      <li><strong>把被积函数 $\to (u,v)$ 形式</strong>。</li>
+      <li><strong>乘 $|J|$</strong>。</li>
+    </ol>
+  </div>
+
+  <div class="topic">6.4 换序积分<span class="freq-tag">必考</span></div>
+  <div class="tip-card">
+    <div class="label">★ 何时必须换序</div>
+    <p>当被积函数对当前内层变量<strong>没有初等原函数</strong>时，必须换序。常见信号：
+    <ul class="tight">
+      <li>$e^{y^2},e^{y^3},\sin(y^2),\cos(y^2)$ 类函数（2025 Q7(b) $e^{y^3}$）。</li>
+      <li>$\frac{e^{-x}-e^{-2x}}{x}$ 等含 $\frac{1}{x}$ 差形式（2023 Q7(ii) Frullani）。</li>
+    </ul></p>
+  </div>
+  <div class="template-card">
+    <div class="label">参数双重积分技巧（Frullani 型）</div>
+    $$\frac{e^{-ax}-e^{-bx}}{x}=\int_a^b e^{-tx}\,dt\;(0<a<b).$$
+    <p>原积分变成 $\int_0^\infty\int_a^b e^{-tx}\,dt\,dx$，交换顺序后内积分简单。</p>
+  </div>
+</section>
+
+<!-- ============ Lec 17-25 ============ -->
+<section id="lec17-25" class="module m-red">
+  <span class="lechead">Lec 17-25 · 向量场</span>
+  <h2>七、向量场与三大定理</h2>
+
+  <div class="topic">7.1 保守场判定<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">判据（curl = 0）</div>
+    <p>3D 向量场 $\mathbf F=(P,Q,R)$ 在<strong>单连通域</strong>上保守 $\Leftrightarrow$
+    $$P_y=Q_x,\quad P_z=R_x,\quad Q_z=R_y.$$
+    （等价于 $\nabla\times\mathbf F=\mathbf 0$。）</p>
+    <p>2D 向量场 $\mathbf F=(P,Q)$ 上保守 $\Leftrightarrow P_y=Q_x$。</p>
+  </div>
+  <div class="trap-card">
+    <div class="label">⚠ 单连通的关键</div>
+    <p>分量测试通过 + 域非单连通 $\Rightarrow$ 不能下保守结论（2025 Q1(iii)，著名的 $\frac{(-y,x)}{x^2+y^2}$ 反例）。务必检查域是否单连通。</p>
+  </div>
+
+  <div class="topic">7.2 势函数构造<span class="freq-tag">必考</span></div>
+  <div class="template-card">
+    <div class="label">三步构造法</div>
+    <ol class="tight">
+      <li><strong>$\phi_x=P$ 对 $x$ 积分</strong>：$\phi=\int P\,dx+C(y,z)$。</li>
+      <li><strong>对上式求 $\phi_y$ 比较 $Q$</strong>：解出 $C(y,z)$ 中的 $y$ 部分，得 $C(y,z)=\cdots+D(z)$。</li>
+      <li><strong>对完整 $\phi$ 求 $\phi_z$ 比较 $R$</strong>：解出 $D(z)$，通常 $D'=0$。</li>
+    </ol>
+  </div>
+  <div class="formula-card">
+    <div class="label">基本定理（路径无关）</div>
+    $$\int_C\mathbf F\cdot d\mathbf r=\phi(B)-\phi(A),\quad C\text{ 是从 }A\text{ 到 }B\text{ 的任意分段光滑路径}.$$
+  </div>
+
+  <div class="topic">7.3 Green 定理（2D）<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">两种形式</div>
+    <p><strong>环量（旋度）形式</strong>：
+    $$\oint_C P\,dx+Q\,dy=\iint_D(Q_x-P_y)\,dA.$$</p>
+    <p><strong>通量（散度）形式</strong>：
+    $$\oint_C\mathbf F\cdot\hat{\mathbf n}\,ds=\iint_D(P_x+Q_y)\,dA.$$</p>
+    <p>这里 $C$ 是 $D$ 的边界，<strong>正向</strong>为「使得 $D$ 在左侧」（即从外部看是逆时针）。</p>
+  </div>
+
+  <div class="topic">7.4 Stokes 定理（3D 曲面 ↔ 边界曲线）<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">公式</div>
+    $$\iint_S(\nabla\times\mathbf F)\cdot d\mathbf S=\oint_{\partial S}\mathbf F\cdot d\mathbf r.$$
+    <p>方向约定（右手定则）：手指沿 $\partial S$ 正方向，拇指指向 $S$ 法线方向。</p>
+  </div>
+  <div class="tip-card">
+    <div class="label">★ 何时使用 Stokes</div>
+    <ul class="tight">
+      <li>当 $\mathbf F=\nabla\times\mathbf A$ 形式给出（2023 Q12，$\mathbf A$ 含 $e^{xyz},\cos(xz)$ 复杂项）—— 直接转线积分巨简化。</li>
+      <li>当 $\nabla\times\mathbf F$ 计算困难时，逆向用 Stokes 把面积分变成线积分（2025 Q13）。</li>
+      <li>在边界上某些项变为常数 / 0（如 $z=0$ 时 $z^2,\sqrt z=0$），可大幅简化。</li>
+    </ul>
+  </div>
+
+  <div class="topic">7.5 散度（Gauss）定理<span class="freq-tag">必考</span></div>
+  <div class="formula-card">
+    <div class="label">公式</div>
+    $$\oiint_{\partial V}\mathbf F\cdot d\mathbf S=\iiint_V\nabla\cdot\mathbf F\,dV.$$
+    <p>这里 $\partial V$ 是 $V$ 的封闭外表面，外向法向。</p>
+  </div>
+  <div class="tip-card">
+    <div class="label">★ 何时使用散度定理</div>
+    <ul class="tight">
+      <li>闭曲面（球、立方体、抛物面 + 底盖等）的通量计算，<strong>首选散度定理</strong>。</li>
+      <li>$\nabla\cdot\mathbf F$ 形式简单（多项式、对称）时极高效。</li>
+      <li>开曲面（如单独的抛物面）<strong>不能直接用</strong>，需补一个底盘构成闭曲面再减去底盘的通量。</li>
+    </ul>
+  </div>
+
+  <div class="topic">7.6 经典恒等式（必背）</div>
+  <div class="formula-card">
+    <ul class="tight">
+      <li>$\nabla\cdot(\nabla\times\mathbf F)=0$（旋度的散度恒为 $0$）— 这意味着 curl 场过任意闭曲面通量恒为 $0$。</li>
+      <li>$\nabla\times(\nabla f)=\mathbf 0$（梯度的旋度恒为 $0$）— 保守场旋度为 $0$。</li>
+      <li>$\nabla\cdot(\nabla f)=\Delta f=f_{xx}+f_{yy}+f_{zz}$（Laplacian，2023 Q1(vii)）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 易错陷阱清单 ============ -->
+<section id="traps" class="module m-red">
+  <span class="lechead">复习工具 · COMMON TRAPS</span>
+  <h2>八、考试中最容易丢分的 12 个陷阱</h2>
+
+  <table class="ref">
+    <thead>
+      <tr><th>#</th><th>陷阱</th><th>解决方案</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>方向导数没归一化方向向量</td><td>第一件事：检查 $|\mathbf v|=1$ 没有，若不是先除以模</td></tr>
+      <tr><td>2</td><td>极/柱/球坐标漏 $r$ 或 $\rho^2\sin\varphi$</td><td>把"$dA=r\,dr\,d\theta$"等公式背到肌肉记忆</td></tr>
+      <tr><td>3</td><td>Jacobian 没取绝对值</td><td>变量代换最后一步必检查正负号</td></tr>
+      <tr><td>4</td><td>Lagrange 漏退化情形</td><td>列出方程后，检查所有变量为 $0$ 时的特殊解</td></tr>
+      <tr><td>5</td><td>Hessian 判别中 $D=0$ 直接下结论</td><td>$D=0$ 是"判别失效"而非鞍点；高阶分析或具体讨论</td></tr>
+      <tr><td>6</td><td>多元极限只用线性路径</td><td>必试抛物 $y=kx^2$ 与极坐标</td></tr>
+      <tr><td>7</td><td>分段函数在衔接点直接套公式求偏导</td><td>必须用差商定义，分别算 $h\to 0^\pm$</td></tr>
+      <tr><td>8</td><td>保守场判据忘记单连通条件</td><td>分量测试 + 域单连通 = 保守</td></tr>
+      <tr><td>9</td><td>Green 定理方向反了导致符号错</td><td>正向 = 区域在左侧 = 从外看逆时针</td></tr>
+      <tr><td>10</td><td>散度定理用于开曲面</td><td>需先封闭（补盖），再减去补充部分的通量</td></tr>
+      <tr><td>11</td><td>$\sin^3 t$ 在 $[0,2\pi]$ 上的积分写错</td><td>$\sin^3,\cos^3,\sin,\cos$ 在完整周期上积分都是 $0$（奇对称）</td></tr>
+      <tr><td>12</td><td>反常二重积分直接套常规计算</td><td>看到 $\frac{1}{x^2+y^2}$ 在原点附近 — 极坐标看看 $\int\frac{1}{r}dr$ 是否发散</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 解题模板 ============ -->
+<section id="templates" class="module m-green">
+  <span class="lechead">复习工具 · TEMPLATES</span>
+  <h2>九、十大题型解题模板</h2>
+
+  <div class="template-card">
+    <div class="label">模板 1：二元极限</div>
+    <ol class="tight">
+      <li>代入：分子有限非零、分母 $\to 0$ → DNE。分母 $\to$ 非零数 → 直接代入。</li>
+      <li>$0/0$：极坐标判 $r\cdot$(有界) $\to 0$。</li>
+      <li>路径检验：$y=kx,y=kx^2,y=mx^n$ 不一致 → DNE。</li>
+      <li>夹逼：写出 $|表达式|\le g(r)\to 0$。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 2：二阶偏导数</div>
+    <ol class="tight">
+      <li>分别算 $f_x,f_y$。</li>
+      <li>$f_{xx}=(f_x)_x$；$f_{yy}=(f_y)_y$。</li>
+      <li>$f_{xy}=(f_x)_y$，与 $f_{yx}=(f_y)_x$ <strong>必须相等</strong>（连续时）。</li>
+      <li>分段函数衔接处用差商定义。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 3：切平面 + 法线</div>
+    <ol class="tight">
+      <li>识别隐式 $F=c$ 还是显式 $z=f(x,y)$。</li>
+      <li>计算法向量：$\nabla F$ 或 $(f_x,f_y,-1)$。</li>
+      <li>切平面方程：法向量 $\cdot$ $(x-x_0,y-y_0,z-z_0)=0$。</li>
+      <li>法线参数：$P_0+t\cdot\mathbf n$。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 4：约束极值（Lagrange）</div>
+    <ol class="tight">
+      <li>列方程组：$\nabla f=\lambda\nabla g$ + $g=c$。</li>
+      <li>用消去法（一式比另一式）化简。</li>
+      <li>讨论变量为 $0$ 的退化情形。</li>
+      <li>所有候选点代入 $f$，比较找最大/最小。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 5：无约束极值（Hessian）</div>
+    <ol class="tight">
+      <li>解 $\nabla f=\mathbf 0$ 找所有临界点。</li>
+      <li>计算 $D=f_{xx}f_{yy}-f_{xy}^2$。</li>
+      <li>$D>0,f_{xx}>0$：极小；$D>0,f_{xx}<0$：极大；$D<0$：鞍。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 6：二重积分换序</div>
+    <ol class="tight">
+      <li>原顺序写出区域：$a\le x\le b,\,g(x)\le y\le h(x)$。</li>
+      <li>把每条边界曲线改写为 $x=$ 函数 of $y$。</li>
+      <li>新顺序：$y$ 范围用整体边界，$x$ 范围由 $y$ 决定。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 7：变量代换</div>
+    <ol class="tight">
+      <li>计算 $|J|=\left|\frac{\partial(x,y)}{\partial(u,v)}\right|$。</li>
+      <li>映射边界：每条 $xy$ 边界 $\to (u,v)$ 表达式。</li>
+      <li>画 $(u,v)$ 区域 $G$。</li>
+      <li>$\iint_D f(x,y)\,dA=\iint_G f(x(u,v),y(u,v))|J|\,du\,dv$。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 8：保守场三步走</div>
+    <ol class="tight">
+      <li>检验 curl $=\mathbf 0$ + 域单连通。</li>
+      <li>三步构造势函数 $\phi$。</li>
+      <li>$W=\phi(B)-\phi(A)$。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 9：Stokes / Green / Divergence 选择</div>
+    <ol class="tight">
+      <li><strong>2D 闭曲线</strong> + 区域 → Green。</li>
+      <li><strong>3D 闭曲面</strong> + 包围体 → Divergence。</li>
+      <li><strong>3D 开曲面</strong> + 边界曲线 → Stokes（或补盖用 Divergence）。</li>
+      <li>选 $\nabla\cdot\mathbf F$ 或 $\nabla\times\mathbf F$ 中较简单的一个判断方向。</li>
+    </ol>
+  </div>
+
+  <div class="template-card">
+    <div class="label">模板 10：Stokes 反向用法</div>
+    <ol class="tight">
+      <li>当 $\nabla\times\mathbf F$ 难算时，反向用 Stokes 把面积分变成线积分。</li>
+      <li>在边界曲线上 $\mathbf F$ 通常会大幅简化（如 $z=0$ 时含 $z$ 的项消失）。</li>
+      <li>参数化边界：常用 $(R\cos t,R\sin t,0)$。</li>
+      <li>计算 $\oint\mathbf F\cdot d\mathbf r$。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 24 小时清单 ============ -->
+<section id="checklist" class="module m-gold">
+  <span class="lechead">考前最后阶段</span>
+  <h2>十、考前 24 小时冲刺清单</h2>
+
+  <div class="checklist">
+    <h3>A. 必背公式核查（30 分钟）</h3>
+    <div class="item"><div class="box"></div><div>球坐标体积元 $\rho^2\sin\varphi$、柱坐标 $r$。这是最常忘的。</div></div>
+    <div class="item"><div class="box"></div><div>Hessian 判别 $D=f_{xx}f_{yy}-f_{xy}^2$ 的四种情况。</div></div>
+    <div class="item"><div class="box"></div><div>保守场三个分量等式 $P_y=Q_x,P_z=R_x,Q_z=R_y$。</div></div>
+    <div class="item"><div class="box"></div><div>Green / Stokes / Divergence 三大公式（含方向约定）。</div></div>
+    <div class="item"><div class="box"></div><div>$e^x,\sin x,\cos x,\ln(1+x),(1+x)^\alpha$ 的 Taylor 级数。</div></div>
+    <div class="item"><div class="box"></div><div>切平面公式（隐式与显式两套）。</div></div>
+    <div class="item"><div class="box"></div><div>叉积分量公式（用于求平面交线方向）。</div></div>
+  </div>
+
+  <div class="checklist">
+    <h3>B. 高频题型再过一遍（90 分钟）</h3>
+    <div class="item"><div class="box"></div><div>2023 Q2 + 2025 Q2 — 极限题，重点抛物路径与极坐标。</div></div>
+    <div class="item"><div class="box"></div><div>2023 Q6 (Lagrange) + 2025 Q6 (Hessian) — 极值两套方法。</div></div>
+    <div class="item"><div class="box"></div><div>2023 Q7(ii) (Frullani) + 2025 Q7(b) (换序) — 二重积分技巧。</div></div>
+    <div class="item"><div class="box"></div><div>2023 Q8 (球) + 2025 Q8 (柱) — 体积积分。</div></div>
+    <div class="item"><div class="box"></div><div>2023 Q9 + 2025 Q9 — 变量代换，Jacobian 与边界映射。</div></div>
+    <div class="item"><div class="box"></div><div>2023 Q10 + 2025 Q10 — 保守场三步走。</div></div>
+    <div class="item"><div class="box"></div><div>2023 Q11-13 + 2025 Q11-13 — 三大定理选择题。</div></div>
+  </div>
+
+  <div class="checklist">
+    <h3>C. 概念题速查（20 分钟）</h3>
+    <div class="item"><div class="box"></div><div>简单连通：$\mathbb R^3\setminus\{0\}$ <strong>是</strong>，$\mathbb R^2\setminus\{0\}$ <strong>不是</strong>。</div></div>
+    <div class="item"><div class="box"></div><div>分离连续 ≠ 联合连续（反例 $\frac{xy}{x^2+y^2}$）。</div></div>
+    <div class="item"><div class="box"></div><div>区域可加性需 $R_1\cap R_2$ 是零测集。</div></div>
+    <div class="item"><div class="box"></div><div>分量测试通过 + 单连通 $\Rightarrow$ 保守；缺一不可。</div></div>
+    <div class="item"><div class="box"></div><div>$\frac{1}{r}$ 在 $r=0$ 附近 1D 积分发散。</div></div>
+    <div class="item"><div class="box"></div><div>Leibniz 是充分而非必要条件。</div></div>
+  </div>
+
+  <div class="checklist">
+    <h3>D. 考试当天 (60 分钟前)</h3>
+    <div class="item"><div class="box"></div><div>带好身份证、学生证、铅笔、橡皮、签字笔（多备）、手表。</div></div>
+    <div class="item"><div class="box"></div><div>提前到考场，熟悉环境。</div></div>
+    <div class="item"><div class="box"></div><div>开考后<strong>先浏览全卷 2 分钟</strong>，对题目难度有大致印象。</div></div>
+    <div class="item"><div class="box"></div><div>Q1 短问题 30-35 分钟拿下；卡 1 分钟以上的小题先标记。</div></div>
+    <div class="item"><div class="box"></div><div>大题按顺序做，遇阻立即跳。</div></div>
+    <div class="item"><div class="box"></div><div>留 10-15 分钟最后检查 — 重点：符号、$r$ 因子、绝对值。</div></div>
+    <div class="item"><div class="box"></div><div>无理数保留精确形式（$\sqrt 2$ 不写成 1.414，$\ln 2$ 不写成 0.693）。</div></div>
+  </div>
+</section>
+
+<footer>
+  <p>MAT1002 期末考前复习提纲 · 高频考点 + 必背知识 + 解题模板</p>
+  <p>结合 2023 + 2025 真题统计 · 配合详细解析使用效果最佳</p>
+  <p>祝考试顺利！</p>
+</footer>
+
+</main>
+</body>
+</html>

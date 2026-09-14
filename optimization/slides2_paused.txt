@@ -1,0 +1,1230 @@
+--- Page 0 ---
+MAT3007 Optimization
+Problem Types and Modeling
+Nachuan Xiao
+School of Data Science
+The Chinese University of Hong Kong, Shenzhen
+Fall 2026
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+1 / 42
+
+--- Page 1 ---
+Recap: The Optimization Model
+An optimization problem has three main components:
+▶Decision variables: the choices we control.
+▶Objective: the quantity we minimize or maximize.
+▶Constraints: the rules that define the allowed choices.
+General form of a minimization problem
+minimize
+x∈Rn
+f(x)
+subject to
+gi(x) ≤0,
+i = 1, . . . , m,
+hj(x) = 0,
+j = 1, . . . , p.
+Read the model as: choose x, evaluate f(x), and obey every constraint.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+2 / 42
+
+--- Page 2 ---
+Recap: Feasible and Optimal Solutions
+Feasible set
+Ω= {x ∈Rn : gi(x) ≤0 for all i, hj(x) = 0 for all j}.
+▶A feasible point is any x ∈Ω.
+▶An optimal solution x⋆is a feasible point with
+f(x⋆) ≤f(x)
+for every x ∈Ω.
+▶The optimal value is the number f(x⋆). Several solutions may tie,
+but they share the same value.
+▶A local minimizer is best among nearby feasible points. A global
+minimizer is best over all of Ω.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+3 / 42
+
+--- Page 3 ---
+Introduction to Optimization: Continued
+Modeling: How to Formulate an Optimization Problem?
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+4 / 42
+
+--- Page 4 ---
+Four Possible Outcomes
+A mathematical model does not always have one finite best solution.
+1. The constraints may contradict one another, so the feasible set is
+empty.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+5 / 42
+
+--- Page 5 ---
+Four Possible Outcomes
+A mathematical model does not always have one finite best solution.
+1. The constraints may contradict one another, so the feasible set is
+empty.
+2. Feasible points may exist, but a finite best bound may never be
+attained by a feasible point.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+5 / 42
+
+--- Page 6 ---
+Four Possible Outcomes
+A mathematical model does not always have one finite best solution.
+1. The constraints may contradict one another, so the feasible set is
+empty.
+2. Feasible points may exist, but a finite best bound may never be
+attained by a feasible point.
+3. The objective may improve without limit, so the problem is
+unbounded.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+5 / 42
+
+--- Page 7 ---
+Four Possible Outcomes
+A mathematical model does not always have one finite best solution.
+1. The constraints may contradict one another, so the feasible set is
+empty.
+2. Feasible points may exist, but a finite best bound may never be
+attained by a feasible point.
+3. The objective may improve without limit, so the problem is
+unbounded.
+4. Several feasible points may tie for the best objective value, so the
+optimal solution is not unique.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+5 / 42
+
+--- Page 8 ---
+Infeasible Problem
+Consider two rules imposed at the same time:
+x ≤1,
+x ≥2.
+No real number satisfies both rules, so the problem is infeasible.
+x
+-2
+-1
+0
+1
+2
+3
+4
+allowed by x ≤1
+allowed by x ≥2
+no overlap
+Conclusion: with no feasible point, there is nothing to optimize.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+6 / 42
+
+--- Page 9 ---
+Finite Infimum, No Minimizer
+Consider
+min
+x
+1
+x
+subject to
+x ≥1.
+The choices 1, 10, 100, 1000, . . . are feasible, with objective values
+1, 0.1, 0.01, 0.001, . . ..
+x
+1/x
+(1, 1)
+larger x, smaller 1/x
+1/x > 0 for every finite x
+▶The objective approaches the finite lower bound 0 as x grows.
+▶No finite feasible x makes 1/x = 0. Thus the infimum is 0, but no
+optimal solution attains it.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+7 / 42
+
+--- Page 10 ---
+Unbounded Below
+Consider
+min
+x
+−x
+subject to
+x ≥0.
+Larger feasible values of x give smaller objective values:
+x = 0, 10, 100
+=⇒
+−x = 0, −10, −100.
+We can continue forever. The objective has no finite lower bound.
+x
+keep moving right to improve
+Applied interpretation: an unbounded model often signals a missing
+capacity, budget, or demand limit. It is not automatically a modeling error.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+8 / 42
+
+--- Page 11 ---
+Multiple Optimal Solutions
+Consider
+min
+x1,x2 x2
+subject to
+0 ≤x1 ≤4,
+1 ≤x2 ≤3.
+x1
+x2
+every point on this edge is optimal
+1
+3
+4
+Every point (x1, 1) with 0 ≤x1 ≤4 is optimal. The solutions differ, but
+the optimal value is always 1.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+9 / 42
+
+--- Page 12 ---
+Diagnostic Checklist
+Before choosing an algorithm, ask these questions in order:
+1. Feasible? Does at least one decision satisfy every constraint?
+2. Bounded? Is the objective bounded in the direction of optimization?
+3. Attained? Does a feasible point reach the best finite bound?
+4. Unique? Is there one optimal solution, or do several solutions tie?
+▶Constraints determine where we may search.
+▶The objective determines which feasible decisions are better.
+▶The model itself determines whether a best solution exists.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+10 / 42
+
+--- Page 13 ---
+Classification of Optimization Problems
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+11 / 42
+
+--- Page 14 ---
+Three Classification Questions
+Each classification answers a different question.
+1. Where may we choose?
+▶Unconstrained: every x ∈Rn is allowed.
+▶Constrained: only points in a feasible set Ωare allowed.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+12 / 42
+
+--- Page 15 ---
+Three Classification Questions
+Each classification answers a different question.
+1. Where may we choose?
+▶Unconstrained: every x ∈Rn is allowed.
+▶Constrained: only points in a feasible set Ωare allowed.
+2. What shape do the formulas have?
+▶Linear: the objective and all constraints are linear.
+▶Nonlinear: at least one formula is nonlinear.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+12 / 42
+
+--- Page 16 ---
+Three Classification Questions
+Each classification answers a different question.
+1. Where may we choose?
+▶Unconstrained: every x ∈Rn is allowed.
+▶Constrained: only points in a feasible set Ωare allowed.
+2. What shape do the formulas have?
+▶Linear: the objective and all constraints are linear.
+▶Nonlinear: at least one formula is nonlinear.
+3. What values may the variables take?
+▶Continuous, integer, or a mixture of both.
+A model receives one description from each of these three groups.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+12 / 42
+
+--- Page 17 ---
+Constrained and Unconstrained Problems
+Unconstrained: every x ∈R is allowed.
+Constrained: only points in a
+feasible set are allowed.
+Both examples minimize the same objective, (x −2)2:
+▶Without constraints, x = 2 is feasible and gives value 0.
+▶With x ≥5, the closest allowed point is x = 5, which gives value 9.
+Geometric conclusion: in this example, the constraint moves the
+optimum to the boundary of the allowed interval.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+13 / 42
+
+--- Page 18 ---
+Linear and Nonlinear Problems
+Linear optimization (LP) has a linear objective and linear constraints.
+Nonlinear optimization (NLP) has at least one nonlinear expression.
+▶Linear inequalities define half-spaces; linear equalities define
+hyperplanes. Their intersection is a polyhedron.
+▶A linear objective has parallel level lines. On a bounded polygon, at
+least one optimal corner exists; an entire edge may tie.
+▶Nonlinear models may have curved boundaries or curved level sets.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+14 / 42
+
+--- Page 19 ---
+Continuous and Integer Decisions
+Continuous variables may take real values. Integer variables may take only
+integers.
+For f(x) = (x −2.2)2:
+▶Continuous choice: x = 2.2, so f(x) = 0.
+▶Integer candidates nearest to 2.2:
+f(2) = 0.04,
+f(3) = 0.64.
+Therefore the best integer choice is x = 2.
+Continuous choices fill a region; integer choices appear as separated points.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+15 / 42
+
+--- Page 20 ---
+Classification Summary
+Classify a model along three independent dimensions:
+1. Allowed choices
+▶unconstrained or constrained
+2. Formula shape
+▶linear or nonlinear
+3. Variable type
+▶continuous, pure integer, or mixed-integer.
+A model can therefore be constrained, nonlinear, and continuous at the
+same time. The labels answer different questions and do not compete.
+Course convention: unless stated otherwise, decision variables are
+continuous.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+16 / 42
+
+--- Page 21 ---
+Classification Depends on Mathematical Form
+The same decision problem can sometimes be written in different
+mathematical forms. The formulation affects which algorithms we can use.
+▶An exact reformulation changes the mathematical form but preserves
+the optimal value and lets us recover an optimal decision for the
+original problem.
+▶A continuous relaxation removes an integer restriction. It allows more
+decisions, so it may produce a better objective value that the original
+integer model cannot attain.
+Why this matters
+A useful reformulation may expose linear structure and make a model easier
+to solve. A relaxation provides a bound, but it is not automatically an exact
+replacement.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+17 / 42
+
+--- Page 22 ---
+A Maximum of Linear Terms Can Have an LP Formulation
+Consider the nonlinear-looking objective
+min
+0≤x≤4 max{x, 4 −x}.
+Introduce a helper variable t that is at least both expressions:
+minimizex,t
+t
+subject to
+x ≤t,
+4 −x ≤t,
+0 ≤x ≤4.
+Both the new objective and constraints are linear, so this is an LP.
+At the best balance point, x = 4 −x. Therefore
+x = 2,
+t = 2.
+The LP is an exact reformulation: it gives the same decision and value as
+the original max objective.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+18 / 42
+
+--- Page 23 ---
+Continuous Relaxation of an Integer Program
+Suppose x is the number of items and each item costs 5:
+min
+x
+5x
+subject to
+x ≥3.2,
+x ∈Z.
+The smallest feasible integer is x = 4, so the integer optimum is
+x⋆= 4,
+5x⋆= 20.
+Remove the integer restriction to form the continuous relaxation:
+min
+x
+5x
+subject to
+x ≥3.2,
+x ∈R.
+Its optimum is x = 3.2, with value 16.
+Conclusion: the relaxation gives a lower bound, 16 ≤20, but its solution
+is not feasible for the original integer problem.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+19 / 42
+
+--- Page 24 ---
+Introduction to Optimization: Continued
+Modeling: How to Formulate an Optimization Problem?
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+20 / 42
+
+--- Page 25 ---
+Why Modeling Matters
+A real problem usually arrives as a sentence:
+“How much of each alloy should the factory produce?”
+The sentence leaves important details unspecified.
+▶Decision: What quantities can the factory choose?
+▶Objective: Does “best” mean more profit, lower cost, or less waste?
+▶Constraints: Which resources and operating rules limit the choices?
+The role of a model
+A mathematical model makes the choices, goal, and assumptions visible
+before a solver searches for an answer.
+A useful model is correct, clear, solvable, and robust. Small data errors
+should not produce unreasonable decisions.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+21 / 42
+
+--- Page 26 ---
+A Practical Modeling Pipeline
+1. Clarify the goal. For Production, maximize total profit rather than
+simply producing more.
+2. Choose decision variables. Let x1 and x2 be the numbers of
+production units of Alloy 1 and Alloy 2.
+3. Translate the rules. Use the steel, iron, and copper inventories to
+limit x1 and x2.
+4. Check the model. The plan (0, 0) is feasible. The plan (100, 100) is
+not, because it needs 200 units of copper.
+5. Improve the formulation when needed. Simplify only when the
+new formulation keeps the same meaning and allowed decisions.
+A good working habit
+Start with plain language. Introduce mathematics only after every symbol
+has a concrete meaning.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+22 / 42
+
+--- Page 27 ---
+A Reusable Modeling Template
+Optimization model
+choose
+x
+decision variables,
+to minimize or maximize
+f(x)
+objective,
+subject to
+rules on x
+constraints.
+For each line, ask one concrete question.
+▶Decision variables: What can we control?
+▶Objective: How do we compare two allowed decisions?
+▶Constraints: Which decisions are allowed?
+After solving, substitute the proposed answer back into every constraint
+and recompute its objective value.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+23 / 42
+
+--- Page 28 ---
+Common Modeling Mistakes
+1. Poor numerical scaling
+▶A cost variable may reach millions of dollars, while a time variable
+may be as small as 0.01 seconds, which equals 10 milliseconds.
+▶Expressing cost in thousands of dollars or time in milliseconds can
+give the model more comparable numerical scales.
+2. Assuming that a helper variable makes a model linear
+▶To obtain an LP, helper variables must be linked to the original
+variables by linear constraints.
+▶Convex piecewise-linear functions often have linear formulations.
+Nonconvex piecewise-linear rules may require binary variables.
+3. Omitting a real operating rule
+▶A production model may assume unlimited sales unless it includes a
+demand limit.
+Reformulation check
+The new model must preserve the optimal value and let us recover an optimal
+decision for the original problem.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+24 / 42
+
+--- Page 29 ---
+Examples of Modeling
+Maximum area and production planning
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+25 / 42
+
+--- Page 30 ---
+Maximum Area: From Story to Model
+Use all 80 meters of fencing for a rectangular field. Which rectangle has
+the largest area?
+length x
+width y
+▶Decision variables: the side lengths x and y.
+▶Objective: maximize the area xy.
+▶Constraint: the perimeter uses all 80 meters, so 2x + 2y = 80.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+26 / 42
+
+--- Page 31 ---
+Maximum Area: From Story to Model
+Use all 80 meters of fencing for a rectangular field. Which rectangle has
+the largest area?
+length x
+width y
+▶Decision variables: the side lengths x and y.
+▶Objective: maximize the area xy.
+▶Constraint: the perimeter uses all 80 meters, so 2x + 2y = 80.
+Complete model
+maximize
+x,y
+xy
+subject to
+2x + 2y = 80,
+x, y ≥0.
+This is a constrained, nonlinear, continuous optimization problem.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+26 / 42
+
+--- Page 32 ---
+Maximum Area: One Decision Variable
+The perimeter equation determines one side after we choose the other:
+x + y = 40,
+y = 40 −x.
+Therefore,
+A(x) = x(40 −x),
+0 ≤x ≤40.
+x
+0
+10
+20
+30
+40
+y = 40 −x
+40
+30
+20
+10
+0
+A = xy
+0
+300
+400
+300
+0
+Why this is simpler
+Every feasible rectangle is represented by one number x ∈[0, 40]. The value
+of y then follows automatically.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+27 / 42
+
+--- Page 33 ---
+Maximum Area: Geometric Answer
+Completing the square gives a direct check that does not use calculus:
+A(x) = 40x −x2 = 400 −(x −20)2 ≤400.
+x
+A(x)
+0
+20
+40
+200
+400
+(20, 400)
+The graph is a symmetric hill. Its highest point occurs at x = 20, where
+the squared term above equals zero.
+Answer
+x = y = 20, and the maximum area is 20 × 20 = 400 square meters.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+28 / 42
+
+--- Page 34 ---
+Production Problem: Data and Decisions
+Each alloy row gives the resources consumed and profit earned by one unit
+of that alloy. The last row gives the total resources available.
+Steel
+Iron
+Copper
+Profit per unit
+Alloy 1
+1
+0
+1
+$1
+Alloy 2
+0
+2
+1
+$2
+Available
+100
+200
+150
+Let x1 and x2 denote the amounts of Alloy 1 and Alloy 2.
+Decision and objective
+▶Decision: choose x1 ≥0 and x2 ≥0.
+▶Objective: maximize total profit
+P = x1 + 2x2.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+29 / 42
+
+--- Page 35 ---
+Production Problem: Resource Constraints
+Each production plan must fit all three inventories.
+▶Alloy 1 uses one unit of steel and one unit of copper.
+▶Alloy 2 uses two units of iron and one unit of copper.
+▶The available amounts are 100 units of steel, 200 of iron, and 150 of
+copper.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+30 / 42
+
+--- Page 36 ---
+Production Problem: Resource Constraints
+Each production plan must fit all three inventories.
+▶Alloy 1 uses one unit of steel and one unit of copper.
+▶Alloy 2 uses two units of iron and one unit of copper.
+▶The available amounts are 100 units of steel, 200 of iron, and 150 of
+copper.
+Linear optimization model
+maximize
+x1,x2
+P = x1 + 2x2
+subject to
+x1 ≤100
+steel,
+2x2 ≤200
+iron,
+x1 + x2 ≤150
+copper,
+x1, x2 ≥0.
+Every expression is linear, so this is a linear optimization problem.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+30 / 42
+
+--- Page 37 ---
+Production Problem: Feasible Region and Optimal Plan
+The plan (100, 100) looks attractive, but it uses 200 units of copper. It
+violates x1 + x2 ≤150.
+x1 (Alloy 1)
+x2 (Alloy 2)
+0
+50
+100
+150
+50
+100
+x1 ≤100
+x2 ≤100
+x1 + x2 ≤150
+P = 250
+optimal (50, 100)
+feasible region
+The five corner profits are
+P(0, 0) = 0,
+P(100, 0) = 100,
+P(100, 50) = 200,
+P(50, 100) = 250,
+P(0, 100) = 200.
+Optimal production plan
+Produce 50 units of Alloy 1 and 100 units of Alloy 2. The maximum profit
+is 50 + 2(100) = 250.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+31 / 42
+
+--- Page 38 ---
+Shortest Path: Network and Answer
+Each line is an undirected road, so it can be traveled in either direction.
+The number beside an edge is its length. The highlighted route is shortest.
+S
+B
+C
+D
+E
+F
+T
+4
+3
+3
+2
+5
+6
+4
+3
+2
+1
+2
+S →D →F →E →T,
+3 + 2 + 1 + 2 = 8.
+Let E be the set of undirected edges. For the model, replace every edge
+{i, j} ∈E by two directed arcs (i, j) and (j, i). The resulting arc set is A.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+32 / 42
+
+--- Page 39 ---
+Shortest Path: Arc Decisions
+For every arc (i, j) ∈A, define
+xij =
+(
+1,
+if the route uses arc i →j,
+0,
+otherwise.
+The first index is the starting node; the second is the ending node.
+S
+D
+xSD = 1
+xDS = 0
+xij: arc choice
+wSD = wDS = 3: arc length
+For the highlighted route,
+xSD = xDF = xF E = xET = 1,
+xSB = 0.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+33 / 42
+
+--- Page 40 ---
+Shortest Path: Arc Decisions
+For every arc (i, j) ∈A, define
+xij =
+(
+1,
+if the route uses arc i →j,
+0,
+otherwise.
+The first index is the starting node; the second is the ending node.
+S
+D
+xSD = 1
+xDS = 0
+xij: arc choice
+wSD = wDS = 3: arc length
+For the highlighted route,
+xSD = xDF = xF E = xET = 1,
+xSB = 0.
+Objective: minimize total length
+Each selected arc contributes its length. Unused arcs contribute zero.
+X
+(i,j)∈A
+wijxij = 3 + 2 + 1 + 2 = 8
+for this route.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+33 / 42
+
+--- Page 41 ---
+Shortest Path: One Unit of Flow
+Imagine sending one unit of water from S to T along the highlighted arcs.
+S
+B
+C
+D
+E
+F
+T
+1
+1
+1
+1
+Outflow minus inflow
+Source S: 1 −0 = 1.
+Send one unit into the network.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+34 / 42
+
+--- Page 42 ---
+Shortest Path: One Unit of Flow
+Imagine sending one unit of water from S to T along the highlighted arcs.
+S
+B
+C
+D
+E
+F
+T
+1
+1
+1
+1
+Outflow minus inflow
+Source S: 1 −0 = 1.
+Send one unit into the network.
+Middle node D: 1 −1 = 0.
+Pass on what arrives.
+Unused node B: 0 −0 = 0.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+34 / 42
+
+--- Page 43 ---
+Shortest Path: One Unit of Flow
+Imagine sending one unit of water from S to T along the highlighted arcs.
+S
+B
+C
+D
+E
+F
+T
+1
+1
+1
+1
+Outflow minus inflow
+Source S: 1 −0 = 1.
+Send one unit into the network.
+Middle node D: 1 −1 = 0.
+Pass on what arrives.
+Unused node B: 0 −0 = 0.
+Destination T: 0 −1 = −1.
+Receive one unit.
+The balance rule prevents flow from stopping at a middle node or
+appearing from nowhere.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+34 / 42
+
+--- Page 44 ---
+Shortest Path: Flow Conservation
+At the middle node D, flow must leave if it enters. All other arc variables
+incident to D are zero in this example.
+S
+D
+F
+xSD = 1
+xDF = 0
+xDF −xSD = 0 −1̸ = 0: flow stops at D.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+35 / 42
+
+--- Page 45 ---
+Shortest Path: Flow Conservation
+At the middle node D, flow must leave if it enters. All other arc variables
+incident to D are zero in this example.
+S
+D
+F
+xSD = 1
+xDF = 1
+xDF −xSD = 1 −1 = 0: flow continues through D.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+35 / 42
+
+--- Page 46 ---
+Shortest Path: Flow Conservation
+At the middle node D, flow must leave if it enters. All other arc variables
+incident to D are zero in this example.
+S
+D
+F
+xSD = 1
+xDF = 1
+xDF −xSD = 1 −1 = 0: flow continues through D.
+For every node v ∈V , the same rule is
+X
+j:(v,j)∈A
+xvj
+|
+{z
+}
+selected arcs leaving v
+−
+X
+i:(i,v)∈A
+xiv
+|
+{z
+}
+selected arcs entering v
+= bv,
+bv =
+
+
+
+
+
+1,
+v = S,
+−1,
+v = T,
+0,
+otherwise.
+The right-hand side specifies the net flow supplied or received at each
+node.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+35 / 42
+
+--- Page 47 ---
+Shortest Path: Final Model
+Shortest path
+min
+{xij}(i,j)∈A
+X
+(i,j)∈A
+wijxij
+subject to
+X
+j:(v,j)∈A
+xvj −
+X
+i:(i,v)∈A
+xiv = bv,
+∀v ∈V,
+xij ∈{0, 1},
+∀(i, j) ∈A.
+bS = 1,
+bT = −1,
+bv = 0 at all other nodes.
+▶Balance: S sends one unit, T receives one, and every middle node
+passes on what arrives.
+▶Binary: choose each arc or leave it unused.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+36 / 42
+
+--- Page 48 ---
+Shortest Path: Final Model
+Shortest path
+min
+{xij}(i,j)∈A
+X
+(i,j)∈A
+wijxij
+subject to
+X
+j:(v,j)∈A
+xvj −
+X
+i:(i,v)∈A
+xiv = bv,
+∀v ∈V,
+xij ∈{0, 1},
+∀(i, j) ∈A.
+bS = 1,
+bT = −1,
+bv = 0 at all other nodes.
+▶Balance: S sends one unit, T receives one, and every middle node
+passes on what arrives.
+▶Binary: choose each arc or leave it unused.
+Flow balance allows extra cycles. All lengths are positive, so extra cycles
+increase the objective and cannot appear in an optimal solution.
+The model is linear. Its LP relaxation, 0 ≤xij ≤1, has an integer optimal
+solution because of the network structure.
+S →D →F →E →T,
+optimal value 8.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+36 / 42
+
+--- Page 49 ---
+Vertex Cover: Meaning and Triangle Example
+A vertex cover is a set of nodes that touches every edge. We want to
+select as few nodes as possible.
+1
+2
+3
+uncovered
+▶Selecting only node 1 misses the edge between nodes 2 and 3.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+37 / 42
+
+--- Page 50 ---
+Vertex Cover: Meaning and Triangle Example
+A vertex cover is a set of nodes that touches every edge. We want to
+select as few nodes as possible.
+1
+2
+3
+covered
+▶Selecting only node 1 misses the edge between nodes 2 and 3.
+▶Selecting {1, 2} touches all three edges.
+▶Any single selected node misses the opposite edge.
+Therefore, the minimum vertex-cover size of the triangle is 2.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+37 / 42
+
+--- Page 51 ---
+Vertex Cover: A Larger Graph
+The highlighted nodes {B, D, E, F} touch every edge.
+S
+B
+C
+D
+E
+F
+T
+This gives a feasible cover of size 4. The model will tell us whether a cover
+of size 3 exists.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+38 / 42
+
+--- Page 52 ---
+Vertex Cover: Binary Decisions and Objective
+For every node i ∈V , define
+xi =
+(
+1,
+if node i is selected,
+0,
+otherwise.
+i
+j
+xi = 1
+xj = 0
+The binary restriction xi ∈{0, 1} means each node is either selected or
+not selected.
+The number of selected nodes is
+X
+i∈V
+xi.
+▶Decision: which nodes receive value 1.
+▶Objective: minimize the number of selected nodes.
+▶Constraint: every edge must have at least one selected endpoint.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+39 / 42
+
+--- Page 53 ---
+Vertex Cover: One Constraint per Edge
+For one edge (i, j), the endpoint decisions have four possible values.
+xi
+xj
+xi + xj
+Endpoints
+Is the edge covered?
+0
+0
+0
+i
+j
+No
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+40 / 42
+
+--- Page 54 ---
+Vertex Cover: One Constraint per Edge
+For one edge (i, j), the endpoint decisions have four possible values.
+xi
+xj
+xi + xj
+Endpoints
+Is the edge covered?
+0
+0
+0
+i
+j
+No
+0
+1
+1
+i
+j
+Yes
+1
+0
+1
+i
+j
+Yes
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+40 / 42
+
+--- Page 55 ---
+Vertex Cover: One Constraint per Edge
+For one edge (i, j), the endpoint decisions have four possible values.
+xi
+xj
+xi + xj
+Endpoints
+Is the edge covered?
+0
+0
+0
+i
+j
+No
+0
+1
+1
+i
+j
+Yes
+1
+0
+1
+i
+j
+Yes
+1
+1
+2
+i
+j
+Yes
+Only the first row is forbidden. Thus edge (i, j) is covered exactly when
+xi + xj ≥1.
+We need at least one selected endpoint. The equality xi + xj = 1 would
+wrongly forbid selecting both. Adding this inequality for every edge forces
+the selected nodes to cover the whole graph.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+40 / 42
+
+--- Page 56 ---
+Vertex Cover: Final Model and Verified Answer
+Vertex cover
+min
+{xi}i∈V
+X
+i∈V
+xi
+subject to
+xi + xj ≥1,
+∀(i, j) ∈E,
+xi ∈{0, 1},
+∀i ∈V.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+41 / 42
+
+--- Page 57 ---
+Vertex Cover: Final Model and Verified Answer
+Vertex cover
+min
+{xi}i∈V
+X
+i∈V
+xi
+subject to
+xi + xj ≥1,
+∀(i, j) ∈E,
+xi ∈{0, 1},
+∀i ∈V.
+Verification for the larger graph:
+▶Triangle S–B–D requires at least two selected nodes.
+▶Triangle E–F–T has no nodes in common with the first triangle and
+also requires at least two.
+▶Hence every cover uses at least four nodes.
+▶The set {B, D, E, F} covers every edge and uses four nodes.
+Therefore, {B, D, E, F} is optimal and the minimum cover size is 4.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+41 / 42
+
+--- Page 58 ---
+Comparing the Four Models
+Problem
+Decision
+Objective
+Main constraints
+Classification
+Maximum
+Area
+Side lengths
+x, y
+Maximize xy
+2x + 2y = 80;
+nonnegative
+Nonlinear;
+continuous
+Production
+Alloy amounts
+x1, x2
+Maximize
+x1 + 2x2
+Steel, iron, and copper
+limits
+Linear; continuous
+Shortest Path
+Arc choices xij
+Minimize total
+length
+One unit of conserved
+flow
+Linear; binary
+Vertex Cover
+Node choices
+xi
+Minimize P
+i xi
+xi + xj ≥1 for each
+edge
+Linear; binary
+Each row answers the same four questions: what we choose, what we optimize, which choices are
+allowed, and what mathematical structure the model has.
+All four models are constrained. The variables and formulas distinguish their model classes.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+42 / 42
+================================================================
+附录：原 PDF 中嵌入图片内的文字与数据（图片内文字层无法提取，据原图转录）
+================================================================
+说明：页码为 PDF 页序号，与正文 `--- Page N ---` 一致（幻灯片页码 = N + 1）。
+本讲义其余插图（可行域多边形、最短路网络图、抛物线、表格等）均为矢量绘制，
+其坐标轴刻度与数据标注已被正文文字层完整提取，故不在此重复。
+
+--- Page 17（幻灯片第 13 页）图片：Constrained and Unconstrained Problems 两幅一维示意图 ---
+左图（无约束）：标题 "1D Unconstrained: minimize (x-2)^2"；纵轴 f(x)，刻度 0,2,4,6,8；
+  抛物线 f(x)=(x-2)^2；红点标注 "Unconstrained Optimum"（位于 x=2）；
+  横轴蓝色箭头区间标注 "Allowed region for x (everywhere)"。
+右图（有约束）：标题 "1D Constrained: minimize (x-2)^2 subject to x >= 5"；
+  左侧红色斜纹阴影区标注 "Infeasible Region (x < 5)"；x=5 处竖直虚线；
+  右侧浅蓝区域标注 "Feasible Set (x >= 5)"；红点标注 "Constrained Optimum (on Boundary)"；
+  横轴刻度 2,5,10；箭头标注 "Not Allowed"。
+
+--- Page 18（幻灯片第 14 页）图片：Linear and Nonlinear Problems 两幅二维示意图 ---
+左图（线性 LP）：坐标轴 x1、x2（x2 刻度 1,3；x1 刻度 4,5）；蓝色多边形区域，标注 "Flat Boundaries"；
+  一组虚线平行直线标注 "Parallel Level Lines"；箭头标注 "Max z"；红点标注 "Optimum at Corner"。
+右图（非线性 NLP）：坐标轴 x1、x2（刻度均为 2.12）；绿色曲边区域，标注 "Curved Boundary"；
+  一组虚线曲线标注 "Curved Level Sets"；箭头标注 "Max z"；红点标注 "Optimum on Smooth Part"。
+
+--- Page 19（幻灯片第 15 页）图片：Continuous and Integer Decisions 两幅一维示意图 ---
+左图（连续）：标题 "Continuous Optimization"；f(x) = (x-2.2)^2；纵轴 "f(x) (Objective)"；
+  横轴 "x (Variable)"（刻度 2, 2.2, 4）；蓝色最优点标注 "x* = 2.2  (Continuous Solution)"；
+  虚线注释 "Smooth Movement & Sliding"。
+右图（整数/离散）：标题 "Discrete (Integer) Optimization"；f(x) = (x-2.2)^2；
+  横轴上一组分离的橙色点，标注 "Feasible Set (Separated Points on x-Axis)"；
+  注释 "Jumping Between Points (No Sliding)"；最优点标注 "x* = 2  (Integer Solution)"。
+
+----------------------------------------------------------------
+公式排版说明（正文由 PDF 文字层线性化产生，上/下标会掉行，阅读时按下表还原本意）
+----------------------------------------------------------------
+- 上标平方被压平：`x2` → x^2，`(x −20)2` → (x−20)^2，`(x −2.2)2` → (x−2.2)^2，
+  `t2 1 < t2 2` → t1^2 < t2^2，`1 2∥w∥2` → (1/2)∥w∥^2，`∥w∥2` → ∥w∥^2。
+- 下标被拆到下一行：`xSD`、`xDF`、`xij`、`wij` 分别表示 x_{SD}、x_{DF}、x_{ij}、w_{ij}；
+  `H0`、`H+`、`H−` 表示 H_0、H_+、H_{−}。
+- 希腊字母/符号：`Ω` = Ω，`x⋆` = x*，`⊤` = 转置，`∥w∥` = 二范数。
+- 分式与求和/最小最大算子被拆行，例如 `min
+x∈Rn
+f(x)` 读作 min_{x∈R^n} f(x)，
+  `P
+i∈V
+xi` 读作 Σ_{i∈V} x_i。

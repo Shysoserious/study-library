@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>理科学习库 · 李思源</title>
+  <meta name="description" content="李思源的理科学习资料库：从大一到现在，每一门课的复习笔记与课件都收在这里。">
+  <meta name="theme-color" content="#1f4e79">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>
+    // 尽早应用主题，避免闪烁
+    (function () {
+      try {
+        var t = localStorage.getItem('lib-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════ 顶栏 ═══════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="目录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a class="brand" href="index.html">
+        <span class="logo">理科学习库</span>
+        <span class="logo-en">STUDY LIBRARY</span>
+      </a>
+      <div class="search-trigger" id="searchTrigger" role="button" tabindex="0" aria-label="搜索">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span>搜索笔记、课程、术语…</span>
+        <span class="kbd">Ctrl K</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+          <span id="themeIcon"></span>
+          <span class="btn-label" id="themeLabel">暗色</span>
+        </button>
+        <a class="icon-btn" href="glossary.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span class="btn-label">词汇表</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════ 布局 ═══════════ -->
+  <div class="layout">
+    <nav class="sidebar" id="sidebarDir" aria-label="课程目录"></nav>
+
+    <main class="main">
+      <section class="hero">
+        <h1 class="hero-title">理科学习库</h1>
+        <p class="hero-sub">从大一到现在，每一门课的复习笔记，都收在这里。</p>
+        <p class="hero-meta" id="heroMeta"></p>
+      </section>
+
+      <div class="stats" id="stats" aria-label="统计概览"></div>
+
+      <div class="filters" id="filters" aria-label="分类筛选"></div>
+
+      <div class="recent" id="recent" style="display:none">
+        <div class="recent-head">
+          <span>最近查看</span>
+          <button id="clearRecent">清空</button>
+        </div>
+        <div class="recent-list" id="recentList"></div>
+      </div>
+
+      <div id="main"></div>
+    </main>
+  </div>
+
+  <!-- ═══════════ 搜索浮层 ═══════════ -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-panel">
+      <div class="search-input-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="搜索笔记、课程、术语…（Enter 打开，↑↓ 选择）" autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="sr-hint">Esc 关闭 · 搜索覆盖全部笔记标题与关键术语</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ 移动端抽屉 ═══════════ -->
+  <div class="drawer-mask" id="drawerMask"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-inner">
+      <div class="drawer-brand">
+        <span class="logo">理科学习库</span>
+        <span class="logo-en">STUDY LIBRARY</span>
+      </div>
+      <div id="drawerDir"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data.js"></script>
+  <script src="search-index.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

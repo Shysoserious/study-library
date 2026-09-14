@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>算法第四版 · Phase 1 学习讲义</title>
+<style>
+/* ===== Theme ===== */
+:root { --font: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif; --mono: 'JetBrains Mono','Fira Code','Cascadia Code',Consolas,monospace; }
+[data-theme="dark"] {
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2128; --border:#30363d;
+  --text:#c9d1d9; --tx2:#8b949e; --tx3:#6e7681;
+  --h1:#f0f6fc; --h2:#e6edf3; --ac:#58a6ff; --a2:#f78166;
+  --gn:#3fb950; --pr:#a371f7; --yl:#d2991d; --rd:#f85149;
+  --ca:rgba(88,166,255,0.08); --cw:rgba(248,81,73,0.08);
+  --cb:rgba(163,113,247,0.08); --cp:rgba(63,185,80,0.08); --ct:rgba(210,153,29,0.08);
+  --code-bg:#1c2128; --svgbg:#161b22; --svgfg:#c9d1d9; --svgsf:#8b949e;
+  --shadow:0 1px 3px rgba(0,0,0,0.3); --sw:250px;
+}
+[data-theme="light"] {
+  --bg:#ffffff; --bg2:#f6f8fa; --bg3:#f0f2f5; --border:#d0d7de;
+  --text:#1f2328; --tx2:#656d76; --tx3:#8c959f;
+  --h1:#0d1117; --h2:#1f2328; --ac:#0969da; --a2:#cf222e;
+  --gn:#1a7f37; --pr:#8250df; --yl:#9a6700; --rd:#cf222e;
+  --ca:rgba(9,105,218,0.06); --cw:rgba(207,34,46,0.06);
+  --cb:rgba(130,80,223,0.06); --cp:rgba(26,127,55,0.06); --ct:rgba(154,103,0,0.06);
+  --code-bg:#f6f8fa; --svgbg:#ffffff; --svgfg:#1f2328; --svgsf:#656d76;
+  --shadow:0 1px 4px rgba(0,0,0,0.08); --sw:250px;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  font-family:var(--font); background:var(--bg); color:var(--text);
+  line-height:1.85; min-height:100vh;
+}
+
+/* Top bar */
+.top-bar {
+  position:fixed; top:0; left:0; right:0; height:42px; z-index:100;
+  background:var(--bg); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:flex-end; padding:0 24px;
+}
+.theme-btn {
+  padding:5px 14px; border:1px solid var(--border); border-radius:18px;
+  background:var(--bg2); color:var(--text); font-size:12.5px; cursor:pointer;
+  font-family:var(--font); transition:all 0.2s;
+}
+.theme-btn:hover { border-color:var(--ac); color:var(--ac); }
+
+/* Sidebar */
+nav {
+  position:fixed; left:0; top:42px; bottom:0; width:var(--sw);
+  background:var(--bg2); border-right:1px solid var(--border);
+  overflow-y:auto; padding:20px 14px; z-index:90;
+}
+nav h2 { font-size:14.0px; font-weight:600; color:var(--ac); margin-bottom:16px; }
+nav a { display:block; color:var(--tx2); text-decoration:none; font-size:12.5px;
+  padding:5px 10px; border-radius:5px; margin-bottom:1px; transition:all 0.12s; }
+nav a:hover { color:var(--text); background:var(--ca); }
+nav .wk { font-weight:600; color:var(--h2); font-size:12.5px; margin-top:16px;
+  margin-bottom:4px; padding:5px 10px; }
+nav .wk:first-of-type { margin-top:2px; }
+
+/* Main - centered */
+main {
+  margin:42px auto 0;
+  max-width:960px;
+  padding:56px 56px 120px;
+  padding-left: calc(var(--sw) + 80px);
+}
+
+h1 { font-size:28.0px; font-weight:700; color:var(--h1); margin-bottom:6px; }
+.sub { color:var(--tx2); font-size:13.5px; margin-bottom:40px; }
+h2 { font-size:22.0px; font-weight:700; color:var(--h1); margin-top:60px;
+  margin-bottom:18px; padding-top:20px; border-top:1px solid var(--border); }
+h3 { font-size:17.0px; font-weight:600; color:var(--h2); margin-top:36px; margin-bottom:12px; }
+h4 { font-size:14.5px; font-weight:600; color:var(--text); margin-top:26px; margin-bottom:10px; }
+p { margin-bottom:15px; font-size:14.0px; }
+.section { scroll-margin-top:56px; }
+
+/* Callouts */
+.ca { padding:15px 18px; border-radius:8px; margin:18px 0; font-size:13.5px;
+  line-height:1.7; border-left:3px solid; }
+.ca-title { font-weight:600; font-size:13.5px; margin-bottom:5px; }
+.ca.insight { border-color:var(--ac); background:var(--ca); }
+.ca.insight .ca-title { color:var(--ac); }
+.ca.warning { border-color:var(--rd); background:var(--cw); }
+.ca.warning .ca-title { color:var(--rd); }
+.ca.book { border-color:var(--pr); background:var(--cb); }
+.ca.book .ca-title { color:var(--pr); }
+.ca.python { border-color:var(--gn); background:var(--cp); }
+.ca.python .ca-title { color:var(--gn); }
+.ca.tip { border-color:var(--yl); background:var(--ct); }
+.ca.tip .ca-title { color:var(--yl); }
+.ca strong { color:var(--h1); }
+
+/* Code */
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:8px;
+  padding:16px 20px; overflow-x:auto; margin:15px 0; font-size:13.0px;
+  line-height:1.65; box-shadow:var(--shadow); }
+code { font-family:var(--mono); font-size:12.5px; }
+pre code { font-size:13.0px; }
+p code, li code { background:var(--bg3); padding:2px 6px; border-radius:4px;
+  font-size:12.0px; border:1px solid var(--border); }
+
+/* Tables */
+.tbl-wrap { overflow-x:auto; margin:18px 0; border-radius:8px; border:1px solid var(--border); }
+table { width:100%; border-collapse:collapse; font-size:13.0px; }
+th { background:var(--bg2); padding:10px 14px; text-align:left; font-weight:600;
+  border-bottom:2px solid var(--border); color:var(--h2); }
+td { padding:9px 14px; border-bottom:1px solid var(--border); }
+tr:last-child td { border-bottom:none; }
+tr:nth-child(even) td { background:var(--bg2); }
+
+ul, ol { margin:10px 0 14px 26px; font-size:14.0px; }
+li { margin-bottom:6px; }
+li::marker { color:var(--tx3); }
+
+.CO { font-family:var(--mono); font-weight:600; color:var(--ac); }
+hr { border:none; border-top:1px solid var(--border); margin:40px 0; }
+.note { font-size:12.0px; color:var(--tx2); }
+.step { color:var(--ac); font-weight:600; }
+
+/* Diagrams */
+.diagram { background:var(--svgbg); border:1px solid var(--border);
+  border-radius:8px; padding:14px; margin:22px 0; text-align:center; overflow-x:auto; }
+.diagram svg { max-width:100%; height:auto; }
+.diagram .cap { text-align:center; font-size:12.0px; color:var(--tx2); margin-top:8px; line-height:1.5; }
+
+/* Step-by-step trace */
+.trace { font-size:13.0px; line-height:1.8; color:var(--tx2); margin:12px 0 16px; padding:14px 18px;
+  background:var(--bg3); border-radius:6px; border:1px solid var(--border); }
+.trace em { color:var(--ac); font-style:normal; font-weight:500; }
+.trace .arr { color:var(--gn); }
+
+@media (max-width:1000px) {
+  nav, .top-bar { display:none; }
+  main { padding:32px 24px; margin-top:0; }
+}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav>
+  <h2>Phase 1 讲义</h2>
+  <div class="wk">第1周：数组与链表</div>
+  <a href="#w1-mem">内存布局</a><a href="#w1-arr">数组</a><a href="#w1-resize">Resizing Array</a><a href="#w1-ll">链表</a><a href="#w1-cmp">数组 vs 链表</a>
+  <div class="wk">第2周：栈·队列·UF</div>
+  <a href="#w2-stk">栈 (Stack)</a><a href="#w2-que">队列 (Queue)</a><a href="#w2-bag">背包 (Bag)</a><a href="#w2-uf">Union-Find</a><a href="#w2-uf3">UF 三种实现</a><a href="#w2-pc">路径压缩</a>
+  <div class="wk">第3周：算法分析</div>
+  <a href="#w3-gro">增长阶</a><a href="#w3-tilde">Tilde 记号</a><a href="#w3-doub">Doubling Ratio</a><a href="#w3-amort">Amortized</a><a href="#w3-mem">内存模型</a>
+  <div class="wk">第4周：散列表</div>
+  <a href="#w4-hf">散列函数</a><a href="#w4-sc">拉链法</a><a href="#w4-lp">线性探测</a><a href="#w4-py">Python dict</a>
+  <div class="wk">第5周：排序+BST</div>
+  <a href="#w5-sel">Selection Sort</a><a href="#w5-ins">Insertion Sort</a><a href="#w5-sh">Shell Sort</a><a href="#w5-bst">BST 入门</a><a href="#w5-ops">BST 操作</a>
+  <div class="wk">第6周：归并排序</div>
+  <a href="#w6-dc">分治思想</a><a href="#w6-merge">Merge 操作</a><a href="#w6-td">Top-Down</a><a href="#w6-bu">Bottom-Up</a><a href="#w6-rev">阶段总结</a>
+</nav>
+
+<div class="top-bar"><button class="theme-btn" onclick="toggleTheme()">☀ 亮色主题</button></div>
+
+<main>
+<h1>算法第四版 · Phase 1 学习讲义</h1>
+<p class="sub">Sedgewick &amp; Wayne · 暑假6周筑基 · 覆盖第1–3章核心内容</p>
+
+<div class="ca tip"><div class="ca-title">📘 使用指南</div>
+每个知识点以 <strong>为什么 → 是什么 → 怎么做</strong> 的结构展开。代码以 Python 为主，关键保留 Java 对照。<br>
+📖 建议翻原书看图补充直觉；⚠ 常见陷阱。左侧导航可快速跳转，右上角切换深浅主题。
+</div>
+
+<!-- ═══ WEEK 1 ═══ -->
+<h2 id="w1-mem" class="section">第 1 周：数组与链表</h2>
+
+<h3>1. 内存布局 — 所有数据结构的物理基础</h3>
+<p>计算机内存是一个巨大的<strong>字节格子阵列</strong>。每个格子有唯一<strong>地址 (address)</strong>，你的变量就存在这些格子里。理解这点，数组的 O(1) 和链表的不能随机访问才有物理直觉。</p>
+
+<div class="diagram"><svg viewBox="0 0 770 190" width="100%" role="img"><title>内存布局：数组 vs 链表</title>
+  <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerW="6" markerH="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--svgfg)" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+  <text x="24" y="28" font-size="13" font-weight="600" fill="var(--svgfg)">数组 (Array)：连续内存，地址可计算</text>
+  <g transform="translate(24,46)">
+    <rect x="0" y="0" w="60" h="40" rx="6" fill="#3899c830" stroke="#3899c8" stroke-width="1"/><text x="30" y="25" text-anchor="middle" font-size="12" fill="var(--svgfg)">A[0]</text>
+    <rect x="66" y="0" w="60" h="40" rx="6" fill="#3899c830" stroke="#3899c8"/><text x="96" y="25" text-anchor="middle" font-size="12" fill="var(--svgfg)">A[1]</text>
+    <rect x="132" y="0" w="60" h="40" rx="6" fill="#3899c830" stroke="#3899c8"/><text x="162" y="25" text-anchor="middle" font-size="12" fill="var(--svgfg)">A[2]</text>
+    <rect x="198" y="0" w="40" h="40" rx="6" fill="none" stroke="var(--tx3)" stroke-dasharray="4" stroke-width="0.5"/><text x="218" y="25" text-anchor="middle" font-size="11" fill="var(--tx3)">...</text>
+    <rect x="244" y="0" w="60" h="40" rx="6" fill="#3899c830" stroke="#3899c8"/><text x="274" y="25" text-anchor="middle" font-size="12" fill="var(--svgfg)">A[N-1]</text>
+    <text x="0" y="58" font-size="10" fill="var(--svgsf)">基址+0s</text><text x="66" y="58" font-size="10" fill="var(--svgsf)">基址+1s</text><text x="132" y="58" font-size="10" fill="var(--svgsf)">基址+2s</text><text x="244" y="58" font-size="10" fill="var(--svgsf)">基址+(N-1)s</text>
+  </g>
+  <text x="400" y="28" font-size="13" font-weight="600" fill="var(--svgfg)">链表：分散内存，靠指针连接</text>
+  <g transform="translate(400,46)">
+    <rect x="0" y="0" w="70" h="40" rx="6" fill="#d4583060" stroke="#d45830" stroke-width="1"/><text x="35" y="25" text-anchor="middle" font-size="11" fill="var(--svgfg)">42 | next→</text>
+    <rect x="90" y="0" w="70" h="40" rx="6" fill="#d4583060" stroke="#d45830" stroke-width="1"/><text x="125" y="25" text-anchor="middle" font-size="11" fill="var(--svgfg)">17 | next→</text>
+    <rect x="180" y="0" w="70" h="40" rx="6" fill="#d4583060" stroke="#d45830" stroke-width="1"/><text x="215" y="25" text-anchor="middle" font-size="11" fill="var(--svgfg)">99 | ∅</text>
+    <line x1="70" y1="20" x2="90" y2="20" stroke="#d45830" stroke-width="1.2" marker-end="url(#a1)"/>
+    <line x1="160" y1="20" x2="180" y2="20" stroke="#d45830" stroke-width="1.2" marker-end="url(#a1)"/>
+  </g>
+</svg>
+<div class="cap">数组：地址 = 基址 + i × 元素大小 → <strong>O(1) 随机访问</strong> | 链表：必须从 head 顺 next 走 → <strong>O(N) 查找</strong></div></div>
+
+<div class="ca insight"><div class="ca-title">💡 核心直觉</div>
+数组 O(1) 的本质：<strong>元素连续存储</strong>，地址可以<strong>算出来</strong>（基址 + i × 元素大小 = 一次乘法和一次加法）。<br>链表不能 O(1) 的本质：节点在内存里<strong>随机分布</strong>，没有固定的地址偏移规律，必须顺着 next 一个个找。</div>
+
+<div class="ca book"><div class="ca-title">📖 建议翻阅原书</div>§1.1.5 (p.10-11) 数组基础，§1.4.9 (p.126-129) 内存使用。书上图 1.1.2 更精确展示了数组内存布局。</div>
+
+<h3 id="w1-arr">2. 数组 — 连续内存的威力与局限</h3>
+<p>数组是最基本的数据结构：<strong>固定大小</strong>的连续内存块，存同类型元素。创建时就定好大小，之后不能改。一行代码就能访问任意位置，但你得提前知道要存多少数据。</p>
+<p><strong>为什么数组的元素类型必须相同？</strong>因为随机访问靠"基址 + i × 元素大小"这个公式。如果元素大小不统一，公式就失效了。Python 的 <code>list</code> 虽然可以存不同类型的元素，但它的底层存的是<strong>对象引用 (reference)</strong>，引用的大小是固定的（8 bytes in 64-bit）。</p>
+
+<div class="tbl-wrap"><table>
+<tr><th>操作</th><th>复杂度</th><th>原因</th></tr>
+<tr><td>Access by index <code>a[i]</code></td><td class="CO">O(1)</td><td>地址直接计算：基址 + i × sizeof(element)</td></tr>
+<tr><td>Search (unsorted)</td><td class="CO">O(N)</td><td>最坏情况需要检查每个元素</td></tr>
+<tr><td>Insert at end (有空间)</td><td class="CO">O(1)</td><td>直接写入下一个空位，size 加 1</td></tr>
+<tr><td>Insert at front / middle</td><td class="CO">O(N)</td><td>插入点右侧所有元素必须向右移动一位</td></tr>
+<tr><td>Delete at front / middle</td><td class="CO">O(N)</td><td>删除点右侧所有元素必须向左移动一位</td></tr>
+</table></div>
+
+<p><strong>为什么中间插入/删除是 O(N)？</strong>想象一排人坐在电影院座位上。要在第3个位置加一个人进来，第3位及之后的所有人都要站起来集体右移一个位置。如果 N=10000，那就得移动 9997 个人。</p>
+
+<h3 id="w1-resize">3. Resizing Array — 让数组"假变长"</h3>
+<p>Java 的 <code>ArrayList</code>、Python 的 <code>list</code> 看起来可以无限添加元素 — 底层都是 <strong>Resizing Array</strong>。核心思想：<strong>满了就分配更大的数组，把旧数据拷过去</strong>。</p>
+
+<div class="diagram"><svg viewBox="0 0 770 145" width="100%" role="img"><title>Resizing Array 扩容</title>
+  <g transform="translate(20,6)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">翻倍扩容：容量 1→2→4→8 的完整过程</text>
+    <g transform="translate(0,34)">
+      <rect x="0" y="0" w="50" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="25" y="23" text-anchor="middle" font-size="11" fill="var(--svgfg)">42</text>
+      <text x="62" y="23" font-size="18" fill="var(--ac)">→ resize</text>
+      <rect x="160" y="0" w="50" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="185" y="23" text-anchor="middle" font-size="11" fill="var(--svgfg)">42</text>
+      <rect x="214" y="0" w="50" h="36" rx="4" fill="#3899c810" stroke="#3899c8" stroke-dasharray="3" stroke-width="0.5"/><text x="239" y="23" text-anchor="middle" font-size="10" fill="var(--tx3)">空</text>
+      <text x="290" y="23" font-size="16" fill="var(--ac)">→</text>
+      <rect x="320" y="-8" w="50" h="52" rx="4" fill="#f7816620" stroke="#f78166"/><text x="345" y="6" text-anchor="middle" font-size="10" fill="var(--a2)">resize</text><text x="345" y="24" text-anchor="middle" font-size="10" fill="var(--a2)">2 copy</text>
+      <rect x="380" y="0" w="50" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="405" y="23" text-anchor="middle" font-size="11" fill="var(--svgfg)">42</text>
+      <rect x="434" y="0" w="50" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="459" y="23" text-anchor="middle" font-size="11" fill="var(--svgfg)">17</text>
+      <rect x="488" y="0" w="50" h="36" rx="4" fill="#3899c810" stroke="#3899c8" stroke-dasharray="3" stroke-width="0.5"/><text x="513" y="23" text-anchor="middle" font-size="10" fill="var(--tx3)">空</text>
+      <rect x="542" y="0" w="50" h="36" rx="4" fill="#3899c810" stroke="#3899c8" stroke-dasharray="3" stroke-width="0.5"/><text x="567" y="23" text-anchor="middle" font-size="10" fill="var(--tx3)">空</text>
+    </g>
+    <text x="0" y="100" font-size="12" fill="var(--svgsf)">N 次 append，resize 发生在 N=1,2,4,8,... 时，总拷贝次数 = 1+2+4+...+N/2+N ≈ 2N → <strong>均摊每次 O(1)</strong></text>
+    <text x="0" y="118" font-size="12" fill="var(--svgsf)">换个视角：每个元素平均被"拷贝"2次（插入时1次 + resize时平均1次），所以 append 均摊成本是 2 次操作 = O(1)</text>
+  </g>
+</svg></div>
+
+<div class="ca python"><div class="ca-title">🐍 Python 实现 — DynamicArray</div>
+<pre><code>class DynamicArray:
+    def __init__(self):
+        self.data = [None] * 1       # 初始容量 = 1
+        self.size = 0                 # 当前元素个数
+    def append(self, value):
+        if self.size == len(self.data):
+            self._resize(2 * len(self.data))   # 满了就翻倍！
+        self.data[self.size] = value
+        self.size += 1
+    def _resize(self, cap):
+        new = [None] * cap
+        for i in range(self.size): new[i] = self.data[i]
+        self.data = new</code></pre></div>
+
+<h3 id="w1-ll">4. 链表 — 不靠连续内存</h3>
+<p>链表的每个 <strong>Node</strong> 有两部分：<strong>数据 (item)</strong> + <strong>指向下一个 Node 的引用 (next)</strong>。因为不要求连续内存，插入删除不需要搬动其他元素 — 改两个指针就行。</p>
+
+<div class="diagram"><svg viewBox="0 0 770 210" width="100%" role="img"><title>链表操作</title>
+  <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerW="6" markerH="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--svgfg)" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+  <text x="20" y="22" font-size="13" font-weight="600" fill="var(--svgfg)">头部插入 (prepend) — O(1)：只需改两个指针</text>
+  <g transform="translate(20,38)">
+    <rect x="0" y="0" w="50" h="36" rx="4" fill="#d4583020" stroke="#d45830"/><text x="25" y="23" text-anchor="middle" font-size="12" fill="var(--svgfg)">17</text>
+    <rect x="70" y="0" w="50" h="36" rx="4" fill="#d4583020" stroke="#d45830"/><text x="95" y="23" text-anchor="middle" font-size="12" fill="var(--svgfg)">99</text>
+    <line x1="50" y1="18" x2="70" y2="18" stroke="#d45830" stroke-width="1.2" marker-end="url(#a2)"/>
+    <text x="160" y="23" font-size="20" fill="var(--gn)">→</text>
+    <text x="195" y="16" font-size="12" fill="var(--svgfg)">new_node.next = head</text>
+    <text x="195" y="34" font-size="12" fill="var(--svgfg)">head = new_node</text>
+  </g>
+  <text x="20" y="128" font-size="13" font-weight="600" fill="var(--svgfg)">中间删除 — O(N)：先遍历找到前驱节点，再做指针跳跃跳过目标节点</text>
+  <g transform="translate(20,144)">
+    <rect x="0" y="0" w="50" h="36" rx="4" fill="#d4583020" stroke="#d45830"/><text x="25" y="23" text-anchor="middle" font-size="12" fill="var(--svgfg)">17</text>
+    <rect x="70" y="0" w="50" h="36" rx="4" fill="#f8514930" stroke="#f85149" stroke-width="2"/><text x="95" y="23" text-anchor="middle" font-size="12" fill="var(--svgfg)">42</text>
+    <rect x="140" y="0" w="50" h="36" rx="4" fill="#d4583020" stroke="#d45830"/><text x="165" y="23" text-anchor="middle" font-size="12" fill="var(--svgfg)">99</text>
+    <line x1="50" y1="18" x2="70" y2="18" stroke="#d45830" stroke-width="1"/><line x1="120" y1="18" x2="140" y2="18" stroke="#d45830" stroke-width="1"/>
+    <text x="220" y="23" font-size="20" fill="var(--gn)">→</text>
+    <text x="255" y="16" font-size="12" fill="var(--svgfg)">cur.next = cur.next.next</text>
+    <text x="255" y="34" font-size="11" fill="var(--svgsf)">(跳过红色节点，GC 会回收它)</text>
+  </g>
+</svg></div>
+
+<p><strong>链表中"插入删除 O(1)"的精确含义</strong>：前提是你已经<strong>有一个指向插入/删除位置的引用</strong>（比如 cur 指针）。如果你还没有这个引用，需要先从 head 遍历过去 — 这一步本身就是 O(N)。所以严格描述是：<strong>已知位置指针时，插入/删除是 O(1)；未知位置时，需要 O(N) 遍历找到位置</strong>。</p>
+
+<div class="ca python"><div class="ca-title">🐍 Python — 单链表</div>
+<pre><code>class Node:
+    def __init__(self, item):
+        self.item = item; self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None; self._size = 0
+
+    def prepend(self, item):           # O(1) — 头部插入
+        node = Node(item)
+        node.next = self.head
+        self.head = node; self._size += 1
+
+    def append(self, item):            # O(N) — 尾部插入，要遍历到末尾
+        node = Node(item)
+        if not self.head: self.head = node
+        else:
+            cur = self.head
+            while cur.next: cur = cur.next
+            cur.next = node
+        self._size += 1
+
+    def delete(self, item):            # O(N) — 按值删除
+        if not self.head: return
+        if self.head.item == item:
+            self.head = self.head.next; self._size -= 1; return
+        cur = self.head
+        while cur.next:
+            if cur.next.item == item:
+                cur.next = cur.next.next  # 跳跃过被删节点
+                self._size -= 1; return
+            cur = cur.next</code></pre></div>
+
+<h3 id="w1-cmp">5. 数组 vs 链表 — 选哪个？</h3>
+<div class="tbl-wrap"><table>
+<tr><th>维度</th><th>数组</th><th>链表</th></tr>
+<tr><td>内存布局</td><td>连续，一次性分配</td><td>分散，按需分配</td></tr>
+<tr><td>随机访问</td><td class="CO">O(1)</td><td class="CO">O(N)</td></tr>
+<tr><td>头部插入/删除</td><td class="CO">O(N)</td><td class="CO">O(1)</td></tr>
+<tr><td>尾部插入</td><td class="CO">O(1)*</td><td class="CO">O(N) / O(1)†</td></tr>
+<tr><td>中间插入（已知位置）</td><td class="CO">O(N)</td><td class="CO">O(1)</td></tr>
+<tr><td>额外内存</td><td>0（仅数据）</td><td>每元素 +8~16 bytes</td></tr>
+<tr><td>CPU Cache</td><td>极好（顺序预取）</td><td>差（cache miss 频繁）</td></tr>
+</table></div>
+<p class="note">* 有空间时 O(1)，需 resize 时均摊 O(1) | † 单链表 O(N)，带 tail 指针的双链表 O(1)</p>
+
+<div class="ca insight"><div class="ca-title">💡 现实中的选择</div>
+理论复杂度上链表插入更快，但<strong>现实中数组往往更快</strong>：CPU 从内存取数据时，不是只取你请求的那个字节，而是取一整块 <strong>cache line (64 bytes)</strong>。数组的连续存储使得下一次访问的数据大概率已在缓存中；链表的节点散落各处，几乎每次访问都是 cache miss。这就是为什么 <code>ArrayList</code> 通常比 <code>LinkedList</code> 实用的原因。</div>
+
+<hr>
+<!-- ═══ WEEK 2 ═══ -->
+<h2 id="w2-stk" class="section">第 2 周：栈、队列与 Union-Find</h2>
+
+<h3>1. 栈 (Stack) — LIFO</h3>
+<p><strong>Last In, First Out</strong> — 像一叠盘子，只能动最上面那张。</p>
+
+<div class="diagram"><svg viewBox="0 0 770 140" width="100%" role="img"><title>Stack</title>
+  <g transform="translate(20,8)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">Stack — push 和 pop 都在栈顶 (top) 发生</text>
+    <g transform="translate(0,32)">
+      <rect x="0" y="0" w="200" h="80" rx="8" fill="none" stroke="var(--ac)" stroke-width="1.5" stroke-dasharray="4"/>
+      <text x="100" y="18" text-anchor="middle" font-size="11" fill="var(--ac)">栈顶 (top) ↑</text>
+      <rect x="20" y="36" w="160" h="26" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="100" y="54" text-anchor="middle" font-size="12" fill="var(--svgfg)">B</text>
+      <rect x="20" y="62" w="160" h="10" rx="0" fill="#3899c810"/>
+    </g>
+    <text x="230" y="62" font-size="24" fill="var(--ac)">→ push("C")</text>
+    <g transform="translate(380,32)">
+      <rect x="0" y="0" w="200" h="80" rx="8" fill="none" stroke="var(--ac)" stroke-width="1.5" stroke-dasharray="4"/>
+      <rect x="20" y="10" w="160" h="26" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="100" y="28" text-anchor="middle" font-size="12" fill="var(--svgfg)">C</text>
+      <rect x="20" y="36" w="160" h="26" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="100" y="54" text-anchor="middle" font-size="12" fill="var(--tx3)">B</text>
+    </g>
+    <text x="610" y="62" font-size="24" fill="var(--a2)">→ pop() → "C"</text>
+  </g>
+</svg></div>
+
+<div class="ca python"><div class="ca-title">🐍 Python Stack</div>
+<pre><code>class Stack:
+    def __init__(self): self.items = []
+    def push(self, item): self.items.append(item)
+    def pop(self): return self.items.pop()
+    def peek(self): return self.items[-1] if self.items else None
+    def is_empty(self): return len(self.items) == 0</code></pre></div>
+
+<h4>函数调用栈是怎么工作的？</h4>
+<p>这是栈最重要的实际应用。当你调用 <code>f(x)</code> 时：</p>
+<div class="trace">
+<span class="step">Step 1</span> 把当前函数的<em>返回地址</em>（执行完后去哪）压入 call stack<br>
+<span class="step">Step 2</span> 把 <code>f</code> 的参数 <code>x</code> 压入 call stack<br>
+<span class="step">Step 3</span> 把控制权交给 <code>f</code>，<code>f</code> 执行<br>
+<span class="step">Step 4</span> <code>f</code> 返回时，从 call stack 弹出返回地址，跳回去
+</div>
+<p>递归就是反复调用自己 → 反复压栈 → 当递归太深（如 N=10000 层的递归）→ 栈溢出 (Stack Overflow)。这就是为什么 deep recursion 危险。</p>
+<p><strong>其他应用</strong>：Undo/Ctrl+Z 撤销、括号匹配 (LeetCode #20)、表达式求值 (Dijkstra 双栈算法，原书 p.80)。</p>
+
+<h3 id="w2-que">2. 队列 (Queue) — FIFO</h3>
+<p><strong>First In, First Out</strong> — 像排队买奶茶。</p>
+
+<div class="diagram"><svg viewBox="0 0 770 90" width="100%" role="img"><title>Queue</title>
+  <g transform="translate(20,14)">
+    <rect x="0" y="0" w="52" h="38" rx="4" fill="#3fb95020" stroke="var(--gn)"/><text x="26" y="24" text-anchor="middle" font-size="12" fill="var(--svgfg)">A</text>
+    <rect x="58" y="0" w="52" h="38" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="84" y="24" text-anchor="middle" font-size="12" fill="var(--svgfg)">B</text>
+    <rect x="116" y="0" w="52" h="38" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="142" y="24" text-anchor="middle" font-size="12" fill="var(--svgfg)">C</text>
+    <text x="18" y="56" font-size="11" fill="var(--gn)">dequeue 队首出</text>
+    <text x="148" y="56" font-size="11" fill="var(--ac)">enqueue 队尾入</text>
+    <text x="240" y="24" font-size="12" fill="var(--svgsf)">应用：BFS 遍历、消息队列、打印任务调度</text>
+  </g>
+</svg></div>
+
+<div class="ca python"><div class="ca-title">🐍 Python Queue（链表 + 双指针）</div>
+<pre><code>class Queue:
+    def __init__(self):
+        self.head = self.tail = None; self._size = 0
+    def enqueue(self, item):
+        node = Node(item)
+        if not self.tail: self.head = self.tail = node
+        else: self.tail.next = node; self.tail = node
+        self._size += 1
+    def dequeue(self):
+        if not self.head: raise IndexError
+        val = self.head.item
+        self.head = self.head.next
+        if not self.head: self.tail = None
+        self._size -= 1; return val</code></pre></div>
+
+<h3 id="w2-bag">3. 背包 (Bag)</h3>
+<p>无序集合。只能 <code>add()</code>、不能删除、可以遍历。语义上最弱 → 给了实现最大的优化自由度。允许重复（区别于 Set）。</p>
+
+<h3 id="w2-uf">4. Union-Find — 动态连通性</h3>
+<p>支持 <code>union(p,q)</code>（合并两个连通分量）和 <code>connected(p,q)</code>（查询是否连通）。应用：社交网络好友圈、电路连通性、图像分割、Kruskal 最小生成树。</p>
+
+<div class="ca book"><div class="ca-title">📖 强烈建议翻原书</div>§1.5 (p.136-148) — 图 1.5.3–1.5.10 的树结构演变是一流的。<strong>只看讲义不够，务必看书。</strong></div>
+
+<h3 id="w2-uf3">UF 四种实现递进</h3>
+<div class="tbl-wrap"><table>
+<tr><th>版本</th><th>核心</th><th>find</th><th>union</th></tr>
+<tr><td><strong>Quick-Find</strong></td><td>同分量 id 相同</td><td class="CO">O(1)</td><td class="CO">O(N)</td></tr>
+<tr><td><strong>Quick-Union</strong></td><td>组织成树，id 存父节点</td><td class="CO">O(h)</td><td class="CO">O(h)</td></tr>
+<tr><td><strong>Weighted QU</strong></td><td>小树挂大树，h ≤ log N</td><td class="CO">O(log N)</td><td class="CO">O(log N)</td></tr>
+<tr><td><strong>+ Path Compression</strong></td><td>find 时路径节点直接挂根</td><td class="CO">≈O(1)</td><td class="CO">≈O(1)</td></tr>
+</table></div>
+
+<div class="diagram"><svg viewBox="0 0 770 175" width="100%" role="img"><title>UF 对比</title>
+  <g transform="translate(10,4)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">同样的操作序列，三种实现产生的树结构对比</text>
+    <g transform="translate(0,34)">
+      <text x="100" y="14" text-anchor="middle" font-size="11" fill="var(--rd)">Quick-Union（可能链式退化）</text>
+      <circle cx="100" cy="46" r="14" fill="none" stroke="var(--rd)" stroke-width="1.5"/><text x="100" y="50" text-anchor="middle" font-size="11" fill="var(--svgfg)">0</text>
+      <line x1="100" y1="60" x2="100" y2="70" stroke="var(--rd)"/><circle cx="100" cy="78" r="14" fill="none" stroke="var(--rd)"/><text x="100" y="82" text-anchor="middle" font-size="11" fill="var(--svgfg)">1</text>
+      <line x1="100" y1="92" x2="100" y2="102" stroke="var(--rd)"/><circle cx="100" cy="110" r="14" fill="none" stroke="var(--rd)"/><text x="100" y="114" text-anchor="middle" font-size="11" fill="var(--svgfg)">2</text>
+      <text x="100" y="140" text-anchor="middle" font-size="11" fill="var(--rd)">h=N, O(N²)</text>
+
+      <text x="250" y="80" font-size="26" fill="var(--ac)">→</text>
+
+      <text x="350" y="14" text-anchor="middle" font-size="11" fill="var(--gn)">Weighted QU（h ≤ log N）</text>
+      <circle cx="350" cy="46" r="16" fill="none" stroke="var(--gn)" stroke-width="2"/><text x="350" y="50" text-anchor="middle" font-size="12" fill="var(--svgfg)">3</text>
+      <line x1="338" y1="60" x2="310" y2="78" stroke="var(--gn)"/><circle cx="310" cy="84" r="14" fill="none" stroke="var(--gn)"/><text x="310" y="88" text-anchor="middle" font-size="11" fill="var(--svgfg)">0</text>
+      <line x1="362" y1="60" x2="390" y2="78" stroke="var(--gn)"/><circle cx="390" cy="84" r="14" fill="none" stroke="var(--gn)"/><text x="390" y="88" text-anchor="middle" font-size="11" fill="var(--svgfg)">7</text>
+      <text x="350" y="128" text-anchor="middle" font-size="11" fill="var(--gn)">h ≈ log N, O(N log N)</text>
+
+      <text x="540" y="80" font-size="26" fill="var(--ac)">→</text>
+
+      <text x="640" y="14" text-anchor="middle" font-size="11" fill="var(--pr)">+ Path Compression</text>
+      <circle cx="640" cy="46" r="16" fill="none" stroke="var(--pr)" stroke-width="2"/><text x="640" y="50" text-anchor="middle" font-size="12" fill="var(--svgfg)">3</text>
+      <line x1="628" y1="60" x2="600" y2="78" stroke="var(--pr)"/><circle cx="600" cy="84" r="14" fill="none" stroke="var(--pr)"/><text x="600" y="88" text-anchor="middle" font-size="11" fill="var(--svgfg)">0</text>
+      <line x1="652" y1="60" x2="680" y2="78" stroke="var(--pr)"/><circle cx="680" cy="84" r="14" fill="none" stroke="var(--pr)"/><text x="680" y="88" text-anchor="middle" font-size="11" fill="var(--svgfg)">7</text>
+      <line x1="610" y1="78" x2="670" y2="60" stroke="var(--pr)" stroke-dasharray="3" stroke-width="0.8"/>
+      <line x1="670" y1="78" x2="650" y2="60" stroke="var(--pr)" stroke-dasharray="3" stroke-width="0.8"/>
+      <text x="640" y="130" text-anchor="middle" font-size="11" fill="var(--pr)">≈O(1) amortized</text>
+    </g>
+  </g>
+</svg></div>
+
+<h4 id="w2-pc">Weighted QU 为什么树高 ≤ log₂ N？</h4>
+<p>每次 union 都是小树挂大树。一个小树中的节点，它的深度会增加 1，而它所在的树的大小至少翻倍。一个节点所在的树最多翻倍 log₂ N 次（因为不能超过 N）。所以深度 ≤ log₂ N。</p>
+<p><strong>Path Compression</strong> 更进一步：find 时把路径上的节点直接挂到根下。代码只需一行：<code>parent[p] = parent[parent[p]]</code>。加上后，amortized 复杂度是 inverse Ackermann 函数 α(N)，对所有实际 N 值 ≤ 5，基本上就是常数。</p>
+
+<div class="ca python"><div class="ca-title">🐍 Weighted QU + Path Compression</div>
+<pre><code>class UF:
+    def __init__(self, N):
+        self.parent = list(range(N)); self.size = [1]*N; self.count = N
+    def find(self, p):
+        while p != self.parent[p]:
+            self.parent[p] = self.parent[self.parent[p]]  # path compression
+            p = self.parent[p]
+        return p
+    def union(self, p, q):
+        rp, rq = self.find(p), self.find(q)
+        if rp == rq: return
+        if self.size[rp] < self.size[rq]:   # small hangs on big
+            self.parent[rp] = rq; self.size[rq] += self.size[rp]
+        else:
+            self.parent[rq] = rp; self.size[rp] += self.size[rq]
+        self.count -= 1</code></pre></div>
+
+<hr>
+<!-- ═══ WEEK 3 ═══ -->
+<h2 id="w3-gro" class="section">第 3 周：算法分析</h2>
+
+<div class="ca book"><div class="ca-title">📖 建议结合原书</div>§1.4 (p.108-129) 是全书最重要的方法论章节。讲义梳理框架，原书提供实验数据和图表。</div>
+
+<h3>1. Order of Growth — 算法效率的通用语言</h3>
+<p>N 很大时，性能由<strong>最高次项</strong>决定。核心问题不是"这个算法跑多少秒"，而是 <strong>N 翻倍时，运行时间怎么变？</strong></p>
+
+<div class="diagram"><svg viewBox="0 0 770 230" width="100%" role="img"><title>增长阶曲线</title>
+  <g transform="translate(40,6)">
+    <text x="0" y="14" font-size="13" font-weight="600" fill="var(--svgfg)">Orders of Growth — N 增大时各量级的走势</text>
+    <g transform="translate(0,32)">
+      <line x1="0" y1="160" x2="0" y2="0" stroke="var(--svgsf)" stroke-width="0.5"/><line x1="0" y1="160" x2="680" y2="160" stroke="var(--svgsf)" stroke-width="0.5"/>
+      <line x1="0" y1="140" x2="680" y2="140" stroke="#3fb950" stroke-width="2" stroke-dasharray="6,3"/><text x="685" y="144" font-size="11" fill="#3fb950">O(1)</text>
+      <polyline points="0,156 80,120 160,105 240,95 320,88 400,82 480,78 560,74 680,68" fill="none" stroke="#58a6ff" stroke-width="2"/><text x="685" y="72" font-size="11" fill="#58a6ff">O(log N)</text>
+      <line x1="0" y1="160" x2="680" y2="0" stroke="#a371f7" stroke-width="2"/><text x="685" y="4" font-size="11" fill="#a371f7">O(N)</text>
+      <polyline points="0,156 80,118 160,92 240,70 320,50 400,30 480,12 520,2" fill="none" stroke="#d2991d" stroke-width="2"/><text x="685" y="20" font-size="11" fill="#d2991d">O(N log N)</text>
+      <polyline points="0,160 80,154 160,138 240,114 320,80 400,38 440,18 450,6" fill="none" stroke="#f78166" stroke-width="2"/><text x="685" y="34" font-size="11" fill="#f78166">O(N²)</text>
+      <text x="680" y="174" text-anchor="end" font-size="11" fill="var(--svgsf)">N →</text><text x="-8" y="10" font-size="11" fill="var(--svgsf)">Time↑</text>
+    </g>
+  </g>
+</svg></div>
+
+<div class="tbl-wrap"><table>
+<tr><th>增长阶</th><th>名称</th><th>N翻倍时...</th><th>N=1000</th><th>N=1M</th><th>典型例子</th></tr>
+<tr><td class="CO">1</td><td>Constant</td><td>不变</td><td>1</td><td>1</td><td>数组 a[i]</td></tr>
+<tr><td class="CO">log N</td><td>Logarithmic</td><td>+1 (常数增加)</td><td>~10</td><td>~20</td><td>二分查找</td></tr>
+<tr><td class="CO">N</td><td>Linear</td><td>×2</td><td>1K</td><td>1M</td><td>数组遍历</td></tr>
+<tr><td class="CO">N log N</td><td>Linearithmic</td><td>略大于 ×2</td><td>10K</td><td>20M</td><td>归并排序</td></tr>
+<tr><td class="CO">N²</td><td>Quadratic</td><td>×4</td><td>1M</td><td>10¹²</td><td>Selection Sort</td></tr>
+<tr><td class="CO">N³</td><td>Cubic</td><td>×8</td><td>1B</td><td>10¹⁸</td><td>暴力 ThreeSum</td></tr>
+<tr><td class="CO">2^N</td><td>Exponential</td><td>平方</td><td>—</td><td>—</td><td>暴力 TSP</td></tr>
+</table></div>
+
+<div class="ca insight"><div class="ca-title">💡 一眼记住</div>
+N 从 1000 → 10000 (×10)：O(N²) 算法慢 <strong>100 倍</strong>，O(N log N) 只慢 <strong>~13 倍</strong>。这就是为什么大数据量下算法选择比硬件重要得多。</div>
+
+<h3 id="w3-tilde">2. Tilde Notation (~)</h3>
+<p><strong>忽略低阶项和常数系数，只保留最高次项</strong>。和 O 的区别：~ 保留了常数因子。比如 selection sort 的比较次数是 ~½N²，insertion sort 平均是 ~¼N²，我们能看出后者约快一倍；但用 O，两者都是 O(N²)，看不出这个差距。</p>
+<p>Tilde 的使用方法：写出精确的 cost model 表达式（比如每次比较算 1 次操作），然后取最高次项。如果算法有 ~2N² + 3N + 10 次操作，tilde 就是 ~2N²。</p>
+
+<h3 id="w3-doub">3. Doubling Ratio — 实验推断增长阶</h3>
+<p>最实用的实验方法，不需要读懂数学推导就能用：</p>
+<div class="trace">
+<span class="step">①</span> 测 T(N) 的运行时间<br>
+<span class="step">②</span> 测 T(2N) 的运行时间<br>
+<span class="step">③</span> 算 <em>ratio = T(2N) / T(N)</em><br>
+<span class="step">④</span> 如果 ratio ≈ 1 → O(1) 或 O(log N)<br>
+<span class="step">④</span> 如果 ratio ≈ 2 → O(N) 或 O(N log N)<br>
+<span class="step">④</span> 如果 ratio ≈ 4 → O(N²)<br>
+<span class="step">④</span> 如果 ratio ≈ 8 → O(N³)
+</div>
+<p><strong>实战技巧</strong>：写一个测试脚本，对 N = 1000, 2000, 4000, 8000, 16000 各跑 3 次取平均，打印每次的 ratio。ratio 会趋近对应的增长阶倍数。如果 ratio 在波动或下降，说明 N 还不够大。</p>
+
+<h3 id="w3-amort">4. Amortized Analysis — 偶尔贵 ≠ 一直贵</h3>
+<p>有些操作大多数时候便宜，偶尔贵。我们不关心单次最坏情况，而关心<strong>一系列操作的总成本除以操作次数</strong>。</p>
+
+<div class="diagram"><svg viewBox="0 0 770 130" width="100%" role="img"><title>Amortized</title>
+  <g transform="translate(20,8)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">Resizing Array：append 8 次的成本柱状图</text>
+    <g transform="translate(0,32)">
+      <rect x="0" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="28" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="28" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+      <rect x="60" y="20" w="55" h="50" rx="4" fill="#f7816620"/><text x="88" y="36" text-anchor="middle" font-size="10" fill="var(--svgfg)">resize</text><text x="88" y="52" text-anchor="middle" font-size="11" fill="var(--a2)">1</text>
+      <rect x="120" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="148" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="148" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+      <rect x="180" y="4" w="55" h="66" rx="4" fill="#f7816620"/><text x="208" y="32" text-anchor="middle" font-size="10" fill="var(--svgfg)">resize</text><text x="208" y="48" text-anchor="middle" font-size="11" fill="var(--a2)">2</text>
+      <rect x="240" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="268" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="268" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+      <rect x="300" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="328" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="328" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+      <rect x="360" y="-8" w="55" h="78" rx="4" fill="#f7816620"/><text x="388" y="20" text-anchor="middle" font-size="10" fill="var(--svgfg)">resize</text><text x="388" y="36" text-anchor="middle" font-size="11" fill="var(--a2)">4</text>
+      <rect x="420" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="448" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="448" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+      <rect x="480" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="508" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="508" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+      <rect x="540" y="0" w="55" h="70" rx="4" fill="#3899c820"/><text x="568" y="46" text-anchor="middle" font-size="11" fill="var(--svgfg)">append</text><text x="568" y="62" text-anchor="middle" font-size="11" fill="var(--ac)">1</text>
+    </g>
+    <text x="0" y="120" font-size="12" fill="var(--gn)">总操作 = 8 次 append + (1+2+4) = 15 → 均摊每次 15/8 ≈ 2 = O(1)</text>
+  </g>
+</svg></div>
+
+<p>resize 的 cost 是 1, 2, 4 — 指数增长但发生频率指数递减。总拷贝 = N-1 ≈ O(N)，均摊 O(1)。</p>
+
+<h3 id="w3-mem">5. 内存模型</h3>
+<p>Java 64-bit JVM：int=4B, double=8B, char=2B, reference=8B, object overhead=16B, array overhead=24B。存 N 个 int：数组 ~24+4N bytes，链表每个 Node ~32 bytes → 内存差 ~8 倍。</p>
+
+<hr>
+<!-- ═══ WEEK 4 ═══ -->
+<h2 id="w4-hf" class="section">第 4 周：散列表</h2>
+<p>核心思想：<strong>把 key 直接映射成数组下标</strong>，实现 O(1) 查找。Python dict、Java HashMap、数据库索引全基于此。</p>
+
+<h3 id="w4-hf">1. Hash Function — 把钥匙变成门牌号</h3>
+<p>散列函数 <code>hash(key)</code> 把任意类型的 key 映射为 [0, M−1] 的整数。三条要求：</p>
+<p><strong>① Deterministic</strong> — 同一个 key 永远产生相同的 hash 值<br>
+<strong>② Uniform</strong> — hash 值均匀分布在所有桶中。不 uniform → 某些桶太满 → search 变慢<br>
+<strong>③ Fast</strong> — hash 的计算速度要快，毕竟是 O(1) 操作的一部分</p>
+
+<h4>Java String.hashCode() 是怎么计算的？</h4>
+<p>这是一个经典设计，值得仔细理解：</p>
+<pre><code>public int hashCode() {
+    int hash = 0;
+    for (int i = 0; i &lt; length(); i++)
+        hash = 31 * hash + charAt(i);     // Horner's method
+    return hash;
+}
+// 数学等价于: s[0] × 31^(n-1) + s[1] × 31^(n-2) + ... + s[n-1]</code></pre>
+<p><strong>为什么是 31？</strong> ① 质数 — 减少碰撞概率；② <code>31 × i = (i &lt;&lt; 5) − i</code> — 编译器可以优化为位运算，计算很快。这种用质数加权每个字符的技巧叫做 <strong>Horner's method</strong>（霍纳方法），是多项式求值的标准优化。</p>
+
+<h4>如何处理负的 hash 值？</h4>
+<p>Java 的 hashCode() 返回 int，可能为负。取模 <code>hash % M</code> 的结果也可能为负。正确做法：<code>(hash &amp; 0x7fffffff) % M</code> — 先去掉符号位再取模，或者用 <code>Math.abs(hash) % M</code>（但要注意 Integer.MIN_VALUE 取绝对值会溢出）。</p>
+
+<h3 id="w4-sc">2. Separate Chaining（拉链法）</h3>
+
+<div class="diagram"><svg viewBox="0 0 770 165" width="100%" role="img"><title>拉链法</title>
+  <defs><marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerW="6" markerH="6" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="var(--svgfg)" stroke-width="1.5" stroke-linecap="round"/></marker></defs>
+  <g transform="translate(20,8)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">Separate Chaining：数组 + 链表 = 接近 O(1) 的查找</text>
+    <g transform="translate(0,34)">
+      <rect x="0" y="0" w="55" h="36" rx="6" fill="var(--bg3)" stroke="var(--border)"/><text x="28" y="23" text-anchor="middle" font-size="12" fill="var(--svgfg)">[0]</text>
+      <line x1="55" y1="18" x2="90" y2="18" stroke="var(--ac)" stroke-width="1.2" marker-end="url(#a4)"/>
+      <rect x="94" y="0" w="52" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="120" y="23" text-anchor="middle" font-size="11" fill="var(--svgfg)">"cat"</text>
+      <rect x="0" y="46" w="55" h="36" rx="6" fill="var(--bg3)" stroke="var(--border)"/><text x="28" y="69" text-anchor="middle" font-size="12" fill="var(--svgfg)">[1]</text>
+      <line x1="55" y1="64" x2="90" y2="64" stroke="var(--ac)" stroke-width="1.2" marker-end="url(#a4)"/>
+      <rect x="94" y="46" w="52" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="120" y="69" text-anchor="middle" font-size="11" fill="var(--svgfg)">"dog"</text>
+      <line x1="146" y1="64" x2="180" y2="64" stroke="#3899c8" stroke-width="1" marker-end="url(#a4)"/>
+      <rect x="184" y="46" w="52" h="36" rx="4" fill="#d4583020" stroke="#d45830"/><text x="210" y="69" text-anchor="middle" font-size="11" fill="var(--svgfg)">"fox"</text>
+      <rect x="0" y="92" w="55" h="36" rx="6" fill="var(--bg3)" stroke="var(--border)"/><text x="28" y="115" text-anchor="middle" font-size="12" fill="var(--svgfg)">[2]</text>
+      <line x1="55" y1="110" x2="90" y2="110" stroke="var(--ac)" stroke-width="1.2" marker-end="url(#a4)"/>
+      <rect x="94" y="92" w="52" h="36" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="120" y="115" text-anchor="middle" font-size="11" fill="var(--svgfg)">"hen"</text>
+    </g>
+    <text x="300" y="28" font-size="12" fill="var(--svgsf)">hash("dog") ≡ hash("fox") ≡ 1</text>
+    <text x="300" y="48" font-size="12" fill="var(--svgsf)">→ collision → 同桶[1]链表</text>
+    <text x="300" y="68" font-size="12" fill="var(--svgsf)">Load factor α = N/M</text>
+    <text x="300" y="88" font-size="12" fill="var(--svgsf)">search cost = O(α) ≈ O(1)</text>
+    <text x="300" y="112" font-size="12" fill="var(--svgsf)">保持 α ≤ 5-10 → 性能良好</text>
+  </g>
+</svg></div>
+
+<p>每个桶存一个链表的头。hash 冲突的 key 放同个链表里。search 时：hash 定位桶 → 在链表中顺序查找。如果 hash function 够均匀，每个链表长度 ≈ N/M = α。M 取质数有助于均匀分布。Java 的 HashMap 默认 M=16，load factor 0.75（到达时扩容）。</p>
+
+<h3 id="w4-lp">3. Linear Probing（线性探测）</h3>
+
+<div class="diagram"><svg viewBox="0 0 770 120" width="100%" role="img"><title>线性探测</title>
+  <g transform="translate(20,8)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">Linear Probing：冲突时向右扫描，直到找到空位</text>
+    <g transform="translate(0,34)">
+      <rect x="0" y="0" w="68" h="44" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="34" y="27" text-anchor="middle" font-size="12" fill="var(--svgfg)">"cat"</text>
+      <rect x="74" y="0" w="68" h="44" rx="4" fill="#d4583020" stroke="#d45830" stroke-width="1.5"/><text x="108" y="27" text-anchor="middle" font-size="12" fill="var(--svgfg)">"dog"</text>
+      <rect x="148" y="0" w="68" h="44" rx="4" fill="none" stroke="var(--tx3)" stroke-dasharray="3" stroke-width="0.5"/><text x="182" y="27" text-anchor="middle" font-size="11" fill="var(--tx3)">空</text>
+      <rect x="222" y="0" w="68" h="44" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="256" y="27" text-anchor="middle" font-size="12" fill="var(--svgfg)">"hen"</text>
+    </g>
+    <text x="340" y="38" font-size="12" fill="var(--svgfg)">hash("dog") → 桶[2] 被占</text>
+    <text x="340" y="56" font-size="12" fill="var(--svgfg)">→ 向右扫描 → 桶[3] 空 → 放入 ✓</text>
+    <text x="340" y="78" font-size="12" fill="var(--svgsf)">α = N/M，必须 &lt; 1（通常 &lt; 0.5）</text>
+    <text x="340" y="96" font-size="12" fill="var(--svgsf)">search O(1/(1-α)) ≈ O(1)</text>
+  </g>
+</svg></div>
+
+<div class="ca warning"><div class="ca-title">⚠ 删除的坑！</div>
+线性探测 <strong>delete 不能简单置空</strong>。置空后 search 遇空就会终止，以为 key 不存在 — 但 key 可能在更右边。<br>
+正确做法：用标记位（lazy deletion）或把右侧连续 key 全部 <strong>rehash 重新插入</strong>。详见 §3.4.3。</div>
+
+<div class="ca python"><div class="ca-title">🐍 Hash Table — Linear Probing</div>
+<pre><code>class HashTable:
+    def __init__(self, M=16):
+        self.M = M; self.keys = [None]*M; self.vals = [None]*M; self.N = 0
+    def put(self, key, val):
+        if self.N >= self.M // 2: self._resize(2*self.M)
+        i = hash(key) % self.M
+        while self.keys[i] is not None:
+            if self.keys[i] == key: self.vals[i] = val; return
+            i = (i+1) % self.M  # 线性探测
+        self.keys[i] = key; self.vals[i] = val; self.N += 1
+    def get(self, key):
+        i = hash(key) % self.M
+        while self.keys[i] is not None:
+            if self.keys[i] == key: return self.vals[i]
+            i = (i+1) % self.M
+        return None  # 遇到空位 → key 不存在</code></pre></div>
+
+<h3 id="w4-py">4. Python dict 是怎么工作的？</h3>
+<p>底层是 open addressing hash table。Python 3.6+ 保证插入顺序。核心优化：</p>
+<ul>
+<li><strong>Compact dict</strong>：indices 数组和 entries 数组分开存，节省约 1/3 内存</li>
+<li><strong>Hash 优化</strong>：整数 hash(42) = 42（除了 -1 映射为 -2），避免重复计算；字符串用 SipHash</li>
+<li><strong>Resize</strong>：load factor > 2/3 扩容 ×2（比我们 0.5 更高，因为 Python 的实现更好）</li>
+<li><strong>Perturbation</strong>：用复杂的探测序列避免 clustering</li>
+</ul>
+
+<hr>
+<!-- ═══ WEEK 5 ═══ -->
+<h2 id="w5-sel" class="section">第 5 周：初级排序与 BST</h2>
+
+<div class="diagram"><svg viewBox="0 0 770 205" width="100%" role="img"><title>三种排序</title>
+  <g transform="translate(10,4)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">Selection vs Insertion — 对 [4, 2, 7, 1, 3] 排序的中间状态</text>
+    <g transform="translate(0,32)">
+      <text x="8" y="14" font-size="11" fill="var(--a2)">Selection Sort</text>
+      <rect x="8" y="22" w="48" h="30" rx="4" fill="#f7816620" stroke="#f78166" stroke-width="1.5"/><text x="32" y="42" text-anchor="middle" font-size="12" fill="var(--svgfg)">1</text>
+      <rect x="60" y="22" w="48" h="30" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="84" y="42" text-anchor="middle" font-size="12" fill="var(--svgfg)">2</text>
+      <rect x="112" y="22" w="48" h="30" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="136" y="42" text-anchor="middle" font-size="12" fill="var(--svgfg)">3</text>
+      <rect x="164" y="22" w="48" h="30" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="188" y="42" text-anchor="middle" font-size="12" fill="var(--svgfg)">4</text>
+      <rect x="216" y="22" w="48" h="30" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="240" y="42" text-anchor="middle" font-size="12" fill="var(--svgfg)">7</text>
+      <text x="270" y="42" font-size="11" fill="var(--svgsf)">左区已排序（从右区选最小交换过来）</text>
+
+      <text x="8" y="80" font-size="11" fill="var(--ac)">Insertion Sort</text>
+      <rect x="8" y="88" w="48" h="30" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="32" y="108" text-anchor="middle" font-size="12" fill="var(--svgfg)">1</text>
+      <rect x="60" y="88" w="48" h="30" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="84" y="108" text-anchor="middle" font-size="12" fill="var(--svgfg)">2</text>
+      <rect x="112" y="88" w="48" h="30" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="136" y="108" text-anchor="middle" font-size="12" fill="var(--svgfg)">3</text>
+      <rect x="164" y="88" w="48" h="30" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="188" y="108" text-anchor="middle" font-size="12" fill="var(--svgfg)">7</text>
+      <rect x="216" y="88" w="48" h="30" rx="4" fill="none" stroke="var(--tx3)" stroke-width="0.5"/><text x="240" y="108" text-anchor="middle" font-size="12" fill="var(--svgfg)">4</text>
+      <text x="270" y="108" font-size="11" fill="var(--svgsf)">左区已排序（一张张插入正确位置）</text>
+
+      <text x="8" y="148" font-size="11" fill="var(--gn)">Shell Sort</text>
+      <text x="8" y="170" font-size="11" fill="var(--svgsf)">多轮 insertion，gap 从大到小。先大跨步快速消除逆序对，最后 gap=1 时数组已大致有序 → 极快</text>
+    </g>
+  </g>
+</svg></div>
+
+<h3 id="w5-sel">Selection Sort</h3>
+<p><strong>每次从右边未排序区选最小的，放到左边已排序区的末尾</strong>。比较次数永远是 ~½N²（和输入无关），但交换只有 N 次。Not stable。</p>
+<div class="trace">例：[<em>4</em>, 2, 7, 1, 3] → 找最小 <em>1</em>，和 <em>4</em> 交换 → [<span class="arr">1</span>, 2, 7, 4, 3]<br>
+→ 找最小 <em>2</em>，已经在正确位置 → [<span class="arr">1, 2</span>, 7, 4, 3]<br>
+→ 找最小 <em>3</em>，和 <em>7</em> 交换 → [<span class="arr">1, 2, 3</span>, 4, 7]<br>
+→ ... 完成。每次找最小都要扫描整个未排序区。所以比较次数是 N+(N-1)+...+1 = ~N²/2。</div>
+<pre><code>def selection_sort(arr):
+    for i in range(len(arr)):
+        min_i = i
+        for j in range(i+1, len(arr)):
+            if arr[j] < arr[min_i]: min_i = j
+        arr[i], arr[min_i] = arr[min_i], arr[i]</code></pre>
+
+<h3 id="w5-ins">Insertion Sort</h3>
+<p><strong>像整理扑克牌</strong>：每次拿一张，和左边已排好的比，找到正确位置插入。最关键的属性是 <strong>adaptive</strong> — 对近乎有序的数据极快（best case O(N)），对随机数据 ~¼N²，对逆序 ~½N²。Stable。</p>
+<div class="trace">例：[4, <em>2</em>, 7, 1, 3] 拿 <em>2</em>，和 <em>4</em> 比 → 4 右移 → [2, 4, 7, 1, 3]<br>
+→ 拿 <em>7</em>，比 4 大，不动 → [2, 4, 7, 1, 3]<br>
+→ 拿 <em>1</em>，比 7 小 → 7 右移，比 4 小 → 4 右移，比 2 小 → 2 右移，到最前 → [1, 2, 4, 7, 3]<br>
+→ <strong>为什么对近乎有序的数据快？</strong> 因为大多数元素已经在正确位置，不需要移动。</div>
+<pre><code>def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]; j = i-1
+        while j >= 0 and arr[j] > key:
+            arr[j+1] = arr[j]; j -= 1
+        arr[j+1] = key</code></pre>
+
+<h3 id="w5-sh">Shell Sort</h3>
+<p>多轮 insertion，gap 从大变小。gap 大时元素可以跨很远移动 → 快速消除大量逆序对。gap 缩到 1 时就是普通 insertion，但数组已经"大致有序"了 → 很快。好的 gap 序列：3x+1 (Knuth 推荐): 1, 4, 13, 40, 121, ...。精确复杂度仍未完全证明 — <strong>still an open problem</strong>。</p>
+
+<h3 id="w5-bst">4. Binary Search Tree</h3>
+
+<div class="diagram"><svg viewBox="0 0 770 200" width="100%" role="img"><title>BST</title>
+  <g transform="translate(20,4)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">BST：任意节点 X，X.left &lt; X &lt; X.right（全程成立）</text>
+    <g transform="translate(70,30)">
+      <circle cx="50" cy="10" r="16" fill="none" stroke="var(--ac)" stroke-width="2"/><text x="50" y="15" text-anchor="middle" font-size="12" fill="var(--svgfg)">8</text>
+      <line x1="38" y1="24" x2="-8" y2="60" stroke="var(--ac)"/><line x1="62" y1="24" x2="108" y2="60" stroke="var(--ac)"/>
+      <circle cx="-8" cy="66" r="14" fill="none" stroke="var(--ac)"/><text x="-8" y="71" text-anchor="middle" font-size="12" fill="var(--svgfg)">3</text>
+      <circle cx="108" cy="66" r="14" fill="none" stroke="var(--ac)"/><text x="108" y="71" text-anchor="middle" font-size="12" fill="var(--svgfg)">10</text>
+      <line x1="-16" y1="78" x2="-44" y2="116" stroke="var(--ac)"/><line x1="0" y1="78" x2="28" y2="116" stroke="var(--ac)"/>
+      <line x1="100" y1="78" x2="72" y2="116" stroke="var(--ac)"/><line x1="116" y1="78" x2="144" y2="116" stroke="var(--ac)"/>
+      <circle cx="-44" cy="122" r="13" fill="none" stroke="var(--ac)"/><text x="-44" y="127" text-anchor="middle" font-size="11" fill="var(--svgfg)">1</text>
+      <circle cx="28" cy="122" r="13" fill="none" stroke="var(--ac)"/><text x="28" y="127" text-anchor="middle" font-size="11" fill="var(--svgfg)">6</text>
+      <circle cx="72" cy="122" r="13" fill="none" stroke="var(--ac)"/><text x="72" y="127" text-anchor="middle" font-size="11" fill="var(--svgfg)">9</text>
+      <circle cx="144" cy="122" r="13" fill="none" stroke="var(--ac)"/><text x="144" y="127" text-anchor="middle" font-size="11" fill="var(--svgfg)">14</text>
+    </g>
+    <g transform="translate(340,40)">
+      <text x="0" y="18" font-size="11" fill="var(--gn)">In-order: 左→根→右</text>
+      <text x="0" y="38" font-size="11" fill="var(--svgfg)">1, 3, 6, 8, 9, 10, 14</text>
+      <text x="0" y="60" font-size="11" fill="var(--svgsf)">→ <strong>升序输出！</strong>BST 排序的原理</text>
+      <text x="0" y="88" font-size="11" fill="var(--pr)">Pre-order: 根→左→右</text>
+      <text x="0" y="108" font-size="11" fill="var(--svgfg)">8, 3, 1, 6, 10, 9, 14</text>
+      <text x="0" y="136" font-size="11" fill="var(--a2)">Post-order: 左→右→根</text>
+      <text x="0" y="156" font-size="11" fill="var(--svgfg)">1, 6, 3, 9, 14, 10, 8</text>
+    </g>
+  </g>
+</svg></div>
+
+<h4 id="w5-ops">BST 核心操作详解</h4>
+<p><strong>Search</strong>：从根开始，key 小于当前 → 走左边，大于 → 走右边，等于 → 找到。每步排除一半子树（类似二分查找）。随机插入时树高 ~2 ln N ≈ 1.39 log₂ N。</p>
+<p><strong>Insert</strong>：和 search 一样走，走到空链接的地方就挂一个新节点。如果 key 已存在就更新 value。</p>
+<p><strong>Delete</strong>（Hibbard deletion，原书 p.259）：最复杂的操作。三种情况：① 无子节点 → 直接删；② 一个子节点 → 用子节点替换；③ 两个子节点 → 找右子树的最小节点（successor）替换被删节点，再递归删除 successor。</p>
+
+<pre><code>class BST:
+    class Node:
+        def __init__(self, k, v):
+            self.key=k; self.val=v; self.left=None; self.right=None; self.N=1
+    def __init__(self): self.root = None
+
+    def put(self, key, val):
+        self.root = self._put(self.root, key, val)
+
+    def _put(self, node, key, val):
+        if node is None: return self.Node(key, val)
+        if key < node.key: node.left = self._put(node.left, key, val)
+        elif key > node.key: node.right = self._put(node.right, key, val)
+        else: node.val = val
+        node.N = 1 + (node.left.N if node.left else 0) + (node.right.N if node.right else 0)
+        return node
+
+    def get(self, key):
+        node = self.root
+        while node:
+            if key < node.key: node = node.left
+            elif key > node.key: node = node.right
+            else: return node.val
+        return None
+
+    def inorder(self):
+        res = []; self._in(self.root, res); return res
+    def _in(self, n, res):
+        if n: self._in(n.left, res); res.append(n.key); self._in(n.right, res)</code></pre>
+
+<div class="ca warning"><div class="ca-title">⚠ BST 退化的根本原因</div>
+插入 key 是升序或降序 → 所有节点只有右（或左）子树 → <strong>树变链表</strong> → search 从 O(log N) 退化到 O(N)。这就是 Phase 2 要学的<strong>红黑树 (Red-Black Tree)</strong> 要解决的问题：通过旋转和颜色约束保证树始终平衡。</div>
+
+<hr>
+<!-- ═══ WEEK 6 ═══ -->
+<h2 id="w6-dc" class="section">第 6 周：归并排序与阶段总结</h2>
+
+<h3>1. Divide and Conquer（分治）</h3>
+<p>分治是影响最深远的算法设计范式之一。三步：<strong>Divide</strong>（拆成同类型子问题，通常对半拆）→ <strong>Conquer</strong>（递归解决子问题，base case：足够小时直接解决）→ <strong>Combine</strong>（合并子问题的解）。Mergesort、Quicksort、FFT、Strassen 矩阵乘法都基于分治。</p>
+
+<h3 id="w6-merge">2. Merge 操作 — 合并两个有序数组</h3>
+<p>两个已有序的子数组 <code>arr[lo..mid]</code> 和 <code>arr[mid+1..hi]</code>，合并成一个有序数组：</p>
+<div class="trace">
+<span class="step">①</span> 拷贝到辅助数组 aux<br>
+<span class="step">②</span> 双指针 i (左半起始) 和 j (右半起始)<br>
+<span class="step">③</span> 比较 aux[i] 和 aux[j]，较小者放入原数组，对应指针前进<br>
+<span class="step">④</span> 某半耗尽时，把另一半剩余元素直接拷过去<br>
+<span class="step">⑤</span> Merge 的关键性质：<strong>等值时取左边 → 保证稳定性</strong>
+</div>
+
+<div class="diagram"><svg viewBox="0 0 770 200" width="100%" role="img"><title>递归树</title>
+  <g transform="translate(10,4)">
+    <text x="0" y="16" font-size="13" font-weight="600" fill="var(--svgfg)">Mergesort 递归树 (N=8)：深度 log₂ N，每层 merge 开销 N</text>
+    <g transform="translate(250,32)">
+      <rect x="10" y="0" w="160" h="24" rx="4" fill="#3899c820" stroke="#3899c8"/><text x="90" y="17" text-anchor="middle" font-size="11" fill="var(--svgfg)">[0..7] sort (merge N)</text>
+      <line x1="50" y1="24" x2="50" y2="38" stroke="var(--ac)"/><line x1="130" y1="24" x2="130" y2="38" stroke="var(--ac)"/>
+      <rect x="0" y="44" w="95" h="24" rx="4" fill="#d4583020" stroke="#d45830"/><text x="48" y="61" text-anchor="middle" font-size="10" fill="var(--svgfg)">[0..3] (merge N/2)</text>
+      <rect x="105" y="44" w="95" h="24" rx="4" fill="#d4583020" stroke="#d45830"/><text x="153" y="61" text-anchor="middle" font-size="10" fill="var(--svgfg)">[4..7] (merge N/2)</text>
+      <line x1="24" y1="68" x2="24" y2="82" stroke="var(--ac)"/><line x1="72" y1="68" x2="72" y2="82" stroke="var(--ac)"/>
+      <line x1="129" y1="68" x2="129" y2="82" stroke="var(--ac)"/><line x1="177" y1="68" x2="177" y2="82" stroke="var(--ac)"/>
+      <rect x="0" y="88" w="48" h="24" rx="4" fill="#a371f720" stroke="#a371f7"/><text x="24" y="105" text-anchor="middle" font-size="10" fill="var(--svgfg)">[0,1]</text>
+      <rect x="52" y="88" w="48" h="24" rx="4" fill="#a371f720" stroke="#a371f7"/><text x="76" y="105" text-anchor="middle" font-size="10" fill="var(--svgfg)">[2,3]</text>
+      <rect x="105" y="88" w="48" h="24" rx="4" fill="#a371f720" stroke="#a371f7"/><text x="129" y="105" text-anchor="middle" font-size="10" fill="var(--svgfg)">[4,5]</text>
+      <rect x="157" y="88" w="48" h="24" rx="4" fill="#a371f720" stroke="#a371f7"/><text x="181" y="105" text-anchor="middle" font-size="10" fill="var(--svgfg)">[6,7]</text>
+      <text x="100" y="148" text-anchor="middle" font-size="10" fill="var(--tx3)">8 × single elem (base case) — 0 cost</text>
+    </g>
+  </g>
+</svg></div>
+
+<h3 id="w6-td">Top-Down vs Bottom-Up</h3>
+<p><strong>Top-Down</strong>：递归分解 → merge。代码简洁，分治思想清晰。<strong>Bottom-Up</strong>：从 size=1 开始两两 merge → 每次翻倍 → 直到覆盖整个数组。不用递归（无 call stack 开销），天然适合链表排序。</p>
+
+<div class="ca python"><div class="ca-title">🐍 完整 Mergesort</div>
+<pre><code>def mergesort(arr):
+    aux = [0]*len(arr)
+    def merge(lo, mid, hi):
+        for k in range(lo, hi+1): aux[k] = arr[k]
+        i, j = lo, mid+1
+        for k in range(lo, hi+1):
+            if i > mid:                  arr[k] = aux[j]; j += 1
+            elif j > hi:                 arr[k] = aux[i]; i += 1
+            elif aux[j] < aux[i]:        arr[k] = aux[j]; j += 1
+            else:                        arr[k] = aux[i]; i += 1   # ≤ 取左 → stable
+    def _sort(lo, hi):
+        if hi <= lo: return
+        mid = (lo+hi)//2
+        _sort(lo, mid); _sort(mid+1, hi)
+        if arr[mid] <= arr[mid+1]: return   # 已有序跳过merge
+        merge(lo, mid, hi)
+    _sort(0, len(arr)-1)</code></pre></div>
+
+<!-- ═══ REVIEW ═══ -->
+<h2 id="w6-rev">Phase 1 总结</h2>
+
+<div class="tbl-wrap"><table>
+<tr><th>知识</th><th>核心</th><th>复杂度速查</th></tr>
+<tr><td>数组</td><td>连续内存、O(1) access、resizing</td><td class="CO">access O(1) · insert O(N)</td></tr>
+<tr><td>链表</td><td>Node、指针跳跃、单向/双向</td><td class="CO">search O(N) · head-insert O(1)</td></tr>
+<tr><td>栈 / 队列</td><td>LIFO/FIFO、数组+链表双实现</td><td class="CO">push/pop / enq/deq O(1)</td></tr>
+<tr><td>Union-Find</td><td>QF→QU→WQU→+PC 递进</td><td class="CO">find/union ≈O(1) amortized</td></tr>
+<tr><td>算法分析</td><td>Growth order、tilde、doubling、amortized</td><td>—</td></tr>
+<tr><td>散列表</td><td>hash func、chaining、linear probing</td><td class="CO">search/insert O(1) avg</td></tr>
+<tr><td>排序</td><td>Sel ~N²/2、Ins ~N²/4 avg、Shell</td><td>—</td></tr>
+<tr><td>BST</td><td>左小右大、递归、退化问题</td><td class="CO">search ~ln N avg / N worst</td></tr>
+<tr><td>归并排序</td><td>分治、递归树、top-down/bottom-up</td><td class="CO">guaranteed O(N log N)</td></tr>
+</table></div>
+
+<div class="ca tip"><div class="ca-title">📘 自我检测</div>
+<ol>
+<li>Resizing array 的 append 为什么均摊 O(1)？写出总拷贝的推导。</li>
+<li>Weighted QU 树高 ≤ log N 怎么证明？画最坏情况。</li>
+<li>Doubling ratio 接近 2 vs 接近 4 分别对应什么增长阶？</li>
+<li>Chaining vs Linear Probing 的 trade-off？各适合什么场景？</li>
+<li>Insertion sort 最快/最慢分别什么时候？为什么 adaptive？</li>
+<li>BST 何时退化？search 从 O(log N) 变 O(N) 的极端例子？</li>
+<li>Mergesort 递归树几层、每层开销？完整推导 O(N log N)。</li>
+<li>Shell sort 的 gap 为什么从大到小？如果 gap=1 一次完成和 insertion sort 有什么区别？</li>
+</ol>
+<br><strong>答不上来？</strong>回讲义对应章节重读，带着代码来找我讨论。</div>
+
+<p style="text-align:center;color:var(--tx2);margin-top:60px;font-size:13.0px;">
+— Phase 1 讲义完 · 周末带代码和问题来聊 —
+</p>
+
+</main>
+<script>
+function toggleTheme(){var e=document.documentElement,d=document.getElementById('themeToggle'),t=e.getAttribute('data-theme')==='dark';e.setAttribute('data-theme',t?'light':'dark');d.textContent=t?'🌙 深色主题':'☀ 亮色主题';}
+</script>
+</body>
+</html>

@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT1002 期末试卷 2023 + 2025 · 详细解析</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'$',right:'$',display:false},
+    {left:'\\[',right:'\\]',display:true},
+    {left:'\\(',right:'\\)',display:false}
+  ],throwOnError:false});"></script>
+<style>
+  :root{
+    --bg:#fafbfc; --panel:#ffffff; --ink:#1f2933; --muted:#5a6878;
+    --blue:#2b6cb0; --blue-soft:#e6f0fb;
+    --green:#2f855a; --green-soft:#e6f4ec;
+    --purple:#6b46c1; --purple-soft:#ede7f6;
+    --line:#e3e8ee; --code:#f4f6f9;
+    --warn:#d69e2e; --warn-soft:#fffaf0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+  aside.sidebar{
+    position:fixed;top:0;left:0;width:250px;height:100vh;
+    background:var(--panel);border-right:1px solid var(--line);
+    overflow-y:auto;padding:22px 16px;
+  }
+  aside.sidebar h2{margin:0 0 6px;font-size:17px;color:var(--blue);
+    letter-spacing:.3px}
+  aside.sidebar .sub{font-size:12px;color:var(--muted);margin-bottom:14px}
+  aside.sidebar h3.group{
+    margin:18px 4px 6px;font-size:13px;text-transform:uppercase;
+    letter-spacing:1px;font-weight:700;
+  }
+  aside.sidebar h3.g23{color:var(--blue);border-left:3px solid var(--blue);padding-left:8px}
+  aside.sidebar h3.g25{color:var(--green);border-left:3px solid var(--green);padding-left:8px}
+  aside.sidebar h3.gsum{color:var(--purple);border-left:3px solid var(--purple);padding-left:8px}
+  aside.sidebar ul{list-style:none;margin:0;padding:0}
+  aside.sidebar a{
+    display:block;padding:6px 10px;border-radius:6px;text-decoration:none;
+    color:var(--ink);font-size:13.5px;line-height:1.4;transition:all .15s;
+  }
+  aside.sidebar a.l23:hover{background:var(--blue-soft);color:var(--blue)}
+  aside.sidebar a.l25:hover{background:var(--green-soft);color:var(--green)}
+  aside.sidebar a.lsum:hover{background:var(--purple-soft);color:var(--purple)}
+  main{margin-left:250px;padding:42px 56px 96px;max-width:1100px}
+  header.banner{
+    background:linear-gradient(135deg,#1a365d 0%,#2b6cb0 50%,#2f855a 100%);
+    color:#fff;padding:32px 36px;border-radius:14px;margin-bottom:34px;
+    box-shadow:0 6px 20px rgba(43,108,176,.18);
+  }
+  header.banner h1{margin:0 0 8px;font-size:28px;letter-spacing:.3px}
+  header.banner p{margin:0;opacity:.92;font-size:15px;line-height:1.7}
+  /* Section dividers */
+  .section-divider{
+    margin:54px 0 28px;padding:18px 26px;border-radius:10px;
+    color:#fff;font-size:22px;font-weight:700;letter-spacing:.5px;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+  }
+  .section-divider.s23{background:linear-gradient(135deg,#2b6cb0,#4299e1)}
+  .section-divider.s25{background:linear-gradient(135deg,#2f855a,#48bb78)}
+  .section-divider.ssum{background:linear-gradient(135deg,#6b46c1,#9f7aea)}
+  /* Question card */
+  .qcard{
+    background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:30px 34px;margin-bottom:34px;
+    box-shadow:0 1px 4px rgba(15,23,42,.05);
+  }
+  .qhead{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:2px solid var(--line);padding-bottom:14px;margin-bottom:20px;
+  }
+  .qnum{font-size:21px;font-weight:700}
+  .q23 .qnum{color:var(--blue)}
+  .q25 .qnum{color:var(--green)}
+  .qpts{
+    display:inline-block;padding:3px 10px;border-radius:14px;
+    font-size:13px;font-weight:600;
+  }
+  .q23 .qpts{background:var(--blue-soft);color:var(--blue)}
+  .q25 .qpts{background:var(--green-soft);color:var(--green)}
+  .qtitle{color:var(--muted);font-size:15px}
+  /* Sub-blocks */
+  .question-block{
+    background:#fcfdfe;border-left:4px solid #94a3b8;padding:14px 20px;
+    border-radius:6px;margin-bottom:18px;font-size:16.5px;
+  }
+  .question-block .lbl{font-weight:700;color:var(--muted);font-size:13px;
+    text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+  .en-answer{
+    background:#f0f9ff;border-left:4px solid var(--blue);
+    padding:18px 24px;border-radius:6px;margin:18px 0;
+  }
+  .en-answer .lbl{color:var(--blue);font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+  .zh-explain{
+    background:#fff7ed;border-left:4px solid #ed8936;
+    padding:18px 24px;border-radius:6px;margin:18px 0;
+  }
+  .zh-explain .lbl{color:#c05621;font-weight:700;font-size:13px;
+    letter-spacing:.6px;margin-bottom:8px}
+  .zh-explain .lec{
+    display:inline-block;background:#feebc8;color:#7b341e;padding:2px 10px;
+    border-radius:10px;font-size:12.5px;font-weight:600;margin-right:6px;margin-bottom:4px;
+  }
+  .derivation{
+    background:#f7fafc;border-left:4px solid #2f855a;
+    padding:18px 24px;border-radius:6px;margin:18px 0;
+  }
+  .derivation .lbl{color:var(--green);font-weight:700;font-size:13px;
+    text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+  .step{margin:14px 0}
+  .step .step-num{
+    display:inline-block;width:26px;height:26px;line-height:26px;
+    text-align:center;background:var(--green);color:#fff;border-radius:50%;
+    font-weight:700;font-size:13px;margin-right:8px;vertical-align:middle;
+  }
+  .step .step-title{font-weight:600;color:var(--green)}
+  /* Part separator inside a question */
+  .part{
+    border-top:1px dashed var(--line);padding-top:18px;margin-top:24px;
+  }
+  .part-label{
+    display:inline-block;background:#edf2f7;color:#2d3748;padding:3px 12px;
+    border-radius:12px;font-size:13.5px;font-weight:700;margin-bottom:10px;
+  }
+  /* Comparison summary */
+  .compare-card{
+    background:linear-gradient(180deg,#faf5ff 0%,#f5f3ff 100%);
+    border:1px solid #d6bcfa;border-radius:12px;padding:26px 32px;margin-bottom:28px;
+  }
+  .compare-card h3{margin:0 0 12px;color:var(--purple);font-size:19px}
+  .compare-card .topic{
+    display:inline-block;background:#e9d8fd;color:#553c9a;padding:3px 12px;
+    border-radius:12px;font-size:13px;font-weight:600;margin-right:6px;margin-bottom:6px;
+  }
+  table.cmp{
+    width:100%;border-collapse:collapse;margin:14px 0;font-size:15.5px;
+  }
+  table.cmp th, table.cmp td{
+    border:1px solid #d6bcfa;padding:10px 14px;text-align:left;vertical-align:top;
+  }
+  table.cmp th{background:#e9d8fd;color:#44337a;font-weight:700}
+  table.cmp tr:nth-child(even) td{background:#fdfaff}
+  /* Inline elements */
+  code, .code{
+    background:var(--code);padding:2px 6px;border-radius:4px;
+    font-family:"Courier New",monospace;font-size:15px;
+  }
+  ul.tight, ol.tight{margin:8px 0;padding-left:24px}
+  ul.tight li, ol.tight li{margin:4px 0}
+  /* Footer */
+  footer{
+    margin-top:60px;padding-top:24px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:14px;text-align:center;
+  }
+  /* Mobile */
+  @media (max-width: 900px){
+    aside.sidebar{position:relative;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+    main{margin-left:0;padding:24px 18px}
+  }
+  /* Smooth scroll */
+  html{scroll-behavior:smooth}
+  /* Make KaTeX a tiny bit larger */
+  .katex{font-size:1.05em !important}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<aside class="sidebar">
+  <h2>详细解析</h2>
+  <div class="sub">MAT1002 · 2023 + 2025</div>
+
+  <h3 class="group g23">2023 解答</h3>
+  <ul>
+    <li><a class="l23" href="#y23q1">Q1 · 短问题</a></li>
+    <li><a class="l23" href="#y23q2">Q2 · 二元极限</a></li>
+    <li><a class="l23" href="#y23q3">Q3 · 分段函数偏导</a></li>
+    <li><a class="l23" href="#y23q4">Q4 · 切平面 / 法线</a></li>
+    <li><a class="l23" href="#y23q5">Q5 · 平面到原点最短距离</a></li>
+    <li><a class="l23" href="#y23q6">Q6 · Lagrange 球面温度</a></li>
+    <li><a class="l23" href="#y23q7">Q7 · 二重积分</a></li>
+    <li><a class="l23" href="#y23q8">Q8 · 球坐标体积</a></li>
+    <li><a class="l23" href="#y23q9">Q9 · 变量代换</a></li>
+    <li><a class="l23" href="#y23q10">Q10 · 保守场</a></li>
+    <li><a class="l23" href="#y23q11">Q11 · Green 定理</a></li>
+    <li><a class="l23" href="#y23q12">Q12 · Stokes 定理</a></li>
+    <li><a class="l23" href="#y23q13">Q13 · 散度定理</a></li>
+    <li><a class="l23" href="#y23q14">Q14 · Bonus 证明</a></li>
+  </ul>
+
+  <h3 class="group g25">2025 解答</h3>
+  <ul>
+    <li><a class="l25" href="#y25q1">Q1 · 短问题</a></li>
+    <li><a class="l25" href="#y25q2">Q2 · 二元极限</a></li>
+    <li><a class="l25" href="#y25q3">Q3 · 二阶偏导数</a></li>
+    <li><a class="l25" href="#y25q4">Q4 · 切平面 / 法线</a></li>
+    <li><a class="l25" href="#y25q5">Q5 · 直线到原点最短距离</a></li>
+    <li><a class="l25" href="#y25q6">Q6 · 临界点分类</a></li>
+    <li><a class="l25" href="#y25q7">Q7 · 二重积分</a></li>
+    <li><a class="l25" href="#y25q8">Q8 · 柱坐标体积</a></li>
+    <li><a class="l25" href="#y25q9">Q9 · 变量代换</a></li>
+    <li><a class="l25" href="#y25q10">Q10 · 梯度场</a></li>
+    <li><a class="l25" href="#y25q11">Q11 · 通量与环量</a></li>
+    <li><a class="l25" href="#y25q12">Q12 · 散度定理</a></li>
+    <li><a class="l25" href="#y25q13">Q13 · Stokes 定理</a></li>
+  </ul>
+
+  <h3 class="group gsum">跨年总结</h3>
+  <ul>
+    <li><a class="lsum" href="#sum-knowledge">知识点对比</a></li>
+    <li><a class="lsum" href="#sum-pattern">命题规律</a></li>
+    <li><a class="lsum" href="#sum-strategy">复习建议</a></li>
+  </ul>
+</aside>
+
+<main>
+
+<header class="banner">
+  <h1>MAT1002 期末试卷 · 详细解析合集</h1>
+  <p>2023 (5月13日) + 2025 (5月13日) · 满分 132 分 · 共 27 道大题</p>
+  <p style="margin-top:8px">每题包含：英文官方/标准解答 · 中文知识点深度讲解（链接 Lecture 出处）· 完整逐步推导</p>
+</header>
+
+<!-- ============================================ -->
+<!--                    2023                       -->
+<!-- ============================================ -->
+<div class="section-divider s23">2023 年试卷 · 详细解答</div>
+
+<!-- 2023 Q1 -->
+<section id="y23q1" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q1</span><span class="qpts">[27 pts]</span><span class="qtitle">Short Questions</span></div>
+
+  <!-- (i) -->
+  <div class="part">
+    <span class="part-label">(i) 球坐标链式法则</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      Spherical: $x=\rho\sin\varphi\cos\theta,\;y=\rho\sin\varphi\sin\theta,\;z=\rho\cos\varphi$. Find $\partial w/\partial\theta$ for $w=f(x,y,z)$.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      $$\frac{\partial w}{\partial\theta}=-y\,f_x+x\,f_y=-\rho\sin\varphi\sin\theta\cdot f_x+\rho\sin\varphi\cos\theta\cdot f_y.$$
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 7-10 链式法则</span> <span class="lec">Lec 13-17 球坐标</span>
+      <p>多元复合函数的链式法则：当 $w=f(x,y,z)$ 而 $x,y,z$ 都是 $\theta$ 的函数时，
+      $$\frac{\partial w}{\partial\theta}=f_x\frac{\partial x}{\partial\theta}+f_y\frac{\partial y}{\partial\theta}+f_z\frac{\partial z}{\partial\theta}.$$
+      关键是看清楚：<strong>$z=\rho\cos\varphi$ 不依赖 $\theta$</strong>，所以 $\partial z/\partial\theta=0$，第三项消失。这是球坐标的核心几何特征 — $\theta$ 只在水平面内旋转，不影响竖直方向。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step Derivation</div>
+      <div class="step"><span class="step-num">1</span><span class="step-title">分别对 $\theta$ 求偏导各坐标分量</span>
+      $$\frac{\partial x}{\partial\theta}=-\rho\sin\varphi\sin\theta=-y,\quad
+        \frac{\partial y}{\partial\theta}=\rho\sin\varphi\cos\theta=x,\quad
+        \frac{\partial z}{\partial\theta}=0.$$</div>
+      <div class="step"><span class="step-num">2</span><span class="step-title">套用链式法则</span>
+      $$\frac{\partial w}{\partial\theta}=f_x\cdot(-y)+f_y\cdot x+f_z\cdot 0=-y f_x+x f_y.$$</div>
+    </div>
+  </div>
+
+  <!-- (ii) -->
+  <div class="part">
+    <span class="part-label">(ii) 最快增长方向</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      $f(x,y,z)=x^2+\tfrac{1}{2}y^2+z^2$, $P=(1,1,1)$. Find unit direction of fastest increase.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      $$\hat{u}=\left\langle\tfrac{2}{3},\tfrac{1}{3},\tfrac{2}{3}\right\rangle.$$
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 7-10 梯度与方向导数</span>
+      <p>梯度方向 $\nabla f$ 是函数<strong>增长最快的方向</strong>，长度 $|\nabla f|$ 是该方向的最大变化率。要得到「单位方向」就要除以梯度的模。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $\nabla f=(2x,\,y,\,2z)$，代入 $P=(1,1,1)$：$\nabla f(P)=(2,1,2)$。</div>
+      <div class="step"><span class="step-num">2</span> $|\nabla f(P)|=\sqrt{4+1+4}=3$。</div>
+      <div class="step"><span class="step-num">3</span> 单位向量 $\hat u=\dfrac{1}{3}(2,1,2)=\left(\tfrac{2}{3},\tfrac{1}{3},\tfrac{2}{3}\right)$。</div>
+    </div>
+  </div>
+
+  <!-- (iii) -->
+  <div class="part">
+    <span class="part-label">(iii) 方向导数</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      Same $f$, $P$. Find $D_{\mathbf v}f(P)$ in direction $\mathbf v=\langle 0,2,-1\rangle$.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div> $0$.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 7-10 方向导数</span>
+      <p>方向导数 $D_{\hat u}f=\nabla f\cdot\hat u$。<strong>必须用单位向量</strong>，所以要先把 $\mathbf v$ 标准化。如果方向导数 $=0$，说明 $\hat u$ 与梯度<strong>正交</strong>（沿等值面切方向），函数在这个方向上瞬时不变。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $|\mathbf v|=\sqrt{0+4+1}=\sqrt 5$，$\hat v=(0,2/\sqrt 5,-1/\sqrt 5)$。</div>
+      <div class="step"><span class="step-num">2</span> $D_{\hat v}f=\nabla f\cdot\hat v=(2,1,2)\cdot(0,2/\sqrt 5,-1/\sqrt 5)=0+\dfrac{2}{\sqrt 5}-\dfrac{2}{\sqrt 5}=0.$</div>
+    </div>
+  </div>
+
+  <!-- (iv) -->
+  <div class="part">
+    <span class="part-label">(iv) Taylor 二次近似</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      Quadratic approx of $f(x,y)=2\cos x\cos y$ at $(0,0)$.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      $$Q(x,y)=2-x^2-y^2.$$
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 11-15 多元 Taylor</span>
+      <p>二元 Taylor 二次近似公式（在 $(0,0)$ 处）：
+      $$f(x,y)\approx f(0,0)+f_x(0,0)x+f_y(0,0)y+\tfrac{1}{2}\big[f_{xx}(0,0)x^2+2f_{xy}(0,0)xy+f_{yy}(0,0)y^2\big].$$
+      对偶函数（这里两个 $\cos$ 都是偶函数），一阶项必为 $0$，混合二阶 $f_{xy}$ 在 $(0,0)$ 也为 $0$，最后只留下二阶平方项。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $f(0,0)=2\cdot 1\cdot 1=2$。</div>
+      <div class="step"><span class="step-num">2</span> $f_x=-2\sin x\cos y\Rightarrow f_x(0,0)=0$；$f_y=-2\cos x\sin y\Rightarrow f_y(0,0)=0$。</div>
+      <div class="step"><span class="step-num">3</span> $f_{xx}=-2\cos x\cos y\Rightarrow f_{xx}(0,0)=-2$；同理 $f_{yy}(0,0)=-2$；$f_{xy}=2\sin x\sin y\Rightarrow f_{xy}(0,0)=0$。</div>
+      <div class="step"><span class="step-num">4</span> 代入：$Q=2+0+0+\tfrac{1}{2}[(-2)x^2+2\cdot 0\cdot xy+(-2)y^2]=2-x^2-y^2$。</div>
+    </div>
+  </div>
+
+  <!-- (v) -->
+  <div class="part">
+    <span class="part-label">(v) 反常二重积分判定</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      T/F: $\displaystyle\iint_{x^2+y^2\le 1}\frac{1}{x^2+y^2}\,dA$ exists as a real number.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      <strong>False</strong>. The integral diverges.
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 反常二重积分 / 极坐标</span>
+      <p>遇到含奇点的二重积分，最直接的判别工具是<strong>极坐标</strong>。在原点处 $\frac{1}{x^2+y^2}=\frac{1}{r^2}$，注意面积元 $dA=r\,dr\,d\theta$，所以被积表达式变成 $\frac{1}{r}\,dr\,d\theta$。<br>
+      关键判据：$\int_0^1 \frac{1}{r}dr=[\ln r]_0^1$ 在 $r=0$ 处发散到 $-\infty$。所以二重积分发散。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 极坐标变换：
+      $$\iint_{x^2+y^2\le 1}\frac{1}{x^2+y^2}dA=\int_0^{2\pi}\!\!\int_0^1\frac{1}{r^2}\cdot r\,dr\,d\theta=2\pi\int_0^1\frac{dr}{r}.$$</div>
+      <div class="step"><span class="step-num">2</span> $\int_0^1 r^{-1}dr=\lim_{\varepsilon\to 0^+}[\ln r]_\varepsilon^1=\lim_{\varepsilon\to 0^+}(0-\ln\varepsilon)=+\infty$，故原积分不存在为有限实数。</div>
+    </div>
+  </div>
+
+  <!-- (vi) -->
+  <div class="part">
+    <span class="part-label">(vi) 三重积分换序</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      Rewrite $\displaystyle\int_0^1\!\!\int_{-1}^0\!\!\int_0^{y^2}dx\,dy\,dz$ in order $dz\,dx\,dy$.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      $$\int_{-1}^{0}\!\!\int_{0}^{y^2}\!\!\int_{0}^{1}\,dz\,dx\,dy.$$
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 三重积分换序</span>
+      <p>换序的核心是<strong>先把积分区域写出来</strong>。原积分给出区域：$0\le z\le 1,\;-1\le y\le 0,\;0\le x\le y^2$。注意 $z$ 是<strong>独立于 $x,y$</strong> 的（因为 $z$ 的范围是常数），所以 $z$ 与 $x,y$ 在区域中相互独立。换到 $dz\,dx\,dy$ 时，外层是 $y$，再 $x$ 依赖 $y$，最内层 $z$ 与外两个无关。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 写出原区域：$\Omega=\{(x,y,z):-1\le y\le 0,\;0\le x\le y^2,\;0\le z\le 1\}$。</div>
+      <div class="step"><span class="step-num">2</span> 顺序 $dz\,dx\,dy$：外 $y$ 取常数区间 $[-1,0]$；中 $x$ 依赖 $y$，$0\le x\le y^2$；内 $z$ 与 $x,y$ 无关，$0\le z\le 1$。</div>
+      <div class="step"><span class="step-num">3</span> 写成 $\displaystyle\int_{-1}^0\int_0^{y^2}\int_0^1 dz\,dx\,dy$。</div>
+    </div>
+  </div>
+
+  <!-- (vii) -->
+  <div class="part">
+    <span class="part-label">(vii) 散度（Laplacian）</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      $f=x^2+y+yz$. Find $\operatorname{div}(\nabla f)=\nabla\cdot(\nabla f)$.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div> $\Delta f=2$.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 17-25 散度</span><span class="lec">Lec 11-15 Laplacian</span>
+      <p>$\nabla\cdot\nabla f$ 就是<strong>Laplacian</strong> $\Delta f=f_{xx}+f_{yy}+f_{zz}$。Laplacian 在物理（热传导、稳态势）和分析里是核心算子。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $\nabla f=(2x,\,1+z,\,y)$。</div>
+      <div class="step"><span class="step-num">2</span> $f_{xx}=2,\;f_{yy}=0,\;f_{zz}=0$，故 $\Delta f=2+0+0=2$。</div>
+    </div>
+  </div>
+
+  <!-- (viii) -->
+  <div class="part">
+    <span class="part-label">(viii) Taylor 级数前四项</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      Find first four nonzero terms of $\dfrac{x}{\sqrt[3]{1+x}}$ at $0$.
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      $$x-\tfrac{x^2}{3}+\tfrac{2x^3}{9}-\tfrac{14x^4}{81}+\cdots$$
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 11-15 二项级数</span>
+      <p>二项级数：当 $|x|<1$ 时
+      $$(1+x)^{\alpha}=\sum_{n=0}^{\infty}\binom{\alpha}{n}x^n,\quad\binom{\alpha}{n}=\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}.$$
+      $\sqrt[3]{1+x}^{-1}=(1+x)^{-1/3}$，$\alpha=-1/3$。展开后再乘上前面的 $x$（相当于级数整体右移一位）。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 计算 $(1+x)^{-1/3}$ 的前四项系数：
+      $$\binom{-1/3}{0}=1,\;\binom{-1/3}{1}=-\tfrac{1}{3},$$
+      $$\binom{-1/3}{2}=\tfrac{(-1/3)(-4/3)}{2}=\tfrac{4/9}{2}=\tfrac{2}{9},$$
+      $$\binom{-1/3}{3}=\tfrac{(-1/3)(-4/3)(-7/3)}{6}=\tfrac{-28/27}{6}=-\tfrac{14}{81}.$$</div>
+      <div class="step"><span class="step-num">2</span> 故 $(1+x)^{-1/3}=1-\tfrac{x}{3}+\tfrac{2x^2}{9}-\tfrac{14x^3}{81}+\cdots$。</div>
+      <div class="step"><span class="step-num">3</span> 乘 $x$：$\dfrac{x}{\sqrt[3]{1+x}}=x-\tfrac{x^2}{3}+\tfrac{2x^3}{9}-\tfrac{14x^4}{81}+\cdots$。</div>
+    </div>
+  </div>
+
+  <!-- (ix) -->
+  <div class="part">
+    <span class="part-label">(ix) 交错级数判别条件</span>
+    <div class="question-block"><div class="lbl">Question</div>
+      T/F: 收敛交错级数 $\sum(-1)^n u_n$（$u_n>0$、$u_n\to 0$）必有 $\{u_n\}$ 最终单调不增？
+    </div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>
+      <strong>False</strong>. Leibniz's test states a sufficient condition; it is not necessary.
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 11-15 交错级数</span>
+      <p><strong>Leibniz 判别法</strong> 给的是充分条件：「$u_n$ 单调递减且 $u_n\to 0$」$\Rightarrow$「$\sum(-1)^n u_n$ 收敛」。<strong>反方向不成立</strong>：可以存在收敛交错级数，但 $u_n$ 不单调。<br>
+      经典反例思路：构造 $u_n$ 在偶/奇下标处大小交替震荡，但震荡幅度足够小，使得序列仍收敛。例如把 $\sum (-1)^n/n$ 的奇数项与偶数项交换增加 $1/2^n$ 级别的扰动，整体仍收敛但单调性被破坏。</p>
+    </div>
+    <div class="derivation"><div class="lbl">关键反例骨架</div>
+      <div class="step"><span class="step-num">1</span> 设 $u_n=\dfrac{1}{n}+\dfrac{(-1)^n}{n^2}$（即 $u_n>0$ 且 $u_n\to 0$）。</div>
+      <div class="step"><span class="step-num">2</span> $\sum (-1)^n u_n=\sum\frac{(-1)^n}{n}+\sum\frac{1}{n^2}$，两部分都收敛，故级数收敛。</div>
+      <div class="step"><span class="step-num">3</span> 但 $u_n$ 中相邻项可见 $u_{2k}=\frac{1}{2k}+\frac{1}{(2k)^2}$，$u_{2k+1}=\frac{1}{2k+1}-\frac{1}{(2k+1)^2}$，单调性会被反复破坏。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2023 Q2 -->
+<section id="y23q2" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q2</span><span class="qpts">[15 pts]</span><span class="qtitle">Two-variable limits</span></div>
+
+  <div class="part">
+    <span class="part-label">(i)</span>
+    <div class="question-block">$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{\sin x+\cos y}{x+y}$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>The limit <strong>does not exist</strong>: numerator $\to 1$, denominator $\to 0$, ratio is unbounded.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div><span class="lec">Lec 1-5 多元极限</span>
+      <p>当分子在 $(0,0)$ 处<strong>非零</strong>而分母 $\to 0$ 时，比值绝对值会无界，极限必不存在。这与一元 $\frac{0}{0}$ 不同。</p>
+    </div>
+    <div class="derivation">
+      <div class="step"><span class="step-num">1</span> $\lim_{(x,y)\to(0,0)}(\sin x+\cos y)=0+1=1\ne 0$。</div>
+      <div class="step"><span class="step-num">2</span> 沿 $y=x>0$，分母 $2x\to 0^+$，整体 $\to+\infty$；沿 $y=x<0$，$\to-\infty$。极限不存在。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(ii)</span>
+    <div class="question-block">$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^3-y^3}{x^2+y^2}$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div> Limit $=0$.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div><span class="lec">Lec 1-5 极坐标判极限</span><span class="lec">Lec 1-5 夹逼</span>
+      <p>多元极限的常用工具：<strong>转极坐标</strong>。若变换后表达式可写成 $r\cdot g(\theta)$ 且 $g(\theta)$ 有界，则 $r\to 0$ 时极限为 $0$。或用夹逼：$|x^3-y^3|\le |x|^3+|y|^3\le 2(x^2+y^2)^{3/2}$。</p>
+    </div>
+    <div class="derivation">
+      <div class="step"><span class="step-num">1</span> 极坐标 $x=r\cos\theta,y=r\sin\theta$：
+      $$\frac{x^3-y^3}{x^2+y^2}=\frac{r^3(\cos^3\theta-\sin^3\theta)}{r^2}=r(\cos^3\theta-\sin^3\theta).$$</div>
+      <div class="step"><span class="step-num">2</span> $|\cos^3\theta-\sin^3\theta|\le 2$，故 $|表达式|\le 2r\to 0$。极限存在且 $=0$。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(iii)</span>
+    <div class="question-block">$\displaystyle\lim_{(r,\theta)\to(1,0)}\dfrac{r\sin\theta}{r^2-1}$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>The limit <strong>does not exist</strong> (path dependent).</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div><span class="lec">Lec 1-5 路径检验</span>
+      <p>注意此处 $r$ 不是极坐标的半径而是普通自变量；目标点 $(1,0)$ 处 $r^2-1\to 0$、$\sin\theta\to 0$，是 $0/0$ 不定型。可以沿不同<strong>线性路径</strong>得到不同极限值，证明不存在。</p>
+    </div>
+    <div class="derivation">
+      <div class="step"><span class="step-num">1</span> 沿 $\theta=0$：分子恒 $0$，比值 $=0\to 0$。</div>
+      <div class="step"><span class="step-num">2</span> 沿 $\theta=k(r-1)$（$r\to 1^+$，$\theta\to 0$）：
+      $$\frac{r\sin(k(r-1))}{(r-1)(r+1)}\to \frac{1\cdot k(r-1)}{(r-1)\cdot 2}=\frac{k}{2}.$$</div>
+      <div class="step"><span class="step-num">3</span> 不同 $k$ 给出不同极限，故极限不存在。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2023 Q3 -->
+<section id="y23q3" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q3</span><span class="qpts">[6 pts]</span><span class="qtitle">分段函数二阶偏导</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $f(x,y)=\begin{cases}y^3,&y\ge 0\\-y^2,&y<0\end{cases}$. Find $f_{xx},f_{xy},f_{yy}$ and their domains.
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <ul class="tight">
+      <li>$f_{xx}=0$ on all of $\mathbb{R}^2$.</li>
+      <li>$f_{xy}=0$ on all of $\mathbb{R}^2$.</li>
+      <li>$f_{yy}=\begin{cases}6y,&y>0\\-2,&y<0\end{cases}$, domain $\{(x,y):y\ne 0\}$. $f_{yy}$ does NOT exist on the line $y=0$.</li>
+    </ul>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 1-5 偏导数</span><span class="lec">Lec 1-5 分段函数</span>
+    <p>对分段函数求偏导，<strong>「衔接线」上必须用极限定义</strong>。这里的关键观察：在 $y=0$ 处 $f$ 与 $f_y$ 都连续（双侧导数都给出 $0$），但 $f_{yy}$ 双侧极限不一致 — 上侧 $\lim_{y\to 0^+}6y=0$，下侧 $\lim_{y\to 0^-}(-2)=-2$，所以 $f_{yy}(x,0)$ 不存在。<br>
+    由于 $f$ 不依赖 $x$，所有 $x$ 方向的偏导都恒为 $0$，定义域为整个 $\mathbb{R}^2$。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $f_x=0$ 处处（因为 $f$ 与 $x$ 无关）。所以 $f_{xx}=0$，$f_{xy}=\partial_y(0)=0$，定义域均为 $\mathbb{R}^2$。</div>
+    <div class="step"><span class="step-num">2</span> 求 $f_y$：
+      <ul class="tight">
+        <li>$y>0$: $f_y=3y^2$。</li>
+        <li>$y<0$: $f_y=-2y$。</li>
+        <li>$y=0$: 用差商 $\lim_{h\to 0}\frac{f(x,h)-f(x,0)}{h}$。$h\to 0^+$ 时 $\frac{h^3}{h}=h^2\to 0$；$h\to 0^-$ 时 $\frac{-h^2}{h}=-h\to 0$。两侧均 $0$，故 $f_y(x,0)=0$。</li>
+      </ul>
+      因此 $f_y$ 在全平面有定义且连续。</div>
+    <div class="step"><span class="step-num">3</span> 求 $f_{yy}$：
+      <ul class="tight">
+        <li>$y>0$: $f_{yy}=6y$。</li>
+        <li>$y<0$: $f_{yy}=-2$。</li>
+        <li>$y=0$: 计算 $f_{yy}(x,0)=\lim_{h\to 0}\frac{f_y(x,h)-f_y(x,0)}{h}=\lim_{h\to 0}\frac{f_y(x,h)}{h}$。
+        $h\to 0^+$: $\frac{3h^2}{h}=3h\to 0$。
+        $h\to 0^-$: $\frac{-2h}{h}=-2\to-2$。
+        两侧不一致，<strong>$f_{yy}(x,0)$ 不存在</strong>。</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- 2023 Q4 -->
+<section id="y23q4" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q4</span><span class="qpts">[6 pts]</span><span class="qtitle">隐式曲面切平面与法线</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    Surface $S:x^2+2y^2+z^2=4$. Find tangent plane $M$ and normal line $L$ at $(1,1,1)$.
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <ul class="tight">
+      <li>$M:\ x+2y+z=4$.</li>
+      <li>$L:\ (x,y,z)=(1+t,\,1+2t,\,1+t),\;t\in\mathbb{R}$.</li>
+    </ul>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 7-10 隐式曲面切平面</span>
+    <p>对于 $F(x,y,z)=c$ 的隐式曲面，<strong>$\nabla F$ 在该点是法向量</strong>。这与显式 $z=f(x,y)$ 形式（法向量 $(-f_x,-f_y,1)$）等价。法线就是过该点、方向为梯度的射线参数方程。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 验证 $(1,1,1)$ 在曲面上：$1+2+1=4$ ✓。</div>
+    <div class="step"><span class="step-num">2</span> $F=x^2+2y^2+z^2-4$，$\nabla F=(2x,4y,2z)$，在 $(1,1,1)$ 处 $\nabla F=(2,4,2)$，可约简为 $(1,2,1)$。</div>
+    <div class="step"><span class="step-num">3</span> 切平面：法向量 $(1,2,1)$ 过点 $(1,1,1)$：$1(x-1)+2(y-1)+1(z-1)=0\Rightarrow x+2y+z=4$。</div>
+    <div class="step"><span class="step-num">4</span> 法线参数方程：$(x,y,z)=(1,1,1)+t(1,2,1)=(1+t,1+2t,1+t)$。</div>
+  </div>
+</section>
+
+<!-- 2023 Q5 -->
+<section id="y23q5" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q5</span><span class="qpts">[6 pts]</span><span class="qtitle">原点到平面最近点</span></div>
+  <div class="question-block"><div class="lbl">Question</div>Find the point on $2x+y-z=4$ minimizing distance to $(0,0,0)$.</div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>$(x,y,z)=\left(\tfrac{4}{3},\tfrac{2}{3},-\tfrac{2}{3}\right)$. Minimum distance $=\dfrac{4}{\sqrt 6}=\dfrac{4\sqrt 6}{6}=\dfrac{2\sqrt 6}{3}$.</div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 11-15 Lagrange 乘子</span>
+    <p>原点到平面的最近点必沿<strong>过原点垂直于平面的直线</strong>到达。简洁解法：把垂线方向取为平面法向量 $\mathbf n=(2,1,-1)$，垂线参数方程 $(2t,t,-t)$ 代回平面方程求 $t$。也可以用 Lagrange 乘子法。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step (法向量法)</div>
+    <div class="step"><span class="step-num">1</span> 法向量 $\mathbf n=(2,1,-1)$，$|\mathbf n|^2=6$。</div>
+    <div class="step"><span class="step-num">2</span> 过原点的法线：$(x,y,z)=(2t,t,-t)$。</div>
+    <div class="step"><span class="step-num">3</span> 代入 $2x+y-z=4$：$4t+t+t=6t=4$，$t=2/3$。</div>
+    <div class="step"><span class="step-num">4</span> 最近点 $(4/3,2/3,-2/3)$。距离 $=\sqrt{16/9+4/9+4/9}=\sqrt{24/9}=\frac{2\sqrt 6}{3}$。</div>
+  </div>
+  <div class="derivation"><div class="lbl">备选：Lagrange 乘子法</div>
+    <p>最小化 $f=x^2+y^2+z^2$ 在约束 $g=2x+y-z-4=0$ 下：
+    $\nabla f=\lambda\nabla g\Rightarrow 2x=2\lambda,\;2y=\lambda,\;2z=-\lambda$。即 $x=\lambda,y=\lambda/2,z=-\lambda/2$。代入约束：$2\lambda+\lambda/2+\lambda/2=4\Rightarrow 3\lambda=4\Rightarrow\lambda=4/3$。得点 $(4/3,2/3,-2/3)$，结果一致。</p>
+  </div>
+</section>
+
+<!-- 2023 Q6 -->
+<section id="y23q6" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q6</span><span class="qpts">[8 pts]</span><span class="qtitle">球面上温度极值</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $T=xyz^2$ on $x^2+y^2+z^2=4$. Find points of highest and lowest temperature.
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <ul class="tight">
+      <li>Maximum $T=2$ at $(\pm 1,\pm 1,\pm\sqrt 2)$ with the first two coordinates of the same sign (4 points total).</li>
+      <li>Minimum $T=-2$ at $(\pm 1,\mp 1,\pm\sqrt 2)$ with first two of opposite signs (4 points).</li>
+    </ul>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 11-15 Lagrange 乘子（约束极值）</span>
+    <p>在闭曲面（紧致集）上连续函数必取最值。<strong>用 Lagrange 乘子法</strong>：$\nabla T=\lambda\nabla g$。代数处理时，要特别讨论 $z=0$ 等退化情形（避免分母为 $0$）。最后比较所有候选点的 $T$ 值。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 设 $g=x^2+y^2+z^2-4$，列方程：
+    $\nabla T=(yz^2,xz^2,2xyz)=\lambda\nabla g=\lambda(2x,2y,2z)$。即
+    $yz^2=2\lambda x\;(\!*\!),\;xz^2=2\lambda y\;(\!**\!),\;2xyz=2\lambda z\;(\!***\!)$。</div>
+    <div class="step"><span class="step-num">2</span> 由 $(*)\cdot y$ 与 $(**)\cdot x$：$y^2 z^2=2\lambda xy=x^2z^2\Rightarrow z^2(y^2-x^2)=0$。
+    分两情形：<strong>(A)</strong> $z=0$，<strong>(B)</strong> $y^2=x^2$ 即 $y=\pm x$。</div>
+    <div class="step"><span class="step-num">3</span> <strong>情形 A：$z=0$</strong>。则 $T=0$。这是候选值。</div>
+    <div class="step"><span class="step-num">4</span> <strong>情形 B：$z\ne 0$, $y=\pm x$</strong>。由 $(***)$：$2xyz=2\lambda z\Rightarrow \lambda=xy=\pm x^2$。代入 $(*)$：$yz^2=2(\pm x^2)x=\pm 2x^3$。若 $y=x$：$xz^2=2x^3\Rightarrow z^2=2x^2$。代约束：$x^2+x^2+2x^2=4\Rightarrow x=\pm 1$，$y=\pm 1$（同号），$z=\pm\sqrt 2$。$T=x\cdot x\cdot 2x^2=2x^4\cdot\frac{1}{x^2}\cdot\dots$ — 直接 $T=xyz^2=x^2\cdot 2=2$。</div>
+    <div class="step"><span class="step-num">5</span> 若 $y=-x$：类似得 $z^2=2x^2,x=\pm 1,y=\mp 1$，$T=-x^2\cdot 2=-2$。</div>
+    <div class="step"><span class="step-num">6</span> 比较：最大 $T=2$，最小 $T=-2$，区分了高低温位置。</div>
+  </div>
+</section>
+
+<!-- 2023 Q7 -->
+<section id="y23q7" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q7</span><span class="qpts">[6+6 pts]</span><span class="qtitle">二重积分（区域 + 反常）</span></div>
+
+  <div class="part">
+    <span class="part-label">(i) $\iint_R(2x-1-y)dA$</span>
+    <div class="question-block">$R$ bounded by $y=2\sqrt x$, $y$-axis, $y=4x-2$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>$\displaystyle\iint_R(2x-1-y)\,dA=-\dfrac{11}{15}.$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 二重积分</span><span class="lec">Lec 13-17 区域分析</span>
+      <p>关键是<strong>画图找交点</strong>，确定积分上下限。三条边界两两相交：抛物线 $y=2\sqrt x$ 与直线 $y=4x-2$ 在 $(1,2)$；抛物线与 $y$ 轴在 $(0,0)$；直线与 $y$ 轴在 $(0,-2)$。所以区域横向是 $0\le x\le 1$，纵向 $4x-2\le y\le 2\sqrt x$。</p>
+      <p>计算时把内层积分先做完。注意到 $(2x-1)y - y^2/2$ 在 $y=4x-2$ 处的值正好是 $0$（因为 $y/2 = 2x-1$），所以<strong>下边界贡献为零</strong>，化简很多。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 求交点。$2\sqrt x=4x-2\Rightarrow$ 设 $u=\sqrt x\ge 0$，$2u=4u^2-2\Rightarrow 2u^2-u-1=0\Rightarrow(2u+1)(u-1)=0\Rightarrow u=1$，故 $x=1,y=2$。</div>
+      <div class="step"><span class="step-num">2</span> 区域 $R=\{(x,y):0\le x\le 1,\;4x-2\le y\le 2\sqrt x\}$。</div>
+      <div class="step"><span class="step-num">3</span> 内层先对 $y$：
+      $$\int_{4x-2}^{2\sqrt x}(2x-1-y)dy=\left[(2x-1)y-\tfrac{y^2}{2}\right]_{4x-2}^{2\sqrt x}.$$</div>
+      <div class="step"><span class="step-num">4</span> 在下端 $y=4x-2$，注意 $\dfrac{y}{2}=2x-1$，所以 $(2x-1)y-\frac{y^2}{2}=y(2x-1-\frac{y}{2})=y\cdot 0=0$。下端贡献为 $0$。</div>
+      <div class="step"><span class="step-num">5</span> 在上端 $y=2\sqrt x$：
+      $(2x-1)(2\sqrt x)-\frac{(2\sqrt x)^2}{2}=4x^{3/2}-2\sqrt x-2x.$</div>
+      <div class="step"><span class="step-num">6</span> 外层：
+      $\int_0^1(4x^{3/2}-2\sqrt x-2x)dx=4\cdot\tfrac{2}{5}-2\cdot\tfrac{2}{3}-1=\tfrac{8}{5}-\tfrac{4}{3}-1.$
+      通分 $=\tfrac{24-20-15}{15}=-\tfrac{11}{15}.$</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(ii) Frullani 积分</span>
+    <div class="question-block">$\displaystyle\int_0^{\infty}\dfrac{e^{-x}-e^{-2x}}{x}dx$. Hint: 双重积分。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN)</div>$\ln 2$.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 二重积分换序</span>
+      <p>这是著名的 <strong>Frullani 型积分</strong>。提示「double integral」对应技巧：
+      $$\frac{e^{-ax}-e^{-bx}}{x}=\int_a^b e^{-tx}dt.$$
+      然后交换积分顺序（Fubini）。这个技巧说明：被积分式中含 $\frac{1}{x}$ 的差形式，常常可以通过对参数积分还原成内积分形式。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $\dfrac{e^{-x}-e^{-2x}}{x}=\displaystyle\int_1^2 e^{-tx}dt$（验证：$\int_1^2 e^{-tx}dt=[-\frac{e^{-tx}}{x}]_1^2=\frac{e^{-x}-e^{-2x}}{x}$）。</div>
+      <div class="step"><span class="step-num">2</span> 原积分 $=\displaystyle\int_0^\infty\int_1^2 e^{-tx}dt\,dx$。被积函数非负、连续，可交换顺序：
+      $=\displaystyle\int_1^2\int_0^\infty e^{-tx}dx\,dt$。</div>
+      <div class="step"><span class="step-num">3</span> 内积分 $\displaystyle\int_0^\infty e^{-tx}dx=\dfrac{1}{t}$（$t>0$）。</div>
+      <div class="step"><span class="step-num">4</span> 外积分 $\displaystyle\int_1^2\dfrac{dt}{t}=\ln 2$。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2023 Q8 -->
+<section id="y23q8" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q8</span><span class="qpts">[6+2 pts]</span><span class="qtitle">球坐标体积</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    球 $S:(x,y,z=0,0,1)$ 半径 $1$；立体 $E$ 在球内、被锥 $z=\sqrt{x^2+y^2}$ 从上方界定。(i) 写球坐标体积积分; (ii) 计算。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <p><strong>(i)</strong> $\displaystyle V=\int_0^{2\pi}\!\int_{\pi/4}^{\pi/2}\!\int_0^{2\cos\varphi}\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.$</p>
+    <p><strong>(ii)</strong> $V=\dfrac{\pi}{3}.$</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 13-17 球坐标</span><span class="lec">Lec 17-25 立体描述</span>
+    <p>核心技巧：<strong>把曲面在球坐标下化简</strong>。
+    球 $x^2+y^2+(z-1)^2=1$ 展开后 $x^2+y^2+z^2=2z$，球坐标 $\rho^2=2\rho\cos\varphi$，得 $\rho=2\cos\varphi$。
+    锥 $z=\sqrt{x^2+y^2}$ 即 $\cos\varphi=\sin\varphi$，$\varphi=\pi/4$。
+    立体在锥下方（"bounded above by cone" 表示锥是上界）即 $\varphi\ge\pi/4$，结合球内得 $\pi/4\le\varphi\le\pi/2$。<br>
+    球坐标的体积元：$dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$ — 这是常错的地方。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 球方程 $x^2+y^2+z^2-2z=0$，球坐标：$\rho^2-2\rho\cos\varphi=0$，故 $\rho=2\cos\varphi$（球的"上半球"对应 $\varphi\in[0,\pi/2]$）。</div>
+    <div class="step"><span class="step-num">2</span> 锥 $z=\sqrt{x^2+y^2}\Rightarrow\cos\varphi=\sin\varphi\Rightarrow\varphi=\pi/4$。立体在锥之下：$\varphi\ge\pi/4$。</div>
+    <div class="step"><span class="step-num">3</span> 综合：$\theta\in[0,2\pi]$，$\varphi\in[\pi/4,\pi/2]$，$\rho\in[0,2\cos\varphi]$。
+    $$V=\int_0^{2\pi}\int_{\pi/4}^{\pi/2}\int_0^{2\cos\varphi}\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta.$$</div>
+    <div class="step"><span class="step-num">4</span> 内层 $\int_0^{2\cos\varphi}\rho^2 d\rho=\frac{(2\cos\varphi)^3}{3}=\frac{8\cos^3\varphi}{3}$。</div>
+    <div class="step"><span class="step-num">5</span> 中层 $\frac{8}{3}\int_{\pi/4}^{\pi/2}\cos^3\varphi\sin\varphi\,d\varphi$。令 $u=\cos\varphi,du=-\sin\varphi\,d\varphi$：
+    $=\frac{8}{3}\int_0^{\frac{\sqrt 2}{2}}u^3\,du=\frac{8}{3}\cdot\frac{1}{4}\left(\frac{\sqrt 2}{2}\right)^4=\frac{2}{3}\cdot\frac{1}{4}=\frac{1}{6}.$</div>
+    <div class="step"><span class="step-num">6</span> 外层 $\int_0^{2\pi}\frac{1}{6}d\theta=\frac{\pi}{3}$。</div>
+  </div>
+</section>
+
+<!-- 2023 Q9 -->
+<section id="y23q9" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q9</span><span class="qpts">[8 pts]</span><span class="qtitle">变量代换 $x=u/v,y=uv$</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\displaystyle\int_1^2\!\int_{1/y}^{y}(x^2+y^2)dx\,dy+\int_2^4\!\int_{y/4}^{4/y}(x^2+y^2)dx\,dy$. 用 $x=u/v,y=uv$ 改写到 $uv$ 平面（不必计算）。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    The two regions in the $xy$-plane combine to form the square $\{(u,v):1\le u\le 2,\,1\le v\le 2\}$ in the $uv$-plane. With Jacobian $\left|\dfrac{\partial(x,y)}{\partial(u,v)}\right|=\dfrac{2u}{v}$, the integral becomes
+    $$\int_1^2\!\int_1^2\left(\dfrac{u^2}{v^2}+u^2v^2\right)\cdot\dfrac{2u}{v}\,du\,dv=\int_1^2\!\int_1^2\left(\dfrac{2u^3}{v^3}+2u^3 v\right)du\,dv.$$
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 13-17 二重积分变量代换</span>
+    <p>双区域整合是这道题的关键。<strong>$xy=u^2$，$y/x=v^2$</strong>，所以 $u,v$ 是双曲坐标。原 4 条边界：$y=1,2,4$ 与 $x=y,x=y/4,x=1/y,x=4/y$，分别对应 $uv=1,\sqrt 2,2$ 与 $v=1,2,u=1,2$。两个区域并起来正好是 $u,v\in[1,2]$ 的正方形。<br>
+    Jacobian：$\frac{\partial(x,y)}{\partial(u,v)}=\det\begin{pmatrix}1/v&-u/v^2\\v&u\end{pmatrix}=\frac{u}{v}+\frac{u}{v}=\frac{2u}{v}$，取绝对值。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 变换的 Jacobian：
+    $J=\det\begin{pmatrix}\partial x/\partial u&\partial x/\partial v\\\partial y/\partial u&\partial y/\partial v\end{pmatrix}=\det\begin{pmatrix}1/v&-u/v^2\\v&u\end{pmatrix}=\frac{u}{v}-\left(-\frac{u}{v}\right)=\frac{2u}{v}$。</div>
+    <div class="step"><span class="step-num">2</span> 边界对应：
+    <ul class="tight">
+      <li>$y=1\Leftrightarrow uv=1$，$y=2\Leftrightarrow uv=2$，$y=4\Leftrightarrow uv=4$。</li>
+      <li>$x=1/y\Leftrightarrow u/v=1/(uv)\Leftrightarrow u^2=1\Leftrightarrow u=1$。</li>
+      <li>$x=y\Leftrightarrow u/v=uv\Leftrightarrow v^2=1\Leftrightarrow v=1$。</li>
+      <li>$x=y/4\Leftrightarrow u/v=uv/4\Leftrightarrow v^2=4\Leftrightarrow v=2$。</li>
+      <li>$x=4/y\Leftrightarrow u/v=4/(uv)\Leftrightarrow u^2=4\Leftrightarrow u=2$。</li>
+    </ul></div>
+    <div class="step"><span class="step-num">3</span> 第一区域 $\{1\le y\le 2, 1/y\le x\le y\}$ 对应 $\{u\in[1,2], v\in[1,?], 1\le uv\le 2\}$；第二区域 $\{2\le y\le 4, y/4\le x\le 4/y\}$ 对应 $\{u\in[1,2], v\in[1,2], 2\le uv\le 4\}$。两者并起来正好是闭正方形 $[1,2]\times[1,2]$。</div>
+    <div class="step"><span class="step-num">4</span> 被积函数 $x^2+y^2=u^2/v^2+u^2v^2$。乘 Jacobian:
+    $$I=\int_1^2\int_1^2\left(\frac{u^2}{v^2}+u^2v^2\right)\cdot\frac{2u}{v}\,du\,dv.$$</div>
+  </div>
+</section>
+
+<!-- 2023 Q10 -->
+<section id="y23q10" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q10</span><span class="qpts">[4+4+4 pts]</span><span class="qtitle">保守场判定 / 势函数 / 做功</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\mathbf F=(e^x\cos y+\ln z,\,-e^{ax}\sin y,\,bx/z)$, $z>0$. 设 $\mathbf F$ 保守。求 (i) $a,b$；(ii) 势函数；(iii) 沿线段从 $(2,\pi,1)$ 到 $(0,3,2)$ 的功。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <p>(i) $a=1,\;b=1.$</p>
+    <p>(ii) $\phi(x,y,z)=e^x\cos y+x\ln z\;(+\,C).$</p>
+    <p>(iii) $W=\phi(0,3,2)-\phi(2,\pi,1)=\cos 3-(-e^2)=\cos 3+e^2.$</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 保守场</span><span class="lec">Lec 17-25 势函数</span>
+    <p>判定保守场的<strong>必要条件</strong>：分量满足 curl $=0$，即 $P_y=Q_x$, $P_z=R_x$, $Q_z=R_y$。在<strong>单连通域</strong>上这也是充分条件（这里 $z>0$ 是单连通的半空间）。</p>
+    <p>找势函数的标准方法是<strong>逐次积分</strong>：对 $\phi_x=P$ 关于 $x$ 积分得 $\phi$ 一部分加 $C(y,z)$；再用 $\phi_y=Q$ 定 $C_y$；最后用 $\phi_z=R$ 定常数。</p>
+    <p>保守场上的功只依赖端点：$W=\phi(B)-\phi(A)$，与路径无关 — 这就是「保守」的物理意义。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $P=e^x\cos y+\ln z$，$Q=-e^{ax}\sin y$，$R=bx/z$。
+    <ul class="tight">
+      <li>$P_y=-e^x\sin y$；$Q_x=-ae^{ax}\sin y$。等式：$-e^x\sin y=-ae^{ax}\sin y$。要对所有 $y$ 成立，需 $e^x=ae^{ax}$，故 $a=1$。</li>
+      <li>$P_z=1/z$；$R_x=b/z$。$1/z=b/z\Rightarrow b=1$。</li>
+      <li>$Q_z=0$；$R_y=0$。✓ 自动满足。</li>
+    </ul></div>
+    <div class="step"><span class="step-num">2</span> 求势函数。$\phi_x=e^x\cos y+\ln z$，对 $x$ 积分：$\phi=e^x\cos y+x\ln z+C(y,z)$。<br>
+    $\phi_y=-e^x\sin y+C_y(y,z)$。比较 $Q=-e^x\sin y$ 知 $C_y=0$，$C=C(z)$。<br>
+    $\phi_z=x/z+C'(z)$。比较 $R=x/z$ 得 $C'=0$，$C=$ 常数。<br>
+    故 $\phi(x,y,z)=e^x\cos y+x\ln z$。</div>
+    <div class="step"><span class="step-num">3</span> 计算两端点势能值：
+    <ul class="tight">
+      <li>$\phi(2,\pi,1)=e^2\cos\pi+2\ln 1=-e^2+0=-e^2$。</li>
+      <li>$\phi(0,3,2)=e^0\cos 3+0\cdot\ln 2=\cos 3$。</li>
+    </ul></div>
+    <div class="step"><span class="step-num">4</span> $W=\phi(0,3,2)-\phi(2,\pi,1)=\cos 3-(-e^2)=\cos 3+e^2$。</div>
+  </div>
+</section>
+
+<!-- 2023 Q11 -->
+<section id="y23q11" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q11</span><span class="qpts">[8 pts]</span><span class="qtitle">Green 定理: 通量与环量</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\mathbf F=(x^2,y^2)$ 在闭曲线（上半圆 $(a,0)\to(-a,0)$ 接 $x$ 轴 $(-a,0)\to(a,0)$）上的环量与通量。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <ul class="tight">
+      <li>Circulation $=0$.</li>
+      <li>Outward Flux $=\dfrac{4a^3}{3}$.</li>
+    </ul>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 Green 定理</span>
+    <p>Green 定理两种形式：
+    <ul class="tight">
+      <li>环量形式（旋度形式）：$\oint_C P\,dx+Q\,dy=\iint_D(Q_x-P_y)dA$。</li>
+      <li>通量形式（散度形式）：$\oint_C \mathbf F\cdot\mathbf n\,ds=\iint_D(P_x+Q_y)dA$。</li>
+    </ul>
+    给定方向是「上半圆 + 沿 $x$ 轴回程」，整体是<strong>逆时针</strong>，正向，可直接用 Green。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 区域 $D$：上半圆盘 $\{x^2+y^2\le a^2,\,y\ge 0\}$。</div>
+    <div class="step"><span class="step-num">2</span> 环量：$Q_x-P_y=0-0=0$，所以
+    $$\oint_C\mathbf F\cdot d\mathbf r=\iint_D 0\,dA=0.$$</div>
+    <div class="step"><span class="step-num">3</span> 通量：$P_x+Q_y=2x+2y$。
+    $$\oint_C\mathbf F\cdot\mathbf n\,ds=\iint_D(2x+2y)\,dA.$$</div>
+    <div class="step"><span class="step-num">4</span> 极坐标：$x=r\cos\theta,y=r\sin\theta$，$0\le r\le a$，$0\le\theta\le\pi$。
+    $\iint(2x+2y)dA=\int_0^\pi\int_0^a 2r(\cos\theta+\sin\theta)\cdot r\,dr\,d\theta=2\cdot\frac{a^3}{3}\int_0^\pi(\cos\theta+\sin\theta)d\theta.$</div>
+    <div class="step"><span class="step-num">5</span> $\int_0^\pi\cos\theta\,d\theta=0$，$\int_0^\pi\sin\theta\,d\theta=2$。所以通量 $=\frac{2a^3}{3}\cdot(0+2)=\frac{4a^3}{3}$。</div>
+  </div>
+</section>
+
+<!-- 2023 Q12 -->
+<section id="y23q12" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q12</span><span class="qpts">[8 pts]</span><span class="qtitle">Stokes 定理: 通过半球的通量</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\mathbf F=\nabla\times\mathbf A$，$\mathbf A=(y+\sqrt z,\,e^{xyz},\,\cos(xz))$。求向上通量过半球 $x^2+y^2+z^2=1,z\ge 0$。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>$\displaystyle\iint_S\mathbf F\cdot d\mathbf S=-\pi.$</div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 Stokes 定理</span>
+    <p>Stokes 定理：$\iint_S(\nabla\times\mathbf A)\cdot d\mathbf S=\oint_{\partial S}\mathbf A\cdot d\mathbf r$。<strong>给曲面 $S$ 一个边界曲线</strong>，把面积分变成线积分。<br>
+    半球的边界是单位圆（$xy$ 平面上）。曲面取向「向上」对应边界<strong>逆时针</strong>（右手定则）。这避免计算复杂的 $\nabla\times\mathbf A$，特别在 $\mathbf A$ 含 $e^{xyz},\cos(xz)$ 这种复杂表达时极为有用。</p>
+    <p>关键观察：在边界 $z=0$ 上，$e^{xyz}=1$，$\cos(xz)=1$，$\sqrt z=0$，$\mathbf A$ 大幅简化为 $(y,1,1)$。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 边界 $C:\{x^2+y^2=1, z=0\}$，参数化 $\mathbf r(t)=(\cos t,\sin t,0),\;t\in[0,2\pi]$（逆时针，配合向上法向）。</div>
+    <div class="step"><span class="step-num">2</span> $d\mathbf r=(-\sin t,\cos t,0)dt$。</div>
+    <div class="step"><span class="step-num">3</span> 在 $C$ 上，$z=0$，故 $\mathbf A(\cos t,\sin t,0)=(\sin t+0,\,e^0,\,\cos 0)=(\sin t,\,1,\,1)$。</div>
+    <div class="step"><span class="step-num">4</span> $\mathbf A\cdot d\mathbf r=[\sin t\cdot(-\sin t)+1\cdot\cos t+1\cdot 0]dt=(-\sin^2 t+\cos t)dt$。</div>
+    <div class="step"><span class="step-num">5</span> $\int_0^{2\pi}-\sin^2 t\,dt=-\pi$；$\int_0^{2\pi}\cos t\,dt=0$。总和 $=-\pi+0=-\pi$。</div>
+  </div>
+</section>
+
+<!-- 2023 Q13 -->
+<section id="y23q13" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q13</span><span class="qpts">[8 pts]</span><span class="qtitle">散度定理: 通过抛物面+底盘的通量</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\mathbf F=(2x^3+y^3,\,y^3+z^3,\,3y^2z)$. 通量过抛物面 $z=1-x^2-y^2,z\ge 0$ 与底盘 $x^2+y^2\le 1,z=0$ 形成的封闭曲面（向外）。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>$\displaystyle\oiint_S\mathbf F\cdot d\mathbf S=\pi.$</div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 散度定理 (Gauss)</span>
+    <p>散度定理：$\oiint_{\partial V}\mathbf F\cdot d\mathbf S=\iiint_V\nabla\cdot\mathbf F\,dV$。<strong>把闭曲面上的通量转为体积分</strong>。当 $\nabla\cdot\mathbf F$ 形式简单（这里是 $6(x^2+y^2)$）时极为高效。</p>
+    <p>体积区域是抛物面下的"碗"，柱坐标自然：$0\le r\le 1$, $0\le z\le 1-r^2$, $0\le\theta\le 2\pi$。$dV=r\,dz\,dr\,d\theta$。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 散度：$\nabla\cdot\mathbf F=\partial_x(2x^3+y^3)+\partial_y(y^3+z^3)+\partial_z(3y^2z)=6x^2+3y^2+3y^2=6x^2+6y^2=6(x^2+y^2)$。</div>
+    <div class="step"><span class="step-num">2</span> 柱坐标：$\nabla\cdot\mathbf F=6r^2$，$dV=r\,dz\,dr\,d\theta$。</div>
+    <div class="step"><span class="step-num">3</span> 三重积分：
+    $\iiint 6r^2\cdot r\,dz\,dr\,d\theta=6\int_0^{2\pi}\!\!\int_0^1\!\!\int_0^{1-r^2}r^3\,dz\,dr\,d\theta$
+    $=6\cdot 2\pi\int_0^1 r^3(1-r^2)dr=12\pi\left[\frac{r^4}{4}-\frac{r^6}{6}\right]_0^1$
+    $=12\pi\left(\frac{1}{4}-\frac{1}{6}\right)=12\pi\cdot\frac{1}{12}=\pi.$</div>
+  </div>
+</section>
+
+<!-- 2023 Q14 -->
+<section id="y23q14" class="qcard q23">
+  <div class="qhead"><span class="qnum">2023 · Q14</span><span class="qpts">[Bonus 6 pts]</span><span class="qtitle">连续函数零积分定理</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $f$ 连续于开区域 $D$，且 $\iint_R f\,dA=0$ 对任何矩形 $R\subset D$。证明 $f\equiv 0$ 在 $D$ 上。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN)</div>
+    <p>Proof by contradiction. Suppose $f(x_0,y_0)\ne 0$ for some $(x_0,y_0)\in D$. WLOG $f(x_0,y_0)>0$. By continuity there exists $\delta>0$ with $f>\tfrac{1}{2}f(x_0,y_0)>0$ on the rectangle $R_0=[x_0-\delta,x_0+\delta]\times[y_0-\delta,y_0+\delta]\subset D$. Then
+    $\iint_{R_0} f\,dA\ge\tfrac{1}{2}f(x_0,y_0)\cdot|R_0|=2\delta^2 f(x_0,y_0)>0$,
+    contradicting the hypothesis. Hence $f\equiv 0$ on $D$. $\blacksquare$</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 1-5 连续函数性质</span><span class="lec">Lec 13-17 二重积分性质</span>
+    <p>这是<strong>「积分恒为零$\Rightarrow$被积函数恒为零」</strong>的经典局部化论证，模板如下：
+    <ol class="tight">
+      <li>反证：假设 $f(p)\ne 0$。</li>
+      <li>用连续性："局部保号" — 在 $p$ 附近 $f$ 与 $f(p)$ 同号且模长 $\ge$ 一半。</li>
+      <li>选一个落入 $D$ 的小矩形 $R$，其上 $|f|\ge\frac{1}{2}|f(p)|$。</li>
+      <li>得 $|\iint_R f|\ge\frac{1}{2}|f(p)|\cdot|R|>0$，矛盾。</li>
+    </ol>
+    这与可积函数的「Lebesgue 几乎处处」陈述不同 — 这里要求<strong>连续</strong>，所以可以推出「处处」而非「几乎处处」。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Detailed Proof Steps</div>
+    <div class="step"><span class="step-num">1</span> 假设存在 $(x_0,y_0)\in D$ 使得 $f(x_0,y_0)\ne 0$。WLOG $f(x_0,y_0)=c>0$（$c<0$ 类似）。</div>
+    <div class="step"><span class="step-num">2</span> 由 $f$ 连续，对 $\varepsilon=c/2$，存在 $\delta>0$ 使得 $\|(x,y)-(x_0,y_0)\|_\infty\le\delta\Rightarrow |f(x,y)-c|<c/2$，即 $f(x,y)>c/2$。</div>
+    <div class="step"><span class="step-num">3</span> $D$ 开，缩小 $\delta$ 可保证 $R_0=[x_0-\delta,x_0+\delta]\times[y_0-\delta,y_0+\delta]\subset D$。</div>
+    <div class="step"><span class="step-num">4</span> 由积分单调性：
+    $\iint_{R_0}f\,dA\ge\iint_{R_0}\frac{c}{2}dA=\frac{c}{2}\cdot(2\delta)^2=2c\delta^2>0.$</div>
+    <div class="step"><span class="step-num">5</span> 这与 $\iint_R f=0$ 对所有 $R\subset D$ 成立矛盾。故 $f\equiv 0$ 于 $D$。 $\blacksquare$</div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--                    2025                       -->
+<!-- ============================================ -->
+<div class="section-divider s25">2025 年试卷 · 详细解答</div>
+
+<!-- 2025 Q1 -->
+<section id="y25q1" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q1</span><span class="qpts">[27 pts]</span><span class="qtitle">Short Questions（含官方答案）</span></div>
+
+  <div class="part">
+    <span class="part-label">(i) 简单连通性</span>
+    <div class="question-block">T/F：$\mathbb R^3\setminus\{(0,0,0)\}$ 是简单连通的。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div><strong>True (T)</strong>.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 17-25 简单连通区域</span>
+      <p>简单连通 = 域内任意闭合曲线可在域内连续收缩到一点。
+      <strong>关键差异：维度</strong>。
+      <ul class="tight">
+        <li>2D 中挖去一点（如 $\mathbb R^2\setminus\{0\}$）：环绕原点的圈无法收缩，<strong>不</strong>简单连通。</li>
+        <li>3D 中挖去一点：闭合曲线可以"绕开"那个洞收缩 — 把曲线"提"到上方再收缩，所以<strong>仍</strong>简单连通。</li>
+      </ul>
+      但 3D 挖去一条直线或挖去一根纤维就不再简单连通了。</p>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(ii) 分离连续 vs 联合连续</span>
+    <div class="question-block">T/F：$f$ 对每个固定 $y$ 关于 $x$ 连续且对每个固定 $x$ 关于 $y$ 连续，则 $f$ 联合连续。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div><strong>False (F)</strong>.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 1-5 多元连续</span>
+      <p>这是经典反例：$f(x,y)=\dfrac{xy}{x^2+y^2}$（$f(0,0)=0$）。固定 $y=0$，$f(x,0)=0$ 关于 $x$ 连续；固定 $x=0$，$f(0,y)=0$ 关于 $y$ 连续。但沿 $y=x$：$f(x,x)=\frac{1}{2}\not\to 0$，说明在 $(0,0)$ 不联合连续。<strong>分离连续 ≠ 联合连续</strong>。</p>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(iii) 分量测试 vs 保守</span>
+    <div class="question-block">T/F：$\mathbf F=\left(\dfrac{x}{x^2+y^2},\dfrac{y}{x^2+y^2}\right)$ 通过分量测试，故在其定义域上保守。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div><strong>False (F)</strong>.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 17-25 保守场判据</span>
+      <p>判据陈述上有"陷阱"：分量测试 $P_y=Q_x$（更普遍说 curl=0）只有在<strong>单连通域</strong>上才能保证保守。该 $\mathbf F$ 的定义域是 $\mathbb R^2\setminus\{0\}$，并非简单连通，所以仅由分量测试不能下"保守"结论。<br>
+      （实际上恰好这个特定 $\mathbf F$ 是 $\nabla(\frac12\ln(x^2+y^2))$ 的梯度，是保守的，但题目要批判的是"逻辑链条"是否成立。）</p>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(iv) 区域可加性</span>
+    <div class="question-block">T/F：$R=R_1\cup R_2\Rightarrow\iint_R f=\iint_{R_1}f+\iint_{R_2}f$（$f$ 连续）。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div><strong>False (F)</strong>.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 区域可加性</span>
+      <p>正确表述需 $R_1\cap R_2$ 为<strong>零测集</strong>（如仅相交于一条线），否则会重复计算。一个简单反例：$R_1=R_2=$ 同一矩形 $[0,1]\times[0,1]$，$R=R_1\cup R_2=[0,1]^2$，$\iint_R f$ 是 $\iint_{R_1}f$ 一倍，而非两倍。</p>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(v) 柱坐标改写</span>
+    <div class="question-block">改写 $\int_{-1}^1\int_0^{\sqrt{1-x^2}}\int_0^{x^2+y^2}f\,dz\,dy\,dx$ 为柱坐标 $dz\,d\theta\,dr$。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+      $$\int_0^1\!\!\int_0^{\pi}\!\!\int_0^{r^2}f(r\cos\theta,r\sin\theta,z)\,r\,dz\,d\theta\,dr.$$
+    </div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 柱坐标</span>
+      <p>原区域：$x^2+y^2\le 1$，$y\ge 0$（上半圆盘），$0\le z\le x^2+y^2$。柱坐标下：$0\le r\le 1$，$0\le\theta\le\pi$，$0\le z\le r^2$。
+      <strong>务必带上 Jacobian 的 $r$</strong> — 这是常见失分点（题目甚至明确扣分提示）。</p>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(vi) 方向导数</span>
+    <div class="question-block">$w=xy+\cos z-\dfrac{y}{x}$，$P=(2,1,0)$，方向 $(1/3,2/3,2/3)$（已为单位向量）。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$\dfrac{17}{12}.$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 7-10 方向导数</span>
+      <p>方向导数 $D_{\hat u}w=\nabla w\cdot\hat u$。题目已给出单位向量（验证 $1/9+4/9+4/9=1$），可直接代入。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $w_x=y+\frac{y}{x^2},\;w_y=x-\frac{1}{x},\;w_z=-\sin z$。</div>
+      <div class="step"><span class="step-num">2</span> 在 $(2,1,0)$：$w_x=1+\frac{1}{4}=\frac{5}{4},\;w_y=2-\frac{1}{2}=\frac{3}{2},\;w_z=0$。</div>
+      <div class="step"><span class="step-num">3</span> $D_{\hat u}w=\frac{5}{4}\cdot\frac{1}{3}+\frac{3}{2}\cdot\frac{2}{3}+0\cdot\frac{2}{3}=\frac{5}{12}+1=\frac{17}{12}$。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(vii) 平面交线方向</span>
+    <div class="question-block">求与平面 $3x-2y+z=0$ 和 $x+y-3z=0$ 都平行的单位方向。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$\hat u=\pm\dfrac{1}{\sqrt 6}(1,2,1).$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 7-10 法向量与叉积</span>
+      <p>同时平行两平面 $\Leftrightarrow$ 与两平面的法向量都正交 $\Leftrightarrow$ 沿两法向量的<strong>叉积</strong>方向。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 法向量 $\mathbf n_1=(3,-2,1)$，$\mathbf n_2=(1,1,-3)$。</div>
+      <div class="step"><span class="step-num">2</span> $\mathbf n_1\times\mathbf n_2=\det\begin{pmatrix}\mathbf i&\mathbf j&\mathbf k\\3&-2&1\\1&1&-3\end{pmatrix}=\mathbf i((-2)(-3)-(1)(1))-\mathbf j((3)(-3)-(1)(1))+\mathbf k((3)(1)-(-2)(1))$
+      $=\mathbf i(6-1)-\mathbf j(-9-1)+\mathbf k(3+2)=(5,10,5)$。</div>
+      <div class="step"><span class="step-num">3</span> 化简方向 $(1,2,1)$，模 $\sqrt{1+4+1}=\sqrt 6$。单位 $\pm\frac{1}{\sqrt 6}(1,2,1)$。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(viii) 二次近似</span>
+    <div class="question-block">$z=\ln(1+x)\sin y$ 在 $(0,0)$ 的二次近似。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$Q(x,y)=xy.$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 11-15 多元 Taylor</span>
+      <p>对乘积形 $f(x)g(y)$ 的 Taylor 展开，简单方法：把每个因子展到所需阶，再相乘并保留 $\le n$ 阶项。
+      $\ln(1+x)=x-\frac{x^2}{2}+\cdots$，$\sin y=y-\frac{y^3}{6}+\cdots$。乘积保留二次：
+      $(x-\frac{x^2}{2})(y-\frac{y^3}{6})\to xy$（其余都是 3 阶或更高）。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $f(0,0)=0,\;f_x=\frac{\sin y}{1+x},\;f_x(0,0)=0$。</div>
+      <div class="step"><span class="step-num">2</span> $f_y=\ln(1+x)\cos y,\;f_y(0,0)=0$。</div>
+      <div class="step"><span class="step-num">3</span> $f_{xx}=-\frac{\sin y}{(1+x)^2},\;f_{xx}(0,0)=0$；$f_{yy}=-\ln(1+x)\sin y,\;f_{yy}(0,0)=0$；$f_{xy}=\frac{\cos y}{1+x},\;f_{xy}(0,0)=1$。</div>
+      <div class="step"><span class="step-num">4</span> $Q=0+0+0+\frac{1}{2}(0\cdot x^2+2\cdot 1\cdot xy+0\cdot y^2)=xy$。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(ix) 数列级数</span>
+    <div class="question-block">$\displaystyle\sum_{n=1}^{\infty}\dfrac{2n+1}{n!}=?$</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$3e-1.$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 11-15 指数函数级数</span>
+      <p>已知 $e=\sum_{n=0}^\infty 1/n!$，等价 $\sum_{n=1}^\infty 1/n!=e-1$。还有 $\sum_{n=0}^\infty n/n!=\sum_{n=1}^\infty 1/(n-1)!=e$。把 $\frac{2n+1}{n!}$ 拆 $\frac{2n}{n!}+\frac{1}{n!}$，合用即可。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $\sum_{n=1}^\infty\frac{2n+1}{n!}=2\sum_{n=1}^\infty\frac{n}{n!}+\sum_{n=1}^\infty\frac{1}{n!}$。</div>
+      <div class="step"><span class="step-num">2</span> $\sum_{n=1}^\infty\frac{n}{n!}=\sum_{n=1}^\infty\frac{1}{(n-1)!}=\sum_{k=0}^\infty\frac{1}{k!}=e$。</div>
+      <div class="step"><span class="step-num">3</span> $\sum_{n=1}^\infty\frac{1}{n!}=e-1$。</div>
+      <div class="step"><span class="step-num">4</span> 综合：$2e+(e-1)=3e-1$。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2025 Q2 -->
+<section id="y25q2" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q2</span><span class="qpts">[15 pts]</span><span class="qtitle">二元极限</span></div>
+
+  <div class="part">
+    <span class="part-label">(i)</span>
+    <div class="question-block">$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{\sin(xy)}{x^2+y^2}$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>The limit <strong>does not exist</strong>.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 1-5 路径不同得不同极限</span>
+      <p>当 $(x,y)\to(0,0)$ 时 $\sin(xy)\sim xy$，所以问题等价于 $\lim\frac{xy}{x^2+y^2}$，这是经典 DNE 的极限。<strong>取不同直线 $y=kx$</strong> 即可破。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 沿 $y=x$：$\dfrac{\sin(x^2)}{2x^2}\to\dfrac{1}{2}$（$\sin u/u\to 1$）。</div>
+      <div class="step"><span class="step-num">2</span> 沿 $y=0$：$\dfrac{\sin 0}{x^2}=0\to 0$。</div>
+      <div class="step"><span class="step-num">3</span> 两路径不同极限，故 DNE。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(ii)</span>
+    <div class="question-block">$\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^2 y}{x^4+y^2}$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>The limit <strong>does not exist</strong>.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 1-5 抛物路径</span>
+      <p>这是教科书"标准坑"：直线 $y=kx$ 给出极限 $0$（看似存在），但抛物线 $y=kx^2$ 给出依赖 $k$ 的不同极限。所以一旦遇到 $\frac{xy^?}{x^?+y^2}$ 形式，<strong>务必试抛物路径</strong>。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 沿 $y=kx^2$：$\dfrac{x^2\cdot kx^2}{x^4+k^2x^4}=\dfrac{k}{1+k^2}$，依赖 $k$。</div>
+      <div class="step"><span class="step-num">2</span> 不同 $k$ 给不同极限，故 DNE。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(iii)</span>
+    <div class="question-block">$\displaystyle\lim_{(r,\theta)\to(0,\pi/2)}\dfrac{r\cos\theta}{r^2+1}$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$0$.</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 1-5 直接代入连续点</span>
+      <p>分母 $r^2+1\to 1\ne 0$，分子 $r\cos\theta\to 0\cdot 0=0$。被积函数在该点连续，直接代入即可。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $r\to 0$，$\cos\theta\to\cos(\pi/2)=0$。</div>
+      <div class="step"><span class="step-num">2</span> 直接代入：$\frac{0\cdot 0}{0+1}=0$。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2025 Q3 -->
+<section id="y25q3" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q3</span><span class="qpts">[6 pts]</span><span class="qtitle">二阶偏导数</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $f(x,y)=x\sin y+y\ln x$. Find $f_{xx},f_{yx},f_{yy},f_{xy}$.
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    $f_x=\sin y+\dfrac{y}{x},\;f_y=x\cos y+\ln x.$
+    $$f_{xx}=-\dfrac{y}{x^2},\quad f_{yx}=f_{xy}=\cos y+\dfrac{1}{x},\quad f_{yy}=-x\sin y.$$
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 1-5 偏导计算</span><span class="lec">Lec 1-5 Clairaut 定理</span>
+    <p><strong>Clairaut/Schwarz 定理</strong>：若 $f_{xy},f_{yx}$ 都连续，则相等。这里两者计算结果相同 — 既是验证，也是节省计算的途径。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $f_x=\sin y+\frac{y}{x}$。$f_{xx}=\partial_x(\frac{y}{x})=-\frac{y}{x^2}$。$f_{xy}=\partial_y(\sin y+\frac{y}{x})=\cos y+\frac{1}{x}$。</div>
+    <div class="step"><span class="step-num">2</span> $f_y=x\cos y+\ln x$。$f_{yy}=-x\sin y$。$f_{yx}=\partial_x(x\cos y+\ln x)=\cos y+\frac{1}{x}=f_{xy}$ ✓。</div>
+  </div>
+</section>
+
+<!-- 2025 Q4 -->
+<section id="y25q4" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q4</span><span class="qpts">[6 pts]</span><span class="qtitle">显式曲面切平面与法线</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    Surface $z=x^2-y^2$. Find $M$ and $L$ at $(2,1,3)$.
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    <ul class="tight">
+      <li>$M:\ 4x-2y-z=3$（即 $z-3=4(x-2)-2(y-1)$）。</li>
+      <li>$L:\ x=2+4t,\;y=1-2t,\;z=3-t$。</li>
+    </ul>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 7-10 显式曲面切平面</span>
+    <p>对 $z=f(x,y)$ 的切平面公式：
+    $$z-z_0=f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0).$$
+    法向量 $(f_x,f_y,-1)$（或 $(-f_x,-f_y,1)$，方向相反但等价）。这里官方用 $(4,-2,-1)$。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $f_x=2x,\;f_y=-2y$。在 $(2,1)$：$f_x=4,\;f_y=-2$。验证 $z=2^2-1^2=3$ ✓。</div>
+    <div class="step"><span class="step-num">2</span> 切平面：$z-3=4(x-2)-2(y-1)\Rightarrow z=4x-2y-3\Rightarrow 4x-2y-z=3$。</div>
+    <div class="step"><span class="step-num">3</span> 法线方向 $(4,-2,-1)$，参数方程 $(2+4t,1-2t,3-t)$。</div>
+  </div>
+</section>
+
+<!-- 2025 Q5 -->
+<section id="y25q5" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q5</span><span class="qpts">[6 pts]</span><span class="qtitle">两平面交线到原点最近点</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    平面 $2x+y-z=4$ 与 $x+y+z=3$ 的交线上离原点最近的点。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    Closest point: $\left(\dfrac{11}{7},\,\dfrac{8}{7},\,\dfrac{2}{7}\right)$.
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 7-10 直线参数化</span><span class="lec">Lec 11-15 一元最优化</span>
+    <p>两平面交线是<strong>一维流形</strong>。两步：(1) 用任一变量参数化交线；(2) 写出 $D^2(t)=x^2+y^2+z^2$ 关于 $t$ 求导找极小。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 两式相减：$(2x+y-z)-(x+y+z)=4-3\Rightarrow x-2z=1\Rightarrow x=1+2z$。代第二式：$1+2z+y+z=3\Rightarrow y=2-3z$。
+    令 $z=t$：参数化为 $(x,y,z)=(1+2t,\,2-3t,\,t)$。</div>
+    <div class="step"><span class="step-num">2</span> $D^2(t)=(1+2t)^2+(2-3t)^2+t^2=1+4t+4t^2+4-12t+9t^2+t^2=14t^2-8t+5$。</div>
+    <div class="step"><span class="step-num">3</span> $\frac{d}{dt}D^2=28t-8=0\Rightarrow t=2/7$。</div>
+    <div class="step"><span class="step-num">4</span> 代回：$x=1+4/7=11/7$，$y=2-6/7=8/7$，$z=2/7$。最近点 $\left(\frac{11}{7},\frac{8}{7},\frac{2}{7}\right)$。</div>
+  </div>
+</section>
+
+<!-- 2025 Q6 -->
+<section id="y25q6" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q6</span><span class="qpts">[8 pts]</span><span class="qtitle">临界点分类</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $f(x,y)=x^3+y^3-3xy$. Classify critical points.
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    <ul class="tight">
+      <li>$(0,0)$: <strong>Saddle point</strong>.</li>
+      <li>$(1,1)$: <strong>Local minimum</strong>.</li>
+    </ul>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 11-15 二元最优化</span><span class="lec">Lec 11-15 二阶判别 (Hessian)</span>
+    <p>二元临界点判定 $(\,$二阶判别$\,)$：设 $D=f_{xx}f_{yy}-f_{xy}^2$。
+    <ul class="tight">
+      <li>$D>0,f_{xx}>0$：局部极小。</li>
+      <li>$D>0,f_{xx}<0$：局部极大。</li>
+      <li>$D<0$：鞍点。</li>
+      <li>$D=0$：判别失效，需更高阶分析。</li>
+    </ul>
+    几何上 $D$ 是 Hessian 矩阵的行列式，$D<0$ 表示矩阵特征值异号（鞍）。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $f_x=3x^2-3y=0,\;f_y=3y^2-3x=0\Rightarrow y=x^2,\;x=y^2$。代入：$x=(x^2)^2=x^4\Rightarrow x(x^3-1)=0\Rightarrow x=0\text{ or }1$。两个临界点：$(0,0)$ 与 $(1,1)$。</div>
+    <div class="step"><span class="step-num">2</span> 二阶：$f_{xx}=6x,\;f_{yy}=6y,\;f_{xy}=-3$。$D=36xy-9$。</div>
+    <div class="step"><span class="step-num">3</span> $(0,0)$：$D=-9<0$，鞍点。</div>
+    <div class="step"><span class="step-num">4</span> $(1,1)$：$D=36-9=27>0,\;f_{xx}=6>0$，局部极小。</div>
+  </div>
+</section>
+
+<!-- 2025 Q7 -->
+<section id="y25q7" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q7</span><span class="qpts">[6+6 pts]</span><span class="qtitle">二重积分</span></div>
+
+  <div class="part">
+    <span class="part-label">(a) 多项式区域</span>
+    <div class="question-block">$\iint_R(3-x-y)dA$，$R$：$y=x^2$ 与 $y=x+2$ 围成。</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$\dfrac{81}{20}=4.05.$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 二重积分</span>
+      <p>抛物线与直线的交点：$x^2=x+2\Rightarrow x^2-x-2=0\Rightarrow(x-2)(x+1)=0\Rightarrow x=-1,2$。在 $-1\le x\le 2$ 范围内 $x+2>x^2$（线在抛上方）。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> $R=\{(x,y):-1\le x\le 2,\;x^2\le y\le x+2\}$。</div>
+      <div class="step"><span class="step-num">2</span> 内层 $\int_{x^2}^{x+2}(3-x-y)dy=[(3-x)y-\tfrac{y^2}{2}]_{x^2}^{x+2}$。
+      下端 $(3-x)x^2-\tfrac{x^4}{2}=3x^2-x^3-\tfrac{x^4}{2}$。
+      上端 $(3-x)(x+2)-\tfrac{(x+2)^2}{2}=3x+6-x^2-2x-\tfrac{x^2+4x+4}{2}=-x^2+x+6-\tfrac{x^2}{2}-2x-2=-\tfrac{3}{2}x^2-x+4$。
+      差 $=\big(-\tfrac{3}{2}x^2-x+4\big)-\big(3x^2-x^3-\tfrac{x^4}{2}\big)=\tfrac{x^4}{2}+x^3-\tfrac{9}{2}x^2-x+4$。</div>
+      <div class="step"><span class="step-num">3</span> 外层 $\int_{-1}^2\big(\tfrac{x^4}{2}+x^3-\tfrac{9}{2}x^2-x+4\big)dx$
+      $=\big[\tfrac{x^5}{10}+\tfrac{x^4}{4}-\tfrac{3x^3}{2}-\tfrac{x^2}{2}+4x\big]_{-1}^2$。
+      上端 $\tfrac{32}{10}+\tfrac{16}{4}-\tfrac{24}{2}-\tfrac{4}{2}+8=3.2+4-12-2+8=1.2$。
+      下端 $-\tfrac{1}{10}+\tfrac{1}{4}+\tfrac{3}{2}-\tfrac{1}{2}-4=-0.1+0.25+1.5-0.5-4=-2.85$。
+      差 $1.2-(-2.85)=4.05=\tfrac{81}{20}$。</div>
+    </div>
+  </div>
+
+  <div class="part">
+    <span class="part-label">(b) 换序积分</span>
+    <div class="question-block">$\displaystyle\int_0^3\!\!\int_{\sqrt{x/3}}^1 e^{y^3}dy\,dx$.</div>
+    <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$e-1.$</div>
+    <div class="zh-explain"><div class="lbl">中文知识点</div>
+      <span class="lec">Lec 13-17 换序积分</span>
+      <p>$e^{y^3}$ 没有初等原函数，所以<strong>必须换序</strong>。原区域：$0\le x\le 3$, $\sqrt{x/3}\le y\le 1$，等价于 $0\le y\le 1$, $0\le x\le 3y^2$。换序后内层关于 $x$ 是线性可积。</p>
+    </div>
+    <div class="derivation"><div class="lbl">Step-by-Step</div>
+      <div class="step"><span class="step-num">1</span> 反描述区域：$y\ge\sqrt{x/3}\Leftrightarrow y^2\ge x/3\Leftrightarrow x\le 3y^2$。结合 $x\ge 0,y\le 1,y\ge\sqrt{x/3}\ge 0$，故 $0\le y\le 1,0\le x\le 3y^2$。</div>
+      <div class="step"><span class="step-num">2</span> 换序：$\int_0^1\int_0^{3y^2}e^{y^3}dx\,dy=\int_0^1 3y^2 e^{y^3}dy$。</div>
+      <div class="step"><span class="step-num">3</span> $\int_0^1 3y^2 e^{y^3}dy=[e^{y^3}]_0^1=e-1$（注意 $\frac{d}{dy}e^{y^3}=3y^2 e^{y^3}$）。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2025 Q8 -->
+<section id="y25q8" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q8</span><span class="qpts">[4+4 pts]</span><span class="qtitle">柱坐标体积</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    立体下界：单位球（中心原点）；上界：抛物面 $z=1-x^2-y^2$。求柱坐标三重积分及体积。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    <p>(a) $\displaystyle V=\int_0^{2\pi}\!\!\int_0^1\!\!\int_{-\sqrt{1-r^2}}^{1-r^2}r\,dz\,dr\,d\theta.$</p>
+    <p>(b) $V=\dfrac{7\pi}{6}.$</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 13-17 柱坐标</span>
+    <p>需要确定 $r$ 的上限。注意：抛物面 $z=1-r^2$ 在 $r=1$ 时 $z=0$；球的下半部分 $z=-\sqrt{1-r^2}$ 在 $r=1$ 时 $z=0$。两者在 $r=1$ 处相会，所以 $r\in[0,1]$。<strong>抛物面（上）比球底（下）高</strong>对所有 $r\in[0,1]$ 都成立。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 上界 $z=1-r^2$；下界 $z=-\sqrt{1-r^2}$。$r\in[0,1]$，$\theta\in[0,2\pi]$。</div>
+    <div class="step"><span class="step-num">2</span> $V=\int_0^{2\pi}\int_0^1\int_{-\sqrt{1-r^2}}^{1-r^2}r\,dz\,dr\,d\theta$。</div>
+    <div class="step"><span class="step-num">3</span> 内层 $(1-r^2)-(-\sqrt{1-r^2})=1-r^2+\sqrt{1-r^2}$。</div>
+    <div class="step"><span class="step-num">4</span> 中层 $\int_0^1 r(1-r^2)dr+\int_0^1 r\sqrt{1-r^2}dr$。
+    第一项 $=[\frac{r^2}{2}-\frac{r^4}{4}]_0^1=\frac{1}{4}$。
+    第二项 令 $u=1-r^2,du=-2r\,dr$：$\int_0^1 r\sqrt{1-r^2}dr=\frac{1}{2}\int_0^1\sqrt u\,du=\frac{1}{2}\cdot\frac{2}{3}=\frac{1}{3}$。
+    合计 $=\frac{1}{4}+\frac{1}{3}=\frac{7}{12}$。</div>
+    <div class="step"><span class="step-num">5</span> 外层 $\int_0^{2\pi}\frac{7}{12}d\theta=\frac{7\pi}{6}$。</div>
+  </div>
+</section>
+
+<!-- 2025 Q9 -->
+<section id="y25q9" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q9</span><span class="qpts">[3+5 pts]</span><span class="qtitle">变量代换 $u=x+2y, v=x-y$</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\displaystyle\int_0^{2/3}\!\!\int_y^{2(1-y)}(x+2y)e^{y-x}dx\,dy$。(a) 画 $R$；(b) 用 $u=x+2y,v=x-y$ 改写到 $G$（不必计算）。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    <p>(a) $R$ is the triangle with vertices $(0,0)$, $(2,0)$ and $(\tfrac{2}{3},\tfrac{2}{3})$, bounded by $y=x$, $x=2-2y$ (i.e. $x+2y=2$), $y=0$.</p>
+    <p>(b) $G$ in $uv$-plane: triangle bounded by $v=0$ (from $y=x$), $u=2$ (from $x=2-2y$), $u=v$ (from $y=0$). Jacobian $\left|\dfrac{\partial(x,y)}{\partial(u,v)}\right|=\dfrac{1}{3}$. The integral becomes
+    $$\dfrac{1}{3}\iint_G u\,e^{-v}\,du\,dv=\dfrac{1}{3}\int_0^2\!\!\int_0^u u\,e^{-v}\,dv\,du.$$</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 13-17 二重积分变量代换</span>
+    <p>关键观察：被积式中 $x+2y\to u$，$y-x\to -v$，正好与代换匹配，<strong>这就是题目暗示选择此代换的原因</strong>。<br>
+    Jacobian 计算两种方式：(1) 直接求 $x,y$ 关于 $u,v$ 的偏导；(2) 求 $u,v$ 关于 $x,y$ 的偏导后取倒数。
+    $\frac{\partial(u,v)}{\partial(x,y)}=\det\begin{pmatrix}1&2\\1&-1\end{pmatrix}=-3$，故 $\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=\frac{1}{|-3|}=\frac{1}{3}$。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 解出 $x,y$。$u-v=(x+2y)-(x-y)=3y\Rightarrow y=\frac{u-v}{3}$。$u+2v=(x+2y)+2(x-y)=3x\Rightarrow x=\frac{u+2v}{3}$。</div>
+    <div class="step"><span class="step-num">2</span> Jacobian $\frac{\partial(x,y)}{\partial(u,v)}=\det\begin{pmatrix}1/3&2/3\\1/3&-1/3\end{pmatrix}=-\frac{1}{9}-\frac{2}{9}=-\frac{1}{3}$。绝对值 $\frac{1}{3}$。</div>
+    <div class="step"><span class="step-num">3</span> 边界对应：
+    <ul class="tight">
+      <li>$y=x\Leftrightarrow x-y=0\Leftrightarrow v=0$。</li>
+      <li>$x=2(1-y)\Leftrightarrow x+2y=2\Leftrightarrow u=2$。</li>
+      <li>$y=0\Leftrightarrow u-v=0\Leftrightarrow u=v$。</li>
+    </ul>
+    这描述出 $G:\{0\le v\le u,\,0\le u\le 2\}$（也可写 $\{u\in[0,2],v\in[0,u]\}$）。</div>
+    <div class="step"><span class="step-num">4</span> 被积函数：$x+2y=u$，$y-x=-v$，故 $(x+2y)e^{y-x}=u e^{-v}$。</div>
+    <div class="step"><span class="step-num">5</span> 改写：$\displaystyle\iint_G u e^{-v}\cdot\frac{1}{3}du\,dv=\frac{1}{3}\int_0^2\int_0^u u e^{-v}dv\,du$。</div>
+  </div>
+</section>
+
+<!-- 2025 Q10 -->
+<section id="y25q10" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q10</span><span class="qpts">[4+4+4 pts]</span><span class="qtitle">梯度场</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    (a) $\mathbf F=(y^2+2cxz)\mathbf i+y(bx+cz)\mathbf j+(y^2+cx^2)\mathbf k$ 何时为梯度场？(b) 找 $(y^2+4xz,2xy+2yz,y^2+2x^2)$ 的势函数。(c) 沿线段从 $(0,0,0)$ 到 $(1,2,2)$ 的功。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    <p>(a) $b=2,\;c=2$.</p>
+    <p>(b) $\phi(x,y,z)=xy^2+2x^2z+y^2z\;(+\,K)$.</p>
+    <p>(c) $W=\phi(1,2,2)-\phi(0,0,0)=16$.</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 梯度场判据</span><span class="lec">Lec 17-25 势函数构造</span>
+    <p>判据三式：$P_y=Q_x,\,P_z=R_x,\,Q_z=R_y$。
+    构造势函数三步：从 $\phi_x=P$ 积分 $\to$ $\phi_y=Q$ 修正 $\to$ $\phi_z=R$ 修正。<strong>路径无关定理</strong>：$W=\phi(B)-\phi(A)$。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $(a)$：$P=y^2+2cxz,\;Q=bxy+cyz,\;R=y^2+cx^2$。
+    $P_y=2y$，$Q_x=by$，等：$2y=by\Rightarrow b=2$。
+    $P_z=2cx$，$R_x=2cx$，恒等。
+    $Q_z=cy$，$R_y=2y$，等：$cy=2y\Rightarrow c=2$。</div>
+    <div class="step"><span class="step-num">2</span> $(b)$ $\phi_x=y^2+4xz\Rightarrow\phi=xy^2+2x^2z+C(y,z)$。
+    $\phi_y=2xy+C_y(y,z)=2xy+2yz\Rightarrow C_y=2yz\Rightarrow C(y,z)=y^2z+D(z)$。
+    $\phi_z=2x^2+y^2+D'(z)=y^2+2x^2\Rightarrow D'=0$。
+    故 $\phi=xy^2+2x^2z+y^2z(+K)$。</div>
+    <div class="step"><span class="step-num">3</span> $(c)$ $\phi(1,2,2)=1\cdot 4+2\cdot 1\cdot 2+4\cdot 2=4+4+8=16$；$\phi(0,0,0)=0$。$W=16$。</div>
+  </div>
+</section>
+
+<!-- 2025 Q11 -->
+<section id="y25q11" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q11</span><span class="qpts">[8 pts]</span><span class="qtitle">通量与环量（直接参数化）</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    (a) $\mathbf F=(x,y)$ 通过：右半圆 $(0,2)\to(0,-2)$ + $y$ 轴线段 $(0,-2)\to(0,2)$ 的通量。<br>
+    (b) $\mathbf F=(-y,x)$ 沿同样路径（半圆顺时针 + 线段）的环量。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>
+    <p>(a) Total flux $=4\pi.$</p>
+    <p>(b) Total circulation $=-4\pi.$</p>
+  </div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 直接参数化线积分</span><span class="lec">Lec 17-25 Green 定理验证</span>
+    <p>这道题官方解答用<strong>直接参数化</strong>计算。提示：
+    <ul class="tight">
+      <li>对 (a)，注意 $\mathbf F=(x,y)$ 的散度是 $2$，区域是右半圆盘（面积 $2\pi$），用 Green 通量形式应得 $\iint 2\,dA=4\pi$ ✓ 验证一致。</li>
+      <li>对 (b)，$\mathbf F=(-y,x)$ 的旋度是 $2$。题目给的方向是<strong>顺时针</strong>（注意题中标注 "clockwise"），所以 Green 公式给出 $-\iint 2\,dA=-4\pi$ ✓ 验证一致。</li>
+    </ul></p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step (官方参数化路径)</div>
+    <div class="step"><span class="step-num">1</span> <strong>(a) 通量</strong>。右半圆 $\mathbf r(t)=(2\cos t,2\sin t),t\in[-\pi/2,\pi/2]$。
+    外法向 $\mathbf n=(\cos t,\sin t)$，$\|\mathbf r'(t)\|=2$。
+    $\mathbf F=(2\cos t,2\sin t)$，$\mathbf F\cdot\mathbf n=2\cos^2 t+2\sin^2 t=2$。
+    通量 $=\int_{-\pi/2}^{\pi/2} 2\cdot 2\,dt=4\cdot\pi=4\pi$。</div>
+    <div class="step"><span class="step-num">2</span> 线段 $\mathbf r(t)=(0,t),t:-2\to 2$，$y$ 轴上向外法向是 $(-1,0)$（朝右半圆区域外即左侧）。$\mathbf F=(0,t)$，$\mathbf F\cdot\mathbf n=0$。线段贡献 $0$。</div>
+    <div class="step"><span class="step-num">3</span> 总通量 $=4\pi$。</div>
+    <div class="step"><span class="step-num">4</span> <strong>(b) 环量</strong>（半圆是顺时针）。$\mathbf r(t)=(2\cos(-t),2\sin(-t))$，$t\in[-\pi/2,\pi/2]$。$\mathbf r'(t)=(-2\sin t,-2\cos t)$（小心负号）。
+    $\mathbf F=(-y,x)=(2\sin t,2\cos t)$（用原参数代入；负号在反向时由 $\mathbf r'$ 处理）。
+    $\mathbf F\cdot\mathbf r'=(2\sin t)(-2\sin t)+(2\cos t)(-2\cos t)=-4\sin^2 t-4\cos^2 t=-4$。
+    积分 $\int_{-\pi/2}^{\pi/2}(-4)dt=-4\pi$。</div>
+    <div class="step"><span class="step-num">5</span> 线段 $\mathbf r(t)=(0,t),t:-2\to 2$，$\mathbf r'=(0,1)$。$\mathbf F=(-t,0)$，$\mathbf F\cdot\mathbf r'=0$。贡献 $0$。</div>
+    <div class="step"><span class="step-num">6</span> 总环量 $=-4\pi$。</div>
+  </div>
+</section>
+
+<!-- 2025 Q12 -->
+<section id="y25q12" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q12</span><span class="qpts">[8 pts]</span><span class="qtitle">散度定理: 立方体</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\mathbf F=(x^2y,y^2z,z^2x)$. 通过单位立方体 $[0,1]^3$ 表面的向外通量。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$\dfrac{3}{2}.$</div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 散度定理</span>
+    <p>立方体的<strong>6 个面</strong>分别参数化会很繁琐 — 散度定理一步搞定。$\nabla\cdot\mathbf F=2xy+2yz+2zx$ 在 $[0,1]^3$ 上的积分按对称性可拆分。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> $\nabla\cdot\mathbf F=\partial_x(x^2y)+\partial_y(y^2z)+\partial_z(z^2x)=2xy+2yz+2zx$。</div>
+    <div class="step"><span class="step-num">2</span> 由对称：$\iiint 2xy\,dV=2\int_0^1 x\,dx\int_0^1 y\,dy\int_0^1 dz=2\cdot\tfrac{1}{2}\cdot\tfrac{1}{2}\cdot 1=\tfrac{1}{2}$；同理另两项各 $\tfrac{1}{2}$。</div>
+    <div class="step"><span class="step-num">3</span> 总通量 $=\tfrac{1}{2}+\tfrac{1}{2}+\tfrac{1}{2}=\tfrac{3}{2}$。</div>
+  </div>
+  <div class="derivation"><div class="lbl">官方逐步积分</div>
+    <p>$\int_0^1(2xy+2yz+2zx)dz=2xy+y+x$；
+    $\int_0^1(2xy+y+x)dy=x+\tfrac{1}{2}+x=2x+\tfrac{1}{2}$；
+    $\int_0^1(2x+\tfrac{1}{2})dx=1+\tfrac{1}{2}=\tfrac{3}{2}$ ✓。</p>
+  </div>
+</section>
+
+<!-- 2025 Q13 -->
+<section id="y25q13" class="qcard q25">
+  <div class="qhead"><span class="qnum">2025 · Q13</span><span class="qpts">[8 pts]</span><span class="qtitle">Stokes 定理: 抛物面盖</span></div>
+  <div class="question-block"><div class="lbl">Question</div>
+    $\mathbf F=(y^2,z^2,x^2)$，$S$：抛物面 $z=4-x^2-y^2$ 在 $xy$ 平面上方的部分（向上）。求 $\iint_S(\nabla\times\mathbf F)\cdot\mathbf n\,d\sigma$ 用 Stokes 定理。
+  </div>
+  <div class="en-answer"><div class="lbl">Answer (EN, official)</div>$0.$</div>
+  <div class="zh-explain"><div class="lbl">中文知识点</div>
+    <span class="lec">Lec 17-25 Stokes 定理</span>
+    <p>边界 $C$ 是抛物面与 $xy$ 平面的交线：$z=0$ 时 $x^2+y^2=4$，半径 $2$ 的圆。曲面向上 $\Rightarrow$ $C$ 逆时针。<br>
+    $\mathbf F$ 在 $z=0$ 上简化为 $(y^2,0,x^2)$。注意第三分量 $x^2$ 与 $d\mathbf r$ 的 $z$ 分量（$0$）配对，贡献为零，所以只剩第一分量 $y^2$ 与 $dx$ 配对。</p>
+  </div>
+  <div class="derivation"><div class="lbl">Step-by-Step</div>
+    <div class="step"><span class="step-num">1</span> 边界 $C:\{x^2+y^2=4,z=0\}$，参数化 $\mathbf r(t)=(2\cos t,2\sin t,0),\;t\in[0,2\pi]$。$d\mathbf r=(-2\sin t,2\cos t,0)dt$。</div>
+    <div class="step"><span class="step-num">2</span> $\mathbf F$ 在 $C$ 上：$(y^2,z^2,x^2)=(4\sin^2 t,\,0,\,4\cos^2 t)$。</div>
+    <div class="step"><span class="step-num">3</span> $\mathbf F\cdot d\mathbf r=4\sin^2 t\cdot(-2\sin t)+0+4\cos^2 t\cdot 0=-8\sin^3 t\,dt$。</div>
+    <div class="step"><span class="step-num">4</span> $\int_0^{2\pi}\sin^3 t\,dt=0$（因为 $\sin^3$ 是周期 $2\pi$ 的奇对称函数，把区间记为 $[-\pi,\pi]$ 同样是 $0$）。</div>
+    <div class="step"><span class="step-num">5</span> 故面积分 $=0$。</div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!--                   总结                       -->
+<!-- ============================================ -->
+<div class="section-divider ssum">跨年对比与总结</div>
+
+<section id="sum-knowledge" class="compare-card">
+  <h3>一、知识点对比矩阵</h3>
+  <p>把两年试题按照 MAT1002 的核心模块分类，可以清楚看到考察重点的稳定结构和侧重差异。</p>
+  <table class="cmp">
+    <thead>
+      <tr><th>核心模块（Lecture）</th><th>2023 涉及题</th><th>2025 涉及题</th><th>侧重对比</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Lec 1-5</strong> 多元极限 / 连续性 / 偏导基础</td>
+        <td>Q2(三个极限)、Q3(分段函数二阶偏导)</td>
+        <td>Q1(ii)(连续性 T/F)、Q2(三个极限)、Q3(普通二阶偏导)</td>
+        <td>2023 偏「分段函数偏导的精细分析」，2025 偏「连续性概念辨析」与「常规计算」</td>
+      </tr>
+      <tr>
+        <td><strong>Lec 7-10</strong> 梯度 / 方向导数 / 切平面</td>
+        <td>Q1(i,ii,iii) 球坐标链式 + 方向导数、Q4(隐式曲面切平面)</td>
+        <td>Q1(vi,vii) 方向导数 + 平面交线方向、Q4(显式曲面 $z=f(x,y)$ 切平面)</td>
+        <td>2023 用 $F(x,y,z)=c$ 隐式法；2025 用 $z=f(x,y)$ 显式法。两者交替出现，公式略有差异</td>
+      </tr>
+      <tr>
+        <td><strong>Lec 11-15</strong> Taylor / 极值 / Lagrange</td>
+        <td>Q1(iv,viii,ix) Taylor + 二项级数 + 交错级数、Q5(平面最近点)、Q6(球面温度极值, Lagrange)</td>
+        <td>Q1(viii,ix) 二次近似 + $e$ 级数、Q5(直线最近点)、Q6(无约束临界点 + Hessian)</td>
+        <td>2023 重点考<strong>带约束极值（Lagrange）</strong>；2025 重点考<strong>无约束极值（Hessian 判别）</strong> — 互补</td>
+      </tr>
+      <tr>
+        <td><strong>Lec 13-17</strong> 多重积分 / 坐标变换</td>
+        <td>Q1(v) 反常积分判定、Q1(vi) 三重积分换序、Q7 二重积分（含 Frullani）、Q8 球坐标体积、Q9 变量代换 $x=u/v,y=uv$</td>
+        <td>Q1(v) 柱坐标改写、Q7 二重积分（含换序 $e^{y^3}$）、Q8 柱坐标体积、Q9 线性代换 $u=x+2y,v=x-y$</td>
+        <td>2023 用<strong>球坐标 + 双曲代换</strong>；2025 用<strong>柱坐标 + 线性代换</strong>。代换的难度 2023 更高（非线性）</td>
+      </tr>
+      <tr>
+        <td><strong>Lec 17-25</strong> 向量场 / 保守性 / 三大定理</td>
+        <td>Q10 保守场、Q11 Green、Q12 Stokes、Q13 Divergence、Q14 Bonus 证明</td>
+        <td>Q1(i,iii,iv) 概念 T/F、Q10 梯度场、Q11 Green 直接参数化、Q12 Divergence、Q13 Stokes</td>
+        <td>结构高度一致：保守场 + Green/Stokes/Divergence 三定理标配。2025 多了概念性 T/F 题</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="sum-pattern" class="compare-card">
+  <h3>二、命题规律 (Topic-level)</h3>
+  <p>把题号与考点对照，可以提炼出 MAT1002 期末的<strong>固定题型框架</strong>。两年都遵循以下规律：</p>
+  <table class="cmp">
+    <thead>
+      <tr><th>题号</th><th>2023 题型</th><th>2025 题型</th><th>共同模式</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Q1 [27]</td><td>9 个短问题（计算 + T/F）</td><td>9 个短问题（4 个 T/F + 5 个计算）</td><td>覆盖每个核心概念，无中间步骤</td></tr>
+      <tr><td>Q2 [15]</td><td>三个二元极限</td><td>三个二元极限</td><td>必有 1 题 DNE，必含路径检验</td></tr>
+      <tr><td>Q3 [6]</td><td>二阶偏导（分段，含定义域分析）</td><td>二阶偏导（光滑函数，验证 Clairaut）</td><td>都考 $\partial^2/\partial x\partial y$ 与 $\partial^2/\partial y\partial x$ 关系</td></tr>
+      <tr><td>Q4 [6]</td><td>切平面与法线 — 隐式曲面</td><td>切平面与法线 — 显式曲面</td><td>必考一道切平面题</td></tr>
+      <tr><td>Q5 [6]</td><td>原点到平面最近点</td><td>原点到两平面交线（直线）最近点</td><td>距离最小化 + 几何描述</td></tr>
+      <tr><td>Q6 [8]</td><td>Lagrange 球面极值</td><td>Hessian 判别临界点</td><td>极值问题（约束 vs 无约束）</td></tr>
+      <tr><td>Q7 [12]</td><td>二重积分 + 反常技巧</td><td>二重积分 + 换序技巧</td><td>必考至少 1 个换序 / 高阶技巧</td></tr>
+      <tr><td>Q8 [8]</td><td>球坐标体积（球+锥）</td><td>柱坐标体积（球+抛物面）</td><td>带轴对称的立体体积</td></tr>
+      <tr><td>Q9 [8]</td><td>变量代换 $x=u/v,y=uv$</td><td>变量代换 $u=x+2y,v=x-y$</td><td>Jacobian + 区域映射</td></tr>
+      <tr><td>Q10 [12]</td><td>保守场判定 + 势函数 + 做功</td><td>梯度场参数 + 势函数 + 做功</td><td>三步标准模板</td></tr>
+      <tr><td>Q11 [8]</td><td>Green 定理（环量+通量）</td><td>直接参数化（通量+环量）</td><td>2D 闭曲线积分</td></tr>
+      <tr><td>Q12 [8]</td><td>Stokes（半球边界化简）</td><td>Divergence（立方体）</td><td>3D 通量定理交替考</td></tr>
+      <tr><td>Q13 [8]</td><td>Divergence（抛物面盖）</td><td>Stokes（抛物面盖+边界圆）</td><td>3D 通量定理交替考</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:14px"><strong>主要差异：</strong>
+  <ul class="tight">
+    <li>2023 多 1 题 Bonus（连续函数零积分定理证明），考察证明能力。</li>
+    <li>2025 把 T/F 引入大题 Q1，更强调概念辨析（如简单连通性、可加性条件）。</li>
+    <li>2023 在 Lec 11-15 偏 Lagrange 多约束；2025 在 Lec 11-15 偏 Hessian 判别。</li>
+    <li>Q12/Q13 中 Stokes 与 Divergence 在两年中位置互换，但都至少考一次。</li>
+  </ul></p>
+</section>
+
+<section id="sum-strategy" class="compare-card">
+  <h3>三、复习策略与重点提示</h3>
+  <p>结合两年命题，给出按模块的复习重点（按 Lecture 顺序）：</p>
+
+  <div class="topic">Lec 1-5</div>
+  <p><strong>多元极限 + 连续 + 偏导。</strong> 重点掌握三类极限工具：(1) 直线 / 抛物路径不一致 $\Rightarrow$ DNE；(2) 极坐标转换 + 夹逼；(3) 直接代入连续点。注意分离连续 ≠ 联合连续（2025 Q1ii）。</p>
+
+  <div class="topic">Lec 7-10</div>
+  <p><strong>梯度 + 方向导数 + 切平面。</strong> 必背两套切平面公式（隐式 $\nabla F$、显式 $(f_x,f_y,-1)$）。方向导数用单位向量，结果与梯度的内积。叉积用于求两平面交线方向（2025 Q1vii）。</p>
+
+  <div class="topic">Lec 11-15</div>
+  <p><strong>Taylor + 极值。</strong> 二元 Taylor 公式必背。极值题分两类：(a) 无约束 $\Rightarrow$ 解临界点 + Hessian；(b) 约束 $\Rightarrow$ Lagrange。两者两年都各考一次。Hessian 行列式 $D=f_{xx}f_{yy}-f_{xy}^2$ 的符号判别要熟练。级数部分需熟悉 $e,\sin,\cos,\ln,(1+x)^\alpha$ 的常用展开。</p>
+
+  <div class="topic">Lec 13-17</div>
+  <p><strong>重积分 + 坐标变换。</strong> 三大重点：(1) 区域画图与积分上下限；(2) 换序（必考 — 2023 Q1vi 三重换序、2025 Q7b 反序去掉 $e^{y^3}$）；(3) 变量代换（线性 vs 双曲）— 求 Jacobian 取绝对值，把边界从 $xy$ 映到 $uv$。柱坐标 / 球坐标的体积元 $r$ / $\rho^2\sin\varphi$ 不可漏。</p>
+
+  <div class="topic">Lec 17-25</div>
+  <p><strong>向量场三大定理。</strong>
+  <ul class="tight">
+    <li><strong>保守场判据：</strong> $P_y=Q_x,P_z=R_x,Q_z=R_y$，且<strong>定义域单连通</strong>。势函数三步构造法。</li>
+    <li><strong>Green 定理：</strong> 2D，闭曲线对 $xy$ 平面上区域的环量/通量。</li>
+    <li><strong>Stokes 定理：</strong> 3D 曲面 $\leftrightarrow$ 边界曲线。被积函数复杂时（含 $e^{xyz}$ 等），<strong>找边界化简</strong>是关键技巧。</li>
+    <li><strong>散度定理：</strong> 闭曲面 $\leftrightarrow$ 体积。当 $\nabla\cdot\mathbf F$ 简单时（如多项式）极为高效。</li>
+  </ul>
+  概念题（T/F）要分清：「分量测试通过」与「保守」之间隔着「单连通」；「3D 减一点」是简单连通而「2D 减一点」不是。</p>
+
+  <div class="topic">证明题（Bonus）</div>
+  <p>2023 Q14 是「积分恒为 $0\Rightarrow$ 函数恒为 $0$」的经典证明，模板：(1) 反证假设 $f(p)\ne 0$；(2) 用连续性局部保号；(3) 在小矩形上估计积分严格大于 $0$；(4) 矛盾。这类「积分零定理」证明思路通用。</p>
+
+  <div class="topic">考试节奏</div>
+  <p>132 分 / 180 分钟 ≈ 1 分钟一分。Q1（27 分）控制在 30 分钟内，把每个短问题快速过；Q10–13 是高分硬骨头，每题平均 8-12 分钟；Q2-Q9 节奏要稳，反常积分（2023 Q7ii）和换序（2025 Q7b）可能耗时较长，<strong>务必先看完整张试卷做规划</strong>。</p>
+</section>
+
+<footer>
+  <p>MAT1002 Final 2023 + 2025 详细解析合集</p>
+  <p>© 2026 · 浅色主题 · KaTeX 渲染 · 答案仅供学习参考</p>
+</footer>
+
+</main>
+</body>
+</html>

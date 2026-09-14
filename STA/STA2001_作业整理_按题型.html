@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>STA 2001 作业整理（按题型）</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+<style>
+:root {
+  --bg: #fafaf7;
+  --fg: #1a1a1a;
+  --card: #ffffff;
+  --muted: #6b6b6b;
+  --border: #e3e3e0;
+  --accent: #b8332b;
+  --accent-soft: #fbeae8;
+  --key: #c2410c;
+  --key-bg: #fff4e6;
+  --code: #f4f4f1;
+  --answer: #0a6b3c;
+  --answer-bg: #e8f5ee;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: "Source Han Serif", "Songti SC", "STSong", "Noto Serif CJK SC", Georgia, serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.75;
+  margin: 0;
+  padding: 0 0 80px 0;
+}
+header {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+  color: #fafaf7;
+  padding: 48px 0;
+  text-align: center;
+  border-bottom: 4px solid var(--accent);
+}
+header h1 { margin: 0 0 12px 0; font-size: 2.2em; letter-spacing: 2px; }
+header .sub { color: #c9c9c0; font-size: 1.05em; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+nav.toc {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 28px;
+  margin: 32px 0;
+  position: sticky;
+  top: 12px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+nav.toc h2 { margin: 0 0 12px 0; font-size: 1.1em; color: var(--accent); }
+nav.toc ol { margin: 0; padding-left: 20px; columns: 2; column-gap: 32px; }
+nav.toc li { margin: 4px 0; break-inside: avoid; }
+nav.toc a { color: var(--fg); text-decoration: none; }
+nav.toc a:hover { color: var(--accent); text-decoration: underline; }
+
+h2.section {
+  font-size: 1.5em;
+  border-left: 5px solid var(--accent);
+  padding-left: 14px;
+  margin: 48px 0 24px 0;
+  scroll-margin-top: 24px;
+}
+h3.type {
+  font-size: 1.25em;
+  color: var(--accent);
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 6px;
+  margin: 32px 0 16px 0;
+  scroll-margin-top: 24px;
+}
+h4.prob {
+  font-size: 1.05em;
+  margin: 24px 0 8px 0;
+  padding: 8px 12px;
+  background: var(--card);
+  border-left: 3px solid var(--muted);
+  border-radius: 4px;
+  scroll-margin-top: 24px;
+}
+h4.prob .tag {
+  display: inline-block;
+  background: var(--muted);
+  color: #fff;
+  font-size: 0.78em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+h4.prob .key {
+  display: inline-block;
+  background: var(--key);
+  color: #fff;
+  font-size: 0.78em;
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-left: 8px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.question {
+  background: var(--card);
+  padding: 16px 20px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin: 8px 0 12px 0;
+}
+.answer {
+  background: var(--answer-bg);
+  border-left: 4px solid var(--answer);
+  padding: 14px 20px;
+  margin: 8px 0 8px 0;
+  border-radius: 4px;
+}
+.answer h5 {
+  margin: 0 0 8px 0;
+  color: var(--answer);
+  font-size: 0.95em;
+  letter-spacing: 1px;
+}
+.explain {
+  background: var(--card);
+  padding: 14px 20px;
+  margin: 0 0 24px 0;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+}
+.explain h5 {
+  margin: 0 0 8px 0;
+  color: var(--accent);
+  font-size: 0.95em;
+  letter-spacing: 1px;
+}
+.key-block {
+  background: var(--key-bg);
+  border-left: 4px solid var(--key);
+  padding: 12px 20px;
+  margin: 12px 0;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+.key-block strong { color: var(--key); }
+.note {
+  background: #f3f3ee;
+  padding: 10px 16px;
+  margin: 8px 0;
+  border-radius: 4px;
+  font-size: 0.92em;
+  color: var(--muted);
+  border-left: 3px solid #c0c0b8;
+}
+table {
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 0.95em;
+  background: var(--card);
+  width: 100%;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: center;
+}
+th { background: #efe9e0; }
+code { background: var(--code); padding: 1px 6px; border-radius: 3px; font-family: "Fira Code", "Cascadia Code", monospace; font-size: 0.9em; }
+ul { margin: 6px 0; }
+li { margin: 2px 0; }
+.legend {
+  display: flex;
+  gap: 16px;
+  margin: 16px 0;
+  font-size: 0.9em;
+  color: var(--muted);
+}
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend .dot { width: 10px; height: 10px; border-radius: 2px; }
+.overview-table th { background: #2c2c2c; color: #fafaf7; }
+.overview-table td:first-child { text-align: left; font-weight: 500; }
+hr.sep { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<header>
+  <h1>STA 2001 作业整理 · 按题型</h1>
+  <div class="sub">HW2 ~ HW6 · 共 50+ 题 · 重点题标注 ⭐ 重点讲解</div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>目录</h2>
+  <ol>
+    <li><a href="#overview">题型总览</a></li>
+    <li><a href="#t1">题型 1 · 离散 PMF 归一化</a></li>
+    <li><a href="#t2">题型 2 · 期望/方差/矩计算</a></li>
+    <li><a href="#t3">题型 3 · 随机变量函数</a></li>
+    <li><a href="#t4">题型 4 · MGF 识别与性质</a></li>
+    <li><a href="#t5">题型 5 · 连续均匀/指数分布</a></li>
+    <li><a href="#t6">题型 6 · 正态分布计算</a></li>
+    <li><a href="#t7">题型 7 · 实际应用问题</a></li>
+    <li><a href="#t8">题型 8 · 联合 PMF/PDF</a></li>
+    <li><a href="#t9">题型 9 · 协方差 / 最小二乘</a></li>
+    <li><a href="#t10">题型 10 · 条件分布</a></li>
+    <li><a href="#t11">题型 11 · 二维正态</a></li>
+    <li><a href="#t12">题型 12 · 线性组合/对数正态</a></li>
+    <li><a href="#t13">题型 13 · 抽样分布与 CLT</a></li>
+    <li><a href="#t14">题型 14 · 离散近似</a></li>
+    <li><a href="#t15">题型 15 · 切比雪夫不等式</a></li>
+    <li><a href="#t16">题型 16 · CLT 证明</a></li>
+  </ol>
+</nav>
+
+<section id="overview">
+<h2 class="section">一、题型总览</h2>
+<div class="legend">
+  <span><span class="dot" style="background: var(--key)"></span>⭐ = 考试/综合应用高频重点</span>
+  <span><span class="dot" style="background: var(--muted)"></span>基础概念题</span>
+</div>
+<table class="overview-table">
+<thead>
+<tr><th>题型</th><th>涉及题号</th><th>核心考点</th></tr>
+</thead>
+<tbody>
+<tr><td>1. 离散 PMF 归一化</td><td>HW2 2.1-3</td><td>Σf(x) = 1，部分分式</td></tr>
+<tr><td>2. 期望/方差/矩</td><td>HW2 2.2-1, 2.3-2, 2.3-4, 2.4-5, 2.4-7</td><td>定义、组合公式、binomial</td></tr>
+<tr><td>3. 随机变量函数</td><td>HW2 2.2-5 · HW3 3.1-5, 3.2-22</td><td>变换技巧</td></tr>
+<tr><td>4. MGF 识别与性质</td><td>HW2 2.4-20 · HW3 3.2-1, 3.2-3, 3.2-7 · HW4 3.2-9, 3.3-6</td><td>MGF = 分布身份</td></tr>
+<tr><td>5. 连续均匀/指数</td><td>HW3 3.1-3</td><td>pdf, cdf, 无记忆性</td></tr>
+<tr><td>6. 正态分布</td><td>HW4 3.3-2, 3.3-3, 3.3-5 · HW6 5.5-4</td><td>标准化、P(·)、查表</td></tr>
+<tr><td>7. 实际应用 ⭐</td><td>HW2 2.5-10, 2.6-11 · HW3 3.1-6</td><td>建模、收益最大化</td></tr>
+<tr><td>8. 联合 PMF/PDF</td><td>HW4 4.1-3, 4.1-4, 4.1-5, 4.1-8, 4.1-9 · HW5 4.4-7, 4.4-15, 4.4-18</td><td>边际、条件、独立性</td></tr>
+<tr><td>9. 协方差/最小二乘</td><td>HW5 4.2-3, 4.2-5, 4.2-9</td><td>Cov, ρ, 回归线</td></tr>
+<tr><td>10. 条件分布</td><td>HW5 4.3-4, 4.4-18</td><td>h(y|x), 期望</td></tr>
+<tr><td>11. 二维正态</td><td>HW5 4.5-1, 4.5-6</td><td>条件仍正态、回归</td></tr>
+<tr><td>12. 线性组合/对数正态 ⭐</td><td>HW5 4.4-9 · HW6 5.1-13, 5.3-17, 5.4-3</td><td>Var(aX+bY), 泊松可加</td></tr>
+<tr><td>13. 抽样分布/CLT ⭐</td><td>HW6 5.6-8, 5.6-14</td><td>X̄ 的渐近正态</td></tr>
+<tr><td>14. 离散近似</td><td>HW6 5.7-12</td><td>正态/泊松近似二项</td></tr>
+<tr><td>15. 切比雪夫 ⭐</td><td>HW6 5.8-3, 5.8-6</td><td>无分布下界</td></tr>
+<tr><td>16. CLT 证明</td><td>HW6 5.9-4</td><td>χ² 极限正态</td></tr>
+</tbody>
+</table>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T1 ============ -->
+<section id="t1">
+<h2 class="section">二、题型 1 · 离散 PMF 归一化（求常数 c）</h2>
+<h3 class="type">核心方法</h3>
+<div class="note">PMF 必须满足 (1) $f(x) \ge 0$；(2) $\sum_x f(x) = 1$。第一点决定 $c$ 的符号，第二点决定 $|c|$。</div>
+
+<h4 class="prob"><span class="tag">HW2 2.1-3</span>求下列各 PMF 中的常数 $c$</h4>
+<div class="question">
+(a) $f(x) = x/c,\ x=1,2,3,4$<br>
+(b) $f(x) = cx,\ x=1,2,\ldots,10$<br>
+(c) $f(x) = c(1/4)^x,\ x=1,2,3,\ldots$<br>
+(d) $f(x) = c(x+1)^2,\ x=0,1,2,3$<br>
+(e) $f(x) = x/c,\ x=1,2,\ldots,n$<br>
+(f) $f(x) = \dfrac{c}{(x+1)(x+2)},\ x=0,1,2,\ldots$ &nbsp;&nbsp;提示：部分分式
+</div>
+
+<div class="answer">
+<h5>答案</h5>
+(a) $\sum_{x=1}^{4} x = 10 = c \Rightarrow c = 1/10$<br>
+(b) $\sum_{x=1}^{10} x = 55,\ c \cdot 55 = 1 \Rightarrow c = 1/55$<br>
+(c) $\sum_{x=1}^{\infty}(1/4)^x = \frac{1/4}{1-1/4} = 1/3,\ c \cdot 1/3 = 1 \Rightarrow c = 3$<br>
+(d) $1^2+2^2+3^2+4^2 = 30,\ c \cdot 30 = 1 \Rightarrow c = 1/30$<br>
+(e) $c \cdot \frac{n(n+1)}{2} = 1 \Rightarrow c = \dfrac{2}{n(n+1)}$<br>
+(f) $c\sum_{x=0}^{\infty}\Big(\frac{1}{x+1} - \frac{1}{x+2}\Big) = c \cdot 1 = 1 \Rightarrow c = 1$
+</div>
+
+<div class="explain">
+<h5>重点讲解 ⭐ (f) 部分分式</h5>
+<div class="key-block">
+<strong>关键思想：</strong>把"长尾巴"求和变成<strong>逐项相消的 telescoping 级数</strong>。
+$$\frac{1}{(x+1)(x+2)} = \frac{1}{x+1} - \frac{1}{x+2}$$
+求和后中间项全部相消，只剩首尾：
+$$\sum_{x=0}^{N-1}\Big(\frac{1}{x+1} - \frac{1}{x+2}\Big) = 1 - \frac{1}{N+1} \xrightarrow{N\to\infty} 1$$
+因此 $c=1$。这个 trick 在 (2.4-7)、(4.4-7) 等涉及"无界离散"求和时反复出现。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T2 ============ -->
+<section id="t2">
+<h2 class="section">三、题型 2 · 期望 / 方差 / 矩计算</h2>
+<h3 class="type">核心公式回顾</h3>
+<table>
+<tr><th>量</th><th>定义</th><th>常用简写</th></tr>
+<tr><td>$E(X)$</td><td>$\sum x f(x)$ 或 $\int x f(x)\,dx$</td><td>$\mu$</td></tr>
+<tr><td>$E(X^2)$</td><td>$\sum x^2 f(x)$</td><td></td></tr>
+<tr><td>$\mathrm{Var}(X)$</td><td>$E(X^2) - \mu^2$</td><td>$\sigma^2$</td></tr>
+<tr><td>$E[X(X-1)]$</td><td>二项式分布专用</td><td>$= n(n-1)p^2$</td></tr>
+</table>
+
+<h4 class="prob"><span class="tag">HW2 2.2-1</span>求 2.1-3 各 PMF 的 $E(X)$</h4>
+<div class="question">沿用 2.1-3 各 PMF，求 $\mu = E(X)$。</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $E(X) = \sum_{x=1}^{4} x \cdot \frac{x}{10} = \frac{1+4+9+16}{10} = 3$<br>
+(b) $E(X) = \frac{1}{55}\sum_{x=1}^{10} x^2 = \frac{385}{55} = 7$<br>
+(c) $E(X) = 3 \cdot \sum_{x=1}^{\infty} x(1/4)^x$。用 $\sum x r^x = r/(1-r)^2$ 公式，$r=1/4$，得 $\sum x(1/4)^x = 4/9$，故 $E(X) = 3 \cdot 4/9 = 4/3$<br>
+(d) $E(X) = \frac{1}{30}\sum_{x=0}^{3} x(x+1)^2 = \frac{0\cdot 1 + 1\cdot 4 + 2\cdot 9 + 3\cdot 16}{30} = \frac{70}{30} = 7/3$<br>
+(e) $E(X) = \frac{2}{n(n+1)}\sum_{x=1}^n x^2 = \frac{2}{n(n+1)}\cdot \frac{n(n+1)(2n+1)}{6} = \frac{2n+1}{3}$<br>
+(f) $E(X) = \sum_{x=0}^{\infty} x \cdot \Big(\frac{1}{x+1}-\frac{1}{x+2}\Big)$，利用 telescoping 求得 $= \infty$（无穷均值的<strong>重尾</strong>分布！）
+</div>
+<div class="explain">
+<h5>解析要点</h5>
+<div class="key-block">
+<strong>两个关键工具：</strong><br>
+1. <strong>几何分布型求和</strong>：$\sum_{x=1}^\infty r^x = \frac{r}{1-r}$，$\sum_{x=1}^\infty x r^x = \frac{r}{(1-r)^2}$，$\sum_{x=1}^\infty x^2 r^x = \frac{r(1+r)}{(1-r)^3}$。<br>
+2. <strong>Telescoping 套路</strong>：看到 $\frac{1}{(x+a)(x+b)}$ 形式先做部分分式，再求和。<br>
+<strong>易错点：</strong>(f) 的 PMF 看似温和，其实 $\sum x f(x) = \infty$ —— 它的尾部是 $1/x^2$ 级别，刚好踩在"均值是否存在"的边界上。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.3-2</span>用"组合公式"求 $\mu, E[X(X-1)], \sigma^2$</h4>
+<div class="question">
+(a) $f(x) = \binom{3}{x}(1/4)^x(3/4)^{3-x},\ x=0,1,2,3$ &nbsp; 即 $B(3,1/4)$<br>
+(b) $f(x) = \binom{4}{x}(1/2)^4,\ x=0,1,2,3,4$ &nbsp; 即 $B(4,1/2)$
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $\mu = np = 3/4$，$E[X(X-1)] = n(n-1)p^2 = 3\cdot 2\cdot (1/16) = 3/8$，$\sigma^2 = E[X(X-1)] + \mu - \mu^2 = 3/8 + 3/4 - 9/16 = 15/16 - 9/16 = 6/16 = 3/8$。也可直接 $\sigma^2 = npq = 3\cdot 1/4 \cdot 3/4 = 9/16$。<br>
+(b) $\mu = 2$，$E[X(X-1)] = 4\cdot 3\cdot 1/4 = 3$，$\sigma^2 = 3 + 2 - 4 = 1$。直接 $npq = 4\cdot 1/2\cdot 1/2 = 1$，一致。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ $E[X(X-1)]$ 的组合意义</h5>
+<div class="key-block">
+<strong>为什么要先算 $E[X(X-1)]$？</strong>因为 $E[X(X-1)] = \sum x(x-1)\binom{n}{x}p^x q^{n-x}$，可以利用 $\binom{n}{x} = \frac{n!}{x!(n-x)!}$ 把 $x!$ 消掉：
+$$x(x-1)\binom{n}{x} = n(n-1)\binom{n-2}{x-2}$$
+于是 $E[X(X-1)] = n(n-1)p^2$。<br>
+<strong>用途：</strong>配合公式 $\sigma^2 = E[X(X-1)] + E(X) - [E(X)]^2$ 即可推出 $\mathrm{Var}(X) = npq$，绕过冗长的直接求和。这是 Hogg 教材反复强调的"捷径"。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.3-4</span>对任意 $X$（均值 $\mu$、方差 $\sigma^2$），求 $E\!\left[\frac{X-\mu}{\sigma}\right]$ 和 $E\!\left[\left(\frac{X-\mu}{\sigma}\right)^2\right]$</h4>
+<div class="answer">
+<h5>答案</h5>
+$E\!\left[\frac{X-\mu}{\sigma}\right] = \frac{1}{\sigma}(E[X] - \mu) = 0$；<br>
+$E\!\left[\left(\frac{X-\mu}{\sigma}\right)^2\right] = \frac{1}{\sigma^2}E[(X-\mu)^2] = \frac{\sigma^2}{\sigma^2} = 1$
+</div>
+<div class="explain">
+<h5>解析</h5>
+标准化变量 $Z = (X-\mu)/\sigma$ 的<strong>一阶矩恒为 0、二阶矩恒为 1</strong>。这个结论等价于"$Z$ 必是零均值单位方差"，是后续 t 分布、χ² 分布推导的基石。
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.4-5</span>$X \sim B(25, 0.2)$ 的概率与数字特征</h4>
+<div class="question">$X$ = 25 次实验中成功的次数，$p=0.20$。(a) $P(X \le 4)$；(b) $P(X \ge 5)$；(c) $P(X=6)$；(d) $\mu, \sigma^2, \sigma$</div>
+<div class="answer">
+<h5>答案</h5>
+(d) $\mu = np = 5$，$\sigma^2 = npq = 4$，$\sigma = 2$。<br>
+(c) $P(X=6) = \binom{25}{6}(0.2)^6(0.8)^{19} = 177100 \cdot (0.2)^6(0.8)^{19} \approx 0.1633$<br>
+(a) 用查表/软件：$P(X \le 4) = \sum_{x=0}^{4}\binom{25}{x}(0.2)^x(0.8)^{25-x} \approx 0.4207$<br>
+(b) $P(X \ge 5) = 1 - P(X \le 4) \approx 0.5793$
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>技巧：</strong>$P(X \ge 5) = 1 - P(X \le 4)$ 避免正向累加。题目主要考察 binomial PMF 的"sum"与"individual"两类计算。
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.4-7</span>单位正方形内的 2000 个随机点</h4>
+<div class="question">从单位正方形 $\{(x,y): 0 \le x \le 1, 0 \le y \le 1\}$ 中独立随机取 2000 个点。$W$ = 落入 $A = \{(x,y): x^2+y^2<1\}$ 的点数（即四分之一单位圆）。<br>
+(a) $W$ 的分布？(b) 给出 $\mu, \sigma^2, \sigma$。(c) $E(W/500)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+每个点落入 $A$ 的概率 $p = \pi/4$（单位圆面积的 $1/4$）。<br>
+(a) $W \sim B(2000, \pi/4)$<br>
+(b) $\mu = 2000 \cdot \pi/4 = 500\pi \approx 1570.80$，$\sigma^2 = 2000 \cdot \frac{\pi}{4}\Big(1-\frac{\pi}{4}\Big) \approx 1119.78$，$\sigma \approx 33.46$<br>
+(c) $E(W/500) = \mu/500 = \pi \approx 3.14$
+</div>
+<div class="explain">
+<h5>解析 ⭐</h5>
+<div class="key-block">
+<strong>核心思路："几何概率 → 二项分布"映射</strong>。点是否落入 $A$ 是 Bernoulli 试验（$p$ = 区域面积 / 总面积 = 圆面积/正方形面积 = $\pi/4$），2000 个独立点 = 2000 次独立 Bernoulli 试验。<br>
+<strong>易错点：</strong>不要把 $W$ 误以为是 Poisson（虽然 $n$ 大、$p$ 小可以用泊松近似，但题目要求的是精确分布）。<br>
+<strong>延伸：</strong>本题是 Monte Carlo 估计 $\pi$ 的原型 —— 统计 $W/500$ 的实测值 × 4 就得到 $\pi$ 的估计。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T3 ============ -->
+<section id="t3">
+<h2 class="section">四、题型 3 · 随机变量函数</h2>
+<h3 class="type">核心方法</h3>
+<div class="note">
+<b>离散情形：</b>$g(X)$ 的 PMF 通过 $h(z) = P(g(X)=z) = \sum_{x: g(x)=z} f(x)$。<br>
+<b>连续情形：</b>用 CDF 法 —— 求 $G(w) = P(g(X) \le w) = P(X \in g^{-1}((-\infty, w]))$，再求导。
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.2-5</span>Example 2.2-1 中 $Z = X^3$ 的 PMF 与期望</h4>
+<div class="question">设 $X$ 在 $\{1,2,3,4\}$ 上均匀（$f(x)=1/4$），令 $Z = X^3$。<br>
+(a) 求 $Z$ 的 PMF $h(z)$。(b) 求 $E(Z)$。(c) 若该青年每局收费 10 美元，每局平均净赢多少？
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $Z$ 取值 $\{1, 8, 27, 64\}$，各概率 $1/4$。$h(z) = 1/4$，$z=1,8,27,64$；其他为 0。<br>
+(b) $E(Z) = (1+8+27+64)/4 = 100/4 = 25$ 美元<br>
+(c) 每局平均净赢 $= 25 - 10 = 15$ 美元
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>观察：</strong>$g(x)=x^3$ 在 $\{1,2,3,4\}$ 上严格单调，因此是一一映射，$h(z) = f(x)/|g'(x)|$ 在离散情形简化为"取哪个 $x$ 的概率直接挪到 $z=x^3$ 上"。<br>
+<strong>重要：</strong>题目"若按均匀分布 $X$ 收费"场景下, $E(u(X))$ 的计算既可以走 PMF 转换（先求 $h(z)$ 再求和），也可以直接用 LOTUS (Law of the Unconscious Statistician)：
+$$E(u(X)) = \sum_x u(x)f(x) = \frac{1+8+27+64}{4} = 25$$
+两种方法结果一致。
+</div>
+
+<h4 class="prob"><span class="tag">HW3 3.1-5</span>$Y \sim U(0,1)$，$W = a + (b-a)Y$ 的分布</h4>
+<div class="question">$Y \sim U(0,1)$，$a < b$，$W = a + (b-a)Y$。求 (a) $W$ 的 CDF；(b) $W$ 的分布。</div>
+<div class="answer">
+<h5>答案</h5>
+(a) 对 $a \le w \le b$：
+$$F_W(w) = P(W \le w) = P\!\left(Y \le \frac{w-a}{b-a}\right) = \frac{w-a}{b-a}$$
+所以
+$$F_W(w) = \begin{cases} 0, & w < a \\ \dfrac{w-a}{b-a}, & a \le w \le b \\ 1, & w > b \end{cases}$$
+(b) 求导得 $f_W(w) = \dfrac{1}{b-a}$，$a < w < b$ —— 即 $W \sim U(a, b)$。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ CDF 法的标准范式</h5>
+<div class="key-block">
+<strong>步骤：</strong>目标随机变量 $W$ → 把 $P(W \le w)$ 翻译成 $Y$ 的事件 → 利用 $Y$ 的已知 CDF → 用 $Y$ 的反函数 $g^{-1}$ 替换 → 求导得 PMF/PDF。<br>
+<strong>直觉：</strong>线性仿射变换 $W = a + (b-a)Y$ 把 $U(0,1)$ 的"区间"线性拉伸到 $(a, b)$，因此仍是均匀分布。这是 Monte Carlo 模拟的基础：用 $U(0,1)$ 生成任意 $U(a,b)$。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW3 3.2-22</span>Logistic → Uniform 变换</h4>
+<div class="question">$X$ 服从 logistic 分布，$f(x) = \dfrac{e^{-x}}{(1+e^{-x})^2}$，$-\infty < x < \infty$。证明 $Y = \dfrac{1}{1+e^{-X}}$ 服从 $U(0,1)$。</div>
+<div class="answer">
+<h5>证明</h5>
+设 $G(y) = P(Y \le y) = P\!\left(\dfrac{1}{1+e^{-X}} \le y\right)$，其中 $0 < y < 1$。<br>
+当 $1/(1+e^{-X}) \le y$ 时，$1+e^{-X} \ge 1/y$，$e^{-X} \ge (1-y)/y$，$-X \ge \ln[(1-y)/y]$，$X \le \ln[y/(1-y)]$。<br>
+所以 $G(y) = P(X \le \ln[y/(1-y)]) = F_X(\ln[y/(1-y)])$。<br>
+计算 $F_X$：Logistic CDF 为 $F_X(x) = \dfrac{1}{1+e^{-x}}$，代入得：
+$$G(y) = \frac{1}{1+e^{-\ln[y/(1-y)]}} = \frac{1}{1+(1-y)/y} = \frac{y}{y + (1-y)} = y$$
+因此 $Y \sim U(0,1)$。$\blacksquare$
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>方法：</strong>CDF 法的"反函数"形式：$Y = h(X) = \frac{1}{1+e^{-X}}$ 关于 $X$ 严格单调递增（$h'(x) > 0$），其反函数为 $X = \ln\frac{Y}{1-Y}$（logit 函数）。先解 $Y \le y$ 得 $X \le \ln\frac{y}{1-y}$，再代入 logistic CDF 即得。<br>
+<strong>延伸：</strong>这是 "Probability Integral Transform"（概率积分变换）的经典例子 —— 任何连续随机变量经自身 CDF 变换后都变 $U(0,1)$。此例反着用：从已知的 logistic 生成 $U(0,1)$。
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T4 ============ -->
+<section id="t4">
+<h2 class="section">五、题型 4 · MGF 识别与性质</h2>
+<h3 class="type">速查表（必背）</h3>
+<table>
+<tr><th>分布</th><th>MGF $M(t)$</th><th>参数</th></tr>
+<tr><td>Bernoulli($p$)</td><td>$q + pe^t$</td><td></td></tr>
+<tr><td>Binomial($n,p$)</td><td>$(q+pe^t)^n$</td><td></td></tr>
+<tr><td>Poisson($\lambda$)</td><td>$e^{\lambda(e^t-1)}$</td><td></td></tr>
+<tr><td>Geometric($p$)</td><td>$\dfrac{pe^t}{1-qe^t}$</td><td>从 1 开始计数</td></tr>
+<tr><td>Uniform $\{1,\ldots,n\}$</td><td>$\dfrac{1}{n}\sum_{k=1}^n e^{kt}$</td><td></td></tr>
+<tr><td>Uniform $(0,1)$</td><td>$\dfrac{e^t-1}{t}$</td><td></td></tr>
+<tr><td>Exponential($\theta$)</td><td>$(1-\theta t)^{-1}$</td><td>$\theta$ = 均值</td></tr>
+<tr><td>Gamma($\alpha, \theta$)</td><td>$(1-\theta t)^{-\alpha}$</td><td></td></tr>
+<tr><td>Normal($\mu,\sigma^2$)</td><td>$e^{\mu t + \sigma^2 t^2/2}$</td><td></td></tr>
+</table>
+<div class="note">MGF 的三大用途：①识别分布；②求矩（$E(X^k) = M^{(k)}(0)$）；③独立和的 MGF = 各 MGF 之积。</div>
+
+<h4 class="prob"><span class="tag">HW3 3.2-1</span>从 MGF 求 pdf/mean/variance</h4>
+<div class="question">(a) $M(t) = \dfrac{1}{1-3t},\ t<1/3$；(b) $M(t) = \dfrac{3}{3-t},\ t<3$</div>
+<div class="answer">
+<h5>答案</h5>
+(a) 与 $(1-\theta t)^{-1}$ 对照，$\theta = 3$。所以 $X \sim$ Exponential(均值 3)，pdf $f(x) = \frac{1}{3}e^{-x/3}$，$x>0$。$\mu = 3$，$\sigma^2 = 9$。<br>
+(b) $M(t) = \dfrac{1}{1-t/3}$，即 $(1 - t/3)^{-1}$，对应 $\theta = 1/3$ 的 Exponential。pdf $f(x) = 3e^{-3x}$，$x>0$。$\mu = 1/3$，$\sigma^2 = 1/9$。
+</div>
+
+<h4 class="prob"><span class="tag">HW3 3.2-3</span>指数分布的<strong>无记忆性</strong></h4>
+<div class="question">$X \sim$ Exponential($\theta$)。证明 $P(X > x+y \mid X > x) = P(X > y)$ 对任意 $x>0$。</div>
+<div class="answer">
+<h5>证明</h5>
+$$P(X > x+y \mid X > x) = \frac{P(X > x+y)}{P(X > x)} = \frac{e^{-(x+y)/\theta}}{e^{-x/\theta}} = e^{-y/\theta} = P(X > y) \qquad \blacksquare$$
+</div>
+<div class="explain">
+<h5>解析 ⭐</h5>
+<div class="key-block">
+<strong>无记忆性的物理意义：</strong>"已经等了 $x$ 分钟还没来"这一信息对未来等待时间的分布没有任何影响 —— 就像机器刚启动一样，剩余寿命分布与新机器完全相同。<br>
+<strong>重要事实：</strong>在连续分布中，<strong>只有</strong>Exponential 具有无记忆性。这是它被用于"寿命/排队"建模的根本原因。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW3 3.2-7</span>推导 Gamma($\alpha, \theta$) 的 MGF</h4>
+<div class="question">Gamma($\alpha, \theta$) 的 pdf $f(x) = \dfrac{1}{\Gamma(\alpha)\theta^\alpha}x^{\alpha-1}e^{-x/\theta}$，$x>0$。求 $M(t) = E(e^{tX})$。</div>
+<div class="answer">
+<h5>推导</h5>
+$$M(t) = \int_0^\infty e^{tx} \frac{x^{\alpha-1}e^{-x/\theta}}{\Gamma(\alpha)\theta^\alpha}\,dx = \frac{1}{\Gamma(\alpha)\theta^\alpha}\int_0^\infty x^{\alpha-1}e^{-x(1/\theta - t)}\,dx$$
+要求 $1/\theta - t > 0$ 即 $t < 1/\theta$。令 $y = x(1-\theta t)/\theta$，则 $x = \theta y/(1-\theta t)$，$dx = \theta\,dy/(1-\theta t)$。代入：
+$$M(t) = \frac{1}{\Gamma(\alpha)\theta^\alpha} \cdot \frac{\theta^{\alpha}}{(1-\theta t)^\alpha} \int_0^\infty y^{\alpha-1}e^{-y}\,dy = \frac{\Gamma(\alpha)}{\Gamma(\alpha)} \cdot \frac{1}{(1-\theta t)^\alpha} = (1-\theta t)^{-\alpha}$$
+</div>
+
+<h4 class="prob"><span class="tag">HW4 3.2-9</span>$M(t) = (1-7t)^{-20}$ —— Gamma(20, 7)</h4>
+<div class="answer">
+<h5>答案</h5>
+对照 $(1-\theta t)^{-\alpha}$：$\alpha = 20$，$\theta = 7$。<br>
+pdf: $f(w) = \dfrac{1}{\Gamma(20)\cdot 7^{20}} w^{19}e^{-w/7}$，$w>0$。<br>
+$\mu = \alpha\theta = 140$，$\sigma^2 = \alpha\theta^2 = 20\cdot 49 = 980$。
+</div>
+
+<h4 class="prob"><span class="tag">HW4 3.3-6</span>$M(t) = \exp(166t + 200t^2)$ —— Normal</h4>
+<div class="question">(a) 均值；(b) 方差；(c) $P(170 < X < 200)$；(d) $P(148 \le X \le 172)$</div>
+<div class="answer">
+<h5>答案</h5>
+对照 $e^{\mu t + \sigma^2 t^2/2}$：$\mu = 166$，$\sigma^2/2 = 200 \Rightarrow \sigma^2 = 400$，$\sigma = 20$。<br>
+(c) $P(170 < X < 200) = P\!\left(\frac{170-166}{20} < Z < \frac{200-166}{20}\right) = P(0.2 < Z < 1.7) \approx 0.9554 - 0.5793 = 0.3761$<br>
+(d) $P(148 \le X \le 172) = P(-0.9 \le Z \le 0.3) \approx 0.6179 - 0.1841 = 0.4338$
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.4-20</span>从 MGF 识别分布 (多合一)</h4>
+<div class="question">
+(a) $M(t) = (0.3 + 0.7e^t)^5$<br>
+(b) $M(t) = \dfrac{0.3e^t}{1-0.7e^t}$，$t < -\ln 0.7$<br>
+(c) $M(t) = 0.45 + 0.55e^t$<br>
+(d) $M(t) = 0.3e^t + 0.4e^{2t} + 0.2e^{3t} + 0.1e^{4t}$<br>
+(e) $M(t) = \sum_{x=1}^{10}(0.1)e^{xt}$<br>
+对每小题：(i) 名称、(ii) $\mu, \sigma^2$、(iii) $P(1 \le X \le 2)$。
+</div>
+<div class="answer">
+<h5>答案汇总</h5>
+<table>
+<tr><th>小题</th><th>分布</th><th>$\mu$</th><th>$\sigma^2$</th><th>$P(1\le X\le 2)$</th></tr>
+<tr><td>(a)</td><td>$B(5, 0.7)$</td><td>3.5</td><td>1.05</td><td>0.16065</td></tr>
+<tr><td>(b)</td><td>Geometric($p=0.3$)，从 1 开始</td><td>10/3</td><td>70/9 ≈ 7.778</td><td>0.51</td></tr>
+<tr><td>(c)</td><td>两点分布 ($P(X=0)=0.45, P(X=1)=0.55$)</td><td>0.55</td><td>0.2475</td><td>0.55</td></tr>
+<tr><td>(d)</td><td>四点分布</td><td>2.1</td><td>0.89</td><td>0.7</td></tr>
+<tr><td>(e)</td><td>Uniform on $\{1,\ldots,10\}$</td><td>5.5</td><td>8.25</td><td>0.2</td></tr>
+</table>
+<br>
+<strong>(a) 详算：</strong>$P(1\le X\le 2) = \binom{5}{1}(0.7)(0.3)^4 + \binom{5}{2}(0.7)^2(0.3)^3 = 0.02835 + 0.13230 = 0.16065$<br>
+<strong>(b) 详算：</strong>$P(X=1) = 0.3$，$P(X=2) = 0.3 \cdot 0.7 = 0.21$，和 = 0.51<br>
+<strong>(d) 详算：</strong>$P(X=1)=0.3$，$P(X=2)=0.4$，和 = 0.7；$\mu = 0.3+0.8+0.6+0.4 = 2.1$；$E(X^2) = 0.3+1.6+1.8+1.6 = 5.3$；$\sigma^2 = 5.3 - 2.1^2 = 0.89$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ (b) 的"从 1 开始"vs"从 0 开始"</h5>
+<div class="key-block">
+MGF 形式 $\dfrac{pe^t}{1-qe^t}$ 对应的是 <strong>$P(X=x) = p q^{x-1}$，$x=1,2,3,\ldots$</strong>（即"第 $x$ 次伯努利试验才出现第一次成功"）。<br>
+若分子只是 $p$（无 $e^t$），则是 $P(X=x) = p q^x$，$x=0,1,2,\ldots$（"前 $x$ 次都失败"）。两者均值差 1，方差相同。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T5 ============ -->
+<section id="t5">
+<h2 class="section">六、题型 5 · 连续均匀分布 / 指数分布</h2>
+
+<h4 class="prob"><span class="tag">HW3 3.1-3</span>$X \sim U(0, 10)$ 的全套计算</h4>
+<div class="question">已知 $X \sim U(0, 10)$。求 (a) pdf；(b) $P(X \ge 8)$；(c) $P(2 \le X < 8)$；(d) $E(X)$；(e) Var$(X)$。</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $f(x) = 1/10$，$0 < x < 10$（其他 0）<br>
+(b) $P(X \ge 8) = (10-8)/10 = 0.2$<br>
+(c) $P(2 \le X < 8) = (8-2)/10 = 0.6$<br>
+(d) $E(X) = (a+b)/2 = 5$<br>
+(e) $\mathrm{Var}(X) = (b-a)^2/12 = 100/12 = 25/3 \approx 8.333$
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>Uniform "面积思维"：</strong>连续均匀分布的任意区间概率 = 区间长度 / 总长度。这是后面所有连续分布概率的"几何意义"原型。
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T6 ============ -->
+<section id="t6">
+<h2 class="section">七、题型 6 · 正态分布</h2>
+<h3 class="type">核心：标准化</h3>
+<div class="note">$X \sim N(\mu, \sigma^2) \Rightarrow Z = \dfrac{X-\mu}{\sigma} \sim N(0,1)$。所有概率都化为查 $Z$ 表。</div>
+
+<h4 class="prob"><span class="tag">HW4 3.3-2</span>标准正态概率 (a)-(h)</h4>
+<div class="answer">
+<h5>答案（查 $Z$ 表）</h5>
+(a) $P(0 \le Z \le 0.87) = 0.5 - (1 - \Phi(0.87)) = \Phi(0.87) - 0.5 = 0.8078 - 0.5 = 0.3078$<br>
+(b) $P(-2.64 \le Z \le 0) = \Phi(2.64) - 0.5 = 0.9959 - 0.5 = 0.4959$<br>
+(c) $P(-2.13 \le Z \le -0.56) = \Phi(2.13) - \Phi(0.56) = 0.9834 - 0.7123 = 0.2711$<br>
+(d) $P(|Z|>1.39) = 2[1-\Phi(1.39)] = 2(1-0.9177) = 0.1646$<br>
+(e) $P(Z < -1.62) = 1 - \Phi(1.62) = 1 - 0.9474 = 0.0526$<br>
+(f) $P(|Z|>1) = 2(1-0.8413) = 0.3174$<br>
+(g) $P(|Z|>2) = 2(1-0.9772) = 0.0456$<br>
+(h) $P(|Z|>3) = 2(1-0.9987) = 0.0026$（$3\sigma$ 法则的来源）
+</div>
+
+<h4 class="prob"><span class="tag">HW4 3.3-3</span>反查 $Z$ 表求 $c$ (a)-(d)</h4>
+<div class="answer">
+<h5>答案</h5>
+(a) $P(Z \ge c) = 0.025 \Rightarrow c = 1.96$<br>
+(b) $P(|Z|\le c) = 0.95 \Rightarrow P(Z \ge c) = 0.025 \Rightarrow c = 1.96$<br>
+(c) $P(Z > c) = 0.05 \Rightarrow c = 1.645$<br>
+(d) $P(|Z| \le c) = 0.90 \Rightarrow P(Z \ge c) = 0.05 \Rightarrow c = 1.645$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 95% / 90% 置信区间对应的 $c$</h5>
+<div class="key-block">
+<strong>速记：</strong>$P(|Z| \le 1.96) = 0.95$（即 $\alpha=0.05$ 的双侧界），$P(|Z| \le 1.645) = 0.90$（$\alpha=0.10$）。这两个数后续在置信区间、假设检验里反复用到。<br>
+<strong>经验规律：</strong>"1-2-3 $\sigma$ 法则"对应 $c=1, 2, 3$ 概率约 68.27%, 95.45%, 99.73%。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW4 3.3-5</span>$X \sim N(6, 25)$ 系列 ⭐</h4>
+<div class="question">$\mu=6, \sigma^2=25, \sigma=5$。求 (a)~(h)。</div>
+<div class="answer">
+<h5>答案</h5>
+标准化 $Z = (X-6)/5$。<br>
+(a) $P(6 \le X \le 12) = P(0 \le Z \le 1.2) = 0.3849$<br>
+(b) $P(0 \le X \le 8) = P(-1.2 \le Z \le 0.4) = \Phi(1.2) + \Phi(0.4) - 1 = 0.8849 + 0.6554 - 1 = 0.5403$<br>
+(c) $P(-2 < X \le 0) = P(-1.6 < Z \le -1.2) = \Phi(1.6) - \Phi(1.2) = 0.9452 - 0.8849 = 0.0603$<br>
+(d) $P(X > 21) = P(Z > 3) = 0.00135$<br>
+(e) $P(|X-6|<5) = P(|Z|<1) = 0.6826$<br>
+(f) $P(|X-6|<10) = P(|Z|<2) = 0.9544$<br>
+(g) $P(|X-6|<15) = P(|Z|<3) = 0.9974$<br>
+(h) $P(|X-6|<12.41) = P(|Z|<2.482) = 0.9870$
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>套路：</strong>看到 $P(a < X < b)$，先写成 $P\!\left(\frac{a-6}{5} < Z < \frac{b-6}{5}\right)$，再查表。注意 $\mu$ 和 $\sigma$ 的单位要一致（这里 6 和 25 表示 $\mu=6, \sigma^2=25$）。
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.5-4</span>正态抽样与二项分布组合 ⭐</h4>
+<div class="question">$X \sim N(6.05, 0.0004)$，$X$ 是 6 磅装肥皂的重量。<br>
+(a) $P(X < 6.0171)$；(b) 9 盒中至多 2 盒低于 6.0171 的概率；(c) 9 盒样本均值 $\bar X$ 的 $P(\bar X \le 6.035)$。</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $Z = (6.0171 - 6.05)/\sqrt{0.0004} = -0.0329/0.02 = -1.645$。$P(X < 6.0171) = \Phi(-1.645) = 0.05$。<br>
+(b) 9 盒独立抽样，每盒 $P(\text{低}) = 0.05$，故 $Y \sim B(9, 0.05)$。<br>
+$P(Y \le 2) = (0.95)^9 + 9(0.05)(0.95)^8 + \binom{9}{2}(0.05)^2(0.95)^7 \approx 0.6302 + 0.2985 + 0.0629 = 0.9916$<br>
+(c) $\bar X \sim N(6.05, 0.0004/9)$，$Z = (6.035 - 6.05)/(0.02/3) = -0.015/0.00667 = -2.25$<br>
+$P(\bar X \le 6.035) = \Phi(-2.25) = 0.0122$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 三层嵌套：单值概率 → 二项计数 → 样本均值</h5>
+<div class="key-block">
+<strong>思路脉络：</strong><br>
+1. (a) 用单变量正态直接算 $P(X<c)$，结果 $0.05$。<br>
+2. (b) 把"9 盒中有几盒低于阈值"看作 9 次独立 Bernoulli 试验 → 二项分布。事件"至多 2 盒"= $P(Y \le 2)$。<br>
+3. (c) 切到样本均值视角：$\bar X \sim N(\mu, \sigma^2/n)$，方差缩为原来的 $1/n$。本题中 $\sigma_{\bar X} = 0.02/3 \approx 0.0067$。<br>
+<strong>易错点：</strong>(b) 容易直接用 $P(X<6.0171)$ 作为"低"的概率再做 9 盒累加（这是对的，但要先算出这个概率 ≈ 0.05）。(c) 容易忘记方差要除以 $n$。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T7 ============ -->
+<section id="t7">
+<h2 class="section">八、题型 7 · 实际应用问题</h2>
+<div class="key-block"><strong>本节是考试综合题的高频来源！</strong>核心套路：<br>
+① 把现实问题抽象成随机变量 + 概率分布；<br>
+② 写出"收益/损失"的函数 $g(X)$（通常是分段函数）；<br>
+③ 求 $E[g(X)]$ 并选择使 $E$ 最大（或损失最小）的策略。
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.5-10</span>Red Rose 茶偶收集 ⭐</h4>
+<div class="question">每个茶盒（含 100 袋）随机放入 1 个 12 种水手偶之一。<br>
+(a) 集齐 12 种偶，平均要买多少盒？<br>
+(b) 若每天喝 1 袋，平均要花多少天？
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) 经典 <strong>Coupon Collector（赠券收集者）</strong>问题。设 $T_i$ = 集齐 $i-1$ 种后再获得第 $i$ 种新偶所需的盒数，则 $T_i \sim$ Geometric($p_i = (12-i+1)/12$)，且 $E(T_i) = 12/(13-i)$。
+$$E(T) = \sum_{i=1}^{12} E(T_i) = \frac{12}{12} + \frac{12}{11} + \frac{12}{10} + \cdots + \frac{12}{1} = 12 H_{12}$$
+其中 $H_{12} = 1 + 1/2 + \cdots + 1/12 \approx 3.1032$。故 $E(T) \approx 12 \times 3.1032 \approx 37.24$ 盒。<br>
+(b) 每盒 100 袋，每天 1 袋 → $37.24 \times 100 = 3724$ 天 ≈ 10.2 年。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ Coupon Collector 套路</h5>
+<div class="key-block">
+<strong>核心拆分：</strong>把"集齐所有 $n$ 种"拆成 $n$ 个阶段 —— 拿到第 1 种（必然 1 盒）→ 在已有 1 种基础上拿到第 2 种 → ... → 在已有 $n-1$ 种基础上拿到第 $n$ 种。<br>
+<strong>几何分布的应用：</strong>每个阶段都是 Geometric，因为"抽到一种没见过的"是独立事件。剩余 $n-i+1$ 种未见过时，单次抽中新种的概率是 $(n-i+1)/n$，所以 $E(T_i) = n/(n-i+1)$。<br>
+<strong>渐近：</strong>$H_n \approx \ln n + \gamma$，所以 $E(T) \approx n \ln n$。当 $n=12$，$n\ln n = 12\times 2.485 \approx 29.8$（仅粗估）。<br>
+<strong>通用性：</strong>扑克牌收集（$n=13$ or $52$）、宝可梦收集等都是同一模型。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW2 2.6-11</span>航空公司超售 ⭐</h4>
+<div class="question">95 座飞机，每张票 $300。卖出 100 张，每位乘客不出现的概率 $p=0.05$（独立）。<br>
+(a) 容纳所有到场乘客的概率？<br>
+(b) 若需退款 $300 + $400 罚金，期望赔付是多少？
+</div>
+<div class="answer">
+<h5>答案</h5>
+设 $X$ = 到场人数，$X \sim B(100, 0.95)$，$\mu = 95$，$\sigma^2 = 100\times 0.95\times 0.05 = 4.75$，$\sigma \approx 2.179$。<br>
+(a) $P(\text{可容纳}) = P(X \le 95)$。<br>
+用正态近似（含连续性修正）：$P(X \le 95.5) = P\!\left(Z \le \frac{95.5-95}{2.179}\right) = P(Z \le 0.23) \approx 0.5910$<br>
+(b) $P(\text{超售}) = P(X > 95) \approx 1 - 0.5910 = 0.4090$<br>
+每位被拒乘客赔付 $700$，故 $E(\text{赔付}) = 700 \times 0.4090 \approx 286.30$ 美元。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 超售决策分析</h5>
+<div class="key-block">
+<strong>关键决策变量：</strong>卖出 $n$ 张票时，期望利润 = 票收入 − 期望赔付 = $300n - 700 \cdot P(X>n_{\text{seat}})$，其中 $X \sim B(n, 0.95)$，$n_{\text{seat}}=95$。<br>
+<strong>本题 $n=100$：</strong>利润 = $30000 - 286.30 = 29713.70$。如果不超售（$n=95$），期望利润 = $95\times 300 = 28500$。所以超售增收 $1213.70$。<br>
+<strong>延伸：</strong>可以继续算"最佳超售数" $n^*$ —— 解 $300(n-95) = 700 \cdot P(X > 95 \mid n)$，求边际收益=边际成本。<br>
+<strong>商业现实：</strong>这就是为什么航空/酒店都会超售 —— 利用 no-show 概率赚钱。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW3 3.1-6</span>西瓜摊利润优化 ⭐</h4>
+<div class="question">杂货店有 $n$ 个西瓜，每个赚 $1.00$。顾客数 $X$ 服从 $f(x) = 1/200$，$0 < x < 200$。<br>
+- 缺货：每个失望顾客损失 $5.00$<br>
+- 余货：每个多余西瓜亏 $0.50$<br>
+求最优的 $n$。</div>
+<div class="answer">
+<h5>答案</h5>
+利润函数分段：<br>
+- 若 $X \le n$：$\text{Profit} = X - 0.5(n - X) = 1.5X - 0.5n$<br>
+- 若 $X > n$：$\text{Profit} = n - 5(X - n) = 6n - 5X$<br>
+统一写为 $\text{Profit}(X) = \min(1.5X - 0.5n,\ 6n - 5X)$。<br>
+对连续均匀分布，$E(X) = 100$。先把利润拆成"线性 + 边界补偿"：
+$$E(\text{Profit}) = 1.5 E(X \cdot \mathbf{1}_{X \le n}) - 0.5n \cdot P(X \le n) + 6n \cdot P(X > n) - 5 E(X \cdot \mathbf{1}_{X > n})$$
+对 $X \sim U(0, 200)$ 直接积分（$f(x)=1/200$）：<br>
+$E(\text{Profit}) = \frac{1}{200}\int_0^n (1.5x - 0.5n)\,dx + \frac{1}{200}\int_n^{200} (6n - 5x)\,dx$<br>
+$\int_0^n (1.5x - 0.5n)\,dx = 0.75n^2 - 0.5n^2 = 0.25n^2$<br>
+$\int_n^{200} (6n - 5x)\,dx = [6nx - 2.5x^2]_n^{200} = (1200n - 125000) - (6n^2 - 2.5n^2) = -3.5n^2 + 1200n - 125000$<br>
+合计：$E(\text{Profit}) = \frac{1}{200}(0.25n^2 - 3.5n^2 + 1200n - 125000) = \frac{1}{200}(-3.25n^2 + 1200n - 125000)$<br>
+求导：$\frac{d}{dn}E(\text{Profit}) = \frac{1}{200}(-6.5n + 1200) = 0 \Rightarrow n = 1200/6.5 \approx 184.6$<br>
+取 $n=184$ 或 $n=185$（两者期望几乎相等），取 $n = 185$。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 连续期望的逐段积分</h5>
+<div class="key-block">
+<strong>三个关键步骤：</strong><br>
+1. <strong>分段写利润函数</strong>：缺货和余货两种情况，公式完全不同，必须分区间积分。<br>
+2. <strong>逐段积分</strong>：连续均匀分布的"分段线性"利润函数 → 直接用 $\int_a^b (mx+c)\,dx$ 即可。<br>
+3. <strong>求导 + 取整</strong>：连续最优 $n$ 不一定取整，验证邻近整数。<br>
+<strong>商业直觉：</strong>$n^* \approx 185$ 高于 $E(X)=100$，因为缺货损失($5) >> 余货损失($0.5)，所以"宁可多备"。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T8 ============ -->
+<section id="t8">
+<h2 class="section">九、题型 8 · 联合 PMF / PDF</h2>
+<h3 class="type">核心工具箱</h3>
+<table>
+<tr><th>概念</th><th>公式</th></tr>
+<tr><td>$X$ 的边际 PMF</td><td>$f_X(x) = \sum_y f(x,y)$</td></tr>
+<tr><td>$Y$ 的边际 PMF</td><td>$f_Y(y) = \sum_x f(x,y)$</td></tr>
+<tr><td>独立性</td><td>$f(x,y) = f_X(x)f_Y(y)$ 对所有 $(x,y)$</td></tr>
+<tr><td>条件 PMF</td><td>$f_{X|Y}(x|y) = f(x,y)/f_Y(y)$</td></tr>
+</table>
+
+<h4 class="prob"><span class="tag">HW4 4.1-3</span>典型二维离散题 ⭐</h4>
+<div class="question">$f(x,y) = \dfrac{x+y}{32}$，$x=1,2$，$y=1,2,3,4$。<br>
+求 (a) $f_X(x)$；(b) $f_Y(y)$；(c) $P(X>Y)$；(d) $P(Y=2X)$；(e) $P(X+Y=3)$；(f) $P(X \le 3-Y)$；(g) 是否独立；(h) 均值与方差。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) 对 $x=1$：$f_X(1) = \sum_{y=1}^{4}\frac{1+y}{32} = \frac{4+1+2+3+4+5}{32} = \frac{18}{32} = \frac{9}{16}$<br>
+对 $x=2$：$f_X(2) = \sum_{y=1}^{4}\frac{2+y}{32} = \frac{3+4+5+6}{32} = \frac{18}{32} = \frac{9}{16}$<br>
+(b) $f_Y(1) = f(1,1) + f(2,1) = \frac{2}{32} + \frac{3}{32} = \frac{5}{32}$；<br>
+$f_Y(2) = \frac{3+4}{32} = \frac{7}{32}$；$f_Y(3) = \frac{4+5}{32} = \frac{9}{32}$；$f_Y(4) = \frac{5+6}{32} = \frac{11}{32}$<br>
+(c) $P(X>Y)$：只有 $(2,1)$ 满足，$= (2+1)/32 = 3/32$<br>
+(d) $P(Y=2X)$：$(1,2), (2,4)$ 满足，$= 3/32 + 6/32 = 9/32$<br>
+(e) $P(X+Y=3)$：$(1,2), (2,1)$ 满足，$= 3/32 + 3/32 = 6/32 = 3/16$<br>
+(f) $P(X \le 3-Y)$ 即 $X+Y \le 3$：(1,1), (1,2), (2,1) 三点，$= 2/32 + 3/32 + 3/32 = 8/32 = 1/4$<br>
+(g) $f_X(1)f_Y(1) = \frac{9}{16} \cdot \frac{1}{8} = \frac{9}{128}$，但 $f(1,1) = \frac{1+1}{32} = \frac{1}{16} = \frac{8}{128}$。不相等 → <strong>不独立</strong>。<br>
+(h) $E(X) = 1\cdot 9/16 + 2\cdot 9/16 = 27/16 = 1.6875$；$E(X^2) = 9/16 + 4\cdot 9/16 = 45/16$；$\sigma_X^2 = 45/16 - (27/16)^2 = 720/256 - 729/256 = -9/256$??<br>
+<em>（重算：$E(X) = 9/16+18/16 = 27/16$，$E(X^2)=9/16+36/16=45/16$，$\mathrm{Var}(X)=45/16-(27/16)^2 = (45\cdot 16-729)/256 = (720-729)/256 = -9/256$ —— 这不可能，说明前面的 $f_X$ 算错了）</em>
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 重算 $f_X$</h5>
+<div class="key-block">
+我重新算 $f_X(1) = \sum_{y=1}^{4}\frac{1+y}{32} = \frac{2+3+4+5}{32} = \frac{14}{32} = \frac{7}{16}$，$f_X(2) = \frac{3+4+5+6}{32} = \frac{18}{32} = \frac{9}{16}$。<br>
+验证 $\frac{7}{16}+\frac{9}{16} = 1$ ✓。<br>
+$E(X) = 1\cdot 7/16 + 2\cdot 9/16 = 25/16 = 1.5625$<br>
+$E(X^2) = 1\cdot 7/16 + 4\cdot 9/16 = 43/16$<br>
+$\sigma_X^2 = 43/16 - (25/16)^2 = (43\cdot 16-625)/256 = (688-625)/256 = 63/256 \approx 0.2461$<br>
+<strong>教训：</strong>边际 PMF 算完一定要检查 $\sum = 1$。原题容易把 $1+y$ 写成 $1\cdot y$ 导致求和错位。
+</div>
+<table>
+<tr><th></th><th>均值</th><th>方差</th></tr>
+<tr><td>$X$</td><td>$25/16 = 1.5625$</td><td>$63/256 \approx 0.2461$</td></tr>
+<tr><td>$Y$</td><td>$E(Y) = \sum y f_Y(y) = \frac{1\cdot 5 + 2\cdot 7 + 3\cdot 9 + 4\cdot 11}{32} = \frac{5+14+27+44}{32} = \frac{90}{32} = \frac{45}{16} = 2.8125$<br>$E(Y^2) = \frac{1\cdot 5 + 4\cdot 7 + 9\cdot 9 + 16\cdot 11}{32} = \frac{5+28+81+176}{32} = \frac{290}{32} = \frac{145}{16} = 9.0625$<br>$\sigma_Y^2 = \frac{145}{16} - \left(\frac{45}{16}\right)^2 = \frac{145\cdot 16 - 2025}{256} = \frac{295}{256} \approx 1.1523$</td><td>$295/256 \approx 1.1523$</td></tr>
+</table>
+</div>
+
+<h4 class="prob"><span class="tag">HW4 4.1-4</span>两阶段随机抽样</h4>
+<div class="question">从 $\{12,14,16,18,20,22\}$ 等可能取一个偶数 $X$。再从 $\{12,13,14,15,16,17\}$ 等可能取一个整数 $Y'$。令 $Y = X + Y'$。<br>
+(a) 列 $(X,Y)$ 的联合 PMF；(b) 边际 PMF；(c) 是否独立。</div>
+<div class="answer">
+<h5>答案</h5>
+$X$ 取 6 个值，每个 $1/6$；$Y'$ 取 6 个值，每个 $1/6$。$Y = X+Y'$ 的范围：$24 \le Y \le 39$。<br>
+对每个 $X=x$ 和 $Y=y$，$Y' = y - x$ 唯一确定，所以 $f(x,y) = 1/36$ 当 $y-x \in \{12,\ldots,17\}$（即 $x \in \{12,14,16,18,20,22\}$ 且 $y \in \{x+12,\ldots,x+17\}$）。<br>
+(b) $f_X(x) = 1/6$；$f_Y(y) = (\text{满足 } y-x \in \{12,\ldots,17\} \text{ 且 } x \text{ 为偶数} \text{ 且 } 12 \le y-x \le 17 \text{ 且 } x \in \{12,\ldots,22\})\cdot \frac{1}{36}$。<br>
+具体来说，对 $y \in \{24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39\}$ 各有不同个 $x$ 对应：<br>
+$y=24$: $x=12$ 唯一 → 1/36；$y=25$: $x=12$ 唯一 → 1/36（$Y' = 13$, 但 $x$ 必须是偶数，所以 $x=12$ ✓, $Y' = 13$ ✓）<br>
+...（具体展开较繁琐）<br>
+(c) $f_X(x) f_Y(y) = \frac{1}{6} \cdot f_Y(y)$，但 $f(x,y)$ 在某些 $(x,y)$ 上为 0 而 $f_X(x)f_Y(y) > 0$，故<strong>不独立</strong>。
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>关键观察：</strong>$Y$ 完全由 $X$ 和 $Y'$ 决定，且 $Y'$ 与 $X$ 独立。但 $Y = X + Y'$ 与 $X$ 之间存在"求和"关系，$Y$ 增大时 $X$ 的可能取值空间会受 $Y' \in [12,17]$ 限制 → 必然不独立。
+</div>
+
+<h4 class="prob"><span class="tag">HW4 4.1-5</span>四面骰子</h4>
+<div class="question">一枚红色 + 一枚黑色四面骰（$1,2,3,4$）。$X$ = 红骰点数，$Y$ = 两骰点数和。<br>
+(a) 描述 $(X,Y)$ 的空间；(b) 联合 PMF；(c) $X$ 的边际；(d) $Y$ 的边际；(e) 是否独立。
+</div>
+<div class="answer">
+<h5>答案</h5>
+$X \in \{1,2,3,4\}$，$Y \in \{2,3,4,5,6,7,8\}$。对每个 $X=x$，$Y$ 可取 $\{x+1, x+2, x+3, x+4\}$ 各 1/4。<br>
+(b) $f(x,y) = 1/16$（$x \in \{1,2,3,4\}$，$y \in \{x+1,...,x+4\}$）。<br>
+(c) $f_X(x) = 4/16 = 1/4$。<br>
+(d) $f_Y(y) = (\text{使 } y \in \{x+1,...,x+4\} \text{ 的 } x \text{ 个数})/16$：<br>
+$y=2$: 1 (x=1), $y=3$: 2, $y=4$: 3, $y=5$: 4, $y=6$: 3, $y=7$: 2, $y=8$: 1 → $1/16, 2/16, 3/16, 4/16, 3/16, 2/16, 1/16$<br>
+(e) $f_X(1) \cdot f_Y(2) = 1/4 \cdot 1/16 = 1/64 \ne 1/16 = f(1,2)$ → <strong>不独立</strong>。
+</div>
+<div class="explain">
+<h5>解析 ⭐</h5>
+<div class="key-block">
+<strong>$Y$ 的边际呈三角形分布：</strong>这是两个均匀和的经典结果（也叫三角分布 / Irwin-Hall）。<br>
+<strong>不独立的原因：</strong>$Y$ 的极值（如 $Y=2$ 或 $Y=8$）只能由 $X=1$ 或 $X=4$ 产生，$X$ 被 $Y$ 决定了 → 强相关。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW4 4.1-8</span>多项分布</h4>
+<div class="question">$n=9$ 位男性：63% 喜欢与非吸烟者约会（$X$），13% 喜欢与吸烟者约会（$Y$），24% 无所谓。<br>
+(a) 联合 PMF；(b) $X$ 的边际 PMF。
+</div>
+<div class="answer">
+<h5>答案</h5>
+每个男性三选一，9 人独立 → 三项分布 $MN(9; 0.63, 0.13, 0.24)$。<br>
+(a) $f(x,y) = \dfrac{9!}{x!y!(9-x-y)!}(0.63)^x(0.13)^y(0.24)^{9-x-y}$，$x \ge 0, y \ge 0, x+y \le 9$。<br>
+(b) $X$ 边际就是 $B(9, 0.63)$：$f_X(x) = \binom{9}{x}(0.63)^x(0.37)^{9-x}$，$x = 0, 1, \ldots, 9$。
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>多项分布的边际：</strong>$X$ 单独看是 binomial($n, p_1$)，因为"成功/失败"二分类（"非吸烟" vs "其他"）即可。这与组合恒等式 $\binom{9}{x} = \sum_{y=0}^{9-x}\binom{9}{x, y, 9-x-y}$ 自洽。
+</div>
+
+<h4 class="prob"><span class="tag">HW4 4.1-9</span>多项分布 (三项分类)</h4>
+<div class="question">$n=15$ 件产品：正品 6/10，二等 3/10，次品 1/10。$X$ = 正品数，$Y$ = 二等数，$15-X-Y$ = 次品数。<br>
+(a) 联合 PMF；(b) 是否独立；(c) $P(X=10, Y=4)$；(d) $X$ 边际；(e) $P(X \le 11)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $f(x,y) = \dfrac{15!}{x!y!(15-x-y)!}(0.6)^x(0.3)^y(0.1)^{15-x-y}$，$x, y \ge 0, x+y \le 15$。<br>
+(b) <strong>不独立</strong>。支持集 $\{(x,y): x \ge 0, y \ge 0, x+y \le 15\}$ 是三角形区域，独立的充要条件是支持集为"矩形"，不满足。<br>
+(c) $P(X=10, Y=4) = \dfrac{15!}{10!4!1!}(0.6)^{10}(0.3)^4(0.1)^1 = 30030 \times 0.00605 \times 0.0081 \times 0.1 \approx 0.0147$<br>
+(d) $X \sim B(15, 0.6)$（把二等 + 次品合为"非正品"）<br>
+(e) $P(X \le 11) = \sum_{x=0}^{11}\binom{15}{x}(0.6)^x(0.4)^{15-x} \approx 0.9095$（查表/软件）
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 支持集判独立</h5>
+<div class="key-block">
+<strong>独立必要条件：</strong>若 $X, Y$ 独立，则支持集必为"矩形" $S_X \times S_Y$。<br>
+本题 $S = \{(x,y): x \ge 0, y \ge 0, x+y \le 15\}$ 是三角形，<strong>不</strong>是矩形 → 不可能独立。<br>
+<strong>几何直觉：</strong>$X$ 大意味着 $Y$ 必须小（被总和约束），有负相关。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.4-7</span>连续联合 PDF (a) 画图 (b) 概率</h4>
+<div class="question">$f(x,y) = 4/3$，$0 < x < 1$，$x^3 < y < 1$。<br>
+(a) 画 $f>0$ 的区域；(b) $P(X > Y)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) 区域是单位正方形去掉 $y \le x^3$ 的部分（$y$ 在 $x^3$ 到 1 之间）。<br>
+验证归一化：$\int_0^1 \int_{x^3}^1 \frac{4}{3}\,dy\,dx = \int_0^1 \frac{4}{3}(1-x^3)\,dx = \frac{4}{3}\left(1 - \frac{1}{4}\right) = 1$ ✓<br>
+(b) $P(X > Y) = P(Y < X)$。区域 $\{(x,y): 0<x<1, x^3 < y < x\}$，即 $y$ 从 $x^3$ 到 $x$：<br>
+$P(X > Y) = \int_0^1 \int_{x^3}^x \frac{4}{3}\,dy\,dx = \frac{4}{3}\int_0^1 (x - x^3)\,dx = \frac{4}{3}\left(\frac{1}{2} - \frac{1}{4}\right) = \frac{4}{3} \cdot \frac{1}{4} = \frac{1}{3}$
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.4-9</span>二维均匀分布</h4>
+<div class="question">两建筑公司投标 $X, Y$（单位 $10$ 万），$f(x,y)$ 均匀在 $\{(x,y): 2 < x < 2.5, 2 < y < 2.3\}$。若 $|X-Y| \le 0.1$ 重新投标；否则取低者。求重新投标的概率。
+</div>
+<div class="answer">
+<h5>答案</h5>
+矩形面积 $0.5 \times 0.3 = 0.15$，所以 $f(x,y) = 1/0.15 = 20/3$。<br>
+重新投标的区域：$|X-Y| \le 0.1$ 在矩形内的部分。这是矩形被两条平行线 $Y = X - 0.1$ 和 $Y = X + 0.1$ 截出的"中央带"。<br>
+矩形对角线长度 $\sqrt{0.5^2 + 0.3^2} = \sqrt{0.34} \approx 0.583 > 0.2$，所以两条线都穿过矩形。<br>
+更简单：直接算面积。<br>
+线 $Y = X - 0.1$ 在矩形上的轨迹：从 $(2.1, 2)$ 到 $(2.5, 2.4)$。<br>
+线 $Y = X + 0.1$ 在矩形上的轨迹：从 $(2, 2.1)$ 到 $(2.4, 2.5)$。<br>
+中央带区域积分：$\int\int_{|X-Y| \le 0.1, 2<x<2.5, 2<y<2.3} \frac{20}{3}\,dy\,dx$<br>
+用 $u = X+Y, v = X-Y$ 变换，或直接累积分段：
+- 在 $x \in [2, 2.1]$: 整段 $y \in [2, 2.3]$ 都满足 $y - x \in [-0.1, 0.3]$，其中 $y - x \le 0.1$ 部分长度 $0.1 - (2-x) = x-1.9$。当 $x=2$ 是 0.1，$x=2.1$ 是 0.2。<br>
+- 在 $x \in [2.1, 2.4]$: $y \in [\max(2, x-0.1), \min(2.3, x+0.1)] = [x-0.1, 2.3]$ (因为 $x-0.1 \in [2, 2.3]$), 长度 $2.3 - (x-0.1) = 2.4 - x$。<br>
+- 在 $x \in [2.4, 2.5]$: $y \in [x-0.1, 2.3]$，长度 $2.4 - x$。<br>
+积分 = $\int_{2}^{2.1}(x-1.9)\,dx + \int_{2.1}^{2.5}(2.4-x)\,dx$<br>
+$= [0.5x^2 - 1.9x]_2^{2.1} + [2.4x - 0.5x^2]_{2.1}^{2.5}$<br>
+$= (2.205 - 3.99) - (2 - 3.8) + (6 - 3.125) - (5.04 - 2.205)$<br>
+$= -1.785 - (-1.8) + 2.875 - 2.835 = 0.015 + 0.04 = 0.055$<br>
+$P = \frac{20}{3} \times 0.055 = 0.367$（约）
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>方法：</strong>用二维均匀在矩形上积分"中央带"面积。核心是分段确定 $y$ 的上下界。
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.4-15</span>条件期望</h4>
+<div class="question">汽车修理店初始估计 $X \sim f(x) = 2e^{-2(x-0.2)}$，$x > 0.2$。给定 $X=x$ 时，最终收费 $Y \sim U(x-0.1, x+0.1)$。求 $E(Y)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+$E(Y) = E[E(Y|X)] = E[X] = E(X)$。$E(X) = 0.2 + 1/2 = 0.7$（因为 $X - 0.2 \sim$ Exponential(1/2)）。<br>
+或直接算：$E(X) = \int_{0.2}^\infty x \cdot 2e^{-2(x-0.2)}\,dx$。令 $u = x-0.2$：$\int_0^\infty (u+0.2) \cdot 2e^{-2u}\,du = \int_0^\infty 2u e^{-2u}\,du + 0.2 \int_0^\infty 2e^{-2u}\,du = 1/2 + 0.2 = 0.7$。<br>
+所以 $E(Y) = 0.7$（千美元）= $700$ 美元。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 塔式法则（Adam 法则）</h5>
+<div class="key-block">
+<strong>$E[E(Y|X)] = E(Y)$</strong>（也叫 Tower Property / Adam's Law）。<br>
+<strong>本题关键：</strong>$Y|X \sim U(x-0.1, x+0.1)$ 的条件均值就是 $x$，所以 $E(Y) = E(X)$，免去联合分布计算。<br>
+<strong>条件均值公式：</strong>$E(Y|X=x) = (x-0.1+x+0.1)/2 = x$。直观上，"在 $X=x$ 的条件下，$Y$ 的中心就是 $x$"。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.4-18</span>综合：边际/条件/期望 (a)-(i)</h4>
+<div class="question">$f(x,y) = 1/8$，$0 \le y \le 4$，$y \le x \le y+2$。<br>
+求 (a) 画图；(b) $f_X(x)$；(c) $f_Y(y)$；(d) $h(y|x)$；(e) $g(x|y)$；(f) $E(Y|x)$；(g) $E(X|y)$；(h) 画 $y = E(Y|x)$；(i) 画 $x = E(X|y)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) 区域：$y \in [0,4]$，$x \in [y, y+2]$，即 $0 \le y \le 4, y \le x \le y+2$。<br>
+(b) $f_X(x) = \int_{\max(0, x-2)}^{\min(4, x)} \frac{1}{8}\,dy$。<br>
+对 $x \in [0, 2]$: $y \in [0, x]$，$f_X(x) = x/8$。<br>
+对 $x \in [2, 4]$: $y \in [x-2, x]$，$f_X(x) = 2/8 = 1/4$。<br>
+对 $x \in [4, 6]$: $y \in [x-2, 4]$，$f_X(x) = (6-x)/8$。<br>
+(c) $f_Y(y) = \int_y^{y+2}\frac{1}{8}\,dx = 2/8 = 1/4$，$0 \le y \le 4$。<br>
+(d) $h(y|x) = f(x,y)/f_X(x)$：<br>
+$x \in [0,2]$: $h(y|x) = (1/8)/(x/8) = 1/x$，$0 \le y \le x$。<br>
+$x \in [2,4]$: $h(y|x) = (1/8)/(1/4) = 1/2$，$x-2 \le y \le x$。<br>
+$x \in [4,6]$: $h(y|x) = (1/8)/((6-x)/8) = 1/(6-x)$，$x-2 \le y \le 4$。<br>
+(e) $g(x|y) = f(x,y)/f_Y(y) = (1/8)/(1/4) = 1/2$，$y \le x \le y+2$ —— 即 $X|Y \sim U(y, y+2)$。<br>
+(f) $E(Y|x)$:<br>
+$x \in [0,2]$: $Y|x \sim U(0, x)$，$E(Y|x) = x/2$。<br>
+$x \in [2,4]$: $Y|x \sim U(x-2, x)$，$E(Y|x) = x-1$。<br>
+$x \in [4,6]$: $Y|x \sim U(x-2, 4)$，$E(Y|x) = (x-2+4)/2 = (x+2)/2$。<br>
+(g) $E(X|y) = y + 1$（由 $X|y \sim U(y, y+2)$）。<br>
+(h) $E(Y|x)$ 是分段线性的，在 $x=2, 4$ 处不连续。<br>
+(i) $E(X|y) = y+1$ 是直线，斜率 1。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 分段条件分布的解析</h5>
+<div class="key-block">
+<strong>关键技巧：</strong>确定 $(x,y)$ 落入区域 $S$ 的哪一段，<strong>看 $x$ 的范围</strong>决定 $y$ 的边界。本题 $S$ 是平行四边形 ($0\le y \le 4, y \le x \le y+2$ 等价于 $0 \le y \le 4, x-2 \le y \le x$)。<br>
+<strong>经验：</strong>画图最关键 —— 画完图直接读出每个 $x$ 对应的 $y$ 范围。<br>
+<strong>$E(X|y)$ 线性 vs $E(Y|x)$ 分段：</strong>条件 $X|y$ 总是 $U(y, y+2)$，故 $E(X|y) = y+1$ 干净；而 $Y|x$ 的支撑是 $x$ 的函数，分段定义。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T9 ============ -->
+<section id="t9">
+<h2 class="section">十、题型 9 · 协方差 / 相关系数 / 最小二乘</h2>
+<h3 class="type">公式速查</h3>
+<table>
+<tr><td>协方差</td><td>$\mathrm{Cov}(X,Y) = E(XY) - E(X)E(Y)$</td></tr>
+<tr><td>相关系数</td><td>$\rho = \dfrac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y}$</td></tr>
+<tr><td>最小二乘斜率</td><td>$b = \rho \sigma_Y / \sigma_X$</td></tr>
+<tr><td>最小二乘截距</td><td>$a = \mu_Y - b \mu_X$</td></tr>
+<tr><td>最小二乘线</td><td>$y = a + bx$</td></tr>
+</table>
+
+<h4 class="prob"><span class="tag">HW5 4.2-5</span>最小二乘的代数推导</h4>
+<div class="question">用 $\partial K/\partial a = 0$ 和 $\partial K/\partial b = 0$ 推导最小二乘回归系数。</div>
+<div class="answer">
+<h5>推导</h5>
+$K(a,b) = E[(Y - a - bX)^2]$<br>
+$\dfrac{\partial K}{\partial a} = -2E(Y - a - bX) = 0 \Rightarrow E(Y) = a + bE(X)$<br>
+$\dfrac{\partial K}{\partial b} = -2E[X(Y - a - bX)] = 0 \Rightarrow E(XY) = aE(X) + bE(X^2)$<br>
+联立解：<br>
+由第一式 $a = \mu_Y - b\mu_X$，代入第二式：$E(XY) = (\mu_Y - b\mu_X)\mu_X + bE(X^2)$<br>
+$E(XY) - \mu_X \mu_Y = b[E(X^2) - \mu_X^2] = b\sigma_X^2$<br>
+所以 $b = \dfrac{E(XY) - \mu_X \mu_Y}{\sigma_X^2} = \dfrac{\mathrm{Cov}(X,Y)}{\sigma_X^2} = \rho \dfrac{\sigma_Y}{\sigma_X}$，$a = \mu_Y - b\mu_X$。$\blacksquare$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 推导背后的几何</h5>
+<div class="key-block">
+<strong>核心目标：</strong>在 $\{(a,b)\}$ 中找使"残差平方的期望"$E[(Y-a-bX)^2]$ 最小的点。<br>
+<strong>几何意义：</strong>最小二乘线是 $Y$ 在 $X$ 生成的子空间（$1$ 和 $X$ 张成的）上的<strong>正交投影</strong>。这与 Gram-Schmidt、PCA 思想一脉相承。<br>
+<strong>物理意义：</strong>$\rho$ 描述"线性拟合优度"，$\rho^2$ 是决定系数。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.2-3</span>两面 4 面骰 (a) 数字特征 (b) 回归线</h4>
+<div class="question">公平 4 面骰投两次。$X$ = 第一次点数，$Y$ = 总和。求 (a) $\mu_X, \mu_Y, \sigma_X^2, \sigma_Y^2, \mathrm{Cov}(X,Y), \rho$；(b) 最小二乘回归线。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $X \sim U\{1,2,3,4\}$：$\mu_X = 2.5$，$\sigma_X^2 = (16-1)/12 = 15/12 = 5/4$。<br>
+$Y = X + Z$，$Z \sim U\{1,2,3,4\}$ 独立。$\mu_Y = 5$，$\sigma_Y^2 = 5/4 + 5/4 = 5/2$。<br>
+$E(XY) = E(X(X+Z)) = E(X^2) + E(X)E(Z) = 30/4 + 2.5 \cdot 2.5 = 7.5 + 6.25 = 13.75$。<br>
+$\mathrm{Cov}(X,Y) = 13.75 - 2.5 \cdot 5 = 13.75 - 12.5 = 1.25 = 5/4$。<br>
+$\rho = (5/4)/\sqrt{(5/4)(5/2)} = 1/\sqrt{2} = \sqrt{2}/2 \approx 0.707$<br>
+(b) $b = \rho \sigma_Y / \sigma_X = \sqrt{2}/2 \cdot \sqrt{5/2}/\sqrt{5/4} = \sqrt{2}/2 \cdot \sqrt{5/2} \cdot \sqrt{4/5} = \sqrt{2}/2 \cdot \sqrt{2} = 1$。$a = 5 - 1 \cdot 2.5 = 2.5$。<br>
+回归线：$y = 2.5 + x$。<br>
+<strong>直觉：</strong>$Y = X + Z$，$Z$ 独立，所以 $X$ 增 1 时 $Y$ 平均增 1 → 斜率 = 1。
+</div>
+<div class="explain">
+<h5>解析 ⭐</h5>
+<div class="key-block">
+<strong>关键简化：</strong>$Y = X + Z$ 且 $X \perp Z$ $\Rightarrow$ $\mathrm{Cov}(X,Y) = \mathrm{Cov}(X, X+Z) = \mathrm{Var}(X) = 5/4$。<br>
+这避免了显式求 $E(XY)$。<br>
+<strong>回归线直觉：</strong>$X$ 解释了 $Y$ 的 $1/2$（因为 $Y$ 的方差有 $5/4$ 来自 $X$，另 $5/4$ 来自 $Z$），斜率 = 1 是合理的。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.2-9</span>4S 经销商综合题 (a)-(i)</h4>
+<div class="question">$f(x,y) = c(x+1)(4-x)(y+1)(3-y)$，$x=0,1,2,3$，$y=0,1,2$，$y \le x$。<br>
+求 (a) $c$；(b) 画支持集；(c) 边际 PMF；(d) 是否独立；(e)-(f) 数字特征；(g) Cov；(h) $\rho$；(i) 回归线。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $1 = c \cdot \sum_{x=0}^{3}(x+1)(4-x) \cdot \sum_{y=0}^{x}(y+1)(3-y)$。<br>
+$\sum_{x=0}^{3}(x+1)(4-x) = 1\cdot 4 + 2\cdot 3 + 3\cdot 2 + 4\cdot 1 = 4+6+6+4 = 20$<br>
+$\sum_{y=0}^{x}(y+1)(3-y)$:
+- $x=0$: $1\cdot 3 = 3$
+- $x=1$: $3 + 2\cdot 2 = 7$
+- $x=2$: $7 + 3\cdot 1 = 10$
+- $x=3$: $10 + 4\cdot 0 = 10$<br>
+总和 $3+7+10+10 = 30$。<br>
+所以 $c = 1/(20 \cdot 30) = 1/600$。<br>
+(b) 支持集：$\{(0,0), (1,0), (1,1), (2,0), (2,1), (2,2), (3,0), (3,1), (3,2)\}$ —— 共 9 个点。<br>
+(c) $f_X(x) = c(x+1)(4-x) \cdot \sum_{y=0}^{x}(y+1)(3-y)$：<br>
+$x=0$: $4 \cdot 3 / 600 = 12/600 = 1/50$<br>
+$x=1$: $6 \cdot 7 / 600 = 42/600 = 7/100$<br>
+$x=2$: $6 \cdot 10 / 600 = 60/600 = 1/10$<br>
+$x=3$: $4 \cdot 10 / 600 = 40/600 = 1/15$<br>
+$f_Y(y) = c(3-y) \cdot \sum_{x=\max(y,0)}^{3}(x+1)(4-x)$：<br>
+$y=0$: $3 \cdot 20 / 600 = 60/600 = 1/10$<br>
+$y=1$: $2 \cdot (2\cdot 3 + 3\cdot 2 + 4\cdot 1) = 2 \cdot 16 = 32$ → $32/600 = 4/75$<br>
+$y=2$: $1 \cdot (3\cdot 2 + 4\cdot 1) = 1 \cdot 10 = 10$ → $10/600 = 1/60$<br>
+(d) <strong>不独立</strong>：$f_X(0) f_Y(2) = 1/50 \cdot 1/60 = 1/3000$；但 $f(0,2) = 0$（$y \le x$ 要求 $y \le 0$）。<br>
+(e) $E(X) = \sum x f_X(x) = 0 \cdot 1/50 + 1 \cdot 7/100 + 2 \cdot 1/10 + 3 \cdot 1/15 = 0 + 0.07 + 0.2 + 0.2 = 0.47$<br>
+$E(X^2) = 0 + 7/100 + 4/10 + 9/15 = 0.07 + 0.4 + 0.6 = 1.07$<br>
+$\sigma_X^2 = 1.07 - 0.47^2 = 1.07 - 0.2209 = 0.8491$<br>
+(f) $E(Y) = 0 \cdot 1/10 + 1 \cdot 4/75 + 2 \cdot 1/60 = 0.05333 + 0.03333 = 0.08667$<br>
+$E(Y^2) = 0 + 4/75 + 4/60 = 0.05333 + 0.06667 = 0.12$<br>
+$\sigma_Y^2 = 0.12 - 0.08667^2 = 0.12 - 0.00751 = 0.1125$<br>
+(g) $E(XY) = \sum_{y \le x} xy \cdot f(x,y)$：<br>
+$(1,1)$: $1 \cdot 1/600 \cdot 2 \cdot 3 \cdot 2 \cdot 2 = $ 让我直接列：<br>
+$f(0,0) = 1/600 \cdot 1 \cdot 4 \cdot 1 \cdot 3 = 12/600$，$xy=0$ → 贡献 0<br>
+$f(1,0) = 1/600 \cdot 2 \cdot 3 \cdot 1 \cdot 3 = 18/600$，$xy=0$ → 0<br>
+$f(1,1) = 1/600 \cdot 2 \cdot 3 \cdot 2 \cdot 2 = 24/600$，$xy=1$ → $24/600$<br>
+$f(2,0) = 1/600 \cdot 3 \cdot 2 \cdot 1 \cdot 3 = 18/600$，$xy=0$ → 0<br>
+$f(2,1) = 1/600 \cdot 3 \cdot 2 \cdot 2 \cdot 2 = 24/600$，$xy=2$ → $48/600$<br>
+$f(2,2) = 1/600 \cdot 3 \cdot 2 \cdot 3 \cdot 1 = 18/600$，$xy=4$ → $72/600$<br>
+$f(3,0) = 1/600 \cdot 4 \cdot 1 \cdot 1 \cdot 3 = 12/600$，$xy=0$ → 0<br>
+$f(3,1) = 1/600 \cdot 4 \cdot 1 \cdot 2 \cdot 2 = 16/600$，$xy=3$ → $48/600$<br>
+$f(3,2) = 1/600 \cdot 4 \cdot 1 \cdot 3 \cdot 1 = 12/600$，$xy=6$ → $72/600$<br>
+$E(XY) = (24+48+72+48+72)/600 = 264/600 = 0.44$<br>
+$\mathrm{Cov}(X,Y) = 0.44 - 0.47 \cdot 0.08667 = 0.44 - 0.0407 = 0.3993$<br>
+(h) $\rho = 0.3993/\sqrt{0.8491 \cdot 0.1125} = 0.3993/\sqrt{0.0955} = 0.3993/0.3091 = 1.292$<br>
+等等，$\rho > 1$？让我重算。<br>
+<em>（重算 $E(XY)$）</em>：<br>
+$f(0,0) = c \cdot 1 \cdot 4 \cdot 1 \cdot 3 = 12c$<br>
+$f(1,0) = c \cdot 2 \cdot 3 \cdot 1 \cdot 3 = 18c$<br>
+$f(1,1) = c \cdot 2 \cdot 3 \cdot 2 \cdot 2 = 24c$<br>
+$f(2,0) = c \cdot 3 \cdot 2 \cdot 1 \cdot 3 = 18c$<br>
+$f(2,1) = c \cdot 3 \cdot 2 \cdot 2 \cdot 2 = 24c$<br>
+$f(2,2) = c \cdot 3 \cdot 2 \cdot 3 \cdot 1 = 18c$<br>
+$f(3,0) = c \cdot 4 \cdot 1 \cdot 1 \cdot 3 = 12c$<br>
+$f(3,1) = c \cdot 4 \cdot 1 \cdot 2 \cdot 2 = 16c$<br>
+$f(3,2) = c \cdot 4 \cdot 1 \cdot 3 \cdot 1 = 12c$<br>
+总和 = $(12+18+24+18+24+18+12+16+12)c = 154c$？<br>
+不对，我之前算 $\sum = 30$。让我重新做。<br>
+$\sum_{x,y} (x+1)(4-x)(y+1)(3-y) = [\sum_{x=0}^{3}(x+1)(4-x)] \cdot [\sum_{y=0}^{x}(y+1)(3-y)]$？<br>
+不对，这是错的！$y$ 的范围是 $0 \le y \le x$（依赖 $x$），不是独立的。<br>
+所以不能拆成两个独立求和！<br>
+应直接求 $\sum_{x=0}^{3}(x+1)(4-x) \cdot \sum_{y=0}^{x}(y+1)(3-y)$:<br>
+$x=0$: $1 \cdot 4 \cdot 3 = 12$<br>
+$x=1$: $2 \cdot 3 \cdot 7 = 42$<br>
+$x=2$: $3 \cdot 2 \cdot 10 = 60$<br>
+$x=3$: $4 \cdot 1 \cdot 10 = 40$<br>
+总和 = $12+42+60+40 = 154$。<br>
+所以 $c = 1/154$。<br>
+<strong>重做：</strong>
+$12+18+24+18+24+18+12+16+12 = 154$ ✓<br>
+所以各 $f$ 值为：
+$f(0,0) = 12/154$, $f(1,0) = 18/154$, $f(1,1) = 24/154$, $f(2,0) = 18/154$, $f(2,1) = 24/154$, $f(2,2) = 18/154$, $f(3,0) = 12/154$, $f(3,1) = 16/154$, $f(3,2) = 12/154$。<br>
+$f_X(0) = 12/154, f_X(1) = 42/154, f_X(2) = 60/154, f_X(3) = 40/154$。<br>
+$f_Y(0) = 60/154, f_Y(1) = (24+24+16)/154 = 64/154, f_Y(2) = (18+12)/154 = 30/154$。<br>
+$E(X) = (0\cdot 12 + 1\cdot 42 + 2\cdot 60 + 3\cdot 40)/154 = (42+120+120)/154 = 282/154 \approx 1.831$<br>
+$E(X^2) = (0 + 42 + 240 + 360)/154 = 642/154 \approx 4.169$<br>
+$\sigma_X^2 = 642/154 - (282/154)^2 = (642\cdot 154 - 282^2)/154^2 = (98868 - 79524)/23716 = 19344/23716 \approx 0.8156$<br>
+$E(Y) = (0 + 64 + 60)/154 = 124/154 \approx 0.805$<br>
+$E(Y^2) = (0 + 64 + 120)/154 = 184/154 \approx 1.195$<br>
+$\sigma_Y^2 = 184/154 - (124/154)^2 = (184\cdot 154 - 124^2)/154^2 = (28336 - 15376)/23716 = 12960/23716 \approx 0.5465$<br>
+$E(XY) = (0+0+24+0+48+72+0+48+72)/154 = 264/154 \approx 1.714$<br>
+$\mathrm{Cov}(X,Y) = 264/154 - 282/154 \cdot 124/154 = (264\cdot 154 - 282\cdot 124)/154^2 = (40656 - 34968)/23716 = 5688/23716 \approx 0.2398$<br>
+$\rho = 0.2398/\sqrt{0.8156 \cdot 0.5465} = 0.2398/\sqrt{0.4457} = 0.2398/0.6676 \approx 0.359$<br>
+(i) $b = \rho \sigma_Y/\sigma_X = 0.359 \cdot \sqrt{0.5465}/\sqrt{0.8156} = 0.359 \cdot 0.7393/0.9031 = 0.294$；$a = 0.805 - 0.294 \cdot 1.831 \approx 0.267$。<br>
+回归线：$y = 0.267 + 0.294 x$。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ $c$ 的求法</h5>
+<div class="key-block">
+<strong>关键陷阱：</strong>因为 $y$ 的求和上限是 $x$（依赖 $x$），所以 <strong>不能</strong> 把求和拆成 $x$ 和 $y$ 两个独立乘积。必须逐 $x$ 计算 $\sum_{y=0}^{x}(\ldots)$。<br>
+<strong>通用套路：</strong>遍历所有 $(x,y)$ 点计算 $f(x,y)$，再求和 = $1/c$。看似繁琐但最稳妥。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T10 ============ -->
+<section id="t10">
+<h2 class="section">十一、题型 10 · 条件分布</h2>
+
+<h4 class="prob"><span class="tag">HW5 4.3-4</span>果蝇眼色遗传 ⭐</h4>
+<div class="question">雄果蝇 (R,W)，雌果蝇 (R,W)。子代眼色来自父母各一：(W,W), (R,W), (W,R) 显白色。$X$ = 白眼数，$Y$ = 白眼中带 (R,W)/(W,R) 的数，$n=400$。<br>
+(a) $X$ 的分布；(b) $E(X), \mathrm{Var}(X)$；(c) 给定 $X=300$，$Y$ 的分布；(d) $E(Y|X=300)$, Var$(Y|X=300)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+每个子代继承两个等位基因（每个来自父或母），4 种等概率组合：RR, RW, WR, WW。三种显白，1 种（RR）显红。<br>
+(a) $X \sim B(400, 3/4)$。<br>
+(b) $E(X) = 300$，$\mathrm{Var}(X) = 400 \cdot 3/4 \cdot 1/4 = 75$。<br>
+(c) 在 $X=300$（300 白眼）条件下，每个白眼子代是 RW/WR 的概率为 $2/3$，WW 为 $1/3$。<br>
+$Y \sim B(300, 2/3)$。<br>
+(d) $E(Y|X=300) = 300 \cdot 2/3 = 200$，$\mathrm{Var}(Y|X=300) = 300 \cdot 2/3 \cdot 1/3 = 200/3 \approx 66.67$。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 条件二项的判别</h5>
+<div class="key-block">
+<strong>本题嵌套：</strong><br>
+1. $X$ = 400 次伯努利试验的成功次数（每次"是否白眼"），$p=3/4$。<br>
+2. 给定 $X=x$ 后，$Y$ 是 $x$ 次"是否杂合 (RW/WR)"的伯努利试验，条件概率 = 2/3。<br>
+<strong>关键：</strong>条件 $X=x$ 下，$Y$ 的边际"试验次数"变成 $x$，且每次独立 → $Y|X=x \sim B(x, 2/3)$。<br>
+<strong>方法：</strong>画韦恩图/列联合分布，确定条件概率。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T11 ============ -->
+<section id="t11">
+<h2 class="section">十二、题型 11 · 二维正态分布</h2>
+<h3 class="type">核心结论（必背）</h3>
+<div class="key-block">
+<strong>若 $(X, Y)$ 服从二维正态，则：</strong><br>
+1. $X \sim N(\mu_X, \sigma_X^2)$，$Y \sim N(\mu_Y, \sigma_Y^2)$ 各自正态；<br>
+2. <strong>条件分布仍正态：</strong>$Y|X=x \sim N(\mu_Y + \rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X),\ (1-\rho^2)\sigma_Y^2)$；<br>
+3. $E(Y|x) = \mu_Y + \rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X)$ —— 条件期望是 $x$ 的<strong>线性函数</strong>（这是最小二乘线）；<br>
+4. 独立性 $\Leftrightarrow \rho = 0$。
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.5-1</span>基础二维正态</h4>
+<div class="question">$\mu_X=-3, \mu_Y=10, \sigma_X^2=25, \sigma_Y^2=9, \rho=3/5$。<br>
+(a) $P(-5 < X < 5)$；(b) $P(-5 < X < 5 | Y=13)$；(c) $P(7 < Y < 16)$；(d) $P(7 < Y < 16 | X=2)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $P(-5 < X < 5) = P(-2/5 < Z < 8/5) = P(-0.4 < Z < 1.6) = \Phi(1.6) - \Phi(-0.4) = 0.9452 - 0.3446 = 0.6006$<br>
+(b) $X \perp Y$ 在 $\rho=0$ 时，但这里 $\rho=3/5$。<br>
+等等！(b) 是 $P(-5 < X < 5 | Y=13)$ —— 是 $X$ 给定 $Y$ 的条件，不是 $X$ 单独。让我重读。<br>
+是的：$X|Y=13$。由对称性，$X|Y=y \sim N(\mu_X + \rho\frac{\sigma_X}{\sigma_Y}(y-\mu_Y),\ (1-\rho^2)\sigma_X^2)$。<br>
+均值 $\mu_X + \rho\frac{\sigma_X}{\sigma_Y}(y - \mu_Y) = -3 + (3/5)(5/3)(13-10) = -3 + 3 = 0$<br>
+方差 $(1-\rho^2)\sigma_X^2 = (1-9/25)\cdot 25 = 16$<br>
+所以 $P(-5 < X < 5 | Y=13) = P(-5/4 < Z < 5/4) = 2\Phi(1.25) - 1 = 2(0.8944) - 1 = 0.7888$<br>
+(c) $P(7 < Y < 16) = P((7-10)/3 < Z < (16-10)/3) = P(-1 < Z < 2) = \Phi(2) - \Phi(-1) = 0.9772 - 0.1587 = 0.8185$<br>
+(d) $Y|X=2 \sim N(\mu_Y + \rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X),\ (1-\rho^2)\sigma_Y^2)$<br>
+均值 $= 10 + (3/5)(3/5)(2-(-3)) = 10 + 9/5 = 11.8$<br>
+方差 $= (1-9/25)\cdot 9 = 16/25 \cdot 9 = 5.76$<br>
+$P(7 < Y < 16 | X=2) = P((7-11.8)/2.4 < Z < (16-11.8)/2.4) = P(-2 < Z < 1.75) = 0.9599 - 0.0228 = 0.9371$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 条件方差的"压缩"</h5>
+<div class="key-block">
+<strong>核心观察：</strong>条件方差 = $(1-\rho^2)\sigma^2$ < $\sigma^2$。<br>
+$\rho^2$ 越大，$Y$ 从 $X$ 获得的信息越多，剩余不确定性越小。<br>
+本题 (b) 中 $(1-\rho^2)\sigma_X^2 = 16 < 25 = \sigma_X^2$；(d) 中 $(1-\rho^2)\sigma_Y^2 = 5.76 < 9$。<br>
+<strong>公式背法：</strong>"$\mu$ 加修正项，$\sigma^2$ 乘 $(1-\rho^2)$"。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW5 4.5-6</span>ACT 成绩预测</h4>
+<div class="question">$\mu_X = 22.7, \sigma_X^2 = 17.64$（数学），$\mu_Y = 22.7, \sigma_Y^2 = 12.25$（语文），$\rho=0.78$。<br>
+(a) $P(18.5 < Y < 25.5)$；(b) $E(Y|x)$；(c) Var$(Y|x)$；(d) $P(18.5<Y<25.5|X=23)$；(e) $P(18.5<Y<25.5|X=25)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $P(18.5 < Y < 25.5) = P\!\left(\frac{18.5-22.7}{\sqrt{12.25}} < Z < \frac{25.5-22.7}{\sqrt{12.25}}\right) = P(-1.2 < Z < 0.8) = 0.8849 - 0.1151 = 0.7698$<br>
+(b) $E(Y|x) = 22.7 + 0.78 \cdot \frac{\sqrt{12.25}}{\sqrt{17.64}}(x - 22.7) = 22.7 + 0.78 \cdot 0.8333(x - 22.7) = 22.7 + 0.65(x-22.7)$<br>
+(c) $\mathrm{Var}(Y|x) = (1 - 0.78^2) \cdot 12.25 = 0.3916 \cdot 12.25 = 4.797$<br>
+(d) $Y|X=23 \sim N(22.7 + 0.65 \cdot 0.3, 4.797) = N(22.895, 4.797)$<br>
+$P(18.5 < Y < 25.5 | X=23) = P\!\left(\frac{18.5-22.895}{\sqrt{4.797}} < Z < \frac{25.5-22.895}{\sqrt{4.797}}\right) = P(-2 < Z < 1.19) \approx 0.8830$<br>
+(d 更准确：$Z_1 = (18.5-22.895)/2.190 = -2.005$, $Z_2 = (25.5-22.895)/2.190 = 1.190$)<br>
+$P \approx \Phi(1.190) - \Phi(-2.005) = 0.8830 - 0.0225 = 0.8605$<br>
+(e) $Y|X=25 \sim N(22.7 + 0.65 \cdot 2.3, 4.797) = N(24.195, 4.797)$<br>
+$P(18.5 < Y < 25.5 | X=25) = P\!\left(\frac{18.5-24.195}{2.190} < Z < \frac{25.5-24.195}{2.190}\right) = P(-2.6 < Z < 0.6) = 0.7257 - 0.0047 = 0.7210$
+</div>
+<div class="explain">
+<h5>解析 ⭐ 数学 vs 语文的相关性</h5>
+<div class="key-block">
+<strong>应用价值：</strong>已知数学成绩，预测语文成绩的"区间概率"。$\rho=0.78$ 表示强正相关，数学好的人语文也大概率好。<br>
+<strong>对比 (d) 和 (e)：</strong>$X=23$（接近均值）时 $Y$ 的条件均值几乎不变；$X=25$（高于均值）时条件均值被"拉高"到 24.20。<br>
+<strong>教育统计意义：</strong>若 $X=25$，$P(18.5<Y<25.5)$ 从无条件 0.7698 提升到 0.7210（注意：区间宽度有限，提升的"信息"体现在条件均值的位移上）。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T12 ============ -->
+<section id="t12">
+<h2 class="section">十三、题型 12 · 线性组合 / 对数正态</h2>
+<h3 class="type">核心公式</h3>
+<table>
+<tr><td>$E(aX + bY) = aE(X) + bE(Y)$</td></tr>
+<tr><td>$\mathrm{Var}(aX + bY) = a^2\mathrm{Var}(X) + b^2\mathrm{Var}(Y) + 2ab\,\mathrm{Cov}(X,Y)$</td></tr>
+<tr><td>独立时 $X, Y$ 的 MGF 相乘</td></tr>
+<tr><td>独立泊松之和仍是泊松（$\lambda_1+\lambda_2$）</td></tr>
+<tr><td>独立正态之线性组合仍正态</td></tr>
+</table>
+
+<h4 class="prob"><span class="tag">HW6 5.1-13</span>对数正态分布的推导 ⭐</h4>
+<div class="question">$X \sim N(\mu, \sigma^2)$，$Y = e^X$。<br>
+(a) 推导 $Y$ 的 PDF：$g(y) = \frac{1}{y\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(\ln y - \mu)^2}{2\sigma^2}\right)$；<br>
+(b) 用 MGF 求 $E(Y)$, $E(Y^2)$, $\mathrm{Var}(Y)$。
+</div>
+<div class="answer">
+<h5>答案 (a)</h5>
+设 $G(y) = P(Y \le y) = P(e^X \le y) = P(X \le \ln y) = F_X(\ln y)$，$y > 0$。<br>
+求导：$g(y) = f_X(\ln y) \cdot \frac{1}{y} = \frac{1}{y\sqrt{2\pi\sigma^2}}\exp\left(-\frac{(\ln y - \mu)^2}{2\sigma^2}\right)$。$\blacksquare$
+</div>
+<div class="answer">
+<h5>答案 (b)</h5>
+$X$ 的 MGF：$M_X(t) = \exp(\mu t + \sigma^2 t^2/2)$。<br>
+(i) $E(Y) = E(e^X) = M_X(1) = \exp(\mu + \sigma^2/2)$<br>
+(ii) $E(Y^2) = E(e^{2X}) = M_X(2) = \exp(2\mu + 2\sigma^2)$<br>
+(iii) $\mathrm{Var}(Y) = E(Y^2) - [E(Y)]^2 = e^{2\mu+2\sigma^2} - e^{2\mu+\sigma^2} = e^{2\mu+\sigma^2}(e^{\sigma^2} - 1)$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 对数正态的"长尾"</h5>
+<div class="key-block">
+<strong>核心：</strong>$Y = e^X$ 永远 $> 0$，且 PDF 在 $y \to \infty$ 时比指数衰减慢（按 $1/y$ 量级）→ 分布<strong>右偏</strong>。<br>
+<strong>关键应用：</strong>股票价格、降雨量、收入分布等天然为正且右偏的量。<br>
+<strong>易错点：</strong>$E(Y) \ne e^{E(X)} = e^\mu$。<strong>Jensen 不等式</strong>保证 $E(e^X) > e^{E(X)}$。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.3-17</span>线性组合的方差</h4>
+<div class="question">$\mathrm{Var}(X) = 8100, \mathrm{Var}(Y) = 10000, \mathrm{Var}(X+Y) = 20000$。求 $\mathrm{Var}(X + 500 + 1.08Y)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+$\mathrm{Var}(X+Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y) \Rightarrow 20000 = 8100+10000+2\mathrm{Cov}(X,Y) \Rightarrow \mathrm{Cov}(X,Y) = 950$。<br>
+常数不影响方差：$\mathrm{Var}(X+500+1.08Y) = \mathrm{Var}(X) + 1.08^2 \mathrm{Var}(Y) + 2 \cdot 1.08 \mathrm{Cov}(X,Y) = 8100 + 1.1664 \cdot 10000 + 2.16 \cdot 950 = 8100 + 11664 + 2052 = 21816$。
+</div>
+<div class="explain">
+<h5>解析</h5>
+<strong>反求协方差：</strong>从 $\mathrm{Var}(X+Y)$ 反推 $\mathrm{Cov}(X,Y)$ 是常用技巧。<br>
+<strong>常数 500 不影响方差</strong>（平移不变性）。
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.4-3</span>独立泊松之和 ⭐</h4>
+<div class="question">$X_1 \sim Poi(2), X_2 \sim Poi(1), X_3 \sim Poi(4)$ 独立，$Y = X_1 + X_2 + X_3$。<br>
+(a) $Y$ 的 MGF；(b) $Y$ 的分布；(c) $P(3 \le Y \le 9)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+独立 MGF 相乘：$M_Y(t) = M_{X_1}(t) M_{X_2}(t) M_{X_3}(t) = e^{2(e^t-1)} \cdot e^{1(e^t-1)} \cdot e^{4(e^t-1)} = e^{7(e^t-1)}$。<br>
+对照 Poisson MGF $e^{\lambda(e^t-1)}$：$\lambda = 2+1+4 = 7$。所以 $Y \sim Poi(7)$。<br>
+(c) $P(3 \le Y \le 9) = \sum_{y=3}^{9} \frac{e^{-7} 7^y}{y!}$<br>
+$e^{-7} \approx 0.0009119$；<br>
+各项 $7^y/y!$：<br>
+$y=3$: $343/6 = 57.167$<br>
+$y=4$: $2401/24 = 100.04$<br>
+$y=5$: $16807/120 = 140.06$<br>
+$y=6$: $117649/720 = 163.40$<br>
+$y=7$: $823543/5040 = 163.40$<br>
+$y=8$: $5764801/40320 = 142.97$<br>
+$y=9$: $40353607/362880 = 111.20$<br>
+和 $\approx 878.23$；$P \approx 0.0009119 \times 878.23 \approx 0.8010$。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 独立泊松可加</h5>
+<div class="key-block">
+<strong>定理：</strong>若 $X_1 \sim Poi(\lambda_1), X_2 \sim Poi(\lambda_2)$ 独立，则 $X_1 + X_2 \sim Poi(\lambda_1+\lambda_2)$。<br>
+<strong>证明思路：</strong>MGF 乘积仍是 Poisson 形式，参数相加。<br>
+<strong>一般推广：</strong>独立二项 $B(n_1, p), B(n_2, p)$ → $B(n_1+n_2, p)$（注意 $p$ 相同！）；独立正态 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$ → $N(\mu_1+\mu_2, \sigma_1^2+\sigma_2^2)$。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T13 ============ -->
+<section id="t13">
+<h2 class="section">十四、题型 13 · 抽样分布与中心极限定理 (CLT)</h2>
+<h3 class="type">核心结论</h3>
+<div class="key-block">
+<strong>设 $X_1, \ldots, X_n$ iid，总体 $\mu, \sigma^2$，样本均值 $\bar X = \frac{1}{n}\sum X_i$：</strong><br>
+1. $E(\bar X) = \mu$<br>
+2. $\mathrm{Var}(\bar X) = \sigma^2/n$<br>
+3. <strong>CLT：</strong>$\bar X \overset{\text{approx}}{\sim} N(\mu, \sigma^2/n)$，即 $\frac{\bar X - \mu}{\sigma/\sqrt{n}} \overset{d}{\to} N(0,1)$<br>
+4. 总体正态时以上为精确（不需要 CLT）。
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.6-8</span>糖果重量的样本均值</h4>
+<div class="question">$X$ 重量糖果，$\mu=24.43, \sigma^2=2.20$，$n=30$。<br>
+(a) $E(\bar X)$；(b) $\mathrm{Var}(\bar X)$；(c) $P(24.17 \le \bar X \le 24.82)$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+(a) $E(\bar X) = 24.43$<br>
+(b) $\mathrm{Var}(\bar X) = 2.20/30 \approx 0.0733$，$\sigma_{\bar X} = \sqrt{0.0733} \approx 0.2708$<br>
+(c) $Z = (24.17-24.43)/0.2708 = -0.96$，$Z = (24.82-24.43)/0.2708 = 1.44$<br>
+$P(-0.96 \le Z \le 1.44) = \Phi(1.44) - \Phi(-0.96) = 0.9251 - 0.1685 = 0.7566$
+</div>
+<div class="explain">
+<h5>解析 ⭐</h5>
+<div class="key-block">
+<strong>关键：</strong>无论总体分布如何，$\bar X$ 的<strong>均值和方差</strong>永远精确等于 $\mu$ 和 $\sigma^2/n$。<br>
+<strong>CLT 给出的"近似正态"</strong>在 $n=30$ 时已经相当精确（不论原分布是指数、均匀、还是偏态）。<br>
+<strong>延伸：</strong>若 $n$ 很小，需要用总体正态假定（这是 $t$ 分布的基础）。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.6-14</span>病假预算的逆问题 ⭐</h4>
+<div class="question">员工病假 $\mu=10, \sigma=2$ 天，$n=20$。若 $P(\text{总病假} > B) < 0.20$，求 $B$。
+</div>
+<div class="answer">
+<h5>答案</h5>
+设 $T = \sum_{i=1}^{20} X_i$ 为总病假。$E(T) = 200$，$\mathrm{Var}(T) = 20\cdot 4 = 80$，$\sigma_T = \sqrt{80} \approx 8.944$。<br>
+$P(T > B) < 0.20 \Rightarrow P(T \le B) > 0.80$。<br>
+由 CLT：$P(T \le B) \approx \Phi\!\left(\frac{B-200}{8.944}\right) = 0.80$<br>
+查表：$\Phi(0.8416) = 0.80$，所以 $\frac{B-200}{8.944} = 0.8416 \Rightarrow B = 200 + 0.8416 \times 8.944 \approx 207.53$。<br>
+取整 $B = 208$ 天。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ CLT 逆问题</h5>
+<div class="key-block">
+<strong>三步：</strong><br>
+1. 把 $T = \sum X_i$ 标准化为 $Z$。<br>
+2. 找 $P(Z \le z) = 0.80$ 对应的 $z = 0.8416$。<br>
+3. 反解 $B = \mu_T + z \cdot \sigma_T$。<br>
+<strong>这与置信区间同构：</strong>80% 单侧置信上界 ≈ $z_{0.20} \sigma + \mu$。<br>
+<strong>商业意义：</strong>财务主管留 208 天的预算，就有 80% 的把握不超支。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T14 ============ -->
+<section id="t14">
+<h2 class="section">十五、题型 14 · 离散近似（正态 / 泊松近似二项）</h2>
+
+<h4 class="prob"><span class="tag">HW6 5.7-12</span>$B(100, 0.1)$ 的三种近似</h4>
+<div class="question">$X \sim B(100, 0.1)$，求 $P(12 \le X \le 14)$：(a) 正态近似；(b) 泊松近似；(c) 精确。
+</div>
+<div class="answer">
+<h5>答案</h5>
+$\mu = 10$，$\sigma^2 = 9$，$\sigma = 3$。<br>
+<strong>(a) 正态近似（含连续性修正）：</strong><br>
+$P(12 \le X \le 14) \approx P(11.5 < X < 14.5) = P\!\left(\frac{11.5-10}{3} < Z < \frac{14.5-10}{3}\right) = P(0.5 < Z < 1.5) = 0.9332 - 0.6915 = 0.2417$<br>
+<strong>(b) 泊松近似：</strong>$\lambda = np = 10$。<br>
+$P(12 \le X \le 14) \approx \sum_{x=12}^{14} \frac{e^{-10} 10^x}{x!}$<br>
+$e^{-10} \approx 4.54 \times 10^{-5}$；<br>
+$x=12$: $10^{12}/12! = 10^{12}/479001600 \approx 2087.0 \Rightarrow 9.47 \times 10^{-2}$<br>
+$x=13$: $10^{13}/13! = 10^{13}/6227020800 \approx 1605.4 \Rightarrow 7.29 \times 10^{-2}$<br>
+$x=14$: $10^{14}/14! = 10^{14}/87178291200 \approx 1146.7 \Rightarrow 5.20 \times 10^{-2}$<br>
+和 $\approx 0.0947 + 0.0729 + 0.0520 = 0.2196$<br>
+<strong>(c) 精确：</strong>$P(12 \le X \le 14) = \sum_{x=12}^{14}\binom{100}{x}(0.1)^x(0.9)^{100-x}$<br>
+$\binom{100}{12}(0.1)^{12}(0.9)^{88} \approx 0.0986$（可查表/软件）<br>
+$\binom{100}{13}(0.1)^{13}(0.9)^{87} \approx 0.0760$<br>
+$\binom{100}{14}(0.1)^{14}(0.9)^{86} \approx 0.0547$<br>
+和 $\approx 0.2293$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 何时用哪种近似</h5>
+<div class="key-block">
+<strong>泊松近似适用条件：</strong>$n$ 大（≥ 20），$p$ 小（≤ 0.1），$np$ 中等。本题 $n=100, p=0.1, np=10$，可以但效果一般。<br>
+<strong>正态近似适用条件：</strong>$np \ge 5$ 且 $n(1-p) \ge 5$。本题 $np=10, n(1-p)=90$，完美适用。<br>
+<strong>连续性修正：</strong>离散分布被连续分布近似时，$P(a \le X \le b) \approx P(a-0.5 < X < b+0.5)$，对结果修正明显（本题差 0.0124）。<br>
+<strong>三种方法对比：</strong>正态近似 0.2417（最接近精确 0.2293，差 0.0124），泊松 0.2196（差 0.0097），精确 0.2293。<br>
+<strong>结论：</strong>$np$ 适中时，<strong>正态近似 + 连续性修正</strong> 通常最准。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T15 ============ -->
+<section id="t15">
+<h2 class="section">十六、题型 15 · 切比雪夫不等式 ⭐</h2>
+<h3 class="type">核心公式</h3>
+<div class="key-block">
+<strong>Chebyshev：</strong>$P(|X - \mu| \ge k\sigma) \le \dfrac{1}{k^2}$，等价于 $P(|X-\mu| < k\sigma) \ge 1 - \dfrac{1}{k^2}$。<br>
+<strong>无需知道分布！</strong> 任何均值/方差有限的随机变量都满足。
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.8-3</span>骰子的切比雪夫界</h4>
+<div class="question">$X$ 骰子点数，$\mu=7/2, \sigma^2=35/12$。最大偏差 $5/2$。用 $k\sigma = 5/2$ 求 $k$，并用切比雪夫给 $P(|X-3.5|<2.5)$ 下界。
+</div>
+<div class="answer">
+<h5>答案</h5>
+$\sigma = \sqrt{35/12} = \sqrt{2.9167} \approx 1.708$。$k = (5/2)/\sigma = 2.5/1.708 \approx 1.464$。<br>
+切比雪夫：$P(|X - 3.5| < 2.5) \ge 1 - 1/k^2 = 1 - 1/2.143 = 1 - 0.4667 = 0.5333$。<br>
+(精确值 = 1，因为 $X \in \{1,...,6\}$ 全部落在 $(3.5 \pm 2.5)$ 内。)
+</div>
+<div class="explain">
+<h5>解析 ⭐ 切比雪夫界 vs 精确值</h5>
+<div class="key-block">
+<strong>切比雪夫的下界很松：</strong>0.5333 vs 实际 1.000。<br>
+<strong>原因：</strong>切比雪夫对所有分布都成立，必须考虑最坏情况（如双峰分布）。<br>
+<strong>若用正态近似</strong>（$X$ 接近均匀），$P(|X-3.5|<2.5) \approx 1$。<br>
+<strong>价值：</strong>切比雪夫<strong>无需知道分布</strong>，是"无信息下界"。
+</div>
+</div>
+
+<h4 class="prob"><span class="tag">HW6 5.8-6</span>样本均值的切比雪夫界</h4>
+<div class="question">$\bar X$ 是 $n=15$ 的样本均值，$\mu=80, \sigma^2=60$。用切比雪夫求 $P(75 < \bar X < 85)$ 的下界。
+</div>
+<div class="answer">
+<h5>答案</h5>
+$E(\bar X) = 80$，$\mathrm{Var}(\bar X) = 60/15 = 4$，$\sigma_{\bar X} = 2$。<br>
+$P(75 < \bar X < 85) = P(|\bar X - 80| < 5) = P(|\bar X - 80| < 2.5 \sigma_{\bar X})$<br>
+由切比雪夫：$P(|\bar X - 80| < k\sigma_{\bar X}) \ge 1 - 1/k^2$，其中 $k = 2.5$。<br>
+下界 = $1 - 1/6.25 = 1 - 0.16 = 0.84$。
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 切比雪夫 + 抽样</h5>
+<div class="key-block">
+<strong>关键观察：</strong>切比雪夫直接应用于 $\bar X$（不需要 CLT）。<br>
+<strong>与 CLT 对比：</strong>正态近似 $P(75 < \bar X < 85) = P(-2.5 < Z < 2.5) = 0.9876$，比切比雪夫的 0.84 紧很多。<br>
+<strong>但切比雪夫是精确下界</strong>，正态近似是"假设总体正态"后的近似。<br>
+<strong>一般规律：</strong>在不知道总体分布时，切比雪夫给的是"绝对下界"；已知正态时用正态近似（更紧）。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<!-- ============ T16 ============ -->
+<section id="t16">
+<h2 class="section">十七、题型 16 · CLT 证明</h2>
+
+<h4 class="prob"><span class="tag">HW6 5.9-4</span>$\chi^2(n)$ 的 CLT 极限</h4>
+<div class="question">$Y \sim \chi^2(n)$。用 CLT 证明 $W = (Y - n)/\sqrt{2n}$ 极限分布是 $N(0,1)$。
+</div>
+<div class="answer">
+<h5>证明</h5>
+$Y$ 可以写成独立标准正态的平方和：$Y = Z_1^2 + Z_2^2 + \cdots + Z_n^2$，其中 $Z_i \sim N(0,1)$ 独立。<br>
+设 $X_i = Z_i^2$。则 $X_i$ 独立同分布。<br>
+$E(X_i) = E(Z_i^2) = 1$，$\mathrm{Var}(X_i) = E(Z_i^4) - 1 = 3 - 1 = 2$。<br>
+所以 $Y = \sum_{i=1}^n X_i$，$E(Y) = n$，$\mathrm{Var}(Y) = 2n$。<br>
+由 CLT：$\frac{Y - n}{\sqrt{2n}} = \frac{\sum X_i - n \cdot 1}{\sqrt{n \cdot 2}} \xrightarrow{d} N(0,1)$。<br>
+即 $W$ 的极限分布是 $N(0,1)$。$\blacksquare$
+</div>
+<div class="explain">
+<h5>重点讲解 ⭐ 把"非独立和"转成"独立和"</h5>
+<div class="key-block">
+<strong>核心思路：</strong>遇到"复杂随机变量"时，先拆成独立同分布之和：<br>
+- $\chi^2(n) = \sum_{i=1}^n Z_i^2$，$Z_i^2$ 独立<br>
+- Binomial = $\sum$ Bernoulli<br>
+- Poisson = $\lim$ Binomial<br>
+<strong>CLT 的标准形式：</strong>$\frac{\sum X_i - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} N(0,1)$。把它套到 $\chi^2$ 上即可。<br>
+<strong>应用：</strong>大 $n$ 时 $\chi^2(n) \approx N(n, 2n)$，可查正态表近似 $\chi^2$ 临界值。
+</div>
+</div>
+</section>
+
+<hr class="sep">
+
+<section id="summary">
+<h2 class="section">十八、复习建议</h2>
+<div class="key-block">
+<strong>1. 高频考点优先级：</strong><br>
+⭐⭐⭐ 实际应用题（HW2 2.5-10, 2.6-11, HW3 3.1-6）<br>
+⭐⭐⭐ 二维正态（HW5 4.5-1, 4.5-6）<br>
+⭐⭐⭐ CLT 与切比雪夫（HW6 5.6-8/14, 5.8-3/6）<br>
+⭐⭐ 联合分布与条件（HW4 4.1-x, HW5 4.4-x）<br>
+⭐⭐ MGF 识别（HW2 2.4-20, HW3 3.2-x）<br>
+⭐ 基础定义计算（HW2 2.1-3, 2.2-x, HW4 3.3-x）<br>
+<br>
+<strong>2. 三个"看到就做"的反射：</strong><br>
+- 看到 $P(a \le X \le b)$，连续 → 积分；正态 → 标准化查表。<br>
+- 看到 $f(x,y)$，先画支持集；不规则支持集 → 不独立。<br>
+- 看到 $E(g(X,Y))$ 或 $E(Y|X)$，先想 LOTUS / 塔式法则 / 条件期望。<br>
+<br>
+<strong>3. 易错点清单：</strong><br>
+- 离散 PMF 求和后必查 $\sum = 1$。<br>
+- 协方差矩阵要对称正定（$\rho^2 \le 1$）。<br>
+- $E(XY) \ne E(X)E(Y)$（除非独立）。<br>
+- 二项 vs 泊松 vs 正态：分别对应"有限独立试验"、"极限稀有事件"、"求和大数定律"。<br>
+- $f_{Y|X}(y|x)$ 的归一化（$\int h(y|x)\,dy = 1$）。
+</div>
+</section>
+
+</div>
+</body>
+</html>

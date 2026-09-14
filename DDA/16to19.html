@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convex Optimization 复习笔记 | Lecture 16-19</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1a;--text2:#555;--accent:#534AB7;--accent2:#0F6E56;--red:#E24B4A;--amber:#BA7517;--blue:#185FA5;--border:#e5e3de;--code-bg:#f3f1ec;}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--card:#252525;--text:#e8e6e0;--text2:#999;--accent:#AFA9EC;--accent2:#5DCAA5;--red:#F09595;--amber:#FAC775;--blue:#85B7EB;--border:#333;--code-bg:#2c2c2a;}}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:20px;}
+.container{max-width:900px;margin:0 auto;}
+h1{font-size:28px;font-weight:700;margin-bottom:8px;color:var(--accent);}
+h2{font-size:22px;font-weight:600;margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--accent);color:var(--accent);}
+h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text);}
+h4{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--text2);}
+p{margin-bottom:12px;}
+.subtitle{color:var(--text2);font-size:15px;margin-bottom:30px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0;}
+.card-accent{border-left:4px solid var(--accent);}
+.card-green{border-left:4px solid var(--accent2);}
+.card-red{border-left:4px solid var(--red);}
+.card-amber{border-left:4px solid var(--amber);}
+.card-blue{border-left:4px solid var(--blue);}
+.formula{background:var(--code-bg);border-radius:10px;padding:16px 20px;margin:12px 0;text-align:center;font-size:17px;overflow-x:auto;}
+.formula .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;}
+.formula .frac .num{border-bottom:1.5px solid var(--text);padding:0 6px 3px;font-size:16px;}
+.formula .frac .den{padding:3px 6px 0;font-size:16px;}
+.formula .big{font-size:22px;vertical-align:middle;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-right:6px;}
+.tag-convex{background:#E1F5EE;color:#0F6E56;}
+.tag-concave{background:#FAECE7;color:#993C1D;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.key{color:var(--red);font-weight:600;}
+.eng{color:var(--blue);font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:40px;margin-bottom:16px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.proof{background:var(--code-bg);border-radius:10px;padding:16px 20px;margin:12px 0;border-left:3px solid var(--accent);}
+.proof p{margin-bottom:8px;}
+.toc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;}
+.toc a{color:var(--accent);text-decoration:none;display:block;padding:4px 0;}
+.toc a:hover{text-decoration:underline;}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:999;transition:width 0.1s;}
+.nav{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+table{width:100%;border-collapse:collapse;margin:12px 0;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:14px;}
+th{background:var(--code-bg);font-weight:600;}
+.example-box{background:var(--code-bg);border-radius:10px;padding:14px 18px;margin:10px 0;}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<a href="#top" class="nav">↑</a>
+
+<div class="container" id="top">
+
+<h1>Convex Optimization 凸优化复习笔记</h1>
+<p class="subtitle">Lecture 16–19 | Introduction to Data Science | Prof. Pin Gao</p>
+
+<!-- TOC -->
+<div class="toc">
+<strong>目录 Table of Contents</strong>
+<a href="#L16">Lecture 16: 优化基础 & 凸集</a>
+<a href="#L17">Lecture 17: 凸函数 & 核心定理证明</a>
+<a href="#L18">Lecture 18: 证明函数的凸性</a>
+<a href="#L19">Lecture 19: 最优性条件 & 应用</a>
+</div>
+
+<!-- ============ LECTURE 16 ============ -->
+<h2 id="L16">Lecture 16: 优化基础 & 凸集 (Convex Set)</h2>
+
+<h3>1. 优化问题的标准形式 <span class="eng">Standard Form</span></h3>
+<div class="card card-accent">
+<div class="formula">
+minimize &nbsp; <em>f</em>(<strong>x</strong>)<br>
+subject to &nbsp; <em>g<sub>i</sub></em>(<strong>x</strong>) ≤ 0, &nbsp; <em>i</em> = 1, …, <em>m</em> &nbsp; (不等式约束 <span class="eng">inequality constraints</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>h<sub>i</sub></em>(<strong>x</strong>) = 0, &nbsp; <em>i</em> = 1, …, <em>n</em> &nbsp; (等式约束 <span class="eng">equality constraints</span>)
+</div>
+<p>三大要素：<strong>目标函数</strong> <span class="eng">Objective Function</span> f(x)、<strong>约束</strong> <span class="eng">Constraints</span> g<sub>i</sub>, h<sub>i</sub>、<strong>决策变量</strong> <span class="eng">Decision Variables</span> <strong>x</strong></p>
+</div>
+
+<h3>2. 关键术语 <span class="eng">Terminologies</span></h3>
+
+<h4>2.1 可行域 <span class="eng">Feasible Set</span> Ω</h4>
+<div class="card">
+<p>满足<span class="key">所有 (all)</span> 约束的点的集合：</p>
+<div class="formula">Ω = { x : g<sub>i</sub>(x) ≤ 0, i = 1,…,m; &nbsp; h<sub>i</sub>(x) = 0, i = 1,…,p }</div>
+<div class="grid3">
+  <div class="example-box"><strong>例1:</strong> x(1−x)=0 → <strong>Ω = {0, 1}</strong></div>
+  <div class="example-box"><strong>例2:</strong> x(1−x)=0 且 x>0 → <strong>Ω = {1}</strong></div>
+  <div class="example-box"><strong>例3:</strong> x>2 且 x≤3 → <strong>Ω = (2, 3]</strong></div>
+</div>
+</div>
+
+<h4>2.2 ε-球 <span class="eng">Epsilon-ball</span></h4>
+<div class="card">
+<div class="formula">B(<strong>x</strong>, ε) = { <strong>y</strong> : ‖<strong>y</strong> − <strong>x</strong>‖ ≤ ε }</div>
+<p>以 <strong>x</strong> 为圆心、ε 为半径的所有点的集合，即 <strong>x</strong> 的"邻域"。</p>
+</div>
+
+<h4>2.3 局部最小值 vs 全局最小值</h4>
+<div class="grid2">
+<div class="card card-blue">
+  <p><strong>Local minimizer 局部最小值点</strong></p>
+  <p>f(<strong>x</strong>) ≤ f(<strong>y</strong>) 对所有 <strong>y</strong> ∈ Ω ∩ B(<strong>x</strong>, ε) 成立</p>
+  <p>且存在 <span class="key">某个 (some)</span> ε > 0</p>
+  <p style="font-size:13px;color:var(--text2);">只需在"附近一小片区域"最小</p>
+</div>
+<div class="card card-green">
+  <p><strong>Global minimizer 全局最小值点</strong></p>
+  <p>f(<strong>x</strong>) ≤ f(<strong>y</strong>) 对所有 <strong>y</strong> ∈ Ω ∩ B(<strong>x</strong>, ε) 成立</p>
+  <p>且对 <span class="key">任意 (any)</span> ε > 0 成立</p>
+  <p style="font-size:13px;color:var(--text2);">无论"圈"多大，都是最小的</p>
+</div>
+</div>
+<p><span class="tag tag-exam">考点</span> some ε vs any ε 的区别是常考点！</p>
+
+<h4>2.4 内部点 / 边界点 <span class="eng">Interior / Boundary Point</span></h4>
+<div class="card">
+<p><strong>Interior point 内部点</strong>: x ∈ C，若存在 ε > 0 使得 B(x, ε) ⊆ C。直觉：完全被集合"包住"。</p>
+<p><strong>Boundary point 边界点</strong>: x ∈ C，若存在方向 e ≠ 0 和 δ > 0，使得 x + ae ∉ C (∀a ∈ (0,δ))。直觉：站在集合"边缘"。</p>
+</div>
+
+<h4>2.5 鞍点 <span class="eng">Saddle Point</span></h4>
+<div class="card card-amber">
+<p>在 x* 点，<span class="highlight">任意方向的一阶导数都为0</span>，但 x* 既不是局部最大值也不是局部最小值。</p>
+<div class="formula">
+<span class="frac"><span class="num">df(x* + te)</span><span class="den">dt</span></span> <bigg>|</bigg><sub>t=0</sub> = 0 &nbsp; 对任意方向 e 成立
+</div>
+<p>经典例子: f(x,y) = x² − y², 在 (0,0) 沿 x 方向是"碗底"(min)，沿 y 方向是"山顶"(max)。</p>
+</div>
+
+<h3>3. 线性规划命题 <span class="eng">Proposition about LP</span></h3>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Proposition</span> 若目标函数是线性的，则 <span class="key">内部点不可能是最优解</span> (no interior solution can be optimal)。</p>
+<p>直觉：等值线 (level line) 是直线，可行域是多面体，把等值线往最优方向推到极限会卡在<strong>边界顶点 (boundary/vertex)</strong> 上。</p>
+</div>
+
+<h3>4. Convex vs Non-Convex 对比</h3>
+<div class="grid2">
+<div class="card card-green">
+  <p><strong>Convex problem 凸问题</strong></p>
+  <p>✅ Local min = Global min</p>
+  <p>✅ 可高效求解 (solved efficiently)</p>
+  <p>✅ Gradient descent 收敛到全局最优</p>
+</div>
+<div class="card card-red">
+  <p><strong>Non-convex problem 非凸问题</strong></p>
+  <p>❌ 难找全局最优解</p>
+  <p>❌ 可能卡在 local min 或 saddle point</p>
+  <p>❌ 只能用 heuristics 找局部最优</p>
+</div>
+</div>
+<div class="card card-amber">
+<p><span class="tag tag-warn">核心</span> 凸优化需同时满足两个条件：① 可行域是<strong>凸集</strong> ② 目标函数是<strong>凸函数</strong></p>
+</div>
+
+<h3>5. 凸集 <span class="eng">Convex Set</span></h3>
+
+<h4>5.1 线段 <span class="eng">Line Segment</span></h4>
+<div class="card">
+<div class="formula"><strong>x</strong> = θ<strong>x</strong><sub>1</sub> + (1−θ)<strong>x</strong><sub>2</sub>, &nbsp; θ ∈ [0, 1]</div>
+<p>θ 像"滑块"：θ=1 在 x<sub>1</sub>，θ=0 在 x<sub>2</sub>，中间值是线段上的点。这叫<span class="eng">convex combination</span>（凸组合）。</p>
+</div>
+
+<h4>5.2 凸集定义</h4>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Definition</span> 集合 C 是<strong>凸集</strong>，当且仅当：</p>
+<div class="formula">∀ <strong>x</strong><sub>1</sub>, <strong>x</strong><sub>2</sub> ∈ C, &nbsp; ∀ θ ∈ [0,1]: &nbsp; θ<strong>x</strong><sub>1</sub> + (1−θ)<strong>x</strong><sub>2</sub> ∈ C</div>
+<p>直觉：集合中<span class="highlight">任取两点连线段，线段完全在集合内</span>。有凹进去的部分就不是凸集。</p>
+</div>
+
+<h4>5.3 凸集的例子</h4>
+<table>
+<tr><th>集合</th><th>是否凸集</th><th>说明</th></tr>
+<tr><td>空集 ∅、单点集 {x₀}、全空间 R</td><td>✅</td><td>平凡情况</td></tr>
+<tr><td>区间 [a,b] ⊂ R</td><td>✅</td><td>一维凸集</td></tr>
+<tr><td>Hyperplane 超平面: a₁x₁+···+aₙxₙ = c</td><td>✅</td><td>R² 中是直线，R³ 中是平面</td></tr>
+<tr><td>Halfspace 半空间: y ≤ ax + b</td><td>✅</td><td>超平面的"一侧"</td></tr>
+<tr><td>Disk 圆盘</td><td>✅</td><td>圆心和半径确定的区域</td></tr>
+<tr><td>Polyhedron 多面体: 有限个半空间的交集</td><td>✅</td><td>利用"交集保凸"性质</td></tr>
+<tr><td>六边形(凸多边形)</td><td>✅</td><td>没有凹进去的部分</td></tr>
+<tr><td>月牙形 / 非凸多边形</td><td>❌</td><td>有凹入，线段可穿出</td></tr>
+</table>
+
+<h4>5.4 证明凸集的三步法</h4>
+<div class="card card-accent">
+<p><span class="tag tag-exam">考试必用</span> 以证明 H = {(x,y): y = ax + b} 是凸集为例：</p>
+<ol class="steps">
+<li><strong>利用假设</strong>：取任意 (x₁,y₁), (x₂,y₂) ∈ H → y₁ = ax₁+b, y₂ = ax₂+b</li>
+<li><strong>写出线段上的新点 (characterize new point)</strong>：θ(x₁,y₁) + (1−θ)(x₂,y₂) = (θx₁+(1−θ)x₂, θy₁+(1−θ)y₂)</li>
+<li><strong>证明新点也在集合中</strong>：θy₁+(1−θ)y₂ = θ(ax₁+b)+(1−θ)(ax₂+b) = a(θx₁+(1−θ)x₂)+b ✅</li>
+</ol>
+<p>对半空间证明类似，只是 = 变成 ≤，两边乘以非负的 θ 和 (1−θ) 不等号不变。</p>
+</div>
+
+<h4>5.5 凸集的性质</h4>
+<div class="card card-green">
+<p><span class="tag tag-thm">Lemma</span> 若 S₁ 和 S₂ 都是凸集，则 <strong>S₁ ∩ S₂ 也是凸集</strong>（交集保凸）。</p>
+<div class="proof">
+<p><strong>Proof:</strong> 取 x₁, x₂ ∈ S₁ ∩ S₂，令 x 是线段上的点。</p>
+<p>因 S₁ 凸 → x ∈ S₁; 因 S₂ 凸 → x ∈ S₂。故 x ∈ S₁ ∩ S₂。∎</p>
+</div>
+<p><strong>推广：</strong>任意多个凸集的交集仍是凸集。</p>
+<p><strong>应用1：</strong>Polyhedron = 多个半空间交集 → 凸集。</p>
+<p><strong>应用2：</strong>直线 y=ax+b = {y≤ax+b} ∩ {y≥ax+b} → 凸集。</p>
+</div>
+
+<div class="card card-red">
+<p><span class="tag tag-warn">注意</span> 两个凸集的<strong>并集 (union) 不一定是凸集！</strong> 例：两个不重叠的圆盘各自凸，合并后不凸。</p>
+</div>
+
+<!-- ============ LECTURE 17 ============ -->
+<h2 id="L17">Lecture 17: 凸函数 & 核心定理证明</h2>
+
+<h3>1. 凸函数定义 <span class="eng">Convex Function</span></h3>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Definition</span> 函数 f: R<sup>n</sup> → R 是<strong>凸函数</strong>，当且仅当：</p>
+<p>(1) 定义域 dom(f) 是凸集</p>
+<p>(2) 对任意 x₁, x₂ ∈ dom(f)，任意 λ ∈ [0,1]：</p>
+<div class="formula">f(λ<strong>x</strong><sub>1</sub> + (1−λ)<strong>x</strong><sub>2</sub>) &nbsp; ≤ &nbsp; λf(<strong>x</strong><sub>1</sub>) + (1−λ)f(<strong>x</strong><sub>2</sub>)</div>
+<p>几何直觉：<span class="highlight">任取两点连弦 (chord)，弦总在曲线上方</span>。</p>
+<p>左边 = 函数在"组合点"的值，右边 = 函数值的"同样组合"。<strong>函数值在组合点 ≤ 弦上对应点</strong>。</p>
+</div>
+
+<h3>2. 凸函数与凸集的关系</h3>
+<div class="grid2">
+<div class="card card-accent">
+  <p><strong>Sublevel set 下水平集</strong></p>
+  <p>C = {<strong>x</strong>: f(<strong>x</strong>) ≤ r}</p>
+  <p>若 f 是凸函数 → C 是凸集</p>
+  <div class="proof"><p>f(λx₁+(1−λ)x₂) ≤ λf(x₁)+(1−λ)f(x₂) ≤ λr+(1−λ)r = r ✅</p></div>
+</div>
+<div class="card card-green">
+  <p><strong>Epigraph 上方图</strong></p>
+  <p>C = {(<strong>x</strong>,y): y ≥ f(<strong>x</strong>)}</p>
+  <p>若 f 是凸函数 → 曲线<strong>上方</strong>区域是凸集</p>
+  <p style="font-size:13px;color:var(--text2);">几何直觉："碗的外部"是凸的</p>
+</div>
+</div>
+<div class="card card-red">
+<p><span class="tag tag-warn">⚠️</span> 反过来不成立！sublevel set 是凸集 ≠ f 是凸函数。反例：f(x)=-x² 的下水平集可以是 R，但 f 是 concave 的。</p>
+</div>
+
+<h3>3. 凹函数 <span class="eng">Concave Function</span></h3>
+<div class="card">
+<p>不等号反过来: f(<strong>z</strong>) <strong>≥</strong> λf(<strong>x</strong>) + (1−λ)f(<strong>y</strong>)。弦在曲线<strong>下方</strong>。</p>
+<p>凹函数<strong>下方</strong>的区域是凸集。</p>
+<div class="grid2">
+  <div class="formula"><span class="tag tag-convex">关键</span> f concave ⟺ −f convex</div>
+  <div class="formula"><span class="tag tag-convex">关键</span> f convex ⟺ −f concave</div>
+</div>
+<p>实用意义：最大化 concave 函数 = 最小化其负值 (convex)，也能用凸优化！</p>
+</div>
+
+<h3>4. 核心定理 <span class="eng">The Fundamental Theorem</span></h3>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Theorem</span> 对凸优化问题（f 凸 + Ω 凸），<span class="key">任何局部最小值 = 全局最小值</span>。</p>
+<p style="font-size:15px;font-weight:600;color:var(--accent);">Local minimizer = Global minimizer</p>
+</div>
+
+<h4>反证法证明 <span class="eng">Proof by Contradiction</span></h4>
+<div class="proof">
+<p><strong>设 x̄ 是局部最小值</strong> → x̄ ∈ Ω，∃ε > 0 使得 f(x̄) ≤ f(x) ∀x ∈ B(x̄,ε) ∩ Ω</p>
+<p><strong>反设：</strong>∃z ∈ Ω 使得 f(z) < f(x̄)</p>
+<p><strong>利用凸集：</strong>x̄, z ∈ Ω (凸), 所以 λx̄ + (1−λ)z ∈ Ω, ∀λ ∈ [0,1]</p>
+<p><strong>利用凸函数：</strong></p>
+<p>&nbsp;&nbsp; f(λx̄ + (1−λ)z) ≤ λf(x̄) + (1−λ)f(z) < λf(x̄) + (1−λ)f(x̄) = f(x̄)</p>
+<p><strong>矛盾：</strong>当 λ→1 时，λx̄+(1−λ)z → x̄，此点进入 B(x̄,ε)，但函数值 < f(x̄)，与局部最小性矛盾！∎</p>
+</div>
+
+<!-- ============ LECTURE 18 ============ -->
+<h2 id="L18">Lecture 18: 证明函数的凸性 <span class="eng">Prove Convexity</span></h2>
+
+<h3>1. 二阶条件 <span class="eng">Second Order Condition (SOC)</span></h3>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Theorem (SOC)</span> 设 f 是<strong>二阶连续可微</strong> (twice continuously differentiable) 函数。</p>
+<p>f 是 <strong>convex</strong> ⟺ (1) dom(f) 是凸集; (2) 对任意 x ∈ dom(f)、任意单位向量 e、任意 θ:</p>
+<div class="formula">
+<span class="frac"><span class="num">d²f(<strong>x</strong> + θ<strong>e</strong>)</span><span class="den">dθ²</span></span> &nbsp; ≥ &nbsp; 0
+</div>
+<p><strong>一维简化：</strong> f''(x) ≥ 0 对所有 x ∈ dom(f)。 <span style="color:var(--text2);">(二阶导非负 → 凸)</span></p>
+</div>
+
+<div class="card card-blue">
+<p><span class="tag tag-thm">对 Concave</span>: f 是 <strong>concave</strong> ⟺ 同样条件但 ≤ 0。一维: f''(x) ≤ 0。</p>
+</div>
+
+<h3>2. 高维凸函数证明步骤 <span class="eng">General Procedure</span></h3>
+<div class="card card-accent">
+<p><span class="tag tag-exam">考试必用</span> 证明多维函数 f(<strong>x</strong>) 是凸的：</p>
+<ol class="steps">
+<li>选任意点 <strong>y</strong>、任意单位向量 <strong>e</strong>、任意标量 θ</li>
+<li>定义一维函数 g(θ) = f(<strong>y</strong> + θ<strong>e</strong>)</li>
+<li>证明 g''(θ) ≥ 0</li>
+</ol>
+<p>核心思想：把多维问题<span class="highlight">沿任意方向"切一刀"</span>，变成一维问题用 SOC 判断。</p>
+</div>
+
+<h3>3. 经典凸/凹函数例子</h3>
+<div class="grid2">
+<div class="card card-green">
+  <p><strong>Convex 凸函数</strong></p>
+  <p>f(x) = ax + b (同时也是 concave!)</p>
+  <p>f(x) = x² &nbsp; (f''=2>0)</p>
+  <p>f(x) = e<sup>x</sup> &nbsp; (f''=e<sup>x</sup>>0)</p>
+  <p>f(<strong>x</strong>) = Σᵢ aᵢxᵢ² &nbsp; (aᵢ>0时)</p>
+  <p>f(<strong>x</strong>) = (Σᵢ aᵢxᵢ)² &nbsp; (任意 aᵢ)</p>
+</div>
+<div class="card card-blue">
+  <p><strong>Concave 凹函数</strong></p>
+  <p>f(x) = −x² &nbsp; (f''=−2<0)</p>
+  <p>f(x) = log(x) on (0,+∞) &nbsp; (f''=−1/x²<0)</p>
+  <p>f(x) = sin(x) on [0,π] &nbsp; (f''=−sin(x)≤0)</p>
+</div>
+</div>
+
+<h4>高维例子详解</h4>
+<div class="card">
+<p><strong>Example 1:</strong> f(<strong>x</strong>) = Σᵢ aᵢxᵢ² (aᵢ > 0)</p>
+<p>g(θ) = f(<strong>y</strong>+θ<strong>e</strong>) = Σᵢ aᵢ(yᵢ+θeᵢ)²，g''(θ) = Σᵢ 2aᵢeᵢ² ≥ 0 ✅ → 凸函数</p>
+<p>其 sublevel set {<strong>x</strong>: f(<strong>x</strong>) ≤ r} 形成球或椭球 (ball/ellipsoid)。</p>
+</div>
+<div class="card">
+<p><strong>Example 2:</strong> f(<strong>x</strong>) = (Σᵢ aᵢxᵢ)² (对 aᵢ 无要求)</p>
+<p>g(θ) = (Σᵢ aᵢ(yᵢ+θeᵢ))²，g''(θ) = 2(Σᵢ aᵢeᵢ)² ≥ 0 ✅ → 凸函数</p>
+</div>
+
+<h3>4. 凸函数能否不连续？</h3>
+<div class="card card-amber">
+<p>定义在闭区间 [a,b] 上的一维凸函数 <strong>可以在边界点 (boundary) 不连续</strong>，但在内部 (interior) 一定连续。</p>
+<p>条件：f(a) > lim<sub>x→a⁺</sub> f(x) 和 f(b) > lim<sub>x→b⁻</sub> f(x)</p>
+<p>即边界点的函数值可以"跳高"，但只能往上跳，不能往下跳。</p>
+</div>
+
+<h3>5. 保凸运算 <span class="eng">Operations that Preserve Convexity</span></h3>
+
+<h4>5.1 Composition 复合</h4>
+<div class="card">
+<p>若 ‖<strong>x</strong>‖ = √(Σᵢxᵢ²) 是凸函数，则对任意固定的 <strong>y</strong>，L2 距离 ‖<strong>x</strong>−<strong>y</strong>‖ 也是关于 <strong>x</strong> 的凸函数。</p>
+</div>
+
+<h4>5.2 Maximum of convex functions 凸函数的最大值</h4>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Theorem</span> 若 f₁, …, f<sub>m</sub> 都是凸函数，则 f(<strong>x</strong>) = max{f₁(<strong>x</strong>), …, f<sub>m</sub>(<strong>x</strong>)} 也是凸函数。</p>
+<div class="proof">
+<p><strong>Proof:</strong> 取任意 x, y ∈ dom(f), λ ∈ [0,1]。</p>
+<p>f(λx+(1−λ)y) = f<sub>j</sub>(λx+(1−λ)y) (某个 j 取到最大值)</p>
+<p>&nbsp; ≤ λf<sub>j</sub>(x) + (1−λ)f<sub>j</sub>(y) &nbsp; (因为 f<sub>j</sub> 是凸的)</p>
+<p>&nbsp; ≤ λ max{f₁(x),...} + (1−λ) max{f₁(y),...} = λf(x) + (1−λ)f(y) ∎</p>
+</div>
+<p><strong>应用1:</strong> Piecewise-linear function 分段线性函数 f(x) = max{a₁ᵀx+b₁, …, aₗᵀx+bₗ} 是凸的。</p>
+<p><strong>应用2:</strong> 到集合 C 中最远点的距离 f(x) = sup<sub>y∈C</sub> ‖x−y‖ 是凸的。</p>
+</div>
+
+<h4>5.3 Nonnegative weighted sums 非负加权和</h4>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Theorem</span> 若 f₁, …, f<sub>m</sub> 凸，w₁, …, w<sub>m</sub> ≥ 0，则 Σᵢ wᵢfᵢ(<strong>x</strong>) 也是凸函数。</p>
+<p><strong>推广到积分：</strong>若 f(x,y) 关于 x 凸（对每个 y ∈ A），w(y) ≥ 0，则：</p>
+<div class="formula">g(x) = ∫<sub>A</sub> w(y) f(x,y) dy &nbsp; 关于 x 凸</div>
+</div>
+
+<h3>6. 应用例子</h3>
+<h4>Regression Analysis 回归分析</h4>
+<div class="card">
+<p>最小化 Σᵢ(Yᵢ − β₁Xᵢ − β₀)²。每个 (Yᵢ − β₁Xᵢ − β₀)² 是关于 (β₀,β₁) 的凸函数 → 非负加权和 → 整体凸。</p>
+</div>
+
+<h4>Blind Box Problem 盲盒问题</h4>
+<div class="card">
+<p>目标函数 = (p−c)(−Q) + (p−s)E[max(Q−D, 0)]</p>
+<p>其中 −Q 是凸的 (线性)，max(Q−D, 0) 是凸函数的 maximum → 凸</p>
+<p>所以整体是 nonnegative weighted sums of convex functions → <strong>凸！</strong></p>
+</div>
+
+<!-- ============ LECTURE 19 ============ -->
+<h2 id="L19">Lecture 19: 最优性条件 & 应用 <span class="eng">Optimality Condition</span></h2>
+
+<h3>1. 最优性条件 <span class="eng">Optimality Condition</span></h3>
+<div class="card card-accent">
+<p><span class="tag tag-thm">Theorem</span> 若 f 二阶可微且凸 (convex)，x* 是<strong>内部</strong> (interior) 全局最小值点，则：</p>
+<div class="formula" style="font-size:22px;">∇f(x*) = 0</div>
+<p>即梯度 (gradient) 为零向量。<span style="color:var(--text2);">(Proof not required)</span></p>
+
+<p style="margin-top:12px;"><span class="tag tag-thm">Theorem</span> 若 f 二阶可微且凹 (concave)，x* 是<strong>内部</strong>全局最大值点，则同样 ∇f(x*) = 0。</p>
+
+<div class="formula">
+∇f(p) = 
+<span style="font-size:14px;display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;border:1px solid var(--border);border-radius:4px;padding:6px 10px;">
+<span>∂f/∂x₁(p)</span>
+<span>⋮</span>
+<span>∂f/∂xₙ(p)</span>
+</span>
+</div>
+</div>
+
+<div class="card card-amber">
+<p><span class="tag tag-warn">最优解的位置</span> 最优解可能在内部 (interior) 或边界 (boundary)：</p>
+<p>— 内部最优：∇f = 0 (一阶条件)</p>
+<p>— 边界最优：需要检查约束边界上的点</p>
+<p>— 混合情况：min 可能在内部，max 可能在边界（或反过来）</p>
+</div>
+
+<h3>2. 应用：Regression Analysis 回归分析</h3>
+<div class="card">
+<p>最小化 Σᵢ(Yᵢ − β₁Xᵢ − β₀)²。用 SOC 验证凸性，可行域 R² 也是凸的 → 凸优化问题。</p>
+<p>用 optimality condition ∇f = 0，对 β₀ 和 β₁ 分别求偏导令其为零：</p>
+<div class="formula">
+Σᵢ(Yᵢ − β₁Xᵢ − β₀) = 0 &nbsp; &nbsp; (对 β₀ 求导)<br>
+Σᵢ(Yᵢ − β₁Xᵢ − β₀)Xᵢ = 0 &nbsp; &nbsp; (对 β₁ 求导)
+</div>
+<p>解得：</p>
+<div class="formula">
+<span class="frac"><span class="num">β̂₁</span><span class="den">&nbsp;</span></span> = 
+<span class="frac"><span class="num">Σᵢ(Xᵢ − X̄)(Yᵢ − Ȳ)</span><span class="den">Σᵢ(Xᵢ − X̄)²</span></span>
+&nbsp; &nbsp; &nbsp;
+β̂₀ = Ȳ − β̂₁X̄
+</div>
+</div>
+
+<h3>3. 应用：MLE for Bernoulli RV</h3>
+<div class="card">
+<p>最小化 negative log-likelihood: −M·log p − (N−M)·log(1−p), &nbsp; s.t. p ∈ [0,1]</p>
+<p>验证凸性: 
+<span class="frac" style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;"><span class="num" style="border-bottom:1px solid var(--text);">d²</span><span class="den">dp²</span></span> 
+= <span class="frac" style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;"><span class="num" style="border-bottom:1px solid var(--text);">M</span><span class="den">p²</span></span> + 
+<span class="frac" style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;"><span class="num" style="border-bottom:1px solid var(--text);">N−M</span><span class="den">(1−p)²</span></span> > 0 ✅ 凸！</p>
+<p>可行域 [0,1] 凸 → 凸优化 → 用一阶条件求解 → p̂ = M/N</p>
+</div>
+
+<h3>4. 应用：MLE for Exponential RV</h3>
+<div class="card">
+<p>灯泡寿命服从指数分布, pdf: f(x) = λe<sup>−λx</sup></p>
+<p>Log-likelihood: l(λ) = n·log λ − λ·Σᵢ Xᵢ</p>
+<p>l''(λ) = −n/λ² < 0 → <strong>concave!</strong> (所以要最大化它)</p>
+<p>用一阶条件: l'(λ) = n/λ − Σᵢ Xᵢ = 0 → λ̂ = n / Σᵢ Xᵢ = 1/X̄</p>
+</div>
+
+<h3>5. 重要提醒 <span class="eng">Remark</span></h3>
+<div class="card card-red">
+<p><span class="tag tag-exam">考试要求</span> <strong style="font-size:16px;">从现在起，任何时候被要求求最优解或 MLE，都必须先证明凸性/凹性，然后才能使用一阶条件！</strong></p>
+<p>答题步骤：① 写出目标函数 → ② 证明 convex/concave (SOC) → ③ 确认可行域凸 → ④ 用 ∇f = 0 求解</p>
+</div>
+
+<h3>6. Blind Box Problem 盲盒问题</h3>
+<div class="card">
+<p>凸优化问题: min −(pE[min(Q,D)] + sE[(Q−D)⁺] − cQ), &nbsp; s.t. −Q ≤ 0</p>
+<p>定义 π(Q) = pE[min(Q,D)] + sE[(Q−D)⁺] − cQ</p>
+<p>求导令 π'(Q) = 0：</p>
+<div class="formula">
+p·∫<sub>Q</sub><sup>∞</sup> h(x)dx + s·∫<sub>0</sub><sup>Q</sup> h(x)dx − c = 0
+</div>
+<p>整理得 F(Q) = (p−c)/(p−s)，所以：</p>
+<div class="formula" style="font-size:18px;">
+Q* = F<sup>−1</sup>( (p−c)/(p−s) )
+</div>
+<p>当 p > c > s 时，Q* 是内部解 (interior solution)，因此是全局最优。</p>
+</div>
+
+<!-- ============ SUMMARY ============ -->
+<h2 id="summary">总结：四节课知识脉络</h2>
+<div class="card card-accent">
+<table>
+<tr><th>Lecture</th><th>核心内容</th><th>关键考点</th></tr>
+<tr><td>L16</td><td>优化基础 + 凸集</td><td>feasible set, local/global min, 三步证凸集法, 交集保凸</td></tr>
+<tr><td>L17</td><td>凸函数 + 核心定理</td><td>凸函数定义, sublevel set/epigraph, local=global 反证法</td></tr>
+<tr><td>L18</td><td>证明凸性的方法</td><td>SOC (f''≥0), 高维三步法, 三大保凸运算</td></tr>
+<tr><td>L19</td><td>最优性条件 + 应用</td><td>∇f=0, 回归分析, MLE (Bernoulli/Exponential), 盲盒问题</td></tr>
+</table>
+</div>
+
+<div class="card card-red" style="margin-bottom:40px;">
+<p><strong>答题模板 (从 L19 Remark 起生效):</strong></p>
+<ol class="steps">
+<li>明确目标函数和可行域</li>
+<li>证明目标函数 convex/concave (用 SOC 或保凸运算)</li>
+<li>确认可行域是凸集</li>
+<li>用最优性条件 ∇f = 0 求解</li>
+<li>验证解是否在可行域内部 (interior solution → global optimal)</li>
+</ol>
+</div>
+
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

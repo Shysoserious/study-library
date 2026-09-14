@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA Lecture 20-25 详细复习笔记</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f8f7f4;color:#1a1a1a;line-height:1.8;padding:30px;}
+.main{max-width:920px;margin:0 auto;}
+h1{font-size:28px;color:#534AB7;border-bottom:3px solid #534AB7;padding-bottom:10px;margin-bottom:10px;}
+h2{font-size:22px;color:#534AB7;margin:30px 0 12px;padding-bottom:6px;border-bottom:2px solid #dfd9ff;}
+h3{font-size:17px;margin:22px 0 10px;color:#1a1a1a;}
+h4{font-size:14px;margin:14px 0 6px;color:#555;}
+.subtitle{color:#666;font-size:14px;margin-bottom:20px;}
+.card{background:#fff;border:1px solid #e5e3de;border-radius:12px;padding:18px;margin:14px 0;}
+.card-green{border-left:4px solid #0F6E56;}
+.card-red{border-left:4px solid #E24B4A;}
+.card-blue{border-left:4px solid #185FA5;}
+.card-amber{border-left:4px solid #BA7517;}
+.card-pink{border-left:4px solid #C43B7A;}
+.formula{background:#f3f1ec;border-radius:10px;padding:14px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-tip{background:#E1F5EE;color:#0F6E56;}
+.key{color:#E24B4A;font-weight:600;}
+.eng{color:#185FA5;font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+ol{padding-left:20px;margin-bottom:10px;}
+ol li{margin-bottom:8px;}
+ul{padding-left:20px;margin-bottom:10px;}
+ul li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #e5e3de;font-size:14px;}
+th{background:#f3f1ec;font-weight:600;}
+.example-box{background:#f3f1ec;border-radius:10px;padding:12px 16px;margin:10px 0;}
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:38px;margin-bottom:14px;font-size:14px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:26px;height:26px;background:#534AB7;color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.note{background:#fef8e7;border:1px solid #f5e6b8;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:14px;}
+.warn-box{background:#fcebeb;border:1px solid #f5c6c6;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:14px;}
+.lecture-divider{background:linear-gradient(135deg,#534AB7,#8B84D8);color:#fff;padding:20px 22px;border-radius:12px;margin:36px 0 18px;}
+.lecture-divider h2{color:#fff;border:none;margin:0;padding:0;font-size:21px;}
+.lecture-divider p{color:#dfd9ff;font-size:12px;margin:3px 0 0;}
+.lecture-divider.orange{background:linear-gradient(135deg,#D8734E,#E69975);}
+.lecture-divider.orange p{color:#fff0e8;}
+.lecture-divider.teal{background:linear-gradient(135deg,#0F6E56,#5DCAA5);}
+.lecture-divider.teal p{color:#d0f5e8;}
+.concept-map{background:#f0f7f4;border:1px solid #b8d5cc;border-radius:12px;padding:16px;margin:14px 0;text-align:center;font-size:14px;}
+.concept-map span{display:inline-block;background:#0F6E56;color:#fff;padding:4px 12px;border-radius:20px;margin:4px;font-size:13px;}
+.concept-map .arrow{color:#0F6E56;font-size:18px;margin:0 4px;background:transparent;padding:0;}
+.kcards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+.kcard{text-align:center;padding:12px 8px;border-radius:10px;border:2px solid #e5e3de;font-size:12px;}
+.kcard .kv{font-size:18px;font-weight:700;color:#534AB7;}
+.kcard .kd{margin-top:3px;color:#555;font-size:11px;}
+@media(max-width:700px){.kcards{grid-template-columns:1fr 1fr;}}
+.pipeline{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:12px 0;}
+.pipeline .pstep{background:#f3f1ec;border:1px solid #e5e3de;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;}
+.pipeline .parrow{color:#534AB7;font-size:18px;}
+.pipeline .pend{background:#534AB7;color:#fff;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="main">
+
+<h1>📘 DDA Lecture 20&ndash;25 详细复习笔记</h1>
+<p class="subtitle">ML入门 · KNN · Logistic Regression · K-Means · Model Selection · LLM · 期末总复习 — 难点详解版（备考专用）</p>
+
+<!-- ============================================================ -->
+<!-- 内容导航 -->
+<!-- ============================================================ -->
+<div class="card" style="margin-bottom:24px;">
+<h3>📑 内容导航</h3>
+<table>
+<tr><th>章节</th><th>内容</th><th>难度</th></tr>
+<tr><td>Lec 20</td><td>ML 入门 + KNN</td><td>⭐⭐⭐</td></tr>
+<tr><td>Lec 21</td><td>Logistic Regression + 梯度下降</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>Lec 22</td><td>K-Means 聚类</td><td>⭐⭐⭐</td></tr>
+<tr><td>Lec 23</td><td>模型选择 + 交叉验证</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>Lec 24</td><td>LLM 大语言模型</td><td>⭐⭐⭐</td></tr>
+<tr><td>Lec 25</td><td>期末总复习</td><td>⭐⭐⭐⭐</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- LECTURE 20 -->
+<!-- ============================================================ -->
+<div class="lecture-divider">
+<h2>Lecture 20 &mdash; ML 入门 &amp; KNN</h2>
+<p>机器学习基础概念 · 分类任务 · KNN 算法</p>
+</div>
+
+<h2>1. 什么是 Machine Learning?</h2>
+
+<div class="card card-blue">
+<h3>ML 的定义</h3>
+<p>研究那些<strong>通过使用数据来提高自身任务表现</strong>的算法，而不是仅靠预先编写好的固定规则。</p>
+</div>
+
+<div class="card card-amber">
+<h3>Statistics vs Machine Learning</h3>
+<table>
+<tr><th></th><th>统计学</th><th>机器学习</th></tr>
+<tr><td>思路</td><td>先写模型，再拟合数据</td><td>让数据告诉我们最好的预测规则</td></tr>
+<tr><td>目标</td><td>理解和解释</td><td>预测新结果</td></tr>
+<tr><td>数据</td><td>较小、结构化</td><td>较大、高维</td></tr>
+<tr><td>模型</td><td>简单可解释</td><td>灵活复杂（黑箱）</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<h3>ML 四要素</h3>
+<div class="grid2">
+<div><strong>Task（任务）</strong><br>想让机器做什么？分类/预测/聚类</div>
+<div><strong>Data（数据）</strong><br>经验：input-output 对 或 原始观测</div>
+<div><strong>Model（模型）</strong><br>$h: X \to Y$ 的函数</div>
+<div><strong>Learning（学习）</strong><br>用数据训练模型、优化表现</div>
+</div>
+</div>
+
+<h2>2. 分类任务 (Classification)</h2>
+
+<div class="card card-amber">
+<p><strong>目标</strong>：将输入分配到若干个<strong>类别 (categories)</strong> 中的一个。输出是<strong>标签 (label)</strong>。</p>
+<p>例：垃圾邮件检测（spam vs not spam）、图像识别（猫 vs 狗）</p>
+</div>
+
+<div class="card card-red">
+<h3>分类的挑战</h3>
+<ul>
+  <li>姿势不寻常 / 图片模糊 / 只有部分可见 / 类别长得像</li>
+  <li><span class="key">Hard cases</span> 是检验分类器好坏的关键</li>
+</ul>
+</div>
+
+<h2>3. 用数字表示对象 (Represent Objects Numerically)</h2>
+
+<div class="card card-pink">
+<p class="highlight"><strong>重要理念：表征 (Representation) 是连接现实世界和模型的桥梁——计算机需要数字。</strong></p>
+<p>一张图像 → 像素网格 → flatten → $\mathbb{R}^n$ 向量</p>
+<p>所有人、商品、事件都可以用<strong>多个属性 (attributes)</strong> 描述，打包成一个<strong>特征向量 (feature vector)</strong>。</p>
+</div>
+
+<h2>4. 监督学习 vs 无监督学习</h2>
+
+<div class="grid2">
+<div class="card card-green">
+<h4>监督学习 Supervised Learning</h4>
+<p>使用 <strong>labeled data</strong>（带标签数据）</p>
+<p>同时看到输入 $x$ 和期望输出 $y$</p>
+<p>典型任务：分类、回归</p>
+<p>例：猫狗图像每张标好 y=1(cat) 或 y=0(dog)</p>
+</div>
+<div class="card card-red">
+<h4>无监督学习 Unsupervised Learning</h4>
+<p>使用 <strong>unlabeled data</strong>（无标签数据）</p>
+<p>自己发现数据中的结构、分组、模式</p>
+<p>典型任务：聚类、降维</p>
+<p>例：自动把顾客分成不同"人群"</p>
+</div>
+</div>
+
+<!-- ======================== KNN ======================== -->
+<h2>5. KNN 算法 (K-Nearest Neighbors) ⭐⭐⭐</h2>
+
+<div class="card card-green">
+<h3>核心思想："物以类聚"</h3>
+<p>给定一个新数据点，<strong>找距离它最近的 K 个训练点</strong>，看这 K 个"邻居"中哪一类占多数（<strong>majority vote</strong>），就把新点归为那一类。</p>
+</div>
+
+<div class="card card-blue">
+<h3>KNN 六步骤（必背！）</h3>
+<ol class="steps">
+<li><strong>Load the labeled data</strong> — 加载带标签的训练数据</li>
+<li><strong>Choose K</strong> — 选择邻居数量 K（超参数）</li>
+<li><strong>Compute distances</strong> — 算新点到每个训练点的距离</li>
+<li><strong>Sort by distance</strong> — 按距离从小到大排序</li>
+<li><strong>Select K nearest</strong> — 取最近的 K 个邻居</li>
+<li><strong>Majority vote</strong> — 多数投票决定新点的标签</li>
+</ol>
+</div>
+
+<h3>5.1 距离度量：L1 vs L2</h3>
+
+<div class="grid2">
+<div class="card card-blue">
+<h4>L2 距离（欧氏距离）</h4>
+<div class="formula">$$d(x,y) = \sqrt{\sum_{i}(x_i-y_i)^2}$$</div>
+<p><strong>直线距离</strong>，勾股定理，两点之间线段最短</p>
+</div>
+<div class="card card-amber">
+<h4>L1 距离（曼哈顿距离）</h4>
+<div class="formula">$$d(x,y) = \sum_{i}|x_i-y_i|$$</div>
+<p>沿<strong>坐标轴方向</strong>的距离之和，像走街区格子</p>
+</div>
+</div>
+
+<div class="example-box">
+<strong>🌰 例子：</strong>A=(0,0), B=(3,4)
+<ul>
+  <li>L2 = $\sqrt{3^2+4^2}=5$（直线飞行）</li>
+  <li>L1 = $|3|+|4|=7$（走街区：先横着走3格再竖着走4格）</li>
+</ul>
+</div>
+
+<h3>5.2 K 值的影响（核心考点）</h3>
+
+<div class="kcards">
+<div class="kcard"><div class="kv">K=1</div><div class="kd">边界锯齿状，极易受噪声影响<br><strong>过拟合 Overfitting</strong></div></div>
+<div class="kcard"><div class="kv">K=3</div><div class="kd">较平滑，合理选择</div></div>
+<div class="kcard"><div class="kv">K=5</div><div class="kd">更平滑，常用默认值</div></div>
+<div class="kcard"><div class="kv">K=25</div><div class="kd">过度平滑，忽略细节<br><strong>欠拟合 Underfitting</strong></div></div>
+</div>
+
+<div class="warn-box">
+<strong>⚠️ K 的选择规则</strong>：
+<ul>
+  <li>K 太小 → 噪声影响大 → <strong>过拟合</strong></li>
+  <li>K 太大 → 边界过于平滑 → <strong>欠拟合</strong></li>
+  <li>极端情况：若 K &gt; 样本总数 N，所有新输入都被预测为训练集中的 <strong>majority class</strong>，模型完全失去意义</li>
+</ul>
+</div>
+
+<h3>5.3 KNN 例题详解（考试高频题型）</h3>
+
+<div class="card card-amber">
+<p><strong>题目：</strong>用 KNN（K=1，L1 距离）对新点 <strong>(4, 3)</strong> 分类。</p>
+<table>
+<tr><th>Point</th><th>x₁</th><th>x₂</th><th>class</th></tr>
+<tr><td>A</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>B</td><td>-3</td><td>1</td><td>1</td></tr>
+<tr><td>C</td><td>5</td><td>2</td><td>2</td></tr>
+<tr><td>D</td><td>3</td><td>3</td><td>2</td></tr>
+<tr><td>E</td><td>5</td><td>0</td><td>3</td></tr>
+<tr><td>F</td><td>4</td><td>-1</td><td>3</td></tr>
+</table>
+
+<h4>解题步骤：</h4>
+<p><strong>Step 1：</strong>算每个点到 (4,3) 的 L1 距离</p>
+<ul>
+  <li>$d(A) = |0-4|+|0-3| = 7$</li>
+  <li>$d(B) = |-3-4|+|1-3| = 9$</li>
+  <li>$d(C) = |5-4|+|2-3| = 2$</li>
+  <li>$d(D) = |3-4|+|3-3| = \mathbf{1}$ ← 最近</li>
+  <li>$d(E) = |5-4|+|0-3| = 4$</li>
+  <li>$d(F) = |4-4|+|-1-3| = 4$</li>
+</ul>
+<p><strong>Step 2：</strong>排序 D(1) &lt; C(2) &lt; E(4)=F(4) &lt; A(7) &lt; B(9)</p>
+<p><strong>Step 3：</strong>K=1，最近邻 D 的 class = 2 → <span class="key">新点 (4,3) 被分类为 class 2</span></p>
+
+<div class="note">
+<strong>💡 延伸思考：</strong>如果 K=3？取最近三个 D(2)+C(2)+E(3)：两票 class 2、一票 class 3 → 仍然是 class 2。
+</div>
+</div>
+
+<h3>5.4 KNN 的优缺点</h3>
+<div class="grid2">
+<div class="card card-green">
+<h4>✅ 优点</h4>
+<ul>
+  <li>简单直观，容易理解</li>
+  <li>容易实现</li>
+  <li><strong>没有训练阶段</strong>（no training phase）</li>
+</ul>
+</div>
+<div class="card card-red">
+<h4>❌ 缺点</h4>
+<ul>
+  <li><strong>预测慢</strong>：训练集大时要算很多距离</li>
+  <li>对 K 值和距离度量敏感</li>
+  <li><span class="key">维度灾难</span>：高维空间中"最近"可能没有意义</li>
+</ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LECTURE 21 -->
+<!-- ============================================================ -->
+<div class="lecture-divider orange">
+<h2>Lecture 21 &mdash; Logistic Regression (逻辑回归)</h2>
+<p>从"输出标签"到"输出概率" — 参数化的分类模型 — 重中之重 ⭐⭐⭐⭐⭐</p>
+</div>
+
+<div class="concept-map">
+<span>输入特征 x</span>
+<span class="arrow">→</span>
+<span>线性组合 z = θᵀx + b</span>
+<span class="arrow">→</span>
+<span>Sigmoid σ(z)</span>
+<span class="arrow">→</span>
+<span>概率 P(y=1|x)</span>
+<span class="arrow">→</span>
+<span>阈值 0.5 判断类别</span>
+</div>
+
+<h2>1. 为什么要用 Logistic Regression？</h2>
+
+<div class="card card-amber">
+<h3>KNN 的局限性</h3>
+<p>KNN 输出的是<strong>离散的类别标签</strong>（如 0 或 1），不输出概率。但很多时候我们需要知道"有多大概率属于这个类"。</p>
+<p>Logistic Regression 输出的是<strong>概率</strong> $P(y=1 | x)$：</p>
+<ul>
+  <li>若 $P$ 接近 1 → 预测为正类</li>
+  <li>若 $P$ 接近 0 → 预测为负类</li>
+</ul>
+</div>
+
+<h2>2. Sigmoid 函数详解（必考 ⭐⭐⭐⭐）</h2>
+
+<div class="card card-red">
+<h3>问题：如何把任意实数 z 映射到 (0,1)？</h3>
+<p><strong>答案：Sigmoid (Logistic) 函数</strong></p>
+<div class="formula">$$\sigma(z) = \frac{1}{1+e^{-z}}$$</div>
+
+<h4>关键性质：</h4>
+<ul>
+  <li>$\sigma(0) = \frac{1}{1+1} = \mathbf{0.5}$</li>
+  <li>当 $z \to +\infty$，$\sigma(z) \to \mathbf{1}$</li>
+  <li>当 $z \to -\infty$，$\sigma(z) \to \mathbf{0}$</li>
+  <li>单调递增、<strong>处处连续可导</strong></li>
+  <li>导数：$\sigma'(z) = \sigma(z)[1-\sigma(z)]$（在训练中会用到！）</li>
+</ul>
+
+<div class="note">
+<strong>💡 直觉：</strong>Sigmoid 像一个"挤压机"，把整个实数轴压缩到 (0, 1) 之间，方便解释为概率。
+</div>
+</div>
+
+<h2>3. 模型公式与分类流程 ⭐⭐⭐⭐</h2>
+
+<div class="card card-blue">
+<h3>三步走</h3>
+<ol class="steps">
+<li><strong>算得分 (score)</strong>：特征的线性组合<br>
+  <div class="formula" style="margin-top:6px;">z = θᵀx + b = θ₁x₁ + θ₂x₂ + ... + θ_d x_d + b</div></li>
+<li><strong>Sigmoid 转概率</strong>：<br>
+  <div class="formula" style="margin-top:6px;">P(y=1 | x) = σ(z) = \frac{1}{1+e^{-(θᵀx+b)}}</div></li>
+<li><strong>决策规则</strong>：若 $P > 0.5$ → 预测 y=1；若 $P \le 0.5$ → 预测 y=0</li>
+</ol>
+</div>
+
+<div class="card card-amber">
+<h3>完整模型公式（二分类）</h3>
+<div class="grid2">
+<div>
+<p><strong>正类概率：</strong></p>
+<div class="formula">$$P(y=1|x) = \frac{1}{1+e^{-(θᵀx+b)}}$$</div>
+</div>
+<div>
+<p><strong>负类概率：</strong></p>
+<div class="formula">$$P(y=0|x) = 1 - P(y=1|x) = \frac{e^{-(θᵀx+b)}}{1+e^{-(θᵀx+b)}}$$</div>
+</div>
+</div>
+
+<div class="warn-box">
+<strong>⚠️ 重要理解</strong>：Logistic Regression 的决策边界 $\{x: θᵀx+b=0\}$ 是<strong>线性</strong>的（超平面）。虽然名字里有 "Regression"，但其实做的是<strong>线性分类</strong>。
+</div>
+</div>
+
+<h2>4. MLE 训练：最大似然估计（难点 ⭐⭐⭐⭐⭐）</h2>
+
+<div class="card card-blue">
+<h3>问题：给定 m 个样本，怎么找到最好的 θ 和 b？</h3>
+<p><strong>答案：MLE（最大似然估计）</strong>——选择能让观察到这些样本的概率<strong>最大化</strong>的参数。</p>
+</div>
+
+<div class="card card-green">
+<h3>Log-Likelihood 目标函数</h3>
+<div class="formula">$$\max_{\theta,b} \; l(\theta,b) := \log\prod_{i=1}^{m} P(y^i | x^i, \theta, b) = \sum_{i=1}^{m} \log P(y^i | x^i, \theta, b)$$</div>
+
+<p><span class="key">好消息：</span>$l(\theta,b)$ 是 <strong>凹函数 (concave)</strong> → 存在<strong>唯一的全局最优解</strong>！不会陷入局部最优。</p>
+
+<div class="note">
+<strong>💡 凹性的证明思路（了解即可）：</strong>先证 $\log(1+e^{-z})$ 是凸函数 → 取负号变凹 → 凹函数之和还是凹。
+</div>
+
+<p><span class="key">坏消息：</span><strong>没有 closed-form solution（闭式解）</strong>！令 $\partial l/\partial\theta=0$ 无法解析求解 → 必须用数值方法（梯度下降）。</p>
+</div>
+
+<h2>5. 梯度下降 (Gradient Descent) ⭐⭐⭐⭐⭐</h2>
+
+<div class="card card-red">
+<h3>核心思想</h3>
+<p>从一个初始点出发，不断沿着<strong>梯度方向</strong>移动来找函数的极值。</p>
+
+<div class="grid2">
+<div>
+<h4>最小化（Minimization）</h4>
+<div class="formula">$$x^{(t+1)} = x^{(t)} - \alpha \cdot f'(x^{(t)})$$</div>
+<p>沿梯度<strong>反方向</strong>（下坡）</p>
+</div>
+<div>
+<h4>最大化（Maximization）</h4>
+<div class="formula">$$x^{(t+1)} = x^{(t)} + \alpha \cdot f'(x^{(t)})$$</div>
+<p>沿梯度<strong>正方向</strong>（上坡）</p>
+</div>
+</div>
+
+<p>其中 $\alpha$ = <strong>学习率 (learning rate / step size)</strong></p>
+</div>
+
+<h3>5.1 学习率 α 的影响（高频考点）</h3>
+
+<div class="grid2">
+<div class="card card-green">
+<h4>✅ 理想情况</h4>
+<p>初期 α 较大 → 快速接近最优；接近最优时 α 变小 → 精细调整。实践中常用<strong>衰减学习率</strong>：$\alpha^{(t)} = \alpha_0/\sqrt{t}$。</p>
+</div>
+<div class="card card-red">
+<h4>❌ α 太大且固定</h4>
+<p>可能<strong>永远不收敛</strong>！</p>
+</div>
+</div>
+
+<div class="card card-amber">
+<h3>振荡反例（经典考题）</h3>
+<p>$f(x) = x^2$，$\alpha = 1$，$x^{(0)} = -3$：</p>
+<div class="example-box">
+<p>$f'(x) = 2x$</p>
+<p>$x^{(0)} = -3 \to f'(-3) = -6 \to x^{(1)} = -3 - 1\cdot(-6) = 3$</p>
+<p>$x^{(1)} = 3 \to f'(3) = 6 \to x^{(2)} = 3 - 1\cdot6 = -3$</p>
+<p><span class="key">→ 永远在 3 和 -3 之间振荡，无法收敛！</span></p>
+</div>
+</div>
+
+<h3>5.2 Logistic Regression 的梯度上升更新</h3>
+
+<div class="card card-blue">
+<p>因为 MLE 是<strong>最大化问题</strong>，用 "+" 号（gradient ascent）：</p>
+<div class="formula" style="font-size:14px;">$$\theta^{t+1} \leftarrow \theta^t + \alpha^{(t)}\cdot\frac{1}{m}\sum_{i=1}^{m}\left[(y^i-1)x^i + \frac{e^{-\theta^Tx^i-b}\cdot x^i}{1+e^{-\theta^Tx^i-b}}\right]$$</div>
+<div class="formula" style="font-size:14px;">$$b^{t+1} \leftarrow b^t + \alpha^{(t)}\cdot\frac{1}{m}\sum_{i=1}^{m}\left[(y^i-1) + \frac{e^{-\theta^Tx^i-b}}{1+e^{-\theta^Tx^i-b}}\right]$$</div>
+<p><strong>算法</strong>：初始化 $(\theta^0, b^0)$，反复更新直到 $|\theta^{t+1}-\theta^t| \le \varepsilon$ 且 $|b^{t+1}-b^t| \le \varepsilon$。</p>
+</div>
+
+<h3>5.3 SGD (Stochastic Gradient Descent) ⭐⭐⭐</h3>
+
+<div class="card card-green">
+<h3>为什么需要 SGD？</h3>
+<p>如果训练数据 $m$ 非常大（如百万级），每次迭代都要算所有样本的梯度，<strong>太慢</strong>！</p>
+<p><strong>SGD 核心思想</strong>：每次迭代只用<strong>一个随机的小批量 (mini-batch)</strong> 来<strong>近似</strong>梯度方向。</p>
+<div class="formula" style="font-size:14px;">$$\theta^{t+1} \leftarrow \theta^t + \alpha^{(t)}\cdot\frac{1}{|B|}\sum_{i\in B}[\cdots]$$</div>
+<p>$B$ = 随机选的一批样本，$|B|$ = batch size。</p>
+
+<div class="note">
+<strong>💡 GD vs SGD 对比</strong>：
+<ul>
+  <li>GD：路径光滑但每步代价高（算全部数据）</li>
+  <li>SGD：路径抖动但每步快很多（算少量数据）</li>
+</ul>
+</div>
+</div>
+
+<h3>5.4 KNN vs Logistic Regression 对比表</h3>
+
+<table>
+<tr><th>方面</th><th>KNN</th><th>Logistic Regression</th></tr>
+<tr><td>方法类型</td><td>instance-based（基于实例）</td><td>model-based（基于模型）</td></tr>
+<tr><td>参数</td><td>无模型参数</td><td>学习 (θ, b)</td></tr>
+<tr><td>训练阶段</td><td>无</td><td>用 gradient descent 训练</td></tr>
+<tr><td>输出</td><td>直接输出类别标签</td><td>输出概率 P(y|x) 再比阈值</td></tr>
+<tr><td>预测速度</td><td>慢（需算所有距离）</td><td>快（一次矩阵运算）</td></tr>
+<tr><td>决策边界</td><td>非线性，由 K 控制</td><td><strong>线性</strong>（超平面）</td></tr>
+<tr><td>存储</td><td>必须存全部训练数据</td><td>只需存 (θ, b)</td></tr>
+<tr><td>高维表现</td><td>差（维度灾难）</td><td>较好</td></tr>
+</table>
+
+<h3>5.5 Gradient Descent 经典练习题</h3>
+
+<div class="card card-pink">
+<p><strong>题目</strong>：用梯度下降法最大化 $f(x) = -\frac{1}{4}(x-1)^2 + 2$。学习率 α 为常数，初始 $x^{(0)} = 3$。</p>
+<p>(a) 以下情况 $x^{(t)}$ 是否收敛到最优解？i. α=0  ii. α=4  iii. α=1</p>
+<p>(b) α 在什么范围内能收敛？</p>
+
+<div class="example-box">
+<p><strong>分析：</strong>最优解 $x^* = 1$（最大值点）。$f'(x) = -\frac{1}{2}(x-1)$</p>
+<p>最大化更新：$x^{(t+1)} = x^{(t)} + \alpha f'(x^{(t)}) = x^{(t)} - \frac{\alpha}{2}(x^{(t)}-1)$</p>
+<p>令 $u^{(t)} = x^{(t)} - 1$（偏移量），则：<span class="key">$u^{(t+1)} = (1-\frac{\alpha}{2})u^{(t)}$</span></p>
+
+<p><strong>收敛条件：</strong>$|1-\frac{\alpha}{2}| < 1$ → <span class="key">$0 < \alpha < 4$</span></p>
+
+<p><strong>答案：</strong></p>
+<ul>
+  <li>i. α=0：永不更新，停在 x=3 <span class="key">→ 不收敛</span></li>
+  <li>ii. α=4：u 在 2 和 -2 间振荡 <span class="key">→ 不收敛</span></li>
+  <li>iii. α=1：$u^{(t)} = 2\cdot(0.5)^t \to 0$ <span class="key">→ 收敛 ✓</span></li>
+  <li>(b) <strong>$0 < \alpha < 4$</strong> 时收敛</li>
+</ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LECTURE 22 -->
+<!-- ============================================================ -->
+<div class="lecture-divider teal">
+<h2>Lecture 22 &mdash; K-Means Clustering</h2>
+<p>无监督学习 · 聚类 · 距离度量 · K-Means 算法</p>
+</div>
+
+<h2>1. 无监督学习 (Unsupervised Learning)</h2>
+
+<div class="card card-accent">
+<p>在监督学习中每个样本都有标签 $y$；而在无监督学习中，<strong>没有预定义的输出标签</strong>，模型自己发现数据中的<strong>隐藏模式和结构</strong>。</p>
+<p>典型应用：客户分群、主题发现、去重、异常检测</p>
+</div>
+
+<div class="grid2">
+<div class="card card-green">
+<h4>监督学习</h4>
+<p>每个点有标签 (label)</p>
+<p>例：标记猫和狗的照片</p>
+</div>
+<div class="card card-red">
+<h4>无监督学习</h4>
+<p>没有标签，发现结构</p>
+<p>例：自动把人分成不同的群组</p>
+</div>
+</div>
+
+<h2>2. 聚类 (Clustering)</h2>
+
+<div class="card card-amber">
+<p><strong>定义</strong>：把相似的数据点分到同一组（cluster），组内相似、组间不同。</p>
+<p><strong>两种度量</strong>：相似度函数 $s(x,y)$（越大越相似）、距离函数 $d(x,y)$（越大越不同）</p>
+</div>
+
+<div class="warn-box">
+<strong>⚠️ 重要概念："Clustering is subjective"</strong>（聚类是主观的）——不同的距离定义、不同的 k 值，可能得到完全不同的分组。没有唯一正确的聚类结果。
+</div>
+
+<h2>3. 距离度量 (Distance Measures) ⭐⭐⭐</h2>
+
+<div class="card card-blue">
+<h3>距离的性质（三个必要条件）</h3>
+<ol>
+  <li><strong>对称性 (Symmetry)</strong>：$d(x,y) = d(y,x)$</li>
+  <li><strong>正定性 (Positive Separability)</strong>：$d(x,y) \ge 0$，且 $d(x,y)=0 \iff x=y$</li>
+  <li><strong>三角不等式 (Triangle Inequality)</strong>：$d(x,z) \le d(x,y) + d(y,z)$</li>
+</ol>
+</div>
+
+<table>
+<tr><th>距离</th><th>公式</th><th>直觉</th></tr>
+<tr><td>Euclidean (L2)</td><td>$\sqrt{\sum (x_i-y_i)^2}$</td><td>直线距离，最常用</td></tr>
+<tr><td>Manhattan (L1)</td><td>$\sum |x_i-y_i|$</td><td>沿坐标轴走的距离</td></tr>
+<tr><td>Minkowski (Lp)</td><td>$(\sum |x_i-y_i|^p)^{1/p}$</td><td>一般化，p=1→L1，p=2→L2</td></tr>
+<tr><td>L∞ (无穷范数)</td><td>$\max |x_i-y_i|$</td><td>各维度差值的最大值</td></tr>
+</table>
+
+<h2>4. K-Means 目标函数</h2>
+
+<div class="card card-red">
+<h3>K-Means 要解决的问题</h3>
+<p>给定 $m$ 个数据点 $\{x^1, x^2, \dots, x^m\}$，找到：</p>
+<ul>
+  <li><strong>$k$ 个聚类中心</strong> $\{c^1, c^2, \dots, c^k\}$</li>
+  <li><strong>每个点的归属</strong> $\pi(i) \in \{1, \dots, k\}$</li>
+</ul>
+<p>使总距离最小：</p>
+<div class="formula">$$\min_{c,\pi} \frac{1}{m} \sum_{i=1}^{m} \|x^i - c^{\pi(i)}\|^2$$</div>
+<p><strong>直觉</strong>：每个数据点尽量靠近自己所属簇的中心。</p>
+</div>
+
+<h2>5. K-Means 算法流程（必背 ⭐⭐⭐⭐）</h2>
+
+<div class="card card-green">
+<ol class="steps">
+<li><strong>初始化 (Initialize)</strong>：随机选择 $k$ 个点作为初始聚类中心 $\{c^1, \dots, c^k\}$</li>
+<li><strong>分配 (Cluster Assignment)</strong>：对每个数据点 $x^i$，分配到距离最近的中心<br>
+  $\pi(i) = \arg\min_j \|x^i - c^j\|^2$</li>
+<li><strong>更新中心 (Center Adjustment)</strong>：每个聚类中心移到该簇所有点的均值<br>
+  $c^j = \frac{1}{|\{i:\pi(i)=j\}|} \sum_{i:\pi(i)=j} x^i$</li>
+<li><strong>重复</strong>：如果任何中心发生变化，回到第 2 步。否则<strong>收敛</strong>。</li>
+</ol>
+</div>
+
+<h3>5.1 初始化问题（重要 ⭐⭐⭐）</h3>
+
+<div class="card card-red">
+<p><span class="key">不同的初始化会导致不同的聚类结果！</span>K-Means 只能保证收敛到<strong>局部最优 (local optimum)</strong>，而非<strong>全局最优 (global optimum)</strong>。</p>
+<p>实际做法：<strong>多次随机初始化，选择目标函数值最小的那次结果</strong>。</p>
+</div>
+
+<h3>5.2 K-Means 练习题</h3>
+
+<div class="card card-pink">
+<p>使用 K-Means 算法和 L2 范数距离，将 8 个数据点聚成 K=3 簇。</p>
+<p><strong>数据点：</strong> x¹=(2,8) x²=(2,5) x³=(1,2) x⁴=(5,8) x⁵=(7,3) x⁶=(6,4) x⁷=(8,4) x⁸=(4,7)</p>
+<p><strong>初始中心：</strong> c¹=x¹=(2,8), c²=x³=(1,2), c³=x⁵=(7,3)</p>
+
+<div class="example-box">
+<p><strong>Step 1：</strong>计算距离（略去详细计算）</p>
+<p><strong>Step 2：</strong>分配结果</p>
+<ul>
+  <li>簇1（c¹）：x¹, x², x⁴, x⁸</li>
+  <li>簇2（c²）：x³</li>
+  <li>簇3（c³）：x⁵, x⁶, x⁷</li>
+</ul>
+<p><strong>Step 3：</strong>更新中心</p>
+<ul>
+  <li>c¹ 新 = ((2+2+5+4)/4, (8+5+8+7)/4) = (13/4, 7)</li>
+  <li>c² 新 = (1, 2)（不变）</li>
+  <li>c³ 新 = ((7+6+8)/3, (3+4+4)/3) = (7, 11/3)</li>
+</ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LECTURE 23 -->
+<!-- ============================================================ -->
+<div class="lecture-divider orange">
+<h2>Lecture 23 &mdash; Model Selection (模型选择)</h2>
+<p>过拟合与欠拟合 · 验证集 · K-fold 交叉验证</p>
+</div>
+
+<h2>1. Overfitting &amp; Underfitting（核心概念 ⭐⭐⭐⭐）</h2>
+
+<div class="grid2">
+<div class="card card-red">
+<h3>过拟合 (Overfitting)</h3>
+<p>模型学到了训练数据中的<strong>特有噪声和模式</strong>，在训练集上准确率极高，但在测试集上<strong>预测效果很差</strong>。</p>
+<p>KNN 中 K=1 → 过拟合（决策边界过于复杂）</p>
+</div>
+<div class="card card-blue">
+<h3>欠拟合 (Underfitting)</h3>
+<p>模型<strong>过于简单</strong>，无法捕捉训练数据和测试数据中的关键模式。</p>
+<p>KNN 中 K=101 → 欠拟合（几乎所有点都被投票为多数类）</p>
+</div>
+</div>
+
+<h2>2. 模型空间 (Model Space)</h2>
+
+<div class="card card-amber">
+<p>不同复杂度的模型对应不同大小的<strong>假设空间 (Hypothesis Space)</strong>：</p>
+<ul>
+  <li>多项式 degree=1 → 空间 $H_1$（所有一次多项式）</li>
+  <li>多项式 degree=2 → 空间 $H_2$（所有二次多项式）</li>
+</ul>
+<p>关系：<span class="key">$H_1 \subset H_2 \subset H_3 \subset \cdots$</span>（嵌套关系），模型越复杂，空间越大。</p>
+</div>
+
+<h2>3. 模型选择的直觉 ⭐⭐⭐⭐</h2>
+
+<div class="card card-green">
+<p>目标是找到一个模型族，使得<strong>测试误差 (Test Error) 最小</strong>。</p>
+<p>关键规律：</p>
+<ul>
+  <li><strong>Training Error</strong>（训练误差）随模型复杂度增加而<strong>单调递减</strong></li>
+  <li><strong>Test Error</strong>（测试误差）呈 <span class="key">U 形曲线</span>——先降后升</li>
+  <li>最佳模型就在 U 形曲线的<strong>最低点</strong>！</li>
+</ul>
+</div>
+
+<h2>4. 验证集方法 (Validation Set）</h2>
+
+<div class="card card-blue">
+<h3>最简单的模型选择方法</h3>
+<ol class="steps">
+<li>把数据分成<strong>训练集</strong>和<strong>测试集</strong></li>
+<li>对每个候选模型 $m$：用训练数据训练模型</li>
+<li>在测试数据上计算预测误差 $Err_m$</li>
+<li>选择测试误差最小的模型</li>
+</ol>
+
+<div class="warn-box">
+<strong>⚠️ 问题：</strong>选出的模型高度依赖于数据的划分方式！不同的训练/测试拆分可能选出不同的最优模型。
+</div>
+</div>
+
+<h2>5. K-Fold Cross-Validation（K 折交叉验证 ⭐⭐⭐⭐）</h2>
+
+<div class="card card-green">
+<h3>核心方法</h3>
+<p>把数据分成 <strong>K 等份 (folds)</strong>，每次用其中 1 份做测试集，剩下 K-1 份做训练集，重复 K 次。</p>
+<p>最终误差 = K 次误差的<strong>平均值</strong>：</p>
+<div class="formula">$$E = \frac{1}{K}\sum_{i=1}^{K}E_i$$</div>
+</div>
+
+<div class="grid2">
+<div class="card card-blue">
+<h4>K 值如何选？</h4>
+<ul>
+  <li>常用 <strong>K=5 或 K=10</strong></li>
+  <li>K 越大，计算代价越高</li>
+  <li>K = n（样本数）→ <strong>Leave-One-Out (LOO)</strong></li>
+</ul>
+</div>
+<div class="card card-green">
+<h4>为什么比简单验证集好？</h4>
+<ul>
+  <li>每个数据点都既当过训练又当过测试</li>
+  <li>结果不依赖某次特定的数据划分</li>
+  <li>误差估计更加<strong>稳定可靠</strong></li>
+</ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LECTURE 24 -->
+<!-- ============================================================ -->
+<div class="lecture-divider">
+<h2>Lecture 24 &mdash; Large Language Models (LLM)</h2>
+<p>从条件概率到推理 — 一条完整的 LLM 构建路线</p>
+</div>
+
+<div class="concept-map">
+<span>Token</span>
+<span class="arrow">→</span>
+<span>条件概率</span>
+<span class="arrow">→</span>
+<span>Transformer</span>
+<span class="arrow">→</span>
+<span>预训练</span>
+<span class="arrow">→</span>
+<span>后训练</span>
+<span class="arrow">→</span>
+<span>推理模型</span>
+</div>
+
+<h2>1. Token 与语言建模</h2>
+
+<div class="card card-accent">
+<p><strong>Token</strong>：LLM 不直接读整个句子，而是将文本切分为小片段。一个 token 可以是完整单词、词的一部分、或标点符号。</p>
+<p><strong>核心思想</strong>：<span class="key">语言模型的任务就是预测下一个 token。</span></p>
+</div>
+
+<h2>2. 条件概率与 Next-Token Prediction</h2>
+
+<div class="card card-blue">
+<h3>条件概率视角</h3>
+<div class="formula">$$P(x_t \mid x_1, x_2, \dots, x_{t-1})$$</div>
+<p>完整句子的概率分解（链式法则）：</p>
+<div class="formula">$$P(x_1, \dots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_1, \dots, x_{t-1})$$</div>
+</div>
+
+<div class="card card-green">
+<h3>自回归生成</h3>
+<div class="pipeline">
+<div class="pstep">Context</div>
+<div class="parrow">→</div>
+<div class="pstep">预测下一个 token</div>
+<div class="parrow">→</div>
+<div class="pstep">追加到上下文</div>
+<div class="parrow">→</div>
+<div class="pend">循环直到 &lt;EOS&gt;</div>
+</div>
+</div>
+
+<h2>3. Transformer 架构 ⭐⭐⭐</h2>
+
+<div class="card card-amber">
+<h3>Transformer = "条件概率机器"</h3>
+<p>输入：一串 token 序列；输出：下一个 token 的概率分布。</p>
+
+<h4>四个步骤：</h4>
+<ol>
+  <li><strong>Embeddings（词嵌入）</strong>：每个 token 变成一个向量。语义相近的 token 在向量空间中距离较近。</li>
+  <li><strong>Position Information（位置信息）</strong>：位置编码告诉模型每个 token 在序列中的位置。"dog bites man" 和 "man bites dog" 不一样。</li>
+  <li><strong>Masked Self-Attention（掩码自注意力）</strong>：每个 token 可以查看它之前的 token。Masked = 看不到未来的 token，这正好符合 next-token prediction。</li>
+  <li><strong>最后一层：特征 → 概率</strong>：本质上是多类分类器 (multi-class classifier)，从词汇表中选择下一个 token。</li>
+</ol>
+</div>
+
+<div class="card card-pink">
+<h3>Logistic Regression 视角理解 Transformer</h3>
+<div class="grid2">
+<div class="card" style="margin:0;text-align:center;">
+<p><strong>Transformer 主体</strong></p>
+<p><span class="key">= Feature Extractor</span></p>
+<p>构建强大的 hidden state</p>
+</div>
+<div class="card" style="margin:0;text-align:center;">
+<p><strong>最后一层</strong></p>
+<p><span class="key">= Classifier</span></p>
+<p>（多类 Logistic Regression）</p>
+</div>
+</div>
+</div>
+
+<h2>4. 自监督训练 (Self-Supervised Learning)</h2>
+
+<div class="card card-blue">
+<p>训练文本自己提供标签——前面的 token 是输入，下一个 token 是目标。</p>
+<p>损失函数：<strong>交叉熵 (cross-entropy loss)</strong></p>
+<div class="formula">$$\mathcal{L} = -\sum_{t=1}^{T} \log P(x_t \mid x_1, \dots, x_{t-1})$$</div>
+<p>这最大化模型对训练数据中每一步"正确下一个 token"的预测概率。</p>
+
+<h4>推理时的采样策略：</h4>
+<ul>
+  <li><strong>Greedy Decoding</strong>：每次取概率最高的 token（简单但多样性差）</li>
+  <li><strong>Beam Search</strong>：同时保留多个高分部分序列（质量更好）</li>
+</ul>
+</div>
+
+<h2>5. 预训练 (Pre-training)</h2>
+
+<div class="card card-accent">
+<p>在<strong>超大规模语料</strong>上从零训练一个 base LLM，目标仍是 next-token prediction。变化的是规模：更多数据、更大模型、更多算力。</p>
+</div>
+
+<h3>以 Llama 3 为例的数据管线</h3>
+<ol>
+  <li><strong>Safety Filtering</strong>：移除有害内容</li>
+  <li><strong>Text Extraction &amp; Cleaning</strong>：从 HTML 提取纯文本</li>
+  <li><strong>De-duplication</strong>：精确 + 模糊去重</li>
+  <li><strong>Quality Filtering</strong>：规则 + 模型打分过滤低质量文本</li>
+</ol>
+
+<div class="card card-amber">
+<h3>Llama 3 数据配比</h3>
+<div class="kcards">
+<div class="kcard"><div class="kv">50%</div><div class="kd">General Knowledge</div></div>
+<div class="kcard"><div class="kv">25%</div><div class="kd">Math &amp; Reasoning</div></div>
+<div class="kcard"><div class="kv">17%</div><div class="kd">Code</div></div>
+<div class="kcard"><div class="kv">8%</div><div class="kd">Multilingual</div></div>
+</div>
+<p>总训练数据：15T tokens，词表大小 128K</p>
+</div>
+
+<h2>6. Scaling Law（规模定律）</h2>
+
+<div class="card card-green">
+<p>在<strong>固定算力</strong>下，模型大小和训练数据量之间存在最优平衡。</p>
+<p>核心思想：用 test error 评估，在给定 FLOPS 预算下找最优配置。</p>
+<p>训练配方：AdamW 优化器、学习率逐渐衰减、Batch Size 逐渐增大、Context Length 从 4096 逐步增到 128K。</p>
+</div>
+
+<h2>7. 后训练 (Post-training)</h2>
+
+<div class="card card-red">
+<h3>为什么仅靠预训练不够？</h3>
+<p>预训练模型<strong>知识丰富但不听话</strong>：可能不遵循指令、回答风格奇怪、不符合人类偏好。</p>
+</div>
+
+<div class="card card-accent">
+<h3>7a. SFT (Supervised Fine-Tuning)</h3>
+<p>用高质量的 (prompt, response) 数据对模型进行微调，让模型学会遵循指令、按期望格式回答。</p>
+</div>
+
+<div class="card card-blue">
+<h3>7b. DPO (Direct Preference Optimization)</h3>
+<p>使用三元组数据：(prompt, preferred answer, less preferred answer)</p>
+<p>DPO 直接<strong>增大 preferred answer 的相对概率</strong>，减小 less preferred 的概率，避免了复杂的 RL 管线。</p>
+</div>
+
+<h2>8. 推理模型 (Reasoning Model)</h2>
+
+<div class="card card-pink">
+<h3>两种常见路径</h3>
+<div class="grid2">
+<div class="card" style="margin:0;">
+<p><strong>SFT on 推理 traces</strong></p>
+<p>用包含思考步骤的数据做 SFT</p>
+</div>
+<div class="card" style="margin:0;">
+<p><strong>RL + Verifiable Rewards</strong></p>
+<p>用可验证的奖励信号做强化学习 (GRPO)</p>
+</div>
+</div>
+</div>
+
+<div class="card card-green">
+<h3>LLM 完整管线总结</h3>
+<div class="pipeline">
+<div class="pstep">Text Data</div>
+<div class="parrow">→</div>
+<div class="pstep">Pre-training</div>
+<div class="parrow">→</div>
+<div class="pstep">SFT</div>
+<div class="parrow">→</div>
+<div class="pstep">Preference</div>
+<div class="parrow">→</div>
+<div class="pstep">Reasoning</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- LECTURE 25 -->
+<!-- ============================================================ -->
+<div class="lecture-divider teal">
+<h2>Lecture 25 &mdash; 期末总复习</h2>
+<p>全课程核心知识整理 — 备考准备</p>
+</div>
+
+<h2>1. 五大主线</h2>
+
+<div class="grid3">
+<div class="card card-blue" style="margin:0;text-align:center;"><p><strong>Probability</strong><br>概率论</p></div>
+<div class="card card-green" style="margin:0;text-align:center;"><p><strong>Statistics</strong><br>统计学</p></div>
+<div class="card card-red" style="margin:0;text-align:center;"><p><strong>Optimization</strong><br>优化</p></div>
+<div class="card card-pink" style="margin:0;text-align:center;"><p><strong>ML</strong><br>机器学习</p></div>
+<div class="card card-amber" style="margin:0;text-align:center;"><p><strong>Data→Model→Decision</strong><br>数据科学思维</p></div>
+</div>
+
+<h2>2. 概率论速查</h2>
+
+<div class="card card-blue">
+<h3>重要分布</h3>
+<table>
+<tr><th>分布</th><th>公式</th><th>均值</th><th>方差</th></tr>
+<tr><td>Bernoulli</td><td>$P(X=1)=p$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+<tr><td>Binomial $B(n,p)$</td><td>$\binom{n}{k}p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+<tr><td>Poisson $Poi(\lambda)$</td><td>$\frac{\lambda^k e^{-\lambda}}{k!}$</td><td>$\lambda$</td><td>$\lambda$</td></tr>
+<tr><td>Uniform $U(a,b)$</td><td>$\frac{1}{b-a}$</td><td>$\frac{a+b}{2}$</td><td>$\frac{(b-a)^2}{12}$</td></tr>
+<tr><td>Exponential $Exp(\lambda)$</td><td>$\lambda e^{-\lambda x}$</td><td>$1/\lambda$</td><td>$1/\lambda^2$</td></tr>
+<tr><td>Normal $N(\mu,\sigma^2)$</td><td>$\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+</table>
+</div>
+
+<div class="card card-accent">
+<h3>条件概率与 Bayes 公式</h3>
+<div class="formula">$$P(A|B) = \frac{P(A\cap B)}{P(B)}$$</div>
+<div class="formula">$$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$$</div>
+</div>
+
+<h2>3. 统计学速查</h2>
+
+<div class="card card-red">
+<h3>MLE (最大似然估计)</h3>
+<div class="formula">$$\hat{\theta}_{MLE} = \arg\max_\theta \prod_{i=1}^{n} f(x_i;\theta) = \arg\max_\theta \sum_{i=1}^{n} \log f(x_i;\theta)$$</div>
+</div>
+
+<div class="card card-blue">
+<h3>线性回归</h3>
+<p>模型：$y = \beta_0 + \beta_1 x + \varepsilon$，$\varepsilon \sim N(0,\sigma^2)$</p>
+<p>MLE 估计等价于最小二乘法 (least squares)。</p>
+</div>
+
+<h2>4. 优化速查</h2>
+
+<div class="card card-green">
+<h3>凸集与凸函数</h3>
+<p><strong>凸集</strong>：集合内任意两点的线段都在集合内。</p>
+<p><strong>凸函数</strong>：$f(\lambda x + (1-\lambda)y) \le \lambda f(x) + (1-\lambda)f(y)$</p>
+<p><strong>核心定理</strong>：凸优化问题的任何局部最小值也是全局最小值。</p>
+</div>
+
+<div class="card card-red">
+<h3>梯度下降</h3>
+<div class="formula">$$x_{t+1} = x_t - \eta \nabla f(x_t)$$</div>
+<p>$\eta$ = 学习率。太大 → 振荡；太小 → 太慢。</p>
+</div>
+
+<div class="card card-amber">
+<h3>Newsvendor (报童问题) 的临界比率公式</h3>
+<p>最优订货量：$F(q^*) = \frac{c_u}{c_u + c_o}$，其中 $F$ 是需求 CDF，$c_u$ = underage cost，$c_o$ = overage cost。</p>
+</div>
+
+<h2>5. 机器学习速查</h2>
+
+<table>
+<tr><th>算法</th><th>类型</th><th>核心</th><th>关键参数</th></tr>
+<tr><td>KNN</td><td>监督·分类</td><td>K 近邻投票</td><td>K（超参数）+ 距离度量</td></tr>
+<tr><td>Logistic Regression</td><td>监督·分类</td><td>$P(y=1|x)=\sigma(\theta^Tx+b)$</td><td>θ, b（梯度下降训练）</td></tr>
+<tr><td>K-Means</td><td>无监督·聚类</td><td>分配-更新循环</td><td>K（簇数量）+ 初始化</td></tr>
+<tr><td>Model Selection</td><td>模型选择</td><td>K-fold CV 选最小测试误差</td><td>K（折数，常用10）</td></tr>
+</table>
+
+<h2>6. 备考策略 🎯</h2>
+
+<div class="card card-red">
+<h3>考试信息</h3>
+<table>
+<tr><th>项目</th><th>详情</th></tr>
+<tr><td>Final Exam</td><td><strong>May 10, 2026, 13:30-15:30</strong></td></tr>
+<tr><td>可携带</td><td>一个计算器，一本非电子词典</td></tr>
+<tr><td>不可携带</td><td>Cheat sheet</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<h3>复习建议</h3>
+<ol>
+  <li>认真研究往年真题及答案，熟悉题型和重点</li>
+  <li>重点掌握每个模块的<strong>核心公式</strong>和<strong>推导逻辑</strong></li>
+  <li>理解概念之间的联系（如 MLE ↔ Loss Function ↔ Gradient Descent）</li>
+  <li>做到能<strong>独立手算</strong>小型例题（如 KNN 距离计算、K-Means 迭代）</li>
+</ol>
+</div>
+
+<!-- ============================================================ -->
+<!-- 核心对比速查 -->
+<!-- ============================================================ -->
+<h2>📋 期末核心对比速查</h2>
+
+<div class="card card-pink">
+<h3>易混淆概念对比</h3>
+<table>
+<tr><th>概念对</th><th>区别</th></tr>
+<tr><td>监督 vs 无监督学习</td><td>有无标签 (labeled/unlabeled data)</td></tr>
+<tr><td>过拟合 vs 欠拟合</td><td>训练好测试差 vs 训练测试都差</td></tr>
+<tr><td>KNN vs Logistic Regression</td><td>无训练阶段 vs 有训练；基于实例 vs 基于模型</td></tr>
+<tr><td>GD vs SGD</td><td>全批量 vs 随机小批量；精确但贵 vs 近似但快</td></tr>
+<tr><td>Feature Extractor vs Classifier</td><td>Transformer 主体 vs 最后一层 (多类 Logistic Regression)</td></tr>
+<tr><td>Pre-training vs Post-training</td><td>大规模语料建能力 vs 小规模数据调行为</td></tr>
+</table>
+</div>
+
+</div>
+</body>
+</html>

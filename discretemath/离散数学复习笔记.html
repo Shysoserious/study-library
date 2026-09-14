@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>离散数学 · 复习笔记（Discrete Mathematics）</title>
+<style>
+  :root {
+    color-scheme: light;
+    --accent: #2563eb;
+    --accent-dark: #1e40af;
+    --bg: #f6f8fb;
+    --sidebar-bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card-bg: #ffffff;
+    --code-bg: #eef2ff; --code-tx: #4338ca;
+    --th-bg: #eef2ff; --th-tx: #3730a3;
+    --td-even: #fafafa;
+    --en: #0369a1;
+    --hover-bg: #eef2ff;
+    --def-bg: #eff6ff;  --def-bd: #3b82f6;  --def-tx: #1d4ed8;
+    --thm-bg: #f5f3ff;  --thm-bd: #8b5cf6;  --thm-tx: #6d28d9;
+    --ex-bg: #f0fdf4;   --ex-bd: #22c55e;   --ex-tx: #15803d;
+    --warn-bg: #fffbeb; --warn-bd: #f59e0b; --warn-tx: #b45309;
+    --vocab-bg: #fdf2f8;--vocab-bd: #ec4899; --vocab-tx: #be185d;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --accent: #3b82f6;
+    --accent-dark: #60a5fa;
+    --bg: #0f172a;
+    --sidebar-bg: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --card-bg: #1e293b;
+    --code-bg: #1e293b; --code-tx: #a5b4fc;
+    --th-bg: #1e293b; --th-tx: #93c5fd;
+    --td-even: #1e293b;
+    --en: #7dd3fc;
+    --hover-bg: #334155;
+    --def-bg: #1e3a5f;  --def-bd: #3b82f6;  --def-tx: #93c5fd;
+    --thm-bg: #2e2a5e;  --thm-bd: #8b5cf6;  --thm-tx: #c4b5fd;
+    --ex-bg: #14372a;   --ex-bd: #22c55e;   --ex-tx: #86efac;
+    --warn-bg: #3d2e12; --warn-bd: #f59e0b; --warn-tx: #fcd34d;
+    --vocab-bg: #4a1f3d;--vocab-bd: #ec4899; --vocab-tx: #f9a8d4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+  /* ===== 侧边导航栏 ===== */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 300px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 24px 16px 40px;
+    z-index: 10;
+  }
+  .sidebar .logo {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .sidebar .sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .sidebar nav a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 2px;
+    transition: background .12s, color .12s;
+  }
+  .sidebar nav a:hover { background: var(--hover-bg); color: var(--accent-dark); }
+  .sidebar nav a.lv1 {
+    font-weight: 600;
+    margin-top: 12px;
+    color: var(--accent-dark);
+    font-size: 14.5px;
+  }
+  .sidebar nav a.lv2 { padding-left: 24px; }
+  .sidebar nav a.lv3 { padding-left: 38px; font-size: 13px; color: var(--muted); }
+  .sidebar .divider { height: 1px; background: var(--border); margin: 10px 0; }
+  .theme-toggle {
+    display: block;
+    width: 100%;
+    margin: 14px 0 4px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s;
+  }
+  .theme-toggle:hover { background: var(--hover-bg); }
+
+  /* ===== 主内容 ===== */
+  .content {
+    margin-left: 300px;
+    padding: 32px 40px 120px;
+  }
+  .content-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  h1.title {
+    font-size: 32px;
+    margin: 0 0 4px;
+    color: var(--accent-dark);
+    letter-spacing: -0.5px;
+  }
+  p.course-meta { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
+
+  h2 { font-size: 26px; margin: 48px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); color: var(--accent-dark); scroll-margin-top: 20px; }
+  h3 { font-size: 20px; margin: 32px 0 10px; color: var(--text); scroll-margin-top: 20px; }
+  h4 { font-size: 17px; margin: 24px 0 8px; color: var(--text); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--code-tx);
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+  }
+  table.truth {
+    border-collapse: collapse;
+    margin: 12px auto;
+    font-size: 16px;
+  }
+  table.truth th, table.truth td {
+    border: 1px solid var(--border);
+    padding: 6px 16px;
+    text-align: center;
+  }
+  table.truth th { background: var(--th-bg); color: var(--th-tx); font-weight: 600; }
+  table.truth tr:nth-child(even) td { background: var(--td-even); }
+
+  /* 提示框 */
+  .box { border-left: 4px solid; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .box .box-title { font-weight: 700; display: block; margin-bottom: 4px; font-size: 15px; }
+  .def  { background: var(--def-bg);  border-color: var(--def-bd); }
+  .def .box-title  { color: var(--def-tx); }
+  .thm  { background: var(--thm-bg);  border-color: var(--thm-bd); }
+  .thm .box-title  { color: var(--thm-tx); }
+  .ex   { background: var(--ex-bg);   border-color: var(--ex-bd); }
+  .ex .box-title   { color: var(--ex-tx); }
+  .warn { background: var(--warn-bg); border-color: var(--warn-bd); }
+  .warn .box-title { color: var(--warn-tx); }
+
+  /* 英语词汇 */
+  .vocab {
+    background: var(--vocab-bg);
+    border: 1px solid var(--vocab-bd);
+    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 18px 0;
+  }
+  .vocab .vocab-title { font-weight: 700; color: var(--vocab-tx); font-size: 15px; display: block; margin-bottom: 6px; }
+  .vocab ul { margin: 0; padding-left: 20px; }
+  .vocab li { margin: 3px 0; font-size: 15.5px; }
+  .vocab b { color: var(--vocab-tx); }
+
+  /* 行内英文术语 */
+  .en {
+    color: var(--en);
+    font-weight: 500;
+  }
+  .zh { color: var(--muted); font-size: 0.92em; }
+
+  /* 公式块 */
+  .formula {
+    text-align: center;
+    margin: 16px 0;
+    overflow-x: auto;
+    padding: 4px 0;
+  }
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .toc a { color: var(--accent-dark); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .toc-title { font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .toc ol { margin: 6px 0; padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+
+  @media (max-width: 860px) {
+    .sidebar { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { margin-left: 0; padding: 20px; }
+    .content-inner { max-width: none; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<script>
+(function () {
+  var KEY = 'dm-theme';
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var theme = saved || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  window.__updateThemeBtn = function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.textContent = (document.documentElement.getAttribute('data-theme') === 'dark')
+      ? '切换到亮色模式' : '切换到夜间模式';
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    window.__updateThemeBtn();
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        window.__updateThemeBtn();
+      });
+    }
+  });
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<!-- ============ 侧边导航栏 ============ -->
+<aside class="sidebar">
+  <div class="logo">离散数学<br>Discrete Mathematics</div>
+  <div class="sub">CUHK-Shenzhen · 2026 秋季<br>复习笔记（中英对照）</div>
+  <button id="themeToggle" class="theme-toggle" type="button">切换到夜间模式</button>
+  <nav>
+    <a href="#overview">📖 课程概览</a>
+    <div class="divider"></div>
+
+    <a class="lv1" href="#ln1">LN1 · 命题逻辑 Propositional Logic</a>
+    <a class="lv2" href="#ln1-1">1.1 数学证明</a>
+    <a class="lv2" href="#ln1-2">1.2 命题与逻辑运算符</a>
+    <a class="lv2" href="#ln1-3">1.3 用基本运算符构造任意运算符</a>
+    <a class="lv2" href="#ln1-4">1.4 逻辑等价与德摩根律</a>
+    <a class="lv2" href="#ln1-5">1.5 条件语句（if / iff）</a>
+    <a class="lv2" href="#ln1-6">1.6 论证（Arguments）</a>
+
+    <a class="lv1" href="#ln2-1">LN2.1 · 集合 Sets</a>
+    <a class="lv2" href="#ln2-1a">2.1 基本定义</a>
+    <a class="lv2" href="#ln2-1b">2.2 集合运算</a>
+    <a class="lv2" href="#ln2-1c">2.3 集合恒等式</a>
+    <a class="lv2" href="#ln2-1d">2.4 罗素悖论与停机问题</a>
+
+    <a class="lv1" href="#ln2-2">LN2.2 · 一阶逻辑 First-order Logic</a>
+    <a class="lv2" href="#ln2-2a">2.1 量词 Quantifiers</a>
+    <a class="lv2" href="#ln2-2b">2.2 否定 Negation</a>
+    <a class="lv2" href="#ln2-2c">2.3 多重量词 Multiple Quantifiers</a>
+    <a class="lv2" href="#ln2-2d">2.4 量词论证 Arguments</a>
+  </nav>
+</aside>
+
+<!-- ============ 主内容 ============ -->
+<main class="content">
+<div class="content-inner">
+
+<h1 class="title">离散数学 · 复习笔记</h1>
+<p class="course-meta">Discrete Mathematics · Lecture Notes 整理 · 中英对照 · 公式使用 LaTeX（MathJax 渲染）</p>
+
+<!-- ===== 课程概览 ===== -->
+<section id="overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#ln1">LN1 命题逻辑 Propositional Logic</a> —— 逻辑运算符、逻辑等价、德摩根律、条件语句、论证</li>
+      <li><a href="#ln2-1">LN2.1 集合 Sets</a> —— 集合定义、集合运算、集合恒等式、罗素悖论</li>
+      <li><a href="#ln2-2">LN2.2 一阶逻辑 First-order Logic</a> —— 量词、否定、多重量词、量词论证</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN1 命题逻辑 ============ -->
+<!-- ================================================= -->
+<section id="ln1">
+<h2>LN1 · 命题逻辑 <span class="zh">Propositional Logic</span></h2>
+
+<h3 id="ln1-1">1.1 数学证明 <span class="zh">Mathematical Proof</span></h3>
+<p>
+  为什么要学逻辑？因为要<b>证明数学定理</b>，我们需要一套严谨的推理系统。
+  幻灯片用<b>勾股定理（Pythagorean theorem）</b> \(a^2+b^2=c^2\) 开场：一个「好的证明」（Good Proof）是把图形重新拼接——把 5 块拼成一个 \(c\times c\) 正方形，再拼成一个 \(a\times a\) 与一个 \(b\times b\) 正方形，从而得出 \(a^2+b^2=c^2\)。
+</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 注意「坏证明」Bad Proof</span>
+  <p>类似的重排技巧「证明」了 \(65=63\)。问题在于拼接的图形并非真正的三角形——<b>斜率不匹配</b>（\(2:5 \neq 3:8\)）。这告诉我们：<b>直觉和图形是可能骗人的</b>，所以需要严格的形式化证明系统。</p>
+</div>
+<p>
+  标准做法由 <b>欧几里得（Euclid）</b> 于公元前 300 年提出：先设定若干条<b>公理（axioms）</b>——这些陈述的真假被视为理所当然（taken for granted）——再用逻辑推出其他陈述的真假。欧几里得的五条公理包括：任意两点可连直线、线段可无限延伸、以任意圆心和半径作圆、所有直角相等、以及<b>平行公设（Parallel postulate）</b>。
+</p>
+<div class="def box">
+  <span class="box-title">📌 关键概念</span>
+  <p><b>公理 axiom</b>：不证自明、作为出发点的真陈述。<br>
+  <b>定理 theorem</b>：由公理出发、经逻辑推导出的真陈述。<br>
+  一套证明系统的核心就是：<b>公理 + 逻辑推理 → 定理</b>。</p>
+</div>
+
+<h3 id="ln1-2">1.2 命题与逻辑运算符 <span class="zh">Statements &amp; Logic Operators</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 定义 · 命题（Statement / Proposition）</span>
+  <p>一个<b>命题</b>是一个「要么为真、要么为假」的句子（a sentence that is either <b>True</b> or <b>False</b>）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>
+    <b>是命题：</b> \(2+2=4\)（真）、\(3\times 3=8\)（假）、「787009911 是质数」、「今天是星期二」。<br>
+    <b>不是命题：</b> \(x+y>0\)、\(x^2+y^2=z^2\)——它们对某些 \(x,y\) 为真、对另一些为假，含有未定的自由变量。
+  </p>
+</div>
+
+<p>逻辑运算符（logic operators）用来<b>从旧命题构造新命题</b>。三个基本运算符是 <b>NOT（非）、AND（与）、OR（或）</b>。</p>
+
+<h4>非 · NOT（¬）</h4>
+<div class="def box">
+  <span class="box-title">📌 NOT</span>
+  <p>\(\neg P\) 为真，当且仅当 \(P\) 为假。</p>
+</div>
+<table class="truth">
+  <tr><th>\(P\)</th><th>\(\neg P\)</th></tr>
+  <tr><td>T</td><td>F</td></tr>
+  <tr><td>F</td><td>T</td></tr>
+</table>
+
+<h4>与 · AND（∧）&nbsp;&nbsp; 或 · OR（∨）</h4>
+<table class="truth">
+  <tr><th>\(P\)</th><th>\(Q\)</th><th>\(P \land Q\)</th><th>\(P \lor Q\)</th></tr>
+  <tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+  <tr><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+  <tr><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+  <tr><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+</table>
+<p>要点：AND 只在两个都为真时为真；OR 只要有一个为真就为真。</p>
+
+<h4>复合命题 Compound Statement</h4>
+<p>设 \(p=\)「天热」（it is hot），\(q=\)「天晴」（it is sunny），则：</p>
+<ul>
+  <li>「又热又晴」= \(p \land q\)</li>
+  <li>「不热但晴」= \(\neg p \land q\)</li>
+  <li>「既不热也不晴」= \(\neg p \land \neg q\)</li>
+</ul>
+
+<h4>更多运算符 More Logical Operators</h4>
+<p>可以按需定义任意运算符，例如：</p>
+<ul>
+  <li><b>异或 exclusive-or（⊕）</b>：咖啡「或」茶（二选一）</li>
+  <li><b>多数函数 Majority</b>：\(M(P,Q,R)\)——三者中至少两个为真时输出真</li>
+</ul>
+<table class="truth">
+  <tr><th>\(p\)</th><th>\(q\)</th><th>\(p \oplus q\)</th></tr>
+  <tr><td>T</td><td>T</td><td>F</td></tr>
+  <tr><td>T</td><td>F</td><td>T</td></tr>
+  <tr><td>F</td><td>T</td><td>T</td></tr>
+  <tr><td>F</td><td>F</td><td>F</td></tr>
+</table>
+<table class="truth">
+  <tr><th>\(P\)</th><th>\(Q\)</th><th>\(R\)</th><th>\(M(P,Q,R)\)</th></tr>
+  <tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+  <tr><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+  <tr><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+  <tr><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+  <tr><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+  <tr><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+  <tr><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+  <tr><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+</table>
+
+<h3 id="ln1-3">1.3 用基本运算符构造任意运算符 <span class="zh">Constructing Any Operator from AND/OR/NOT</span></h3>
+<p>核心思想：<b>只用 AND、OR、NOT 就能写出任意真值表对应的公式</b>。这在数字电路（digital circuit）设计里非常重要——给定「规格说明」（真值表），就能用简单门电路实现。</p>
+
+<div class="def box">
+  <span class="box-title">📌 逻辑等价 Logical Equivalence</span>
+  <p>两个命题<b>逻辑等价</b>，当且仅当它们的<b>真值表完全相同</b>（Two statements have the same truth table）。记为 \(p \equiv q\)。</p>
+</div>
+
+<p>以「异或 ⊕」为例，有两种系统化的构造方法：</p>
+<ul>
+  <li><b>方法一（Idea 1）：看「真」的行，取 OR。</b> 对每个使输出为真的行，写一个「只在该行输入下为真」的子公式，然后把所有这样的子公式用 OR 连起来。</li>
+  <li><b>方法二（Idea 2）：看「假」的行，取反后再 AND。</b> 对每个使输出为假的行，写一个「只在该行输入下为假」的子公式，把它们取反后用 AND 连起来。</li>
+</ul>
+
+<div class="thm box">
+  <span class="box-title">🎯 异或的两个等价公式</span>
+  <p class="formula">\(p \oplus q \;\equiv\; (p \land \neg q) \lor (\neg p \land q)\)　（方法一：第二行 ∨ 第三行）</p>
+  <p class="formula">\(p \oplus q \;\equiv\; \neg\big((p \land q) \lor (\neg p \land \neg q)\big)\)　（方法二：非第一行且非第四行）</p>
+</div>
+
+<p>同理，<b>多数函数</b> \(M(P,Q,R)\) 为真的行是 (T,T,T)、(T,T,F)、(T,F,T)、(F,T,T)，因此：</p>
+<p class="formula">\(M(P,Q,R) = (P \land Q) \lor (P \land R) \lor (Q \land R)\)</p>
+
+<div class="warn box">
+  <span class="box-title">⚠️ 要点</span>
+  <p>同一个逻辑公式可以有<b>很多种不同写法</b>。验证两个公式是否等价，始终可以用真值表来检查。</p>
+</div>
+
+<h3 id="ln1-4">1.4 逻辑等价与德摩根律 <span class="zh">Logical Equivalence &amp; De Morgan's Laws</span></h3>
+
+<div class="thm box">
+  <span class="box-title">🎯 德摩根律 De Morgan's Laws</span>
+  <p class="formula">\(\neg(p \land q) \equiv \neg p \lor \neg q\)</p>
+  <p class="formula">\(\neg(p \lor q) \equiv \neg p \land \neg q\)</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>
+    命题：Tom 在足球队<b>且</b>在篮球队 → 否定：Tom <b>不在</b>足球队<b>或</b>不在篮球队。<br>
+    命题：783477841 能被 7 <b>或</b> 11 整除 → 否定：783477841 <b>既不能</b>被 7 整除，<b>也不能</b>被 11 整除。
+  </p>
+  <p>为什么否定不能写成「不在足球队 <b>且</b> 不在篮球队」？因为否定的定义是「<b>至少</b> p 或 q 中有一个为假」，而不一定两个都为假。</p>
+</div>
+
+<p>验证德摩根律（真值表）：</p>
+<table class="truth">
+  <tr><th>\(p\)</th><th>\(q\)</th><th>\(p\land q\)</th><th>\(\neg(p\land q)\)</th><th>\(\neg p\)</th><th>\(\neg q\)</th><th>\(\neg p \lor \neg q\)</th></tr>
+  <tr><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+  <tr><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+  <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+  <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+</table>
+
+<h4>常用逻辑等价式 Logical Rules</h4>
+<p>记号约定：<code>~</code> 即 <code>¬</code>（非）；<code>t</code> 表示<b>永真式 tautology</b>（恒为真）；<code>c</code> 表示<b>矛盾式 contradiction</b>（恒为假）。以下是常用逻辑等价式（\(\equiv\) 两侧等价）：</p>
+<table class="truth">
+  <tr><th>名称 Law</th><th>等价式 Equivalence</th></tr>
+  <tr><td>恒等律 Identity</td><td>\(p \land t \equiv p\)，　\(p \lor c \equiv p\)</td></tr>
+  <tr><td>支配律 Domination</td><td>\(p \lor t \equiv t\)，　\(p \land c \equiv c\)</td></tr>
+  <tr><td>幂等律 Idempotent</td><td>\(p \lor p \equiv p\)，　\(p \land p \equiv p\)</td></tr>
+  <tr><td>双重否定 Double negation</td><td>\(\neg\neg p \equiv p\)</td></tr>
+  <tr><td>交换律 Commutative</td><td>\(p \lor q \equiv q \lor p\)，　\(p \land q \equiv q \land p\)</td></tr>
+  <tr><td>结合律 Associative</td><td>\((p\lor q)\lor r \equiv p\lor(q\lor r)\)，　\((p\land q)\land r \equiv p\land(q\land r)\)</td></tr>
+  <tr><td>分配律 Distributive</td><td>\(p\lor(q\land r) \equiv (p\lor q)\land(p\lor r)\)，　\(p\land(q\lor r) \equiv (p\land q)\lor(p\land r)\)</td></tr>
+  <tr><td>德摩根律 De Morgan</td><td>\(\neg(p\land q) \equiv \neg p \lor \neg q\)，　\(\neg(p\lor q) \equiv \neg p \land \neg q\)</td></tr>
+  <tr><td>吸收律 Absorption</td><td>\(p\lor(p\land q) \equiv p\)，　\(p\land(p\lor q) \equiv p\)</td></tr>
+  <tr><td>否定律 Negation</td><td>\(p\lor\neg p \equiv t\)，　\(p\land\neg p \equiv c\)</td></tr>
+</table>
+
+<h4>化简命题 Simplifying Statement</h4>
+<p>可以利用逻辑等价式化简公式，核心手法：<b>德摩根律能把 NOT「往内移」</b>，分配律能把式子展开。例如化简 \(\neg(p \lor \neg q)\)：</p>
+<p class="formula">\(\neg(p \lor \neg q) \equiv \neg p \land \neg\neg q \equiv \neg p \land q\)（德摩根律 + 双重否定）</p>
+
+<h4>永真式与矛盾式 Tautology &amp; Contradiction</h4>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>永真式 tautology</b>：恒为真的命题。　<b>矛盾式 contradiction</b>：恒为假的命题（即永真式的否定）。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 计算机科学联系 · 可满足性问题</span>
+  <p>一般地，判断一个命题是否为矛盾式（是否恒假）是<b>很困难</b>的——这就是 CS 中最重要的问题之一：<b>可满足性问题（satisfiability problem, SAT）</b>。</p>
+</div>
+
+<h3 id="ln1-5">1.5 条件语句 <span class="zh">Conditional Statement（if / iff）</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 蕴含 · IMPLIES（→）</span>
+  <p>「若 \(p\) 则 \(q\)」（If p then q），记为 \(p \rightarrow q\)。其中 \(p\) 称为<b>假设 hypothesis</b>（前件），\(q\) 称为<b>结论 conclusion</b>（后件）。</p>
+</div>
+
+<p>例子：系里说「若你的 GPA 是 4.0，则你会获得全额奖学金」。这句话什么时候是<b>假</b>的？——当「GPA 4.0 但没拿到奖学金」时为假；若 GPA 低于 4.0，则这句话不算假。</p>
+
+<table class="truth">
+  <tr><th>\(P\)</th><th>\(Q\)</th><th>\(P \rightarrow Q\)</th></tr>
+  <tr><td>T</td><td>T</td><td>T</td></tr>
+  <tr><td>T</td><td>F</td><td>F</td></tr>
+  <tr><td>F</td><td>T</td><td>T</td></tr>
+  <tr><td>F</td><td>F</td><td>T</td></tr>
+</table>
+
+<div class="warn box">
+  <span class="box-title">⚠️ 必须理解</span>
+  <p>\(P \rightarrow Q\) <b>只在 \(P\) 真且 \(Q\) 假时为假</b>。「约定」（Convention）：如果我们没有说错什么，那它就不是假的，因而为真。IF 运算在数学证明中极其重要。</p>
+</div>
+
+<p>判断两个公式是否等价，通常有三种方法：<b>(1) 猜并验证（guess and check）、(2) 真值表、(3) 用逻辑规则推导</b>。</p>
+
+<div class="thm box">
+  <span class="box-title">🎯 If-Then 改写为 Or</span>
+  <p class="formula">\(p \rightarrow q \;\equiv\; \neg p \lor q\)</p>
+  <p>推导：\(p \rightarrow q\) 唯一的假行是 \(p=T, q=F\)，即「\(p \land \neg q\) 为真」。所以 \(p \rightarrow q \equiv \neg(p \land \neg q) \equiv \neg p \lor q\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>「你不把钱都给我，我就揍你」 \(\equiv\) 「你把钱都给我，<b>或</b> 我揍你（或两者都有）」。</p>
+</div>
+
+<div class="thm box">
+  <span class="box-title">🎯 If-Then 的否定 Negation of If-Then</span>
+  <p class="formula">\(\neg(p \rightarrow q) \;\equiv\; p \land \neg q\)</p>
+  <p>例子：「每天吃苹果则牙不疼」的否定是「每天吃苹果<b>但</b>牙疼」。</p>
+</div>
+
+<h4>逆否命题 Contrapositive</h4>
+<div class="def box">
+  <span class="box-title">📌 逆否命题</span>
+  <p>「若 \(p\) 则 \(q\)」的<b>逆否命题（contrapositive）</b>是「若 \(\neg q\) 则 \(\neg p\)」。<b>条件命题与其逆否命题逻辑等价</b>。</p>
+</div>
+<p class="formula">\(p \rightarrow q \;\equiv\; \neg q \rightarrow \neg p\)</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>「若你是 CS 大二学生，则你在修 CSC3001」的逆否：「若你没修 CSC3001，则你不是 CS 大二学生」。<br>
+  「开车不喝酒」的逆否：「喝酒不开车」。</p>
+</div>
+<p>逆否命题在证明中很有用：要证「若 \(x^2\) 是偶数，则 \(x\) 是偶数」，可以改证其逆否「若 \(x\) 是奇数，则 \(x^2\) 是奇数」——等价且更容易证明。</p>
+
+<h4>If、Only If、If and Only If</h4>
+<div class="def box">
+  <span class="box-title">📌 充分 / 必要条件</span>
+  <p>
+    <b>R if S</b>：即「若 S 则 R」，等价于 \(S \rightarrow R\)。也称 S 是 R 的<b>充分条件（sufficient condition）</b>。<br>
+    <b>R only if S</b>：即「若 R 则 S」，等价于 \(R \rightarrow S\)。也称 S 是 R 的<b>必要条件（necessary condition）</b>。
+  </p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>「你努力，就会成功」（You succeed <b>if</b> you work hard）→ 努力是成功的充分条件。<br>
+  「只有努力，才会成功」（You succeed <b>only if</b> you work hard）→ 努力是成功的必要条件。</p>
+</div>
+
+<div class="thm box">
+  <span class="box-title">🎯 当且仅当 IFF（↔）</span>
+  <p>\(P\) <b>if and only if</b> \(Q\)（记 \(P \leftrightarrow Q\)）表示 \(P\) 与 \(Q\) 逻辑等价，即 \(P\) 蕴含 \(Q\) 且 \(Q\) 蕴含 \(P\)。</p>
+  <p class="formula">\(P \leftrightarrow Q \;\equiv\; (P \rightarrow Q) \land (Q \rightarrow P)\)</p>
+  <p class="formula">\(P \leftrightarrow Q \;\equiv\; (P \land Q) \lor (\neg P \land \neg Q)\)</p>
+</div>
+<table class="truth">
+  <tr><th>\(P\)</th><th>\(Q\)</th><th>\(P \leftrightarrow Q\)</th></tr>
+  <tr><td>T</td><td>T</td><td>T</td></tr>
+  <tr><td>T</td><td>F</td><td>F</td></tr>
+  <tr><td>F</td><td>T</td><td>F</td></tr>
+  <tr><td>F</td><td>F</td><td>T</td></tr>
+</table>
+
+<div class="warn box">
+  <span class="box-title">⚠️ 数学语言 vs 日常英语</span>
+  <p>日常英语中「如果你不打扫房间，就不能看 DVD」常常暗含「你打扫房间<b>就能</b>看 DVD」（即双向）。但数学上 \(C \rightarrow D\) <b>只承诺</b>单向：不打扫 → 不能看。它并<b>不意味着</b> \(\neg C \rightarrow \neg D\)（打扫了就能看）。这是「蕴含」与日常「如果…那么…」的经典差异。</p>
+</div>
+
+<h3 id="ln1-6">1.6 论证 <span class="zh">Arguments</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 论证与有效性</span>
+  <p><b>论证（argument）</b>是一系列命题：除最后一个外都叫<b>假设/前提（assumptions / hypothesis）</b>，最后一个叫<b>结论（conclusion）</b>。<br>
+  一个论证是<b>有效的（valid）</b>：<b>只要所有假设为真，结论就为真</b>（whenever all assumptions are true, the conclusion is true）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>若今天是星期三，则昨天是星期二。今天是星期三。所以昨天是星期二。（有效）</p>
+</div>
+
+<h4>肯定前件 Modus Ponens（affirming）</h4>
+<div class="thm box">
+  <span class="box-title">🎯 规则</span>
+  <p class="formula">\(p \rightarrow q,\quad p \;\Longrightarrow\; q\)</p>
+  <p>例子：若台风，则停课。台风。所以停课。Modus ponens 是拉丁语「肯定法」。</p>
+</div>
+
+<h4>否定后件 Modus Tollens（denying）</h4>
+<div class="thm box">
+  <span class="box-title">🎯 规则</span>
+  <p class="formula">\(p \rightarrow q,\quad \neg q \;\Longrightarrow\; \neg p\)</p>
+  <p>例子：若台风，则停课。没停课。所以没有台风。Modus tollens 是拉丁语「否定法」。</p>
+</div>
+
+<h4>无效论证（谬误）Invalid Arguments</h4>
+<div class="warn box">
+  <span class="box-title">⚠️ 两种常见谬误</span>
+  <p><b>肯定后件（affirming the consequent）</b>：\(p\rightarrow q,\; q \Longrightarrow p\) 是<b>无效</b>的。<br>
+  反例：若你是鱼，则你喝水。你喝水。你是鱼。（✗ 不成立）</p>
+  <p><b>否定前件（denying the antecedent）</b>：\(p\rightarrow q,\; \neg p \Longrightarrow \neg q\) 是<b>无效</b>的。<br>
+  反例：若你是鱼，则你喝水。你不是鱼。你不喝水。（✗ 不成立）</p>
+</div>
+
+<p>判断一个论证是否有效，关键看：是否存在一种赋值，使<b>所有假设为真但结论为假</b>。若存在，则论证无效（这就是<b>反例 counterexample</b>）。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例题：循环蕴含不推出全真</span>
+  <p>某学生先证明了三个事实：\(P\rightarrow Q\)、\(Q\rightarrow R\)、\(R\rightarrow P\)，然后断言「所以 \(P,Q,R\) 全为真」。这个论证<b>无效</b>——因为取 \(P=Q=R=F\) 时三个蕴含都为真，但结论 \(P\land Q\land R\) 为假。</p>
+</div>
+
+<h4>矛盾法 Contradiction</h4>
+<p>要证论证有效，需证「若假设为真，则结论为真」。矛盾法（反证法）是常用的证明策略。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 真话者与说谎者（Truth-tellers and Liars）</span>
+  <p>真话者永远说真话，说谎者永远说谎。A 说「B 是真话者」，B 说「我和 A 是相反类型」。<br>
+  假设 A 是真话者 → 则 B 是真话者（A 的话为真）→ 则「A 和 B 相反」为真，即 A 是骗子，矛盾。所以 A 必是骗子 → B 也是骗子（A 的话为假），无矛盾。</p>
+</div>
+
+<div class="warn box">
+  <span class="box-title">💡 自指悖论（Self-referential paradox）</span>
+  <p>「下面这句话是假的。」「上面这句话是真的。」——这两句话无法一致地赋真假，这是经典的自指悖论，与后面的罗素悖论遥相呼应。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>proposition / statement</b> — 命题</li>
+    <li><b>axiom</b> — 公理；<b>theorem</b> — 定理</li>
+    <li><b>negation (NOT)</b> — 非/否定；<b>conjunction (AND)</b> — 合取/与；<b>disjunction (OR)</b> — 析取/或</li>
+    <li><b>truth table</b> — 真值表</li>
+    <li><b>logical equivalence</b> — 逻辑等价</li>
+    <li><b>tautology</b> — 永真式；<b>contradiction</b> — 矛盾式</li>
+    <li><b>conditional statement / implication</b> — 条件命题/蕴含</li>
+    <li><b>hypothesis</b> — 假设（前件）；<b>conclusion</b> — 结论（后件）</li>
+    <li><b>contrapositive</b> — 逆否命题</li>
+    <li><b>sufficient condition</b> — 充分条件；<b>necessary condition</b> — 必要条件</li>
+    <li><b>if and only if (iff)</b> — 当且仅当</li>
+    <li><b>argument</b> — 论证；<b>assumption / premise</b> — 前提</li>
+    <li><b>valid / invalid</b> — 有效 / 无效</li>
+    <li><b>modus ponens</b> — 肯定前件；<b>modus tollens</b> — 否定后件</li>
+    <li><b>counterexample</b> — 反例</li>
+    <li><b>satisfiability (SAT)</b> — 可满足性</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN2.1 集合 ============ -->
+<!-- ================================================= -->
+<section id="ln2-1">
+<h2>LN2.1 · 集合 <span class="zh">Sets</span></h2>
+
+<h3 id="ln2-1a">2.1 基本定义 <span class="zh">Basic Definitions</span></h3>
+<div class="def box">
+  <span class="box-title">📌 集合 Set</span>
+  <p><b>集合（set）</b>是一组<b>互不相同</b>的对象的<b>无序</b>集合（an <b>unordered</b> collection of <b>distinct</b> objects）。集合中的对象称为<b>元素（elements）</b>或<b>成员（members）</b>，记 \(S\) 包含其元素。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>\(S = \{2,3,5,7\} = \{3,5,7,2\}\)（无序）<br>
+  \(S = \{\{1,2\},\{1,3\},\{1,4\},\{2,3\},\{2,4\},\{3,4\}\}\)<br>
+  \(\mathrm{pow}(\{a,b\}) = \{\varnothing, \{a\}, \{b\}, \{a,b\}\}\)（\(\{a,b\}\) 的幂集）</p>
+</div>
+<p>判断：\(S=\{2,3,5,3,7\}\) 不是集合（有重复）；\(S=\{\{a\}, a\}\) 是集合。</p>
+
+<h4>经典集合 Classical Sets</h4>
+<ul>
+  <li>\(\mathbb{Z}\)：全体整数（integers）</li>
+  <li>\(\mathbb{Z}^+\)：全体正整数；\(\mathbb{Z}^-\)：全体负整数</li>
+  <li>\(\mathbb{N}\)：全体非负整数（nonnegative integers）</li>
+  <li>\(\mathbb{R}\)：全体实数（real numbers）</li>
+  <li>\(\mathbb{Q}\)：全体有理数（rational numbers）</li>
+  <li>\(\mathbb{C}\)：全体复数（complex numbers）</li>
+</ul>
+
+<h4>按性质定义集合 / 集合的大小 / 属于关系</h4>
+<div class="def box">
+  <span class="box-title">📌 大小 Size</span>
+  <p>集合 \(S\) 的大小记为 \(|S|\)，定义为 \(S\) 中元素的<b>个数</b>。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 属于 Membership</span>
+  <p>\(x \in A\)：\(x\) 是 \(A\) 的元素（x is an element of A / x is in A）。<br>
+  \(x \notin A\)：\(x\) 不是 \(A\) 的元素。</p>
+</div>
+
+<h3 id="ln2-1b">2.2 集合运算 <span class="zh">Operations on Sets</span></h3>
+<p>设 \(A, B\) 是<b>全集 \(U\)（universal set）</b>的两个子集（视上下文，\(U\) 可为 \(\mathbb{R}\)、\(\mathbb{Z}\) 等）。</p>
+
+<div class="def box">
+  <span class="box-title">📌 交 · Intersection（∩）</span>
+  <p class="formula">\(A \cap B = \{x \mid x \in A \text{ 且 } x \in B\}\)</p>
+  <p>两个集合<b>不相交（disjoint）</b>，若它们的交集为空集：\(A\cap B = \varnothing\)。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 并 · Union（∪）</span>
+  <p class="formula">\(A \cup B = \{x \mid x \in A \text{ 或 } x \in B\}\)</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 补 · Complement</span>
+  <p class="formula">\(\overline{A} = \{x \in U \mid x \notin A\}\)</p>
+  <p>例子：\(U=\mathbb{Z}\)，\(A\) 为奇数集，则 \(\overline{A}\) 为偶数集。事实：若 \(A \subseteq B\)，则 \(\overline{B} \subseteq \overline{A}\)。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 差 · Difference（−）</span>
+  <p class="formula">\(A - B = \{x \mid x \in A \text{ 且 } x \notin B\}\)</p>
+  <p>事实：\(A - B = A \cap \overline{B}\)（集合差 = 与补集相交）。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>\(A=\{1,3,6,8,10\}\)，\(B=\{2,4,6,7,10\}\)，则<br>
+  \(A\cap B = \{6,10\}\)，\(A\cup B = \{1,2,3,4,6,7,8,10\}\)，\(A-B = \{1,3,8\}\)。</p>
+  <p>设 \(U=\{x\in\mathbb{Z}\mid 1\le x\le 100\}\)，\(A=\{x\in U\mid x \text{ 被 3 整除}\}\)，\(B=\{x\in U\mid x \text{ 被 5 整除}\}\)，则<br>
+  \(A\cap B = \{x\in U\mid x \text{ 被 15 整除}\}\)，\(A\cup B = \{x\in U\mid x \text{ 被 3 或 5 整除}\}\)，\(A-B = \{x\in U\mid x \text{ 被 3 整除但不被 5 整除}\}\)。</p>
+</div>
+
+<h4>划分 Partitions</h4>
+<div class="def box">
+  <span class="box-title">📌 划分</span>
+  <p>若 \(A_1,A_2,\dots,A_n\) 两两不相交且并集为 \(A\)，则 \(\{A_1,\dots,A_n\}\) 是 \(A\) 的一个<b>划分（partition）</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>\(A_1=\{x\mid x=3k+1\}\)，\(A_2=\{x\mid x=3k+2\}\)，\(A_3=\{x\mid x=3k\}\)，则 \(\{A_1,A_2,A_3\}\) 是整数集的一个划分（按模 3 余数分类）。</p>
+</div>
+
+<h4>笛卡尔积 Cartesian Product</h4>
+<div class="def box">
+  <span class="box-title">📌 笛卡尔积</span>
+  <p class="formula">\(A \times B = \{(a,b) \mid a \in A,\; b \in B\}\)</p>
+  <p>其中 \((a,b)\) 是<b>有序对（ordered pair）</b>——顺序重要，\((1,2)\neq(2,1)\)。可推广到任意多个集合：\(A_1\times A_2\times\cdots\times A_k\)。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 大小关系</span>
+  <p>若 \(|A|=n\)，\(|B|=m\)，则 \(|A\times B| = nm\)。更一般地，\(|A_1\times\cdots\times A_k| = |A_1|\cdots|A_k|\)。</p>
+</div>
+
+<h3 id="ln2-1c">2.3 集合恒等式 <span class="zh">Set Identities</span></h3>
+<p>设 \(A,B,C\) 是全集 \(U\) 的子集：</p>
+<table class="truth">
+  <tr><th>名称 Law</th><th>恒等式 Identity</th></tr>
+  <tr><td>交换律 Commutative</td><td>\(A\cup B = B\cup A\)，　\(A\cap B = B\cap A\)</td></tr>
+  <tr><td>结合律 Associative</td><td>\((A\cup B)\cup C = A\cup(B\cup C)\)，　\((A\cap B)\cap C = A\cap(B\cap C)\)</td></tr>
+  <tr><td>分配律 Distributive</td><td>\(A\cup(B\cap C) = (A\cup B)\cap(A\cup C)\)，　\(A\cap(B\cup C) = (A\cap B)\cup(A\cap C)\)</td></tr>
+  <tr><td>恒等律 Identity</td><td>\(A\cup \varnothing = A\)，　\(A\cap U = A\)</td></tr>
+  <tr><td>补律 Complement</td><td>\(A\cup \overline{A} = U\)，　\(A\cap \overline{A} = \varnothing\)</td></tr>
+  <tr><td>德摩根律 De Morgan</td><td>\(\overline{A\cup B} = \overline{A}\cap\overline{B}\)，　\(\overline{A\cap B} = \overline{A}\cup\overline{B}\)</td></tr>
+  <tr><td>集合差律 Set difference</td><td>\(A - B = A\cap\overline{B}\)</td></tr>
+</table>
+
+<p>可以用<b>文氏图（Venn diagram）</b>直观验证（例如德摩根律：\(A\cup B\) 的补集 = \(A\) 的补集 \(\cap\) \(B\) 的补集）。</p>
+
+<h4>三种证明/检验方法</h4>
+<ul>
+  <li><b>文氏图 / 反例（Disproof）</b>：要证明一个恒等式<b>不成立</b>，只需构造一个<b>反例</b>（counterexample）——给每个区域放一个数即可。</li>
+  <li><b>代数证明（Algebraic proof）</b>：用已知恒等式（德摩根律、分配律等）一步步化简。</li>
+  <li><b>按定义证明（Proof by definition）</b>：用「元素论证」（element argument）证明 \(x\in\text{LHS} \iff x\in\text{RHS}\)。</li>
+</ul>
+
+<div class="ex box">
+  <span class="box-title">✏️ 反例法示例</span>
+  <p>要说明 \(A\cup(B\cap C) \neq (A\cup B)\cap C\) 不一定成立，可令 \(A=\{1,2,4,5\}\)，\(B=\{2,3,5,6\}\)，\(C=\{4,5,6,7\}\)，代入两边计算得 LHS \(=\{1,2,3,4\}\ne\) RHS \(=\{1,2\}\)。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 代数证明示例（证明 \(\overline{A\cup B}=\overline{A}\cap\overline{B}\) 的一种思路）</span>
+  <p>反复应用德摩根律与分配律化简即可。代数法的核心：<b>把「差」化成「交补」（\(A-B=A\cap\overline{B}\)），把「补」用德摩根律展开</b>。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 按定义证明示例（元素论证）</span>
+  <p>证 \(\overline{A\cup B} = \overline{A}\cap\overline{B}\)：对任意 \(x\)，<br>
+  \(x\in \overline{A\cup B}\)<br>
+  \(\iff x \notin A\cup B\)<br>
+  \(\iff \neg(x\in A \lor x\in B)\)<br>
+  \(\iff x\notin A \land x\notin B\)（德摩根律）<br>
+  \(\iff x\in\overline{A} \land x\in\overline{B}\)<br>
+  \(\iff x\in\overline{A}\cap\overline{B}\)。<br>
+  因此两边元素完全相同，证明完成。（QED）</p>
+</div>
+
+<h3 id="ln2-1d">2.4 罗素悖论与停机问题 <span class="zh">Russell's Paradox &amp; the Halting Problem</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 罗素悖论 Russell's Paradox</span>
+  <p>定义 \(W = \{S \in \text{Sets} \mid S \notin S\}\)——即「所有<b>不包含自身</b>的集合所组成的集合」。<br>
+  问：\(W \in W\) 吗？</p>
+  <ul>
+    <li>若 \(W \in W\)，则 \(W\) 包含自身，但 \(W\) 的性质要求 \(W\notin W\)，矛盾。</li>
+    <li>若 \(W\notin W\)，则 \(W\) 满足「不包含自身」的性质，所以 \(W\in W\)，矛盾。</li>
+  </ul>
+  <p>结论：<b>不是所有我们能定义的东西都是集合</b>。后来数学家通过<b>集合论公理（如 Zermelo–Fraenkel, ZF）</b>更严谨地定义集合来规避此悖论。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 理发师悖论 Barber's Paradox</span>
+  <p>某理发师「给所有不给自己理发的人理发」。他给自己理发吗？两种假设都矛盾——结论：这样的理发师根本不存在。这正是走出悖论的方式。</p>
+</div>
+
+<h4>停机问题 Halting Problem</h4>
+<div class="def box">
+  <span class="box-title">📌 停机问题</span>
+  <p><b>能否写一个程序检测死循环？</b>我们想要一个程序 \(H\)：对任意程序 \(P\) 和输入 \(I\)，\(H(P,I)\) 在 \(P\) 会终止时返回「halt」，在 \(P\) 不会终止时返回「loop forever」，且 \(H\) 自身必须在有限时间内终止。<br>
+  <b>答案：这样的 \(H\) 不存在（NO）！</b>其推理方法与罗素悖论非常相似。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 停机问题不可解的证明思路（对角化）</span>
+  <p>程序 \(P\) 由字符组成，所以它本身可作为一个输入。构造程序 \(\text{Test}(P)\)：</p>
+  <ul>
+    <li>若 \(H(P,P)\) 返回「halt」，则 \(\text{Test}(P)\) 死循环；</li>
+    <li>若 \(H(P,P)\) 返回「loop forever」，则 \(\text{Test}(P)\) 终止。</li>
+  </ul>
+  <p>考虑 \(\text{Test}(\text{Test})\)：若它死循环，则 \(H(\text{Test},\text{Test})\) 返回「loop forever」，于是 \(\text{Test}(\text{Test})\) 终止——矛盾；若它终止，则 \(H(\text{Test},\text{Test})\) 返回「halt」，于是 \(\text{Test}(\text{Test})\) 死循环——矛盾。所以 \(H\) 不存在。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>set</b> — 集合；<b>element / member</b> — 元素/成员</li>
+    <li><b>unordered / distinct</b> — 无序的 / 互异的</li>
+    <li><b>membership</b> — 属于关系（\(x\in A\)）</li>
+    <li><b>universal set</b> — 全集；<b>empty set</b> — 空集（\(\varnothing\)）</li>
+    <li><b>cardinality / size</b> — 基数/大小（\(|S|\)）</li>
+    <li><b>intersection</b> — 交集；<b>union</b> — 并集</li>
+    <li><b>complement</b> — 补集；<b>difference</b> — 差集</li>
+    <li><b>disjoint</b> — 不相交的</li>
+    <li><b>partition</b> — 划分</li>
+    <li><b>power set</b> — 幂集（\(\mathrm{pow}(S)\)）</li>
+    <li><b>ordered pair</b> — 有序对；<b>Cartesian product</b> — 笛卡尔积</li>
+    <li><b>set identity</b> — 集合恒等式；<b>Venn diagram</b> — 文氏图</li>
+    <li><b>Russell's paradox</b> — 罗素悖论；<b>halting problem</b> — 停机问题</li>
+    <li><b>counterexample</b> — 反例</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN2.2 一阶逻辑 ============ -->
+<!-- ================================================= -->
+<section id="ln2-2">
+<h2>LN2.2 · 一阶逻辑 <span class="zh">First-order Logic</span></h2>
+<p>上一讲讲的是<b>命题逻辑</b>——关于简单命题的逻辑。本讲讲<b>一阶逻辑</b>——关于<b>带量词的命题</b>的逻辑。一阶逻辑的表达能力远强于命题逻辑。</p>
+
+<h3 id="ln2-2a">2.1 量词 <span class="zh">Quantifiers</span></h3>
+
+<h4>命题逻辑的局限</h4>
+<p>如何用命题逻辑表述「<b>存在无穷多个素数</b>」？——命题逻辑无法表达，因为它只能处理简单命题，无法表达「对任意」「存在」这类结构。</p>
+
+<div class="def box">
+  <span class="box-title">📌 谓词 Predicate</span>
+  <p><b>谓词（predicate）</b>是<b>带变量的命题</b>（propositions with variables）。例如 \(P(x,y): x+2=y\)。代入具体值后得到一个命题：\(P(1,3)\) 为真，\(P(1,4)\) 为假（故 \(\neg P(1,4)\) 为真）。<br>
+  变量的<b>论域（domain）</b>是所有可代入该变量的值的集合。</p>
+</div>
+
+<div class="def box">
+  <span class="box-title">📌 全称量词 Universal Quantifier（∀）</span>
+  <p>\(\forall x\) 读作「对<b>所有</b> x」（for ALL x）。</p>
+  <p class="formula">\(\forall x\in\mathbb{Z}^+\; P(x)\) 即 \(P(1)\land P(2)\land P(3)\land\cdots\)</p>
+  <p>例子：\(\forall x\in\mathbb{Z},\, \forall y\in\mathbb{Z},\; x+y=y+x\)（加法交换律）。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 存在量词 Existential Quantifier（∃）</span>
+  <p>\(\exists y\) 读作「<b>存在</b>某个 y」（There EXISTS some y）。</p>
+  <p class="formula">\(\exists y\in\mathbb{Z}^+\; P(y)\) 即 \(P(1)\lor P(2)\lor P(3)\lor\cdots\)</p>
+  <p>例子：\(\exists y\in\mathbb{Z}^+ : y = y^2\)。</p>
+</div>
+
+<div class="warn box">
+  <span class="box-title">⚠️ 真值依赖于论域</span>
+  <p>一个量化命题的真假<b>取决于论域</b>。例如 \(\forall x\, \exists y.\; x &lt; y\)：论域为整数 \(\mathbb{Z}\) 时为真；为正整数 \(\mathbb{Z}^+\) 时为真；为负整数 \(\mathbb{Z}^-\) 时为假；为负实数 \(\mathbb{R}^-\) 时为真。</p>
+</div>
+
+<h4>把数学定理翻译成逻辑公式 Translating Mathematical Theorems</h4>
+<p>翻译三步法：<b>① 条件（conditions）→ ② 变量与论域（variables &amp; domains）→ ③ 加量词并理顺顺序</b>。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 费马大定理 Fermat（1637，Wiles 1994 证明）</span>
+  <p>「若整数 \(n>2\)，则方程 \(a^n+b^n=c^n\) 没有正整数解 \(a,b,c\)。」<br>
+  变量：\(a,b,c,n\)；论域：\(a,b,c\in\mathbb{Z}^+\)，\(n\in\mathbb{Z}\) 且 \(n>2\)。翻译为：</p>
+  <p class="formula">\(\forall n\in\mathbb{Z},\; (n\le 2) \lor \neg\exists a,b,c\in\mathbb{Z}^+ : a^n+b^n=c^n\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 哥德巴赫猜想 Goldbach's conjecture</span>
+  <p>「每个不小于 6 的正偶数是两个素数之和。」设已有谓词 \(prime(x), even(x), odd(x)\)：</p>
+  <p class="formula">\(\forall n\in\mathbb{Z}^+,\; odd(n) \lor (n&lt;6) \lor \exists p,q\in\mathbb{Z}:\ prime(p)\land prime(q)\land (p+q=n)\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 如何写 \(prime(p)\)？</span>
+  <p>素数是大于 1、除 1 和自身外无正因子的自然数。翻译：</p>
+  <p class="formula">\(prime(p) \equiv (p&gt;1) \land (p\in\mathbb{Z}) \land \forall a,b\in\mathbb{Z}^+,\; (p \ne ab) \lor (a=1) \lor (a=p)\)</p>
+</div>
+
+<h3 id="ln2-2b">2.2 否定 <span class="zh">Negation</span></h3>
+
+<div class="thm box">
+  <span class="box-title">🎯 量化命题的否定（广义德摩根律）</span>
+  <p class="formula">\(\neg\forall x\, P(x) \;\equiv\; \exists x\, \neg P(x)\)</p>
+  <p class="formula">\(\neg\exists x\, P(x) \;\equiv\; \forall x\, \neg P(x)\)</p>
+  <p>直观：这是<b>德摩根律的推广</b>（Generalized De Morgan's Law）。论域 \(\{1,2,3\}\) 时，\(\neg(P(1)\land P(2)\land P(3)) \equiv \neg P(1)\lor\neg P(2)\lor\neg P(3)\)。该思想可推广到任意可数个变量。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>「所有人都喜欢足球」的否定 = 「<b>不是</b>所有人都喜欢足球」= 「存在某个人不喜欢足球」：\(\neg\forall x\, L(x) \equiv \exists x\,\neg L(x)\)。<br>
+  「存在会飞的植物」的否定 = 「所有植物都不会飞」：\(\neg\exists x\, F(x) \equiv \forall x\,\neg F(x)\)。</p>
+</div>
+
+<h3 id="ln2-2c">2.3 多重量词 <span class="zh">Multiple Quantifiers</span></h3>
+
+<div class="warn box">
+  <span class="box-title">⚠️ 量词的顺序非常重要！</span>
+  <p>「抗病毒程序能杀死所有电脑病毒」有两种读法：</p>
+  <ul>
+    <li><b>∀病毒 ∃程序</b>：每个病毒都各自有一个能杀它的程序（\(\forall v\,\exists p\)）——可能要买很多个程序，昂贵。</li>
+    <li><b>∃程序 ∀病毒</b>：存在<b>一个</b>程序能杀<b>所有</b>病毒（\(\exists p\,\forall v\)）——一个程序通杀，更好。</li>
+  </ul>
+  <p>两者含义完全不同，<b>量词顺序不能随意交换</b>。</p>
+</div>
+
+<p>用一个 \(6\times 6\) 的 0-1 数组 \(A\) 来体会：</p>
+<ul>
+  <li>\(\forall\) 列 \(y\,\exists\) 行 \(x: A(x,y)=1\)：每一列都有一个（不同的）含 1 的行 → 表中每一列都有 1 即可。</li>
+  <li>\(\exists\) 行 \(x\,\forall\) 列 \(y: A(x,y)=1\)：存在<b>同一行</b>在<b>所有列</b>都是 1 → 必须有一整行全 1。</li>
+</ul>
+
+<div class="thm box">
+  <span class="box-title">🎯 关键事实</span>
+  <p class="formula">\(\exists x\,\forall y\; P(x,y) \;\Longrightarrow\; \forall y\,\exists x\; P(x,y)\)</p>
+  <p>「存在一个对所有人都好的 x」一定能推出「对每个 y，都存在某个（可能不同的）x」。但<b>反过来不成立</b>。<br>
+  另外：<b>同类型的量词可以交换顺序</b>——两个 \(\forall\) 可换，两个 \(\exists\) 也可换。</p>
+</div>
+
+<h4>更多否定 More Negations</h4>
+<p>「存在一个能杀死所有病毒的程序」\(\equiv \exists p\,\forall v\)。其否定：</p>
+<p class="formula">\(\neg\exists p\,\forall v\; K(p,v) \;\equiv\; \forall p\,\exists v\; \neg K(p,v)\)</p>
+<p>即「<b>对每个程序，都存在某个它杀不了的病毒</b>」。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 练习</span>
+  <p>①「存在最小正整数」：\(\exists m\in\mathbb{Z}^+,\forall n\in\mathbb{Z}^+: m\le n\)。<br>
+  ②「不存在最小正实数」：\(\neg\exists m\in\mathbb{R}^+,\forall n\in\mathbb{R}^+: m\le n\)，即「总有一个更小的正实数」：\(\forall m\in\mathbb{R}^+,\exists n\in\mathbb{R}^+: n&lt;m\)。</p>
+  <p>③「有无穷多个素数」：分解为「存在一个素数」+「不存在最大素数」：<br>
+  \((\exists p\in\mathbb{Z}: prime(p)) \land (\forall p\in\mathbb{Z}^+,\; \neg prime(p) \lor \exists q\in\mathbb{Z}: prime(q)\land q&gt;p)\)。<br>
+  也可结合集合论写成：\(\forall\) 有限 \(S\subseteq\mathbb{N},\; \exists p: prime(p)\land p\notin S\)。</p>
+</div>
+
+<h3 id="ln2-2d">2.4 量词论证 <span class="zh">Arguments of Quantified Statements</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 谓词演算的有效性 Predicate Calculus Validity</span>
+  <p>命题逻辑中，<b>永真式（tautology）</b>是不论 \(A,B\) 真假都成立的命题。一阶逻辑中，永真式是不论论域与谓词 \(P,Q\) 如何都成立的命题。例如：\(\forall z\,[Q(z)\land P(z)] \rightarrow [\forall x\,Q(x)\land\forall y\,P(y)]\) 是永真式。<br>
+  推广命题逻辑：<b>量化论证有效</b> = 只要假设为真，结论就为真。</p>
+</div>
+
+<h4>四个基本推理规则</h4>
+<table class="truth">
+  <tr><th>规则 Rule</th><th>形式</th></tr>
+  <tr><td>全称例化 Universal instantiation</td><td>\(\forall x\,P(x) \Longrightarrow P(c)\)</td></tr>
+  <tr><td>全称肯定前件 Universal modus ponens</td><td>\(\forall x(P(x)\rightarrow Q(x)),\; P(c) \Longrightarrow Q(c)\)</td></tr>
+  <tr><td>全称否定后件 Universal modus tollens</td><td>\(\forall x(P(x)\rightarrow Q(x)),\; \neg Q(c) \Longrightarrow \neg P(c)\)</td></tr>
+  <tr><td>全称推广 Universal generalization</td><td>\(A\rightarrow R(c) \Longrightarrow A\rightarrow \forall x\,R(x)\)（要求 \(c\) 独立于 \(A\)）</td></tr>
+</table>
+
+<div class="def box">
+  <span class="box-title">📌 全称推广 Universal Generalization</span>
+  <p>规则：\(\dfrac{A \rightarrow R(c)}{A \rightarrow \forall x\,R(x)}\)，前提是 \(c\) <b>独立于 \(A\)</b>（c 是任意的「变量」）。<br>
+  直观：若能对<b>任意</b>的 \(c\) 证明 \(R(c)\) 为真，则能对所有值证明 \(R(x)\)。<br>
+  例：对任意数 \(c\)，若 \(1=1\) 则 \(2c\) 是偶数 → 若 \(1=1\) 则对所有 \(x\)，\(2x\) 是偶数。<br>
+  <b>注：</b>全称推广往往难以证明，之后会引入<b>数学归纳法（mathematical induction）</b>来证明对所有值成立的命题。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 判断论证是否有效</span>
+  <p><b>① \(\forall z\,[Q(z)\lor P(z)] \rightarrow [\forall x\,Q(x) \lor \forall y\,P(y)]\) —— 无效。</b><br>
+  反例：论域为整数，\(Q(z)=even(z)\)（偶数），\(P(z)=odd(z)\)（奇数）。则 \(\forall z\,[Q(z)\lor P(z)]\) 为真（每个数要么奇要么偶），但 \(\forall x\,Q(x)\) 不真（并非所有数都是偶数），\(\forall y\,P(y)\) 也不真，故结论不真。</p>
+  <p><b>② \(\forall z\in D\,[Q(z)\land P(z)] \rightarrow [\forall x\in D\,Q(x) \land \forall y\in D\,P(y)]\) —— 有效。</b><br>
+  证明：假设 \(\forall z\,[Q(z)\land P(z)]\) 为真。取论域 \(D\) 中任意元素 \(c\)，则 \(Q(c)\land P(c)\) 为真（例化），故 \(Q(c)\) 为真。因 \(c\) 任意，故 \(\forall x\,Q(x)\) 为真（推广）；同理 \(\forall y\,P(y)\) 为真。所以 \(\forall x\,Q(x)\land\forall y\,P(y)\) 为真。QED。</p>
+</div>
+
+<h4>应用 Applications of Logic</h4>
+<ul>
+  <li><b>逻辑编程 Logic programming</b>：用逻辑求解问题。</li>
+  <li><b>数据库 Database</b>：查询、数据挖掘。</li>
+  <li><b>数字电路 Digital circuit</b>。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 趣味应用</span>
+  <p>「一个家庭有两个孩子，其中一个是女孩，另一个也是女孩的概率是多少？」（设男女概率均匀）——答案是 \(\tfrac{1}{3}\)，因为四种等可能情况（男男、男女、女男、女女）中排除「男男」后，「女女」占三分之一。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 哥德尔不完备定理（可选）</span>
+  <p>理想中我们想要一个「完美」的逻辑系统：<b>一致的（consistent，无矛盾）</b>且<b>强大的（powerful，能推出一切真命题）</b>。但 <b>哥德尔（Gödel）</b>证明：<b>不存在完美逻辑系统</b>——这就是哥德尔不完备定理。其证明思想也影响了计算机科学中「证明某问题不可计算」的方法（例如停机问题）。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>predicate</b> — 谓词</li>
+    <li><b>quantifier</b> — 量词；<b>universal quantifier（∀）</b> — 全称量词；<b>existential quantifier（∃）</b> — 存在量词</li>
+    <li><b>domain</b> — 论域</li>
+    <li><b>propositional logic</b> — 命题逻辑；<b>first-order logic</b> — 一阶逻辑</li>
+    <li><b>negation</b> — 否定；<b>generalized De Morgan's law</b> — 广义德摩根律</li>
+    <li><b>free variable / bound variable</b> — 自由变量 / 约束变量</li>
+    <li><b>instantiation</b> — 例化；<b>generalization</b> — 推广</li>
+    <li><b>tautology</b> — 永真式；<b>valid / invalid</b> — 有效 / 无效</li>
+    <li><b>counterexample</b> — 反例</li>
+    <li><b>Gödel's incompleteness theorem</b> — 哥德尔不完备定理</li>
+    <li><b>mathematical induction</b> — 数学归纳法（后续内容）</li>
+  </ul>
+</div>
+</section>
+
+</div>
+</main>
+</body>
+</html>

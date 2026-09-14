@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA 复习笔记 | Lecture 24-25</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1a;--text2:#555;--accent:#534AB7;--accent2:#0F6E56;--red:#E24B4A;--amber:#BA7517;--blue:#185FA5;--pink:#C43B7A;--border:#e5e3de;--code-bg:#f3f1ec;--sidebar-bg:#f0eee9;--sidebar-w:260px;}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--card:#252525;--text:#e8e6e0;--text2:#999;--accent:#AFA9EC;--accent2:#5DCAA5;--red:#F09595;--amber:#FAC775;--blue:#85B7EB;--pink:#F29BC1;--border:#333;--code-bg:#2c2c2a;--sidebar-bg:#1f1f1f;}}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+/* Sidebar */
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-bg);border-right:1px solid var(--border);overflow-y:auto;padding:20px 0;z-index:100;transition:transform .3s;}
+.sidebar .logo{padding:0 20px 16px;font-size:15px;font-weight:700;color:var(--accent);border-bottom:1px solid var(--border);margin-bottom:12px;}
+.sidebar a{display:block;padding:6px 20px;color:var(--text2);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .15s;}
+.sidebar a:hover,.sidebar a.active{color:var(--accent);background:rgba(83,74,183,.06);border-left-color:var(--accent);}
+.sidebar .sec{font-size:12px;font-weight:700;color:var(--text2);padding:14px 20px 6px;text-transform:uppercase;letter-spacing:.5px;}
+.sidebar .sub{padding-left:34px;font-size:12px;}
+
+/* Main */
+.main{margin-left:var(--sidebar-w);padding:30px 40px 60px;}
+.container{max-width:860px;margin:0 auto;}
+
+/* Toggle btn for mobile */
+.menu-btn{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--accent);color:#fff;border:none;border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;}
+@media(max-width:800px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:translateX(0);}
+  .main{margin-left:0;padding:20px;}
+  .menu-btn{display:flex;align-items:center;justify-content:center;}
+}
+
+h1{font-size:26px;font-weight:700;margin-bottom:6px;color:var(--accent);}
+h2{font-size:21px;font-weight:600;margin:36px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--accent);color:var(--accent);}
+h3{font-size:17px;font-weight:600;margin:22px 0 10px;color:var(--text);}
+h4{font-size:14px;font-weight:600;margin:14px 0 6px;color:var(--text2);}
+p{margin-bottom:11px;}
+.subtitle{color:var(--text2);font-size:14px;margin-bottom:24px;}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin:14px 0;}
+.card-accent{border-left:4px solid var(--accent);}
+.card-green{border-left:4px solid var(--accent2);}
+.card-red{border-left:4px solid var(--red);}
+.card-amber{border-left:4px solid var(--amber);}
+.card-blue{border-left:4px solid var(--blue);}
+.card-pink{border-left:4px solid var(--pink);}
+
+/* Formula */
+.formula{background:var(--code-bg);border-radius:10px;padding:14px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+
+/* Grids */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+/* Tags */
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-tip{background:#E1F5EE;color:#0F6E56;}
+
+/* Inline */
+.key{color:var(--red);font-weight:600;}
+.eng{color:var(--blue);font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+
+/* Steps */
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:38px;margin-bottom:14px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+/* Viz */
+.viz{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;margin:12px 0;text-align:center;}
+.viz svg{max-width:100%;height:auto;}
+.viz-caption{font-size:11px;color:var(--text2);margin-top:5px;}
+
+/* Table */
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);font-size:13px;}
+th{background:var(--code-bg);font-weight:600;}
+
+/* Example box */
+.example-box{background:var(--code-bg);border-radius:10px;padding:12px 16px;margin:10px 0;}
+
+/* Lecture divider */
+.lecture-divider{background:linear-gradient(135deg,#534AB7,#8B84D8);color:#fff;padding:20px 22px;border-radius:12px;margin:36px 0 18px;}
+.lecture-divider h2{color:#fff;border:none;margin:0;padding:0;font-size:21px;}
+.lecture-divider p{color:#dfd9ff;font-size:12px;margin:3px 0 0;}
+.lecture-divider.orange{background:linear-gradient(135deg,#D8734E,#E69975);}
+.lecture-divider.orange p{color:#fff0e8;}
+.lecture-divider.teal{background:linear-gradient(135deg,#0F6E56,#5DCAA5);}
+.lecture-divider.teal p{color:#d0f5e8;}
+
+/* KCards */
+.kcards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+.kcard{text-align:center;padding:12px 8px;border-radius:10px;border:2px solid var(--border);font-size:12px;}
+.kcard .kv{font-size:18px;font-weight:700;color:var(--accent);}
+.kcard .kd{margin-top:3px;color:var(--text2);font-size:11px;}
+@media(max-width:700px){.kcards{grid-template-columns:1fr 1fr;}}
+
+/* Progress */
+.progress{position:fixed;top:0;left:var(--sidebar-w);right:0;height:3px;background:var(--accent);z-index:99;transition:width .1s;}
+@media(max-width:800px){.progress{left:0;}}
+
+/* Back to top */
+.nav{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+
+/* Pipeline */
+.pipeline{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:12px 0;}
+.pipeline .pstep{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;}
+.pipeline .parrow{color:var(--accent);font-size:18px;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<button class="menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+<a href="#top" class="nav">&uarr;</a>
+
+<!-- ===== SIDEBAR ===== -->
+<nav class="sidebar">
+<div class="logo">&#x1F4CA; DDA Lec 24-25</div>
+
+<div class="sec">Lecture 24 &middot; LLM</div>
+<a href="#L24">Large Language Models</a>
+<a href="#L24-1" class="sub">1. Token &amp; 语言建模</a>
+<a href="#L24-2" class="sub">2. 条件概率 &amp; Next-Token</a>
+<a href="#L24-3" class="sub">3. Transformer 架构</a>
+<a href="#L24-4" class="sub">4. 自监督训练</a>
+<a href="#L24-5" class="sub">5. Pre-training 预训练</a>
+<a href="#L24-6" class="sub">6. Scaling Law</a>
+<a href="#L24-7" class="sub">7. Post-training</a>
+<a href="#L24-8" class="sub">8. Reasoning 推理模型</a>
+
+<div class="sec">Lecture 25 &middot; Final Review</div>
+<a href="#L25">期末复习总览</a>
+<a href="#L25-1" class="sub">1. 课程五大主线</a>
+<a href="#L25-2" class="sub">2. 概率论复习</a>
+<a href="#L25-3" class="sub">3. 统计学复习</a>
+<a href="#L25-4" class="sub">4. 优化复习</a>
+<a href="#L25-5" class="sub">5. 机器学习复习</a>
+<a href="#L25-6" class="sub">6. 备考策略</a>
+</nav>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+<div class="container" id="top">
+
+<h1>LLM &middot; 期末复习总览</h1>
+<p class="subtitle">Lecture 24&ndash;25 | Introduction to Data Science | Prof. Pin Gao</p>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 24                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider" id="L24">
+<h2 style="color:#fff;">Lecture 24 &mdash; Large Language Models (LLM)</h2>
+<p>从条件概率到推理 &mdash; 一条完整的 LLM 构建路线</p>
+</div>
+
+<!-- 24-1 Token & 语言建模 -->
+<h2 id="L24-1">1. Token 与语言建模</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>什么是 Token？</h3>
+<p>LLM 不直接读取整个句子，而是先将文本切分为小片段，称为 <span class="eng">token</span>。</p>
+<p>一个 token 可以是：一个完整单词、一个词的一部分、标点符号、或特殊符号。</p>
+<p>常见词通常是单个 token；罕见词会被拆分为多个 sub-token。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Core Idea</span>
+<h3>语言建模的核心句</h3>
+<p><span class="highlight">语言模型的任务就是预测下一个 token。</span> 如果能不断地准确预测，就能生成完整的句子。</p>
+<div class="example-box">
+<p>"The capital of France is <span class="key">___</span>"&nbsp;&nbsp;&rarr;&nbsp;&nbsp;模型预测填空</p>
+</div>
+</div>
+
+<!-- 24-2 条件概率 -->
+<h2 id="L24-2">2. 条件概率与 Next-Token Prediction</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>条件概率视角</h3>
+<p><span class="eng">Conditional probability</span>：给定上下文后的概率。在语言中，下一个词的概率取决于已经看到的所有词。</p>
+<div class="formula">
+$$P(x_t \mid x_1, x_2, \dots, x_{t-1})$$
+</div>
+<p>一个完整句子的概率可以分解为：</p>
+<div class="formula">
+$$P(x_1, x_2, \dots, x_T) = \prod_{t=1}^{T} P(x_t \mid x_1, \dots, x_{t-1})$$
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Key Insight</span>
+<h3>为什么 Next-Token Prediction 就够了？</h3>
+<p>一旦我们知道如何预测下一个 token，就可以<span class="highlight">自回归</span>地生成完整回复：</p>
+<div class="pipeline">
+<div class="pstep">上下文 Context</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">预测 next token</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">追加到上下文</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">循环直到 &lt;EOS&gt;</div>
+</div>
+<p>所以关键问题不是"一次写出整段话"，而是<span class="key">高效地计算正确的条件概率</span>。</p>
+</div>
+
+<!-- 24-3 Transformer -->
+<h2 id="L24-3">3. Transformer 架构</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>Transformer = 条件概率机器</h3>
+<p>输入：一串 token 序列；输出：下一个 token 的概率分布。<br>
+Transformer 就是将上下文转换为这些概率的函数。</p>
+</div>
+
+<h3>Transformer 的四个步骤</h3>
+
+<ol class="steps">
+<li><strong>Embeddings（词嵌入）</strong><br>
+每个 token 变成一个向量（<span class="eng">word embedding</span>）。模型不直接处理原始文字，而是处理数值表示。语义相近的 token 在向量空间中距离较近。</li>
+
+<li><strong>Position Information（位置信息）</strong><br>
+句子不是"词袋"，<span class="key">顺序很重要</span>。位置编码告诉模型每个 token 在序列中的位置。没有位置信息，"dog bites man" 和 "man bites dog" 看起来一样。</li>
+
+<li><strong>Masked Self-Attention（掩码自注意力）</strong><br>
+每个 token 可以查看<span class="highlight">它之前</span>的 token 来构建更好的表示。<span class="eng">Masked</span> 意味着 token 看不到未来的 token &mdash; 这正好符合 next-token prediction 的需求。模型学习哪些earlier words最重要。</li>
+
+<li><strong>最后一层：特征 &rarr; 概率</strong><br>
+最后一层本质上是一个大规模的<span class="eng">multi-class classifier</span>（多类分类器），从所有词汇中选择下一个 token。</li>
+</ol>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Key Interpretation</span>
+<h3>Logistic Regression 视角</h3>
+<p>可以把整个架构理解为：</p>
+<div class="grid2">
+<div class="card" style="margin:0;text-align:center;">
+<p style="font-size:14px;color:var(--text2);">Transformer 主体</p>
+<p><strong>= Feature Extractor</strong></p>
+<p style="font-size:13px;">构建强大的 hidden state</p>
+</div>
+<div class="card" style="margin:0;text-align:center;">
+<p style="font-size:14px;color:var(--text2);">最后一层</p>
+<p><strong>= Classifier</strong></p>
+<p style="font-size:13px;">（多类 Logistic Regression）</p>
+</div>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>Worked Example</h3>
+<p>Prompt: "The cat sat on the"</p>
+<p>Transformer 为最后一个位置构建 hidden state，最后一层（logistic regression）可能输出：</p>
+<table>
+<tr><th>Token</th><th>概率</th></tr>
+<tr><td>"mat"</td><td><span class="key">高</span></td></tr>
+<tr><td>"floor"</td><td>中等</td></tr>
+<tr><td>无关词</td><td>极低</td></tr>
+</table>
+<p>然后选一个 token，追加，重复。</p>
+</div>
+
+<!-- 24-4 自监督训练 -->
+<h2 id="L24-4">4. 自监督训练</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Self-Supervised Learning</span>
+<h3>训练数据自带标签</h3>
+<p>训练文本自己提供标签 &mdash; 前面的 token 是输入，下一个 token 是目标。</p>
+<table>
+<tr><th>模型看到的输入</th><th>正确目标</th></tr>
+<tr><td>&lt;start&gt;</td><td>I</td></tr>
+<tr><td>&lt;start&gt; I</td><td>love</td></tr>
+<tr><td>&lt;start&gt; I love</td><td>machine</td></tr>
+<tr><td>&lt;start&gt; I love machine</td><td>learning</td></tr>
+<tr><td>&lt;start&gt; I love machine learning</td><td>&lt;EOS&gt;</td></tr>
+</table>
+<p>这就是为什么 LLM 预训练被称为 <span class="eng">self-supervised learning</span>。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Training Objective</span>
+<h3>训练目标</h3>
+<p>最小化 <span class="eng">cross-entropy loss</span>（交叉熵损失）：</p>
+<div class="formula">
+$$\mathcal{L} = -\sum_{t=1}^{T}\log P(x_t \mid x_1,\dots,x_{t-1})$$
+</div>
+<p>即最大化模型对训练数据中每一步"正确下一个 token"的预测概率。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Inference</span>
+<h3>推理（文本生成）</h3>
+<p>测试时，模型读取当前 prompt，输出 next-token 概率分布，<span class="eng">sample</span> 一个 token，追加到 prompt，重复直到 &lt;EOS&gt; 或达到长度限制。</p>
+<h4>常见采样策略</h4>
+<table>
+<tr><th>策略</th><th>描述</th></tr>
+<tr><td><span class="eng">Greedy Decoding</span></td><td>每次取概率最高的 token（简单但多样性差）</td></tr>
+<tr><td><span class="eng">Beam Search</span></td><td>同时保留多个高分部分序列（质量更好）</td></tr>
+</table>
+</div>
+
+<!-- 24-5 Pre-training -->
+<h2 id="L24-5">5. Pre-training 预训练</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Definition</span>
+<h3>什么是预训练？</h3>
+<p>在<span class="key">超大规模语料</span>上从零训练一个 base LLM，目标仍是 next-token prediction。变化的是规模：更多数据、更大模型、更多算力。</p>
+<p>预训练建立广泛的语言能力和通用知识。</p>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Challenge</span>
+<h3>工程挑战</h3>
+<p>想法简单，但工程极难：需要大数据集、大模型、分布式训练、精心的系统调优。预训练同时是一个 <span class="eng">ML problem</span> 和一个 <span class="eng">systems problem</span>。</p>
+</div>
+
+<h3>数据管线（以 Llama 3 为例）</h3>
+
+<ol class="steps">
+<li><strong>Safety Filtering</strong>：移除有害内容（暴力、仇恨言论等）</li>
+<li><strong>Text Extraction &amp; Cleaning</strong>：从 HTML 提取高质量纯文本，去除导航栏、广告等</li>
+<li><strong>De-duplication</strong>：精确去重 + 模糊去重，避免过拟合重复内容</li>
+<li><strong>Quality Filtering</strong>：规则过滤 + 小模型打分，去除低质量文本</li>
+</ol>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Data Mix</span>
+<h3>Llama 3 数据配比</h3>
+<div class="kcards">
+<div class="kcard"><div class="kv">50%</div><div class="kd">General Knowledge</div></div>
+<div class="kcard"><div class="kv">25%</div><div class="kd">Math &amp; Reasoning</div></div>
+<div class="kcard"><div class="kv">17%</div><div class="kd">Code</div></div>
+<div class="kcard"><div class="kv">8%</div><div class="kd">Multilingual</div></div>
+</div>
+<div class="kcards">
+<div class="kcard"><div class="kv">15T</div><div class="kd">tokens 总训练数据</div></div>
+<div class="kcard"><div class="kv">128K</div><div class="kd">vocabulary 词表大小</div></div>
+<div class="kcard"><div class="kv">8B/70B/405B</div><div class="kd">三种参数规模</div></div>
+<div class="kcard"><div class="kv">128K</div><div class="kd">最终 context window</div></div>
+</div>
+</div>
+
+<!-- 24-6 Scaling Law -->
+<h2 id="L24-6">6. Scaling Law</h2>
+
+<div class="card card-accent">
+<span class="tag tag-thm">Scaling Law</span>
+<h3>规模定律</h3>
+<p>更大并不总是更好 &mdash; 在<span class="key">固定算力</span>下，模型大小和训练数据量之间存在最优平衡。</p>
+<p>Scaling Law 是一组<span class="eng">经验公式</span>：给定算力预算 $C$，最优模型大小 $N$ 和训练数据量 $D$ 应该是多少？</p>
+<p>核心思想：用 test error 来评估，在给定 FLOPS 预算下找最优配置。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Training Recipe</span>
+<h3>训练配方示例</h3>
+<table>
+<tr><th>超参数</th><th>策略</th></tr>
+<tr><td>Optimizer</td><td>AdamW（梯度下降变体）</td></tr>
+<tr><td>Learning Rate</td><td>训练过程中逐渐衰减</td></tr>
+<tr><td>Batch Size</td><td>训练过程中逐渐增大（稳定性）</td></tr>
+<tr><td>Context Length</td><td>从 4096 逐步增到 128K</td></tr>
+</table>
+</div>
+
+<!-- 24-7 Post-training -->
+<h2 id="L24-7">7. Post-training 后训练</h2>
+
+<div class="card card-red">
+<span class="tag tag-warn">Problem</span>
+<h3>为什么仅靠预训练不够？</h3>
+<p>预训练模型<span class="highlight">知识丰富但不听话</span>：可能不遵循指令、回答风格奇怪、不符合人类偏好。</p>
+<div class="pipeline">
+<div class="pstep">Base Model</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Post-training</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Assistant Model</div>
+</div>
+</div>
+
+<h3>7a. Supervised Fine-Tuning (SFT)</h3>
+<div class="card card-accent">
+<p>用高质量的 (prompt, response) 数据对模型进行微调，让模型学会遵循指令、按期望格式回答。</p>
+</div>
+
+<h3>7b. Preference Learning 偏好学习</h3>
+<div class="card card-blue">
+<span class="tag tag-thm">DPO</span>
+<h3>Direct Preference Optimization</h3>
+<p>有时两个回答都流畅，但一个明显更好。偏好学习使用三元组数据：</p>
+<table>
+<tr><th>数据</th><th>说明</th></tr>
+<tr><td>Prompt</td><td>用户输入</td></tr>
+<tr><td>Preferred Answer</td><td>人类标注的较好回答</td></tr>
+<tr><td>Less Preferred Answer</td><td>人类标注的较差回答</td></tr>
+</table>
+<p>DPO 直接<span class="key">增大 preferred answer 的相对概率</span>，减小 less preferred 的概率，避免了复杂的 RL 管线。</p>
+</div>
+
+<!-- 24-8 Reasoning -->
+<h2 id="L24-8">8. Reasoning 推理模型</h2>
+
+<div class="card card-pink">
+<span class="tag tag-thm">Reasoning Model</span>
+<h3>什么是推理模型？</h3>
+<p>有些任务需要<span class="highlight">多步推理</span>（如数学、逻辑），不只是流畅文本。推理模型建立在预训练 + 后训练的 LLM 之上。</p>
+<h4>两种常见路径：</h4>
+<div class="grid2">
+<div class="card" style="margin:0;">
+<p><strong>SFT on 推理 traces</strong></p>
+<p style="font-size:13px;">用包含思考步骤的数据做 SFT</p>
+</div>
+<div class="card" style="margin:0;">
+<p><strong>RL + Verifiable Rewards</strong></p>
+<p style="font-size:13px;">用可验证的奖励信号做强化学习</p>
+</div>
+</div>
+</div>
+
+<div class="card card-accent">
+<span class="tag tag-def">GRPO</span>
+<h3>RL with a Verifier (GRPO-Style)</h3>
+<ol class="steps">
+<li>让模型对一个问题生成<strong>多个候选答案</strong></li>
+<li><span class="eng">Verifier</span>（或 ground truth）检查哪些更好</li>
+<li>更好的答案获得<strong>更强的训练信号</strong></li>
+<li>模型逐渐学会产生更正确的推理路径</li>
+</ol>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Summary</span>
+<h3>LLM 完整管线总结</h3>
+<div class="pipeline">
+<div class="pstep">Text Data</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Pre-training</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">SFT</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Preference Learning</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Reasoning</div>
+</div>
+<table>
+<tr><th>阶段</th><th>核心</th></tr>
+<tr><td>Core</td><td>LLM = 对 token 序列的条件概率</td></tr>
+<tr><td>Architecture</td><td>Transformer 计算这些概率</td></tr>
+<tr><td>Pre-training</td><td>构建广泛语言能力</td></tr>
+<tr><td>SFT + Preference</td><td>塑造行为与对齐</td></tr>
+<tr><td>Reasoning</td><td>提升复杂问题求解能力</td></tr>
+</table>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 25                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider teal" id="L25">
+<h2 style="color:#fff;">Lecture 25 &mdash; Final Exam Review</h2>
+<p>期末复习 &mdash; 全课程核心知识整理</p>
+</div>
+
+<!-- 25-1 五大主线 -->
+<h2 id="L25-1">1. 课程五大主线</h2>
+
+<div class="card card-accent">
+<h3>Data Science 的关键知识领域</h3>
+<div class="grid3">
+<div class="card card-blue" style="margin:0;text-align:center;">
+<p><strong>Probability</strong></p>
+<p style="font-size:12px;">概率论</p>
+</div>
+<div class="card card-green" style="margin:0;text-align:center;">
+<p><strong>Statistics</strong></p>
+<p style="font-size:12px;">统计学</p>
+</div>
+<div class="card card-red" style="margin:0;text-align:center;">
+<p><strong>Optimization</strong></p>
+<p style="font-size:12px;">优化</p>
+</div>
+</div>
+<div class="grid2" style="margin-top:10px;">
+<div class="card card-pink" style="margin:0;text-align:center;">
+<p><strong>Machine Learning</strong></p>
+<p style="font-size:12px;">机器学习</p>
+</div>
+<div class="card card-amber" style="margin:0;text-align:center;">
+<p><strong>Data &rarr; Model &rarr; Decision</strong></p>
+<p style="font-size:12px;">数据科学思维链</p>
+</div>
+</div>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Framework</span>
+<h3>Data Science 思维框架</h3>
+<table>
+<tr><th>概念</th><th>含义</th></tr>
+<tr><td><span class="key">DATA</span></td><td>数据是收集或生成的事实；在 DS 中我们将数据转化为数字以便应用数学</td></tr>
+<tr><td><span class="key">MODEL</span></td><td>用数学函数或计算系统来描述和抽象数据。统计分布 = 少量参数的数学函数；ML 模型 = 架构 + 算法</td></tr>
+<tr><td><span class="key">ANALYSIS</span></td><td>在数据中发现模式、规律和关系；需要可解释且有用</td></tr>
+<tr><td><span class="key">LEARNING</span></td><td>本质上与分析相同；学习 = 确定模型参数（如 KNN 的 K，LR 的系数），通常归结为优化问题</td></tr>
+<tr><td><span class="key">DECISION</span></td><td>用学到的模型做决策（检测、分类、预测）；连续决策 = 回归，可通过阈值转为离散</td></tr>
+</table>
+</div>
+
+<!-- 25-2 概率论 -->
+<h2 id="L25-2">2. 概率论复习 <span class="eng">Probability</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Terminologies</span>
+<h3>概率术语</h3>
+<table>
+<tr><th>术语</th><th>含义</th></tr>
+<tr><td><span class="eng">Outcome</span> 结果</td><td>实验的一个可能结果</td></tr>
+<tr><td><span class="eng">Event</span> 事件</td><td>结果的集合</td></tr>
+<tr><td><span class="eng">Sample Space</span> 样本空间</td><td>所有可能结果的集合 $\Omega$</td></tr>
+<tr><td><span class="eng">Random Variable</span> 随机变量</td><td>将结果映射为数值的函数</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Distributions</span>
+<h3>重要概率分布</h3>
+<h4>离散分布</h4>
+<table>
+<tr><th>分布</th><th>PMF / 公式</th><th>均值</th><th>方差</th></tr>
+<tr><td><span class="eng">Bernoulli</span></td><td>$P(X=1)=p$</td><td>$p$</td><td>$p(1-p)$</td></tr>
+<tr><td><span class="eng">Binomial</span> $B(n,p)$</td><td>$\binom{n}{k}p^k(1-p)^{n-k}$</td><td>$np$</td><td>$np(1-p)$</td></tr>
+<tr><td><span class="eng">Poisson</span> $\text{Poi}(\lambda)$</td><td>$\frac{\lambda^k e^{-\lambda}}{k!}$</td><td>$\lambda$</td><td>$\lambda$</td></tr>
+</table>
+<h4>连续分布</h4>
+<table>
+<tr><th>分布</th><th>PDF</th><th>均值</th><th>方差</th></tr>
+<tr><td><span class="eng">Uniform</span> $U(a,b)$</td><td>$\frac{1}{b-a}$</td><td>$\frac{a+b}{2}$</td><td>$\frac{(b-a)^2}{12}$</td></tr>
+<tr><td><span class="eng">Exponential</span> $\text{Exp}(\lambda)$</td><td>$\lambda e^{-\lambda x}$</td><td>$\frac{1}{\lambda}$</td><td>$\frac{1}{\lambda^2}$</td></tr>
+<tr><td><span class="eng">Normal</span> $N(\mu,\sigma^2)$</td><td>$\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$</td><td>$\mu$</td><td>$\sigma^2$</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Key Formulas</span>
+<h3>均值与方差公式</h3>
+<div class="grid2">
+<div>
+<h4>离散 (PMF)</h4>
+<div class="formula">$$E[X] = \sum_x x\cdot P(X=x)$$</div>
+<div class="formula">$$\text{Var}(X) = E[X^2]-(E[X])^2$$</div>
+</div>
+<div>
+<h4>连续 (PDF)</h4>
+<div class="formula">$$E[X] = \int_{-\infty}^{\infty}x\cdot f(x)\,dx$$</div>
+<div class="formula">$$\text{Var}(X) = \int(x-\mu)^2 f(x)\,dx$$</div>
+</div>
+</div>
+</div>
+
+<div class="card card-accent">
+<span class="tag tag-def">CDF</span>
+<h3>累积分布函数</h3>
+<p>对离散和连续随机变量均适用：</p>
+<div class="formula">
+$$F(x) = P(X \le x)$$
+</div>
+<p>性质：单调递增，$F(-\infty)=0$，$F(+\infty)=1$。</p>
+</div>
+
+<div class="card card-pink">
+<span class="tag tag-thm">Conditional Probability</span>
+<h3>条件概率与 Bayes 公式</h3>
+<div class="formula">$$P(A|B) = \frac{P(A\cap B)}{P(B)}$$</div>
+<div class="formula">$$P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}$$</div>
+</div>
+
+<!-- 25-3 统计学 -->
+<h2 id="L25-3">3. 统计学复习 <span class="eng">Statistics</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">MLE</span>
+<h3>最大似然估计 Maximum Likelihood Estimation</h3>
+<p>给定数据 $x_1, \dots, x_n$（假设 i.i.d.），找参数 $\theta$ 使数据出现的概率最大：</p>
+<div class="formula">$$\hat{\theta}_{MLE} = \arg\max_\theta \prod_{i=1}^{n}f(x_i;\theta)$$</div>
+<p>实际操作中取对数：</p>
+<div class="formula">$$\hat{\theta}_{MLE} = \arg\max_\theta \sum_{i=1}^{n}\log f(x_i;\theta)$$</div>
+<p>其中：连续 RV 用 PDF $f$，离散 RV 用 PMF $P$。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Linear Regression</span>
+<h3>线性回归</h3>
+<p>模型：$y = \beta_0 + \beta_1 x + \varepsilon$，$\varepsilon \sim N(0,\sigma^2)$</p>
+<p>MLE 方法得到的参数估计等价于<span class="eng">least squares</span>（最小二乘法）。</p>
+</div>
+
+<!-- 25-4 优化 -->
+<h2 id="L25-4">4. 优化复习 <span class="eng">Optimization</span></h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Formulation</span>
+<h3>优化问题的三要素</h3>
+<table>
+<tr><th>要素</th><th>说明</th></tr>
+<tr><td><span class="key">Objective Function</span></td><td>要最大化或最小化的目标函数</td></tr>
+<tr><td><span class="key">Decision Variables</span></td><td>决策变量</td></tr>
+<tr><td><span class="key">Constraints</span></td><td>约束条件</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Convex Set</span>
+<h3>凸集</h3>
+<p>集合 $S$ 是凸集，若对任意 $\mathbf{x},\mathbf{y}\in S$ 和 $\lambda\in[0,1]$：</p>
+<div class="formula">$$\lambda\mathbf{x}+(1-\lambda)\mathbf{y}\in S$$</div>
+<p>即两点之间的<span class="eng">line segment</span>（线段）完全在集合内。</p>
+<p><span class="highlight">凸集的交集仍是凸集</span>。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Convex Function</span>
+<h3>凸函数</h3>
+<p>$f$ 是凸函数，若对任意 $\mathbf{x},\mathbf{y}$ 和 $\lambda\in[0,1]$：</p>
+<div class="formula">$$f(\lambda\mathbf{x}+(1-\lambda)\mathbf{y})\le\lambda f(\mathbf{x})+(1-\lambda)f(\mathbf{y})$$</div>
+<h4>二阶条件</h4>
+<p>一维：$f''(x)\ge 0$&nbsp;&nbsp;&rArr;&nbsp;&nbsp;$f$ 是凸函数</p>
+<p>凹函数：不等号反向。若 $f$ 凹则 $-f$ 凸。</p>
+</div>
+
+<div class="card card-red">
+<span class="tag tag-exam">Key Theorem</span>
+<h3>凸优化问题的核心性质</h3>
+<p>凸优化问题需要同时满足：</p>
+<p>1. 可行域是<span class="key">凸集</span></p>
+<p>2. 目标函数是<span class="key">凸函数</span></p>
+<p>核心定理：<span class="highlight">任何局部最小值也是全局最小值。</span></p>
+</div>
+
+<div class="card card-accent">
+<span class="tag tag-exam">Newsvendor</span>
+<h3>报童问题 Newsvendor Problem</h3>
+<p>经典凸优化应用：在需求不确定下确定最优订货量，使期望利润最大（或期望成本最小）。</p>
+<p>最优条件：$F(q^*) = \frac{p-c}{p-s}$（临界比率条件），其中 $p$ = 售价，$c$ = 成本，$s$ = 残值。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Gradient Descent</span>
+<h3>梯度下降</h3>
+<p>迭代更新公式：</p>
+<div class="formula">$$\mathbf{x}_{t+1} = \mathbf{x}_t - \eta\nabla f(\mathbf{x}_t)$$</div>
+<p>$\eta$ = 学习率 <span class="eng">learning rate</span></p>
+<p><span class="eng">Stochastic GD</span>：每次用随机一个或小批量样本估计梯度，速度更快但有噪声。</p>
+<div class="card card-amber" style="margin-top:10px;">
+<span class="tag tag-warn">Warning</span>
+<p>学习率太大：振荡不收敛；学习率太小：收敛极慢。</p>
+</div>
+</div>
+
+<!-- 25-5 机器学习 -->
+<h2 id="L25-5">5. 机器学习复习 <span class="eng">Machine Learning</span></h2>
+
+<div class="card card-accent">
+<h3>监督学习 vs. 无监督学习</h3>
+<div class="grid2">
+<div class="card card-blue" style="margin:0;">
+<p><strong>Supervised Learning</strong></p>
+<p style="font-size:13px;">训练数据有标签 $(x, y)$</p>
+<p style="font-size:13px;">目标：学习 $x \to y$ 的映射</p>
+<p style="font-size:13px;">例：KNN、Logistic Regression</p>
+</div>
+<div class="card card-pink" style="margin:0;">
+<p><strong>Unsupervised Learning</strong></p>
+<p style="font-size:13px;">训练数据无标签，只有 $x$</p>
+<p style="font-size:13px;">目标：发现数据中的结构和模式</p>
+<p style="font-size:13px;">例：K-Means Clustering</p>
+</div>
+</div>
+</div>
+
+<h3>5a. KNN (K-Nearest Neighbors)</h3>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Algorithm</span>
+<h3>KNN 算法</h3>
+<ol class="steps">
+<li>计算测试点与所有训练点的距离</li>
+<li>找出距离最近的 $K$ 个邻居</li>
+<li>用这 $K$ 个邻居的多数投票（分类）或平均值（回归）作为预测</li>
+</ol>
+<p><span class="key">K 的影响</span>：K 太小 &rarr; overfitting；K 太大 &rarr; underfitting</p>
+</div>
+
+<h3>5b. Logistic Regression</h3>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Model</span>
+<h3>Logistic Regression 模型</h3>
+<p>Logistic function (Sigmoid)：</p>
+<div class="formula">$$\sigma(z) = \frac{1}{1+e^{-z}}$$</div>
+<p>模型：$P(Y=1|\mathbf{x}) = \sigma(\mathbf{w}^T\mathbf{x}+b)$</p>
+<p>训练：通过 MLE（等价于最小化 cross-entropy loss），<span class="highlight">无闭合解</span>，需用梯度下降求解。</p>
+</div>
+
+<h3>5c. K-Means Clustering</h3>
+
+<div class="card card-pink">
+<span class="tag tag-thm">Algorithm</span>
+<h3>K-Means 算法</h3>
+<ol class="steps">
+<li>随机初始化 $K$ 个聚类中心</li>
+<li><strong>分配</strong>：将每个点分配到最近的聚类中心</li>
+<li><strong>更新</strong>：重新计算每个聚类的中心（均值）</li>
+<li>重复步骤 2-3 直到收敛</li>
+</ol>
+<p>目标函数：$\min \sum_{k}\sum_{x_i \in C_k}\|x_i - \mu_k\|^2$</p>
+</div>
+
+<h3>5d. Overfitting &amp; Underfitting</h3>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Key Concepts</span>
+<div class="grid2">
+<div class="card card-red" style="margin:0;">
+<p><strong>Overfitting（过拟合）</strong></p>
+<p style="font-size:13px;">模型学到了训练数据的噪声/特异性</p>
+<p style="font-size:13px;">训练准确率高，测试准确率低</p>
+<p style="font-size:13px;">模型太复杂</p>
+</div>
+<div class="card card-blue" style="margin:0;">
+<p><strong>Underfitting（欠拟合）</strong></p>
+<p style="font-size:13px;">模型未能捕捉数据中的关键模式</p>
+<p style="font-size:13px;">训练和测试准确率都低</p>
+<p style="font-size:13px;">模型太简单</p>
+</div>
+</div>
+</div>
+
+<h3>5e. Model Selection 模型选择</h3>
+
+<div class="card card-accent">
+<span class="tag tag-def">Validation Set</span>
+<h3>验证集方法</h3>
+<ol class="steps">
+<li>将数据分为<span class="key">训练集</span>和<span class="key">测试集</span></li>
+<li>对每个候选模型 $m$（如 KNN 的 $K=1,2,\dots,M$），用训练集训练</li>
+<li>用测试集计算预测误差 $\text{Err}_m$</li>
+<li>选择测试误差最小的模型</li>
+</ol>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">K-Fold CV</span>
+<h3>K-Fold Cross-Validation</h3>
+<ol class="steps">
+<li>将数据分为 $K$ 份（folds）</li>
+<li>每次用其中 1 份做测试，其余 $K-1$ 份做训练</li>
+<li>重复 $K$ 次，每份都做一次测试集</li>
+<li>用 $K$ 次测试误差的<span class="key">平均值</span>作为模型的预测误差</li>
+</ol>
+<p>优点：每个数据点都被用作测试，结果更稳定。</p>
+</div>
+
+<!-- 25-6 备考策略 -->
+<h2 id="L25-6">6. 备考策略</h2>
+
+<div class="card card-red">
+<span class="tag tag-warn">Exam Info</span>
+<h3>考试信息</h3>
+<table>
+<tr><th>项目</th><th>详情</th></tr>
+<tr><td>Quiz 3</td><td>April 29, 9:00-10:00pm, online</td></tr>
+<tr><td>Final Exam</td><td>May 10, 2026, 13:30-15:30, Location TBA</td></tr>
+<tr><td>可携带</td><td>一个计算器，一本非电子词典</td></tr>
+<tr><td>不可携带</td><td>Cheat sheet</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Tips</span>
+<h3>复习建议</h3>
+<p>1. 认真研究去年期末考真题及答案，熟悉题型和重点</p>
+<p>2. 重点掌握每个模块的<span class="key">核心公式</span>和<span class="key">推导逻辑</span></p>
+<p>3. 理解概念之间的联系（如 MLE &harr; Loss Function &harr; Gradient Descent）</p>
+<p>4. 做到能<span class="highlight">独立手算</span>小型例题</p>
+</div>
+
+<!-- Summary -->
+<div class="lecture-divider orange" id="summary">
+<h2 style="color:#fff;">核心要点速查 (Lec 24-25)</h2>
+<p>Key takeaways at a glance</p>
+</div>
+
+<div class="card card-accent">
+<h3>Lecture 24: LLM 核心链条</h3>
+<div class="pipeline">
+<div class="pstep">Token</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Conditional Prob</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Transformer</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Pre-train</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Post-train</div>
+<div class="parrow">&rarr;</div>
+<div class="pstep">Reasoning</div>
+</div>
+</div>
+
+<div class="card card-blue">
+<h3>Lecture 25: 全课程公式速查</h3>
+<table>
+<tr><th>模块</th><th>核心公式 / 概念</th></tr>
+<tr><td>Probability</td><td>$P(A|B) = \frac{P(B|A)P(A)}{P(B)}$; 各分布的 PMF/PDF, 均值方差</td></tr>
+<tr><td>Statistics</td><td>$\hat{\theta}_{MLE} = \arg\max \sum\log f(x_i;\theta)$; 线性回归</td></tr>
+<tr><td>Optimization</td><td>凸集/凸函数定义; 凸优化局部=全局; $x_{t+1}=x_t-\eta\nabla f$</td></tr>
+<tr><td>ML: KNN</td><td>K 近邻投票; K 值权衡 overfitting/underfitting</td></tr>
+<tr><td>ML: LogReg</td><td>$\sigma(z)=\frac{1}{1+e^{-z}}$; MLE 训练 + GD 求解</td></tr>
+<tr><td>ML: K-Means</td><td>分配-更新循环; $\min\sum\|x_i-\mu_k\|^2$</td></tr>
+<tr><td>Model Selection</td><td>Validation set; K-fold CV; 用测试误差选模型</td></tr>
+</table>
+</div>
+
+</div><!-- container -->
+</div><!-- main -->
+
+<script>
+// Reading progress bar
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=h.scrollHeight||b.scrollHeight;
+  var pct=st/(sh-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

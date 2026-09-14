@@ -1,0 +1,1325 @@
+--- Page 0 ---
+MAT3007 Optimization
+Modeling & Linear Programming
+Nachuan Xiao
+School of Data Science
+The Chinese University of Hong Kong, Shenzhen
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+1 / 44
+
+--- Page 1 ---
+Recap: Modeling
+Identify and formulate the three components:
+▶Decision ⇝Decision variables x.
+▶Objective ⇝Objective function f(x).
+▶Constraints ⇝Constraint functions: equalities / inequalities
+g(x) ≤0, h(x) = 0.
+Decision Variables
+Objective Function
+Constraints
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+2 / 44
+
+--- Page 2 ---
+Recap: Modeling Checklist
+When you see a real problem, ask:
+1. What can I choose? →decision variables x.
+2. What do I want? →objective f(x) (minimize/maximize).
+3. What rules must I obey? →constraints (equalities/inequalities).
+Geometric picture:
+▶Constraints carve out a feasible set Ω.
+▶Objective compares points in Ω.
+▶Optimization picks the “best” point in Ω.
+Modeling is the task of translating natural language into x, f(x), and
+constraints.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+3 / 44
+
+--- Page 3 ---
+Recap: Modeling Shortest Path Problem
+S
+T
+4
+3
+3
+2
+3
+5
+2
+1
+6
+2
+4
+Let E contain both directed arcs for each drawn edge. Define
+xij =
+ 1
+if we use arc (i, j),
+0
+otherwise.
+The arc decisions xij and xji can differ.
+minimize
+{xij}(i,j)∈E
+P
+(i,j)∈E wijxij
+subject to
+xij ∈{0, 1},
+∀(i, j) ∈E
+P
+j xsj −P
+j xjs = 1
+P
+j xjt −P
+j xtj = 1
+P
+j xij = P
+j xji,
+∀i̸ = s, t.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+4 / 44
+
+--- Page 4 ---
+Recap: Modeling Shortest Path Problem
+The constraints send one unit of flow from s to t. Positive edge costs
+eliminate extra cycles at an optimum.
+Interpret each equation as “net flow”:
+net outflow at node i :=
+X
+j
+xij −
+X
+j
+xji.
+Then the model says:
+▶At s: net outflow = 1 ⇒start the path once.
+▶At t: net inflow = 1 ⇒end the path once.
+▶Elsewhere: net flow = 0 ⇒if you enter, you must leave.
+Simple check: if you try to “jump” from s to t without connected edges,
+flow conservation fails at intermediate nodes.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+5 / 44
+
+--- Page 5 ---
+Vertex Cover: Meaning and Triangle Example
+A vertex cover is a set of nodes that touches every edge. We want to
+select as few nodes as possible.
+1
+2
+3
+uncovered
+▶Selecting only node 1 misses the edge between nodes 2 and 3.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+6 / 44
+
+--- Page 6 ---
+Vertex Cover: Meaning and Triangle Example
+A vertex cover is a set of nodes that touches every edge. We want to
+select as few nodes as possible.
+1
+2
+3
+covered
+▶Selecting only node 1 misses the edge between nodes 2 and 3.
+▶Selecting {1, 2} touches all three edges.
+▶Any single selected node misses the opposite edge.
+Therefore, the minimum vertex-cover size of the triangle is 2.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+6 / 44
+
+--- Page 7 ---
+Vertex Cover: A Larger Graph
+The highlighted nodes {B, D, E, F} touch every edge.
+S
+B
+C
+D
+E
+F
+T
+This gives a feasible cover of size 4. The model will tell us whether a cover
+of size 3 exists.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+7 / 44
+
+--- Page 8 ---
+Vertex Cover: Binary Decisions and Objective
+For every node i ∈V , define
+xi =
+(
+1,
+if node i is selected,
+0,
+otherwise.
+i
+j
+xi = 1
+xj = 0
+The binary restriction xi ∈{0, 1} means each node is either selected or
+not selected.
+The number of selected nodes is
+X
+i∈V
+xi.
+▶Decision: which nodes receive value 1.
+▶Objective: minimize the number of selected nodes.
+▶Constraint: every edge must have at least one selected endpoint.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+8 / 44
+
+--- Page 9 ---
+Vertex Cover: One Constraint per Edge
+For one edge (i, j), the endpoint decisions have four possible values.
+xi
+xj
+xi + xj
+Endpoints
+Is the edge covered?
+0
+0
+0
+i
+j
+No
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+9 / 44
+
+--- Page 10 ---
+Vertex Cover: One Constraint per Edge
+For one edge (i, j), the endpoint decisions have four possible values.
+xi
+xj
+xi + xj
+Endpoints
+Is the edge covered?
+0
+0
+0
+i
+j
+No
+0
+1
+1
+i
+j
+Yes
+1
+0
+1
+i
+j
+Yes
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+9 / 44
+
+--- Page 11 ---
+Vertex Cover: One Constraint per Edge
+For one edge (i, j), the endpoint decisions have four possible values.
+xi
+xj
+xi + xj
+Endpoints
+Is the edge covered?
+0
+0
+0
+i
+j
+No
+0
+1
+1
+i
+j
+Yes
+1
+0
+1
+i
+j
+Yes
+1
+1
+2
+i
+j
+Yes
+Only the first row is forbidden. Thus edge (i, j) is covered exactly when
+xi + xj ≥1.
+We need at least one selected endpoint. The equality xi + xj = 1 would
+wrongly forbid selecting both. Adding this inequality for every edge forces
+the selected nodes to cover the whole graph.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+9 / 44
+
+--- Page 12 ---
+Vertex Cover: Final Model and Verified Answer
+Vertex cover
+min
+{xi}i∈V
+X
+i∈V
+xi
+subject to
+xi + xj ≥1,
+∀(i, j) ∈E,
+xi ∈{0, 1},
+∀i ∈V.
+This is a constrained integer linear model.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+10 / 44
+
+--- Page 13 ---
+Vertex Cover: Final Model and Verified Answer
+Vertex cover
+min
+{xi}i∈V
+X
+i∈V
+xi
+subject to
+xi + xj ≥1,
+∀(i, j) ∈E,
+xi ∈{0, 1},
+∀i ∈V.
+This is a constrained integer linear model.
+Verification for the larger graph:
+▶Triangle S–B–D requires at least two selected nodes.
+▶Triangle E–F–T has no nodes in common with the first triangle and
+also requires at least two.
+▶Hence every cover uses at least four nodes.
+▶The set {B, D, E, F} covers every edge and uses four nodes.
+Therefore, {B, D, E, F} is optimal and the minimum cover size is 4.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+10 / 44
+
+--- Page 14 ---
+Optimization Modeling of Support Vector Machine
+Linear Programming
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+11 / 44
+
+--- Page 15 ---
+Learning from Labeled Examples
+Machine learning: learn patterns from data to make future predictions and
+decisions. Optimization is one of its foundations.
+Classification predicts a category; support vector machines (SVMs) are an
+important method for this task.
+Example: predict whether a credit-card applicant should be approved.
+age
+25
+gender
+male
+salary
+100000 RMB
+citizenship
+CN
+years in job
+2 years
+...
+...
+A model needs numbers:
+▶Encode the applicant as a
+feature vector x ∈Rn.
+▶Learn a rule ℓ(x) that outputs
+approve or reject.
+ℓ(x) = +1 : approve,
+ℓ(x) = −1 : reject.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+12 / 44
+
+--- Page 16 ---
+Features, Samples, and Points
+Collect historical data from m applicants. Each row is a sample x⊤
+i ; each
+column is a feature.
+Column order: age, gender, salary, citizenship, years in job.
+X =
+
+
+2.5
+1
+10
+3
+1
+2.8
+0
+8
+6
+5
+1.6
+0
+0
+4
+0
+2.3
+1
+8
+2
+4
+3
+0
+4
+2
+1
+
+
+=
+
+
+x⊤
+1
+x⊤
+2...
+x⊤
+m
+
+∈Rm×n.
+Here m = n = 5; rows correspond to applicants 1–5.
+Features become coordinates:
+▶Coordinate 1: age; coordinate 2: gender (e.g., male = 1, female = 0);
+coordinate 3: salary (often scaled).
+▶With two features (e.g., salary and years in job), points lie in a plane;
+a boundary can be a line or curve.
+▶A linear boundary is a plane in 3D and a hyperplane in higher
+dimensions.
+Goal: separate the two classes with a boundary robust to small feature
+noise.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+13 / 44
+
+--- Page 17 ---
+Why Feature Scaling Matters
+Different features can have different units: RMB, years, or binary values.
+Why this matters geometrically:
+▶Rescaling a coordinate changes distances and angles in feature space.
+▶A feature with a much larger numerical scale can dominate the
+learned boundary.
+Example:
+▶Salary may be around 100000 RMB, while years in job may be
+between 0 and 10.
+▶Without scaling, salary differences can overwhelm the geometry.
+▶A common fix is normalization or standardization before training.
+Takeaway: feature scaling changes the shape of the point cloud and can
+change the learned boundary.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+14 / 44
+
+--- Page 18 ---
+Labeled Data in Feature Space
+Each label yi ∈{−1, +1} is the known outcome for applicant i.
+age
+gender salary citizenship years in job approve
+app. 1
+2.5
+1
+10
+3
+1
++1
+app. 2
+2.8
+0
+8
+6
+5
++1
+app. 3
+1.6
+0
+0
+4
+0
+−1
+app. 4
+2.3
+1
+8
+2
+4
++1
+app. 5
+3
+0
+4
+2
+1
+−1
+Supervised learning uses input–output
+pairs (x1, y1), . . . , (xm, ym).
+▶Each dot is one applicant xi ∈Rn.
+▶Colors/markers distinguish the two
+labels.
+▶Learn ℓ: Rn →{−1, +1} from
+these samples.
+We want correct (or mostly correct) training predictions and good
+predictions for new applicants.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+15 / 44
+
+--- Page 19 ---
+Predicting a New Applicant
+After learning ℓ, the input is a new feature vector z ∈Rn, not seen in
+training; the output is its predicted label ℓ(z).
+Question: what rule is simple, interpretable, and predicts well?
+Two steps:
+1. Compute a real-valued score
+u(z) = w⊤z + b ∈R.
+2. Convert the score to a label:
+ℓ(z) =
+(
++1,
+u(z) ≥0,
+−1,
+u(z) < 0.
+The boundary splits feature space into prediction regions; a new point’s
+side determines its label. Here a zero score is assigned to +1.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+16 / 44
+
+--- Page 20 ---
+Classifier in Action
+For this illustration, w = (1, −1)⊤and b = 0, so
+u(x) = x1 −x2,
+ℓ(x) =
+(
++1,
+u(x) ≥0,
+−1,
+u(x) < 0.
+x1
+x2
+u(x) = 0
+ℓ(x) = +1
+ℓ(x) = −1
+(3, 1)
+(1, 3)
+1
+3
+(3, 1)
+| {z }
+input
+7−→3 −1 = 2
+|
+{z
+}
+score
+7−→
++1
+|{z}
+label
+(1, 3)
+| {z }
+input
+7−→1 −3 = −2
+|
+{z
+}
+score
+7−→
+−1
+|{z}
+label
+Classifier: the whole map from features to a predicted label. The line
+u(x) = 0 is its decision boundary; the score is not a label.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+17 / 44
+
+--- Page 21 ---
+Linear Scores and Hyperplane Geometry
+Choose u(x) = w⊤x + b; its decision boundary is {x : w⊤x + b = 0},
+with w̸ = 0.
+w
+u = 0
+rotate w
+change b: parallel shift
+▶w is perpendicular to the boundary and points toward increasing
+score; changing its direction changes the orientation.
+▶With w fixed, changing b shifts the boundary without rotating it.
+For separable data, choose a score scale so that
+(
+u(xi) ≥+1,
+yi = +1,
+u(xi) ≤−1,
+yi = −1,
+i = 1, . . . , m.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+18 / 44
+
+--- Page 22 ---
+Normalization and the Feasibility Model
+For a strict separator, yiu(xi) > 0 for every sample. The weaker condition
+yiu(xi) ≥0 even admits w = 0, b = 0.
+Positive scaling does not change predictions: for c > 0,
+yi
+ (cw)⊤xi + cb
+
+= c yi(w⊤xi + b).
+There are infinitely many parameter pairs for the same boundary. For
+finitely many strictly separated samples, rescale so that
+min
+i
+yi(w⊤xi + b) = 1.
+The score levels u(x) = +1 and u(x) = −1 define the margin boundaries.
+Find w ∈Rn and b ∈R such that
+yi(w⊤xi + b) ≥1,
+i = 1, . . . , m.
+This is a feasibility problem, a special kind of optimization problem. The
+inequalities permit many separators; an objective will select one.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+19 / 44
+
+--- Page 23 ---
+Which Separating Line Should We Prefer?
+A feasibility problem may return many different separating hyperplanes.
+Several separators
+Compare safety distances
+d ≈.58
+narrow
+d = 1
+wide
+same toy data; d = half-width
+▶A boundary too close to training points is fragile: small feature
+perturbations can flip predicted labels.
+▶Prefer a safety distance to both classes: a larger margin.
+Question: how can we express this geometric preference as an objective?
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+20 / 44
+
+--- Page 24 ---
+Margin and Support Vectors
+u(x) = −1
+u(x) = 0
+u(x) = +1
+1
+∥w∥
+1
+∥w∥
+2
+∥w∥
+w
+circled points:
+support vectors
+perpendicular distance
+between dashed planes
+▶The two parallel margin boundaries separate the classes. The decision
+boundary w⊤x + b = 0 lies halfway between them.
+▶In this hard-margin picture, the closest training points touch the
+margin boundaries: they are support vectors.
+▶Here margin means the full band width 2/∥w∥; each side has width
+1/∥w∥. SVM selects the largest feasible width.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+21 / 44
+
+--- Page 25 ---
+Measuring Along the Normal Direction
+Consider the three parallel hyperplanes:
+H0 : w⊤x + b = 0,
+H+ : w⊤x + b = 1,
+H−: w⊤x + b = −1.
+Geometric facts:
+▶w is normal to all three
+hyperplanes.
+▶Their shortest distance is measured
+perpendicular to them.
+▶Move along the unit normal
+u =
+w
+∥w∥.
+u = −1
+u = 0
+u = 1
+x0
+w
+∥w∥
+1
+∥w∥
+unit normal
+Idea: compute dist(H0, H+), then double it. A displacement tu has
+Euclidean length |t|.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+22 / 44
+
+--- Page 26 ---
+Deriving the Margin Width
+Pick x0 ∈H0, so w⊤x0 + b = 0. Move along the unit normal:
+x(t) = x0 + tu,
+u =
+w
+∥w∥.
+Its score is
+w⊤x(t) + b = w⊤(x0 + tu) + b
+= (w⊤x0 + b) + tw⊤u
+= 0 + t∥w∥.
+To reach H+, the score must be 1. Hence
+t∥w∥= 1
+=⇒
+dist(H0, H+) =
+1
+∥w∥.
+Similarly, dist(H0, H−) = 1/∥w∥, so
+margin width = dist(H−, H+) =
+1
+∥w∥+
+1
+∥w∥=
+2
+∥w∥.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+23 / 44
+
+--- Page 27 ---
+Hard-margin SVM and Its Equivalent Objective
+For linearly separable data containing both classes, maximize the margin:
+max
+w,b
+2
+∥w∥
+s.t.
+yi(w⊤xi + b) ≥1,
+i = 1, . . . , m.
+Step 1: reciprocal monotonicity. For a, b > 0,
+a < b =⇒1/a > 1/b
+=⇒
+max
+2
+∥w∥⇐⇒min ∥w∥.
+Step 2: squaring preserves order. For 0 ≤t1 < t2,
+t2
+1 < t2
+2
+=⇒
+min ∥w∥⇐⇒min 1
+2∥w∥2.
+min
+w,b
+1
+2∥w∥2
+s.t.
+yi(w⊤xi + b) ≥1,
+∀i.
+The squared norm is smooth; ∥w∥is not differentiable at 0.
+What category is this problem?
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+24 / 44
+
+--- Page 28 ---
+Hard-margin SVM and Its Equivalent Objective
+For linearly separable data containing both classes, maximize the margin:
+max
+w,b
+2
+∥w∥
+s.t.
+yi(w⊤xi + b) ≥1,
+i = 1, . . . , m.
+Step 1: reciprocal monotonicity. For a, b > 0,
+a < b =⇒1/a > 1/b
+=⇒
+max
+2
+∥w∥⇐⇒min ∥w∥.
+Step 2: squaring preserves order. For 0 ≤t1 < t2,
+t2
+1 < t2
+2
+=⇒
+min ∥w∥⇐⇒min 1
+2∥w∥2.
+min
+w,b
+1
+2∥w∥2
+s.t.
+yi(w⊤xi + b) ≥1,
+∀i.
+The squared norm is smooth; ∥w∥is not differentiable at 0.
+What category is this problem?
+Nonlinear (quadratic objective), constrained, continuous.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+24 / 44
+
+--- Page 29 ---
+Why Soft Margin?
+Hard margin
+Allow violations: the same data
+A purple point lies inside a triangle of negative points: no line can separate
+them.
+▶The difficulty: requiring yi(w⊤xi + b) ≥1 for every i makes
+hard-margin SVM infeasible.
+▶The idea: allow points inside their margin, or on the wrong side, but
+penalize the size of these violations.
+Soft margin can also be used with separable data.
+How should we measure a margin violation?
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+25 / 44
+
+--- Page 30 ---
+Hinge Loss: Formula and Graph
+The margin score combines the linear score with the true label:
+si = yi u(xi) = yi(w⊤xi + b).
+The target is si ≥1. Penalize its shortfall using hinge loss:
+Li = max{0, 1 −si}.
+si ≥1
+Li = 0: correct, beyond or on margin.
+0 < si < 1
+Li = 1 −si ∈(0, 1): correct, too close.
+si = 0
+Li = 1: on the decision boundary.
+si < 0
+Li = 1 −si > 1: misclassified.
+s
+L(s)
+1.6
+1
+0.6
+−.6
+0
+.4
+1
+1.4
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+26 / 44
+
+--- Page 31 ---
+Hinge Loss: Four Examples
+All four points have true label +1. Their horizontal positions show margin
+scores, and Li = max{0, 1 −si}.
+si
+boundary
+margin
+−0.6
+0
+0.4
+1.4
+all yi = +1
+wrong
+Li = 1.6
+boundary
+Li = 1
+correct
+too close
+Li = .6
+safe
+Li = 0
+si
+Li
+Interpretation
+1.4
+0
+Correctly classified, beyond the margin
+0.4
+0.6
+Correctly classified, but inside the margin
+0
+1
+On the decision boundary; predict +1
+−0.6
+1.6
+Misclassified, on the wrong side
+A correct prediction can still receive a positive penalty when it is too close
+to the boundary.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+27 / 44
+
+--- Page 32 ---
+The Soft-margin SVM Model
+For λ > 0, balance a small weight norm against hinge losses:
+min
+w,b
+λ
+2 ∥w∥2 +
+m
+X
+i=1
+max{0, 1 −yi(w⊤xi + b)}.
+r
+t
+−1
+0
+1
+−4
+−2
+0
+2
+4
+λ = 2
+width 4
+w = (.5, 0)
+total loss = 2.5
+r
+t
+−1
+0
+1
+−4
+−2
+0
+2
+4
+λ = 44
+width 8
+w = (.25, 0)
+total loss = 5.25
+▶The norm term favors a wider margin; larger λ gives it more weight.
+▶The loss term penalizes margin violations, not just wrong predictions:
+here loss increases, but both models classify six points correctly and
+two incorrectly.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+28 / 44
+
+--- Page 33 ---
+What Kind of Optimization Problem Is This?
+Consider the hinge-loss formulation with λ > 0:
+f(w, b) = λ
+2 ∥w∥2 +
+m
+X
+i=1
+Li.
+▶Continuous variables: w ∈Rn and b ∈R.
+▶Unconstrained: every (w, b) is allowed; margin violations are
+penalized in the objective.
+▶Nonlinear: the objective contains a squared norm and maxima.
+▶Nonsmooth: hinge loss has a corner at si = 1, where it is not
+differentiable.
+The objective is also convex: a positive quadratic term plus maxima of
+affine functions.
+Next: use auxiliary variables to replace each maximum by linear
+constraints. The quadratic norm term will remain.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+29 / 44
+
+--- Page 34 ---
+An Equivalent Formulation Using Slack Variables
+Replace each Li by a variable ti in the objective, initially requiring ti = Li.
+Can we relax this to ti ≥Li?
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+30 / 44
+
+--- Page 35 ---
+An Equivalent Formulation Using Slack Variables
+Replace each Li by a variable ti in the objective, initially requiring ti = Li.
+Can we relax this to ti ≥Li?
+Tightness: fix (w, b). Minimizing P
+i ti makes every ti as small as
+possible: ti = Li = max{0, 1 −si}. The optimal value and optimal (w, b)
+are unchanged.
+ti ≥max{0, 1 −si}
+⇐⇒
+ti ≥0 and si + ti ≥1.
+(⇒) The maximum is at least each argument.
+(⇐) A bound on both
+arguments also bounds their maximum.
+min
+w,b,t
+λ
+2 ∥w∥2 +
+m
+X
+i=1
+ti
+s.t.
+yi(w⊤xi + b) + ti ≥1,
+i = 1, . . . , m,
+ti ≥0,
+i = 1, . . . , m.
+Each ti is a slack variable: the allowed margin-score shortfall. For λ > 0,
+this is an equivalent quadratic program (QP).
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+30 / 44
+
+--- Page 36 ---
+From Soft-margin SVM to Linear Programming
+Set λ = 0: remove the norm penalty to obtain
+min
+w,b
+m
+X
+i=1
+max{0, 1 −yi(w⊤xi + b)}.
+This changes the model. The same auxiliary-variable argument gives its
+equivalent LP:
+min
+w,b,t
+m
+X
+i=1
+ti
+s.t.
+yi(w⊤xi + b) + ti ≥1,
+i = 1, . . . , m,
+ti ≥0,
+i = 1, . . . , m.
+Why is this linear?
+▶xi, yi are constants: w⊤xi = P
+k wkxik is linear in w; adding b, ti
+preserves linearity.
+▶The objective P
+i ti is linear in the decision variables w ∈Rn, b ∈R,
+t ∈Rm.
+At λ = 0, there is no preference for maximum margin.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+31 / 44
+
+--- Page 37 ---
+Geometry and Optimization: Putting It Together
+Geometry:
+▶The classifier maps x to a label using the sign of u(x). The
+hyperplane w⊤x + b = 0 separates its prediction regions.
+▶Margin boundaries: w⊤x + b = ±1.
+▶For w̸ = 0, full margin width is 2/∥w∥; each half is 1/∥w∥.
+Optimization:
+▶Hard margin: maximize width, equivalently minimize 1
+2∥w∥2 subject
+to all separation constraints.
+▶Soft margin (λ > 0): balance the norm penalty and hinge losses;
+auxiliary variables give an equivalent QP.
+▶Without the norm penalty (λ = 0): hinge-loss minimization has an
+equivalent LP formulation.
+Intuition: seek a wide margin while penalizing violations, including
+correctly classified points inside their margin.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+32 / 44
+
+--- Page 38 ---
+Optimization Modeling of Support Vector Machine
+Linear Programming
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+33 / 44
+
+--- Page 39 ---
+Definition: Linear Programming
+Linear Problems
+A linear optimization or linear programming (LP) problem has an objective
+and constraint functions that are linear in the decision variables. Constant
+terms are also allowed.
+Example (Production Planning Problem):
+maximize
+x1,x2
+x1 + 2x2
+subject to
+x1 ≤100
+2x2 ≤200
+x1 + x2 ≤150
+x1, x2 ≥0.
+▶Linear programming is a subclass of continuous optimization.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+34 / 44
+
+--- Page 40 ---
+What Does “Linear” Mean?
+A function is linear in the decision variables if it has the form
+a1x1 + a2x2 + · · · + anxn,
+where a1, . . . , an are constants.
+Allowed in an LP:
+▶Constant term: 3x1 −2x2 + 5 (affine; LPs allow it).
+▶Multiplying by constants: 100x1, −0.7x2.
+▶Sums of variables: x1 + x2 + x3.
+Nonlinear as written:
+▶Products of variables: x1x2.
+▶Nonlinear powers: x2
+1, √x2.
+▶Absolute value: |x1| (can be transformed, but is not linear).
+Quick test: terms such as xixj, x2
+i , sin(xi), exp(xi), and log(xi) are not
+linear as written.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+35 / 44
+
+--- Page 41 ---
+Geometry of LP
+In two variables (x1, x2), each linear inequality describes a half-plane.
+▶Draw its boundary, e.g., x1 + x2 = 150, replacing ≤with =.
+▶Test a point, often (0, 0), to choose the side satisfying the inequality.
+x1 (Alloy 1)
+x2 (Alloy 2)
+0
+50
+100
+150
+0
+50
+100
+x1 ≤100
+x2 ≤100
+x1 + x2 ≤150
+(100, 50)
+(50, 100)
+feasible region
+Feasible region: the intersection of all half-planes is a convex polyhedron.
+Key insight: linear constraints have flat boundaries, never curved ones.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+36 / 44
+
+--- Page 42 ---
+General and Compact Formulations
+A general LP can be written in scalar or matrix form:
+minimize
+x∈Rn
+c⊤x
+subject to
+Scalar constraints
+Compact form
+Indices
+a⊤
+i x ≥bi
+A1x ≥b
+i ∈M1
+a⊤
+i x ≤di
+A2x ≤d
+i ∈M2
+a⊤
+i x = ei
+A3x = e
+i ∈M3
+xi ≥0
+xi ≥0
+i ∈N1
+xi ≤0
+xi ≤0
+i ∈N2
+xi free
+xi free
+i ∈N3
+For j = 1, 2, 3, Mj ⊆{1, . . . , m}, Nj ⊆{1, . . . , n}, and mj = |Mj|.
+▶Aj has size mj × n. The vectors b, d, e have sizes
+m1 × 1, m2 × 1, m3 × 1, respectively.
+▶≥, ≤, = mean coordinate-wise comparison throughout the course.
+▶The same formulations apply to maximization.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+37 / 44
+
+--- Page 43 ---
+Standard Form of LPs
+To study LPs systematically, we use a common, compact standard form:
+Standard form
+minimize
+x∈Rn
+c⊤x
+subject to
+Ax = b,
+x ≥0.
+(1)
+Here x ∈Rn, A is an m × n matrix, and b ∈Rm. We often have m < n,
+but this is not a requirement.
+In fact, any LP can be written in standard form using suitable
+transformations.
+Remark: the definition of standard form varies between books. This
+course uses (1), following Bertsimas and Tsitsiklis.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+38 / 44
+
+--- Page 44 ---
+Standard Form of LP: Why Often m < n?
+Standard form:
+min
+x∈Rn c⊤x
+s.t.
+Ax = b, x ≥0.
+Why do we often have m < n?
+▶Each independent equality reduces the degrees of freedom.
+▶If m = n and A is invertible, Ax = b has the unique solution
+x = A−1b, which may violate x ≥0.
+▶To have choices to optimize over, we need fewer independent
+equalities than variables: rank(A) < n. For independent rows, this
+means m < n.
+Geometric insight: when consistent, Ax = b is a flat “sheet” (an affine
+subspace). Adding x ≥0 cuts it to a polyhedral feasible set.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+39 / 44
+
+--- Page 45 ---
+Standard Form Transformations
+Four rules for reaching standard form:
+1. max c⊤x ⇐⇒min(−c)⊤x, with the same constraints.
+2. Ax ≤b: use Ax + s = b, s ≥0. For Ax ≥b, use Ax −s = b,
+s ≥0. These are slack (or surplus) variables.
+3. xi ≤0: substitute xi = −yi, yi ≥0.
+4. xi free: substitute xi = x+
+i −x−
+i , x+
+i , x−
+i ≥0.
+Transformation 1: why max becomes min. Maximizing a number is the
+same as minimizing its negative. If c⊤x takes values 5, 7, 9, then (−c)⊤x
+takes −5, −7, −9:
+max{5, 7, 9} = 9
+⇐⇒
+min{−5, −7, −9} = −9.
+Remember: track the decision variables after every transformation.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+40 / 44
+
+--- Page 46 ---
+Transformation 2: Inequalities to Equalities
+An upper bound: add slack
+x1 + x2 ≤10.
+Define s ≥0 by
+x1 + x2 + s = 10,
+so s = 10 −(x1 + x2).
+▶If x1 + x2 = 10, then s = 0:
+the constraint is tight.
+▶If x1 + x2 < 10, then s > 0:
+unused capacity.
+A lower bound: subtract surplus
+x1 + x2 ≥10.
+Why the minus sign?
+x1 + x2 ≥10
+⇕
+x1 + x2 = 10 + s,
+s ≥0
+⇕
+x1 + x2 −s = 10,
+s ≥0.
+Here s measures how much we
+exceed the minimum requirement.
+Geometry: each inequality describes a half-plane. Here the perpendicular
+distance to its boundary is s/
+√
+2; s itself is the constraint gap.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+41 / 44
+
+--- Page 47 ---
+Transformation 3: Variables with Sign Restrictions
+If a variable must satisfy xi ≤0, it does not fit x ≥0.
+Trick: flip the sign. Let xi = −yi, where yi ≥0.
+Why it works:
+xi ≤0
+⇐⇒
+−yi ≤0
+⇐⇒
+yi ≥0.
+Practical reminder: after substitution, rewrite every place where xi
+appears in the objective and constraints.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+42 / 44
+
+--- Page 48 ---
+Transformation 4: Free Variables
+A free variable can be positive, negative, or zero.
+Trick: represent it as a difference of two nonnegative variables:
+xi = x+
+i −x−
+i ,
+x+
+i ≥0,
+x−
+i ≥0.
+Why it works:
+▶If xi = 7, choose x+
+i = 7, x−
+i = 0.
+▶If xi = −3, choose x+
+i = 0, x−
+i = 3.
+▶If xi = 0, choose x+
+i = 0, x−
+i = 0.
+Hint: (x+
+i , x−
+i ) is not unique (e.g., 7 = 8 −1). The substitution preserves
+feasibility and objective values, allowing standard form.
+After substitution, rewrite every occurrence of xi in the objective and
+constraints.
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+43 / 44
+
+--- Page 49 ---
+After Transformations: Track the Decision Variables
+During standard-form conversion, we often:
+▶add slack variables s;
+▶replace variables by new ones (a sign flip);
+▶split free variables into x+, x−.
+What changes and what does not?
+▶Feasible solutions in the original variables correspond to feasible
+solutions in the new variables through the substitutions.
+▶Update each variable’s meaning: slack is unused capacity; x+, x−are
+two nonnegative variables representing x = x+ −x−.
+Hint: after any transformation, write a one-line dictionary:
+x3 (free) = x+
+3 −x−
+3 ,
+s1 = 150 −(x1 + x2).
+CUHK-Shenzhen • SDS
+Nachuan Xiao
+44 / 44
+================================================================
+附录：图片内文字核对
+================================================================
+已逐页核对（59→50 页全量渲染抽查）。本讲义所有插图——分类器决策边界与两类别点云、
+margin / support vectors 示意图、hinge loss 折线图、soft-margin 两种 λ 的对比图、
+LP 可行域与标准形示意——均为矢量绘制，其坐标轴刻度、数据点、λ 与 loss 数值、
+w 与 width 标注等均已被正文文字层完整提取（对照相应 `--- Page N ---` 段落即可）。
+未发现"图片内嵌、文字层缺失"的内容，故无图片补充条目。
+
+----------------------------------------------------------------
+公式排版说明（正文由 PDF 文字层线性化产生，上/下标会掉行，阅读时按下表还原本意）
+----------------------------------------------------------------
+- 上标平方被压平：`∥w∥2` → ∥w∥^2，`t2 1 < t2 2` → t1^2 < t2^2，`x2 1` → x1^2，
+  `1 2∥w∥2` → (1/2)∥w∥^2。
+- 下标被拆到下一行：`xi`、`x+
+i`、`x−
+i`、`Li`、`si`、`ti`、`xij`、`Ai`、`Aj` 等分别表示
+  x_i、x_i^+、x_i^-、L_i、s_i、t_i、x_{ij}、A_i、A_j；`x⊤
+i` 表示 x_i 的转置。
+- 希腊字母/符号：`λ`、`Ω`、`⊤` = 转置，`∥w∥` = 二范数，`⊤` 与 `P`（∑）常同行出现。
+- 分式与算子被拆行：如 `max
+w,b
+2
+∥w∥` 读作 max_{w,b} 2/∥w∥，
+  `min
+w,b,t
+λ
+2 ∥w∥2 + P
+i ti` 读作 min_{w,b,t} (λ/2)∥w∥^2 + Σ_i t_i。

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA2001 Final Exam 2025 — Pure Questions</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f8f7f4;color:#1a1a1a;line-height:1.9;font-size:17px;}
+.sidebar{position:fixed;top:0;left:0;width:250px;height:100vh;background:#f0eee9;border-right:1px solid #ddd;overflow-y:auto;padding:24px 0;}
+.sidebar-title{padding:0 20px 16px;font-size:16px;font-weight:700;color:#534AB7;border-bottom:1px solid #ddd;margin-bottom:12px;}
+.sidebar a{display:block;padding:8px 20px;color:#333;text-decoration:none;font-size:14px;border-left:3px solid transparent;}
+.sidebar a:hover{color:#534AB7;background:rgba(83,74,183,0.06);border-left-color:#534AB7;}
+.main{margin-left:250px;padding:36px 50px 80px;}
+.container{max-width:880px;margin:0 auto;}
+h1{font-size:30px;font-weight:700;margin-bottom:6px;color:#534AB7;}
+.subtitle{color:#666;font-size:16px;margin-bottom:8px;}
+.header-info{background:#fff;border:1px solid #e5e3de;border-radius:12px;padding:18px 22px;margin:18px 0;font-size:16px;}
+.header-info p{margin-bottom:4px;}
+.q{margin:30px 0;background:#fff;border:1px solid #e5e3de;border-radius:14px;padding:24px 26px;}
+.q-title{font-size:20px;font-weight:700;color:#534AB7;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #534AB7;}
+.q-title .pts{font-weight:400;font-size:15px;color:#888;}
+.q-sub{font-size:17px;font-weight:600;margin:14px 0 6px;}
+p{margin-bottom:10px;}
+.instructions{background:#f0eee9;border-radius:12px;padding:18px 22px;margin:18px 0;font-size:15px;}
+.instructions p{margin-bottom:4px;}
+ol,ul{padding-left:26px;margin-bottom:8px;}
+li{margin-bottom:5px;}
+table{width:100%;border-collapse:collapse;margin:12px 0;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #e5e3de;font-size:15px;}
+th{background:#f3f1ec;font-weight:600;}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<div class="sidebar">
+<div class="sidebar-title">DDA2001 2025 Exam</div>
+<a href="#q1">Q1 — K-Means (10 pts)</a>
+<a href="#q2">Q2 — Convex Sets (10 pts)</a>
+<a href="#q3">Q3 — Logistic Regression (15 pts)</a>
+<a href="#q4">Q4 — Gradient Descent (10 pts)</a>
+<a href="#q5">Q5 — Convex/Concave (10 pts)</a>
+<a href="#q6">Q6 — Integrated Problem (26 pts)</a>
+<a href="#q7">Q7 — MLE + Convex Opt (19 pts)</a>
+</div>
+
+<div class="main">
+<div class="container">
+
+<h1>DDA2001: Introduction to Data Science</h1>
+<p class="subtitle">Final Exam &mdash; SDS, CUHK(SZ) &mdash; May 13, 2025</p>
+
+<div class="instructions">
+<p><strong>Instructions:</strong></p>
+<p>1. The time duration is 120 minutes.</p>
+<p>2. The total mark is 100 points.</p>
+<p>3. There are 7 questions in total, please check.</p>
+<p>4. Please write down your calculations and statements clearly and in detail.</p>
+<p>5. Give answers up to 2 decimal places where appropriate.</p>
+<p>6. You should answer the questions in the answer sheet in sequential order.</p>
+<p>7. Please submit the test paper and answer sheet together at the end.</p>
+</div>
+
+<div class="header-info">
+<p><strong>Student ID:</strong> ________________________</p>
+<p><strong>Name:</strong> ________________________</p>
+</div>
+
+<div class="instructions">
+<p><strong>Useful Formulas:</strong></p>
+<p>Let $X$ be a random variable. Define $f(y) = E[\min(y, X)]$. Then $f'(y) = P(X \ge y)$.</p>
+<p>Mean and variance for common distributions.</p>
+<p>When $\boldsymbol{\theta} = (\theta_1, \dots, \theta_n)$ and $\mathbf{z} = (z_1, \dots, z_n)$, $\boldsymbol{\theta}^T\mathbf{z} = \sum_{i=1}^n \theta_i z_i$.</p>
+</div>
+
+<!-- ============= Q1 ============= -->
+<div class="q" id="q1">
+<div class="q-title">Question 1 &mdash; K-Means <span class="pts">(10 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(3 points)</span></div>
+<p>Explain the process of clustering a set of data into $K$ segments using the K-Means algorithm.</p>
+<div class="q-sub">(b) <span class="pts">(3 points)</span></div>
+<p>Describe the three key properties that a distance function used in the K-Means algorithm should satisfy.</p>
+<div class="q-sub">(c) <span class="pts">(4 points)</span></div>
+<p>An online store tracks the purchase frequency and spending of its customers. Consider a dataset comprising 6 customers, represented as follows: $(5, 5), (6, 8), (4, 2), (20, 15), (16, 20), (25, 10)$. We initialize the first two cluster centers as $c_1^{(0)} = (5, 5)$ and $c_2^{(0)} = (20, 15)$. Calculate the next pair of cluster centers $c_1^{(1)}$ and $c_2^{(1)}$ (use Euclidean distance).</p>
+</div>
+
+<!-- ============= Q2 ============= -->
+<div class="q" id="q2">
+<div class="q-title">Question 2 &mdash; Convex Sets <span class="pts">(10 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(5 points)</span></div>
+<p>Let $\Delta_n = \{\mathbf{p} \in \mathbb{R}^n \mid p_i \ge 0,\; \sum_{i=1}^n p_i = 1\}$, where $\mathbf{p} = (p_1, \dots, p_n)$. Show that $\Delta_n$ is a convex set.</p>
+<div class="q-sub">(b) <span class="pts">(5 points)</span></div>
+<p>Show that the subset $S = \{\mathbf{p} \in \Delta_n \mid -\sum_{i=1}^n p_i \ln p_i \ge C\}$ is convex for any $C \in \mathbb{R}$, where $\Delta_n$ is defined in part (a).</p>
+</div>
+
+<!-- ============= Q3 ============= -->
+<div class="q" id="q3">
+<div class="q-title">Question 3 &mdash; Logistic Regression with Polynomial Features <span class="pts">(15 points)</span></div>
+<p>Suppose you are given a binary classification task where each input $\mathbf{x}_i \in \mathbb{R}^2$, and the feature vector $\boldsymbol{\phi}(\mathbf{x}_i)$ includes all monomials up to degree 2. That is, for $\mathbf{x}_i = (x_{i1}, x_{i2})$, we define</p>
+$$\boldsymbol{\phi}(\mathbf{x}_i) = (1,\; x_{i1},\; x_{i2},\; x_{i1}^2,\; x_{i2}^2,\; x_{i1}x_{i2})^\top \in \mathbb{R}^6.$$
+<p>The model is</p>
+$$P(y_i = 1 \mid \mathbf{x}_i, \boldsymbol{\theta}) = \frac{1}{1 + e^{-\boldsymbol{\theta}^\top \boldsymbol{\phi}(\mathbf{x}_i)}},$$
+<p>where $y_i \in \{0, 1\}$ and $\boldsymbol{\theta} \in \mathbb{R}^6$ are the model parameters.</p>
+<div class="q-sub">(a) <span class="pts">(4 points)</span></div>
+<p>Derive the log-likelihood function $\ell(\boldsymbol{\theta})$ for $n$ independent training examples $\{(\mathbf{x}_i, y_i)\}_{i=1}^n$. Write $\ell(\boldsymbol{\theta})$ explicitly in terms of $\boldsymbol{\phi}(\mathbf{x}_i)$ and $\boldsymbol{\theta}$.</p>
+<div class="q-sub">(b) <span class="pts">(4 points)</span></div>
+<p>Is the negative log-likelihood function $-\ell(\boldsymbol{\theta})$ convex in $\boldsymbol{\theta}$? Explain carefully.</p>
+<div class="q-sub">(c) <span class="pts">(5 points)</span></div>
+<p>Suppose you want to find $\boldsymbol{\theta}$ by gradient descent. Write the update rule using a learning rate $\eta > 0$. How does stochastic gradient descent modify the update rule?</p>
+<div class="q-sub">(d) <span class="pts">(2 points)</span></div>
+<p>Describe qualitatively the shape of the decision boundary that logistic regression learns in this case. How does it compare to standard logistic regression without polynomial features?</p>
+</div>
+
+<!-- ============= Q4 ============= -->
+<div class="q" id="q4">
+<div class="q-title">Question 4 &mdash; Gradient Descent Method <span class="pts">(10 points)</span></div>
+<p>Let's maximize the function $f(x) = -\frac{1}{4}(x-1)^2 + 2$ using the gradient descent method. We fix the learning rate in the algorithm as a constant, $\alpha$. Assume that the initial value of $x$ is $x^{(0)} = 3$, and $x^{(t)}$ denotes the value of $x$ after the $t$-th iteration of gradient descent.</p>
+<div class="q-sub">(a) In each of the following cases, will $\lim_{t\to\infty} x^{(t)}$ converge to the optimal solution? Justify your answer.</div>
+<div class="q-sub">i. <span class="pts">(2 points)</span> $\alpha = 0$.</div>
+<div class="q-sub">ii. <span class="pts">(2 points)</span> $\alpha = 4$.</div>
+<div class="q-sub">iii. <span class="pts">(2 points)</span> $\alpha = 1$.</div>
+<div class="q-sub">(b) <span class="pts">(4 points)</span> For what range of $\alpha$ will $\lim_{t\to\infty} x^{(t)}$ converge to the optimal solution? Explain your reasoning. (Hint: derive the update rule and analyze convergence using the recursion.)</div>
+</div>
+
+<!-- ============= Q5 ============= -->
+<div class="q" id="q5">
+<div class="q-title">Question 5 &mdash; Convex or Concave Functions <span class="pts">(10 points)</span></div>
+<div class="q-sub">(a) <span class="pts">(5 points)</span></div>
+<p>Suppose $f: \mathbb{R}^n \to \mathbb{R}$ is concave, with $\text{dom } f = \mathbb{R}^n$, and bounded below (i.e., there exists a constant $M < 0$ such that $f(\mathbf{x}) \ge M$ for all $\mathbf{x} \in \mathbb{R}^n$). Show that $f$ must be a constant function.</p>
+<div class="q-sub">(b) <span class="pts">(5 points)</span></div>
+<p>For what range of $a$ will function $f(x) = x^{a^2 - a} + a \cdot x$ be a real-valued concave function within interval $(a^2, \infty)$? Explain the reasons.</p>
+</div>
+
+<!-- ============= Q6 ============= -->
+<div class="q" id="q6">
+<div class="q-title">Question 6 &mdash; Probability + Statistics + Optimization + Machine Learning <span class="pts">(26 points)</span></div>
+<p>A ride-hailing company is analyzing its data to improve platform performance.</p>
+
+<div class="q-sub">(a) Ride Acceptance Modelling <span class="pts">(11 points)</span></div>
+<p>The company tests user response to prices. A user is shown a price $p$, and accepts the ride ($Y = 1$) with probability $\theta(p) = e^{-\lambda p}$, with $\lambda > 0$.</p>
+<div class="q-sub">i. <span class="pts">(3 points)</span></div>
+<p>Suppose $n$ users are shown the same price $p$. Let $S$ be the number of accepted rides. What is the distribution of $S$? What are $E[S]$ and $\text{Var}[S]$?</p>
+<div class="q-sub">ii. <span class="pts">(2 points)</span></div>
+<p>In the experiments, prices are drawn from $p \sim \text{Uniform}[10, 20]$. Compute $E[p]$ and $\text{Var}[p]$.</p>
+<div class="q-sub">iii. <span class="pts">(3 points)</span></div>
+<p>Given observations $(p_1, y_1), \dots, (p_n, y_n)$ with $y_i \in \{0, 1\}$, write the log-likelihood function for estimating $\lambda$.</p>
+<div class="q-sub">iv. <span class="pts">(3 points)</span></div>
+<p>With the above log-likelihood function, how to find the value of the maximum likelihood estimator $\hat{\lambda}$ and why?</p>
+
+<div class="q-sub">(b) Optimizing Price <span class="pts">(7 points)</span></div>
+<p>The company wants to find the optimal price $p$ that maximizes the expected revenue $R(p) = p \cdot \theta(p)$.</p>
+<div class="q-sub">i. <span class="pts">(3 points)</span></div>
+<p>Show that $R(p)$ is concave on $p \in [0, \frac{2}{\lambda}]$.</p>
+<div class="q-sub">ii. <span class="pts">(4 points)</span></div>
+<p>Suppose the estimated value of $\lambda$ from the data is $\hat{\lambda} = 0.2$. Determine the optimal price $p^* \in [0, 10]$. What is the expected revenue at this price?</p>
+
+<div class="q-sub">(c) Behavioral Segmentation <span class="pts">(8 points)</span></div>
+<p>The company collects the following features for each user $i$. $V_i$: average rides/week; $D_i$: average travel distance (km).</p>
+<table>
+<tr><th>User</th><th>Rides/week (V)</th><th>Distance (km) (D)</th></tr>
+<tr><td>A</td><td>6</td><td>3</td></tr>
+<tr><td>B</td><td>5</td><td>2</td></tr>
+<tr><td>C</td><td>1</td><td>10</td></tr>
+<tr><td>D</td><td>2</td><td>11</td></tr>
+<tr><td>E</td><td>6</td><td>2</td></tr>
+<tr><td>F</td><td>2</td><td>9</td></tr>
+</table>
+<div class="q-sub">i. <span class="pts">(5 points)</span></div>
+<p>Suppose the company uses K-means clustering with $K = 2$, initialized with centers at user A and user C. Perform one iteration of clustering: assign each user to the nearest center using Euclidean distance. Then compute the new centers of each cluster.</p>
+<div class="q-sub">ii. <span class="pts">(3 points)</span></div>
+<p>A new user arrives with profile $(V, D) = (5, 3)$. To which cluster should she be assigned?</p>
+</div>
+
+<!-- ============= Q7 ============= -->
+<div class="q" id="q7">
+<div class="q-title">Question 7 &mdash; MLE + Convex Optimization <span class="pts">(19 points)</span></div>
+<p>A seller plans to sell a single type of product and faces uncertain demand $D$. To meet the demand, the seller can produce units in two ways:</p>
+<ul>
+<li><strong>Pre-production:</strong> Before sales begin, the seller can produce any number of units at a cost of $5 per unit. However, any unsold pre-produced units will have no salvage value (i.e., zero residual value).</li>
+<li><strong>Rush production:</strong> After observing the realized demand $D$, the seller can rush produce additional units if needed, but at a higher cost of $9 per unit.</li>
+</ul>
+<p>The demand $D$ can be satisfied either by pre-produced units or rush-produced units, where each unit sold generates a revenue of $p > 9$. Pre-production offers a lower cost but carries the risk of overproducing, while rush production is more flexible but incurs a higher cost. The seller must determine the optimal pre-production quantity before observing the realized demand, with the objective of maximizing expected profit.</p>
+<div class="q-sub">(a) <span class="pts">(3 points)</span></div>
+<p>After observing the realized demand $D$, how many units should the seller rush produce? Prove that the optimal number of rush-produced units is $(D - Q)^+$, where $x^+ = \max(x, 0)$. Explain your reasoning.</p>
+<div class="q-sub">(b) <span class="pts">(3 points)</span></div>
+<p>Show that at the optimal decision, the seller's total sales revenue (i.e., the total amount collected from selling products, excluding any production costs) is $p E[D]$. That is, all demand will be satisfied.</p>
+<div class="q-sub">(c) <span class="pts">(4 points)</span></div>
+<p>Suppose the random demand $D$ follows a uniform distribution over $[\theta, \theta^2]$, where $\theta$ is an unknown number. You are given 5 observed samples: $\{12, 15, 13, 16, 14\}$. Find the MLE of $\theta$. Explain your steps clearly.</p>
+<div class="q-sub">(d) <span class="pts">(6 points)</span></div>
+<p>Now assume that $D$ follows a uniform distribution over $[\theta, \theta^2]$ with $\theta$ equal to the MLE you found in part (c). Prove that the seller's optimal pre-production quantity is $Q^* = 28/3$, if allowing $Q$ to be non-integer. Explain your calculations.</p>
+<div class="q-sub">(e) <span class="pts">(3 points)</span></div>
+<p>If $Q$ must be an integer (the rush productions can still be fractional), what is the optimal decision of $Q$? Briefly explain your answer.</p>
+</div>
+
+</div>
+</div>
+</body>
+</html>

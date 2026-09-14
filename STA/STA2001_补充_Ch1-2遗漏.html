@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STA2001 笔记补充 — Ch2 遗漏知识点</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; color: #333; line-height: 1.8; padding: 40px 60px; max-width: 960px; margin: 0 auto; }
+        h1 { font-size: 30px; color: #e67e22; border-bottom: 3px solid #e67e22; padding-bottom: 15px; margin-bottom: 10px; }
+        .sub { color: #888; font-size: 14px; margin-bottom: 30px; }
+        .section-title { font-size: 24px; color: #d35400; margin: 35px 0 20px 0; padding-left: 15px; border-left: 5px solid #d35400; }
+        .subsection-title { font-size: 20px; color: #555; margin: 25px 0 15px 0; padding-left: 12px; border-left: 4px solid #bbb; }
+        .card { margin: 20px 0; padding: 20px; border-radius: 8px; border-left: 5px solid #ddd; background-color: #fafafa; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card-title { font-weight: bold; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .formula-box { background-color: #e8f4fd; border-left: 5px solid #2196F3; border-radius: 6px; padding: 18px 22px; margin: 18px 0; font-size: 17px; text-align: center; overflow-x: auto; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .note { margin-top: 15px; padding: 12px 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px; }
+        .en { display: inline-block; background-color: #fff3e0; color: #bf360c; font-family: 'Courier New', Consolas, monospace; font-size: 0.92em; padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600; }
+        table.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white; }
+        table.comparison-table th, table.comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        table.comparison-table th { background-color: #e67e22; color: white; font-weight: bold; }
+        table.comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        p { margin: 10px 0; }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<h1>STA2001 笔记补充 — Ch1/Ch2 遗漏知识点</h1>
+<div class="sub">对照 Hogg, Tanis, Zimmerman《Probability and Statistical Inference》9th ed. 的 Ch1–Ch2（即你的 Lecture 1–6）。你的笔记整体覆盖极好，以下是教材有、但笔记中缺失或偏简的部分。</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>遗漏等级说明</div>
+    <p><strong>★ 重要遗漏</strong>：教材作为正式知识点讲解，考试可能直接考。</p>
+    <p><strong>☆ 次要遗漏</strong>：教材中一笔带过或 Remark，了解即可，但补上更完整。</p>
+</div>
+
+<!-- ============ 超几何分布 ============ -->
+<div class="section-title">★ 超几何分布 <span class="en">Hypergeometric Distribution</span>（Ch2.1 + Ch2.2/2.3，笔记完全未覆盖）</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>设定与 pmf</div>
+    <p>共有 $N = N_1 + N_2$ 个对象，其中 $N_1$ 个属于"第一类"（如红球），$N_2$ 个属于"第二类"（如蓝球）。</p>
+    <p>从中<strong>无放回</strong>随机抽取 $n$ 个，令 $X =$ 抽到的第一类对象个数。</p>
+    <p>$X$ 服从<strong>超几何分布</strong>（<span class="en">hypergeometric distribution</span>），其 pmf 为：</p>
+    <div class="formula-box important">
+        $$f(x) = P(X = x) = \frac{\binom{N_1}{x}\binom{N_2}{\,n-x\,}}{\binom{N}{n}}$$
+    </div>
+    <p>支撑集 $S$ 由以下不等式约束：</p>
+    <div class="formula-box">
+        $$x \le n,\quad x \le N_1,\quad n - x \le N_2$$
+    </div>
+    <div class="note">核心区别：<strong>无放回</strong>抽样 → 超几何；<strong>有放回</strong>抽样 → 二项。超几何描述的是"不放回地数成功次数"，与二项（独立重复试验）对应但概率不独立。</div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>均值与方差</div>
+    <p>记 $p = \dfrac{N_1}{N}$（总体中第一类的比例），则：</p>
+    <div class="formula-box highlight">
+        $$E[X] = n\cdot\frac{N_1}{N} = np$$
+    </div>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = n\cdot\frac{N_1}{N}\cdot\frac{N_2}{N}\cdot\frac{N-n}{N-1} = np(1-p)\cdot\frac{N-n}{N-1}$$
+    </div>
+    <p>注意方差里多了一个因子 $\dfrac{N-n}{N-1}$（<strong>有限总体校正系数</strong>，<span class="en">finite population correction</span>）。当 $N$ 很大、$n$ 相对很小时它 $\approx 1$，此时超几何 ≈ 二项。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>超几何 vs 二项（教材 Ch2.4 的对比）</div>
+    <table class="comparison-table">
+        <tr><th></th><th>超几何 <span class="en">Hypergeometric</span></th><th>二项 <span class="en">Binomial</span></th></tr>
+        <tr><td>抽样方式</td><td>无放回（依赖）</td><td>有放回 / 独立重复</td></tr>
+        <tr><td>参数</td><td>$N, N_1, n$</td><td>$n, p$</td></tr>
+        <tr><td>pmf</td><td>$\dfrac{\binom{N_1}{x}\binom{N_2}{n-x}}{\binom{N}{n}}$</td><td>$\binom{n}{x}p^x(1-p)^{n-x}$</td></tr>
+        <tr><td>$E[X]$</td><td>$np$</td><td>$np$</td></tr>
+        <tr><td>$\mathrm{Var}(X)$</td><td>$np(1-p)\dfrac{N-n}{N-1}$</td><td>$np(1-p)$</td></tr>
+        <tr><td>关系</td><td colspan="2">$N$ 很大、$n$ 较小时，超几何 $\approx$ 二项</td></tr>
+    </table>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例（教材 Ex 2.1-5）：池塘里的鱼</div>
+    <p>池塘有 50 条鱼，其中 10 条被标记过。随机无放回地捕 7 条，令 $X$ 为被标记的鱼数。</p>
+    <p>$N=50,\; N_1=10,\; n=7$。恰好捕到 2 条标记鱼的概率：</p>
+    <div class="formula-box">
+        $$P(X=2) = \frac{\binom{10}{2}\binom{40}{5}}{\binom{50}{7}}$$
+    </div>
+</div>
+
+<!-- ============ 次要遗漏 ============ -->
+<div class="section-title">☆ 次要遗漏（补上更完整）</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>1. 泊松近似二项 —— 实用判据（Ch2.6）</div>
+    <p>笔记讲了"泊松是二项(大 $n$ 小 $p$)的极限"，但没给教材的<strong>实用门槛</strong>。教材明确写道：</p>
+    <div class="formula-box highlight">
+        $$\text{近似相当准，当 } n \ge 20 \text{ 且 } p \le 0.05,\quad \text{或 } n \ge 100 \text{ 且 } p \le 0.10$$
+    </div>
+    <p>即把 $X\sim b(n,p)$ 近似为 $\mathrm{Poisson}(\lambda=np)$ 时，用上面的经验规则判断"能不能近似"。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>2. 无序且可重复抽样（星与棒，Ch1.2 Remark）</div>
+    <p>笔记覆盖了"有序有/无放回"和"无序无放回(组合数)"。教材还提了<strong>无序且可重复</strong>的计数（即把 $r$ 个相同对象分到 $n$ 类）：用 $r$ 个 0 和 $n-1$ 个分隔符 | 的可区分排列来数，结果为：</p>
+    <div class="formula-box highlight">
+        $$\binom{n-1+r}{r} = \frac{(n-1+r)!}{r!\,(n-1)!}$$
+    </div>
+    <p>例：掷 10 次六面骰（=10 个相同结果分到 6 个面），无序结果数为 $\binom{6-1+10}{10}=\binom{15}{10}=3003$。教材标注"not needed as often"，了解即可。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>3. 相互独立在 3 个事件上的推广（Ch1.4）</div>
+    <p>笔记给了两事件独立时 $A$ 与 $B'$、$A'$ 与 $B$、$A'$ 与 $B'$ 独立。教材还指出：若 $A,B,C$ <strong>相互独立</strong>（mutually independent），则进一步有</p>
+    <p>(a) $A$ 与 $B\cap C$ 独立；&nbsp; (b) $A$ 与 $B\cup C$ 独立；&nbsp; (c) $A'$ 与 $B\cap C'$ 独立；</p>
+    <p>并且 $A', B', C'$ 也<strong>相互独立</strong>。建议把"相互独立 ⇒ 任意布尔组合仍独立"这条补进笔记的独立性卡片。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>4. 零概率事件的独立性（Ch1.4 脚注式说明）</div>
+    <p>教材提醒：若 $P(A)=0$ 或 $P(B)=0$，则 $P(A\cap B)=0=P(A)P(B)$ 自动成立，即<strong>零概率事件与任何事件独立</strong>。笔记在"独立 vs 互斥"里强调了"互斥一般 ⇒ 不独立"，可加一句例外：<strong>除非其中某事件概率为 0</strong>。</p>
+</div>
+
+<div class="card connection" style="border-left-width:6px;">
+    <div class="card-title"><span class="card-icon">&#128279;</span>小结：你的笔记 vs 教材覆盖度</div>
+    <table class="comparison-table">
+        <tr><th>教材章节</th><th>笔记覆盖</th><th>评价</th></tr>
+        <tr><td>§1.1 概率公理/性质</td><td>✅ 全覆盖</td><td>5 条性质 + 三事件容斥，齐全</td></tr>
+        <tr><td>§1.2 计数方法</td><td>✅ 基本全覆盖</td><td>缺"无序可重复抽样"（次要）</td></tr>
+        <tr><td>§1.3 条件概率/乘法</td><td>✅ 全覆盖</td><td>含条件概率满足公理，很好</td></tr>
+        <tr><td>§1.4 独立性</td><td>✅ 基本全覆盖</td><td>缺 3 事件相互独立的推广（次要）</td></tr>
+        <tr><td>§1.5 贝叶斯</td><td>✅ 全覆盖</td><td>先验/后验、全概率，齐全</td></tr>
+        <tr><td>§2.1 离散 RV / pmf / cdf</td><td>✅ 全覆盖</td><td>含支撑集、阶梯函数</td></tr>
+        <tr><td>§2.2 数学期望</td><td>✅ 全覆盖</td><td>含线性性、最小化定理</td></tr>
+        <tr><td>§2.3 特殊期望 / mgf</td><td>✅ 全覆盖</td><td>矩、阶乘矩、mgf 唯一性</td></tr>
+        <tr><td>§2.4 二项分布</td><td>✅ 全覆盖</td><td>pmf/mgf/均值/方差 + 双视角</td></tr>
+        <tr><td>§2.5 负二项</td><td>✅ 全覆盖</td><td>含几何特例、与二项对比</td></tr>
+        <tr><td><strong>§2.1/2.2/2.3 超几何分布</strong></td><td><span style="color:#f44336;font-weight:bold;">❌ 缺失</span></td><td><strong>重要遗漏，需补</strong></td></tr>
+        <tr><td>§2.6 泊松分布</td><td>✅ 全覆盖</td><td>仅缺近似二项的实用门槛（次要）</td></tr>
+    </table>
+</div>
+
+</body>
+</html>

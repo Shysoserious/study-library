@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linear Algebra — Week 12-14 Review Solutions</title>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC&family=JetBrains+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+    background: #f5f7fa;
+    color: #1a1a2e;
+    line-height: 1.8;
+    padding: 0;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { text-align: center; color: #666; margin-bottom: 40px; font-size: 0.95rem; }
+
+  .week-section { margin-bottom: 56px; }
+  .week-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 16px 24px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    color: #fff;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .week-12 { background: linear-gradient(135deg, #667eea, #764ba2); }
+  .week-13 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+  .week-14 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+  .q-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+  }
+  .q-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+
+  .q-number {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #667eea;
+    margin-bottom: 4px;
+  }
+  .q-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: #1a1a2e;
+  }
+  .en { color: #2d3748; margin-bottom: 10px; }
+  .zh {
+    color: #555;
+    border-left: 3px solid #667eea;
+    padding-left: 16px;
+    margin-top: 10px;
+    font-size: 0.95rem;
+  }
+  .zh::before {
+    content: "中文：";
+    font-weight: 600;
+    color: #667eea;
+  }
+  code {
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 0.9em;
+    background: #f0f0f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .math { font-style: italic; }
+  .matrix {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 4px 8px;
+  }
+  .matrix td {
+    padding: 2px 8px;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+  }
+  .matrix .first td { border-top: 1px solid #333; }
+  .matrix .last td { border-bottom: 1px solid #333; }
+  .matrix-left { border-right: none; padding-right: 4px; }
+  .matrix-right { border-left: none; padding-left: 4px; }
+  .step { margin: 8px 0 8px 20px; }
+  .step li { margin-bottom: 4px; }
+  .highlight { background: #fff3cd; padding: 1px 4px; border-radius: 3px; }
+
+  .toc {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .toc h2 { font-size: 1.2rem; margin-bottom: 12px; color: #333; }
+  .toc ul { list-style: none; columns: 3; column-gap: 20px; }
+  .toc li { margin-bottom: 6px; font-size: 0.9rem; }
+  .toc a { color: #667eea; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .small { color: #999; font-size: 0.8rem; }
+
+  @media (max-width: 640px) {
+    .container { padding: 20px 12px; }
+    .q-card { padding: 16px; }
+    .toc ul { columns: 1; }
+  }
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="container">
+
+<h1>Linear Algebra — MAT2041</h1>
+<p class="subtitle">Review Questions · Week 12 &middot; 13 &middot; 14 &mdash; 英文详解 &amp; 中文解释</p>
+
+<div class="toc">
+<h2>📑 Table of Contents</h2>
+<ul>
+  <li><a href="#w12">Week 12</a> <span class="small">(Eigenvalues, Eigenvectors, Spectral Theorem)</span></li>
+  <li><a href="#w13">Week 13</a> <span class="small">(Similarity, Diagonalization, SVD, Frobenius Norm)</span></li>
+  <li><a href="#w14">Week 14</a> <span class="small">(SVD Details, Quadratic Forms, Positive Definiteness)</span></li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- WEEK 12 -->
+<!-- ============================================================ -->
+<div class="week-section" id="w12">
+<div class="week-header week-12">📘 Week 12 — Eigenvalues, Eigenvectors &amp; the Spectral Theorem</div>
+
+<!-- Q1 -->
+<div class="q-card">
+<div class="q-number">Q1</div>
+<div class="q-title">Give the definitions of eigenvalues and eigenvectors.</div>
+<div class="en">Let \(A \in \mathbb{C}^{n \times n}\) be a square matrix. A nonzero vector \(v \in \mathbb{C}^n\) is called an <strong>eigenvector</strong> of \(A\) if there exists a scalar \(\lambda \in \mathbb{C}\) such that \(A v = \lambda v\). The scalar \(\lambda\) is the corresponding <strong>eigenvalue</strong>. Intuitively, eigenvectors are nonzero vectors that are only scaled (stretched/compressed) by \(A\), not rotated.</div>
+<div class="zh">设 \(A \in \mathbb{C}^{n \times n}\) 是方阵。非零向量 \(v\) 称为 \(A\) 的特征向量，若存在标量 \(\lambda\) 使得 \(A v = \lambda v\)。\(\lambda\) 称为特征值。直观上，特征向量是被 \(A\) 乘之后只伸缩不旋转的非零向量。</div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card">
+<div class="q-number">Q2</div>
+<div class="q-title">Give the definition of the characteristic polynomial of a matrix A.</div>
+<div class="en">The <strong>characteristic polynomial</strong> of \(A \in \mathbb{C}^{n \times n}\) is \(p_A(\lambda) = \det(\lambda I - A)\) (or \(\det(A - \lambda I)\)). It is a degree-\(n\) polynomial in \(\lambda\). Using \(\det(\lambda I - A)\) gives a monic polynomial (leading coefficient 1).</div>
+<div class="zh">矩阵 \(A\) 的特征多项式定义为 \(p_A(\lambda) = \det(\lambda I - A)\)（或 \(\det(A - \lambda I)\)），是关于 \(\lambda\) 的 \(n\) 次多项式。\(\det(\lambda I - A)\) 给出首一多项式（最高次项系数为 1）。</div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card">
+<div class="q-number">Q3</div>
+<div class="q-title">Prove that the eigenvalues of a matrix are the roots of its characteristic polynomial.</div>
+<div class="en">By definition, \(\lambda\) is an eigenvalue of \(A\) iff \(\exists v \neq 0\) s.t. \(A v = \lambda v \iff (\lambda I - A)v = 0\). A nonzero solution exists iff \(\lambda I - A\) is singular, i.e., \(\det(\lambda I - A) = 0\). Hence \(\lambda\) satisfies the characteristic equation, meaning it is a root of \(p_A(\lambda)\).</div>
+<div class="zh">根据定义，\(\lambda\) 是特征值当且仅当存在非零 \(v\) 使 \((\lambda I - A)v = 0\)，这等价于 \(\lambda I - A\) 奇异，即 \(\det(\lambda I - A) = 0\)。所以 \(\lambda\) 满足特征方程，即特征多项式的根。</div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card">
+<div class="q-number">Q4</div>
+<div class="q-title">Give the steps to compute eigenvalues and eigenspaces of \(A \in \mathbb{R}^{n \times n}\).</div>
+<div class="en">
+  <ol class="step">
+    <li>Compute \(p_A(\lambda) = \det(\lambda I - A)\).</li>
+    <li>Find all roots \(\lambda_1, \dots, \lambda_n\) — the eigenvalues (with multiplicities).</li>
+    <li>For each distinct \(\lambda_i\), solve \((\lambda_i I - A) v = 0\) to get eigenspace \(E_{\lambda_i} = \ker(\lambda_i I - A)\).</li>
+    <li>\(\dim(E_{\lambda_i})\) is the geometric multiplicity (\(\le\) algebraic multiplicity).</li>
+  </ol>
+</div>
+<div class="zh">第一步：计算特征多项式。第二步：求所有根得到特征值。第三步：解齐次方程组得到特征空间。第四步：特征空间的维数是几何重数（不超过代数重数）。</div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card">
+<div class="q-number">Q5</div>
+<div class="q-title">Eigenvalues and eigenspaces of \(A = \begin{pmatrix}3&amp;2\\-2&amp;-2\end{pmatrix}\).</div>
+<div class="en">
+  \(\det(\lambda I - A) = (\lambda - 3)(\lambda + 2) + 4 = \lambda^2 - \lambda - 2 = (\lambda - 2)(\lambda + 1)\).<br>
+  Eigenvalues: \(\lambda_1 = 2,\; \lambda_2 = -1\).<br>
+  For \(\lambda = 2\): \((2I - A)v = 0 \Rightarrow v = t(-2, 1)^\top\). \(E_2 = \operatorname{Span}\{(-2, 1)^\top\}\).<br>
+  For \(\lambda = -1\): \((-I - A)v = 0 \Rightarrow v = s(1, -2)^\top\). \(E_{-1} = \operatorname{Span}\{(1, -2)^\top\}\).
+</div>
+<div class="zh">特征多项式为 \(\lambda^2 - \lambda - 2 = (\lambda - 2)(\lambda + 1)\)。特征值为 2 和 -1。对应特征空间分别为 \(\operatorname{Span}\{(-2, 1)^\top\}\) 和 \(\operatorname{Span}\{(1, -2)^\top\}\)。</div>
+</div>
+
+<!-- Q6 -->
+<div class="q-card">
+<div class="q-number">Q6</div>
+<div class="q-title">Eigenvalues of \(A = \begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix}\).</div>
+<div class="en">
+  \(\det(\lambda I - A) = \det\begin{pmatrix}\lambda&amp;-1\\1&amp;\lambda\end{pmatrix} = \lambda^2 + 1\). Eigenvalues are \(\lambda = i\) and \(\lambda = -i\) — purely imaginary, showing that a real matrix can have complex eigenvalues.
+</div>
+<div class="zh">特征多项式为 \(\lambda^2 + 1\)，特征值为 \(i\) 和 \(-i\)（纯虚数）。这说明实矩阵可以有复特征值。</div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card">
+<div class="q-number">Q7</div>
+<div class="q-title">Eigenvalues and eigenspaces of \(A = \begin{pmatrix}2&amp;1&amp;-3\\0&amp;3&amp;4\\0&amp;0&amp;-1\end{pmatrix}\).</div>
+<div class="en">
+  Since \(A\) is upper triangular, eigenvalues are the diagonal entries: \(\lambda = 2, 3, -1\).<br>
+  \(E_2 = \operatorname{Span}\{(1,0,0)^\top\},\; E_3 = \operatorname{Span}\{(1,1,0)^\top\},\; E_{-1} = \operatorname{Span}\{(4,-3,3)^\top\}\).
+</div>
+<div class="zh">上三角矩阵的特征值即对角线元素。三个特征空间分别由 \((1,0,0)^\top\), \((1,1,0)^\top\), \((4,-3,3)^\top\) 张成。</div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card">
+<div class="q-number">Q8</div>
+<div class="q-title">Eigenvalues of \(A = \begin{pmatrix}2&amp;1&amp;1\\1&amp;2&amp;1\\1&amp;1&amp;2\end{pmatrix}\).</div>
+<div class="en">
+  \(A = J + I\) where \(J\) is the all-ones matrix. \(J\) has eigenvalues \(3, 0, 0\), so \(A\) has eigenvalues \(4, 1, 1\). Vector \((1,1,1)^\top\) is eigenvector for \(\lambda = 4\); vectors orthogonal to it (e.g., \((1,-1,0)^\top\)) are eigenvectors for \(\lambda = 1\).
+</div>
+<div class="zh">\(A = J + I\)，\(J\) 是全 1 矩阵。\(J\) 的特征值为 3, 0, 0，所以 \(A\) 的特征值为 4, 1, 1。</div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card">
+<div class="q-number">Q9</div>
+<div class="q-title">Fundamental Theorem of Algebra and consequences for eigenvalues.</div>
+<div class="en">
+  <strong>FTA:</strong> Every non-constant polynomial with complex coefficients has at least one complex root. Equivalently, every degree-\(n\) polynomial factors as \(p(z) = c(z - r_1)\cdots(z - r_n)\), \(r_i \in \mathbb{C}\).<br><br>
+  <strong>Consequence:</strong> The characteristic polynomial of an \(n \times n\) matrix is degree \(n\), so it always has \(n\) complex roots (counting multiplicities). Hence every square matrix has exactly \(n\) eigenvalues in \(\mathbb{C}\) (with algebraic multiplicities).
+</div>
+<div class="zh">代数基本定理：非常数的复系数多项式至少有一个复根。因此 \(n\) 次特征多项式在复数域中恰有 \(n\) 个根。每个方阵在 \(\mathbb{C}\) 中恰好有 \(n\) 个特征值（按代数重数计）。</div>
+</div>
+
+<!-- Q10 -->
+<div class="q-card">
+<div class="q-number">Q10</div>
+<div class="q-title">Difference between a set and a multiset. Why important for eigenvalues?</div>
+<div class="en">
+  A <strong>set</strong> has no repeated elements; a <strong>multiset</strong> allows repetitions and tracks multiplicities. For eigenvalues, repetitions matter — a matrix may have repeated eigenvalues. The spectrum is best described as a multiset \(\{\lambda_1, \dots, \lambda_n\}\) where each eigenvalue appears as many times as its algebraic multiplicity.
+</div>
+<div class="zh">集合不允许重复，多重集允许重复并记录重数。特征值可能有重复，所以谱最好用多重集描述，每个特征值按代数重数出现。</div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card">
+<div class="q-number">Q11</div>
+<div class="q-title">Complex numbers: (i) characterization of \(i\); (ii) complex conjugate; (iii) modulus.</div>
+<div class="en">
+  <strong>(i)</strong> \(i\) satisfies \(i^2 = -1\); it is a root of \(x^2 + 1 = 0\).<br>
+  <strong>(ii)</strong> For \(z = a + bi\), the complex conjugate is \(\bar{z} = a - bi\).<br>
+  <strong>(iii)</strong> \(|z| = \sqrt{a^2 + b^2} = \sqrt{z\bar{z}}\).
+</div>
+<div class="zh">(i) \(i\) 满足 \(i^2 = -1\)。(ii) 共轭复数 \(\bar{z} = a - bi\)。(iii) 模 \(|z| = \sqrt{a^2 + b^2} = \sqrt{z\bar{z}}\)。</div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card">
+<div class="q-number">Q12</div>
+<div class="q-title">Is the standard basis of \(\mathbb{R}^3\) also a basis of \(\mathbb{C}^3\)?</div>
+<div class="en">
+  Yes. \(e_1, e_2, e_3 \in \mathbb{C}^3\) (since \(\mathbb{R} \subset \mathbb{C}\)). They span \(\mathbb{C}^3\) (any complex vector is a complex linear combination) and are linearly independent over \(\mathbb{C}\). So \(\{e_1, e_2, e_3\}\) is a basis of \(\mathbb{C}^3\).
+</div>
+<div class="zh">是的。\(\mathbb{R} \subset \mathbb{C}\)，所以 \(e_1, e_2, e_3\) 也属于 \(\mathbb{C}^3\)，它们张成 \(\mathbb{C}^3\) 且在复数域上线性无关。</div>
+</div>
+
+<!-- Q13 -->
+<div class="q-card">
+<div class="q-number">Q13</div>
+<div class="q-title">Are \(u = (1, i)^\top\) and \(v = (i, -1)^\top\) linearly independent?</div>
+<div class="en">
+  Check \(\alpha u + \beta v = 0\): \(\alpha(1,i)^\top + \beta(i,-1)^\top = (\alpha + i\beta,\; i\alpha - \beta)^\top = (0,0)^\top\).<br>
+  From the first entry: \(\alpha = -i\beta\). Substituting into the second: \(i(-i\beta) - \beta = \beta - \beta = 0\). So \(\beta = 1, \alpha = -i\) works. Hence they are <strong>linearly dependent</strong>. Indeed, \(v = i u\).
+</div>
+<div class="zh">存在非零系数 \(\alpha = -i, \beta = 1\) 使线性组合为零，所以 \(u\) 和 \(v\) 线性相关。实际上 \(v = i u\)。</div>
+</div>
+
+<!-- Q14 -->
+<div class="q-card">
+<div class="q-number">Q14</div>
+<div class="q-title">Give the definition of an eigenbasis.</div>
+<div class="en">
+  An <strong>eigenbasis</strong> of \(A \in \mathbb{C}^{n \times n}\) is a basis of \(\mathbb{C}^n\) consisting entirely of eigenvectors of \(A\). Equivalently, a set of \(n\) linearly independent eigenvectors spanning \(\mathbb{C}^n\).
+</div>
+<div class="zh">特征基是由 \(A\) 的特征向量组成的 \(\mathbb{C}^n\) 的一组基，即 \(n\) 个线性无关的特征向量张成 \(\mathbb{C}^n\)。</div>
+</div>
+
+<!-- Q15 -->
+<div class="q-card">
+<div class="q-number">Q15</div>
+<div class="q-title">Eigenvalues/eigenspaces of \(A = \begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}\). Does it admit an eigenbasis?</div>
+<div class="en">
+  \(\lambda = 1\) (algebraic multiplicity 2). Solve \((I - A)v = 0\): \(\begin{pmatrix}0&amp;-1\\0&amp;0\end{pmatrix}v = 0 \Rightarrow v_2 = 0\). So \(E_1 = \operatorname{Span}\{(1,0)^\top\}\), dimension 1.<br><br>
+  Geometric multiplicity (1) &lt; algebraic multiplicity (2), so we cannot find 2 linearly independent eigenvectors. \(A\) does <strong>not</strong> admit an eigenbasis and is not diagonalizable (a Jordan block).
+</div>
+<div class="zh">特征值 \(\lambda = 1\)（代数重数 2），但几何重数只有 1，所以不存在 2 个线性无关的特征向量，没有特征基，不可对角化（这是若尔当块）。</div>
+</div>
+
+<!-- Q16 -->
+<div class="q-card">
+<div class="q-number">Q16</div>
+<div class="q-title">Eigenvalues/eigenspaces of \(A = \begin{pmatrix}0&amp;1\\1&amp;0\end{pmatrix}\). Does it admit an eigenbasis?</div>
+<div class="en">
+  Eigenvalues: \(\lambda = 1\) (eigenvector \((1,1)^\top\)) and \(\lambda = -1\) (eigenvector \((1,-1)^\top\)). These two are linearly independent and form an eigenbasis. Yes, \(A\) admits an eigenbasis (is diagonalizable).
+</div>
+<div class="zh">特征值为 1 和 -1，特征向量 \((1,1)^\top\) 和 \((1,-1)^\top\) 线性无关，构成特征基。\(A\) 可对角化。</div>
+</div>
+
+<!-- Q17 -->
+<div class="q-card">
+<div class="q-number">Q17</div>
+<div class="q-title">Given diagonal \(D\) and \(X \in \mathbb{C}^{n \times n}\), express \(DX\) and \(XD\).</div>
+<div class="en">
+  Let \(D = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\).<br>
+  \(DX\) multiplies the \(i\)-th <strong>row</strong> of \(X\) by \(\lambda_i\): \((DX)_{ij} = \lambda_i X_{ij}\).<br>
+  \(XD\) multiplies the \(j\)-th <strong>column</strong> of \(X\) by \(\lambda_j\): \((XD)_{ij} = X_{ij} \lambda_j\).
+</div>
+<div class="zh">\(DX\) 将 \(X\) 的第 \(i\) 行乘以 \(\lambda_i\)；\(XD\) 将 \(X\) 的第 \(j\) 列乘以 \(\lambda_j\)。</div>
+</div>
+
+<!-- Q18 -->
+<div class="q-card">
+<div class="q-number">Q18</div>
+<div class="q-title">Express \(A v_i = \lambda_i v_i\) for \(i=1,\dots,n\) in matrix form.</div>
+<div class="en">
+  Let \(V = [v_1 \; \cdots \; v_n] \in \mathbb{C}^{n \times n}\) and \(\Lambda = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\). Then the \(n\) equations become
+  \[
+  A V = V \Lambda.
+  \]
+  Indeed, the \(j\)-th column of \(A V\) is \(A v_j = \lambda_j v_j\), which matches the \(j\)-th column of \(V \Lambda\).
+</div>
+<div class="zh">令 \(V = [v_1 \; \cdots \; v_n]\)，\(\Lambda = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\)，则 \(A V = V \Lambda\)。</div>
+</div>
+
+<!-- Q19 -->
+<div class="q-card">
+<div class="q-number">Q19</div>
+<div class="q-title">Show that if \(A\) admits an orthonormal eigenbasis, then \(A\) is symmetric.</div>
+<div class="en">
+  Let \(\{q_1, \dots, q_n\}\) be an orthonormal eigenbasis, \(Q = [q_1 \; \cdots \; q_n]\) (orthogonal: \(Q^\top Q = I\)). From \(A Q = Q \Lambda\) we get \(A = Q \Lambda Q^\top\). Then
+  \[
+  A^\top = (Q \Lambda Q^\top)^\top = Q \Lambda^\top Q^\top = Q \Lambda Q^\top = A,
+  \]
+  since \(\Lambda\) is diagonal (\(\Lambda^\top = \Lambda\)). Thus \(A\) is symmetric.
+</div>
+<div class="zh">设 \(Q\) 是以标准正交特征向量为列的正交矩阵。由 \(A = Q \Lambda Q^\top\) 取转置得 \(A^\top = A\)，即 \(A\) 对称。</div>
+</div>
+
+<!-- Q20 -->
+<div class="q-card">
+<div class="q-number">Q20</div>
+<div class="q-title">Precise statement of the Spectral Theorem for symmetric matrices.</div>
+<div class="en">
+  <strong>Spectral Theorem:</strong> If \(A \in \mathbb{R}^{n \times n}\) is symmetric (\(A^\top = A\)), then:<br>
+  1. All eigenvalues of \(A\) are real.<br>
+  2. \(A\) is orthogonally diagonalizable: \(\exists\) orthogonal \(Q\) and diagonal \(\Lambda\) s.t. \(A = Q \Lambda Q^\top\). Equivalently, \(\mathbb{R}^n\) has an orthonormal basis of eigenvectors of \(A\).
+</div>
+<div class="zh">实对称矩阵的谱定理：(1) 所有特征值为实数。(2) \(A\) 可正交对角化：存在正交矩阵 \(Q\) 和对角矩阵 \(\Lambda\) 使得 \(A = Q \Lambda Q^\top\)。</div>
+</div>
+
+<!-- Q21 -->
+<div class="q-card">
+<div class="q-number">Q21</div>
+<div class="q-title">Show eigenvectors for distinct eigenvalues of a symmetric matrix are orthogonal.</div>
+<div class="en">
+  Let \(A v_1 = \lambda_1 v_1\), \(A v_2 = \lambda_2 v_2\) with \(\lambda_1 \neq \lambda_2\). Since \(A^\top = A\),
+  \[
+  \lambda_1(v_1^\top v_2) = (A v_1)^\top v_2 = v_1^\top A v_2 = \lambda_2(v_1^\top v_2).
+  \]
+  Thus \((\lambda_1 - \lambda_2)(v_1^\top v_2) = 0\). Since \(\lambda_1 \neq \lambda_2\), we get \(v_1^\top v_2 = 0\) — orthogonal.
+</div>
+<div class="zh">利用对称性：\(\lambda_1(v_1^\top v_2) = (A v_1)^\top v_2 = v_1^\top A v_2 = \lambda_2(v_1^\top v_2)\)，所以 \((\lambda_1 - \lambda_2)(v_1^\top v_2) = 0\)，因 \(\lambda_1 \neq \lambda_2\) 故 \(v_1^\top v_2 = 0\)。</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- WEEK 13 -->
+<!-- ============================================================ -->
+<div class="week-section" id="w13">
+<div class="week-header week-13">📗 Week 13 — Similar Matrices, Diagonalization, SVD &amp; Frobenius Norm</div>
+
+<!-- Q1 -->
+<div class="q-card">
+<div class="q-number">Q1</div>
+<div class="q-title">Give the definition of similar matrices.</div>
+<div class="en">
+  \(A, B \in \mathbb{C}^{n \times n}\) are <strong>similar</strong> if \(\exists\) invertible \(P \in \mathbb{C}^{n \times n}\) such that \(B = P^{-1} A P\). Similarity is an equivalence relation — similar matrices represent the same linear transformation in different bases.
+</div>
+<div class="zh">若存在可逆矩阵 \(P\) 使 \(B = P^{-1} A P\)，则 \(A\) 和 \(B\) 相似。相似矩阵表示同一个线性变换在不同基下的矩阵。</div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card">
+<div class="q-number">Q2</div>
+<div class="q-title">Show if \(\lambda\) is an eigenvalue of \(A\), it is also an eigenvalue of similar \(B\).</div>
+<div class="en">
+  \(B = P^{-1} A P\). If \(A v = \lambda v\), then
+  \[
+  B (P^{-1} v) = P^{-1} A P (P^{-1} v) = P^{-1} A v = P^{-1} (\lambda v) = \lambda (P^{-1} v).
+  \]
+  So \(\lambda\) is an eigenvalue of \(B\) with eigenvector \(P^{-1} v\).
+</div>
+<div class="zh">若 \(B = P^{-1} A P\) 且 \(A v = \lambda v\)，则 \(B (P^{-1} v) = \lambda (P^{-1} v)\)，所以 \(\lambda\) 也是 \(B\) 的特征值。</div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card">
+<div class="q-number">Q3</div>
+<div class="q-title">Show similar matrices have the same multiset of eigenvalues.</div>
+<div class="en">
+  \(\det(\lambda I - B) = \det(\lambda I - P^{-1} A P) = \det(P^{-1}(\lambda I - A)P) = \det(P^{-1})\det(\lambda I - A)\det(P) = \det(\lambda I - A)\). Having the same characteristic polynomial implies the same eigenvalues with the same multiplicities.
+</div>
+<div class="zh">相似矩阵有相同的特征多项式，从而有相同的特征值多重集（相同的特征值及相同的代数重数）。</div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card">
+<div class="q-number">Q4</div>
+<div class="q-title">Give the definition of a diagonalizable matrix.</div>
+<div class="en">
+  \(A \in \mathbb{C}^{n \times n}\) is <strong>diagonalizable</strong> if it is similar to a diagonal matrix: \(\exists\) invertible \(P\) and diagonal \(D\) such that \(A = P D P^{-1}\).
+</div>
+<div class="zh">\(A\) 可对角化如果它相似于一个对角矩阵，即存在可逆矩阵 \(P\) 和对角矩阵 \(D\) 使 \(A = P D P^{-1}\)。</div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card">
+<div class="q-number">Q5</div>
+<div class="q-title">N&amp;S condition for diagonalizability involving eigenvectors.</div>
+<div class="en">
+  \(A \in \mathbb{R}^{n \times n}\) is diagonalizable <strong>iff</strong> it admits an eigenbasis — a basis of \(\mathbb{R}^n\) consisting of eigenvectors of \(A\). Equivalently, for every eigenvalue, geometric multiplicity = algebraic multiplicity.
+</div>
+<div class="zh">\(A\) 可对角化当且仅当它有一个特征基（由特征向量构成的基），等价地说每个特征值的几何重数等于代数重数。</div>
+</div>
+
+<!-- Q6 -->
+<div class="q-card">
+<div class="q-number">Q6</div>
+<div class="q-title">Prove \(A\) is diagonalizable iff it admits an eigenbasis.</div>
+<div class="en">
+  \((\Rightarrow)\) If \(A = P D P^{-1}\) with \(D = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\), the columns of \(P\) are eigenvectors and form an eigenbasis.<br>
+  \((\Leftarrow)\) If \(\{v_1, \dots, v_n\}\) is an eigenbasis with \(A v_j = \lambda_j v_j\), let \(P = [v_1 \; \cdots \; v_n]\) and \(D = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\). Then \(A P = P D\), so \(A = P D P^{-1}\).
+</div>
+<div class="zh">\((\Rightarrow)\) 若 \(A = P D P^{-1}\)，则 \(P\) 的列构成特征基。\((\Leftarrow)\) 若有特征基，令 \(P\) 以特征向量为列，\(D\) 为对角矩阵，则 \(A P = P D\)，即 \(A = P D P^{-1}\)。</div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card">
+<div class="q-number">Q7</div>
+<div class="q-title">Are all square matrices diagonalizable? Counterexample.</div>
+<div class="en">
+  No. <strong>Counterexample:</strong> \(A = \begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}\). Eigenvalue \(\lambda = 1\) has algebraic multiplicity 2 but geometric multiplicity 1 (eigenspace is 1-dimensional). So \(A\) is not diagonalizable (a defective matrix / Jordan block).
+</div>
+<div class="zh">不是。反例：\(A = \begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}\)，特征值 1 的代数重数为 2 但几何重数为 1，不可对角化。</div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card">
+<div class="q-number">Q8</div>
+<div class="q-title">Give a sufficient condition for diagonalizability involving eigenvalues.</div>
+<div class="en">
+  If \(A \in \mathbb{C}^{n \times n}\) has \(n\) <strong>distinct</strong> eigenvalues, then \(A\) is diagonalizable. (Sufficient but not necessary — repeated eigenvalues can still yield diagonalizability if geometric multiplicities are full.)
+</div>
+<div class="zh">若 \(A\) 有 \(n\) 个互不相同的特征值，则 \(A\) 可对角化。这是充分条件非必要条件。</div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card">
+<div class="q-number">Q9</div>
+<div class="q-title">Same multiset of eigenvalues ⇒ similar?</div>
+<div class="en">
+  No. <strong>Counterexample:</strong> \(A = \begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}\) and \(B = I\) both have eigenvalues \(\{1, 1\}\) but are not similar (if they were, \(A = I\), contradiction). Similarity requires the same Jordan form — same algebraic <em>and</em> geometric multiplicities.
+</div>
+<div class="zh">不一定。反例中两个矩阵都有特征值 \(\{1, 1\}\) 但不相似。相似需要相同的若尔当标准型，即代数重数和几何重数都要相同。</div>
+</div>
+
+<!-- Q10 -->
+<div class="q-card">
+<div class="q-number">Q10</div>
+<div class="q-title">If \(A\) is similar to diagonal \(D\), give \(A^k\) formula.</div>
+<div class="en">
+  If \(A = P D P^{-1}\) with \(D = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\), then
+  \[
+  A^k = P D^k P^{-1},\quad D^k = \operatorname{Diag}(\lambda_1^k, \dots, \lambda_n^k).
+  \]
+  This gives an efficient way to compute matrix powers via diagonalization.
+</div>
+<div class="zh">若 \(A = P D P^{-1}\)，则 \(A^k = P D^k P^{-1}\)，其中 \(D^k = \operatorname{Diag}(\lambda_1^k, \dots, \lambda_n^k)\)。</div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card">
+<div class="q-number">Q11</div>
+<div class="q-title">Rabbits &amp; wolves population: find \(x_k, y_k\).</div>
+<div class="en">
+  System: \(x_{k+1} = 1.2 x_k - 0.2 y_k,\; y_{k+1} = 0.3 x_k + 0.5 y_k\). Given eigenvectors \(u = (2,1)^\top\) for \(\lambda_1 = 1.1\), \(v = (1,3)^\top\) for \(\lambda_2 = 0.6\). Initial: \((x_0, y_0) = (100, 40)\).<br><br>
+  Express \((100, 40) = \alpha u + \beta v\): solving gives \(\alpha = 52, \beta = -4\). Then
+  \[
+  \begin{pmatrix}x_k\\y_k\end{pmatrix} = A^k\begin{pmatrix}100\\40\end{pmatrix} = 52(1.1)^k\begin{pmatrix}2\\1\end{pmatrix} - 4(0.6)^k\begin{pmatrix}1\\3\end{pmatrix}.
+  \]
+  Hence \(x_k = 104(1.1)^k - 4(0.6)^k\), \(y_k = 52(1.1)^k - 12(0.6)^k\).
+</div>
+<div class="zh">将初始向量分解为特征向量组合 \((100,40) = 52u - 4v\)，则 \((x_k, y_k)^\top = 52\lambda_1^k u - 4\lambda_2^k v\)，代入得 \(x_k = 104(1.1)^k - 4(0.6)^k\)，\(y_k = 52(1.1)^k - 12(0.6)^k\)。</div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card">
+<div class="q-number">Q12</div>
+<div class="q-title">Formulas for sum and product of eigenvalues.</div>
+<div class="en">
+  For \(A \in \mathbb{C}^{n \times n}\) with eigenvalues \(\lambda_1, \dots, \lambda_n\) (with multiplicities):
+  \[
+  \sum_{i=1}^n \lambda_i = \operatorname{tr}(A) = \sum_{i=1}^n A_{ii},\qquad
+  \prod_{i=1}^n \lambda_i = \det(A).
+  \]
+</div>
+<div class="zh">特征值之和 = \(A\) 的迹（对角线元素之和），特征值之积 = \(A\) 的行列式。</div>
+</div>
+
+<!-- Q13 -->
+<div class="q-card">
+<div class="q-number">Q13</div>
+<div class="q-title">Express \(\operatorname{EIG}(A^k)\) and \(\operatorname{EIG}(A^{-1})\).</div>
+<div class="en">
+  Let \(\operatorname{EIG}(A) = \{\lambda_1, \dots, \lambda_n\}\). Then:
+  <ul class="step">
+    <li>\(\operatorname{EIG}(A^k) = \{\lambda_1^k, \dots, \lambda_n^k\}\) for any \(k \ge 1\).</li>
+    <li>\(\operatorname{EIG}(A^{-1}) = \{\lambda_1^{-1}, \dots, \lambda_n^{-1}\}\) if \(A\) is invertible.</li>
+  </ul>
+  <strong>Proof for \(A^k\) (diagonalizable case):</strong> \(A = P D P^{-1} \Rightarrow A^k = P D^k P^{-1}\), so eigenvalues are \(\lambda_i^k\).
+</div>
+<div class="zh">\(\operatorname{EIG}(A^k) = \{\lambda_i^k\}\)，\(\operatorname{EIG}(A^{-1}) = \{\lambda_i^{-1}\}\)（若可逆）。证明利用对角化：\(A^k = P D^k P^{-1}\)。</div>
+</div>
+
+<!-- Q14 -->
+<div class="q-card">
+<div class="q-number">Q14</div>
+<div class="q-title">(i) Are eigenvectors for distinct eigenvalues always orthogonal? (ii) Do eigenvalues make sense for rectangular matrices?</div>
+<div class="en">
+  <strong>(i)</strong> No. They are always <strong>linearly independent</strong>, but orthogonal only for symmetric (normal) matrices.<br>
+  <strong>(ii)</strong> No. The definition \(A v = \lambda v\) requires \(A\) to be square — otherwise \(A v\) and \(v\) live in different-dimensional spaces.
+</div>
+<div class="zh">(i) 不同特征值的特征向量一定线性无关但不一定正交，正交性只对对称矩阵成立。(ii) 特征值的定义要求方阵，对长方形矩阵无意义。</div>
+</div>
+
+<!-- Q15 -->
+<div class="q-card">
+<div class="q-number">Q15</div>
+<div class="q-title">State the compact SVD of \(A \in \mathbb{R}^{n \times m}\) of rank \(r\).</div>
+<div class="en">
+  The <strong>compact SVD</strong> is
+  \[
+  A = U_r \Sigma_r V_r^\top = \sum_{i=1}^r \sigma_i u_i v_i^\top,
+  \]
+  where \(U_r \in \mathbb{R}^{n \times r}\), \(V_r \in \mathbb{R}^{m \times r}\) have orthonormal columns, and \(\Sigma_r = \operatorname{Diag}(\sigma_1, \dots, \sigma_r)\) with \(\sigma_1 \ge \cdots \ge \sigma_r > 0\).
+</div>
+<div class="zh">紧凑 SVD：\(A = U_r \Sigma_r V_r^\top = \sum_{i=1}^r \sigma_i u_i v_i^\top\)，其中 \(U_r, V_r\) 列标准正交，\(\Sigma_r\) 包含正奇异值。</div>
+</div>
+
+<!-- Q16 -->
+<div class="q-card">
+<div class="q-number">Q16</div>
+<div class="q-title">Definition of the Frobenius norm \(\|B\|_F\).</div>
+<div class="en">
+  For \(B \in \mathbb{R}^{m \times n}\),
+  \[
+  \|B\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n B_{ij}^2},
+  \]
+  i.e., the square root of the sum of squares of all entries — the Euclidean norm of the vectorized matrix.
+</div>
+<div class="zh">Frobenius 范数是矩阵所有元素平方和的平方根，即将矩阵展平为向量的欧几里得范数。</div>
+</div>
+
+<!-- Q17 -->
+<div class="q-card">
+<div class="q-number">Q17</div>
+<div class="q-title">Express \(\|B\|_F\) using trace; prove for \(m=n=2\).</div>
+<div class="en">
+  \(\|B\|_F = \sqrt{\operatorname{tr}(B^\top B)}\). For \(B = \begin{pmatrix}a&amp;b\\c&amp;d\end{pmatrix}\): \(B^\top B = \begin{pmatrix}a^2+c^2&amp;ab+cd\\ab+cd&amp;b^2+d^2\end{pmatrix}\), so \(\operatorname{tr}(B^\top B) = a^2+b^2+c^2+d^2 = \|B\|_F^2\).
+</div>
+<div class="zh">\(\|B\|_F = \sqrt{\operatorname{tr}(B^\top B)}\)。对 \(2 \times 2\) 矩阵直接展开验证即可。</div>
+</div>
+
+<!-- Q18 -->
+<div class="q-card">
+<div class="q-number">Q18</div>
+<div class="q-title">Given \(u \in \mathbb{R}^n\), give \(\|u u^\top\|_F\).</div>
+<div class="en">
+  \(\|u u^\top\|_F^2 = \sum_{i,j} (u_i u_j)^2 = (\sum_i u_i^2)(\sum_j u_j^2) = \|u\|^4\), so \(\|u u^\top\|_F = \|u\|^2\).
+</div>
+<div class="zh">\(\|u u^\top\|_F^2 = \sum_{i,j} (u_i u_j)^2 = (\sum_i u_i^2)(\sum_j u_j^2) = \|u\|^4\)，所以 \(\|u u^\top\|_F = \|u\|^2\)。</div>
+</div>
+
+<!-- Q19 -->
+<div class="q-card">
+<div class="q-number">Q19</div>
+<div class="q-title">Express \(\|B\|_F\) in terms of singular values \(\sigma_i\).</div>
+<div class="en">
+  \(\|B\|_F = \sqrt{\sum_{i=1}^r \sigma_i^2}\).<br>
+  <strong>Proof for \(r=2\):</strong> If \(B = \sigma_1 u_1 v_1^\top + \sigma_2 u_2 v_2^\top\) with orthonormal sets, then
+  \[
+  B^\top B = \sigma_1^2 v_1 v_1^\top + \sigma_2^2 v_2 v_2^\top,
+  \]
+  and \(\operatorname{tr}(B^\top B) = \sigma_1^2 \|v_1\|^2 + \sigma_2^2 \|v_2\|^2 = \sigma_1^2 + \sigma_2^2\). Hence \(\|B\|_F = \sqrt{\sigma_1^2 + \sigma_2^2}\).
+</div>
+<div class="zh">Frobenius 范数等于所有奇异值平方和的平方根：\(\|B\|_F = \sqrt{\sum \sigma_i^2}\)。</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- WEEK 14 -->
+<!-- ============================================================ -->
+<div class="week-section" id="w14">
+<div class="week-header week-14">📙 Week 14 — SVD Details, Quadratic Forms &amp; Positive Definiteness</div>
+
+<!-- Q1 -->
+<div class="q-card">
+<div class="q-number">Q1</div>
+<div class="q-title">Identify the four fundamental subspaces from full SVD.</div>
+<div class="en">
+  Given \(A = U \Sigma V^\top\) with \(A \in \mathbb{R}^{m \times n}\), rank \(r\):
+  <ul class="step">
+    <li>\(\operatorname{Span}(v_1, \dots, v_r) = \operatorname{Row}(A)\) — row space (in \(\mathbb{R}^n\)).</li>
+    <li>\(\operatorname{Span}(v_{r+1}, \dots, v_n) = N(A)\) — nullspace (in \(\mathbb{R}^n\)).</li>
+    <li>\(\operatorname{Span}(u_1, \dots, u_r) = C(A)\) — column space (in \(\mathbb{R}^m\)).</li>
+    <li>\(\operatorname{Span}(u_{r+1}, \dots, u_m) = N(A^\top)\) — left nullspace (in \(\mathbb{R}^m\)).</li>
+  </ul>
+</div>
+<div class="zh">\(V\) 的前 \(r\) 列张成行空间，后 \(n-r\) 列张成零空间；\(U\) 的前 \(r\) 列张成列空间，后 \(m-r\) 列张成左零空间。</div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card">
+<div class="q-number">Q2</div>
+<div class="q-title">Steps to compute the full SVD of \(A \in \mathbb{R}^{m \times n}\).</div>
+<div class="en">
+  <ol class="step">
+    <li>Compute \(A^\top A \in \mathbb{R}^{n \times n}\) (symmetric PSD).</li>
+    <li>Find eigenvalues \(\lambda_1 \ge \cdots \ge \lambda_n \ge 0\) of \(A^\top A\). Singular values: \(\sigma_i = \sqrt{\lambda_i}\) for \(i \le r = \operatorname{rank}(A)\), and \(\sigma_i = 0\) for \(i > r\).</li>
+    <li>Find orthonormal eigenvectors \(\{v_1, \dots, v_n\}\) of \(A^\top A\) — the right singular vectors.</li>
+    <li>For \(i = 1, \dots, r\): \(u_i = \frac{1}{\sigma_i} A v_i\). Extend to orthonormal basis \(\{u_1, \dots, u_m\}\) of \(\mathbb{R}^m\).</li>
+    <li>Assemble \(U = [u_1 \; \cdots \; u_m]\), \(V = [v_1 \; \cdots \; v_n]\), \(\Sigma\) as \(m \times n\) rectangular diagonal with \(\sigma_1, \dots, \sigma_r\) on the diagonal.</li>
+  </ol>
+</div>
+<div class="zh">1. 计算 \(A^\top A\)；2. 求其特征值得奇异值；3. 求右奇异向量；4. 构造左奇异向量；5. 组装 \(U, \Sigma, V\)。</div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card">
+<div class="q-number">Q3</div>
+<div class="q-title">Compute full SVD of \(A = \begin{pmatrix}1&amp;1\\1&amp;1\\0&amp;0\end{pmatrix}\).</div>
+<div class="en">
+  \(A^\top A = \begin{pmatrix}2&amp;2\\2&amp;2\end{pmatrix}\). Eigenvalues: \(4, 0\) → singular values: \(\sigma_1 = 2\), rank \(r = 1\).<br><br>
+  \(v_1 = \frac{1}{\sqrt{2}}(1,1)^\top\), \(v_2 = \frac{1}{\sqrt{2}}(1,-1)^\top\).<br>
+  \(u_1 = \frac{1}{\sigma_1} A v_1 = \frac{1}{\sqrt{2}}(1,1,0)^\top\). Extend: \(u_2 = \frac{1}{\sqrt{2}}(1,-1,0)^\top\), \(u_3 = (0,0,1)^\top\).<br><br>
+  Full SVD:
+  \[
+  A = \begin{pmatrix}
+  1/\sqrt{2} &amp; 1/\sqrt{2} &amp; 0\\
+  1/\sqrt{2} &amp; -1/\sqrt{2} &amp; 0\\
+  0 &amp; 0 &amp; 1
+  \end{pmatrix}
+  \begin{pmatrix}2 &amp; 0\\0 &amp; 0\\0 &amp; 0\end{pmatrix}
+  \begin{pmatrix}
+  1/\sqrt{2} &amp; 1/\sqrt{2}\\
+  1/\sqrt{2} &amp; -1/\sqrt{2}
+  \end{pmatrix}^\top.
+  \]
+</div>
+<div class="zh">计算 \(A^\top A\) 得特征值 4 和 0，奇异值 \(\sigma_1 = 2\)。右奇异向量 \(v_1 = (1,1)^\top/\sqrt{2}\)，左奇异向量 \(u_1 = (1,1,0)^\top/\sqrt{2}\)，扩充后组装得到完整 SVD。</div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card">
+<div class="q-number">Q4</div>
+<div class="q-title">Relation between eigenvalues of \(A^\top A\) and \(AA^\top\); singular values.</div>
+<div class="en">
+  For \(i \le \min(m,n)\), \(\lambda_i = \mu_i\) (nonzero eigenvalues of \(A^\top A\) and \(AA^\top\) coincide). If \(r = \operatorname{rank}(A)\), then \(\lambda_{r+1} = \cdots = \lambda_n = 0\) and \(\mu_{r+1} = \cdots = \mu_m = 0\). If \(m \ge n\), singular values \(\sigma_i = \sqrt{\lambda_i}\) for \(i = 1, \dots, n\).
+</div>
+<div class="zh">\(A^\top A\) 和 \(AA^\top\) 的非零特征值完全相同。奇异值 \(\sigma_i = \sqrt{\lambda_i}\)（取 \(A^\top A\) 的特征值）。</div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card">
+<div class="q-number">Q5</div>
+<div class="q-title">Are right/left singular vectors eigenvectors of \(AA^\top\) or \(A^\top A\)?</div>
+<div class="en">
+  Right singular vectors \(v_i\) are eigenvectors of \(A^\top A\): \(A^\top A v_i = \sigma_i^2 v_i\).<br>
+  Left singular vectors \(u_i\) are eigenvectors of \(A A^\top\): \(A A^\top u_i = \sigma_i^2 u_i\).
+</div>
+<div class="zh">右奇异向量是 \(A^\top A\) 的特征向量，左奇异向量是 \(A A^\top\) 的特征向量。</div>
+</div>
+
+<!-- Q6 -->
+<div class="q-card">
+<div class="q-number">Q6</div>
+<div class="q-title">Is the number of singular values of an \(m \times n\) matrix equal to \(\min(m, n)\)?</div>
+<div class="en">
+  Yes. In the full SVD, \(\Sigma\) is \(m \times n\) with \(\min(m, n)\) diagonal entries (counting zeros). The number of <strong>nonzero</strong> singular values equals the rank \(r \le \min(m, n)\).
+</div>
+<div class="zh">完整 SVD 中奇异值（含零）的个数为 \(\min(m, n)\)，非零奇异值的个数等于秩 \(r\)。</div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card">
+<div class="q-number">Q7</div>
+<div class="q-title">Definition of a quadratic form.</div>
+<div class="en">
+  A <strong>quadratic form</strong> is a function \(Q: \mathbb{R}^n \to \mathbb{R}\) defined by \(Q(x) = x^\top A x = \sum_{i=1}^n \sum_{j=1}^n A_{ij} x_i x_j\), where \(A \in \mathbb{R}^{n \times n}\) is symmetric (canonically).
+</div>
+<div class="zh">二次型是 \(Q(x) = x^\top A x = \sum_{i,j} A_{ij} x_i x_j\) 形式的函数，其中 \(A\) 是对称矩阵。</div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card">
+<div class="q-number">Q8</div>
+<div class="q-title">Definitions: PSD, PD, indefinite matrices.</div>
+<div class="en">
+  For symmetric \(A \in \mathbb{R}^{n \times n}\):
+  <ul class="step">
+    <li><strong>PSD:</strong> \(x^\top A x \ge 0\) for all \(x\).</li>
+    <li><strong>PD:</strong> \(x^\top A x > 0\) for all nonzero \(x\).</li>
+    <li><strong>Indefinite:</strong> \(x^\top A x\) takes both positive and negative values.</li>
+    <li><strong>NSD:</strong> \(x^\top A x \le 0\) for all \(x\).</li>
+    <li><strong>ND:</strong> \(x^\top A x < 0\) for all nonzero \(x\).</li>
+  </ul>
+</div>
+<div class="zh">对对称矩阵：半正定 (PSD) 为 \(x^\top A x \ge 0\)；正定 (PD) 为非零时 > 0；不定为可正可负；半负定 (NSD) 为 ≤ 0；负定 (ND) 为非零时 < 0。</div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card">
+<div class="q-number">Q9</div>
+<div class="q-title">For diagonal \(D\), express \(x^\top D x\) and give PD condition.</div>
+<div class="en">
+  \(x^\top D x = \sum_{i=1}^n d_i x_i^2\). \(D\) is PD iff all \(d_i > 0\); PSD iff all \(d_i \ge 0\).
+</div>
+<div class="zh">\(x^\top D x = \sum d_i x_i^2\)。\(D\) 正定当且仅当所有 \(d_i > 0\)，半正定当且仅当所有 \(d_i \ge 0\)。</div>
+</div>
+
+<!-- Q10 -->
+<div class="q-card">
+<div class="q-number">Q10</div>
+<div class="q-title">Classify each matrix as PSD, PD, I, NSD, or ND.</div>
+<div class="en">
+  <ol class="step">
+    <li>\(\begin{pmatrix}2&amp;0\\0&amp;3\end{pmatrix}\) → <strong>PD</strong> (both eigenvalues > 0)</li>
+    <li>\(\begin{pmatrix}-2&amp;0\\0&amp;0\end{pmatrix}\) → <strong>NSD</strong> (eigenvalues -2, 0)</li>
+    <li>\(\begin{pmatrix}0&amp;0\\0&amp;0\end{pmatrix}\) → <strong>PSD &amp; NSD</strong> (zero matrix)</li>
+    <li>\(\begin{pmatrix}-3&amp;0\\0&amp;-7\end{pmatrix}\) → <strong>ND</strong> (both eigenvalues < 0)</li>
+    <li>\(\begin{pmatrix}2&amp;0\\0&amp;0\end{pmatrix}\) → <strong>PSD</strong> (eigenvalues 2, 0)</li>
+    <li>\(\begin{pmatrix}3&amp;0\\0&amp;-2\end{pmatrix}\) → <strong>I</strong> (indefinite, eigenvalues 3, -2)</li>
+    <li>\(\begin{pmatrix}-2&amp;0\\0&amp;-5\end{pmatrix}\) → <strong>ND</strong> (both eigenvalues < 0)</li>
+  </ol>
+</div>
+<div class="zh">1. 正定 (PD)；2. 半负定 (NSD)；3. 既半正定又半负定；4. 负定 (ND)；5. 半正定 (PSD)；6. 不定 (I)；7. 负定 (ND)。</div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card">
+<div class="q-number">Q11</div>
+<div class="q-title">Complete the theorem (equivalent conditions for PD).</div>
+<div class="en">
+  For symmetric \(A \in \mathbb{R}^{n \times n}\), the following are equivalent:
+  <ul class="step">
+    <li>\(A\) is <strong>positive definite</strong>.</li>
+    <li><strong>All eigenvalues</strong> of \(A\) are <strong>positive</strong>.</li>
+    <li>\(A = R^\top R\) for some <strong>invertible</strong> matrix \(R \in \mathbb{R}^{n \times n}\).</li>
+  </ul>
+</div>
+<div class="zh">实对称矩阵正定等价于：(1) 所有特征值为正；(2) 可写为 \(A = R^\top R\)（\(R\) 可逆）。</div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card">
+<div class="q-number">Q12</div>
+<div class="q-title">Show if all eigenvalues are positive, then \(A\) is PD.</div>
+<div class="en">
+  By the Spectral Theorem, \(A = Q \Lambda Q^\top\) with \(\Lambda = \operatorname{Diag}(\lambda_1, \dots, \lambda_n)\), \(\lambda_i > 0\). For any nonzero \(x\),
+  \[
+  x^\top A x = x^\top Q \Lambda Q^\top x = (Q^\top x)^\top \Lambda (Q^\top x) = \sum_{i=1}^n \lambda_i (Q^\top x)_i^2 > 0,
+  \]
+  since at least one component of \(Q^\top x\) is nonzero and all \(\lambda_i > 0\). Thus \(A\) is PD.
+</div>
+<div class="zh">由谱定理 \(A = Q \Lambda Q^\top\)，对任意非零 \(x\)，\(x^\top A x = \sum \lambda_i (Q^\top x)_i^2 > 0\)，所以 \(A\) 正定。</div>
+</div>
+
+<!-- Q13 -->
+<div class="q-card">
+<div class="q-number">Q13</div>
+<div class="q-title">Show if \(A\) is PD, then all eigenvalues are positive.</div>
+<div class="en">
+  Let \(\lambda\) be an eigenvalue with eigenvector \(v \neq 0\). Then \(A v = \lambda v\). Multiply by \(v^\top\) on the left: \(v^\top A v = \lambda \|v\|^2\). Since \(A\) is PD, \(v^\top A v > 0\), hence \(\lambda > 0\).
+</div>
+<div class="zh">设 \(A v = \lambda v\)，则 \(v^\top A v = \lambda \|v\|^2 > 0\)（由正定性），所以 \(\lambda > 0\)。</div>
+</div>
+
+<!-- Q14 -->
+<div class="q-card">
+<div class="q-number">Q14</div>
+<div class="q-title">Show if \(A = R^\top R\) with \(R\) invertible, then \(A\) is PD.</div>
+<div class="en">
+  For any nonzero \(x\), \(x^\top A x = x^\top R^\top R x = \|R x\|^2\). Since \(R\) is invertible, \(R x \neq 0\), so \(\|R x\|^2 > 0\). Thus \(A\) is PD.
+</div>
+<div class="zh">\(x^\top A x = \|R x\|^2\)，因 \(R\) 可逆故 \(R x \neq 0\)，所以范数平方 > 0，\(A\) 正定。</div>
+</div>
+
+<!-- Q15 -->
+<div class="q-card">
+<div class="q-number">Q15</div>
+<div class="q-title">Show if \(A\) is PD, then \(A = R^\top R\) for some invertible \(R\).</div>
+<div class="en">
+  By the Spectral Theorem, \(A = Q \Lambda Q^\top\) with \(\lambda_i > 0\). Let \(\Lambda^{1/2} = \operatorname{Diag}(\sqrt{\lambda_1}, \dots, \sqrt{\lambda_n})\) and set \(R = \Lambda^{1/2} Q^\top\). Then \(R\) is invertible and
+  \[
+  R^\top R = Q \Lambda^{1/2} \Lambda^{1/2} Q^\top = Q \Lambda Q^\top = A.
+  \]
+  This is the <strong>Cholesky decomposition</strong>.
+</div>
+<div class="zh">由谱定理 \(A = Q \Lambda Q^\top\)，取 \(R = \Lambda^{1/2} Q^\top\)，则 \(R^\top R = A\)。这就是乔列斯基分解。</div>
+</div>
+
+<!-- Q16 -->
+<div class="q-card">
+<div class="q-number">Q16</div>
+<div class="q-title">Are all PD matrices invertible?</div>
+<div class="en">
+  Yes. All eigenvalues \(\lambda_i > 0\), so \(\det(A) = \prod \lambda_i > 0\), hence \(\det(A) \neq 0\) and \(A\) is invertible. (If \(A\) were singular, \(\exists x \neq 0\) with \(A x = 0\), giving \(x^\top A x = 0\), contradicting PD.)
+</div>
+<div class="zh">是的。正定矩阵所有特征值 > 0 ⇒ 行列式 > 0 ⇒ 可逆。若奇异则存在非零向量使 \(x^\top A x = 0\)，与正定性矛盾。</div>
+</div>
+
+<!-- Q17 -->
+<div class="q-card">
+<div class="q-number">Q17</div>
+<div class="q-title">Typical equations for circles, ellipses, hyperbolas, parabolas.</div>
+<div class="en">
+  <ul class="step">
+    <li><strong>Circle:</strong> \(x^2 + y^2 = r^2\).</li>
+    <li><strong>Ellipse:</strong> \(\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\).</li>
+    <li><strong>Hyperbola:</strong> \(\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1\) (opens L/R) or \(-\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\) (opens U/D).</li>
+    <li><strong>Parabola:</strong> \(y = a x^2\) or \(x = a y^2\).</li>
+  </ul>
+</div>
+<div class="zh">圆：\(x^2 + y^2 = r^2\)；椭圆：\(\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\)；双曲线：\(\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1\)；抛物线：\(y = a x^2\)。</div>
+</div>
+
+<!-- Q18 -->
+<div class="q-card">
+<div class="q-number">Q18</div>
+<div class="q-title">Rewrite \(a x^2 + b x y + c y^2 = \alpha\) using a symmetric matrix.</div>
+<div class="en">
+  Let \(u = (x, y)^\top\) and \(A = \begin{pmatrix} a &amp; b/2 \\ b/2 &amp; c \end{pmatrix}\). Then
+  \[
+  u^\top A u = (x, y) \begin{pmatrix} a &amp; b/2 \\ b/2 &amp; c \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a x^2 + b x y + c y^2 = \alpha.
+  \]
+  The quadratic form is \(Q(u) = u^\top A u\).
+</div>
+<div class="zh">令 \(u = (x, y)^\top\)，\(A = \begin{pmatrix} a &amp; b/2 \\ b/2 &amp; c \end{pmatrix}\)，则 \(u^\top A u = a x^2 + b x y + c y^2 = \alpha\)。</div>
+</div>
+
+<!-- Q19 -->
+<div class="q-card">
+<div class="q-number">Q19</div>
+<div class="q-title">Conditions on eigenvalues of \(A\) and \(\alpha\) for ellipse / hyperbola.</div>
+<div class="en">
+  \(u^\top A u = \alpha\), with symmetric \(A \in \mathbb{R}^{2 \times 2}\).
+  <ul class="step">
+    <li><strong>Ellipse:</strong> Eigenvalues have the <strong>same sign</strong> (both positive or both negative), and \(\alpha\) has that same sign. After diagonalization: \(\lambda_1 \tilde{x}^2 + \lambda_2 \tilde{y}^2 = \alpha\) → \(\frac{\tilde{x}^2}{\alpha/\lambda_1} + \frac{\tilde{y}^2}{\alpha/\lambda_2} = 1\) (ellipse when both denominators positive).</li>
+    <li><strong>Hyperbola:</strong> Eigenvalues have <strong>opposite signs</strong>. One squared term is positive, the other negative, giving a hyperbola regardless of \(\alpha \neq 0\).</li>
+    <li><strong>Parabola:</strong> One eigenvalue = 0 (degenerate case).</li>
+  </ul>
+</div>
+<div class="zh">\(u^\top A u = \alpha\)：椭圆要求特征值同号且 \(\alpha\) 同号；双曲线要求特征值异号；抛物线与特征值为零的退化情形对应。</div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

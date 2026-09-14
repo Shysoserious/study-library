@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML 入门 复习笔记 | Lecture 20-21</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1a;--text2:#555;--accent:#534AB7;--accent2:#0F6E56;--red:#E24B4A;--amber:#BA7517;--blue:#185FA5;--pink:#C43B7A;--border:#e5e3de;--code-bg:#f3f1ec;}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--card:#252525;--text:#e8e6e0;--text2:#999;--accent:#AFA9EC;--accent2:#5DCAA5;--red:#F09595;--amber:#FAC775;--blue:#85B7EB;--pink:#F29BC1;--border:#333;--code-bg:#2c2c2a;}}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:20px;}
+.container{max-width:900px;margin:0 auto;}
+h1{font-size:28px;font-weight:700;margin-bottom:8px;color:var(--accent);}
+h2{font-size:22px;font-weight:600;margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--accent);color:var(--accent);}
+h3{font-size:18px;font-weight:600;margin:24px 0 12px;color:var(--text);}
+h4{font-size:15px;font-weight:600;margin:16px 0 8px;color:var(--text2);}
+p{margin-bottom:12px;}
+.subtitle{color:var(--text2);font-size:15px;margin-bottom:30px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:16px 0;}
+.card-accent{border-left:4px solid var(--accent);}
+.card-green{border-left:4px solid var(--accent2);}
+.card-red{border-left:4px solid var(--red);}
+.card-amber{border-left:4px solid var(--amber);}
+.card-blue{border-left:4px solid var(--blue);}
+.card-pink{border-left:4px solid var(--pink);}
+.formula{background:var(--code-bg);border-radius:10px;padding:16px 20px;margin:12px 0;text-align:center;font-size:17px;overflow-x:auto;}
+.formula .frac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 3px;}
+.formula .frac .num{border-bottom:1.5px solid var(--text);padding:0 6px 3px;font-size:16px;}
+.formula .frac .den{padding:3px 6px 0;font-size:16px;}
+.formula .big{font-size:22px;vertical-align:middle;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+@media(max-width:700px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;margin-right:6px;}
+.tag-convex{background:#E1F5EE;color:#0F6E56;}
+.tag-concave{background:#FAECE7;color:#993C1D;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.key{color:var(--red);font-weight:600;}
+.eng{color:var(--blue);font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:40px;margin-bottom:16px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.proof{background:var(--code-bg);border-radius:10px;padding:16px 20px;margin:12px 0;border-left:3px solid var(--accent);}
+.proof p{margin-bottom:8px;}
+.toc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:20px 0;}
+.toc a{color:var(--accent);text-decoration:none;display:block;padding:4px 0;}
+.toc a:hover{text-decoration:underline;}
+.toc .sub{padding-left:18px;font-size:14px;color:var(--text2);}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:999;transition:width 0.1s;}
+.nav{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+table{width:100%;border-collapse:collapse;margin:12px 0;}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:14px;}
+th{background:var(--code-bg);font-weight:600;}
+.example-box{background:var(--code-bg);border-radius:10px;padding:14px 18px;margin:10px 0;}
+.viz{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin:12px 0;text-align:center;}
+.viz svg{max-width:100%;height:auto;}
+.viz-caption{font-size:12px;color:var(--text2);margin-top:6px;}
+.kcards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+.kcard{text-align:center;padding:14px 8px;border-radius:10px;border:2px solid var(--border);font-size:13px;}
+.kcard .kv{font-size:20px;font-weight:700;color:var(--accent);}
+.kcard .kd{margin-top:4px;color:var(--text2);font-size:12px;}
+.kbad{border-color:var(--red);background:#FFF5F5;}
+.kok{border-color:var(--accent2);background:#F0FFF8;}
+.kmid{border-color:var(--amber);background:#FFFDF0;}
+@media(prefers-color-scheme:dark){.kbad{background:#3a1e1e;}.kok{background:#1e3a2e;}.kmid{background:#3a331e;}}
+.lecture-divider{background:linear-gradient(135deg,#534AB7,#8B84D8);color:#fff;padding:22px 24px;border-radius:12px;margin:40px 0 20px;}
+.lecture-divider h2{color:#fff;border:none;margin:0;padding:0;font-size:22px;}
+.lecture-divider p{color:#dfd9ff;font-size:13px;margin:4px 0 0;}
+.lecture-divider.orange{background:linear-gradient(135deg,#D8734E,#E69975);}
+.lecture-divider.orange p{color:#fff0e8;}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<a href="#top" class="nav">↑</a>
+
+<div class="container" id="top">
+
+<h1>ML 入门：KNN & Logistic Regression</h1>
+<p class="subtitle">Lecture 20–21 | Introduction to Data Science | Prof. Pin Gao</p>
+
+<!-- TOC -->
+<div class="toc">
+<strong>目录 Table of Contents</strong>
+<a href="#L20">Lecture 20: Machine Learning Introduction & KNN</a>
+<a href="#L20-1" class="sub">1. What is Machine Learning?</a>
+<a href="#L20-2" class="sub">2. Classification（分类任务）</a>
+<a href="#L20-3" class="sub">3. Represent Objects Numerically（数值化表示）</a>
+<a href="#L20-4" class="sub">4. Supervised vs Unsupervised Learning</a>
+<a href="#L20-5" class="sub">5. KNN 算法详解</a>
+<a href="#L20-6" class="sub">6. K 值的影响 & 例题</a>
+
+<a href="#L21">Lecture 21: Logistic Regression</a>
+<a href="#L21-1" class="sub">1. KNN 优缺点回顾</a>
+<a href="#L21-2" class="sub">2. Logistic Regression 核心思想</a>
+<a href="#L21-3" class="sub">3. Sigmoid Function</a>
+<a href="#L21-4" class="sub">4. 模型公式 & 分类流程</a>
+<a href="#L21-5" class="sub">5. 训练模型（MLE）</a>
+<a href="#L21-6" class="sub">6. Gradient Descent</a>
+<a href="#L21-7" class="sub">7. Stochastic Gradient Descent</a>
+<a href="#L21-8" class="sub">8. KNN vs Logistic Regression</a>
+<a href="#L21-9" class="sub">9. 练习题与思考</a>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 20                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider" id="L20">
+<h2 style="color:#fff;">Lecture 20 — Machine Learning 入门 & KNN</h2>
+<p>机器学习的基础概念、分类任务、KNN（K 近邻）算法</p>
+</div>
+
+<!-- ========== L20 Section 1 ========== -->
+<h2 id="L20-1">1. What is Machine Learning?</h2>
+
+<h3>1.1 数据驱动的决策流程</h3>
+
+<div class="viz">
+<svg viewBox="0 0 760 150" width="100%" style="max-width:760px;">
+<defs><marker id="ar" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#777"/></marker></defs>
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12" text-anchor="middle">
+<rect x="10" y="40" width="120" height="60" rx="8" fill="#534AB7"/>
+<text x="70" y="65" fill="#fff" font-weight="600">Collect Data</text>
+<text x="70" y="82" fill="#dfd9ff" font-size="10">收集数据</text>
+<line x1="132" y1="70" x2="158" y2="70" stroke="#777" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="160" y="40" width="120" height="60" rx="8" fill="#0F6E56"/>
+<text x="220" y="65" fill="#fff" font-weight="600">Propose Models</text>
+<text x="220" y="82" fill="#d5f1e6" font-size="10">提出模型</text>
+<line x1="282" y1="70" x2="308" y2="70" stroke="#777" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="310" y="40" width="120" height="60" rx="8" fill="#BA7517"/>
+<text x="370" y="65" fill="#fff" font-weight="600">Choose Best</text>
+<text x="370" y="82" fill="#fdeedc" font-size="10">选最佳模型</text>
+<line x1="432" y1="70" x2="458" y2="70" stroke="#777" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="460" y="40" width="120" height="60" rx="8" fill="#185FA5"/>
+<text x="520" y="65" fill="#fff" font-weight="600">Prediction</text>
+<text x="520" y="82" fill="#d8e6f5" font-size="10">做预测</text>
+<line x1="582" y1="70" x2="608" y2="70" stroke="#777" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<rect x="610" y="40" width="120" height="60" rx="8" fill="#C43B7A"/>
+<text x="670" y="65" fill="#fff" font-weight="600">Optimize</text>
+<text x="670" y="82" fill="#f9d8e8" font-size="10">优化决策</text>
+
+<text x="380" y="25" fill="#555" font-size="11" font-style="italic">→ Make a Decision ←</text>
+<text x="380" y="135" fill="#777" font-size="11">每一步对应不同工具：编程 / 概率 / 统计 / 抽样 / 优化</text>
+</g>
+</svg>
+<div class="viz-caption">数据科学完整流程：从原始数据到最终决策</div>
+</div>
+
+<div class="card card-accent">
+<p><strong>Machine Learning 的定义</strong>：研究那些<strong>通过使用数据来提高自身任务表现</strong>的算法，而不是仅仅依赖预先编写好的固定规则。</p>
+<p>ML 通常使用 <span class="eng">black boxes</span>（黑箱模型）如 <span class="eng">Neural Network</span>（神经网络）、<span class="eng">Support Vector Machine</span>（支持向量机），通过<strong>优化参数</strong>让模型自动学习。深层参数优化即 <span class="eng">Deep Learning</span>。</p>
+</div>
+
+<h3>1.2 Statistics vs. Machine Learning</h3>
+
+<div class="card card-blue">
+<p><span class="tag tag-def">核心区分</span></p>
+<p>• <span class="eng">Statistics</span>：先写下一个模型，然后拟合数据（<span class="highlight">write down a model first, then fit it</span>）</p>
+<p>• <span class="eng">Machine Learning</span>：让数据告诉我们什么预测规则最好（<span class="highlight">let data tell us what prediction rule works best</span>）</p>
+</div>
+
+<table>
+<tr><th>Aspect 方面</th><th>Statistics / Probability</th><th>Machine Learning</th></tr>
+<tr><td><strong>Goal 目标</strong></td><td>理解和解释数据<br>Understand & explain</td><td>预测新结果<br>Predict new outcomes</td></tr>
+<tr><td><strong>Data 数据</strong></td><td>较小的结构化数据集</td><td>较大的高维数据集</td></tr>
+<tr><td><strong>Model 模型</strong></td><td>简单可解释</td><td>灵活复杂</td></tr>
+<tr><td><strong>Tool 工具</strong></td><td>概率 & 推断</td><td>优化 & 训练</td></tr>
+<tr><td><strong>Strength 优势</strong></td><td>清晰的可解释性</td><td>强大的预测能力</td></tr>
+<tr><td><strong>Limitation 局限</strong></td><td>可能遗漏复杂模式</td><td>可解释性差（黑箱）</td></tr>
+</table>
+
+<h3>1.3 机器学习的四要素（Key Ingredients）</h3>
+
+<div class="grid2">
+<div class="card card-accent"><strong>Task（任务）</strong><br>我们想让机器做什么？<br><span class="eng">classify（分类）, predict（预测）, cluster（聚类）</span></div>
+<div class="card card-green"><strong>Data（数据）</strong><br>经验：<span class="eng">input-output pairs</span>（输入-输出对）或 <span class="eng">raw observations</span>（原始观测）</div>
+<div class="card card-amber"><strong>Model（模型）</strong><br>一个将输入映射到输出的函数：<br><span class="eng">h: X → Y</span></div>
+<div class="card card-blue"><strong>Learning（学习）</strong><br>用数据"训练"模型，优化其表现（<span class="eng">optimize performance</span>）</div>
+</div>
+
+<h3>1.4 ML 工作流程（4 步循环）</h3>
+<div class="viz">
+<svg viewBox="0 0 720 120" width="100%" style="max-width:720px;">
+<defs><marker id="ar2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#777"/></marker></defs>
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="13" text-anchor="middle">
+<rect x="10" y="30" width="160" height="60" rx="10" fill="#185FA5"/>
+<text x="90" y="55" fill="#fff" font-weight="700">Step 1</text>
+<text x="90" y="75" fill="#d8e6f5">Prepare Data</text>
+<line x1="172" y1="60" x2="198" y2="60" stroke="#777" stroke-width="1.5" marker-end="url(#ar2)"/>
+
+<rect x="200" y="30" width="160" height="60" rx="10" fill="#534AB7"/>
+<text x="280" y="55" fill="#fff" font-weight="700">Step 2</text>
+<text x="280" y="75" fill="#dfd9ff">Choose a Model</text>
+<line x1="362" y1="60" x2="388" y2="60" stroke="#777" stroke-width="1.5" marker-end="url(#ar2)"/>
+
+<rect x="390" y="30" width="160" height="60" rx="10" fill="#0F6E56"/>
+<text x="470" y="55" fill="#fff" font-weight="700">Step 3</text>
+<text x="470" y="75" fill="#d5f1e6">Train the Model</text>
+<line x1="552" y1="60" x2="578" y2="60" stroke="#777" stroke-width="1.5" marker-end="url(#ar2)"/>
+
+<rect x="580" y="30" width="130" height="60" rx="10" fill="#BA7517"/>
+<text x="645" y="55" fill="#fff" font-weight="700">Step 4</text>
+<text x="645" y="75" fill="#fdeedc">Deploy & Improve</text>
+</g>
+</svg>
+<div class="viz-caption">实际应用中这个循环不断重复：新数据和反馈改进模型</div>
+</div>
+
+<h3>1.5 影响模型表现的两大因素</h3>
+<div class="grid2">
+<div class="card card-green"><strong>① Data Quality 数据质量</strong><br>• 干净完整 → 好预测<br>• <span class="eng">noisy / missing data</span>（噪声/缺失）→ 差结果</div>
+<div class="card card-amber"><strong>② Model Selection 模型选择</strong><br>• 不同问题需要不同模型<br>• 选对模型非常关键</div>
+</div>
+
+<!-- ========== L20 Section 2 ========== -->
+<h2 id="L20-2">2. Classification（分类任务）</h2>
+
+<div class="card card-accent">
+<p><strong>Goal（目标）</strong>：将一个输入分配到若干 <span class="eng">categories</span>（类别）中的一个。输出是 <span class="eng">label</span>（标签）。</p>
+<div class="grid2" style="margin-top:10px;">
+<div class="example-box"><strong>例 1：垃圾邮件检测</strong><br>输入：一封邮件<br>输出：<span class="eng">spam</span> or <span class="eng">not spam</span></div>
+<div class="example-box"><strong>例 2：图像识别</strong><br>输入：一张图片<br>输出：<span class="eng">cat</span> or <span class="eng">dog</span></div>
+</div>
+</div>
+
+<div class="card card-red">
+<p><span class="tag tag-warn">分类挑战</span><strong> Hard cases（困难情况）</strong></p>
+<p>• 姿势不寻常（<span class="eng">unusual pose</span>）</p>
+<p>• 图片模糊（<span class="eng">blurry</span>）</p>
+<p>• 只能看到物体的一部分（<span class="eng">only part visible</span>）</p>
+<p>• 两个类别长得很像（<span class="eng">classes look similar</span>）</p>
+</div>
+
+<!-- ========== L20 Section 3 ========== -->
+<h2 id="L20-3">3. Represent Objects Numerically（数值化表示）</h2>
+
+<div class="card card-pink">
+<p><span class="tag tag-def">核心理念</span></p>
+<p><strong>Representation bridges the real world and the model.</strong><br>
+表征是连接现实世界和模型的桥梁——<span class="key">计算机需要数字</span>。</p>
+</div>
+
+<h3>3.1 从图像到数字向量</h3>
+
+<div class="viz">
+<svg viewBox="0 0 600 180" width="100%" style="max-width:600px;">
+<defs><marker id="arr3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#534AB7"/></marker></defs>
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12">
+<!-- Grid image (8x8) -->
+<g transform="translate(40,30)">
+<rect width="120" height="120" fill="#fff" stroke="#534AB7" stroke-width="2"/>
+<!-- pixel blocks -->
+<g fill="#534AB7">
+<rect x="15" y="15" width="15" height="15"/>
+<rect x="30" y="15" width="15" height="15"/>
+<rect x="45" y="30" width="15" height="15"/>
+<rect x="60" y="45" width="15" height="15"/>
+<rect x="75" y="60" width="15" height="15"/>
+<rect x="75" y="75" width="15" height="15"/>
+<rect x="60" y="90" width="15" height="15"/>
+<rect x="45" y="90" width="15" height="15"/>
+</g>
+<!-- grid lines -->
+<g stroke="#ccc" stroke-width="0.5">
+<line x1="15" y1="0" x2="15" y2="120"/><line x1="30" y1="0" x2="30" y2="120"/>
+<line x1="45" y1="0" x2="45" y2="120"/><line x1="60" y1="0" x2="60" y2="120"/>
+<line x1="75" y1="0" x2="75" y2="120"/><line x1="90" y1="0" x2="90" y2="120"/>
+<line x1="105" y1="0" x2="105" y2="120"/>
+<line x1="0" y1="15" x2="120" y2="15"/><line x1="0" y1="30" x2="120" y2="30"/>
+<line x1="0" y1="45" x2="120" y2="45"/><line x1="0" y1="60" x2="120" y2="60"/>
+<line x1="0" y1="75" x2="120" y2="75"/><line x1="0" y1="90" x2="120" y2="90"/>
+<line x1="0" y1="105" x2="120" y2="105"/>
+</g>
+<text x="60" y="155" text-anchor="middle" fill="#555">图像（像素网格）</text>
+</g>
+
+<line x1="180" y1="90" x2="240" y2="90" stroke="#534AB7" stroke-width="2" marker-end="url(#arr3)"/>
+<text x="210" y="80" text-anchor="middle" fill="#534AB7" font-weight="600">flatten</text>
+
+<!-- vector -->
+<g transform="translate(260,20)">
+<rect width="60" height="140" fill="#fff" stroke="#0F6E56" stroke-width="2"/>
+<g fill="#0F6E56" font-size="10" text-anchor="middle">
+<rect x="8" y="8" width="44" height="14" fill="#0F6E56"/><text x="30" y="19" fill="#fff">0</text>
+<text x="30" y="37">1</text>
+<text x="30" y="50">1</text>
+<rect x="8" y="54" width="44" height="14" fill="#0F6E56"/><text x="30" y="65" fill="#fff">0</text>
+<text x="30" y="83">1</text>
+<text x="30" y="96">0</text>
+<text x="30" y="109">1</text>
+<text x="30" y="122">1</text>
+<text x="30" y="135">0</text>
+</g>
+<text x="30" y="175" text-anchor="middle" fill="#555">R^n vector</text>
+</g>
+
+<!-- same format note -->
+<g transform="translate(360,60)">
+<rect width="220" height="70" rx="8" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="110" y="25" text-anchor="middle" fill="#0F6E56" font-weight="600">统一格式（Same Format）</text>
+<text x="110" y="45" text-anchor="middle" fill="#555" font-size="11">所有样本都是同维度向量</text>
+<text x="110" y="60" text-anchor="middle" fill="#555" font-size="11">→ 分类器才能对比它们</text>
+</g>
+</g>
+</svg>
+<div class="viz-caption">每个像素的亮度值构成一个 R^n 空间中的向量</div>
+</div>
+
+<h3>3.2 不同大小图片的处理</h3>
+<div class="grid4">
+<div class="card" style="text-align:center;padding:14px;"><strong>Resize</strong><br>调整大小</div>
+<div class="card" style="text-align:center;padding:14px;"><strong>Crop</strong><br>裁剪</div>
+<div class="card" style="text-align:center;padding:14px;"><strong>Normalize</strong><br>归一化</div>
+<div class="card" style="text-align:center;padding:14px;"><strong>Extract Features</strong><br>提特征</div>
+</div>
+<p>常提取的特征：<span class="eng">color</span>（颜色）、<span class="eng">texture</span>（纹理）、<span class="eng">composition</span>（构图）等。</p>
+
+<h3>3.3 现实世界的对象</h3>
+<div class="card card-amber">
+<p>不只是图片！人、商品、事件都可以用<strong>多个属性（attributes）</strong>描述：</p>
+<p>例如：Family（家庭编号 0/1/2...）、Sex（0/1）、Work place（0/1/2/3...）、Age、Location ...</p>
+<p>最终打包成一个 <strong><span class="eng">Feature vector</span>（特征向量）</strong>—— 一个 R^n 中的数值向量。</p>
+</div>
+
+<!-- ========== L20 Section 4 ========== -->
+<h2 id="L20-4">4. Supervised vs Unsupervised Learning</h2>
+
+<div class="grid2">
+<div class="card card-green">
+<p><span class="tag tag-convex">Supervised Learning</span></p>
+<p><strong>监督学习</strong></p>
+<p>• 使用 <span class="key">labeled data</span>（带标签数据）</p>
+<p>• 算法同时看到输入 <strong>x</strong> 和期望输出 <strong>y</strong></p>
+<p>• 典型任务：<span class="eng">Classification</span>（分类）、<span class="eng">Regression</span>（回归）</p>
+<p><strong>例：</strong>猫狗图像每张都标好 y=1(cat) 或 y=0(dog)</p>
+</div>
+<div class="card card-red">
+<p><span class="tag tag-concave">Unsupervised Learning</span></p>
+<p><strong>无监督学习</strong></p>
+<p>• 使用 <span class="key">unlabeled data</span>（无标签数据）</p>
+<p>• 自己发现数据中的结构、分组、模式</p>
+<p>• 典型任务：<span class="eng">Clustering</span>（聚类）、<span class="eng">Dimensionality Reduction</span>（降维）</p>
+<p><strong>例：</strong>把顾客自动分成不同"人群"（没有预设标签）</p>
+</div>
+</div>
+
+<h3>监督学习分类流程</h3>
+<div class="viz">
+<svg viewBox="0 0 720 140" width="100%" style="max-width:720px;">
+<defs><marker id="arr4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#534AB7"/></marker></defs>
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="13" text-anchor="middle">
+<rect x="10" y="40" width="170" height="60" rx="10" fill="#0F6E56"/>
+<text x="95" y="65" fill="#fff" font-weight="700">Training Data</text>
+<text x="95" y="85" fill="#d5f1e6" font-size="11">(x^i, y^i), i=1..N</text>
+<line x1="182" y1="70" x2="208" y2="70" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<rect x="210" y="40" width="170" height="60" rx="10" fill="#534AB7"/>
+<text x="295" y="65" fill="#fff" font-weight="700">Learning Algorithm</text>
+<text x="295" y="85" fill="#dfd9ff" font-size="11">(optimization)</text>
+<line x1="382" y1="70" x2="408" y2="70" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<rect x="410" y="40" width="170" height="60" rx="10" fill="#BA7517"/>
+<text x="495" y="65" fill="#fff" font-weight="700">Classifier h</text>
+<text x="495" y="85" fill="#fdeedc" font-size="11">h: X → {0, 1}</text>
+<line x1="582" y1="70" x2="608" y2="70" stroke="#534AB7" stroke-width="1.5" marker-end="url(#arr4)"/>
+
+<rect x="610" y="40" width="100" height="60" rx="10" fill="#185FA5"/>
+<text x="660" y="65" fill="#fff" font-weight="700">New x</text>
+<text x="660" y="85" fill="#d8e6f5" font-size="11">→ predict y</text>
+
+<text x="360" y="25" fill="#555" font-size="12" font-style="italic">Supervised classification pipeline</text>
+</g>
+</svg>
+</div>
+
+<!-- ========== L20 Section 5 ========== -->
+<h2 id="L20-5">5. KNN 算法（K-Nearest Neighbors）</h2>
+
+<div class="card card-accent">
+<p><span class="tag tag-thm">核心思想</span></p>
+<p>给定一个新数据点，<strong>找距离它最近的 K 个训练点</strong>，看这 K 个"邻居"中哪一类占多数（<span class="eng">majority vote</span>），就把新点归为那一类。</p>
+<p><em>物以类聚——你的邻居是什么类，你大概率就是什么类。</em></p>
+</div>
+
+<h3>5.1 KNN 六步骤（必背！）</h3>
+<ol class="steps">
+<li><strong>Load the labeled data</strong> — 加载带标签的训练数据</li>
+<li><strong>Choose the number of neighbors K</strong> — 选择邻居数量 K（超参数）</li>
+<li><strong>Compute distances</strong> — 算新点到每个训练点的距离</li>
+<li><strong>Sort by distance</strong> — 按距离从小到大排序</li>
+<li><strong>Select K nearest</strong> — 取最近的 K 个邻居</li>
+<li><strong>Majority vote</strong> — 多数投票决定新点的标签</li>
+</ol>
+
+<h3>5.2 距离度量 Distance Metrics</h3>
+<div class="grid2">
+<div class="card card-blue">
+<p><span class="tag tag-def">L2 距离</span><strong> Euclidean Distance（欧氏距离）</strong></p>
+<div class="formula">d(x, y) = √[ (x₁−y₁)² + (x₂−y₂)² + ... ]</div>
+<p>两点之间的<strong>直线距离</strong>，最常用</p>
+</div>
+<div class="card card-amber">
+<p><span class="tag tag-def">L1 距离</span><strong> Manhattan Distance（曼哈顿距离）</strong></p>
+<div class="formula">d(x, y) = |x₁−y₁| + |x₂−y₂| + ...</div>
+<p>沿<strong>坐标轴方向</strong>的距离之和，像在街区里走</p>
+</div>
+</div>
+
+<!-- Distance visualization -->
+<div class="viz">
+<svg viewBox="0 0 540 240" width="100%" style="max-width:540px;">
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12">
+<!-- grid -->
+<g stroke="#e0e0e0" stroke-width="0.5">
+<line x1="40" y1="40" x2="40" y2="200"/><line x1="80" y1="40" x2="80" y2="200"/>
+<line x1="120" y1="40" x2="120" y2="200"/><line x1="160" y1="40" x2="160" y2="200"/>
+<line x1="200" y1="40" x2="200" y2="200"/>
+<line x1="40" y1="40" x2="200" y2="40"/><line x1="40" y1="80" x2="200" y2="80"/>
+<line x1="40" y1="120" x2="200" y2="120"/><line x1="40" y1="160" x2="200" y2="160"/>
+<line x1="40" y1="200" x2="200" y2="200"/>
+</g>
+<!-- axes -->
+<line x1="40" y1="200" x2="210" y2="200" stroke="#333" stroke-width="1.5"/>
+<line x1="40" y1="200" x2="40" y2="30" stroke="#333" stroke-width="1.5"/>
+<!-- L2 direct -->
+<line x1="60" y1="180" x2="180" y2="60" stroke="#185FA5" stroke-width="2.5"/>
+<!-- L1 path -->
+<line x1="60" y1="180" x2="180" y2="180" stroke="#BA7517" stroke-width="2.5" stroke-dasharray="5,3"/>
+<line x1="180" y1="180" x2="180" y2="60" stroke="#BA7517" stroke-width="2.5" stroke-dasharray="5,3"/>
+<!-- Points -->
+<circle cx="60" cy="180" r="5" fill="#E24B4A"/>
+<text x="40" y="195" fill="#E24B4A" font-weight="700">A</text>
+<circle cx="180" cy="60" r="5" fill="#E24B4A"/>
+<text x="190" y="60" fill="#E24B4A" font-weight="700">B</text>
+<!-- Labels -->
+<text x="108" y="115" fill="#185FA5" font-weight="600">L2 (直线)</text>
+<text x="108" y="215" fill="#BA7517" font-weight="600">L1 (曼哈顿)</text>
+
+<!-- Right side: same distance, different -->
+<g transform="translate(280,20)">
+<text x="120" y="15" text-anchor="middle" fill="#333" font-weight="600">A=(0,0), B=(3,4)</text>
+<line x1="0" y1="160" x2="260" y2="160" stroke="#333" stroke-width="1.5"/>
+<line x1="0" y1="30" x2="0" y2="170" stroke="#333" stroke-width="1.5"/>
+
+<rect x="20" y="40" width="220" height="50" fill="#d8e6f5" stroke="#185FA5"/>
+<text x="130" y="60" text-anchor="middle" fill="#185FA5" font-weight="600" font-size="13">L2 = √(3² + 4²) = 5</text>
+<text x="130" y="80" text-anchor="middle" fill="#555" font-size="11">勾股定理</text>
+
+<rect x="20" y="100" width="220" height="50" fill="#fdeedc" stroke="#BA7517"/>
+<text x="130" y="120" text-anchor="middle" fill="#BA7517" font-weight="600" font-size="13">L1 = |3| + |4| = 7</text>
+<text x="130" y="140" text-anchor="middle" fill="#555" font-size="11">同两点，L1 更长</text>
+</g>
+</g>
+</svg>
+<div class="viz-caption">L2 是"空中直飞"，L1 是"走街区格子"</div>
+</div>
+
+<!-- ========== L20 Section 6 ========== -->
+<h2 id="L20-6">6. K 值的影响 & 例题</h2>
+
+<h3>6.1 不同 K 值对决策边界的影响</h3>
+<div class="kcards">
+<div class="kcard kbad">
+<div class="kv">K = 1</div>
+<div class="kd">边界锯齿状<br>极易受噪声影响<br><strong>Overfitting 过拟合</strong></div>
+</div>
+<div class="kcard kok">
+<div class="kv">K = 3</div>
+<div class="kd">较平滑<br>合理选择</div>
+</div>
+<div class="kcard kok">
+<div class="kv">K = 5</div>
+<div class="kd">更平滑<br>常用默认值</div>
+</div>
+<div class="kcard kmid">
+<div class="kv">K = 25</div>
+<div class="kd">过度平滑<br>忽略细节<br><strong>Underfitting 欠拟合</strong></div>
+</div>
+</div>
+
+<div class="card card-red">
+<p><span class="tag tag-exam">K 值选择规则</span></p>
+<p>• <strong>K 太小</strong>：噪声影响大 → 过拟合（<span class="eng">overfitting</span>）</p>
+<p>• <strong>K 太大</strong>：边界过于平滑 → 欠拟合（<span class="eng">underfitting</span>）</p>
+<p>• <strong>极端</strong>：若 K 大于样本总数 N，所有新输入都被预测为训练集中<span class="eng">majority class</span>，模型完全失去意义</p>
+</div>
+
+<h3>6.2 例题详解（考试高频题型）</h3>
+
+<div class="card card-accent">
+<p><strong>题目：</strong>用 KNN（K=1，L1 距离）对新点 <strong>(4, 3)</strong> 分类。训练数据如下：</p>
+
+<table>
+<tr><th>Point</th><th>x₁</th><th>x₂</th><th>class</th></tr>
+<tr><td>A</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>B</td><td>-3</td><td>1</td><td>1</td></tr>
+<tr><td>C</td><td>5</td><td>2</td><td>2</td></tr>
+<tr><td>D</td><td>3</td><td>3</td><td>2</td></tr>
+<tr><td>E</td><td>5</td><td>0</td><td>3</td></tr>
+<tr><td>F</td><td>4</td><td>-1</td><td>3</td></tr>
+</table>
+
+<div class="proof">
+<p><strong>Step 1 — 计算每个训练点到 (4, 3) 的 L1 距离：</strong></p>
+<p>d(A) = |0−4| + |0−3| = 4 + 3 = <strong>7</strong></p>
+<p>d(B) = |−3−4| + |1−3| = 7 + 2 = <strong>9</strong></p>
+<p>d(C) = |5−4| + |2−3| = 1 + 1 = <strong>2</strong></p>
+<p>d(D) = |3−4| + |3−3| = 1 + 0 = <span class="key">1 ← 最近!</span></p>
+<p>d(E) = |5−4| + |0−3| = 1 + 3 = <strong>4</strong></p>
+<p>d(F) = |4−4| + |−1−3| = 0 + 4 = <strong>4</strong></p>
+
+<p><strong>Step 2 — 排序：</strong> D(1) &lt; C(2) &lt; E(4) = F(4) &lt; A(7) &lt; B(9)</p>
+<p><strong>Step 3 — K=1，最近邻为 D（class 2）：</strong></p>
+<p style="text-align:center;font-size:16px;color:var(--red);font-weight:700;">新点 (4, 3) 被分类为 class 2</p>
+</div>
+
+<p><strong>思考延伸：</strong>如果 K=3？取 D(2) + C(2) + E(3)：两票 class 2、一票 class 3 → 仍然是 <strong>class 2</strong>。</p>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 21                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider orange" id="L21">
+<h2 style="color:#fff;">Lecture 21 — Logistic Regression（逻辑回归）</h2>
+<p>从"输出标签"到"输出概率"——参数化的分类模型</p>
+</div>
+
+<!-- ========== L21 Section 1 ========== -->
+<h2 id="L21-1">1. KNN 优缺点回顾</h2>
+
+<div class="card card-accent">
+<p>KNN 是一种 <span class="eng">instance-based / memory-based learning</span>（基于实例/记忆的学习）方法。</p>
+<p><strong>本质：</strong>不学"参数"，只是记住所有训练数据，预测时找最近邻。</p>
+</div>
+
+<div class="grid2">
+<div class="card card-green">
+<p><span class="tag tag-convex">优点 Advantages</span></p>
+<p>✓ 简单直观，容易理解</p>
+<p>✓ 容易实现</p>
+<p>✓ <strong>没有训练阶段</strong>（<span class="eng">no training phase</span>）</p>
+</div>
+<div class="card card-red">
+<p><span class="tag tag-concave">缺点 Disadvantages</span></p>
+<p>✗ <strong>预测慢</strong>：训练集大时要算很多距离</p>
+<p>✗ 对 K 值和距离度量敏感</p>
+<p>✗ <span class="key">Curse of dimensionality</span>（维度灾难）：高维空间中"最近"可能没有意义</p>
+</div>
+</div>
+
+<div class="card card-amber">
+<p><strong>KNN 的 trade-off（权衡）：</strong></p>
+<p>• 小 K → <span class="eng">flexible</span>（灵活）但 <span class="eng">noisy</span>（有噪声）</p>
+<p>• 大 K → <span class="eng">stable</span>（稳定）但可能 <span class="eng">smooth too much</span>（过度平滑）</p>
+</div>
+
+<!-- ========== L21 Section 2 ========== -->
+<h2 id="L21-2">2. Logistic Regression 核心思想</h2>
+
+<div class="card card-pink">
+<p><span class="tag tag-def">关键转变</span></p>
+<p>与 KNN 输出 {0, 1} 不同，Logistic Regression <strong>输出的是概率</strong>：</p>
+<div class="formula">P(y = 1 | x) = ?</div>
+<p>• 若 P 接近 1 → 预测为正类（例如狗）</p>
+<p>• 若 P 接近 0 → 预测为负类（例如猫）</p>
+</div>
+
+<div class="card card-accent">
+<p><strong>主要思想：</strong>学习一个公式，输入特征（像素值、属性）→ 输出"属于某类的概率"。</p>
+<p><strong>决策规则：</strong>以 0.5 为阈值，p &gt; 0.5 → 预测正类；p ≤ 0.5 → 预测负类。</p>
+</div>
+
+<!-- ========== L21 Section 3 ========== -->
+<h2 id="L21-3">3. Sigmoid Function（S 形函数）</h2>
+
+<div class="card card-blue">
+<p><strong>问题：</strong>我们希望输出是 0 到 1 之间的数（可以解释为概率）。但如何把任意实数 z 映射到 (0, 1) 呢？</p>
+<p><strong>答案：</strong><span class="eng">Sigmoid (Logistic) Function</span>。</p>
+</div>
+
+<div class="formula">
+<span class="big">σ(z) = </span>
+<span class="frac"><span class="num">1</span><span class="den">1 + e<sup>−z</sup></span></span>
+</div>
+
+<!-- Sigmoid curve SVG -->
+<div class="viz">
+<svg viewBox="0 0 480 240" width="100%" style="max-width:480px;">
+<defs><marker id="arrs" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#555"/></marker></defs>
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12">
+<!-- Grid -->
+<g stroke="#e0e0e0" stroke-width="0.5">
+<line x1="80" y1="30" x2="80" y2="210"/><line x1="140" y1="30" x2="140" y2="210"/>
+<line x1="200" y1="30" x2="200" y2="210"/><line x1="260" y1="30" x2="260" y2="210"/>
+<line x1="320" y1="30" x2="320" y2="210"/><line x1="380" y1="30" x2="380" y2="210"/>
+<line x1="440" y1="30" x2="440" y2="210"/>
+<line x1="80" y1="60" x2="440" y2="60"/>
+<line x1="80" y1="120" x2="440" y2="120"/>
+<line x1="80" y1="180" x2="440" y2="180"/>
+</g>
+<!-- Axes -->
+<line x1="80" y1="180" x2="450" y2="180" stroke="#333" stroke-width="1.5" marker-end="url(#arrs)"/>
+<line x1="260" y1="220" x2="260" y2="20" stroke="#333" stroke-width="1.5" marker-end="url(#arrs)"/>
+<!-- Axis labels -->
+<text x="455" y="183" font-size="13" fill="#333">z</text>
+<text x="265" y="25" font-size="13" fill="#333">σ(z)</text>
+<text x="75" y="65" font-size="11" fill="#555" text-anchor="end">1</text>
+<text x="75" y="125" font-size="11" fill="#E24B4A" text-anchor="end" font-weight="700">0.5</text>
+<text x="75" y="183" font-size="11" fill="#555" text-anchor="end">0</text>
+<text x="140" y="195" font-size="10" fill="#555" text-anchor="middle">−4</text>
+<text x="200" y="195" font-size="10" fill="#555" text-anchor="middle">−2</text>
+<text x="320" y="195" font-size="10" fill="#555" text-anchor="middle">2</text>
+<text x="380" y="195" font-size="10" fill="#555" text-anchor="middle">4</text>
+<!-- 0.5 line dashed -->
+<line x1="80" y1="120" x2="440" y2="120" stroke="#E24B4A" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+<!-- Sigmoid curve -->
+<path d="M 80,177 Q 140,176 180,170 C 220,160 240,140 260,120 C 280,100 300,80 340,70 Q 400,64 440,63" fill="none" stroke="#534AB7" stroke-width="3"/>
+<!-- Point at (0, 0.5) -->
+<circle cx="260" cy="120" r="5" fill="#E24B4A"/>
+<text x="270" y="115" font-size="11" fill="#E24B4A" font-weight="600">σ(0) = 0.5</text>
+
+<!-- Annotations -->
+<text x="110" y="200" font-size="11" fill="#555" font-style="italic">z→−∞, σ→0</text>
+<text x="390" y="55" font-size="11" fill="#555" font-style="italic">z→+∞, σ→1</text>
+</g>
+</svg>
+<div class="viz-caption">Sigmoid 函数：把任意实数 z 压缩到 (0, 1) 之间，中心点 σ(0) = 0.5</div>
+</div>
+
+<div class="card card-green">
+<p><strong>关键性质：</strong></p>
+<p>• σ(0) = 1/(1+1) = <strong>0.5</strong></p>
+<p>• 当 z → +∞ 时，σ(z) → <strong>1</strong></p>
+<p>• 当 z → −∞ 时，σ(z) → <strong>0</strong></p>
+<p>• 单调递增、处处连续可导，导数 σ'(z) = σ(z)(1−σ(z)) —— 这会在后面训练时很有用！</p>
+</div>
+
+<!-- ========== L21 Section 4 ========== -->
+<h2 id="L21-4">4. 模型公式 & 分类流程</h2>
+
+<h3>4.1 分类流程三步走</h3>
+<ol class="steps">
+<li><strong>计算 score（得分）</strong>：特征的线性组合<br>
+<div class="formula" style="margin-top:6px;">z = θ<sup>T</sup>x + b = θ₁x₁ + θ₂x₂ + ... + θ<sub>d</sub>x<sub>d</sub> + b</div></li>
+
+<li><strong>通过 Sigmoid 转为概率</strong>：<br>
+<div class="formula" style="margin-top:6px;">p(y=1 | x) = σ(z) = <span class="frac"><span class="num">1</span><span class="den">1 + e<sup>−(θ<sup>T</sup>x+b)</sup></span></span></div></li>
+
+<li><strong>Decision rule（决策规则）</strong>：<br>
+若 p &gt; 0.5 → 预测为正类（y=1）<br>
+若 p ≤ 0.5 → 预测为负类（y=0）</li>
+</ol>
+
+<!-- Model architecture visualization -->
+<div class="viz">
+<svg viewBox="0 0 640 240" width="100%" style="max-width:640px;">
+<defs><marker id="arrm" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto"><path d="M0,0 L6,2.5 L0,5" fill="#534AB7"/></marker></defs>
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12">
+<!-- Features -->
+<g fill="#d8e6f5" stroke="#185FA5">
+<rect x="20" y="30" width="50" height="30" rx="5"/>
+<rect x="20" y="70" width="50" height="30" rx="5"/>
+<rect x="20" y="110" width="50" height="30" rx="5"/>
+<rect x="20" y="150" width="50" height="30" rx="5"/>
+</g>
+<g text-anchor="middle" fill="#185FA5" font-weight="600">
+<text x="45" y="50">x₁</text>
+<text x="45" y="90">x₂</text>
+<text x="45" y="130">x₃</text>
+<text x="45" y="170">x<tspan font-size="9">d</tspan></text>
+</g>
+<text x="45" y="205" text-anchor="middle" fill="#555" font-size="11">input features</text>
+
+<!-- Arrows to sum -->
+<g stroke="#534AB7" stroke-width="1.5" fill="none">
+<path d="M 72 45 L 228 100" marker-end="url(#arrm)"/>
+<path d="M 72 85 L 228 105" marker-end="url(#arrm)"/>
+<path d="M 72 125 L 228 112" marker-end="url(#arrm)"/>
+<path d="M 72 165 L 228 118" marker-end="url(#arrm)"/>
+</g>
+<!-- weights labels -->
+<g fill="#BA7517" font-size="10" font-style="italic">
+<text x="150" y="70">θ₁</text>
+<text x="150" y="92">θ₂</text>
+<text x="150" y="120">θ₃</text>
+<text x="150" y="150">θ<tspan font-size="8">d</tspan></text>
+</g>
+
+<!-- Sum node -->
+<circle cx="250" cy="110" r="22" fill="#BA7517"/>
+<text x="250" y="115" text-anchor="middle" fill="#fff" font-weight="700" font-size="16">Σ</text>
+<text x="250" y="155" text-anchor="middle" fill="#555" font-size="11">+ bias b</text>
+
+<!-- Arrow to sigma -->
+<line x1="274" y1="110" x2="333" y2="110" stroke="#534AB7" stroke-width="2" marker-end="url(#arrm)"/>
+<text x="303" y="102" text-anchor="middle" fill="#534AB7" font-weight="600" font-size="11">z</text>
+
+<!-- Sigmoid node -->
+<circle cx="358" cy="110" r="25" fill="#534AB7"/>
+<text x="358" y="115" text-anchor="middle" fill="#fff" font-weight="700" font-size="16">σ</text>
+<text x="358" y="155" text-anchor="middle" fill="#555" font-size="11">sigmoid</text>
+
+<!-- Output arrow -->
+<line x1="385" y1="110" x2="444" y2="110" stroke="#534AB7" stroke-width="2" marker-end="url(#arrm)"/>
+<text x="415" y="102" text-anchor="middle" fill="#534AB7" font-weight="600" font-size="11">p</text>
+
+<!-- Output -->
+<rect x="450" y="90" width="170" height="40" rx="6" fill="#E1F5EE" stroke="#0F6E56"/>
+<text x="535" y="108" text-anchor="middle" fill="#0F6E56" font-weight="600">P(y=1|x) ∈ (0, 1)</text>
+<text x="535" y="124" text-anchor="middle" fill="#555" font-size="10">probability</text>
+
+<!-- Decision -->
+<rect x="450" y="170" width="170" height="40" rx="6" fill="#FCEBEB" stroke="#A32D2D"/>
+<text x="535" y="188" text-anchor="middle" fill="#A32D2D" font-weight="600">p > 0.5? → y=1</text>
+<text x="535" y="204" text-anchor="middle" fill="#555" font-size="10">decision rule</text>
+<line x1="535" y1="132" x2="535" y2="168" stroke="#777" stroke-width="1.5" marker-end="url(#arrm)"/>
+
+<text x="320" y="25" text-anchor="middle" fill="#333" font-weight="600">Logistic Regression = 单层神经元（Single Neuron）</text>
+</g>
+</svg>
+<div class="viz-caption">结构本质上就是一个 单层感知机 / 最简单的神经网络</div>
+</div>
+
+<h3>4.2 完整模型公式</h3>
+
+<div class="card card-accent">
+<p><strong>二分类情况：y ∈ {0, 1}</strong></p>
+<div class="formula">
+p(y=1 | x, θ, b) = <span class="frac"><span class="num">1</span><span class="den">1 + exp(−(θ<sup>T</sup>x + b))</span></span>
+</div>
+<div class="formula">
+p(y=0 | x, θ, b) = 1 − p(y=1) = <span class="frac"><span class="num">exp(−(θ<sup>T</sup>x + b))</span><span class="den">1 + exp(−(θ<sup>T</sup>x + b))</span></span>
+</div>
+<p style="font-size:13px;color:var(--text2);">其中 <strong>x</strong> = 输入特征向量，<strong>θ</strong> = 权重向量，<strong>b</strong> = 偏置（bias）；z = θ<sup>T</sup>x + b 是 Sigmoid 的输入。</p>
+</div>
+
+<div class="card card-amber">
+<p><span class="tag tag-exam">Key idea</span> <strong>特征的线性组合 → 通过 Sigmoid → 0 到 1 之间的概率。</strong></p>
+<p>这也意味着 Logistic Regression 的决策边界 {x : θ<sup>T</sup>x + b = 0} 是<strong>线性</strong>的（超平面）。所以它叫"regression"但其实做的是<strong>线性分类</strong>。</p>
+</div>
+
+<!-- ========== L21 Section 5 ========== -->
+<h2 id="L21-5">5. 训练模型 — MLE（最大似然估计）</h2>
+
+<div class="card card-blue">
+<p><strong>问题：</strong>给定 m 个标注样本 (x<sup>i</sup>, y<sup>i</sup>)，如何找到最好的 θ 和 b？</p>
+<p><strong>答案：</strong><span class="eng">Maximum Likelihood Estimation (MLE)</span>——选择能让观察到这些样本的概率最大化的参数。</p>
+</div>
+
+<h3>5.1 Log-Likelihood 目标函数</h3>
+
+<div class="formula">
+<span class="big">max<sub>θ, b</sub></span> &nbsp; l(θ, b) := log ∏<sub>i=1</sub><sup>m</sup> P(y<sup>i</sup> | x<sup>i</sup>, θ, b) = <span class="big">Σ</span><sub>i=1</sub><sup>m</sup> log P(y<sup>i</sup> | x<sup>i</sup>, θ, b)
+</div>
+
+<p>通常等价地最大化平均（averaged）log-likelihood：</p>
+
+<div class="formula">
+<span class="big">max<sub>θ, b</sub></span> &nbsp; <span class="frac"><span class="num">1</span><span class="den">m</span></span> <span class="big">Σ</span><sub>i=1</sub><sup>m</sup> log P(y<sup>i</sup> | x<sup>i</sup>, θ, b)
+</div>
+
+<p>展开后，单样本的 log P 可以写成：</p>
+<div class="formula" style="font-size:15px;">
+log P(y<sup>i</sup>|x<sup>i</sup>, θ, b) = (y<sup>i</sup> − 1)(θ<sup>T</sup>x<sup>i</sup> + b) − log(1 + exp(−θ<sup>T</sup>x<sup>i</sup> − b))
+</div>
+
+<h3>5.2 凹性与全局最优</h3>
+
+<div class="card card-green">
+<p><span class="tag tag-thm">Good News 好消息</span></p>
+<p><strong>l(θ, b) 关于 (θ, b) 是凹函数（concave）</strong>，这意味着：</p>
+<p class="highlight" style="text-align:center;font-size:16px;font-weight:600;">存在唯一的全局最优解 (θ*, b*)！</p>
+<p>不用担心陷入局部最优。</p>
+</div>
+
+<div class="proof">
+<p><strong>证明思路：</strong></p>
+<p>• 先证 log(1 + exp(−θ<sup>T</sup>x − b)) 关于 (θ, b) 是<strong>凸函数</strong>（convex）</p>
+<p>&nbsp;&nbsp;考虑任意点 (θ₀, b₀) 和方向 e = (θ₁, b₁)。定义 h(t) = log{1 + exp[(−θ₀<sup>T</sup>x − b₀) + t(−θ₁<sup>T</sup>x − b₁)]}</p>
+<p>&nbsp;&nbsp;= log{1 + exp[C₁ + tC₂]}</p>
+<p>&nbsp;&nbsp;算二阶导：h''(t) = C₂²·exp[C₁+tC₂] / (1+exp[C₁+tC₂])² ≥ 0</p>
+<p>&nbsp;&nbsp;对任意方向 e，h''(t) ≥ 0 → 凸函数 ✓</p>
+<p>• 凸函数取负号 → 凹函数。凹函数之和 → 凹函数 → l(θ, b) 凹 ✓</p>
+</div>
+
+<div class="card card-red">
+<p><span class="tag tag-exam">Bad News 坏消息</span></p>
+<p><strong>没有 closed-form solution（闭式解）！</strong></p>
+<p>令 ∂l/∂θ = 0 和 ∂l/∂b = 0 得到的方程组无法解析求解：</p>
+<div class="formula" style="font-size:14px;">
+∂l/∂θ = Σ<sub>i</sub> [(y<sup>i</sup>−1)x<sup>i</sup> + <span class="frac"><span class="num">exp(−θx<sup>i</sup>−b)·x<sup>i</sup></span><span class="den">1+exp(−θx<sup>i</sup>−b)</span></span>] = 0
+</div>
+<p><strong>→ 必须使用数值方法（numerical methods），如 Gradient Descent。</strong></p>
+</div>
+
+<!-- ========== L21 Section 6 ========== -->
+<h2 id="L21-6">6. Gradient Descent（梯度下降）</h2>
+
+<div class="card card-accent">
+<p><strong>核心思想：</strong>从一个初始点出发，不断沿着<strong>梯度方向</strong>移动来找函数的极值。</p>
+</div>
+
+<h3>6.1 更新规则</h3>
+
+<div class="grid2">
+<div class="card card-blue">
+<p><span class="tag tag-def">最小化（Minimization）</span></p>
+<div class="formula">x<sup>(t+1)</sup> = x<sup>(t)</sup> <span style="color:#E24B4A;">−</span> α<sup>(t)</sup> · f'(x<sup>(t)</sup>)</div>
+<p>沿梯度<strong>反方向</strong>（下坡）</p>
+</div>
+<div class="card card-green">
+<p><span class="tag tag-convex">最大化（Maximization）</span></p>
+<div class="formula">x<sup>(t+1)</sup> = x<sup>(t)</sup> <span style="color:#0F6E56;">+</span> α<sup>(t)</sup> · f'(x<sup>(t)</sup>)</div>
+<p>沿梯度<strong>正方向</strong>（上坡）</p>
+</div>
+</div>
+
+<p>其中 <strong>α<sup>(t)</sup></strong> 是 <span class="eng">step size / learning rate</span>（步长/学习率）。</p>
+
+<div class="card card-amber">
+<p><strong>停止条件（Stopping criteria）：</strong></p>
+<p>• |x<sup>(t+1)</sup> − x<sup>(t)</sup>| ≤ ε（参数变化很小）</p>
+<p>• 或 |f'(x<sup>(t)</sup>)| ≤ ε（梯度接近 0）</p>
+</div>
+
+<!-- Gradient descent visualization -->
+<div class="viz">
+<svg viewBox="0 0 520 220" width="100%" style="max-width:520px;">
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12">
+<!-- Axes -->
+<line x1="40" y1="190" x2="500" y2="190" stroke="#333" stroke-width="1.5"/>
+<line x1="40" y1="200" x2="40" y2="20" stroke="#333" stroke-width="1.5"/>
+<text x="500" y="205" font-size="11" fill="#333">w</text>
+<text x="20" y="25" font-size="11" fill="#333">Cost</text>
+<!-- Parabola curve -->
+<path d="M 70 30 Q 270 220 470 30" fill="none" stroke="#534AB7" stroke-width="2.5"/>
+<!-- Descending points -->
+<g fill="#534AB7">
+<circle cx="80" cy="50" r="5"/>
+<circle cx="120" cy="90" r="5"/>
+<circle cx="160" cy="125" r="5"/>
+<circle cx="200" cy="155" r="5"/>
+<circle cx="230" cy="175" r="5"/>
+<circle cx="255" cy="183" r="5"/>
+<circle cx="270" cy="188" r="5" fill="#FAC775" stroke="#BA7517" stroke-width="2"/>
+</g>
+<!-- Arrows -->
+<g stroke="#0F6E56" stroke-width="1.5" fill="none">
+<path d="M 80 55 Q 100 75 120 88"/>
+<path d="M 120 95 Q 140 115 160 123"/>
+<path d="M 160 130 Q 180 145 200 153"/>
+<path d="M 200 160 Q 215 172 230 173"/>
+</g>
+<text x="90" y="45" font-size="11" fill="#555">Start (random init)</text>
+<text x="275" y="180" font-size="11" fill="#BA7517" font-weight="600">Minimum</text>
+<text x="165" y="110" font-size="11" fill="#0F6E56" font-style="italic">learning step</text>
+</g>
+</svg>
+<div class="viz-caption">梯度下降：从随机起点逐步走到最小值</div>
+</div>
+
+<h3>6.2 学习率 α 的影响（重要！）</h3>
+
+<div class="grid2">
+<div class="card card-green">
+<p><span class="tag tag-convex">理想情况</span></p>
+<p>初期 α 较大 → 快速接近最优；<br>接近最优时 α 变小 → 精细调整。</p>
+<p>实践中常用 <strong>衰减学习率</strong>：α<sup>(t)</sup> = α₀ / √t 等</p>
+</div>
+<div class="card card-red">
+<p><span class="tag tag-exam">坏情况：α 太大且固定</span></p>
+<p>可能<strong>永远不收敛</strong>！反例：f(x) = x²，α = 1。</p>
+</div>
+</div>
+
+<div class="card card-red">
+<p><strong>振荡反例：</strong>f(x) = x², α = 1</p>
+<div class="proof">
+<p>f'(x) = 2x</p>
+<p>x<sup>(0)</sup> = −3 → f'(−3) = −6 → x<sup>(1)</sup> = −3 − 1·(−6) = <strong>3</strong></p>
+<p>x<sup>(1)</sup> = 3 → f'(3) = 6 → x<sup>(2)</sup> = 3 − 1·6 = <strong>−3</strong></p>
+<p style="color:var(--red);font-weight:700;text-align:center;">→ 永远在 3 和 −3 之间振荡，无法收敛！</p>
+</div>
+</div>
+
+<h3>6.3 Logistic Regression 的 Gradient Ascent 更新</h3>
+
+<div class="card card-accent">
+<p>因为 MLE 是<strong>最大化问题</strong>，用 "+" 号：</p>
+<div class="formula" style="font-size:14px;">
+θ<sup>t+1</sup> ← θ<sup>t</sup> + α<sup>(t)</sup>·(1/m)·Σ<sub>i</sub>[(y<sup>i</sup>−1)x<sup>i</sup> + <span class="frac"><span class="num">exp(−θ<sup>T</sup>x<sup>i</sup>−b)·x<sup>i</sup></span><span class="den">1+exp(−θ<sup>T</sup>x<sup>i</sup>−b)</span></span>]
+</div>
+<div class="formula" style="font-size:14px;">
+b<sup>t+1</sup> ← b<sup>t</sup> + α<sup>(t)</sup>·(1/m)·Σ<sub>i</sub>[(y<sup>i</sup>−1) + <span class="frac"><span class="num">exp(−θ<sup>T</sup>x<sup>i</sup>−b)</span><span class="den">1+exp(−θ<sup>T</sup>x<sup>i</sup>−b)</span></span>]
+</div>
+<p><strong>算法：</strong>初始化 (θ⁰, b⁰)，反复更新直到 |θ<sup>t+1</sup>−θ<sup>t</sup>| ≤ ε 且 |b<sup>t+1</sup>−b<sup>t</sup>| ≤ ε。</p>
+</div>
+
+<!-- ========== L21 Section 7 ========== -->
+<h2 id="L21-7">7. Stochastic Gradient Descent (SGD)</h2>
+
+<div class="card card-blue">
+<p><strong>问题：</strong>如果训练数据 m 非常大（如百万级），每次迭代都要算 Σ<sub>i=1..m</sub> 的完整梯度，<strong>太慢</strong>！</p>
+</div>
+
+<div class="card card-green">
+<p><span class="tag tag-thm">SGD 核心思想</span></p>
+<p>每次迭代只用一个<strong>随机子集（random subset）</strong>来 <strong>approximate</strong>（近似）梯度方向。</p>
+<div class="formula" style="font-size:14px;">
+θ<sup>t+1</sup> ← θ<sup>t</sup> + α<sup>(t)</sup>·(1/|B|)·Σ<sub>i∈B</sub> [(y<sup>i</sup>−1)x<sup>i</sup> + <span class="frac"><span class="num">exp(−θ<sup>T</sup>x<sup>i</sup>−b)·x<sup>i</sup></span><span class="den">1+exp(−θ<sup>T</sup>x<sup>i</sup>−b)</span></span>]
+</div>
+<p>其中 <strong>B</strong> = 随机选择的一批样本（<span class="eng">batch</span>），<strong>|B|</strong> = <span class="eng">batch size</span>（批大小）。</p>
+</div>
+
+<!-- SGD vs GD visualization -->
+<div class="viz">
+<svg viewBox="0 0 520 200" width="100%" style="max-width:520px;">
+<g font-family="-apple-system,Segoe UI,sans-serif" font-size="12">
+<!-- Left: GD -->
+<text x="130" y="20" text-anchor="middle" fill="#534AB7" font-weight="600">Full-batch GD</text>
+<!-- Contour circles -->
+<g fill="none" stroke="#ddd" stroke-width="1">
+<ellipse cx="130" cy="110" rx="90" ry="60"/>
+<ellipse cx="130" cy="110" rx="60" ry="40"/>
+<ellipse cx="130" cy="110" rx="30" ry="20"/>
+</g>
+<circle cx="130" cy="110" r="4" fill="#BA7517"/>
+<!-- GD path smooth -->
+<g stroke="#0F6E56" stroke-width="2" fill="none">
+<path d="M 50 50 Q 80 70 105 90 Q 118 100 130 110" marker-end="url(#arrs)"/>
+</g>
+<circle cx="50" cy="50" r="5" fill="#0F6E56"/>
+
+<!-- Right: SGD -->
+<text x="390" y="20" text-anchor="middle" fill="#C43B7A" font-weight="600">SGD (noisy path)</text>
+<g fill="none" stroke="#ddd" stroke-width="1">
+<ellipse cx="390" cy="110" rx="90" ry="60"/>
+<ellipse cx="390" cy="110" rx="60" ry="40"/>
+<ellipse cx="390" cy="110" rx="30" ry="20"/>
+</g>
+<circle cx="390" cy="110" r="4" fill="#BA7517"/>
+<!-- SGD zigzag path -->
+<g stroke="#C43B7A" stroke-width="1.8" fill="none">
+<path d="M 310 50 L 320 80 L 345 65 L 355 95 L 375 80 L 380 105 L 390 110"/>
+</g>
+<circle cx="310" cy="50" r="5" fill="#C43B7A"/>
+
+<text x="260" y="195" text-anchor="middle" fill="#555" font-size="11" font-style="italic">GD 路径光滑但每步代价高 | SGD 路径抖动但每步快很多</text>
+</g>
+</svg>
+<div class="viz-caption">GD 与 SGD 优化路径对比</div>
+</div>
+
+<!-- ========== L21 Section 8 ========== -->
+<h2 id="L21-8">8. KNN vs Logistic Regression（对比总结）</h2>
+
+<table>
+<tr><th>方面</th><th>KNN</th><th>Logistic Regression</th></tr>
+<tr><td><strong>方法类型</strong></td><td>instance-based（基于实例）</td><td>model-based（基于模型）</td></tr>
+<tr><td><strong>参数</strong></td><td>无模型参数</td><td>学习 (θ, b)</td></tr>
+<tr><td><strong>训练阶段</strong></td><td>无（只记忆数据）</td><td>用 gradient descent 训练</td></tr>
+<tr><td><strong>输出</strong></td><td>直接输出类别标签</td><td>输出概率 P(y|x) 再比阈值</td></tr>
+<tr><td><strong>预测速度</strong></td><td>慢（需算所有距离）</td><td>快（一次矩阵运算）</td></tr>
+<tr><td><strong>决策边界</strong></td><td>非线性，由 K 控制</td><td><strong>线性</strong>（超平面）</td></tr>
+<tr><td><strong>存储</strong></td><td>必须存全部训练数据</td><td>只需存 (θ, b)</td></tr>
+<tr><td><strong>高维表现</strong></td><td>差（维度灾难）</td><td>较好</td></tr>
+</table>
+
+<!-- ========== L21 Section 9 ========== -->
+<h2 id="L21-9">9. 典型练习题</h2>
+
+<div class="card card-accent">
+<p><span class="tag tag-exam">Exercise（10分）</span> <strong>Gradient Descent 收敛分析</strong></p>
+<p>用梯度下降法最大化 <strong>f(x) = −(1/4)(x−1)² + 2</strong>。学习率 α 为常数，初始 x<sup>(0)</sup> = 3。</p>
+<p>(a) 以下情况 x<sup>(t)</sup> 是否收敛到最优解？</p>
+<p style="padding-left:20px;">i. α = 0　　ii. α = 4　　iii. α = 1</p>
+<p>(b) α 在什么范围内能收敛？</p>
+
+<div class="proof">
+<p><strong>分析：</strong>最优解 x* = 1（f 的最大值点）。f'(x) = −(1/2)(x−1)。</p>
+<p>最大化更新规则：</p>
+<p>x<sup>(t+1)</sup> = x<sup>(t)</sup> + α·f'(x<sup>(t)</sup>) = x<sup>(t)</sup> − (α/2)(x<sup>(t)</sup> − 1)</p>
+
+<p>令 u<sup>(t)</sup> = x<sup>(t)</sup> − 1（偏移量），则：</p>
+<div class="formula">u<sup>(t+1)</sup> = (1 − α/2) u<sup>(t)</sup></div>
+
+<p><strong>收敛条件：</strong>|1 − α/2| &lt; 1 即 <span class="key">0 &lt; α &lt; 4</span></p>
+
+<p><strong>(a) 分析：</strong></p>
+<p>• <strong>i. α = 0</strong>：x 永远不更新 → 停在 x=3，<span style="color:var(--red);font-weight:700;">不收敛</span>。</p>
+<p>• <strong>ii. α = 4</strong>：1 − 2 = −1，u 在 2 和 −2 之间振荡（x 在 3 和 −1 之间），<span style="color:var(--red);font-weight:700;">不收敛</span>。</p>
+<p>• <strong>iii. α = 1</strong>：1 − 1/2 = 0.5，u<sup>(t)</sup> = 2·(0.5)<sup>t</sup> → 0，<span style="color:var(--accent2);font-weight:700;">收敛到 x* = 1</span> ✓</p>
+
+<p><strong>(b) 答：</strong>当且仅当 <strong>0 &lt; α &lt; 4</strong> 时收敛。</p>
+</div>
+</div>
+
+<!-- ========== Summary ========== -->
+<h2>📋 整体速查卡</h2>
+
+<div class="card card-accent">
+<h3 style="margin-top:0;">Lec 20 (KNN) 核心</h3>
+<p>① <strong>物以类聚</strong>：找 K 个最近邻 → 多数投票</p>
+<p>② <strong>6 步骤</strong>：Load → Choose K → Compute distance → Sort → Select K → Vote</p>
+<p>③ <strong>两种距离</strong>：L1（Manhattan）| L2（Euclidean）</p>
+<p>④ <strong>K 小</strong>→过拟合，<strong>K 大</strong>→欠拟合，<strong>K &gt; N</strong> → 永远输出 majority class</p>
+<p>⑤ <strong>无显式训练</strong>，但预测慢；受 curse of dimensionality 影响</p>
+</div>
+
+<div class="card card-pink">
+<h3 style="margin-top:0;">Lec 21 (Logistic Regression) 核心</h3>
+<p>① <strong>输出概率而非标签</strong>：P(y=1 | x) = σ(θ<sup>T</sup>x + b)</p>
+<p>② <strong>Sigmoid</strong>：σ(z) = 1/(1+e<sup>−z</sup>)，把 ℝ 映到 (0, 1)</p>
+<p>③ <strong>决策规则</strong>：p &gt; 0.5 → 正类；否则负类</p>
+<p>④ <strong>训练用 MLE</strong>：最大化 log-likelihood；目标函数凹 → 单一全局最优</p>
+<p>⑤ <strong>无闭式解 → 用 Gradient Ascent</strong>：x<sup>t+1</sup> = x<sup>t</sup> + α · f'</p>
+<p>⑥ <strong>学习率太大会振荡</strong>；对 f(x) = (1/2)x²-like 问题，α 需在合理范围内</p>
+<p>⑦ <strong>SGD</strong>：用随机小批量代替全部数据，适合大数据</p>
+<p>⑧ <strong>决策边界是线性的</strong>（super plane θ<sup>T</sup>x + b = 0）</p>
+</div>
+
+<p style="text-align:center;color:var(--text2);font-size:13px;margin-top:40px;padding-bottom:20px;">
+Lecture 20–21 Review | Updated: 2026-04-15
+</p>
+
+</div><!-- container -->
+
+<script>
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

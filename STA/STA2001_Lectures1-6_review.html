@@ -1,0 +1,3111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STA2001 概率与统计 (I) 复习笔记 | Lectures 1-6</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; color: #333; line-height: 1.8; }
+        html { scroll-behavior: smooth; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(135deg, #e67e22 0%, #e74c3c 100%); color: white; display: flex; align-items: center; padding: 0 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+        .sidebar { position: fixed; left: 0; top: 60px; width: 280px; height: calc(100vh - 60px); background-color: #2c3e50; border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999; }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title { font-weight: bold; color: #ecf0f1; padding: 10px 10px; cursor: pointer; user-select: none; display: flex; align-items: center; transition: all 0.3s ease; font-size: 14px; border-radius: 6px; }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #e67e22; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections { padding-left: 20px; max-height: 500px; overflow: hidden; transition: max-height 0.3s ease; }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section { padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent; color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px; border-radius: 0 4px 4px 0; }
+        .toc-section:hover { background-color: #34495e; border-left-color: #e67e22; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: calc(100vw - 320px); margin-left: 280px; margin-right: auto; font-size: 17.5px; }
+        .lecture { margin-bottom: 60px; }
+        .lecture-title { font-size: 32px; color: #e67e22; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #e67e22; }
+        .section-title { font-size: 24px; color: #d35400; margin: 35px 0 20px 0; padding-left: 15px; border-left: 5px solid #d35400; }
+        .subsection-title { font-size: 20px; color: #555; margin: 25px 0 15px 0; padding-left: 12px; border-left: 4px solid #bbb; }
+        .card { margin: 20px 0; padding: 20px; border-radius: 8px; border-left: 5px solid #ddd; background-color: #fafafa; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title { font-weight: bold; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+        .en { display: inline-block; background-color: #fff3e0; color: #bf360c; font-family: 'Courier New', Consolas, monospace; font-size: 0.92em; padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600; }
+        .formula-box { background-color: #e8f4fd; border-left: 5px solid #2196F3; border-radius: 6px; padding: 18px 22px; margin: 18px 0; font-size: 17px; text-align: center; overflow-x: auto; }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li { counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0; position: relative; background: #f8f9fa; border-radius: 6px; }
+        .step-list li::before { content: counter(step); position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #e67e22; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; font-size: 14px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .comparison-table th { background-color: #e67e22; color: white; font-weight: bold; }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+        .note { margin-top: 15px; padding: 12px 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px; }
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+        .equiv-list { list-style: none; padding: 0; margin: 10px 0; }
+        .equiv-list li { padding: 6px 12px; margin: 4px 0; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #e67e22; }
+        .equiv-list li .num { display: inline-block; font-weight: bold; color: #e67e22; width: 28px; }
+        .diagram-container { text-align: center; margin: 20px 0; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e0e0e0; }
+        .diagram-caption { text-align: center; font-size: 13px; color: #888; margin-top: 8px; }
+        svg text { font-family: 'Segoe UI', sans-serif; }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; } .sidebar.open { transform: translateX(0); } .main-content { margin-left: 0; padding: 20px; max-width: 100%; font-size: 15px; } .navbar-title { font-size: 18px; } .menu-toggle { display: block !important; } }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">&#9776;</button>
+    <div class="navbar-title">STA2001 概率与统计 (I) 复习笔记</div>
+    <div class="navbar-subtitle">Lecture 1-18 | 概率基础 → 离散 &amp; 连续 → 二元 → Ch5 变换/mgf技巧/极限定理</div>
+</nav>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 1 | Ch1 概率基础 (Basics)
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec1-preamble">导言：概率论与统计</a></div>
+                <div class="toc-section"><a href="#lec1-s11">§1.1 概率的性质</a></div>
+                <div class="toc-section"><a href="#lec1-s12">§1.2 计数方法</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 2 | 抽样 & 条件概率
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec2-sampling">有序抽样与组合</a></div>
+                <div class="toc-section"><a href="#lec2-dist-perm">可区分排列</a></div>
+                <div class="toc-section"><a href="#lec2-s13">§1.3 条件概率</a></div>
+                <div class="toc-section"><a href="#lec2-mult-rule">乘法法则</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 3 | 独立性 & 贝叶斯
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec3-s14">§1.4 独立事件</a></div>
+                <div class="toc-section"><a href="#lec3-s15">§1.5 贝叶斯定理</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 4 | Ch2 离散分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec4-s21">§2.1 随机变量</a></div>
+                <div class="toc-section"><a href="#lec4-s22">§2.2 数学期望</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 5 | 矩母函数 & 二项分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec5-mean-var">均值与方差</a></div>
+                <div class="toc-section"><a href="#lec5-moment">第 r 阶矩</a></div>
+                <div class="toc-section"><a href="#lec5-mgf">矩母函数 (mgf)</a></div>
+                <div class="toc-section"><a href="#lec5-geometric-mgf">几何分布 mgf</a></div>
+                <div class="toc-section"><a href="#lec5-bernoulli">伯努利试验与分布</a></div>
+                <div class="toc-section"><a href="#lec5-binomial">二项分布</a></div>
+                <div class="toc-section"><a href="#lec5-binomial-mgf">二项分布 mgf 推导</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 6 | 负二项 & 泊松分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec6-s25">§2.5 负二项分布</a></div>
+                <div class="toc-section"><a href="#lec6-geometric-special">几何分布 (特例)</a></div>
+                <div class="toc-section"><a href="#lec6-s26">§2.6 泊松分布</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 7 | Ch3 连续分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec7-s31">§3.1 连续型随机变量</a></div>
+                <div class="toc-section"><a href="#lec7-examples">均匀分布 &amp; 例题</a></div>
+                <div class="toc-section"><a href="#lec7-expectation">连续型期望与 mgf</a></div>
+                <div class="toc-section"><a href="#lec7-percentile">百分位数</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 8 | 指数 · 伽马 · 卡方
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec8-exp">指数分布 Exponential</a></div>
+                <div class="toc-section"><a href="#lec8-gamma">伽马分布 Gamma</a></div>
+                <div class="toc-section"><a href="#lec8-chisq">卡方分布 χ²</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 9 | 正态分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec9-normal">正态分布 Normal</a></div>
+                <div class="toc-section"><a href="#lec9-standard">标准正态 &amp; 查表</a></div>
+                <div class="toc-section"><a href="#lec9-relation">正态与卡方的关系</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 10 | 二元离散分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec10-bivar">二元RV &amp; 联合pmf</a></div>
+                <div class="toc-section"><a href="#lec10-marginal">边缘pmf (Marginal)</a></div>
+                <div class="toc-section"><a href="#lec10-trinomial">三项分布</a></div>
+                <div class="toc-section"><a href="#lec10-indep">离散RV的独立性</a></div>
+                <div class="toc-section"><a href="#lec10-expect">二元期望</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 11 | 协方差·相关·条件分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec11-cov">协方差 Covariance</a></div>
+                <div class="toc-section"><a href="#lec11-corr">相关系数 Correlation</a></div>
+                <div class="toc-section"><a href="#lec11-cond-disc">条件分布 (离散)</a></div>
+                <div class="toc-section"><a href="#lec11-cond-exp">条件期望</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 12 | 二元连续分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec12-cont">联合pdf &amp; 边缘pdf</a></div>
+                <div class="toc-section"><a href="#lec12-indep-cont">连续RV独立性</a></div>
+                <div class="toc-section"><a href="#lec12-cov-cont">协方差(连续版)</a></div>
+                <div class="toc-section"><a href="#lec12-cond-cont">条件pdf与条件期望</a></div>
+                <div class="toc-section"><a href="#lec12-example">例题3★: f(x,y)=2三角形</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 13 | 二元正态 &amp; RV函数
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec13-binormal">二元正态分布</a></div>
+                <div class="toc-section"><a href="#lec13-func">RV函数：一对一情形</a></div>
+                <div class="toc-section"><a href="#lec13-rng">随机数生成器</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 14 | 多变量RV &amp; 独立
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec14-multi">多元RV &amp; i.i.d.</a></div>
+                <div class="toc-section"><a href="#lec14-indep-thm">独立RV的期望/方差定理</a></div>
+                <div class="toc-section"><a href="#lec14-non1to1">非一对一：Y=X²</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 15 | mgf技巧 &amp; 正态性质
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec15-mgf">mgf技巧：独立和的分布</a></div>
+                <div class="toc-section"><a href="#lec15-chisq">卡方可加性</a></div>
+                <div class="toc-section"><a href="#lec15-normal-lin">正态线性组合</a></div>
+                <div class="toc-section"><a href="#lec15-samplevar">样本均值与样本方差</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 16 | t分布 &amp; CLT
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec16-tdist">Thm 5.5-2 &amp; t分布</a></div>
+                <div class="toc-section"><a href="#lec16-clt">中心极限定理 (CLT)</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 17 | 近似 &amp; 不等式
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec17-approx">离散分布正态近似</a></div>
+                <div class="toc-section"><a href="#lec17-cheb">切比雪夫不等式</a></div>
+                <div class="toc-section"><a href="#lec17-lln">大数定律 (LLN)</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture collapsed">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lecture 18 | 极限mgf &amp; CLT证明
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec18-limit">极限mgf：二项→泊松</a></div>
+                <div class="toc-section"><a href="#lec18-cltproof">CLT的mgf证明</a></div>
+                <div class="toc-section"><a href="#lec18-2convergences">两种收敛方式对比</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec12-cont">联合pdf &amp; 边缘pdf</a></div>
+                <div class="toc-section"><a href="#lec12-indep-cont">连续RV独立性</a></div>
+                <div class="toc-section"><a href="#lec12-cond-cont">条件pdf</a></div>
+                <div class="toc-section"><a href="#lec12-example">例题3：f(x,y)=2 (三角形)</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="main-content">
+
+<!-- ==================== LECTURE 1 ==================== -->
+<div class="lecture" id="lec1">
+<h1 class="lecture-title">Lecture 1 | Ch1 概率基础 <span class="en">Basics of Probability</span></h1>
+
+<h2 class="section-title" id="lec1-preamble">导言：概率论与统计学 <span class="en">Probability &amp; Statistics</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>概率论与统计学</div>
+    <p><strong>概率论</strong>（<span class="en">Probability Theory</span>）是研究随机现象的数学分支。它从给定的总体模型出发，<strong>演绎</strong>出样本的规律。</p>
+    <p><strong>统计学</strong>（<span class="en">Statistics</span>）是收集、分析、解释和呈现数据的方法论。它从观测到的样本出发，<strong>归纳</strong>推断总体的特征。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>概率论与统计学的互补关系</div>
+    <table class="comparison-table">
+        <tr><th></th><th>概率论 <span class="en">Probability</span></th><th>统计学 <span class="en">Statistics</span></th></tr>
+        <tr><td>方向</td><td>演绎 (Deductive)</td><td>归纳 (Inductive)</td></tr>
+        <tr><td>从...出发</td><td>总体 (Population) &rarr;</td><td>样本 (Sample) &rarr;</td></tr>
+        <tr><td>推得...</td><td>样本的性质</td><td>总体的特征</td></tr>
+        <tr><td>例子</td><td>已知硬币有偏(p=0.6)，求10次中7次正面的概率</td><td>抛10次得7次正面，推断硬币是否有偏</td></tr>
+    </table>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>形象理解</div>
+    <p>概率论像是"从原因推结果"：已知骰子各面概率 &rarr; 推断掷出特定组合的概率。</p>
+    <p>统计学像是"从结果推原因"：观测到掷出的结果 &rarr; 推断骰子是否公平。</p>
+    <p>两者互为<strong>逆问题</strong>（<span class="en">inverse problems</span>），构成了随机数学的完整体系。</p>
+</div>
+
+<h2 class="section-title" id="lec1-s11">§1.1 概率的性质 <span class="en">Properties of Probability</span></h2>
+
+<h3 class="subsection-title">基本概念：试验、样本空间与事件</h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>试验、随机试验与样本空间</div>
+    <p><strong>试验</strong>（<span class="en">Experiment</span>）：任何可以观测结果的过程。例如：掷硬币、测量温度、记录寿命。</p>
+    <p><strong>随机试验</strong>（<span class="en">Random Experiment</span>）：在相同条件下重复进行，结果<strong>不确定</strong>且<strong>不可预测</strong>的试验。例如：掷骰子、明天股价的涨跌。</p>
+    <p><strong>样本空间</strong> $S$（<span class="en">Sample Space</span>）：随机试验所有可能结果的集合。</p>
+    <p><strong>事件</strong> $A$（<span class="en">Event</span>）：样本空间 $S$ 的一个<strong>子集</strong>。若试验结果落在 $A$ 中，称事件 $A$ 发生。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例子</div>
+    <p>掷一个六面骰子：</p>
+    <p>$S = \{1, 2, 3, 4, 5, 6\}$</p>
+    <p>$A = \{2, 4, 6\}$ 是事件"掷出偶数点"</p>
+    <p>$B = \{5, 6\}$ 是事件"掷出至少5点"</p>
+</div>
+
+<h3 class="subsection-title">集合代数 <span class="en">Algebra of Sets</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>集合运算</div>
+    <p><strong>并集</strong>（<span class="en">Union</span>）：$A \cup B = \{x : x \in A \text{ 或 } x \in B\}$，事件 $A$ 或 $B$ 至少一个发生。</p>
+    <p><strong>交集</strong>（<span class="en">Intersection</span>）：$A \cap B = \{x : x \in A \text{ 且 } x \in B\}$，事件 $A$ 和 $B$ 同时发生。</p>
+    <p><strong>补集</strong>（<span class="en">Complement</span>）：$A' = \{x : x \notin A\}$，事件 $A$ 不发生。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>特殊事件关系</div>
+    <p><strong>互斥</strong>（<span class="en">Mutually Exclusive</span>）：$A \cap B = \emptyset$，两个事件不可能同时发生。</p>
+    <p><strong>穷尽</strong>（<span class="en">Exhaustive</span>）：$A_1 \cup A_2 \cup \cdots \cup A_k = S$，事件覆盖了整个样本空间。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>集合运算定律</div>
+    <p><strong>交换律</strong>（<span class="en">Commutative</span>）：$A \cup B = B \cup A$，$A \cap B = B \cap A$</p>
+    <p><strong>结合律</strong>（<span class="en">Associative</span>）：$(A \cup B) \cup C = A \cup (B \cup C)$，$(A \cap B) \cap C = A \cap (B \cap C)$</p>
+    <p><strong>分配律</strong>（<span class="en">Distributive</span>）：</p>
+    <div class="formula-box">
+        $$A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$$
+        $$A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$$
+    </div>
+    <p><strong>德摩根律</strong>（<span class="en">De Morgan's Law</span>）：</p>
+    <div class="formula-box important">
+        $$(A \cup B)' = A' \cap B'$$
+        $$(A \cap B)' = A' \cup B'$$
+    </div>
+    <div class="note">德摩根律的口诀："并的补等于补的交"，"交的补等于补的并"。通俗理解："既不...也不..."。</div>
+</div>
+
+<h3 class="subsection-title">概率公理 <span class="en">Probability Axioms (Kolmogorov)</span></h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>柯尔莫哥洛夫概率公理</div>
+    <p>设 $S$ 是样本空间，概率函数 $P$ 将 $S$ 的子集映射到 $[0, 1]$，满足：</p>
+    <p><strong>公理 1（非负性）：</strong>$P(A) \ge 0$，对所有事件 $A$。</p>
+    <p><strong>公理 2（规范性）：</strong>$P(S) = 1$，整个样本空间的概率为 1。</p>
+    <p><strong>公理 3（可数可加性）：</strong>若 $A_1, A_2, \ldots$ 两两互斥（$A_i \cap A_j = \emptyset$，$i \neq j$），则：</p>
+    <div class="formula-box">
+        $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
+    </div>
+</div>
+
+<h3 class="subsection-title">概率的基本性质 <span class="en">Properties of Probability</span></h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>由公理推导的五个基本性质</div>
+
+    <p><strong>性质 1：</strong>$P(\emptyset) = 0$</p>
+    <p>证明：$S = S \cup \emptyset \cup \emptyset \cup \cdots$，由公理 3：$1 = 1 + P(\emptyset) + \cdots$，故 $P(\emptyset) = 0$。</p>
+
+    <p><strong>性质 2（有限可加性）：</strong>若 $A_1, \ldots, A_n$ 两两互斥，则 $P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n P(A_i)$</p>
+
+    <p><strong>性质 3（补事件）：</strong>$P(A') = 1 - P(A)$</p>
+    <p>证明：$A \cup A' = S$ 且 $A \cap A' = \emptyset$，故 $P(S) = P(A) + P(A')$，即 $1 = P(A) + P(A')$。</p>
+
+    <p><strong>性质 4（单调性）：</strong>若 $A \subseteq B$，则 $P(A) \le P(B)$</p>
+    <p>证明：$B = A \cup (B \setminus A)$ 且两项互斥，所以 $P(B) = P(A) + P(B \setminus A) \ge P(A)$。</p>
+
+    <p><strong>性质 5（加法公式 / 容斥原理）：</strong>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</p>
+    <p>直观：$A$ 的面积 + $B$ 的面积 = 重叠部分被算了两次，所以要减去一次。</p>
+    <p><strong>三事件推广：</strong></p>
+    <div class="formula-box">
+        $$P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap C) + P(A \cap B \cap C)$$
+    </div>
+</div>
+
+<h2 class="section-title" id="lec1-s12">§1.2 计数方法 <span class="en">Method of Enumeration</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>乘法原理 <span class="en">Multiplication Principle</span></div>
+    <p>若一个过程分为 $k$ 个步骤：第 1 步有 $n_1$ 种选择，第 2 步有 $n_2$ 种选择，...，第 $k$ 步有 $n_k$ 种选择，且各步选择<strong>相互独立</strong>，则总共有：</p>
+    <div class="formula-box important">
+        $$n_1 \times n_2 \times \cdots \times n_k$$
+    </div>
+    <p>种不同的完成方式。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：穿衣选择</div>
+    <p>有 3 件上衣，4 条裤子，2 双鞋。则不同的穿法有 $3 \times 4 \times 2 = 24$ 种。</p>
+</div>
+
+<h3 class="subsection-title">排列 <span class="en">Permutation</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>排列的定义</div>
+    <p>从 $n$ 个不同对象中选取 $r$ 个并按顺序排列，方法数为：</p>
+    <div class="formula-box important">
+        $$_nP_r = n \times (n-1) \times \cdots \times (n-r+1) = \frac{n!}{(n-r)!}$$
+    </div>
+    <p><strong>特殊情况：</strong>$r = n$ 时（$n$ 个对象全排列）：$_nP_n = n! = n \times (n-1) \times \cdots \times 2 \times 1$</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：5人中选3人排队</div>
+    <p>从 5 人中选 3 人排成一列，方法数为 $_5P_3 = 5 \times 4 \times 3 = 60$ 种。</p>
+    <p>解释：第一个位置 5 人选，第二个位置 4 人选，第三个位置 3 人选。</p>
+</div>
+
+<h3 class="subsection-title">组合 <span class="en">Combination</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>组合的定义</div>
+    <p>从 $n$ 个不同对象中选取 $r$ 个（<strong>不考虑顺序</strong>），方法数为：</p>
+    <div class="formula-box important">
+        $$\binom{n}{r} = _nC_r = \frac{n!}{r!(n-r)!}$$
+    </div>
+    <p>称为<strong>二项式系数</strong>（<span class="en">binomial coefficient</span>）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>排列与组合的关系</div>
+    <p>$$\binom{n}{r} = \frac{_nP_r}{r!}$$</p>
+    <p>排列先选 $r$ 个并排序（$_nP_r$），但如果在每种选法中忽略 $r!$ 种不同的内部排序方式，就得到组合数。</p>
+    <p>换句话说：$\binom{n}{r} \times r! = _nP_r$。先选 $r$ 个（组合），再对它们排序（$r!$），就得到排列。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：5人中选3人的委员会</div>
+    <p>5 人中选出 3 人组成委员会，不区分职务（无序），方法数为 $\binom{5}{3} = \frac{5!}{3! \cdot 2!} = 10$ 种。</p>
+    <p>相比之下，如果区分主席、副主席、秘书（有序），就是 $_5P_3 = 60$ 种。</p>
+</div>
+
+<h3 class="subsection-title">可区分排列 <span class="en">Distinguishable Permutation</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>有重复元素的排列</div>
+    <p>$n$ 个对象中有 $n_1$ 个同类（类型 1）、$n_2$ 个同类（类型 2）、...、$n_k$ 个同类（类型 $k$），且 $n_1 + n_2 + \cdots + n_k = n$。可区分的排列数为：</p>
+    <div class="formula-box important">
+        $$\frac{n!}{n_1! \; n_2! \; \cdots \; n_k!}$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：字母排列</div>
+    <p>"MISSISSIPPI" 有多少种不同的排列？</p>
+    <p>$n = 11$（总字母数），$M: 1$，$I: 4$，$S: 4$，$P: 2$</p>
+    <p>$$\text{排列数} = \frac{11!}{1! \times 4! \times 4! \times 2!} = 34650$$</p>
+</div>
+
+</div><!-- end Lecture 1 -->
+
+<!-- ==================== LECTURE 2 ==================== -->
+<div class="lecture" id="lec2">
+<h1 class="lecture-title">Lecture 2 | 抽样与条件概率 <span class="en">Sampling &amp; Conditional Probability</span></h1>
+
+<h2 class="section-title" id="lec2-sampling">有序抽样与组合 <span class="en">Ordered Sample &amp; Combination</span></h2>
+
+<h3 class="subsection-title">有序抽样 <span class="en">Ordered Sample</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>两种抽样方式</div>
+    <p><strong>有放回抽样</strong>（<span class="en">sampling with replacement</span>）：从 $n$ 个对象中抽 $r$ 次，每次抽完放回。总共有：</p>
+    <div class="formula-box">
+        $$n^r \text{ 种可能的有序样本}$$
+    </div>
+    <p>解释：每次有 $n$ 种选择，共 $r$ 次，由乘法原理得 $n^r$。</p>
+
+    <p><strong>无放回抽样</strong>（<span class="en">sampling without replacement</span>）：从 $n$ 个对象中抽 $r$ 次，抽完不放回。总共有：</p>
+    <div class="formula-box">
+        $$_nP_r = \frac{n!}{(n-r)!} \text{ 种可能的有序样本}$$
+    </div>
+    <p>解释：第一次 $n$ 种，第二次 $n-1$ 种，...，第 $r$ 次 $n-r+1$ 种。</p>
+</div>
+
+<h3 class="subsection-title">组合的推导 <span class="en">Derivation of Combination</span></h3>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>从有序到无序</div>
+    <p>无放回抽样中，$r$ 个对象有 $_nP_r$ 种有序抽取方式。但每一个大小为 $r$ 的（无序）子集对应 $r!$ 种不同的有序排列。因此：</p>
+    <div class="formula-box">
+        $$_nC_r = \binom{n}{r} = \frac{_nP_r}{r!} = \frac{n!}{r!(n-r)!}$$
+    </div>
+    <p>这就是组合公式的"推导"：排列除以 $r!$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>二项式定理</div>
+    <p>$$\boxed{(a + b)^n = \sum_{r=0}^{n} \binom{n}{r} a^r b^{n-r}}$$</p>
+    <p>因此 $\binom{n}{r}$ 也称为<strong>二项式系数</strong>。特殊情形：</p>
+    <div class="formula-box">
+        $$\sum_{r=0}^n \binom{n}{r} = 2^n \quad (\text{取 } a = b = 1)$$
+        $$\sum_{r=0}^n (-1)^r \binom{n}{r} = 0 \quad (\text{取 } a = -1, b = 1)$$
+    </div>
+</div>
+
+<h2 class="section-title" id="lec2-dist-perm">可区分排列的推广 <span class="en">Distinguishable Permutation</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>两类对象的可区分排列</div>
+    <p>$n$ 个位置中选出 $r$ 个位置放置类型 A，其余 $n-r$ 个位置放置类型 B。</p>
+    <p>选位置的方法数为 $\binom{n}{r}$。这等同于 $n$ 个对象中 $r$ 个相同（类型 A）、$n-r$ 个相同（类型 B）的可区分排列：</p>
+    <div class="formula-box">
+        $$\frac{n!}{r! (n-r)!} = \binom{n}{r}$$
+    </div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>$m$ 类对象的可区分排列</div>
+    <p>$n$ 个对象分为 $m$ 类，第 $i$ 类有 $n_i$ 个同类对象（$\sum n_i = n$），可区分的排列数为：</p>
+    <div class="formula-box">
+        $$\frac{n!}{n_1! \cdot n_2! \cdot \cdots \cdot n_m!}$$
+    </div>
+    <p>这等价于多步组合：先选 $n_1$ 个位置给类型 1（$\binom{n}{n_1}$），再从剩下的选 $n_2$ 个位置给类型 2（$\binom{n-n_1}{n_2}$），以此类推，最终积恰好化简为上式。</p>
+</div>
+
+<h2 class="section-title" id="lec2-s13">§1.3 条件概率 <span class="en">Conditional Probability</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>条件概率的定义</div>
+    <p>设 $A$ 和 $B$ 是事件，且 $P(B) > 0$。在事件 $B$ 已发生的条件下，事件 $A$ 发生的<strong>条件概率</strong>（<span class="en">conditional probability</span>）定义为：</p>
+    <div class="formula-box important">
+        $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+    </div>
+    <p><strong>直观理解：</strong>条件概率是将样本空间从 $S$"缩小"到 $B$。分母 $P(B)$ 是新的"单位 1"，分子 $P(A \cap B)$ 是在新空间中 $A$ 也发生的部分。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>郁金香球茎例子 (Tulip Bulb)</div>
+    <p>一个花房中，种球来自两个供应商：</p>
+    <table class="comparison-table">
+        <tr><th>供应商</th><th>红色花 (R)</th><th>黄色花 (Y)</th><th>合计</th></tr>
+        <tr><td>A</td><td>30</td><td>20</td><td>50</td></tr>
+        <tr><td>B</td><td>15</td><td>35</td><td>50</td></tr>
+        <tr><td>合计</td><td>45</td><td>55</td><td>100</td></tr>
+    </table>
+    <p>随机选取一个球茎：</p>
+    <p>$P(\text{红色} \mid A) = \dfrac{P(R \cap A)}{P(A)} = \dfrac{30/100}{50/100} = \dfrac{30}{50} = 0.6$</p>
+    <p>$P(\text{红色} \mid B) = \dfrac{P(R \cap B)}{P(B)} = \dfrac{15/100}{50/100} = \dfrac{15}{50} = 0.3$</p>
+    <p>结论：给定供应商 A，红色花的概率是 0.6（供应商 A 的种球更偏向红色花）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>条件概率满足概率公理</div>
+    <p>固定 $B$（$P(B) > 0$），函数 $P(\cdot \mid B)$ 也满足柯尔莫哥洛夫的三条公理：</p>
+    <p>(1) $P(A \mid B) \ge 0$（非负性）</p>
+    <p>(2) $P(S \mid B) = \frac{P(S \cap B)}{P(B)} = \frac{P(B)}{P(B)} = 1$（规范性）</p>
+    <p>(3) 若 $A_1, A_2, \ldots$ 两两互斥，则 $P(\bigcup A_i \mid B) = \sum P(A_i \mid B)$（可数可加性）</p>
+    <div class="note">这意味着所有从概率公理推导出的性质（如 $P(A' \mid B) = 1 - P(A \mid B)$，$P(\emptyset \mid B) = 0$ 等）对于条件概率也自动成立。</div>
+</div>
+
+<h2 class="section-title" id="lec2-mult-rule">乘法法则 <span class="en">Multiplication Rule</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>乘法法则</div>
+    <p>由条件概率的定义 $P(A \mid B) = \frac{P(A \cap B)}{P(B)}$，两边同乘 $P(B)$：</p>
+    <div class="formula-box important">
+        $$P(A \cap B) = P(A) \cdot P(B \mid A) = P(B) \cdot P(A \mid B)$$
+    </div>
+    <p><strong>三个事件的推广：</strong></p>
+    <div class="formula-box highlight">
+        $$P(A \cap B \cap C) = P(A) \cdot P(B \mid A) \cdot P(C \mid A \cap B)$$
+    </div>
+    <p><strong>一般情形（链式法则）：</strong></p>
+    <div class="formula-box">
+        $$P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \cdot P(A_2 \mid A_1) \cdot P(A_3 \mid A_1 \cap A_2) \cdots P(A_n \mid A_1 \cap \cdots \cap A_{n-1})$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：无放回抽牌</div>
+    <p>一副 52 张扑克牌，无放回地抽 3 张，求三张都是 A 的概率。</p>
+    <p>$P(\text{三张A}) = \frac{4}{52} \times \frac{3}{51} \times \frac{2}{50} = \frac{24}{132600} = \frac{1}{5525}$</p>
+    <p>也可以写成：$P(\text{三张A}) = \frac{\binom{4}{3}}{\binom{52}{3}} = \frac{4}{22100} = \frac{1}{5525}$</p>
+</div>
+
+</div><!-- end Lecture 2 -->
+
+<!-- ==================== LECTURE 3 ==================== -->
+<div class="lecture" id="lec3">
+<h1 class="lecture-title">Lecture 3 | 独立性与贝叶斯定理 <span class="en">Independence &amp; Bayes' Theorem</span></h1>
+
+<h2 class="section-title" id="lec3-s14">§1.4 独立事件 <span class="en">Independent Events</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>独立事件的定义</div>
+    <p>事件 $A$ 和 $B$ 称为<strong>独立</strong>（<span class="en">independent</span>），当且仅当：</p>
+    <div class="formula-box important">
+        $$P(A \cap B) = P(A) P(B)$$
+    </div>
+    <p>否则称为<strong>不独立</strong>（<span class="en">dependent</span>）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>独立 vs 互斥</div>
+    <table class="comparison-table">
+        <tr><th></th><th>独立 <span class="en">Independent</span></th><th>互斥 <span class="en">Mutually Exclusive</span></th></tr>
+        <tr><td>条件</td><td>$P(A \cap B) = P(A)P(B)$</td><td>$A \cap B = \emptyset$</td></tr>
+        <tr><td>含义</td><td>A 发生不影响 B 的概率</td><td>A 发生则 B 不可能发生</td></tr>
+        <tr><td>交集</td><td>不为空（一般有重叠）</td><td>为空</td></tr>
+        <tr><td>与条件概率的关系</td><td>$P(A \mid B) = P(A)$</td><td>$P(A \mid B) = 0$</td></tr>
+    </table>
+    <div class="note">除非 $P(A)=0$ 或 $P(B)=0$，否则互斥事件一定是<strong>不独立</strong>的（因为如果 B 发生了，A 一定不发生）。</div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>两两独立 vs 相互独立</div>
+    <p><strong>两两独立</strong>（<span class="en">pairwise independence</span>）：$n$ 个事件中任意两个都满足 $P(A_i \cap A_j) = P(A_i)P(A_j)$。</p>
+    <p><strong>相互独立</strong>（<span class="en">mutual independence</span>）：对任意子集 $\{i_1, \ldots, i_k\}$（$2 \le k \le n$）都有 $P(A_{i_1} \cap \cdots \cap A_{i_k}) = P(A_{i_1}) \cdots P(A_{i_k})$。</p>
+    <div class="note"><strong>相互独立 &rArr; 两两独立</strong>，但反过来不一定成立！教师可能会举一个两两独立但不相互独立的反例。</div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>定理 1.4-1：独立性的"对偶"关系</div>
+    <p>若 $A$ 和 $B$ 独立，则以下各对也独立：</p>
+    <div class="formula-box highlight">
+        $$A \text{ 和 } B' \text{ 独立}$$
+        $$A' \text{ 和 } B \text{ 独立}$$
+        $$A' \text{ 和 } B' \text{ 独立}$$
+    </div>
+    <p><strong>证明思路：</strong>$P(A \cap B') = P(A) - P(A \cap B) = P(A) - P(A)P(B) = P(A)(1 - P(B)) = P(A)P(B')$</p>
+    <p>直观：如果 A 和 B 独立，那么知道 B 没发生不影响 A 的概率——因为知道 B 发生了也不影响。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：掷两个骰子</div>
+    <p>掷两个公平六面骰子。设 $A =$ "第一个骰子为偶数"，$B =$ "两个骰子之和为 7"。</p>
+    <p>$P(A) = \frac{3}{6} = \frac{1}{2}$</p>
+    <p>$P(B) = \frac{6}{36} = \frac{1}{6}$（和为 7 的组合：(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)）</p>
+    <p>$P(A \cap B) = P(\text{第一个偶数且和为7}) = \frac{3}{36} = \frac{1}{12}$（(2,5),(4,3),(6,1)）</p>
+    <p>$P(A)P(B) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12} = P(A \cap B)$ &rArr; <strong>A 和 B 独立！</strong></p>
+</div>
+
+<h2 class="section-title" id="lec3-s15">§1.5 贝叶斯定理 <span class="en">Bayes' Theorem</span></h2>
+
+<h3 class="subsection-title">全概率公式 <span class="en">Total Probability Formula</span></h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>全概率公式</div>
+    <p>设 $B_1, B_2, \ldots, B_k$ 是样本空间 $S$ 的一个<strong>划分</strong>（partition），即：</p>
+    <p>(1) $B_i \cap B_j = \emptyset$（$i \neq j$），两两互斥</p>
+    <p>(2) $B_1 \cup B_2 \cup \cdots \cup B_k = S$，穷尽所有可能</p>
+    <p>(3) $P(B_i) > 0$，$i = 1, 2, \ldots, k$</p>
+    <p>则对任意事件 $A$：</p>
+    <div class="formula-box important">
+        $$P(A) = \sum_{i=1}^{k} P(B_i) \cdot P(A \mid B_i)$$
+    </div>
+    <p><strong>直觉：</strong>要求 $A$ 的概率，可以按"原因" $B_i$ 分类，分别算每种原因下 $A$ 发生的概率，再按各原因的概率加权求和。</p>
+</div>
+
+<h3 class="subsection-title">贝叶斯定理 <span class="en">Bayes' Theorem</span></h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>贝叶斯定理</div>
+    <p>设 $B_1, \ldots, B_k$ 是 $S$ 的一个划分，$A$ 是任意事件（$P(A) > 0$），则：</p>
+    <div class="formula-box important">
+        $$P(B_j \mid A) = \frac{P(B_j) \cdot P(A \mid B_j)}{\sum_{i=1}^{k} P(B_i) \cdot P(A \mid B_i)}$$
+    </div>
+    <p>其中：</p>
+    <p>$P(B_j)$ 称为<strong>先验概率</strong>（<span class="en">prior probability</span>）——在看到 $A$ 发生之前对 $B_j$ 的信念。</p>
+    <p>$P(B_j \mid A)$ 称为<strong>后验概率</strong>（<span class="en">posterior probability</span>）——在看到 $A$ 发生之后对 $B_j$ 的更新信念。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>贝叶斯定理的直觉</div>
+    <p>$$\text{后验} = \frac{\text{先验} \times \text{似然}}{\text{归一化常数}}$$</p>
+    <p>看到新证据 $A$ 后，我们把每个原因 $B_j$ 的概率从 $P(B_j)$（先验）更新到 $P(B_j \mid A)$（后验）。更新的权重是 $P(A \mid B_j)$（该原因导致 $A$ 的可能性）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>碗与筹码例子 (Bowl-Chip Example)</div>
+    <p>有两个碗：</p>
+    <p>碗 B1：3 个红筹码，7 个蓝筹码（共 10 个）</p>
+    <p>碗 B2：6 个红筹码，4 个蓝筹码（共 10 个）</p>
+    <p>随机选一个碗（先验：$P(B_1) = P(B_2) = 0.5$），然后从该碗中随机抽一个筹码。</p>
+    <p>$P(R \mid B_1) = 0.3$，$P(R \mid B_2) = 0.6$</p>
+    <p><strong>全概率：</strong>$P(R) = 0.5 \times 0.3 + 0.5 \times 0.6 = 0.45$</p>
+    <p><strong>如果抽到红色筹码，来自碗 B1 的概率（贝叶斯）：</strong></p>
+    <div class="formula-box">
+        $$P(B_1 \mid R) = \frac{P(B_1)P(R \mid B_1)}{P(R)} = \frac{0.5 \times 0.3}{0.45} = \frac{0.15}{0.45} = \frac{1}{3}$$
+    </div>
+    <p>抽到红色后，来自 B1 的概率从 50% 下降到约 33%（因为 B2 有更多红色筹码）。</p>
+</div>
+
+</div><!-- end Lecture 3 -->
+
+<!-- ==================== LECTURE 4 ==================== -->
+<div class="lecture" id="lec4">
+<h1 class="lecture-title">Lecture 4 | Ch2 离散分布 <span class="en">Discrete Distributions</span></h1>
+
+<h2 class="section-title" id="lec4-s21">§2.1 随机变量 <span class="en">Random Variable</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>随机变量的定义</div>
+    <p>给定一个样本空间为 $S$ 的随机试验，函数 $X: S \to \mathbb{R}$ 将每个样本点 $s \in S$ 映射到一个实数 $X(s) = x$，称为<strong>随机变量</strong>（<span class="en">Random Variable, RV</span>）。</p>
+    <p><strong>通俗理解：</strong>随机变量不是"变量"，而是一个<strong>函数</strong>——它把随机试验的每一个可能结果转化为一个数字。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>离散随机变量 <span class="en">Discrete Random Variable</span></div>
+    <p>$X$ 的<strong>取值范围</strong>（<span class="en">range</span>）记为 $S$（或 $S_X$）：</p>
+    <div class="formula-box">
+        $$S = \{x : x = X(s), s \in S_{\text{原}}\}$$
+    </div>
+    <p>若 $S$ 是<strong>有限集</strong>或<strong>可数无限集</strong>（$\mathbb{N}, \mathbb{Z}$ 等），则 $X$ 称为<strong>离散随机变量</strong>（<span class="en">discrete RV</span>）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>RV 定义了新的随机试验</div>
+    <p>如果 $X$ 是一对一的（one-to-one），则新试验与旧试验<strong>等价</strong>。</p>
+    <p>如果 $X$ 不是一对一的，则新试验是旧试验的<strong>简化版本</strong>（多个旧结果映射到同一个数字，丢失了一些信息）。</p>
+</div>
+
+<h3 class="subsection-title">概率质量函数 <span class="en">Probability Mass Function (pmf)</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>概率质量函数 pmf</div>
+    <p>设 $X$ 是离散随机变量，取值范围为 $S$。函数 $f(x): S \to (0, 1]$ 称为 <span class="en">probability mass function</span>（pmf），若满足三个条件：</p>
+    <p>(1) $f(x) > 0$，对所有 $x \in S$（概率为正）</p>
+    <p>(2) $\sum_{x \in S} f(x) = 1$（概率之和为 1）</p>
+    <p>(3) $P(X \in A) = \sum_{x \in A} f(x)$，对所有 $A \subseteq S$（事件概率 = 对应值概率之和）</p>
+    <div class="note">$f(x)$ 的定义域可以扩展到 $\mathbb{R}$，只需令 $f(x) = 0$ 对所有 $x \notin S$ 即可。</div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>支撑集 <span class="en">Support</span></div>
+    <p><strong>支撑集</strong>（<span class="en">support</span>）即 $S = \{x : f(x) > 0\}$，是 pmf 取值严格为正的 $x$ 的集合。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>均匀分布 <span class="en">Uniform Distribution</span> 的 pmf</div>
+    <p>$S = \{1, 2, \ldots, m\}$，$f(x) = \frac{1}{m}$，对所有 $x \in S$。</p>
+    <p>验证：$\sum_{x=1}^m f(x) = m \times \frac{1}{m} = 1$，满足 pmf 条件。</p>
+    <p>例如：公平骰子 $f(x) = 1/6$，$x = 1, \ldots, 6$。</p>
+</div>
+
+<h3 class="subsection-title">pmf 的图形表示</h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>线形图与概率直方图</div>
+    <p><strong>线形图</strong>（<span class="en">Line Graph</span>）：在每个 $x$ 处画一条垂直线段，高度等于 $f(x)$。</p>
+    <p><strong>概率直方图</strong>（<span class="en">Probability Histogram</span>）：在每个 $x$ 处画一个宽度为 1 的矩形，面积等于 $f(x)$（即高度 = $f(x)$）。所有矩形面积之和 = 1。</p>
+</div>
+
+<h3 class="subsection-title">累积分布函数 <span class="en">Cumulative Distribution Function (cdf)</span></h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>累积分布函数 cdf</div>
+    <p>函数 $F(x): \mathbb{R} \to [0, 1]$ 定义为：</p>
+    <div class="formula-box important">
+        $$F(x) = P(X \le x) = \sum_{x' \le x,\; x' \in S} f(x')$$
+    </div>
+    <p>称为<strong>累积分布函数</strong>（<span class="en">cdf</span>）。它表示随机变量取值<strong>不超过</strong> $x$ 的概率。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>cdf 的性质</div>
+    <p>(1) $F(x)$ 是<strong>非减</strong>函数（单调递增）</p>
+    <p>(2) $\lim_{x \to -\infty} F(x) = 0$，$\lim_{x \to +\infty} F(x) = 1$</p>
+    <p>(3) $F(x)$ 是<strong>右连续</strong>的</p>
+    <p>(4) $P(a < X \le b) = F(b) - F(a)$</p>
+    <div class="note">对于离散 RV，$F(x)$ 是一个"阶梯函数"（step function），在 $x \in S$ 处跳跃，跳跃的高度等于 $f(x)$。</div>
+</div>
+
+<h2 class="section-title" id="lec4-s22">§2.2 数学期望 <span class="en">Mathematical Expectation</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>数学期望的定义</div>
+    <p>设 $X$ 是离散随机变量，取值范围为 $S$，pmf 为 $f(x)$。若 $\sum_{x \in S} g(x)f(x)$ 存在，则称其为 $g(X)$ 的<strong>数学期望</strong>（<span class="en">mathematical expectation / expected value</span>），记为：</p>
+    <div class="formula-box important">
+        $$E[g(X)] = \sum_{x \in S} g(x) f(x)$$
+    </div>
+    <p><strong>一句话：</strong>期望 = 每个可能取值 $\times$ 该取值的概率，全部加起来。如果 $g(X) = X$，就是<strong>随机变量本身的期望</strong>（即"平均值"）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>定理 2.2-1：期望的线性性质</div>
+    <p>设 $a_1, a_2, \ldots, a_k$ 为常数，则：</p>
+    <div class="formula-box highlight">
+        $$E\left[\sum_{i=1}^{k} a_i g_i(X)\right] = \sum_{i=1}^{k} a_i E[g_i(X)]$$
+    </div>
+    <p><strong>特例：</strong>$E[aX + b] = aE[X] + b$</p>
+    <p><strong>证明：</strong>由定义直接展开求和即可。因为求和是线性的，常数系数可以提到求和号外面。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>重要例题：最小化 $E[(X-b)^2]$</div>
+    <p>求 $b$ 使得 $E[(X-b)^2]$ 最小。</p>
+    <p><strong>解：</strong></p>
+    <p>$$\begin{aligned}
+    E[(X-b)^2] &= E[X^2 - 2bX + b^2] \\
+    &= E[X^2] - 2bE[X] + b^2
+    \end{aligned}$$</p>
+    <p>将上式视为 $b$ 的二次函数 $h(b)$，求导令导数为零：</p>
+    <p>$h'(b) = -2E[X] + 2b = 0 \Rightarrow b = E[X]$</p>
+    <p>二阶导数 $h''(b) = 2 > 0$，确为最小值。</p>
+    <div class="formula-box important">
+        $$b = E[X] \text{ 时，}E[(X-b)^2] \text{ 取最小值 } \mathrm{Var}(X)$$
+    </div>
+    <p><strong>一个重要结论：</strong>均值 $E[X]$ 是使得平方误差期望最小的预测值——这就是为什么我们把均值当作"中心"。</p>
+</div>
+
+</div><!-- end Lecture 4 -->
+
+<!-- ==================== LECTURE 5 ==================== -->
+<div class="lecture" id="lec5">
+<h1 class="lecture-title">Lecture 5 | 特殊数学期望与二项分布 <span class="en">Special Expectations &amp; Binomial Distribution</span></h1>
+
+<h2 class="section-title" id="lec5-mean-var">均值与方差 <span class="en">Mean &amp; Variance</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>均值 <span class="en">Mean</span></div>
+    <p>$g(X) = X$ 时，定义<strong>均值</strong>（也即期望值）：</p>
+    <div class="formula-box">
+        $$\mu = E[X] = \sum_{x \in S} x\, f(x)$$
+    </div>
+    <p><strong>直觉：</strong>$E[X]$ 是 $X$ 在长期重复试验中的<strong>平均取值</strong>，不是某一次的值。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>方差 <span class="en">Variance</span></div>
+    <p>$g(X) = (X - E[X])^2$ 时，定义<strong>方差</strong>：</p>
+    <div class="formula-box highlight">
+        $$\sigma^2 = \mathrm{Var}(X) = E\big[(X - E[X])^2\big] = \sum_{x \in S} (x - \mu)^2 f(x)$$
+    </div>
+    <p><strong>计算方差最常用公式（展开化简）：</strong></p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2$$
+    </div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>标准差 <span class="en">Standard Deviation</span></div>
+    <p>$$\sigma = \sqrt{\mathrm{Var}(X)}$$</p>
+    <p>方差的单位是原始单位的平方，标准差与原始数据单位一致，更直观。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>方差的性质</div>
+    <div class="formula-box highlight">
+        $$\mathrm{Var}(c) = 0, \qquad \mathrm{Var}(cX) = c^2 \mathrm{Var}(X)$$
+    </div>
+    <p>常数的方差为零——常数没有波动。缩放 $c$ 倍，方差缩放 $c^2$ 倍。</p>
+</div>
+
+<h3 class="subsection-title">例：六面骰子的均值与方差</h3>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>掷一个公平六面骰子</div>
+    <p>$S = \{1,2,3,4,5,6\}$，$f(x) = \frac{1}{6}$。</p>
+    <div class="formula-box">
+        $$E[X] = \frac{1}{6} \sum_{i=1}^{6} i = \frac{21}{6} = 3.5$$
+        $$E[X^2] = \frac{1}{6} \sum_{i=1}^{6} i^2 = \frac{91}{6}$$
+        $$\mathrm{Var}(X) = \frac{91}{6} - \left(\frac{7}{2}\right)^2 = \frac{35}{12} \approx 2.92$$
+    </div>
+    <div class="note">期望值 3.5 不是可能的取值——期望值不必是可能的观测值。</div>
+</div>
+
+<h3 class="subsection-title">例：方差衡量离散度</h3>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>两组数据的方差对比</div>
+    <p>$X$ 的 pmf：$f(x) = \frac{1}{3}, \; x \in \{-1, 0, 1\}$，$Y$ 的 pmf：$f(y) = \frac{1}{3}, \; y \in \{-2, 0, 2\}$</p>
+    <table class="comparison-table">
+        <tr><th></th><th>$X$</th><th>$Y$</th></tr>
+        <tr><td>$E[\cdot]$</td><td>$0$</td><td>$0$</td></tr>
+        <tr><td>$\mathrm{Var}$</td><td>$2/3$</td><td>$8/3$</td></tr>
+        <tr><td>$\sigma$</td><td>$\sqrt{2/3}$</td><td>$2\sqrt{2/3}$</td></tr>
+    </table>
+    <p>$Y$ 的方差更大——因为取值范围更广（$\pm 2$ vs $\pm 1$）。方差衡量离散程度（<span class="en">dispersion / spread</span>）。</p>
+</div>
+
+<h2 class="section-title" id="lec5-moment">第 r 阶矩 <span class="en">The rth Moment</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>三种矩</div>
+    <table class="comparison-table">
+        <tr><th>名称 <span class="en">Name</span></th><th>$g(X)$</th><th>定义</th></tr>
+        <tr><td><strong>第 $r$ 阶原点矩</strong><br/><span class="en">rth moment</span></td><td>$X^r$</td><td>$E[X^r] = \sum x^r f(x)$</td></tr>
+        <tr><td><strong>第 $r$ 阶中心矩</strong><br/><span class="en">rth moment about b</span></td><td>$(X-b)^r$</td><td>$E[(X-b)^r] = \sum (x-b)^r f(x)$</td></tr>
+        <tr><td><strong>第 $r$ 阶阶乘矩</strong><br/><span class="en">rth factorial moment</span></td><td>$X_{(r)} = \prod_{i=0}^{r-1}(X-i)$</td><td>$E[X_{(r)}] = \sum x_{(r)} f(x)$</td></tr>
+    </table>
+    <p>$E[X]$ 是一阶原点矩，$E[X^2]$ 是二阶原点矩，$\mathrm{Var}(X) = E[X^2] - (E[X])^2$。</p>
+</div>
+
+<h2 class="section-title" id="lec5-mgf">矩母函数 <span class="en">Moment Generating Function (mgf)</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：矩母函数 mgf</div>
+    <p>设 $X$ 为离散随机变量，取值范围为 $S$，pmf 为 $f(x)$。若存在 $h > 0$ 使得：</p>
+    <div class="formula-box important">
+        $$M(t) = E[e^{tX}] = \sum_{x \in S} e^{tx} f(x)$$
+    </div>
+    <p>在 $(-h, h)$ 内存在，则 $M(t)$ 称为 $X$ 的<strong>矩母函数</strong>（<span class="en">moment generating function</span>）。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>mgf 的设计思想</div>
+    <p>把所有的矩（$E[X], E[X^2], E[X^3], \ldots$）<strong>一次性打包</strong>进一个函数 $M(t)$。想要哪个矩，对这个函数<strong>求导</strong>然后代入 $t = 0$ 即可。</p>
+    <p>像是一个"快递箱"：$M(t)$ 里面装着所有阶矩，求 $r$ 次导数就是打开第 $r$ 个包裹。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>核心原理：逐次求导生成矩</div>
+    <p><strong>一阶导数：</strong>$M'(t) = \sum x e^{tx} f(x)$，代入 $t=0$：</p>
+    <div class="formula-box highlight">
+        $$M'(0) = \sum x f(x) = E[X]$$
+    </div>
+    <p><strong>二阶导数：</strong>$M''(t) = \sum x^2 e^{tx} f(x)$，$M''(0) = E[X^2]$</p>
+    <p><strong>第 $r$ 阶：</strong></p>
+    <div class="formula-box important">
+        $$M^{(r)}(0) = \sum_{x} x^r f(x) = E[X^r]$$
+    </div>
+</div>
+
+<div class="diagram-container">
+    <svg width="620" height="180" viewBox="0 0 620 180">
+        <rect x="20" y="30" width="120" height="70" rx="10" fill="rgba(230,126,34,0.15)" stroke="#e67e22" stroke-width="2"/>
+        <text x="80" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#e67e22">M(t) = E[e^(tX)]</text>
+        <text x="80" y="80" text-anchor="middle" font-size="11" fill="#888">矩母函数 mgf</text>
+        <line x1="145" y1="50" x2="230" y2="50" stroke="#2196F3" stroke-width="2" marker-end="url(#arrM1)"/>
+        <text x="187" y="40" text-anchor="middle" font-size="11" fill="#2196F3">求导 -> t=0</text>
+        <rect x="235" y="15" width="110" height="70" rx="8" fill="rgba(33,150,243,0.12)" stroke="#2196F3" stroke-width="1.5"/>
+        <text x="290" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#2196F3">M'(0) = E[X]</text>
+        <text x="290" y="65" text-anchor="middle" font-size="11" fill="#888">一阶矩（均值）</text>
+        <line x1="145" y1="80" x2="230" y2="130" stroke="#4caf50" stroke-width="2" marker-end="url(#arrM2)"/>
+        <text x="187" y="115" text-anchor="middle" font-size="11" fill="#4caf50">二次求导</text>
+        <rect x="235" y="95" width="110" height="70" rx="8" fill="rgba(76,175,80,0.12)" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="290" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">M''(0) = E[X^2]</text>
+        <text x="290" y="145" text-anchor="middle" font-size="11" fill="#888">二阶矩</text>
+        <text x="400" y="80" text-anchor="middle" font-size="11" fill="#e91e63">... 依此类推 ...</text>
+        <line x1="440" y1="85" x2="500" y2="85" stroke="#e91e63" stroke-width="2" marker-end="url(#arrM3)"/>
+        <rect x="505" y="50" width="110" height="70" rx="8" fill="rgba(233,30,99,0.12)" stroke="#e91e63" stroke-width="1.5"/>
+        <text x="560" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">M^(r)(0) = E[X^r]</text>
+        <text x="560" y="97" text-anchor="middle" font-size="11" fill="#888">第 r 阶矩</text>
+        <defs>
+            <marker id="arrM1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#2196F3"/></marker>
+            <marker id="arrM2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4caf50"/></marker>
+            <marker id="arrM3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#e91e63"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">矩母函数工作原理：对 $M(t)$ 求 $r$ 次导后代入 $t=0$，即得第 $r$ 阶矩 $E[X^r]$</div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>mgf 的三个关键性质</div>
+    <p><strong>性质 1：</strong>$M(0) = \sum f(x) = 1$（所有概率之和为 1）</p>
+    <p><strong>性质 2（唯一性）：</strong>若两个随机变量有相同的 mgf，则它们有相同的概率分布（相同的 pmf）。mgf 完全刻画了一个分布。</p>
+    <p><strong>性质 3（生成矩）：</strong>$M^{(r)}(0) = E[X^r]$</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>从 mgf 反推 pmf</div>
+    <p>若 $M(t) = e^t(\frac{3}{6}) + e^{2t}(\frac{2}{6}) + e^{3t}(\frac{1}{6})$，对比 $M(t) = \sum e^{tx} f(x)$：</p>
+    <table class="comparison-table">
+        <tr><th>$x$</th><th>$f(x)$</th></tr>
+        <tr><td>1</td><td>$3/6$</td></tr>
+        <tr><td>2</td><td>$2/6$</td></tr>
+        <tr><td>3</td><td>$1/6$</td></tr>
+    </table>
+    <p>mgf 唯一地确定了 pmf——每一项 $e^{tx}$ 前的系数就是 $f(x)$。</p>
+</div>
+
+<h2 class="section-title" id="lec5-geometric-mgf">几何分布的 mgf（重点）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>几何分布 $X \sim \text{Geometric}(p)$ 的均值与方差</div>
+    <p>pmf：$f(x) = q^{x-1} p,\; x = 1, 2, 3, \ldots$（$q = 1-p$）</p>
+    <p><strong>Step 1：求 mgf</strong></p>
+    <p>$$M(t) = \sum_{x=1}^{\infty} e^{tx} q^{x-1}p = \frac{p}{q} \sum_{x=1}^{\infty} (q e^t)^x = \frac{p e^t}{1 - q e^t}, \quad t < -\ln q$$</p>
+    <p><strong>Step 2：$E[X] = M'(0)$</strong></p>
+    <p>$M'(t) = \frac{p e^t}{(1 - q e^t)^2}$，代入 $t=0$（注意 $1-q=p$）：</p>
+    <div class="formula-box highlight">
+        $$M'(0) = \frac{p}{(1-q)^2} = \frac{p}{p^2} = \frac{1}{p} = E[X]$$
+    </div>
+    <p><strong>Step 3：$E[X^2] = M''(0)$ 和 $\mathrm{Var}(X)$</strong></p>
+    <p>$M''(t) = \frac{p e^t(1 + q e^t)}{(1 - q e^t)^3}$，$M''(0) = \frac{1+q}{p^2} = E[X^2]$</p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2 = \frac{1+q}{p^2} - \frac{1}{p^2} = \frac{q}{p^2} = \frac{1-p}{p^2}$$
+    </div>
+    <table class="comparison-table">
+        <tr><th>几何分布结果</th><th>表达式</th></tr>
+        <tr><td>pmf</td><td>$f(x) = q^{x-1}p,\; x=1,2,3,\ldots$</td></tr>
+        <tr><td>mgf</td><td>$M(t) = \frac{p e^t}{1 - q e^t},\; t < -\ln q$</td></tr>
+        <tr><td>$E[X]$</td><td>$1/p$</td></tr>
+        <tr><td>$\mathrm{Var}(X)$</td><td>$q/p^2$</td></tr>
+    </table>
+</div>
+
+<h2 class="section-title" id="lec5-bernoulli">§2.4 二项分布 <span class="en">Binomial Distribution</span></h2>
+
+<h3 class="subsection-title">伯努利试验与伯努利分布</h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>伯努利试验 <span class="en">Bernoulli Experiment</span></div>
+    <p>结果只能分为<strong>互斥且穷尽的两类</strong>的随机试验：成功 (<span class="en">Success</span>) / 失败 (<span class="en">Failure</span>)。</p>
+    <p>定义 $X(\text{成功}) = 1$，$X(\text{失败}) = 0$。取值范围 $S = \{0, 1\}$。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>伯努利分布 <span class="en">Bernoulli Distribution</span></div>
+    <p>pmf：</p>
+    <div class="formula-box important">
+        $$f(x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}$$
+    </div>
+    <p>$f(1) = p$（成功概率），$f(0) = 1-p$（失败概率）。</p>
+    <p><strong>期望、方差、mgf：</strong></p>
+    <div class="formula-box">
+        $$E[X] = p, \quad \mathrm{Var}(X) = p(1-p), \quad M(t) = (1-p) + p e^t$$
+    </div>
+</div>
+
+<h3 class="subsection-title">n 重伯努利试验与随机样本</h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>n 重伯努利试验 <span class="en">n Bernoulli Trials</span></div>
+    <p>一个伯努利试验被<strong>独立地</strong>重复 $n$ 次，每次成功概率 $p$ 保持不变。两个条件：(1) 独立性，(2) 同分布。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>随机样本 <span class="en">Random Sample</span></div>
+    <p>令 $X_i$ 表示第 $i$ 次试验的伯努利 RV。观测到的一串 $n$ 个 0/1 序列（如 $(0,0,0,1,0)$）称为来自伯努利分布的<strong>容量为 $n$ 的随机样本</strong>。</p>
+</div>
+
+<h3 class="subsection-title" id="lec5-binomial">二项分布的完整推导</h3>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>核心问题</div>
+    <p>$n$ 重伯努利试验中，不关心具体是"第几次"成功，只关心<strong>成功了"几次"</strong>。</p>
+    <p>$X = n$ 次试验中成功的总次数，$S = \{0, 1, 2, \ldots, n\}$。$X$ 的分布就是二项分布。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>推导二项分布 pmf</div>
+    <p>设每次试验成功概率为 $p$。</p>
+    <p><strong>Step 1（选位置）：</strong>在 $n$ 次试验中选出 $x$ 个位置作为"成功"，共 $\binom{n}{x}$ 种选法。</p>
+    <p><strong>Step 2（算概率）：</strong>任何一个特定序列（$x$ 次成功，$n-x$ 次失败）的概率为 $p^x (1-p)^{n-x}$。</p>
+    <p><strong>Step 3（乘起来）：</strong></p>
+    <div class="formula-box important">
+        $$f(x) = P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, 2, \ldots, n$$
+    </div>
+    <p>记作 $X \sim b(n, p)$。$n$ 和 $p$ 是分布的参数（<span class="en">parameters</span>）。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>为什么叫"二项分布"？</div>
+    <p>$$\sum_{x=0}^n \binom{n}{x} p^x (1-p)^{n-x} = (p + (1-p))^n = 1^n = 1$$</p>
+    <p>pmf 的各项正是 $(p + (1-p))^n$ 的二项式展开中的各项，因此得名。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="600" height="380" viewBox="0 0 600 380">
+        <rect x="210" y="15" width="180" height="50" rx="8" fill="rgba(230,126,34,0.1)" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="300" y="40" text-anchor="middle" font-size="13" font-weight="bold" fill="#e67e22">1 次伯努利试验</text>
+        <text x="300" y="56" text-anchor="middle" font-size="11" fill="#888">Bernoulli(1) ~ b(1, p)</text>
+        <line x1="300" y1="65" x2="300" y2="90" stroke="#999" stroke-width="1.5" marker-end="url(#arrD1)"/>
+        <rect x="175" y="95" width="250" height="65" rx="8" fill="rgba(230,126,34,0.1)" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="300" y="115" text-anchor="middle" font-size="13" font-weight="bold" fill="#e67e22">n 重伯努利试验</text>
+        <text x="300" y="132" text-anchor="middle" font-size="11" fill="#888">独立重复 n 次，每次成功概率 p</text>
+        <text x="300" y="150" text-anchor="middle" font-size="11" fill="#888">样本: (0,1,0,0,1,...) -- 一串 0 和 1</text>
+        <line x1="300" y1="160" x2="300" y2="185" stroke="#999" stroke-width="1.5" marker-end="url(#arrD2)"/>
+        <rect x="210" y="190" width="180" height="50" rx="8" fill="rgba(33,150,243,0.1)" stroke="#2196F3" stroke-width="1.5"/>
+        <text x="300" y="212" text-anchor="middle" font-size="13" font-weight="bold" fill="#2196F3">数成功的次数 X</text>
+        <text x="300" y="230" text-anchor="middle" font-size="11" fill="#888">X = sum X_i, X in {0,1,...,n}</text>
+        <line x1="300" y1="240" x2="300" y2="265" stroke="#999" stroke-width="1.5" marker-end="url(#arrD3)"/>
+        <rect x="175" y="270" width="250" height="65" rx="8" fill="rgba(233,30,99,0.1)" stroke="#e91e63" stroke-width="2"/>
+        <text x="300" y="292" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">二项分布 X ~ b(n, p)</text>
+        <text x="300" y="312" text-anchor="middle" font-size="12" fill="#333">f(x) = C(n,x) * p^x * (1-p)^(n-x)</text>
+        <text x="300" y="328" text-anchor="middle" font-size="11" fill="#888">成功的次数</text>
+        <defs>
+            <marker id="arrD1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#999"/></marker>
+            <marker id="arrD2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#999"/></marker>
+            <marker id="arrD3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#999"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">从伯努利试验到二项分布：伯努利 -> n次独立重复 -> 数成功次数 -> 二项分布</div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>彩票例子</div>
+    <p>$X \sim b(n=5, p=0.2)$，买 5 张彩票，恰好中 2 张的概率：</p>
+    <div class="formula-box">
+        $$P(X=2) = \binom{5}{2} (0.2)^2 (0.8)^3 = 10 \times 0.04 \times 0.512 = 0.2048$$
+    </div>
+    <p>恰好中 2 张的概率为 <strong>20.48%</strong>。</p>
+    <div class="note">相比于特定序列 $(0,0,1,0,1)$ 的概率 $p^2(1-p)^3 = 0.02048$，恰好中 2 张的概率大了 10 倍——因为 $\binom{5}{2}=10$ 种方式。</div>
+</div>
+
+<h2 class="section-title">Lecture 5 总结</h2>
+
+<div class="card connection" style="border-left-width: 6px;">
+    <div class="card-title"><span class="card-icon">&#128279;</span>全课思维导图</div>
+    <table class="comparison-table">
+        <tr><th colspan="2">§2.3 特殊数学期望</th><th colspan="2">§2.4 二项分布</th></tr>
+        <tr><td><strong>均值 $E[X]$</strong></td><td>$g(X)=X$</td><td rowspan="2"><strong>伯努利试验</strong></td><td rowspan="2">结果只有两类</td></tr>
+        <tr><td><strong>方差 $\mathrm{Var}(X)$</strong></td><td>$\mathrm{Var}(X)=E[X^2]-(E[X])^2$</td></tr>
+        <tr><td><strong>标准差 $\sigma$</strong></td><td>$\sigma = \sqrt{\mathrm{Var}(X)}$</td><td rowspan="2"><strong>伯努利分布</strong></td><td rowspan="2">$f(x)=p^x(1-p)^{1-x}$<br/>$E[X]=p$, $\mathrm{Var}=p(1-p)$</td></tr>
+        <tr><td><strong>原点矩</strong></td><td>$E[X^r] = \sum x^r f(x)$</td></tr>
+        <tr><td><strong>中心矩</strong></td><td>$E[(X-b)^r]$</td><td rowspan="2"><strong>n 重伯努利</strong></td><td rowspan="2">独立重复 n 次</td></tr>
+        <tr><td><strong>阶乘矩</strong></td><td>$E[X_{(r)}]$</td></tr>
+        <tr><td><strong>mgf</strong></td><td>$M(t)=E[e^{tX}]$, $M^{(r)}(0)=E[X^r]$</td><td><strong>二项分布</strong></td><td>$X \sim b(n,p)$<br/>$f(x)=\binom{n}{x}p^x(1-p)^{n-x}$</td></tr>
+        <tr><td><strong>几何mgf</strong></td><td>$M(t)=\frac{p e^t}{1-q e^t}$<br/>$E[X]=\frac{1}{p}$, $\mathrm{Var}=\frac{q}{p^2}$</td><td><strong>二项系数</strong></td><td>$\binom{n}{x}=\frac{n!}{x!(n-x)!}$</td></tr>
+    </table>
+    <div class="formula-box highlight">
+        $$\text{伯努利 } b(1,p) \longrightarrow \text{独立重复 } n \text{ 次} \longrightarrow \text{二项分布 } b(n,p)$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>常见易错点</div>
+    <p>1. <strong>方差公式：</strong>$\mathrm{Var}(X) = E[X^2] - (E[X])^2$，顺序不能反。</p>
+    <p>2. <strong>mgf 求导后必须代入 $t=0$</strong>，不要忘了。</p>
+    <p>3. <strong>几何分布 mgf 的条件：</strong>$M(t)$ 只在 $t < -\ln q$ 时有效（等比级数收敛：$q e^t < 1$）。</p>
+    <p>4. <strong>伯努利 vs 二项：</strong>$b(1,p)$ 就是伯努利；$b(n,p)$ 是 $n$ 个独立伯努利之和。</p>
+    <p>5. <strong>二项系数：</strong>$\binom{n}{x} = \frac{n!}{x!(n-x)!}$，注意 $0! = 1$。</p>
+    <p>6. <strong>mgf 唯一性：</strong>相同 mgf &rArr; 相同分布。</p>
+    <p>7. <strong>等比级数：</strong>$a + ar + ar^2 + \cdots = \frac{a}{1-r}$（$|r| < 1$），mgf 推导必备。</p>
+</div>
+
+<h2 class="section-title" id="lec5-binomial-mgf">二项分布的 mgf 推导 <span class="en">Mgf of Binomial Distribution</span></h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>二项分布 $X \sim b(n,p)$ 的 mgf</div>
+    <p><strong>pmf：</strong></p>
+    <div class="formula-box">
+        $$f(x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, \ldots, n$$
+    </div>
+    <p><strong>代入 mgf 定义：</strong></p>
+    <div class="formula-box">
+        $$M(t) = E[e^{tX}] = \sum_{x=0}^{n} e^{tx} \cdot \binom{n}{x} p^x (1-p)^{n-x}$$
+    </div>
+    <p>把 $e^{tx}$ 和 $p^x$ 拼在一起，写成 $(p e^t)^x$：</p>
+    <div class="formula-box">
+        $$M(t) = \sum_{x=0}^{n} \binom{n}{x} (p e^t)^x (1-p)^{n-x}$$
+    </div>
+    <p><strong>套二项式定理 $(a+b)^n = \sum_{x=0}^{n} \binom{n}{x} a^x b^{n-x}$：</strong></p>
+    <p>令 $a = p e^t$，$b = 1-p$：</p>
+    <div class="formula-box important">
+        $$M(t) = \big[(1-p) + p e^t\big]^n$$
+    </div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>从 mgf 求期望和方差</div>
+    <p><strong>一阶导数（链式法则）：</strong></p>
+    <div class="formula-box">
+        $$M'(t) = n\big[(1-p) + p e^t\big]^{n-1} \cdot p e^t$$
+    </div>
+    <p>代入 $t=0$，注意 $(1-p)+p = 1$：</p>
+    <div class="formula-box highlight">
+        $$M'(0) = n \cdot 1^{n-1} \cdot p = np = E[X]$$
+    </div>
+    <p><strong>二阶导数（乘积法则）：</strong></p>
+    <div class="formula-box">
+        $$M''(t) = n(n-1)\big[(1-p) + p e^t\big]^{n-2} (p e^t)^2 + n\big[(1-p) + p e^t\big]^{n-1} p e^t$$
+    </div>
+    <p>代入 $t=0$：</p>
+    <div class="formula-box">
+        $$M''(0) = n(n-1)p^2 + np = E[X^2]$$
+    </div>
+    <p><strong>方差：</strong></p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2 = n(n-1)p^2 + np - n^2p^2 = np(1-p)$$
+    </div>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>两个视角的统一</div>
+    <p><strong>视角一（二项式定理）：</strong>上面刚推完的，直接套 $(a+b)^n$ 展开。</p>
+    <p><strong>视角二（独立和）：</strong>二项分布是 $n$ 个独立伯努利之和：$X = X_1 + X_2 + \cdots + X_n$，每个 $X_i \sim \text{Bernoulli}(p)$。</p>
+    <p>伯努利的 mgf 是 $(1-p) + p e^t$，独立和的 mgf = mgf 的乘积，所以：</p>
+    <div class="formula-box highlight">
+        $$M_X(t) = \big[M_{X_1}(t)\big]^n = \big[(1-p) + p e^t\big]^n$$
+    </div>
+    <p>两种方法结果一致。视角二还解释了：$E[X] = n \cdot E[X_1] = np$，$\mathrm{Var}(X) = n \cdot \mathrm{Var}(X_1) = np(1-p)$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>特例：$n=1$ 时退化为伯努利分布</div>
+    <p>当 $n=1$ 时，$M(t) = (1-p) + p e^t$，正是伯努利分布的 mgf。二项分布 $b(n,p)$ 包含了伯努利 $b(1,p)$ 作为特例。</p>
+</div>
+
+</div><!-- end Lecture 5 -->
+
+<!-- ==================== LECTURE 6 ==================== -->
+<div class="lecture" id="lec6">
+<h1 class="lecture-title">Lecture 6 | 负二项分布与泊松分布 <span class="en">Negative Binomial &amp; Poisson</span></h1>
+
+<h2 class="section-title" id="lec6-s25">§2.5 负二项分布 <span class="en">Negative Binomial Distribution</span></h2>
+
+<h3 class="subsection-title">动机：试到成功为止</h3>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>从几何到负二项</div>
+    <p>回顾：<strong>几何分布</strong>问的是"试到<strong>第 1 次</strong>成功为止，需要多少次？"</p>
+    <p><strong>负二项分布</strong>问的是推广的问题："试到<strong>第 $r$ 次</strong>成功为止，需要多少次？"</p>
+    <p>$r = 1$ 时，负二项分布退化为几何分布。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>负二项分布的设定</div>
+    <p>进行一系列<strong>独立伯努利试验</strong>，每次成功概率为 $p$（失败概率 $q = 1-p$）。</p>
+    <p>$X =$ 直到获得<strong>第 $r$ 次成功</strong>所需的试验总次数。</p>
+    <p>$X$ 的取值范围：$S = \{r, r+1, r+2, \ldots\}$（至少需要 $r$ 次才能获得 $r$ 次成功）。</p>
+</div>
+
+<h3 class="subsection-title">负二项分布 pmf 的推导</h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>推导 pmf</div>
+    <p>$X = x$ 意味着：前 $x-1$ 次试验中恰好有 $r-1$ 次成功，且第 $x$ 次试验一定是成功。</p>
+    <p><strong>Step 1：</strong>前 $x-1$ 次中恰好有 $r-1$ 次成功的概率：</p>
+    <div class="formula-box">
+        $$\binom{x-1}{r-1} p^{r-1} q^{(x-1)-(r-1)} = \binom{x-1}{r-1} p^{r-1} q^{x-r}$$
+    </div>
+    <p><strong>Step 2：</strong>第 $x$ 次试验成功（概率 $p$）。由独立性，总概率为两者乘积：</p>
+    <div class="formula-box important">
+        $$f(x) = P(X = x) = \binom{x-1}{r-1} p^{r} q^{x-r}, \quad x = r, r+1, r+2, \ldots$$
+    </div>
+    <p>$X$ 服从<strong>负二项分布</strong>（<span class="en">negative binomial distribution</span>），记作 $X \sim \text{NB}(r, p)$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>理解"负二项"这个名字</div>
+    <p>$$\binom{x-1}{r-1} = \binom{x-1}{x-r} = (-1)^{x-r} \binom{-r}{x-r}$$</p>
+    <p>系数 $\binom{-r}{x-r}$ 涉及"负的"二项式系数，因此得名。</p>
+</div>
+
+<div class="card connection" id="lec6-geometric-special">
+    <div class="card-title"><span class="card-icon">&#128279;</span>几何分布作为特例（$r = 1$）</div>
+    <p>当 $r = 1$ 时：</p>
+    <div class="formula-box">
+        $$f(x) = \binom{x-1}{0} p^1 q^{x-1} = p q^{x-1}, \quad x = 1, 2, 3, \ldots$$
+    </div>
+    <p>这就是<strong>几何分布</strong>的 pmf：试到首次成功为止的次数。</p>
+</div>
+
+<h3 class="subsection-title">负二项分布的矩母函数、均值和方差</h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>负二项分布的 mgf</div>
+    <p>$$M(t) = \left(\frac{p e^t}{1 - q e^t}\right)^r, \quad t < -\ln q$$</p>
+    <p><strong>推导思路：</strong>负二项分布中 $X = Y_1 + Y_2 + \cdots + Y_r$，其中 $Y_i \sim \text{Geometric}(p)$ 且相互独立。</p>
+    <p>因此 $M_X(t) = [M_Y(t)]^r = \left(\frac{p e^t}{1 - q e^t}\right)^r$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>均值和方差</div>
+    <p>由 $X = Y_1 + \cdots + Y_r$（独立同几何分布的和）：</p>
+    <div class="formula-box important">
+        $$E[X] = r \cdot E[Y_i] = \frac{r}{p}$$
+        $$\mathrm{Var}(X) = r \cdot \mathrm{Var}(Y_i) = \frac{r q}{p^2} = \frac{r(1-p)}{p^2}$$
+    </div>
+    <table class="comparison-table">
+        <tr><th>负二项分布 $X \sim \text{NB}(r, p)$</th><th>表达式</th></tr>
+        <tr><td>pmf</td><td>$f(x) = \binom{x-1}{r-1} p^r q^{x-r},\; x = r, r+1, \ldots$</td></tr>
+        <tr><td>mgf</td><td>$M(t) = \left(\dfrac{p e^t}{1 - q e^t}\right)^r,\; t < -\ln q$</td></tr>
+        <tr><td>$E[X]$</td><td>$r/p$</td></tr>
+        <tr><td>$\mathrm{Var}(X)$</td><td>$r q / p^2$</td></tr>
+        <tr><td>特例 $r=1$</td><td>几何分布：$E[X]=1/p$, $\mathrm{Var}=q/p^2$</td></tr>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>负二项 vs 二项</div>
+    <table class="comparison-table">
+        <tr><th></th><th>二项分布 $b(n,p)$</th><th>负二项分布 $\text{NB}(r,p)$</th></tr>
+        <tr><td>试验次数</td><td><strong>固定 $n$</strong></td><td><strong>随机 $X$</strong></td></tr>
+        <tr><td>成功次数</td><td><strong>随机</strong>（关注成功的次数）</td><td><strong>固定 $r$</strong></td></tr>
+        <tr><td>问题</td><td>$n$ 次中成功几次？</td><td>要试多少次才能成功 $r$ 次？</td></tr>
+        <tr><td>取值范围</td><td>$\{0, 1, \ldots, n\}$</td><td>$\{r, r+1, r+2, \ldots\}$</td></tr>
+    </table>
+</div>
+
+<h2 class="section-title" id="lec6-s26">§2.6 泊松分布 <span class="en">Poisson Distribution</span></h2>
+
+<h3 class="subsection-title">APP：近似泊松过程</h3>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>APP 的定义 <span class="en">Approximate Poisson Process</span></div>
+    <p>考虑一段时间（或区域）内某随机事件发生的次数。假设：</p>
+    <p>(1) 在互不重叠的时间区间内，事件发生次数<strong>相互独立</strong>。</p>
+    <p>(2) 在一个充分短的时间区间 $\Delta t$ 内，事件发生一次的概率约为 $\lambda \Delta t$（$\lambda > 0$ 是常数，称为<strong>强度</strong> / <span class="en">rate</span>）。</p>
+    <p>(3) 在 $\Delta t$ 内，事件发生两次或更多的概率相对于 $\Delta t$ 可忽略（即 $o(\Delta t)$）。</p>
+    <p>满足以上三条的随机过程称为<strong>近似泊松过程</strong>（<span class="en">APP</span>）。</p>
+</div>
+
+<h3 class="subsection-title">从二项分布推导泊松分布</h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>泊松作为二项分布的极限</div>
+    <p>将时间区间 $[0, t]$ 分割为 $n$ 个等长子区间（每个长度 $t/n$）。令 $n \to \infty$。</p>
+    <p>每个子区间内事件发生一次的概率 $\approx \lambda \cdot \frac{t}{n} = p_n$。</p>
+    <p>$X =$ 在 $n$ 个子区间中事件发生的总次数。每个子区间近似为一个伯努利试验，因此 $X \sim b(n, p_n)$。</p>
+    <p><strong>极限过程（$n \to \infty$）：</strong></p>
+    <p>$$P(X = x) = \binom{n}{x} p_n^x (1-p_n)^{n-x}, \quad p_n = \frac{\lambda t}{n}$$</p>
+    <p>$$\begin{aligned}
+    P(X = x) &= \frac{n!}{x!(n-x)!} \left(\frac{\lambda t}{n}\right)^x \left(1 - \frac{\lambda t}{n}\right)^{n-x} \\
+    &= \frac{n(n-1)\cdots(n-x+1)}{n^x} \cdot \frac{(\lambda t)^x}{x!} \cdot \left(1 - \frac{\lambda t}{n}\right)^n \left(1 - \frac{\lambda t}{n}\right)^{-x}
+    \end{aligned}$$</p>
+    <p>当 $n \to \infty$：</p>
+    <p>$\frac{n(n-1)\cdots(n-x+1)}{n^x} \to 1$</p>
+    <p>$(1 - \frac{\lambda t}{n})^n \to e^{-\lambda t}$（重要极限 $e = \lim_{n\to\infty}(1+1/n)^n$）</p>
+    <p>$(1 - \frac{\lambda t}{n})^{-x} \to 1$</p>
+    <div class="formula-box important">
+        $$P(X = x) = \frac{(\lambda t)^x e^{-\lambda t}}{x!}, \quad x = 0, 1, 2, \ldots$$
+    </div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>泊松分布的定义</div>
+    <p>若随机变量 $X$ 的 pmf 为：</p>
+    <div class="formula-box important">
+        $$f(x) = \frac{\lambda^x e^{-\lambda}}{x!}, \quad x = 0, 1, 2, \ldots$$
+    </div>
+    <p>其中 $\lambda > 0$ 是参数（单位时间/区域内事件发生的平均次数），则称 $X$ 服从<strong>泊松分布</strong>（<span class="en">Poisson distribution</span>），记作 $X \sim \text{Poisson}(\lambda)$。</p>
+    <p>（上式中把 $\lambda t$ 简记为 $\lambda$，即固定时间区间后的参数。）</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>泊松分布适用于哪些场景？</div>
+    <p>在固定时间或空间内"稀有事件"的发生次数：</p>
+    <p>&bull; 一小时内的来电次数</p>
+    <p>&bull; 一天内交通事故数</p>
+    <p>&bull; 一页书上的印刷错误数</p>
+    <p>&bull; 一块材料上的瑕疵数</p>
+    <p>只要事件独立且发生率恒定，泊松分布就是合适的模型。</p>
+</div>
+
+<h3 class="subsection-title">泊松分布的矩母函数、均值和方差</h3>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>泊松分布的 mgf</div>
+    <p>$$M(t) = E[e^{tX}] = \sum_{x=0}^{\infty} e^{tx} \cdot \frac{\lambda^x e^{-\lambda}}{x!} = e^{-\lambda} \sum_{x=0}^{\infty} \frac{(\lambda e^t)^x}{x!}$$</p>
+    <p>回忆指数函数的泰勒展开：$\sum_{x=0}^{\infty} \frac{a^x}{x!} = e^a$</p>
+    <p>取 $a = \lambda e^t$：</p>
+    <div class="formula-box important">
+        $$M(t) = e^{-\lambda} \cdot e^{\lambda e^t} = e^{\lambda(e^t - 1)}$$
+    </div>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>均值和方差的推导</div>
+    <p><strong>求 $E[X]$：</strong></p>
+    <p>$M'(t) = e^{\lambda(e^t-1)} \cdot \lambda e^t = \lambda e^t e^{\lambda(e^t-1)}$</p>
+    <div class="formula-box highlight">
+        $$M'(0) = \lambda e^0 \cdot e^{\lambda(1-1)} = \lambda \cdot 1 \cdot 1 = \lambda = E[X]$$
+    </div>
+    <p>泊松分布的均值就是参数 $\lambda$！</p>
+    <p><strong>求 $\mathrm{Var}(X)$：</strong></p>
+    <p>$M''(t) = \lambda e^t e^{\lambda(e^t-1)} (1 + \lambda e^t)$</p>
+    <p>$M''(0) = \lambda \cdot 1 \cdot 1 \cdot (1 + \lambda) = \lambda(\lambda + 1) = E[X^2]$</p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2 = \lambda(\lambda+1) - \lambda^2 = \lambda$$
+    </div>
+    <p><strong>泊松分布的均值和方差相等，都等于 $\lambda$！</strong>这是一个非常重要的性质。</p>
+</div>
+
+<h3 class="subsection-title">例题：电话呼叫</h3>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>电话呼叫次数</div>
+    <p>某呼叫中心平均每小时接到 3 通电话。假设通话次数服从泊松分布。求一小时内恰好接到 5 通电话的概率。</p>
+    <p>$X \sim \text{Poisson}(\lambda = 3)$</p>
+    <div class="formula-box">
+        $$P(X = 5) = \frac{3^5 e^{-3}}{5!} = \frac{243 \times e^{-3}}{120} = \frac{243 \times 0.0498}{120} \approx 0.1008$$
+    </div>
+    <p>一小时内恰好 5 通电话的概率约为 <strong>10.08%</strong>。</p>
+</div>
+
+<h2 class="section-title">Lecture 6 总结</h2>
+
+<div class="card connection" style="border-left-width: 6px;">
+    <div class="card-title"><span class="card-icon">&#128279;</span>分布关系图</div>
+    <div class="formula-box highlight">
+        $$\text{伯努利 } b(1,p) \longrightarrow \text{二项 } b(n,p) \leftarrow \text{极限} \cdots \text{泊松 } \text{Poisson}(\lambda)$$
+        $$\text{伯努利 } b(1,p) \longrightarrow \text{几何 } \text{Geom}(p) \longrightarrow \text{负二项 } \text{NB}(r,p)$$
+    </div>
+    <table class="comparison-table">
+        <tr><th>分布</th><th>pmf</th><th>$E[X]$</th><th>$\mathrm{Var}(X)$</th><th>$M(t)$</th></tr>
+        <tr><td>伯努利 $b(1,p)$</td><td>$p^x(1-p)^{1-x}$</td><td>$p$</td><td>$p(1-p)$</td><td>$1-p+pe^t$</td></tr>
+        <tr><td>二项 $b(n,p)$</td><td>$\binom{n}{x}p^x q^{n-x}$</td><td>$np$</td><td>$npq$</td><td>$(1-p+pe^t)^n$</td></tr>
+        <tr><td>几何 $\text{Geom}(p)$</td><td>$q^{x-1}p$</td><td>$1/p$</td><td>$q/p^2$</td><td>$\frac{pe^t}{1-qe^t}$</td></tr>
+        <tr><td>负二项 $\text{NB}(r,p)$</td><td>$\binom{x-1}{r-1}p^r q^{x-r}$</td><td>$r/p$</td><td>$rq/p^2$</td><td>$\left(\frac{pe^t}{1-qe^t}\right)^r$</td></tr>
+        <tr><td>泊松 $\text{Poisson}(\lambda)$</td><td>$\frac{\lambda^x e^{-\lambda}}{x!}$</td><td>$\lambda$</td><td>$\lambda$</td><td>$e^{\lambda(e^t-1)}$</td></tr>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Lecture 6 常见易错点</div>
+    <p>1. <strong>负二项 vs 二项：</strong>二项固定试验次数随机成功数，负二项固定成功数随机试验次数！</p>
+    <p>2. <strong>负二项 pmf 中的组合数：</strong>是 $\binom{x-1}{r-1}$，不是 $\binom{x}{r}$。因为最后一次试验一定是成功。</p>
+    <p>3. <strong>泊松的均值和方差相等：</strong>$E[X] = \mathrm{Var}(X) = \lambda$，这是泊松的"名片"特征。</p>
+    <p>4. <strong>泊松是二项(大n小p)的极限：</strong>$n \to \infty$，$p \to 0$，但 $np = \lambda$ 保持恒定。</p>
+    <p>5. <strong>mgf 推导中要用到 $e^a = \sum a^x/x!$：</strong>泊松 mgf 的推导依赖于指数函数的泰勒展开。</p>
+    <p>6. <strong>极限公式：</strong>$\lim_{n\to\infty} (1 + a/n)^n = e^a$，泊松推导中的核心。</p>
+    <p>7. <strong>负二项 mgf：</strong>$M(t) = [M_{\text{Geom}}(t)]^r$，这是利用几何分布的独立和。</p>
+</div>
+
+</div><!-- end Lecture 6 -->
+
+<!-- ==================== LECTURE 7 ==================== -->
+<div class="lecture" id="lec7">
+<h1 class="lecture-title">Lecture 7 | Ch3 连续型随机变量 <span class="en">Continuous Random Variable</span></h1>
+
+<h2 class="section-title" id="lec7-s31">§3.1 连续型随机变量 <span class="en">Random Variable of Continuous Type</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>从离散到连续</div>
+    <p>离散 RV 的取值范围是<strong>有限个或可数无限个</strong>。但很多实际问题中，变量可以取一个区间上的任意值（如车速、身高、温度），这就是<strong>连续型随机变量</strong>。</p>
+    <p>核心变化：求和 $\sum$ 变成积分 $\int$，pmf 变成 pdf。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>连续型 RV 与概率密度函数 <span class="en">pdf</span></div>
+    <p>$X$ 是连续型 RV，如果存在函数 $f(x): S \to (0, \infty)$ 满足：</p>
+    <ol>
+        <li>$f(x) > 0$，对所有 $x \in S$</li>
+        <li>$\int_S f(x)\,dx = 1$（总面积 = 1）</li>
+        <li>$P(a \le X \le b) = \int_a^b f(x)\,dx$（区间概率 = 曲线下面积）</li>
+    </ol>
+    <p>$f(x)$ 称为<strong>概率密度函数</strong>（<span class="en">probability density function, pdf</span>）。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>离散 vs 连续 — 对照表</div>
+    <table class="comparison-table">
+        <tr><th></th><th>离散 <span class="en">Discrete</span></th><th>连续 <span class="en">Continuous</span></th></tr>
+        <tr><td>函数名</td><td>pmf $f(x): S \to (0,1]$</td><td>pdf $f(x): S \to (0, \infty)$</td></tr>
+        <tr><td>归一化</td><td>$\sum_{x \in S} f(x) = 1$</td><td>$\int_S f(x)dx = 1$</td></tr>
+        <tr><td>概率</td><td>$P(X \in A) = \sum_{x \in A} f(x)$</td><td>$P(X \in A) = \int_A f(x)dx$</td></tr>
+        <tr><td>单点概率</td><td>$P(X=a) = f(a)$</td><td>$P(X=a) = 0$</td></tr>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>连续型 RV 的三个重要注意点</div>
+    <p>1. <strong>单点概率为零：</strong>$P(X=a) = \int_a^a f(x)dx = 0$。因此区间端点包含与否不影响概率：</p>
+    <div class="formula-box">
+        $$P(a \le X \le b) = P(a < X \le b) = P(a \le X < b) = P(a < X < b)$$
+    </div>
+    <p>2. <strong>pdf 可以大于 1：</strong>不像 pmf 限制在 $[0,1]$，pdf 只要积分等于 1 即可。例如 $U(0.1, 0.2)$ 的 pdf 值为 10。</p>
+    <p>3. <strong>pdf 不必连续、不必有界：</strong>可以有跳跃间断点（如分段函数），也可以发散（如 Gamma 分布在 $x \to 0$ 时）。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>累积分布函数 cdf（连续版本）</div>
+    <p>对于连续型 RV $X$：</p>
+    <div class="formula-box important">
+        $$F(x) = P(X \le x) = \int_{-\infty}^x f(t)\,dt$$
+    </div>
+    <p><strong>关键性质：</strong></p>
+    <p>&bull; $F(x)$ 是非降函数</p>
+    <p>&bull; $P(a \le X \le b) = F(b) - F(a)$</p>
+    <p>&bull; <strong>pdf 和 cdf 的关系：</strong>$f(x) = F'(x)$（在 $F$ 可导的点处）— 这是微积分基本定理的直接推论</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>pdf 的直观理解</div>
+    <p>取一个极小区间 $[x, x+\Delta]$：</p>
+    <div class="formula-box">
+        $$P(x \le X \le x+\Delta) = \int_x^{x+\Delta} f(t)dt \approx f(x)\Delta$$
+    </div>
+    <p>所以 $f(x)$ 可以理解为<strong>单位长度上的概率质量</strong>（probability mass per unit length near $x$）。它本身不是概率，但乘以长度 $\Delta$ 后近似等于概率。</p>
+</div>
+
+<h2 class="section-title" id="lec7-examples">均匀分布与例题</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>均匀分布 <span class="en">Uniform Distribution</span> $X \sim U(a,b)$</div>
+    <p>在 $[a,b]$ 上随机选一个点，每个位置"等可能"。</p>
+    <p><strong>pdf：</strong></p>
+    <div class="formula-box important">
+        $$f(x) = \frac{1}{b-a}, \quad a \le x \le b$$
+    </div>
+    <p><strong>cdf：</strong></p>
+    <div class="formula-box">
+        $$F(x) = \begin{cases} 0, & x < a \\ \frac{x-a}{b-a}, & a \le x \le b \\ 1, & x > b \end{cases}$$
+    </div>
+    <p><strong>直观：</strong>$P(X \le x) = \frac{x-a}{b-a}$，概率与区间长度成正比。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 2（p.96）：$g(y) = 2y, \; 0 < y < 1$</div>
+    <p><strong>求 cdf $G(y)$：</strong></p>
+    <p>$G(y) = P(Y \le y) = \int_{-\infty}^y g(t)dt$</p>
+    <p>$y \le 0$ 时：$G(y) = 0$</p>
+    <p>$0 < y < 1$ 时：$G(y) = \int_0^y 2t\,dt = y^2$</p>
+    <p>$y \ge 1$ 时：$G(y) = 1$</p>
+    <p><strong>求概率：</strong></p>
+    <p>$P(\frac{1}{2} < Y \le \frac{3}{4}) = G(\frac{3}{4}) - G(\frac{1}{2}) = (\frac{3}{4})^2 - (\frac{1}{2})^2 = \frac{9}{16} - \frac{4}{16} = \frac{5}{16}$</p>
+    <p>$P(\frac{1}{4} < Y < 2) = G(2) - G(\frac{1}{4}) = 1 - \frac{1}{16} = \frac{15}{16}$</p>
+</div>
+
+<h2 class="section-title" id="lec7-expectation">连续型 RV 的数学期望与 mgf</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>数学期望（连续版本）</div>
+    <div class="formula-box important">
+        $$E[g(X)] = \int_S g(x)f(x)\,dx = \int_{-\infty}^{\infty} g(x)f(x)\,dx$$
+    </div>
+    <p>期望仍然是<strong>线性算子</strong>：$E[c_1 g_1(X) + c_2 g_2(X)] = c_1 E[g_1(X)] + c_2 E[g_2(X)]$。</p>
+    <p><strong>特殊期望（与离散完全对应）：</strong></p>
+    <table class="comparison-table">
+        <tr><th>名称</th><th>$g(X)$</th><th>公式</th></tr>
+        <tr><td>均值 Mean</td><td>$X$</td><td>$E[X] = \int x f(x)dx$</td></tr>
+        <tr><td>方差 Variance</td><td>$(X-E[X])^2$</td><td>$\mathrm{Var}(X) = E[X^2] - (E[X])^2$</td></tr>
+        <tr><td>$r$ 阶矩</td><td>$X^r$</td><td>$E[X^r] = \int x^r f(x)dx$</td></tr>
+        <tr><td>mgf</td><td>$e^{tX}$</td><td>$M(t) = \int e^{tx} f(x)dx$, $|t|<h$</td></tr>
+    </table>
+    <p>mgf 同样满足 $M^{(r)}(0) = E[X^r]$，$E[X] = M'(0)$，$\mathrm{Var}(X) = M''(0) - [M'(0)]^2$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 3（p.98）：$X \sim U(0,100)$</div>
+    <p>$f(x) = \frac{1}{100}, \; 0 < x < 100$</p>
+    <div class="formula-box">
+        $$E[X] = \int_0^{100} x \cdot \frac{1}{100} dx = \frac{1}{100} \cdot \frac{x^2}{2}\Big|_0^{100} = 50$$
+        $$\mathrm{Var}(X) = \int_0^{100} (x-50)^2 \cdot \frac{1}{100} dx = \frac{2500}{3}$$
+    </div>
+    <p>对于一般 $U(a,b)$：$E[X] = \frac{a+b}{2}$，$\mathrm{Var}(X) = \frac{(b-a)^2}{12}$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 4（p.99）：$f(x) = xe^{-x}, \; x > 0$</div>
+    <p>这是 Gamma 分布的特例（$\alpha=2, \theta=1$）。用 mgf 求期望：</p>
+    <div class="formula-box">
+        $$M(t) = \int_0^\infty e^{tx} \cdot x e^{-x} dx = \int_0^\infty x e^{-(1-t)x} dx = \frac{1}{(1-t)^2}, \quad t < 1$$
+    </div>
+    <p>$M'(t) = \frac{2}{(1-t)^3}$，$M'(0) = 2 = E[X]$</p>
+    <p>$M''(t) = \frac{6}{(1-t)^4}$，$M''(0) = 6$</p>
+    <p>$\mathrm{Var}(X) = 6 - 2^2 = 2$</p>
+</div>
+
+<h2 class="section-title" id="lec7-percentile">百分位数 <span class="en">Percentile</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>第 100p 百分位数 <span class="en">(100p)th Percentile</span></div>
+    <p>数 $\pi_p$ 使得 pdf 曲线下 $\pi_p$ 左侧的面积恰好为 $p$：</p>
+    <div class="formula-box important">
+        $$p = \int_{-\infty}^{\pi_p} f(x)dx = F(\pi_p)$$
+    </div>
+    <p>&bull; $\pi_{0.5}$ = 中位数 (<span class="en">median</span>)，也称第二四分位数</p>
+    <p>&bull; $\pi_{0.25}$ = 第一四分位数 (<span class="en">first quartile</span>)</p>
+    <p>&bull; $\pi_{0.75}$ = 第三四分位数 (<span class="en">third quartile</span>)</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 5（p.99）：求 $\pi_{0.3}$</div>
+    <p>$f(x) = \frac{3x^2}{4^3} e^{-(x/4)^3}, \; x > 0$</p>
+    <p>先求 cdf：$F(x) = 1 - e^{-(x/4)^3}$（当 $x \ge 0$）</p>
+    <p>$F(\pi_{0.3}) = 0.3 \;\Rightarrow\; 1 - e^{-(\pi_{0.3}/4)^3} = 0.3$</p>
+    <p>$e^{-(\pi_{0.3}/4)^3} = 0.7 \;\Rightarrow\; -(\pi_{0.3}/4)^3 = \ln 0.7$</p>
+    <p>$\pi_{0.3} = 4(-\ln 0.7)^{1/3} \approx 2.84$</p>
+</div>
+
+</div><!-- end Lecture 7 -->
+
+<!-- ==================== LECTURE 8 ==================== -->
+<div class="lecture" id="lec8">
+<h1 class="lecture-title">Lecture 8 | 指数分布 · 伽马分布 · 卡方分布 <span class="en">Exponential, Gamma &amp; Chi-square</span></h1>
+
+<h2 class="section-title" id="lec8-exp">指数分布 <span class="en">Exponential Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>从泊松过程到指数分布</div>
+    <p>回忆 APP（近似泊松过程）：单位时间内平均发生 $\lambda$ 次事件。</p>
+    <p><strong>问题：</strong>等到<strong>第一次</strong>事件发生需要等多久？令 $W$ = 等待时间。</p>
+    <p><strong>推导 cdf：</strong></p>
+    <p>$F(w) = P(W \le w) = 1 - P(W > w)$</p>
+    <p>$P(W > w) = P($在 $[0,w]$ 内没有事件发生$) = e^{-\lambda w}$（泊松分布 $P(Y=0)$）</p>
+    <p>$F(w) = 1 - e^{-\lambda w}, \; w \ge 0$</p>
+    <p><strong>pdf = cdf 的导数：</strong></p>
+    <div class="formula-box important">
+        $$f(w) = F'(w) = \lambda e^{-\lambda w} = \frac{1}{\theta} e^{-w/\theta}, \quad w \ge 0$$
+    </div>
+    <p>其中 $\theta = \frac{1}{\lambda}$。记作 $X \sim \text{Exp}(\theta)$，$\theta > 0$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>指数分布的期望、方差与 mgf</div>
+    <p><strong>mgf：</strong></p>
+    <div class="formula-box">
+        $$M(t) = \int_0^\infty e^{tx} \cdot \frac{1}{\theta} e^{-x/\theta} dx = \frac{1}{\theta}\int_0^\infty e^{-x(1/\theta - t)} dx = \frac{1}{1 - \theta t}, \quad t < \frac{1}{\theta}$$
+    </div>
+    <p>导数：$M'(t) = \frac{\theta}{(1-\theta t)^2}$，$M''(t) = \frac{2\theta^2}{(1-\theta t)^3}$</p>
+    <p>代入 $t=0$：</p>
+    <div class="formula-box highlight">
+        $$E[X] = M'(0) = \theta, \qquad \mathrm{Var}(X) = M''(0) - [M'(0)]^2 = 2\theta^2 - \theta^2 = \theta^2$$
+    </div>
+    <p>若用参数 $\lambda = 1/\theta$：$E[X] = 1/\lambda$，$\mathrm{Var}(X) = 1/\lambda^2$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 1（p.105）：商店等待时间</div>
+    <p>顾客按 APP 到达，平均每小时 20 人。求店主等待第一个顾客超过 5 分钟的概率。</p>
+    <p>$\lambda = 20/60 = 1/3$（每分钟平均），$\theta = 1/\lambda = 3$ 分钟。</p>
+    <p>$X \sim \text{Exp}(\theta=3)$，$f(x) = \frac{1}{3} e^{-x/3}$</p>
+    <div class="formula-box">
+        $$P(X > 5) = \int_5^\infty \frac{1}{3} e^{-x/3} dx = e^{-5/3} \approx 0.18$$
+    </div>
+</div>
+
+<h2 class="section-title" id="lec8-gamma">伽马分布 <span class="en">Gamma Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>从指数到伽马：等到第 $\alpha$ 次事件</div>
+    <p>指数分布回答"等到<strong>第一次</strong>要多久"。现在问：等到<strong>第 $\alpha$ 次</strong>要多久？</p>
+    <p>令 $W$ = 等到第 $\alpha$ 次事件的等待时间。$\alpha$ 是正整数。</p>
+    <p><strong>CDF 推导：</strong>和指数分布思路一致——</p>
+    <p>$F(w) = 1 - P(W > w)$，其中 $P(W > w) = P($在 $[0,w]$ 内发生次数 $< \alpha)$</p>
+    <p>在长度为 $w$ 的区间里，发生次数 $Y$ 服从泊松分布，参数 $\lambda w$：</p>
+    <div class="formula-box">
+        $$P(W > w) = \sum_{k=0}^{\alpha-1} \frac{(\lambda w)^k e^{-\lambda w}}{k!}$$
+    </div>
+    <p>对 $w$ 求导得 pdf（令 $\theta = 1/\lambda$）：</p>
+    <div class="formula-box important">
+        $$f(w) = \frac{\lambda^\alpha w^{\alpha-1} e^{-\lambda w}}{(\alpha-1)!} = \frac{1}{\Gamma(\alpha)\theta^\alpha} w^{\alpha-1} e^{-w/\theta}, \quad w \ge 0$$
+    </div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>伽马函数 <span class="en">Gamma Function</span></div>
+    <p>为了让 $\alpha$ 可以取任意正实数（不限于整数），引入伽马函数：</p>
+    <div class="formula-box important">
+        $$\Gamma(t) = \int_0^\infty y^{t-1} e^{-y} dy, \quad t > 0$$
+    </div>
+    <p><strong>核心性质：</strong></p>
+    <p>&bull; $\Gamma(t) = (t-1)\Gamma(t-1)$（分部积分可得）</p>
+    <p>&bull; 当 $n$ 为正整数时：$\Gamma(n) = (n-1)!$</p>
+    <p>&bull; $\Gamma(1) = 1$，$\Gamma(\frac{1}{2}) = \sqrt{\pi}$</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>伽马分布 <span class="en">Gamma Distribution</span> $X \sim \Gamma(\alpha, \theta)$</div>
+    <p><strong>pdf：</strong></p>
+    <div class="formula-box important">
+        $$f(x) = \frac{1}{\Gamma(\alpha)\theta^\alpha} x^{\alpha-1} e^{-x/\theta}, \quad x \ge 0, \;\alpha>0,\;\theta>0$$
+    </div>
+    <p><strong>mgf：</strong></p>
+    <div class="formula-box">
+        $$M(t) = \frac{1}{(1-\theta t)^\alpha}, \quad t < \frac{1}{\theta}$$
+    </div>
+    <div class="formula-box highlight">
+        $$E[X] = \alpha\theta, \qquad \mathrm{Var}(X) = \alpha\theta^2$$
+    </div>
+    <p><strong>$\alpha=1$ 时退化为指数分布：</strong>$f(x) = \frac{1}{\theta} e^{-x/\theta}$，$\Gamma(1,\theta) = \text{Exp}(\theta)$。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>伽马分布与独立指数分布之和</div>
+    <p>刚才用"泊松 + 求导"推导了 Gamma。还有一个更简洁的视角：</p>
+    <p>$W$ = 等到第 $\alpha$ 次 = 第一次等待 + 第一次到第二次的间隔 + ... + 第 $\alpha-1$ 到第 $\alpha$ 的间隔</p>
+    <p>即 $W = W_1 + W_2 + \cdots + W_\alpha$，其中每个 $W_i \sim \text{Exp}(\theta)$ 且相互独立。</p>
+    <p>所以 Gamma mgf = $[\text{Exp mgf}]^\alpha = (\frac{1}{1-\theta t})^\alpha$，与上面公式一致。</p>
+</div>
+
+<h2 class="section-title" id="lec8-chisq">卡方分布 <span class="en">Chi-square Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>卡方分布 $X \sim \chi^2(r)$</div>
+    <p>卡方分布是 Gamma 分布的特例：取 $\theta = 2$，$\alpha = r/2$（$r$ 为整数，称为<strong>自由度</strong>）。</p>
+    <p><strong>pdf：</strong></p>
+    <div class="formula-box important">
+        $$f(x) = \frac{1}{\Gamma(r/2) 2^{r/2}} x^{r/2 - 1} e^{-x/2}, \quad x > 0$$
+    </div>
+    <p><strong>mgf：</strong></p>
+    <div class="formula-box">
+        $$M(t) = (1-2t)^{-r/2}, \quad t < \frac{1}{2}$$
+    </div>
+    <div class="formula-box highlight">
+        $$E[X] = r, \qquad \mathrm{Var}(X) = 2r$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 2：查卡方分布表</div>
+    <p>$X \sim \chi^2(5)$（自由度 $r=5$），查表得：</p>
+    <p>$P(1.145 \le X \le 12.83) = F(12.83) - F(1.145) = 0.975 - 0.05 = 0.925$</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>Gamma 家族关系图</div>
+    <div class="formula-box highlight">
+        $$\text{Gamma}(\alpha, \theta) \xrightarrow{\alpha=1} \text{Exp}(\theta) \xrightarrow{\theta=2,\;\alpha=r/2} \chi^2(r)$$
+    </div>
+    <p>指数分布是 $\alpha=1$ 的特例；卡方分布是 $\theta=2$ 且 $\alpha = r/2$ 的特例。三者共享同一个 mgf 形式，只是参数不同。</p>
+</div>
+
+</div><!-- end Lecture 8 -->
+
+<!-- ==================== LECTURE 9 ==================== -->
+<div class="lecture" id="lec9">
+<h1 class="lecture-title">Lecture 9 | 正态分布 <span class="en">Normal Distribution</span></h1>
+
+<h2 class="section-title" id="lec9-normal">正态分布 <span class="en">Normal (Gaussian) Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：正态分布 $X \sim N(\mu, \sigma^2)$</div>
+    <p>连续 RV $X$ 服从正态分布，若其 pdf 为：</p>
+    <div class="formula-box important">
+        $$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right), \quad -\infty < x < \infty$$
+    </div>
+    <p>参数：$\mu$（均值），$\sigma^2$（方差）。$\sigma > 0$。</p>
+    <p>著名的"钟形曲线"（<span class="en">bell-shaped curve</span>）。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>验证 $\int f(x)dx = 1$（经典证明）</div>
+    <p>令 $z = \frac{x-\mu}{\sigma}$，问题转化为证明 $I = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-z^2/2} dz = 1$</p>
+    <p>考虑 $I^2$，并用<strong>极坐标变换</strong>：</p>
+    <div class="formula-box">
+        $$I^2 = \frac{1}{2\pi}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} e^{-(y^2+z^2)/2} dy\,dz = \frac{1}{2\pi}\int_0^{2\pi}\int_0^\infty e^{-r^2/2} r\,dr\,d\theta$$
+        $$= \frac{1}{2\pi} \cdot 2\pi \cdot \left[-e^{-r^2/2}\right]_0^\infty = 1$$
+    </div>
+    <p>这个经典证明用到了：直角坐标 → 极坐标，雅可比行列式 $r$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>正态分布的 mgf、期望与方差</div>
+    <p><strong>mgf：</strong>$M(t) = E[e^{tX}]$，通过配方法化简积分：</p>
+    <div class="formula-box important">
+        $$M(t) = \exp\!\left(\mu t + \frac{\sigma^2 t^2}{2}\right)$$
+    </div>
+    <p><strong>求导验证：</strong></p>
+    <p>$M'(t) = (\mu + \sigma^2 t) \exp(\mu t + \frac{\sigma^2 t^2}{2})$，$M'(0) = \mu$</p>
+    <p>$M''(t) = \sigma^2 \exp(\ldots) + (\mu+\sigma^2 t)^2 \exp(\ldots)$，$M''(0) = \sigma^2 + \mu^2$</p>
+    <div class="formula-box highlight">
+        $$E[X] = \mu, \qquad \mathrm{Var}(X) = M''(0) - [M'(0)]^2 = (\sigma^2+\mu^2) - \mu^2 = \sigma^2$$
+    </div>
+    <p>正态分布的<strong>两个参数恰好就是均值和方差</strong>，这个性质特别优雅。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 1（p.115）：从 pdf 读出参数</div>
+    <p>$f(x) = \frac{1}{\sqrt{32\pi}} \exp\!\left(-\frac{(x+7)^2}{32}\right)$</p>
+    <p>对照标准形式 $\frac{1}{\sqrt{2\pi\sigma^2}} \exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$：</p>
+    <p>$2\sigma^2 = 32 \;\Rightarrow\; \sigma^2 = 16$，$\mu = -7$</p>
+    <p>所以 $X \sim N(-7, 16)$。$E[X] = -7$，$\mathrm{Var}(X) = 16$。</p>
+    <p>mgf：$M(t) = \exp(-7t + 8t^2)$</p>
+</div>
+
+<h2 class="section-title" id="lec9-standard">标准正态分布 <span class="en">Standard Normal</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>标准正态分布 $Z \sim N(0,1)$</div>
+    <p>取 $\mu=0, \sigma=1$：</p>
+    <div class="formula-box important">
+        $$\phi(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2}, \quad -\infty < z < \infty$$
+    </div>
+    <p>cdf 记为 $\Phi(z) = P(Z \le z) = \int_{-\infty}^z \phi(t)dt$。</p>
+    <p><strong>对称性：</strong>$\Phi(-z) = 1 - \Phi(z)$。这是因为 $\phi(z)$ 是偶函数。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Theorem 3.3-1：标准化变换</div>
+    <p>若 $X \sim N(\mu, \sigma^2)$，则</p>
+    <div class="formula-box important">
+        $$\frac{X - \mu}{\sigma} \sim N(0,1)$$
+    </div>
+    <p>这意味任何正态分布都可以通过<strong>减均值、除标准差</strong>转化为标准正态。于是：</p>
+    <div class="formula-box highlight">
+        $$P(a \le X \le b) = P\!\left(\frac{a-\mu}{\sigma} \le \frac{X-\mu}{\sigma} \le \frac{b-\mu}{\sigma}\right) = \Phi\!\left(\frac{b-\mu}{\sigma}\right) - \Phi\!\left(\frac{a-\mu}{\sigma}\right)$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 2（p.116）：标准正态查表</div>
+    <p>$Z \sim N(0,1)$：</p>
+    <p>$P(Z \le 1.24) = \Phi(1.24) = 0.8925$</p>
+    <p>$P(1.24 \le Z \le 2.37) = \Phi(2.37) - \Phi(1.24) = 0.9911 - 0.8925 = 0.0986$</p>
+    <p>$P(-2.37 \le Z \le -1.24) = \Phi(-1.24) - \Phi(-2.37) = [1-\Phi(1.24)] - [1-\Phi(2.37)]$</p>
+    <p>$= (1-0.8925) - (1-0.9911) = 0.1075 - 0.0089 = 0.0986$（对称性使得此概率与上相同）</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 4（p.118）：非标准正态</div>
+    <p>$X \sim N(3, 16)$，即 $\mu = 3, \sigma = 4$。</p>
+    <p>$P(4 \le X \le 8) = \Phi(\frac{8-3}{4}) - \Phi(\frac{4-3}{4}) = \Phi(1.25) - \Phi(0.25)$</p>
+    <p>$= 0.8944 - 0.5987 = 0.2957$</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>上 100$\alpha$ 百分位点 <span class="en">Upper 100α Percent Point</span></div>
+    <p>$z_\alpha$ 使得 $P(Z \ge z_\alpha) = \alpha$。</p>
+    <p>由于 $P(Z < z_\alpha) = 1 - \alpha$，所以 $z_\alpha$ 就是第 $100(1-\alpha)$ 百分位数。</p>
+    <p>常用值：$z_{0.05} = 1.645$，$z_{0.025} = 1.96$，$z_{0.0125} = 2.24$。</p>
+</div>
+
+<h2 class="section-title" id="lec9-relation">正态分布与卡方分布的关系</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Theorem 3.3-2：正态的平方是卡方</div>
+    <p>若 $X \sim N(\mu, \sigma^2)$（$\sigma^2 > 0$），则</p>
+    <div class="formula-box important">
+        $$\frac{(X-\mu)^2}{\sigma^2} \sim \chi^2(1)$$
+    </div>
+    <p><strong>证明思路：</strong>令 $Z = \frac{X-\mu}{\sigma} \sim N(0,1)$，$V = Z^2$。写出 $V$ 的 cdf：</p>
+    <p>$G(v) = P(V \le v) = P(-\sqrt{v} \le Z \le \sqrt{v}) = 2\int_0^{\sqrt{v}} \frac{1}{\sqrt{2\pi}}e^{-z^2/2}dz$</p>
+    <p>求导得 pdf：$g(v) = \frac{1}{\sqrt{2\pi}} v^{-1/2} e^{-v/2}$，这正是 $\chi^2(1)$ 的 pdf。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>Ch3 连续分布总表</div>
+    <table class="comparison-table">
+        <tr><th>分布</th><th>符号</th><th>pdf</th><th>$E[X]$</th><th>$\mathrm{Var}$</th><th>mgf</th></tr>
+        <tr><td>均匀</td><td>$U(a,b)$</td><td>$\frac{1}{b-a},\;x\in[a,b]$</td><td>$\frac{a+b}{2}$</td><td>$\frac{(b-a)^2}{12}$</td><td>—</td></tr>
+        <tr><td>指数</td><td>$\text{Exp}(\theta)$</td><td>$\frac{1}{\theta}e^{-x/\theta},\;x\ge0$</td><td>$\theta$</td><td>$\theta^2$</td><td>$\frac{1}{1-\theta t}$</td></tr>
+        <tr><td>伽马</td><td>$\Gamma(\alpha,\theta)$</td><td>$\frac{x^{\alpha-1}e^{-x/\theta}}{\Gamma(\alpha)\theta^\alpha},\;x\ge0$</td><td>$\alpha\theta$</td><td>$\alpha\theta^2$</td><td>$\frac{1}{(1-\theta t)^\alpha}$</td></tr>
+        <tr><td>卡方</td><td>$\chi^2(r)$</td><td>$\frac{x^{r/2-1}e^{-x/2}}{\Gamma(r/2)2^{r/2}},\;x>0$</td><td>$r$</td><td>$2r$</td><td>$(1-2t)^{-r/2}$</td></tr>
+        <tr><td>正态</td><td>$N(\mu,\sigma^2)$</td><td>$\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$</td><td>$\mu$</td><td>$\sigma^2$</td><td>$e^{\mu t+\sigma^2t^2/2}$</td></tr>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Lecture 7-9 常见易错点</div>
+    <p>1. <strong>连续型单点概率为零：</strong>$P(X=a)=0$，不要用 pmf 的思维处理 pdf。</p>
+    <p>2. <strong>pdf 可以大于 1：</strong>pdf 不是概率，是密度。只要积分等于 1 即可。</p>
+    <p>3. <strong>标准化后查表：</strong>$X \sim N(\mu,\sigma^2)$ 要先算 $Z = \frac{X-\mu}{\sigma}$，再用 $\Phi$ 表。</p>
+    <p>4. <strong>卡方是 Gamma 特例：</strong>$\chi^2(r) = \Gamma(r/2, 2)$。记住 $E[\chi^2(r)]=r$，$\mathrm{Var}=2r$。</p>
+    <p>5. <strong>指数是 Gamma 特例：</strong>$\text{Exp}(\theta) = \Gamma(1, \theta)$。</p>
+    <p>6. <strong>正态 mgf 的形式：</strong>$M(t) = e^{\mu t + \sigma^2 t^2/2}$，指数上不是 $-\frac{1}{2}$，而是 $+\frac{1}{2}$。</p>
+    <p>7. <strong>$\Phi(-z) = 1 - \Phi(z)$：</strong>利用对称性简化计算，不要在负值上出错。</p>
+</div>
+
+</div><!-- end Lecture 9 -->
+
+<!-- ==================== LECTURE 10 ==================== -->
+<div class="lecture" id="lec10">
+<h1 class="lecture-title">Lecture 10 | Ch4 二元离散分布 <span class="en">Bivariate Distribution (Discrete)</span></h1>
+
+<h2 class="section-title" id="lec10-bivar">二元随机变量与联合 pmf <span class="en">Bivariate RV &amp; Joint pmf</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>从一元到二元</div>
+    <p>之前我们研究<strong>一个</strong>随机变量（身高、分数）。但现实中经常需要同时研究<strong>两个</strong>——身高<strong>和</strong>体重、语文<strong>和</strong>数学。这就是<strong>二元随机变量</strong> $(X,Y)$。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>联合 pmf <span class="en">Joint pmf</span></div>
+    <p>$f(x,y): S \to (0,1]$ 称为 $(X,Y)$ 的联合 pmf，满足：</p>
+    <ol>
+        <li>$f(x,y) > 0$ 对所有 $(x,y) \in S$</li>
+        <li>$\sum_{(x,y)\in S} f(x,y) = 1$</li>
+        <li>$P((X,Y) \in A) = \sum_{(x,y)\in A} f(x,y)$</li>
+    </ol>
+    <p>特别地，$P(X=x, Y=y) = f(x,y)$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 134)：两四面骰子，$X$=较小者，$Y$=较大者</div>
+    <p>原样本空间 16 个等可能结果。定义 $(X,Y)$ 后：</p>
+    <div class="fbox">
+        $$S = \{(1,1),(1,2),(1,3),(1,4),(2,2),(2,3),(2,4),(3,3),(3,4),(4,4)\}$$
+    </div>
+    <p>$(1,2)$ 对应原样本中的 $(1,2)$ 和 $(2,1)$ → 概率 $2/16$。</p>
+    <p>$(1,1)$ 只对应 $(1,1)$ → 概率 $1/16$。</p>
+    <div class="fbox imp">
+        $$f(x,y) = \begin{cases} \frac{2}{16}, & 1 \le x \lt y \le 4 \\[4pt] \frac{1}{16}, & 1 \le x = y \le 4 \end{cases}$$
+    </div>
+</div>
+
+<h2 class="section-title" id="lec10-marginal">边缘 pmf <span class="en">Marginal pmf</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>从联合到边缘：对另一个变量"积掉"</div>
+    <p>$X$ 的边缘 pmf（只看 $X$ 自己的分布）：</p>
+    <div class="fbox imp">
+        $$f_X(x) = P(X=x) = \sum_{y: (x,y)\in S} f(x,y)$$
+    </div>
+    <p>$Y$ 的边缘 pmf：$f_Y(y) = \sum_{x: (x,y)\in S} f(x,y)$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 续：边缘 pmf</div>
+    <p>对例1的联合pmf求边缘：</p>
+    <p>$x=1$：$f_X(1) = f(1,1)+f(1,2)+f(1,3)+f(1,4) = \frac{1}{16}+\frac{2}{16}+\frac{2}{16}+\frac{2}{16} = \frac{7}{16}$</p>
+    <p>$x=2$：$f_X(2) = f(2,2)+f(2,3)+f(2,4) = \frac{1+2+2}{16}=\frac{5}{16}$</p>
+    <p>$x=3$：$f_X(3) = \frac{3}{16}$，$x=4$：$f_X(4) = \frac{1}{16}$。</p>
+    <p>$f_Y(y)$ 对称得出：$f_Y(1)=\frac{1}{16}, f_Y(2)=\frac{3}{16}, f_Y(3)=\frac{5}{16}, f_Y(4)=\frac{7}{16}$。</p>
+</div>
+
+<h2 class="section-title" id="lec10-trinomial">三项分布 <span class="en">Trinomial Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>二项的推广：三种互斥结果</div>
+    <p>$n$ 次独立重复试验，每次结果有三种："优"（概率 $p_X$）、"良"（$p_Y$）、"差"（$1-p_X-p_Y$）。</p>
+    <p>$X$ = "优"的次数，$Y$ = "良"的次数。缺陷数 $Z = n-X-Y$。</p>
+    <div class="fbox imp">
+        $$f(x,y) = \frac{n!}{x!\,y!\,(n-x-y)!}\,p_X^x\,p_Y^y\,(1-p_X-p_Y)^{\,n-x-y}$$
+    </div>
+    <p>支撑集：$S = \{(x,y) \mid x+y \le n,\; x,y = 0,1,\dots,n\}$。</p>
+    <p><strong>由来：</strong>三项式展开 $(a+b+c)^n = \sum_{x=0}^n\sum_{y=0}^{n-x} \frac{n!}{x!y!(n-x-y)!} a^x b^y c^{n-x-y}$。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>边缘分布：$X \sim b(n, p_X)$，$Y \sim b(n, p_Y)$</div>
+    <p>对 $y$ 求和后：$f_X(x) = \binom{n}{x} p_X^x (1-p_X)^{n-x}$——就是二项分布。</p>
+    <p class="note">直观理解：不管"良"和"差"怎么分，只看"优"vs"非优"就是伯努利，$n$ 次独立就是二项。</p>
+</div>
+
+<h2 class="section-title" id="lec10-indep">离散 RV 的独立性 <span class="en">Independence</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>二元独立定义</div>
+    <p>$X$ 和 $Y$ <strong>独立</strong> $\iff$ 对所有 $x \in S_X, y \in S_Y$：</p>
+    <div class="fbox imp">
+        $$f(x,y) = f_X(x) f_Y(y)$$
+    </div>
+    <p><strong>必要条件：</strong>$S = S_X \times S_Y$（支撑集必须是<strong>矩形</strong>）。如果支撑集不是矩形（如 $x$ 和 $y$ 取值范围互相依赖），则一定不独立。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 135)：$f(x,y) = \frac{x+y}{21},\; x=1,2,3,\; y=1,2$</div>
+    <p>$f_X(x) = \frac{2x+3}{21}$，$f_Y(y) = \frac{3y+6}{21}$。</p>
+    <p>检查：$\frac{x+y}{21} \stackrel{?}{=} \frac{2x+3}{21} \cdot \frac{3y+6}{21}$ → <strong>不成立</strong>，$X$ 和 $Y$ 不独立。</p>
+</div>
+
+<h2 class="section-title" id="lec10-expect">二元期望</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>$E[g(X,Y)]$ 的计算</div>
+    <div class="fbox imp">
+        $$E[g(X,Y)] = \sum_{(x,y)\in S} g(x,y) f(x,y)$$
+    </div>
+    <p><strong>两种求 $E[X]$ 的方法（等效）：</strong></p>
+    <p>法1（边缘）：$E[X] = \sum x f_X(x)$</p>
+    <p>法2（联合）：$E[X] = \sum_{(x,y)} x f(x,y) = \sum_x x \sum_y f(x,y) = \sum_x x f_X(x)$</p>
+</div>
+
+</div><!-- end Lecture 10 -->
+
+<!-- ==================== LECTURE 11 ==================== -->
+<div class="lecture" id="lec11">
+<h1 class="lecture-title">Lecture 11 | 协方差 · 相关系数 · 条件分布 <span class="en">Covariance, Correlation &amp; Conditional</span></h1>
+
+<h2 class="section-title" id="lec11-cov">协方差 <span class="en">Covariance</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义</div>
+    <div class="fbox imp">
+        $$\mathrm{Cov}(X,Y) = E\big[(X-E[X])(Y-E[Y])\big] = E[XY] - E[X]E[Y]$$
+    </div>
+    <p><strong>解释：</strong></p>
+    <p>&bull; $\mathrm{Cov}(X,Y) > 0$：$X$ 和 $Y$ <strong>正相关</strong>——$X$ 偏大时 $Y$ 也偏大</p>
+    <p>&bull; $\mathrm{Cov}(X,Y) < 0$：$X$ 和 $Y$ <strong>负相关</strong>——$X$ 偏大时 $Y$ 偏小</p>
+    <p>&bull; $\mathrm{Cov}(X,Y) = 0$：$X$ 和 $Y$ <strong>不相关</strong>（<span class="en">uncorrelated</span>）</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>独立 $\Rightarrow$ 不相关，但反之不然！</div>
+    <p>若 $X$ 和 $Y$ 独立：$f(x,y) = f_X(x)f_Y(y)$，则</p>
+    <div class="fbox">
+        $$E[XY] = \sum_x\sum_y xy\,f_X(x)f_Y(y) = \left(\sum_x x f_X(x)\right)\left(\sum_y y f_Y(y)\right) = E[X]E[Y]$$
+    </div>
+    <p>$\mathrm{Cov}(X,Y) = E[XY] - E[X]E[Y] = 0$。✓</p>
+    <p class="note"><strong>但反过来不成立！</strong>存在不相关但不独立的随机变量（见下例）。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2：不相关但不独立</div>
+    <p>$(X,Y)$ 均匀取 $(1,0), (0,1), (-1,0), (0,-1)$ 四个点，各 $1/4$。</p>
+    <p>$f_X(-1)=\frac14, f_X(0)=\frac12, f_X(1)=\frac14$；$f_Y$ 对称相同。</p>
+    <p>$E[X]=0, E[Y]=0, E[XY]=\frac14(1\cdot0+0\cdot1+(-1)\cdot0+0\cdot(-1))=0 \Rightarrow \mathrm{Cov}=0$（不相关）。</p>
+    <p>但 $f(0,1) = 1/4 \neq f_X(0)f_Y(1) = \frac12 \cdot \frac14 = \frac18$ → <strong>不独立</strong>。</p>
+</div>
+
+<h2 class="section-title" id="lec11-corr">相关系数 <span class="en">Correlation Coefficient</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：协方差的标准化版本</div>
+    <div class="fbox imp">
+        $$\rho(X,Y) = \frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\,\mathrm{Var}(Y)}}$$
+    </div>
+    <p><strong>性质：</strong></p>
+    <p>&bull; $-1 \le \rho \le 1$</p>
+    <p>&bull; $|\rho| = 1 \iff Y - E[Y] = c(X - E[X])$（完全线性关系）</p>
+    <p>&bull; $\rho > 0$ → 正相关；$\rho < 0$ → 负相关；$\rho = 0$ → 不相关</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>$|\rho| \le 1$ 的证明（利用二次非负性）</div>
+    <p>令 $V = X - E[X], W = Y - E[Y]$。对任意 $t \in \mathbb{R}$：</p>
+    <div class="fbox">
+        $$E[(V + tW)^2] = \mathrm{Var}(X) + 2t\,\mathrm{Cov}(X,Y) + t^2\mathrm{Var}(Y) \ge 0$$
+    </div>
+    <p>这是关于 $t$ 的二次函数，非负要求判别式 $\le 0$：</p>
+    <p>$4\mathrm{Cov}^2 - 4\mathrm{Var}(X)\mathrm{Var}(Y) \le 0 \Rightarrow \mathrm{Cov}^2 \le \mathrm{Var}(X)\mathrm{Var}(Y) \Rightarrow |\rho| \le 1$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：抛 $n$ 次硬币，$X$=正面数，$Y$=反面数</div>
+    <p>$X+Y=n \Rightarrow X - E[X] = -(Y - E[Y])$，完全负线性关系。</p>
+    <div class="fbox">
+        $$\mathrm{Cov}(X,Y) = -\mathrm{Var}(Y),\quad \mathrm{Var}(X)=\mathrm{Var}(Y),\quad \rho = -1$$
+    </div>
+</div>
+
+<h2 class="section-title" id="lec11-cond-disc">条件分布（离散）<span class="en">Conditional Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>条件 pmf</div>
+    <p><strong>$Y$ 在 $X=x$ 条件下的 pmf：</strong></p>
+    <div class="fbox imp">
+        $$h(y \mid x) = \frac{f(x,y)}{f_X(x)}, \quad y \in S_Y(x),\quad f_X(x) > 0$$
+    </div>
+    <p><strong>$X$ 在 $Y=y$ 条件下的 pmf：</strong>$g(x \mid y) = \frac{f(x,y)}{f_Y(y)}$。</p>
+    <p><strong>条件 pmf 是合法的 pmf：</strong>非负，且 $\sum_y h(y\mid x) = 1$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1：$f(x,y)=\frac{x+y}{21},\;x=1,2,3,\;y=1,2$</div>
+    <p>已知 $f_X(x)=\frac{2x+3}{21}$。给定 $Y=1$ 条件下 $X$ 的 pmf：</p>
+    <div class="fbox">
+        $$g(x \mid 1) = \frac{f(x,1)}{f_Y(1)} = \frac{(x+1)/21}{3/7} = \frac{x+1}{9},\quad x=1,2,3$$
+    </div>
+    <p>$P(1 \le X \le 2 \mid Y=1) = g(1\mid 1) + g(2\mid 1) = \frac{2}{15}+\frac{3}{15} = \frac{5}{15}$</p>
+</div>
+
+<h2 class="section-title" id="lec11-cond-exp">条件期望 <span class="en">Conditional Expectation</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>条件均值与条件方差</div>
+    <div class="fbox imp">
+        $$E[Y \mid X=x] = \sum_y y \cdot h(y \mid x)$$
+    </div>
+    <p><strong>条件方差：</strong></p>
+    <div class="fbox">
+        $$\mathrm{Var}(Y \mid X=x) = E[Y^2 \mid X=x] - (E[Y \mid X=x])^2$$
+    </div>
+    <p class="note">条件期望 $E[Y \mid X=x]$ 是<strong>$x$ 的函数</strong>——给不同的 $x$ 值，得到不同的条件均值。这在回归分析中至关重要。</p>
+</div>
+
+</div><!-- end Lecture 11 -->
+
+<!-- ==================== LECTURE 12 ==================== -->
+<div class="lecture" id="lec12">
+<h1 class="lecture-title">Lecture 12 | §4.4 二元连续分布 <span class="en">Bivariate Continuous Distribution</span></h1>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>从离散到连续：对照路线图</div>
+    <table class="ctab">
+        <tr><th>概念</th><th>离散型 (Lecture 10-11)</th><th>连续型 (Lecture 12)</th></tr>
+        <tr><td>联合分布</td><td>joint pmf $f(x,y)$</td><td>joint pdf $f(x,y)$</td></tr>
+        <tr><td>边缘分布</td><td>$f_X(x) = \sum_y f(x,y)$</td><td>$f_X(x) = \int f(x,y)dy$</td></tr>
+        <tr><td>独立性</td><td>$f(x,y)=f_X(x)f_Y(y)$</td><td>$f(x,y)=f_X(x)f_Y(y)$</td></tr>
+        <tr><td>协方差</td><td>$\sum\sum (x-\mu_X)(y-\mu_Y)f(x,y)$</td><td>$\iint (x-\mu_X)(y-\mu_Y)f(x,y)dxdy$</td></tr>
+        <tr><td>条件分布</td><td>$h(y\mid x) = \frac{f(x,y)}{f_X(x)}$</td><td>$h(y\mid x) = \frac{f(x,y)}{f_X(x)}$</td></tr>
+    </table>
+    <p>核心变化：求和 $\sum$ → 积分 $\int$，形式几乎一致。</p>
+</div>
+
+<h2 class="section-title" id="lec12-cont">§4.4 联合 pdf 与边缘 pdf <span class="en">Joint &amp; Marginal pdf</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>二元连续 RV 的联合 pdf</div>
+    <p>$X$ 和 $Y$ 是连续型 RV，$(X,Y)$ 的联合 pdf $f(x,y): S \to (0,\infty)$ 满足：</p>
+    <p>(1) $f(x,y) > 0$ 对所有 $(x,y) \in S$</p>
+    <p>(2) $\iint_S f(x,y)\,dx\,dy = 1$（曲面下方总体积 = 1）</p>
+    <p>(3) $P((X,Y) \in A) = \iint_A f(x,y)\,dx\,dy$</p>
+    <p><strong>几何解释：</strong>$f(x,y)$ 定义一个三维曲面 $z = f(x,y)$。区域 $A$ 上的概率 = 该曲面在 $A$ 上方的体积。</p>
+    <p><strong>矩形区域上的计算：</strong>若 $A = [a,b] \times [c,d]$：</p>
+    <div class="fbox imp">
+        $$P(a \le X \le b,\; c \le Y \le d) = \int_a^b\int_c^d f(x,y)\,dy\,dx = \int_c^d\int_a^b f(x,y)\,dx\,dy$$
+    </div>
+    <p><strong>一般区域：</strong>$P((X,Y)\in A) = \int_{A_X}\int_{A_Y(x)} f(x,y)\,dy\,dx = \int_{A_Y}\int_{A_X(y)} f(x,y)\,dx\,dy$。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>边缘 pdf — 把另一维积分掉</div>
+    <div class="fbox imp">
+        $$f_X(x) = \int_{S_Y(x)} f(x,y)\,dy,\quad x \in S_X$$
+        $$f_Y(y) = \int_{S_X(y)} f(x,y)\,dx,\quad y \in S_Y$$
+    </div>
+    <p>其中 $S_Y(x) = \{y \mid (x,y) \in S\}$（对固定的 $x$，$y$ 能取的范围）。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>数学期望（连续二元版）</div>
+    <div class="fbox imp">
+        $$E[g(X,Y)] = \iint_S g(x,y)\,f(x,y)\,dx\,dy$$
+    </div>
+    <p>两种求 $E[X]$ 的等效方法：</p>
+    <p>法1（边缘）：$E[X] = \int_{S_X} x f_X(x)\,dx$</p>
+    <p>法2（联合）：$E[X] = \iint_S x f(x,y)\,dx\,dy = \int_{S_X} x \left(\int_{S_Y(x)} f(x,y)\,dy\right)dx = \int_{S_X} x f_X(x)\,dx$</p>
+    <p>方差同样：$\mathrm{Var}(X) = \iint_S (x-E[X])^2 f(x,y)\,dx\,dy = \int_{S_X} (x-E[X])^2 f_X(x)\,dx$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 156)：$f(x,y) = \frac{3}{2}x^2(1-|y|),\; -1 < x < 1,\; -1 < y < 1$</div>
+    <p>支撑集是正方形 $(-1,1) \times (-1,1)$。$S_X = (-1,1)$，$S_Y = (-1,1)$。</p>
+    <p><strong>边缘 pdf — $f_X(x)$：</strong>对 $y$ 在 $[-1,1]$ 上积分。注意 $1-|y|$ 是关于 $y$ 的偶函数：</p>
+    <div class="fbox">
+        $$f_X(x) = \int_{-1}^{1} \frac{3}{2}x^2(1-|y|)\,dy = \frac{3}{2}x^2 \int_{-1}^{1} (1-|y|)\,dy = \frac{3}{2}x^2 \cdot 2\int_0^{1} (1-y)\,dy$$
+        $$= \frac{3}{2}x^2 \cdot 2 \cdot \left[y - \frac{y^2}{2}\right]_0^1 = \frac{3}{2}x^2 \cdot 2 \cdot \frac{1}{2} = \frac{3}{2}x^2$$
+    </div>
+    <p>验证：$\int_{-1}^{1} \frac{3}{2}x^2 dx = \frac{3}{2} \cdot \frac{2}{3} = 1$ ✓</p>
+    <p><strong>边缘 pdf — $f_Y(y)$：</strong>$f_Y(y) = \int_{-1}^{1} \frac{3}{2}x^2(1-|y|)\,dx = \frac{3}{2}(1-|y|) \cdot \frac{2}{3} = 1-|y|$。</p>
+    <p><strong>$E[X] = 0$：</strong>$\int_{-1}^{1} x \cdot \frac{3}{2}x^2 dx = 0$（奇函数在对称区间上积分为零）。</p>
+    <p><strong>区域概率：</strong>$A = \{(x,y) \mid 0 < x < 1,\; 0 < y < x\}$：</p>
+    <div class="fbox">
+        $$P(A) = \int_0^1\int_0^x \frac{3}{2}x^2(1-y)\,dy\,dx = \int_0^1 \frac{3}{2}x^2\left[x - \frac{x^2}{2}\right]dx = \frac{9}{40}$$
+    </div>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 155)：$f(x,y) = \frac{4}{3}(1-xy),\; 0 \le x \le 1,\; 0 \le y \le 1$</div>
+    <p>支撑集是单位正方形。</p>
+    <p><strong>边缘 pdf：</strong></p>
+    <div class="fbox">
+        $$f_X(x) = \int_0^1 \frac{4}{3}(1-xy)\,dy = \frac{4}{3}\left[y - \frac{x y^2}{2}\right]_0^1 = \frac{4}{3}\left(1 - \frac{x}{2}\right)$$
+    </div>
+    <p>同理 $f_Y(y) = \frac{4}{3}(1 - \frac{y}{2})$。</p>
+    <p><strong>$E[X]$：</strong>$E[X] = \int_0^1 x \cdot \frac{4}{3}(1-\frac{x}{2})dx = \frac{4}{3}\left[\frac{x^2}{2} - \frac{x^3}{6}\right]_0^1 = \frac{4}{3} \cdot \frac{1}{3} = \frac{4}{9}$。</p>
+    <p><strong>$\mathrm{Var}(X)$（练习）：</strong>$E[X^2] = \int_0^1 x^2 \cdot \frac{4}{3}(1-\frac{x}{2})dx = \frac{4}{3}\left[\frac{1}{3} - \frac{1}{8}\right] = \frac{5}{18}$。</p>
+    <p>$\mathrm{Var}(X) = \frac{5}{18} - (\frac{4}{9})^2 = \frac{5}{18} - \frac{16}{81} = \frac{13}{162}$。</p>
+</div>
+
+<h2 class="section-title" id="lec12-indep-cont">连续 RV 的独立性 <span class="en">Independent Continuous RVs</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：$X \perp\!\!\!\perp Y \iff f(x,y) = f_X(x)f_Y(y)$</div>
+    <p>对所有 $x \in S_X, y \in S_Y$ 成立。</p>
+    <p><strong>必要条件：</strong>$S = S_X \times S_Y$（支撑集必须是直角积/矩形）。如果 $S$ 是三角形（如 $0 \le x \le y \le 1$）或圆形，条件本身就让 $X$ 和 $Y$ 依赖——因为知道 $X=x$ 就限定了 $Y$ 的范围。</p>
+    <p><strong>验证流程：</strong>(1) 检查支撑集是否为矩形；(2) 计算边缘 pdf；(3) 检查 $f_X f_Y \stackrel{?}{=} f$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2续：验证不独立</div>
+    <p>$f(x,y) = \frac{4}{3}(1-xy)$，$f_X(x) = \frac{4}{3}(1-\frac{x}{2})$，$f_Y(y) = \frac{4}{3}(1-\frac{y}{2})$。</p>
+    <div class="fbox">
+        $$f_X(x)f_Y(y) = \frac{16}{9}\left(1 - \frac{x}{2} - \frac{y}{2} + \frac{xy}{4}\right) \neq \frac{4}{3}(1-xy) = f(x,y)$$
+    </div>
+    <p>乘积的 $xy$ 系数是 $\frac{16}{9} \cdot \frac{1}{4} = \frac{4}{9}$，但 $f(x,y)$ 中 $xy$ 的系数是 $\frac{4}{3}$，两者不相等 → <strong>不独立</strong>。</p>
+</div>
+
+<h2 class="section-title" id="lec12-cov-cont">连续情形的协方差与相关系数</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>连续版的协方差</div>
+    <div class="fbox imp">
+        $$\mathrm{Cov}(X,Y) = E[(X-E[X])(Y-E[Y])] = \iint_S (x-\mu_X)(y-\mu_Y) f(x,y)\,dx\,dy = E[XY] - E[X]E[Y]$$
+    </div>
+    <p>其中 $E[XY] = \iint_S xy\,f(x,y)\,dx\,dy$。</p>
+    <p>相关系数 $\rho(X,Y) = \frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\,\mathrm{Var}(Y)}}$，定义与离散完全相同。</p>
+    <p>所有性质（$|\rho| \le 1$、独立 ⇒ 不相关、不相关 $\not\Rightarrow$ 独立等）全部照搬。</p>
+</div>
+
+<h2 class="section-title" id="lec12-cond-cont">条件 pdf 与条件期望 <span class="en">Conditional pdf &amp; Expectation</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>条件 pdf 的定义</div>
+    <p>给定 $X=x$（$f_X(x) > 0$）时 $Y$ 的条件 pdf：</p>
+    <div class="fbox imp">
+        $$h(y \mid x) = \frac{f(x,y)}{f_X(x)},\quad y \in S_Y(x)$$
+    </div>
+    <p>给定 $Y=y$ 时 $X$ 的条件 pdf：$g(x \mid y) = \frac{f(x,y)}{f_Y(y)},\; x \in S_X(y)$。</p>
+    <p><strong>条件 pdf 是合法的 pdf：</strong>$h(y\mid x) \ge 0$ 且 $\int_{S_Y(x)} h(y\mid x)\,dy = 1$。</p>
+    <p><strong>独立时：</strong>$h(y\mid x) = \frac{f_X(x)f_Y(y)}{f_X(x)} = f_Y(y)$——条件不改变分布。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>条件期望与条件方差</div>
+    <p>条件均值：</p>
+    <div class="fbox imp">
+        $$E[Y \mid X = x] = \int_{S_Y(x)} y \cdot h(y \mid x)\,dy$$
+    </div>
+    <p>条件方差：</p>
+    <div class="fbox">
+        $$\mathrm{Var}(Y \mid X = x) = E[(Y - E[Y \mid X=x])^2 \mid X = x]$$
+        $$= \int_{S_Y(x)} (y - E[Y \mid X=x])^2 \, h(y \mid x)\,dy = E[Y^2 \mid X=x] - (E[Y \mid X=x])^2$$
+    </div>
+    <p>条件概率：$P(Y \in A \mid X=x) = \int_{A} h(y \mid x)\,dy$。</p>
+</div>
+
+<h2 class="section-title" id="lec12-example">例题3★：$f(x,y) = 2,\; 0 \le x \le y \le 1$（三角形常考题）</h2>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例3 (Page 157)：全面推导</div>
+    <p>支撑集 $S = \{(x,y) \mid 0 \le x \le y \le 1\}$ 是直角三角形（面积 $1/2$）。</p>
+    <p>$f(x,y) = 2$ 是常数——因为体积必须为 1，面积是 $1/2$，所以密度 $= 2$。</p>
+
+    <p><strong>Step 1 — 边缘 pdf：</strong></p>
+    <div class="fbox">
+        $$f_X(x) = \int_x^1 2\,dy = 2(1-x),\quad 0 \le x \le 1$$
+        $$f_Y(y) = \int_0^y 2\,dx = 2y,\quad 0 \le y \le 1$$
+    </div>
+    <p>$S_X = S_Y = [0,1]$ 都是 $[0,1]$——但 $S$ 不是 $S_X \times S_Y$。所以 $X$ 和 $Y$ 必定不独立。</p>
+
+    <p><strong>Step 2 — 期望：</strong></p>
+    <div class="fbox">
+        $$E[X] = \int_0^1 x \cdot 2(1-x)dx = 2\left[\frac{x^2}{2} - \frac{x^3}{3}\right]_0^1 = 2\cdot\left(\frac12 - \frac13\right) = \frac13$$
+        $$E[Y] = \int_0^1 y \cdot 2y\,dy = 2\cdot\left[\frac{y^3}{3}\right]_0^1 = \frac23$$
+    </div>
+
+    <p><strong>Step 3 — 条件 pdf $h(y \mid x)$：</strong></p>
+    <div class="fbox hl">
+        $$h(y \mid x) = \frac{f(x,y)}{f_X(x)} = \frac{2}{2(1-x)} = \frac{1}{1-x},\quad x \le y \le 1$$
+    </div>
+    <p>给定 $X=x$ 时，$Y$ 在 $[x,1]$ 上<strong>均匀分布</strong>！这是这个例题最美的结论。</p>
+
+    <p><strong>Step 4 — 条件期望与条件方差：</strong></p>
+    <div class="fbox">
+        $$E[Y \mid X=x] = \int_x^1 y \cdot \frac{1}{1-x}\,dy = \frac{1}{1-x}\left[\frac{y^2}{2}\right]_x^1 = \frac{1-x^2}{2(1-x)} = \frac{1+x}{2}$$
+        $$\mathrm{Var}(Y \mid X=x) = \frac{(1-x)^2}{12}\quad\text{（$[x,1]$ 上的均匀分布方差）}$$
+    </div>
+
+    <p><strong>Step 5 — 条件概率：</strong></p>
+    <p>$P(\frac{3}{4} \le Y \le \frac{7}{8} \mid X = \frac{1}{4}) = \int_{3/4}^{7/8} \frac{1}{1 - 1/4}\,dy = \frac{4}{3} \cdot \left(\frac{7}{8} - \frac{3}{4}\right) = \frac{4}{3} \cdot \frac{1}{8} = \frac{1}{6}$。</p>
+
+    <p class="note"><strong>这个例题为什么常考？</strong>因为它完美地展示了连续二元分布的全部核心操作：联合 pdf → 边缘 pdf → 条件 pdf → 条件均值 → 条件方差 → 条件概率。三角形支撑集也是最经典的非矩形例子。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Lecture 12 常见易错点</div>
+    <p>1. <strong>连续版条件分布的公式和离散版完全一样</strong>——重要的不是记新公式，是理解"求和变积分"这个统一原则。</p>
+    <p>2. <strong>支撑集形状是独立的必要条件。</strong>三角形/圆形一定不独立，因为 $X$ 的取值会限制 $Y$ 的范围。</p>
+    <p>3. <strong>边缘 pdf 的积分上下限取决于支撑集。</strong>对每个固定的 $x$，$y$ 的范围来自 $S_Y(x)$，不是盲目的 $(-\infty,\infty)$。</p>
+    <p>4. <strong>$E[X]$ 可以走两条路：</strong>先求边缘再积分，或直接从联合积分。结果相同，选计算量小的那条。</p>
+    <p>5. <strong>连续版的协方差和相关系数定义不变</strong>——$\rho$ 的所有性质照旧使用。</p>
+</div>
+
+</div><!-- end Lecture 12 -->
+
+<!-- ==================== LECTURE 13 ==================== -->
+<div class="lecture" id="lec13">
+<h1 class="lecture-title">Lecture 13 | Ch5 二元正态 &amp; 随机变量函数 <span class="en">§4.5 Bivariate Normal &amp; §5.1 Functions of RV</span></h1>
+
+<h2 class="section-title" id="lec13-binormal">§4.5 二元正态分布 <span class="en">Bivariate Normal Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>联合 pdf — 五个参数决定一切</div>
+    <div class="fbox imp">
+        $$f(x,y) = \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}} \exp\!\left[-\frac{1}{2}q(x,y)\right],\quad x,y \in \mathbb{R}$$
+        $$q(x,y) = \frac{1}{1-\rho^2}\left[\left(\frac{x-\mu_X}{\sigma_X}\right)^2 - 2\rho\left(\frac{x-\mu_X}{\sigma_X}\right)\left(\frac{y-\mu_Y}{\sigma_Y}\right) + \left(\frac{y-\mu_Y}{\sigma_Y}\right)^2\right]$$
+    </div>
+    <p>五个参数：$\mu_X, \mu_Y \in \mathbb{R}$（均值），$\sigma_X, \sigma_Y > 0$（标准差），$|\rho| < 1$（相关系数）。</p>
+    <p><strong>结构解析：</strong>这是"缩放后的指数函数，指数上是 $x$ 和 $y$ 的二次型"。交叉项 $-2\rho(\cdot)(\cdot)$ 包含了 $X$ 和 $Y$ 的全部依赖信息——如果 $\rho=0$，交叉项消失，$f(x,y)$ 就分解成两个独立正态 pdf 的乘积。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>性质 1 — 边缘分布是正态（证明思路）</div>
+    <p>要证明 $f_X(x) \propto \exp(-\frac{(x-\mu_X)^2}{2\sigma_X^2})$，技巧是把 $f(x,y)$ 改写成：</p>
+    <div class="fbox">
+        $$f(x,y) = \underbrace{\frac{1}{\sqrt{2\pi}\sigma_X}\exp\!\left(-\frac{(x-\mu_X)^2}{2\sigma_X^2}\right)}_{f_X(x)} \cdot \underbrace{\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^2}\,\sigma_Y}\exp\!\left[-\frac{\left(y - [\mu_Y + \rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X)]\right)^2}{2(1-\rho^2)\sigma_Y^2}\right]}_{h(y \mid x)}$$
+    </div>
+    <p>这样就分解为 $f(x,y)=f_X(x)\,h(y\mid x)$。$f_X(x)$ 正是 $N(\mu_X,\sigma_X^2)$ 的 pdf。同理 $f_Y(y) \sim N(\mu_Y,\sigma_Y^2)$。</p>
+    <p>而 $h(y\mid x)$ 是一个正态 pdf（均值 $\mu_Y+\rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X)$，方差 $(1-\rho^2)\sigma_Y^2$），且 $\int h(y\mid x)dy = 1$，确认了这恰好是条件 pdf。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>性质 2 — 条件分布也是正态</div>
+    <div class="fbox imp">
+        $$Y \mid X=x \;\sim\; N\!\left(\mu_Y + \rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X),\;(1-\rho^2)\sigma_Y^2\right)$$
+        $$X \mid Y=y \;\sim\; N\!\left(\mu_X + \rho\frac{\sigma_X}{\sigma_Y}(y-\mu_Y),\;(1-\rho^2)\sigma_X^2\right)$$
+    </div>
+    <p><strong>条件均值的回归解释：</strong>$E[Y\mid X=x] = \mu_Y + \rho\frac{\sigma_Y}{\sigma_X}(x-\mu_X)$。若 $x > \mu_X$（$X$ 高于均值），则 $Y$ 的条件均值也在 $\mu_Y$ 基础上向同方向偏移（若 $\rho>0$）。偏移量为 $\rho \cdot \frac{\sigma_Y}{\sigma_X} \cdot (x-\mu_X)$——这就是线性回归的斜率。</p>
+    <p><strong>条件方差缩小：</strong>$\mathrm{Var}(Y\mid X=x) = (1-\rho^2)\sigma_Y^2 \le \sigma_Y^2$。知道 $X$ 总能减少 $Y$ 的不确定性——除非 $\rho=0$。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>性质 3 — 独立 $\iff$ 不相关（二元正态独有的性质）</div>
+    <p>当 $\rho = 0$ 时，联合 pdf 分解为：</p>
+    <div class="fbox">
+        $$f(x,y) = \frac{1}{2\pi\sigma_X\sigma_Y}\exp\!\left[-\frac{(x-\mu_X)^2}{2\sigma_X^2} - \frac{(y-\mu_Y)^2}{2\sigma_Y^2}\right] = f_X(x)f_Y(y)$$
+    </div>
+    <p>所以 $\rho=0 \iff X$ 和 $Y$ 独立。这在<strong>一般分布中不成立</strong>（如 Lecture 11 的反例：不相关但不独立），但在二元正态中恰好等价。</p>
+    <p>$\rho$ 正是 $X$ 和 $Y$ 的相关系数：$\mathrm{Cov}(X,Y) = \rho\sigma_X\sigma_Y$。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>二元正态的几何理解——等概率线是椭圆</div>
+    <p>固定 $z = f(x,y) = z_0$（一个常数），截面方程 $q(x,y) = -2\ln(z_0 \cdot 2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2})$，这恰好是<strong>中心在 $(\mu_X,\mu_Y)$ 的椭圆</strong>。$\rho$ 控制椭圆的旋转方向：</p>
+    <p>$\rho=0$ → 圆（各向同性）；$\rho>0$ → 右上-左下方向拉长的椭圆（正相关）；$\rho<0$ → 左上-右下方向拉长的椭圆（负相关）。</p>
+    <p>截面 $x=x_0$（垂直平面）得到一条<strong>正态曲线</strong>——这就是条件 pdf $h(y\mid x_0)$ 的形状。截面 $y=y_0$ 同理。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 165)：高中与大学成绩——完整的二元正态应用</div>
+    <p>$(X,Y)$ 二元正态：高中 GPA $X$，大学一年级 GPA $Y$。$\mu_X=2.9, \mu_Y=2.4, \sigma_X=0.4, \sigma_Y=0.5, \rho=0.8$。</p>
+    <p><strong>Q1：$P(2.1 < Y < 3.3)$（无条件，只看 $Y$）</strong></p>
+    <p>$Y \sim N(2.4, 0.5^2)$。标准化：$Z = \frac{Y-2.4}{0.5}$。</p>
+    <div class="fbox">
+        $$P(2.1<Y<3.3) = \Phi\!\left(\frac{3.3-2.4}{0.5}\right) - \Phi\!\left(\frac{2.1-2.4}{0.5}\right) = \Phi(1.8) - \Phi(-0.6) = 0.9641 - (1-0.7257) = 0.69$$
+    </div>
+    <p><strong>Q2：$P(2.1 < Y < 3.3 \mid X=3.2)$（已知高中成绩很高）</strong></p>
+    <p>条件分布：$Y\mid X=3.2 \sim N(\mu_{\text{cond}}, \sigma^2_{\text{cond}})$。</p>
+    <p>$\mu_{\text{cond}} = 2.4 + 0.8\cdot\frac{0.5}{0.4}\cdot(3.2-2.9) = 2.4 + 1.0\cdot 0.3 = 2.7$</p>
+    <p>$\sigma^2_{\text{cond}} = (1-0.8^2)\cdot 0.5^2 = 0.36\cdot 0.25 = 0.09$，$\sigma_{\text{cond}} = 0.3$。</p>
+    <div class="fbox hl">
+        $$P(2.1<Y<3.3 \mid X=3.2) = \Phi\!\left(\frac{3.3-2.7}{0.3}\right) - \Phi\!\left(\frac{2.1-2.7}{0.3}\right) = \Phi(2) - \Phi(-2) = 0.95$$
+    </div>
+    <p class="note">条件概率 0.95 远大于无条件概率 0.69。为什么？因为知道 $X=3.2$（高于均值 0.75 个标准差）后，我们预期 $Y$ 也偏高（相关系数 0.8），而且条件方差缩小了（0.09 vs 0.25），所以 $Y$ 更不容易偏离均值。</p>
+</div>
+
+<h2 class="section-title" id="lec13-func">§5.1 随机变量的函数：一对一情形 <span class="en">Functions of One RV: One-to-One</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>问题：已知 $X$ 的分布，$Y=u(X)$ 的分布是什么？</div>
+    <p>我们之前学过离散版的 $g(X)$ 的 pmf：一对一照搬，多对一加总。现在是<strong>连续版的系统化方法</strong>。</p>
+</div>
+
+<h3 class="subsection-title">情形一：离散 RV（一对一映射）</h3>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>离散公式</div>
+    <p>$X$ 的 pmf 为 $f(x)$，$Y=u(X)$ 是一对一，反函数 $X=v(Y)$。则：</p>
+    <div class="fbox imp">
+        $$S_Y = \{y \mid y = u(x),\; x \in S_X\}$$
+        $$g(y) = P(Y=y) = P(u(X)=y) = P(X=v(y)) = f(v(y)),\quad y \in S_Y$$
+    </div>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 177)：$X \sim \text{Poisson}(\lambda=4)$，$Y = \sqrt{X}$</div>
+    <p>pmf of $X$：$f(x) = \frac{4^x e^{-4}}{x!},\; x = 0,1,2,\ldots$</p>
+    <p>$Y = \sqrt{X}$ 在 $x \ge 0$ 上是严格递增的。反函数：$X = Y^2$。</p>
+    <p>支撑集：$S_Y = \{0, 1, \sqrt{2}, \sqrt{3}, \sqrt{4}=2, \sqrt{5}, \ldots\}$。</p>
+    <div class="fbox">
+        $$g(y) = f(y^2) = \frac{4^{y^2} e^{-4}}{(y^2)!},\quad y \in S_Y$$
+    </div>
+</div>
+
+<h3 class="subsection-title">情形二：连续 RV 且 $u$ 严格单调</h3>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>连续变换公式——通过 CDF 推导</div>
+    <p>$X$ 的 pdf 为 $f(x)$，支撑集 $[c_1, c_2]$。$Y = u(X)$ 连续且严格单调，反函数 $X = v(Y)$ 可导。</p>
+    <p><strong>Case 1（$u$ 严格递增）：</strong></p>
+    <p>$S_Y = [u(c_1), u(c_2)]$。cdf：$G(y) = P(Y \le y) = P(u(X) \le y) = P(X \le v(y)) = \int_{c_1}^{v(y)} f(x)dx$。</p>
+    <p>求导：$g(y) = G'(y) = f(v(y)) \cdot v'(y)$（链式法则 + 微积分基本定理）。</p>
+    <p><strong>Case 2（$u$ 严格递减）：</strong></p>
+    <p>$S_Y = [u(c_2), u(c_1)]$。cdf：$G(y) = P(Y \le y) = P(u(X) \le y) = P(X \ge v(y)) = 1 - \int_{c_1}^{v(y)} f(x)dx$。</p>
+    <p>求导：$g(y) = G'(y) = -f(v(y)) \cdot v'(y)$。</p>
+    <p><strong>统一公式（带绝对值）：</strong></p>
+    <div class="fbox imp">
+        $$g(y) = f(v(y)) \cdot \left|\frac{dv(y)}{dy}\right|$$
+    </div>
+    <p class="note">绝对值是必须的——$v'(y)$ 在递减情形下为负，但 pdf 不能为负。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 174)：$f(x)=3(1-x)^2,\;0 < x < 1$，$Y = (1-X)^3$</div>
+    <p><strong>步骤详解：</strong></p>
+    <p>Step 1 — 判断单调性：$Y=(1-X)^3$ 在 $x\in(0,1)$ 上<strong>严格递减</strong>（$1-x$ 递减，三次方保持递减）。</p>
+    <p>Step 2 — 求反函数：$y = (1-x)^3 \Rightarrow 1-x = y^{1/3} \Rightarrow x = 1 - y^{1/3}$，即 $v(y) = 1 - y^{1/3}$。</p>
+    <p>Step 3 — 确定新支撑集：$x=0 \Rightarrow y=1$，$x=1 \Rightarrow y=0$。$S_Y = (0, 1)$。</p>
+    <p>Step 4 — 求导并代公式：$v'(y) = -\frac{1}{3}y^{-2/3}$。$|v'(y)| = \frac{1}{3}y^{-2/3}$。</p>
+    <div class="fbox hl">
+        $$g(y) = f(v(y))|v'(y)| = f(1-y^{1/3}) \cdot \frac{1}{3}y^{-2/3} = 3(y^{1/3})^2 \cdot \frac{1}{3}y^{-2/3} = 1,\; 0 < y < 1$$
+    </div>
+    <p>$g(y) = 1$ 在 $(0,1)$ 上 → $Y \sim U(0,1)$！</p>
+    <p><strong>为什么恰好是均匀分布？</strong>$X$ 的 cdf 是 $F(x) = 1 - (1-x)^3$。于是 $Y = (1-X)^3 = 1 - F(X)$。因为 $F(X) \sim U(0,1)$，所以 $1-F(X) \sim U(0,1)$。这也引出了下一个定理。</p>
+</div>
+
+<h2 class="section-title" id="lec13-rng">随机数生成器 <span class="en">Random Number Generator</span></h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.1-1（逆 CDF 方法）</div>
+    <p>设 $Y \sim U(0,1)$，$F(x)$ 严格递增，$F(a)=0$，$F(b)=1$。则：</p>
+    <div class="fbox imp">
+        $$X = F^{-1}(Y) \;\text{ 服从分布 } F$$
+    </div>
+    <p><strong>证明：</strong>$P(X \le x) = P(F^{-1}(Y) \le x)$。因为 $F$ 严格递增，$\{y \mid F^{-1}(y) \le x\} = \{y \mid y \le F(x)\}$。所以：</p>
+    <div class="fbox">
+        $$P(X \le x) = P(Y \le F(x)) = \int_0^{F(x)} 1\,dy = F(x) \quad\blacksquare$$
+    </div>
+    <p><strong>实用算法：</strong>(1) 生成 $y \sim U(0,1)$；(2) 计算 $x = F^{-1}(y)$ → $x$ 即来自分布 $F$。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.1-2（概率积分变换）</div>
+    <p>若 $X$ 有连续且严格递增的 cdf $F$，则：</p>
+    <div class="fbox imp">
+        $$Y = F(X) \sim U(0,1)$$
+    </div>
+    <p><strong>证明：</strong>$P(Y \le y) = P(F(X) \le y) = P(X \le F^{-1}(y)) = F(F^{-1}(y)) = y$（$0<y<1$）。这正是 $U(0,1)$ 的 cdf。</p>
+    <p class="note">Thm 5.1-1 和 Thm 5.1-2 互为逆命题。前者说"从均匀可以生成任意分布"，后者说"任何连续分布经过自身的 cdf 都变成均匀"。这被称为<strong>概率积分变换</strong>（PIT），在统计模拟和假设检验中极其重要。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例3：从均匀生成指数分布随机数</div>
+    <p>$X \sim \text{Exp}(\theta)$，pdf $f(x) = \frac{1}{\theta}e^{-x/\theta}$。cdf：$F(x) = 1 - e^{-x/\theta}$。</p>
+    <p>反函数：$F^{-1}(y) = -\theta \ln(1-y)$。生成 $y \sim U(0,1)$ → $x = -\theta \ln(1-y) \sim \text{Exp}(\theta)$。</p>
+    <p>（注：$1-Y$ 也是 $U(0,1)$，所以 $x = -\theta \ln y$ 也是指数分布）</p>
+</div>
+
+</div><!-- end Lecture 13 -->
+
+<!-- ==================== LECTURE 14 ==================== -->
+<div class="lecture" id="lec14">
+<h1 class="lecture-title">Lecture 14 | Ch5 多元RV &amp; 独立RV的运算 <span class="en">§5.3 Multivariate &amp; Independent Operations</span></h1>
+
+<h2 class="section-title" id="lec14-multi">§5.3 多元随机变量 <span class="en">Multivariate Random Variables</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>从一元 → 二元 → 多元</div>
+    <p>做一次随机实验，得到的结果可以是：</p>
+    <p>&bull; 一个数（标量） → 一元 RV：$X$，pmf/pdf $f(x)$</p>
+    <p>&bull; 一对数 → 二元 RV：$(X,Y)$，联合 pmf/pdf $f(x,y)$</p>
+    <p>&bull; $n$ 个数 → <strong>多元 RV</strong>：$(X_1,\ldots,X_n)$，联合 pmf/pdf $f(x_1,\ldots,x_n)$</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>多元联合分布的定义</div>
+    <p><strong>离散型（$X_1,\ldots,X_n$ 均为离散）：</strong>联合 pmf $f(x_1,\ldots,x_n)$。满足 $f>0$，$\sum_{(x_1,\ldots,x_n)\in S} f(x_1,\ldots,x_n)=1$，$P((X_1,\ldots,X_n)\in A)=\sum_A f$。</p>
+    <p><strong>连续型（$X_1,\ldots,X_n$ 均为连续）：</strong>联合 pdf $f(x_1,\ldots,x_n)$。满足 $f>0$，$\iint_S f = 1$，$P((X_1,\ldots,X_n)\in A)=\iint_A f$。</p>
+    <p class="note">注意：多元 RV 的形成方式很多。最典型的是<strong>同一实验独立重复 $n$ 次</strong>——每次的结果是 $X_i$，$(X_1,\ldots,X_n)$ 自然形成一个多元 RV。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>$n$ 个 RV 的相互独立 <span class="en">Mutual Independence</span></div>
+    <div class="fbox imp">
+        $$X_1,\ldots,X_n \text{ 独立} \iff f(x_1,\ldots,x_n) = f_{X_1}(x_1)\,f_{X_2}(x_2)\,\cdots\,f_{X_n}(x_n)$$
+    </div>
+    <p><strong>必要条件：</strong>支撑集必须是直角积 $S = S_{X_1} \times S_{X_2} \times \cdots \times S_{X_n}$。如果支撑集不是"矩形"（如 $x_1+x_2\le 1$ 这种约束），则必定不独立。</p>
+    <p>若 $X_1,\ldots,X_n$ 相互独立，则任意两两、任意三个……任意 $n-1$ 个之间也是独立的。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>i.i.d. — 独立同分布 <span class="en">Independent and Identically Distributed</span></div>
+    <p>$X_1,\ldots,X_n$ <strong>i.i.d.</strong>：</p>
+    <p>(1) 相互独立；(2) 每个 $X_i$ 服从完全相同的分布（同一个 pmf/pdf）。</p>
+    <p>此时联合分布简化为：$f(x_1,\ldots,x_n) = f_X(x_1)\,f_X(x_2)\,\cdots\,f_X(x_n)$。</p>
+    <p><strong>随机样本 $\equiv$ i.i.d.</strong>。这二者是同一个概念的两个名字——"随机样本"是统计学的叫法，"i.i.d."是概率论的叫法。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 188)：掷两次骰子</div>
+    <p>$X_1$ = 第一次点数，$X_2$ = 第二次点数。各自边际 pmf：$f_{X_1}(x_1) = \frac{1}{6}$，$x_1=1,\ldots,6$（$X_2$ 同理）。</p>
+    <p>两次独立 → 联合 pmf：$f(x_1,x_2) = \frac{1}{6} \cdot \frac{1}{6} = \frac{1}{36}$，所有 36 个有序对等可能。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 190)：i.i.d. Exp(1) 的随机样本</div>
+    <p>$X_1,X_2,X_3$ i.i.d. $f(x) = e^{-x},\; x>0$。</p>
+    <p>联合 pdf：$g(x_1,x_2,x_3) = e^{-x_1}e^{-x_2}e^{-x_3} = e^{-(x_1+x_2+x_3)}$。</p>
+    <p>$P(0<X_1<1,\;2<X_2<4,\;3<X_3<7) = \int_0^1 e^{-x_1}dx_1 \cdot \int_2^4 e^{-x_2}dx_2 \cdot \int_3^7 e^{-x_3}dx_3$。</p>
+    <p>独立使三重积分变成三个一重积分的乘积——计算量从 $O(n^3)$ 降到 $O(n)$。</p>
+</div>
+
+<h2 class="section-title" id="lec14-indep-thm">独立 RV 的期望与方差定理 <span class="en">Expectations of Independent RVs</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>多元期望的定义</div>
+    <div class="fbox imp">
+        $$E[u(X_1,\ldots,X_n)] = \sum_{(x_1,\ldots,x_n)} u(x_1,\ldots,x_n) f(x_1,\ldots,x_n) \quad\text{（离散）}$$
+        $$E[u(X_1,\ldots,X_n)] = \iint_S u(x_1,\ldots,x_n) f(x_1,\ldots,x_n) dx_1\cdots dx_n \quad\text{（连续）}$$
+    </div>
+    <p>期望仍是线性算子——不需要独立也能拆开加法。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.3-1：独立乘积的期望 = 期望的乘积</div>
+    <p>若 $X_1,\ldots,X_n$ <strong>独立</strong>，则：</p>
+    <div class="fbox imp">
+        $$E[u_1(X_1)\,u_2(X_2)\,\cdots\,u_n(X_n)] = E[u_1(X_1)] \cdot E[u_2(X_2)] \cdots E[u_n(X_n)]$$
+    </div>
+    <p><strong>证明（离散情形）：</strong></p>
+    <p>独立 ⇒ $f(x_1,\ldots,x_n) = f_{X_1}(x_1)\cdots f_{X_n}(x_n)$。代入定义：</p>
+    <div class="fbox">
+        $$\sum_{x_1}\cdots\sum_{x_n} u_1(x_1)\cdots u_n(x_n) f_{X_1}(x_1)\cdots f_{X_n}(x_n)$$
+        $$= \left(\sum_{x_1} u_1(x_1)f_{X_1}(x_1)\right)\cdots\left(\sum_{x_n} u_n(x_n)f_{X_n}(x_n)\right) = \prod_{i=1}^n E[u_i(X_i)]$$
+    </div>
+    <p class="note">关键：独立使得多重求和/积分可以拆成单个求和/积分的乘积。这正是 $E[XY]=E[X]E[Y]$（独立时）的 $n$ 元推广。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.3-2：独立 RV 线性组合的期望与方差</div>
+    <p>若 $X_1,\ldots,X_n$ 独立，均值分别为 $\mu_i$，方差分别为 $\sigma_i^2$。$Y = \sum_{i=1}^n a_i X_i$（$a_i$ 为常数）。则：</p>
+    <div class="fbox imp">
+        $$E[Y] = \sum_{i=1}^n a_i \mu_i,\qquad \mathrm{Var}(Y) = \sum_{i=1}^n a_i^2 \sigma_i^2$$
+    </div>
+    <p><strong>期望：</strong>直接由期望的线性性得出，<strong>不需要独立</strong>。</p>
+    <p><strong>方差的完整推导：</strong></p>
+    <div class="fbox">
+        $$\begin{aligned}
+        \mathrm{Var}(Y) &= E[(Y - E[Y])^2] = E\!\left[\left(\sum_{i} a_i (X_i - \mu_i)\right)^2\right] \\
+        &= E\!\left[\sum_{i}\sum_{j} a_i a_j (X_i - \mu_i)(X_j - \mu_j)\right] \\
+        &= \sum_{i}\sum_{j} a_i a_j \, E[(X_i - \mu_i)(X_j - \mu_j)]
+        \end{aligned}$$
+    </div>
+    <p>当 $i = j$：$E[(X_i-\mu_i)^2] = \sigma_i^2$。</p>
+    <p>当 $i \neq j$：$E[(X_i-\mu_i)(X_j-\mu_j)] = \mathrm{Cov}(X_i, X_j) = 0$（因为独立 ⇒ 协方差为零）。</p>
+    <p>所有交叉项消失，只剩对角线：$\mathrm{Var}(Y) = \sum_i a_i^2 \sigma_i^2$。$\blacksquare$</p>
+    <p class="note"><strong>方差不需要协方差的唯一情况就是独立。</strong>如果不独立，交叉项 $\sum_{i\neq j} a_i a_j \mathrm{Cov}(X_i,X_j)$ 不能忽略。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>样本均值 $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$</div>
+    <p>$X_i$ i.i.d.，$E[X_i] = \mu$，$\mathrm{Var}(X_i) = \sigma^2$。</p>
+    <div class="fbox hl">
+        $$E[\bar{X}] = \frac{1}{n}\sum_{i=1}^n \mu = \mu,\qquad \mathrm{Var}(\bar{X}) = \frac{1}{n^2}\sum_{i=1}^n \sigma^2 = \frac{\sigma^2}{n}$$
+    </div>
+    <p>样本均值的期望等于总体均值（无偏），方差随 $n$ 增大以 $1/n$ 速率衰减。$n$ 越大，$\bar{X}$ 越精确。</p>
+</div>
+
+<h2 class="section-title" id="lec14-non1to1">非一对一变换 <span class="en">Non-One-to-One Transformation</span></h2>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>$Y = u(X)$ 不是一对一怎么办？</div>
+    <p><strong>没有通用公式！</strong>只能回到定义：先求 cdf $G(y) = P(Y \le y)$，再求导得 pdf $g(y) = G'(y)$。</p>
+    <p>$P(Y \le y)$ 的计算方法：找出所有满足 $u(x) \le y$ 的 $x$ 的范围，在这个范围上对 $f(x)$ 积分/求和。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例4：$f(x) = \frac{1}{\pi(1+x^2)},\; x \in (-\infty,\infty)$（柯西分布），$Y = X^2$</div>
+    <p>$Y = X^2$ 不是一对一的——$x$ 和 $-x$ 都映射到同一个 $y$。$S_Y = [0, \infty)$。</p>
+    <p><strong>Step 1 — 求 CDF：</strong>$y \ge 0$ 时：</p>
+    <div class="fbox">
+        $$G(y) = P(Y \le y) = P(X^2 \le y) = P(-\sqrt{y} \le X \le \sqrt{y})$$
+        $$= \int_{-\sqrt{y}}^{\sqrt{y}} \frac{dx}{\pi(1+x^2)} = 2\int_0^{\sqrt{y}} \frac{dx}{\pi(1+x^2)}$$
+    </div>
+    <p><strong>Step 2 — 求导得 PDF：</strong>$g(y) = G'(y) = 2 \cdot \frac{1}{\pi(1+y)} \cdot \frac{d}{dy}(\sqrt{y})$（链式法则 + 微积分基本定理）。</p>
+    <div class="fbox hl">
+        $$g(y) = \frac{2}{\pi(1+y)} \cdot \frac{1}{2\sqrt{y}} = \frac{1}{\pi(1+y)\sqrt{y}},\quad y > 0$$
+    </div>
+    <p class="note">$y=0$ 处 pdf 发散——这是合理的，因为 $X^2$ 在 0 附近"堆积"了很多概率质量。</p>
+</div>
+
+</div><!-- end Lecture 14 -->
+
+<!-- ==================== LECTURE 15 ==================== -->
+<div class="lecture" id="lec15">
+<h1 class="lecture-title">Lecture 15 | mgf技巧 · 卡方可加性 · 正态线性组合 <span class="en">§5.4-5.5 MGF Technique, Chi-Square Additivity, Normal</span></h1>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>统计量 <span class="en">Statistic</span></div>
+    <p><strong>统计量</strong> = 随机样本 $\{X_1,\ldots,X_n\}$ 的<strong>不含未知参数的函数</strong>。例如 $\bar{X} = \frac{1}{n}\sum X_i$ 和 $S^2 = \frac{1}{n-1}\sum (X_i-\bar{X})^2$ 都是统计量。统计量是我们从数据中提取信息的工具——它是"估计量"的数学表达。</p>
+</div>
+
+<h2 class="section-title" id="lec15-mgf">§5.4 mgf 技巧 <span class="en">MGF Technique</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>核心思路：mgf 唯一确定分布 → 求 mgf = 求分布</div>
+    <p>如果我们能算出 $Y$ 的 mgf，并且这个 mgf 恰好是某个已知分布的标准形式，那么我们就<strong>直接证明了</strong> $Y$ 服从该分布——不需要从 pmf/pdf 出发兜圈子。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.4-1：独立 RV 线性组合的 mgf</div>
+    <p>$X_1,\ldots,X_n$ 独立，各自 mgf 为 $M_{X_i}(t)$（$|t| < h_i$）。$Y = \sum_{i=1}^n a_i X_i$，则：</p>
+    <div class="fbox imp">
+        $$M_Y(t) = \prod_{i=1}^n M_{X_i}(a_i t),\quad |a_i t| < h_i$$
+    </div>
+    <p><strong>证明：</strong>$M_Y(t) = E[e^{t\sum a_i X_i}] = E[\prod e^{a_i t X_i}]$。由独立性和 Thm 5.3-1：$E[\prod e^{a_i t X_i}] = \prod E[e^{a_i t X_i}] = \prod M_{X_i}(a_i t)$。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Cor 5.4-1：i.i.d. 情形</div>
+    <p>$X_1,\ldots,X_n$ i.i.d.，共同 mgf 为 $M(t)$。则：</p>
+    <div class="fbox hl">
+        $$M_{\sum X_i}(t) = [M(t)]^n,\qquad M_{\bar{X}}(t) = \left[M\!\left(\frac{t}{n}\right)\right]^n$$
+    </div>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 195)：均匀骰子和的分布——mgf 方法</div>
+    <p>$X_1,X_2$ i.i.d. $\text{Uniform}\{1,2,3,4\}$，$Y = X_1 + X_2$。</p>
+    <p>单个的 mgf：$M_{X_i}(t) = \frac{1}{4}(e^t + e^{2t} + e^{3t} + e^{4t})$。</p>
+    <p>$M_Y(t) = [M_{X_i}(t)]^2 = \frac{1}{16}(e^t + e^{2t} + e^{3t} + e^{4t})^2$。</p>
+    <p><strong>展开多项式</strong>——$e^{kt}$ 的系数就是 $P(Y=k)$：</p>
+    <div class="fbox hl">
+        $$M_Y(t) = \frac{1}{16}e^{2t} + \frac{2}{16}e^{3t} + \frac{3}{16}e^{4t} + \frac{4}{16}e^{5t} + \frac{3}{16}e^{6t} + \frac{2}{16}e^{7t} + \frac{1}{16}e^{8t}$$
+    </div>
+    <p>$P(Y=2)=\frac{1}{16}$（只有 $(1,1)$），$P(Y=3)=\frac{2}{16}$（$(1,2)$ 和 $(2,1)$），……$P(Y=8)=\frac{1}{16}$（只有 $(4,4)$）。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 197)：独立伯努利之和 → 二项——mgf 证明</div>
+    <p>$X_i \sim \text{Bernoulli}(p)$ i.i.d.。$M_{X_i}(t) = (1-p) + p e^t$。$Y = \sum_{i=1}^n X_i$：</p>
+    <div class="fbox">$$M_Y(t) = [(1-p) + p e^t]^n \;\Rightarrow\; Y \sim b(n,p)$$</div>
+    <p>这和之前用组合方法推导的结论完全一致——但 mgf 方法<strong>不需要数"$x$ 次成功出现在哪 $\binom{n}{x}$ 个位置"</strong>，直接由 mgf 的唯一性得出分布。简洁、通用、优雅。</p>
+</div>
+
+<h2 class="section-title" id="lec15-chisq">卡方分布的可加性 <span class="en">Additivity of Chi-Square</span></h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.4-2：独立卡方之和仍是卡方</div>
+    <p>$X_i \sim \chi^2(r_i)$ 独立。则：</p>
+    <div class="fbox imp">$$Y = \sum_{i=1}^n X_i \;\sim\; \chi^2(r_1 + \cdots + r_n)$$</div>
+    <p><strong>证明：</strong>$M_{X_i}(t) = (1-2t)^{-r_i/2}$（$t < 1/2$）。由 Thm 5.4-1：</p>
+    <div class="fbox">
+        $$M_Y(t) = \prod_{i=1}^n (1-2t)^{-r_i/2} = (1-2t)^{-(\sum r_i)/2}$$
+    </div>
+    <p>这正是 $\chi^2(\sum r_i)$ 的 mgf。由唯一性，$Y \sim \chi^2(\sum r_i)$。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Cor 5.4-2 &amp; 5.4-3：正态 → 卡方</div>
+    <p><strong>Cor 5.4-2：</strong>$Z_1,\ldots,Z_n$ i.i.d. $N(0,1)$ → $\sum_{i=1}^n Z_i^2 \sim \chi^2(n)$。</p>
+    <p>证明：Thm 3.3-2 已证 $Z_i^2 \sim \chi^2(1)$。再由 Thm 5.4-2 的卡方可加性，$\sum Z_i^2 \sim \chi^2(n)$。</p>
+    <p><strong>Cor 5.4-3：</strong>$X_i \sim N(\mu_i, \sigma_i^2)$ 独立 → $\sum_{i=1}^n \left(\frac{X_i-\mu_i}{\sigma_i}\right)^2 \sim \chi^2(n)$。</p>
+    <p>因为标准化后 $\frac{X_i-\mu_i}{\sigma_i} \sim N(0,1)$，然后套 Cor 5.4-2。</p>
+</div>
+
+<h2 class="section-title" id="lec15-normal-lin">正态分布的线性组合 <span class="en">§5.5 Linear Combinations of Normals</span></h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.5-1：独立正态线性组合仍是正态</div>
+    <p>$X_i \sim N(\mu_i, \sigma_i^2)$ 独立，$Y = \sum_{i=1}^n a_i X_i$。则：</p>
+    <div class="fbox imp">
+        $$Y \sim N\!\left(\sum_{i=1}^n a_i \mu_i,\; \sum_{i=1}^n a_i^2 \sigma_i^2\right)$$
+    </div>
+    <p><strong>证明：</strong>$M_{X_i}(t) = \exp(\mu_i t + \frac{1}{2}\sigma_i^2 t^2)$。</p>
+    <div class="fbox">
+        $$M_Y(t) = \prod_{i=1}^n M_{X_i}(a_i t) = \prod_{i=1}^n \exp\!\left(\mu_i a_i t + \frac{1}{2}\sigma_i^2 a_i^2 t^2\right) = \exp\!\left(\sum a_i\mu_i \cdot t + \frac{1}{2}\sum a_i^2\sigma_i^2 \cdot t^2\right)$$
+    </div>
+    <p>这正是 $N(\sum a_i\mu_i,\; \sum a_i^2\sigma_i^2)$ 的 mgf。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Cor 5.5-1：正态样本均值</div>
+    <p>$X_1,\ldots,X_n$ i.i.d. $N(\mu,\sigma^2)$。则 $\bar{X} \sim N(\mu, \frac{\sigma^2}{n})$。标准化：$\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$。</p>
+    <p>证明：令 $a_i = 1/n$，套用 Thm 5.5-1。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 201)：两头奶牛产脂量比较</div>
+    <p>$X_1 \sim N(693.2, 22820)$，$X_2 \sim N(631.7, 19205)$，独立。求 $P(X_1 > X_2)$。</p>
+    <p><strong>技巧：</strong>比较两个 RV 的大小，构造它们的差。$Y = X_1 - X_2$。</p>
+    <p>$E[Y] = 693.2 - 631.7 = 61.5$。</p>
+    <p>$\mathrm{Var}(Y) = \mathrm{Var}(X_1) + \mathrm{Var}(-X_2) = \mathrm{Var}(X_1) + (-1)^2\mathrm{Var}(X_2) = 22820 + 19205 = 42025$。</p>
+    <p>所以 $Y \sim N(61.5,\; 42025)$。</p>
+    <div class="fbox hl">
+        $$P(X_1 > X_2) = P(Y > 0) = P\!\left(Z > \frac{0-61.5}{\sqrt{42025}}\right) = P(Z > -0.3) = 1 - \Phi(-0.3) = 0.6179$$
+    </div>
+    <p class="note">注意 $\mathrm{Var}(X_1 - X_2) = \mathrm{Var}(X_1) + \mathrm{Var}(X_2)$——两个独立正态<strong>之差</strong>的方差是二者方差<strong>之和</strong>（因为 $(-1)^2=1$）。</p>
+</div>
+
+<h2 class="section-title" id="lec15-samplevar">样本方差的无偏性 <span class="en">Sample Variance — Unbiasedness</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>样本方差：为什么分母是 $n-1$？</div>
+    <div class="fbox imp">
+        $$S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2$$
+    </div>
+    <p><strong>无偏性：</strong>$E[S^2] = \sigma^2$。如果分母用 $n$，期望是 $\frac{n-1}{n}\sigma^2 < \sigma^2$——会<strong>系统性低估</strong>。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>无偏性的完整证明</div>
+    <p><strong>关键恒等式：</strong></p>
+    <div class="fbox">
+        $$\sum_{i=1}^n (X_i - \mu)^2 = \sum_{i=1}^n (X_i - \bar{X})^2 + n(\bar{X} - \mu)^2$$
+    </div>
+    <p>推导：$(X_i - \mu) = (X_i - \bar{X}) + (\bar{X} - \mu)$。平方后求和，交叉项 $\sum (X_i - \bar{X})(\bar{X} - \mu) = (\bar{X} - \mu)\sum (X_i - \bar{X}) = 0$（因为 $\sum X_i - n\bar{X} = 0$）。</p>
+    <p>取期望：</p>
+    <div class="fbox">
+        $$\sum_{i=1}^n E[(X_i-\mu)^2] = \sum_{i=1}^n \sigma^2 = n\sigma^2$$
+        $$E[n(\bar{X}-\mu)^2] = n \cdot \mathrm{Var}(\bar{X}) = n\cdot \frac{\sigma^2}{n} = \sigma^2$$
+        $$n\sigma^2 = (n-1)E[S^2] + \sigma^2 \;\Rightarrow\; E[S^2] = \sigma^2 \quad\blacksquare$$
+    </div>
+    <p class="note">直观：$\bar{X}$ 是基于数据算出来的，所以 $\sum (X_i - \bar{X})^2$ 比 $\sum (X_i - \mu)^2$ 要"小"（$\bar{X}$ 总在数据中心，$\mu$ 未必）。这个"损失"恰好对应一个自由度。</p>
+</div>
+
+</div><!-- end Lecture 15 -->
+
+</div><!-- end Lecture 15 -->
+
+<!-- ==================== LECTURE 16 ==================== -->
+<div class="lecture" id="lec16">
+<!-- ==================== LECTURE 16 ==================== -->
+<div class="lecture" id="lec16">
+<h1 class="lecture-title">Lecture 16 | t分布 · 中心极限定理 <span class="en">§5.5-5.6 t-Distribution &amp; CLT</span></h1>
+
+<h2 class="section-title" id="lec16-tdist">§5.5（续）Thm 5.5-2 &amp; Student's t 分布</h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.5-2：正态样本下 $\bar{X}$ 与 $S^2$ 独立，且 $(n-1)S^2/\sigma^2 \sim \chi^2(n-1)$</div>
+    <p>$X_1,\ldots,X_n$ i.i.d. $N(\mu,\sigma^2)$。则：</p>
+    <p>(1) $\bar{X}$ 与 $S^2$ <strong>相互独立</strong>（仅在正态分布下成立）。</p>
+    <p>(2)</p>
+    <div class="fbox imp">
+        $$\frac{(n-1)S^2}{\sigma^2} = \sum_{i=1}^n \left(\frac{X_i - \bar{X}}{\sigma}\right)^2 \sim \chi^2(n-1)$$
+    </div>
+    <p><strong>证明（第2部分，mgf方法）：</strong></p>
+    <p>设 $W = \sum_{i=1}^n \left(\frac{X_i-\mu}{\sigma}\right)^2 \sim \chi^2(n)$（Cor 5.4-3）；$Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$（Cor 5.5-1）。</p>
+    <p>由样本方差恒等式：$\frac{(n-1)S^2}{\sigma^2} + Z^2 = W$。即 $\frac{(n-1)S^2}{\sigma^2} = W - Z^2$。</p>
+    <p>利用 $\bar{X}$ 与 $S^2$ 独立（不在此证明），且 $Z^2 \sim \chi^2(1)$，两边取 mgf：</p>
+    <div class="fbox">
+        $$M_W(t) = M_{(n-1)S^2/\sigma^2}(t) \cdot M_{Z^2}(t)$$
+        $$(1-2t)^{-n/2} = M_{(n-1)S^2/\sigma^2}(t) \cdot (1-2t)^{-1/2}$$
+        $$\Rightarrow M_{(n-1)S^2/\sigma^2}(t) = (1-2t)^{-(n-1)/2}$$
+    </div>
+    <p>这正是 $\chi^2(n-1)$ 的 mgf。$\blacksquare$</p>
+    <p class="note"><strong>为什么丢了一个自由度？</strong>用 $\bar{X}$ 替代 $\mu$ 时，$X_i - \bar{X}$ 满足约束 $\sum (X_i - \bar{X}) = 0$——$n$ 个变量中只有 $n-1$ 个是自由变化的。这和 $E[S^2] = \sigma^2$ 的分母 $n-1$ 是一致的。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>Cor 5.4-3 vs Thm 5.5-2 — 自由度从 $n$ 降到 $n-1$</div>
+    <p>$\sum \left(\frac{X_i - \mu}{\sigma}\right)^2 \sim \chi^2(n)$（用真实均值 $\mu$）</p>
+    <p>$\sum \left(\frac{X_i - \bar{X}}{\sigma}\right)^2 \sim \chi^2(n-1)$（用样本均值 $\bar{X}$ 替代 $\mu$）</p>
+    <p>用估计值替代真实参数 → 损失一个自由度。这是统计推断中反复出现的模式。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Student's t 分布 — 为什么需要它？</div>
+    <p>实际中 $\sigma$ 通常是<strong>未知的</strong>——我们不能用 $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}$ 因为 $\sigma$ 不知道。自然想到用 $S$ 替代 $\sigma$：$\frac{\bar{X}-\mu}{S/\sqrt{n}}$。但这个量的分布不再是标准正态——因为分母 $S$ 本身也是随机的。t 分布就是为这个场景设计的。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>t 分布的定义 (Thm 5.5-3)</div>
+    <p>若 $Z \sim N(0,1)$，$U \sim \chi^2(r)$，且 $Z$ 与 $U$ <strong>独立</strong>，则：</p>
+    <div class="fbox imp">
+        $$T = \frac{Z}{\sqrt{U/r}} \;\sim\; t(r)$$
+    </div>
+    <p>pdf：$f(t) = \frac{\Gamma(\frac{r+1}{2})}{\sqrt{\pi r}\,\Gamma(\frac{r}{2})}\left(1 + \frac{t^2}{r}\right)^{-\frac{r+1}{2}},\; t \in (-\infty, \infty)$。</p>
+    <p>$r$ 是自由度。$r \to \infty$ 时 $t(r) \to N(0,1)$。</p>
+    <p><strong>关键的"工程实现"：</strong>正态样本下，$\bar{X}$ 与 $S^2$ 独立（Thm 5.5-2 第1部分），$Z = \frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$ 只含 $\bar{X}$，$U = \frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$ 只含 $S^2$。二者独立 → 可以拼出 $t$：</p>
+    <div class="fbox imp">
+        $$\frac{\bar{X} - \mu}{S/\sqrt{n}} = \frac{Z}{\sqrt{U/(n-1)}} \;\sim\; t(n-1)$$
+    </div>
+    <p class="note">对比：已知 $\sigma$ 时 $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$；$\sigma$ 未知时 $\frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t(n-1)$。后者是<strong>实际数据分析中最常用的统计量之一</strong>。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>t 分布 vs 正态分布</div>
+    <p>$r=1$ 时 $t(1)$ 就是柯西分布（尾巴极重，均值不存在）。$r$ 越大，$t$ 越接近正态。$r \ge 30$ 时二者几乎不可区分。t 分布的尾巴更重——$S$ 的不确定性在小样本下会导致更多的极端偏离。</p>
+</div>
+
+<h2 class="section-title" id="lec16-clt">§5.6 中心极限定理 <span class="en">Central Limit Theorem</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>依分布收敛 <span class="en">Convergence in Distribution</span></div>
+    <p>$Z_n \xrightarrow{d} Z$（或 $Z_n \xrightarrow{\mathcal{L}} Z$）若 $\lim_{n\to\infty} F_{Z_n}(z) = F_Z(z)$，对所有 $F_Z$ 的连续点 $z$。</p>
+    <p><strong>含义：</strong>$Z_n$ 的 cdf 逐点趋近于 $Z$ 的 cdf。注意：这是<strong>分布层面的收敛</strong>，$Z_n$ 和 $Z$ 不必定义在同一概率空间上——收敛的是分布形状，而不是随机变量本身。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>CLT — 中心极限定理 (Page 208)</div>
+    <p>$X_1,\ldots,X_n$ i.i.d.，均值为 $\mu$，方差为 $\sigma^2$（$0 < \sigma^2 < \infty$）。则：</p>
+    <div class="fbox imp">
+        $$\frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \;\xrightarrow{d}\; N(0,1),\quad n \to \infty$$
+    </div>
+    <p><strong>三句等价说法（对充分大的 $n$）：</strong></p>
+    <p>(1) $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}$ 近似 $N(0,1)$</p>
+    <p>(2) $\bar{X}$ 近似 $N(\mu, \frac{\sigma^2}{n})$</p>
+    <p>(3) $\sum_{i=1}^n X_i$ 近似 $N(n\mu, n\sigma^2)$</p>
+    <p class="note"><strong>最重要的结论：</strong>不管原始分布是什么形状（二项、泊松、均匀、指数、甚至完全不知名的分布），只要方差有限，样本均值在大样本下都近似正态。CLT 是为什么正态分布在统计学中无处不在的根本原因。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 209)：CLT 数值实例</div>
+    <p>$n=25$，$\mu=15$，$\sigma^2=4$。求 $P(14.4 < \bar{X} < 15.6)$。</p>
+    <p>CLT：$\bar{X}$ 近似 $N(15,\; \frac{4}{25}) = N(15, 0.4^2)$。</p>
+    <div class="fbox">
+        $$P(14.4 < \bar{X} < 15.6) = \Phi\!\left(\frac{15.6-15}{0.4}\right) - \Phi\!\left(\frac{14.4-15}{0.4}\right) = \Phi(1.5) - \Phi(-1.5) = 0.8664$$
+    </div>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例3 (Page 210)：CLT 近似 vs 精确分布——均匀分布之和</div>
+    <p>$X_1,X_2$ i.i.d. $U(0,1)$。$\mu=\frac12$，$\sigma^2=\frac{1}{12}$。$Y = X_1+X_2$。</p>
+    <p><strong>精确 pdf（通过 cdf 方法推导）：</strong>$g(y) = y$（$0<y<1$），$g(y)=2-y$（$1<y<2$）——三角形分布。</p>
+    <p><strong>CLT 近似：</strong>$Y$ 近似 $N(2\cdot\frac12, 2\cdot\frac{1}{12}) = N(1, \frac16)$。</p>
+    <p>$n=2$ 时三角形和正态差距明显。取 $n=4$，$U(0,1)$ 的四次和已经非常接近正态——CLT 说 $n \to \infty$ 时才精确成立，但实际中 $n \ge 30$ 通常就够用了（取决于原始分布的偏度）。</p>
+</div>
+
+</div><!-- end Lecture 16 -->
+
+<!-- ==================== LECTURE 17 ==================== -->
+<div class="lecture" id="lec17">
+<h1 class="lecture-title">Lecture 17 | 正态近似 · 切比雪夫 · 大数定律 <span class="en">§5.7-5.8 Normal Approx, Chebyshev, LLN</span></h1>
+
+<h2 class="section-title" id="lec17-approx">§5.7 离散分布的正态近似 <span class="en">Normal Approximation for Discrete Distributions</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>基本思想：用连续 pdf "贴合"离散直方图</div>
+    <p>离散 RV $Y$ 的直方图：每个 $k$ 上有一个宽度为 1、高度为 $P(Y=k)$ 的矩形。矩形面积 = 概率。</p>
+    <p>如果找一个连续 pdf 使它的曲线"穿过"这些矩形的顶部，那么可以用该连续分布来<strong>近似计算概率</strong>。CLT 告诉我们，当 $Y$ 是很多 i.i.d. RV 之和时，正态 pdf 恰好能做到——这就是正态近似的理论基础。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>半单位修正（连续性修正）<span class="en">Half-Unit Correction</span></div>
+    <p>$Y$ 是离散 RV（取值整数），用连续分布近似时：</p>
+    <div class="fbox imp">
+        $$P(Y = k) \;\approx\; P\!\left(k - \tfrac12 < Y_{\text{cont}} < k + \tfrac12\right)$$
+        $$P(a \le Y \le b) \;\approx\; P\!\left(a - \tfrac12 < Y_{\text{cont}} < b + \tfrac12\right)$$
+    </div>
+    <p><strong>为什么需要修正？</strong>离散的 $P(Y=k)$ 对应直方图中从 $k-0.5$ 到 $k+0.5$ 的矩形面积。如果直接用 $P(Y_{\text{cont}} = k)$，连续分布的单点概率为 0，完全没意义。所以必须用区间来"接住"这个矩形。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 216)：$Y \sim b(10, 0.5)$，$P(3 \le Y < 6)$</div>
+    <p>$E[Y] = 5$，$\mathrm{Var}(Y) = 2.5$。精确概率：$\sum_{k=3}^5 \binom{10}{k}(0.5)^{10} = 0.5683$。</p>
+    <p><strong>CLT 近似（带半单位修正）：</strong>$Y$ 近似 $N(5, 2.5)$。</p>
+    <div class="fbox">
+        $$\begin{aligned}
+        P(3 \le Y < 6) &\approx P(2.5 < Y_{\text{normal}} < 5.5) \\
+        &= \Phi\!\left(\frac{5.5-5}{\sqrt{2.5}}\right) - \Phi\!\left(\frac{2.5-5}{\sqrt{2.5}}\right) \\
+        &= \Phi(0.316) - \Phi(-1.581) = 0.6240 - 0.0570 = \mathbf{0.5670}
+        \end{aligned}$$
+    </div>
+    <p>近似值 0.5670 vs 精确值 0.5683——误差仅 0.0013！</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例2 (Page 217)：泊松和的两种算法对比</div>
+    <p>$X_1,\ldots,X_{20}$ i.i.d. $\text{Poisson}(1)$。则 $Y = \sum X_i \sim \text{Poisson}(20)$（由 mgf 可证）。</p>
+    <p>$P(16 < Y \le 21)$。</p>
+    <p><strong>精确（查泊松表或用公式）：</strong>$\sum_{k=17}^{21} \frac{20^k e^{-20}}{k!} = 0.4226$。</p>
+    <p><strong>CLT 近似（带半单位修正）：</strong>$Y$ 近似 $N(20, 20)$。</p>
+    <div class="fbox">
+        $$P(16 < Y \le 21) \approx P(16.5 < Y_{\text{normal}} < 21.5) = \Phi(0.335) - \Phi(-0.783) = 0.4142$$
+    </div>
+    <p>误差约 0.008——可接受。</p>
+    <p class="note">注意 CLT 用的是 $Y \approx N(20, 20)$，不是 $\text{Poisson}(20)$ 的 pmf。这说明了 CLT 和精确分布（mgf 推出来的）是两个不同层面的事。</p>
+</div>
+
+<h2 class="section-title" id="lec17-cheb">§5.8 切比雪夫不等式 <span class="en">Chebyshev's Inequality</span></h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>切比雪夫不等式 (Thm 5.8-1)</div>
+    <p>$X$ 有有限均值 $\mu$ 和有限方差 $\sigma^2$。对任意 $k \ge 1$：</p>
+    <div class="fbox imp">
+        $$P(|X - \mu| \ge k\sigma) \le \frac{1}{k^2}$$
+    </div>
+    <p>等价形式（取 $\epsilon = k\sigma$）：$P(|X-\mu| \ge \epsilon) \le \frac{\sigma^2}{\epsilon^2}$。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>证明</div>
+    <p>考虑离散 RV（连续同理，改求和为积分）。$\sigma^2 = \sum_{x}(x-\mu)^2 f(x)$。</p>
+    <p>将求和拆成两部分：$A = \{x \mid |x-\mu| \ge k\sigma\}$（"偏离大的区域"），$A^c$（"偏离小的区域"）。</p>
+    <div class="fbox">
+        $$\sigma^2 = \sum_{x\in A}(x-\mu)^2 f(x) + \sum_{x\in A^c}(x-\mu)^2 f(x) \ge \sum_{x\in A}(x-\mu)^2 f(x)$$
+    </div>
+    <p>在 $A$ 内，$(x-\mu)^2 \ge k^2\sigma^2$。所以：</p>
+    <div class="fbox">
+        $$\sigma^2 \ge \sum_{x\in A} k^2\sigma^2 f(x) = k^2\sigma^2 \sum_{x\in A} f(x) = k^2\sigma^2 \cdot P(A)$$
+        $$\Rightarrow P(|X-\mu| \ge k\sigma) = P(A) \le \frac{1}{k^2} \quad\blacksquare$$
+    </div>
+    <p class="note"><strong>深刻之处：</strong>不需要知道 $X$ 的分布是什么！只要知道 $\mu$ 和 $\sigma^2$，就可以给出一个（保守的）概率上界。代价是上界通常很松——比如正态分布中 $P(|X-\mu|\ge 2\sigma) \approx 0.045$，但切比雪夫只给出 $\le 0.25$。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 222)：$\mu=25, \sigma^2=16$</div>
+    <p><strong>下界（"在均值附近"的概率至少多大）：</strong></p>
+    <p>$P(17 < X < 33) = P(|X-25| < 8) = 1 - P(|X-25| \ge 2\sigma) \ge 1 - \frac{1}{4} = \frac{3}{4}$。</p>
+    <p><strong>上界（"偏离太远"的概率至多多大）：</strong></p>
+    <p>$P(|X-25| \ge 12) = P(|X-25| \ge 3\sigma) \le \frac{1}{9}$。</p>
+</div>
+
+<h2 class="section-title" id="lec17-lln">依概率收敛与大数定律 <span class="en">Convergence in Probability &amp; LLN</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>依概率收敛 <span class="en">Convergence in Probability</span></div>
+    <p>$Z_n \xrightarrow{p} Z$ 若对任意 $\epsilon > 0$：$\lim_{n\to\infty} P(|Z_n - Z| \ge \epsilon) = 0$。</p>
+    <p><strong>含义：</strong>随着 $n$ 增大，$Z_n$ 偏离 $Z$ 超过任意小正数 $\epsilon$ 的概率趋于零。$Z_n$ 以越来越高的概率"贴近"$Z$。不同于依分布收敛——这里 $Z_n$ 和 $Z$ 定义在同一个概率空间上。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>大数定律 <span class="en">Law of Large Numbers (LLN)</span></div>
+    <p>$X_1,\ldots,X_n$ i.i.d.，$E[X_i] = \mu$（有限）。则：</p>
+    <div class="fbox imp">
+        $$\bar{X} \;\xrightarrow{p}\; \mu$$
+    </div>
+    <p><strong>证明（用切比雪夫不等式）：</strong></p>
+    <p>$E[\bar{X}] = \mu$，$\mathrm{Var}(\bar{X}) = \frac{\sigma^2}{n}$。</p>
+    <div class="fbox">
+        $$P(|\bar{X} - \mu| \ge \epsilon) \le \frac{\mathrm{Var}(\bar{X})}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2} \longrightarrow 0,\quad n \to \infty \quad\blacksquare$$
+    </div>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>LLN vs CLT — 两种收敛，两个层面的信息</div>
+    <table class="ctab">
+        <tr><th></th><th>LLN</th><th>CLT</th></tr>
+        <tr><td>收敛对象</td><td>$\bar{X}$ 本身</td><td>标准化后的 $\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}$</td></tr>
+        <tr><td>收敛到</td><td>常数 $\mu$</td><td>分布 $N(0,1)$</td></tr>
+        <tr><td>收敛方式</td><td>依概率收敛</td><td>依分布收敛</td></tr>
+        <tr><td>回答的问题</td><td>"$\bar{X}$ 逼近 $\mu$ 吗？"</td><td>"$\bar{X}$ 的波动是什么样的？"</td></tr>
+        <tr><td>需要方差有限？</td><td>否（只需均值有限）</td><td>是（需要方差有限）</td></tr>
+    </table>
+    <p class="note">LLN 给了我们信心——样本量够大时样本均值接近真实均值。CLT 更进一步——告诉我们这个接近的"误差"服从正态分布，从而可以做区间估计和假设检验。</p>
+</div>
+
+</div><!-- end Lecture 17 -->
+
+<!-- ==================== LECTURE 18 ==================== -->
+<div class="lecture" id="lec18">
+<h1 class="lecture-title">Lecture 18 | 极限mgf &amp; CLT的mgf证明 <span class="en">§5.9 Limiting MGF &amp; Proof of CLT</span></h1>
+
+<h2 class="section-title" id="lec18-limit">§5.9 极限mgf —— 二项分布的两个归宿 <span class="en">Limiting MGF</span></h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Thm 5.9-1：mgf 点态收敛 ⇒ 依分布收敛</div>
+    <p>若 $\lim_{n\to\infty} M_{Z_n}(t) = M_Z(t)$ 对 $t$ 在 $0$ 的某个开邻域内成立，且 $M_Z(t)$ 是某个分布的 mgf，则 $Z_n \xrightarrow{d} Z$。</p>
+    <p>这是从"mgf 唯一确定分布"自然延伸出来的——如果 mgf 收敛，分布也就收敛了。</p>
+</div>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>应用1：二项 → 泊松（$n$ 大，$p$ 小，$np = \lambda$ 固定）</div>
+    <p>$Z_n \sim b(n, p = \lambda/n)$。mgf：$M_{Z_n}(t) = [(1-p) + p e^t]^n$。</p>
+    <div class="fbox">
+        $$M_{Z_n}(t) = \left[1 - \frac{\lambda}{n} + \frac{\lambda}{n}e^t\right]^n = \left[1 + \frac{\lambda(e^t - 1)}{n}\right]^n$$
+    </div>
+    <p>取极限，利用 $\lim_{n\to\infty} (1 + \frac{b}{n})^n = e^b$：</p>
+    <div class="fbox imp">
+        $$\lim_{n\to\infty} M_{Z_n}(t) = e^{\lambda(e^t-1)}$$
+    </div>
+    <p>这正是 $\text{Poisson}(\lambda)$ 的 mgf。由 Thm 5.9-1：$b(n, \lambda/n) \xrightarrow{d} \text{Poisson}(\lambda)$。</p>
+    <p class="note">这就是 Lecture 6 中学过的"$n \ge 20$，$p \le 0.05$ 时用泊松近似"的<strong>数学证明</strong>。条件是 $np = \lambda$ 保持常数——$n$ 越大，$p$ 必须越小。</p>
+</div>
+
+<div class="card ex">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例1 (Page 227)：$Y \sim b(50, 1/25)$，$P(Y \le 1)$</div>
+    <p>$n=50$，$p=0.04$。$np = 2 = \lambda$。精确概率：</p>
+    <div class="fbox">
+        $$P(Y\le 1) = \binom{50}{0}(0.96)^{50} + \binom{50}{1}(0.04)(0.96)^{49} = 0.4$$
+    </div>
+    <p>泊松近似（$\lambda=2$）：$P(Y\le 1) \approx e^{-2} + 2e^{-2} = 3e^{-2} = 0.406$。差异仅 0.006。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>二项分布的两种极限——取决于 $p$ 的行为</div>
+    <table class="ctab">
+        <tr><th>参数设置</th><th>$n\to\infty$ 时的极限</th><th>证明工具</th><th>典型场景</th></tr>
+        <tr><td>$p$ <strong>固定</strong>（如 $p=0.3$）</td><td>正态 $N(np, np(1-p))$</td><td>CLT</td><td>大量伯努利试验</td></tr>
+        <tr><td>$np=\lambda$ <strong>固定</strong>，$p=\lambda/n \to 0$</td><td>泊松 $\text{Poisson}(\lambda)$</td><td>极限 mgf</td><td>稀有事件</td></tr>
+    </table>
+    <p><strong>两者不矛盾：</strong>当 $p$ 固定时，$np \to \infty$（泊松的 $\lambda$ 趋于无穷），而 $\text{Poisson}(\lambda)$ 中 $\lambda$ 很大时本身就近似正态——所以两种极限路径最终殊途同归。但当 $p$ 很小且 $np$ 适中时，泊松近似远优于正态近似。</p>
+</div>
+
+<h2 class="section-title" id="lec18-cltproof">CLT 的 mgf 证明 <span class="en">Proof of CLT via MGF</span></h2>
+
+<div class="card thm">
+    <div class="card-title"><span class="card-icon">&#9733;</span>完整证明步骤（Page 208）</div>
+    <p>$X_1,\ldots,X_n$ i.i.d.，$E[X_i] = \mu$，$\mathrm{Var}(X_i) = \sigma^2$。我们需要证：</p>
+    <div class="fbox">
+        $$W_n = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \xrightarrow{d} N(0,1)$$
+    </div>
+    <p><strong>Step 1 — 引入标准化变量：</strong>令 $Z_i = \frac{X_i - \mu}{\sigma}$。则 $E[Z_i] = 0$，$\mathrm{Var}(Z_i) = 1$。且：</p>
+    <div class="fbox">
+        $$W_n = \frac{1}{\sqrt{n}}\sum_{i=1}^n Z_i$$
+    </div>
+    <p><strong>Step 2 — 写出 $W_n$ 的 mgf：</strong>设 $M_Z(t) = E[e^{t Z_i}]$ 是共同 mgf。由独立性：</p>
+    <div class="fbox">
+        $$M_{W_n}(t) = \left[M_Z\!\left(\frac{t}{\sqrt{n}}\right)\right]^n$$
+    </div>
+    <p><strong>Step 3 — $M_Z(s)$ 在 $s=0$ 处的泰勒展开：</strong>$M_Z(0) = 1$，$M_Z'(0) = E[Z_i] = 0$，$M_Z''(0) = E[Z_i^2] = 1$。</p>
+    <div class="fbox">
+        $$M_Z(s) = M_Z(0) + M_Z'(0)s + \frac{M_Z''(0)}{2}s^2 + o(s^2) = 1 + \frac{s^2}{2} + o(s^2)$$
+    </div>
+    <p>$o(s^2)$ 表示比 $s^2$ 更高阶的项（$s^3, s^4, \ldots$）。</p>
+    <p><strong>Step 4 — 代入 $s = t/\sqrt{n}$：</strong></p>
+    <div class="fbox">
+        $$M_Z\!\left(\frac{t}{\sqrt{n}}\right) = 1 + \frac{t^2}{2n} + o\!\left(\frac{1}{n}\right)$$
+    </div>
+    <p><strong>Step 5 — 取 $n$ 次方并求极限：</strong></p>
+    <div class="fbox">
+        $$M_{W_n}(t) = \left[1 + \frac{t^2}{2n} + o\!\left(\frac{1}{n}\right)\right]^n$$
+    </div>
+    <p>利用 $\lim_{n\to\infty} (1 + \frac{b}{n})^n = e^b$：</p>
+    <div class="fbox imp">
+        $$\lim_{n\to\infty} M_{W_n}(t) = e^{t^2/2}$$
+    </div>
+    <p>$e^{t^2/2}$ 恰好是 $N(0,1)$ 的 mgf。由 Thm 5.9-1，$W_n \xrightarrow{d} N(0,1)$。$\blacksquare$</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>证明的核心洞察</div>
+    <p>为什么必须是正态？泰勒展开中线性项消失（因为 $E[Z_i]=0$），保留二阶项 $t^2/(2n)$。更高阶项被 $n^{-3/2}$ 压制（$s^3 = t^3/n^{3/2}$），取 $n$ 次方后也趋于 0。所以极限只保留了二阶信息——恰好对应正态分布的方差参数。</p>
+    <p>如果三阶矩非零（分布有偏斜），展开中有 $s^3$ 项——但在标准化和 $n\to\infty$ 的作用下被淹没。这就是为什么<strong>任何分布都收敛到同一个正态</strong>——标准化消掉了所有分布的"个性"，只留下均值和方差决定的"共性"。</p>
+</div>
+
+<h2 class="section-title" id="lec18-2convergences">两种收敛方式对比与关系总结</h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>依分布收敛 $\xrightarrow{d}$ vs 依概率收敛 $\xrightarrow{p}$</div>
+    <table class="ctab">
+        <tr><th></th><th>$\xrightarrow{d}$（依分布）</th><th>$\xrightarrow{p}$（依概率）</th></tr>
+        <tr><td>定义</td><td>$\lim F_n(z) = F(z)$</td><td>$\lim P(|Z_n-Z| \ge \epsilon) = 0$</td></tr>
+        <tr><td>$Z_n$ 和 $Z$ 在同一空间？</td><td>不必</td><td>必须</td></tr>
+        <tr><td>$Z$ 可以是常数？</td><td>可以（退化分布）</td><td>可以</td></tr>
+        <tr><td>CLT 使用</td><td>✅</td><td>—</td></tr>
+        <tr><td>LLN 使用</td><td>—</td><td>✅</td></tr>
+        <tr><td>关系</td><td colspan="2">$\xrightarrow{p} \;\Rightarrow\; \xrightarrow{d}$（依概率更强），反之不成立</td></tr>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>Lecture 13-18 常见易错点</div>
+    <p>1. <strong>二元正态：$\rho=0 \iff X \perp Y$。</strong>这是二元正态独有——一般分布只有 $\Rightarrow$ 方向。</p>
+    <p>2. <strong>$g(y)=f(v(y))|v'(y)|$ 的绝对值不能丢。</strong>$v'(y)$ 在递减情形下为负，不加绝对值 pdf 会变负。</p>
+    <p>3. <strong>概率积分变换：$F(X) \sim U(0,1)$ 要求 $F$ 连续。</strong>离散分布不适用。</p>
+    <p>4. <strong>样本方差分母是 $n-1$，因为 $E[S^2] = \sigma^2$。</strong>这是无偏性的代价。</p>
+    <p>5. <strong>$\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$，自由度是 $n-1$。</strong>$\bar{X}$ 的约束消耗了一个自由度。</p>
+    <p>6. <strong>$\frac{\bar{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$ vs $\frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t(n-1)$。</strong>$\sigma$ 已知用正态，$\sigma$ 未知用 $t$。</p>
+    <p>7. <strong>CLT 不需要正态假设。</strong>方差有限就够。但 CLT 告诉的是渐进分布，不是精确分布。</p>
+    <p>8. <strong>半单位修正：离散 $P(Y=k) \approx P(k-0.5 < Y_{\text{cont}} < k+0.5)$。</strong>不做修正直接代会引入偏差。</p>
+    <p>9. <strong>切比雪夫给的是（很松的）上界，不是近似值。</strong>考试中看到"$\le$"和"$\ge$"要分清楚方向。</p>
+    <p>10. <strong>二项分布两种极限不矛盾：</strong>$p$ 固定 → CLT → 正态；$np$ 固定 → 极限mgf → 泊松。前者 $np \to \infty$，后者 $np = \lambda$ 不变。</p>
+</div>
+
+</div><!-- end Lecture 18 -->
+
+<!-- ==================== FINAL SUMMARY ==================== -->
+<div class="lecture" id="summary-all">
+<h1 class="lecture-title">全课总览：六个分布一张图</h1>
+
+<div class="card connection" style="border-left-width: 6px;">
+    <div class="card-title"><span class="card-icon">&#128279;</span>Ch2 全部离散分布总表</div>
+    <table class="comparison-table">
+        <tr><th>分布</th><th>符号</th><th>取值范围</th><th>参数</th><th>pmf</th><th>$E[X]$</th><th>$\mathrm{Var}$</th><th>mgf</th></tr>
+        <tr><td>均匀</td><td>$\text{Uniform}(m)$</td><td>$\{1,\ldots,m\}$</td><td>$m$</td><td>$1/m$</td><td>$\frac{m+1}{2}$</td><td>$\frac{m^2-1}{12}$</td><td>$\frac{1}{m}\sum e^{tx}$</td></tr>
+        <tr><td>伯努利</td><td>$b(1,p)$</td><td>$\{0,1\}$</td><td>$p$</td><td>$p^x(1-p)^{1-x}$</td><td>$p$</td><td>$p(1-p)$</td><td>$1-p+pe^t$</td></tr>
+        <tr><td>二项</td><td>$b(n,p)$</td><td>$\{0,\ldots,n\}$</td><td>$n,p$</td><td>$\binom{n}{x}p^x q^{n-x}$</td><td>$np$</td><td>$npq$</td><td>$(1-p+pe^t)^n$</td></tr>
+        <tr><td>几何</td><td>$\text{Geom}(p)$</td><td>$\{1,2,\ldots\}$</td><td>$p$</td><td>$q^{x-1}p$</td><td>$1/p$</td><td>$q/p^2$</td><td>$\frac{pe^t}{1-qe^t}$</td></tr>
+        <tr><td>负二项</td><td>$\text{NB}(r,p)$</td><td>$\{r,r+1,\ldots\}$</td><td>$r,p$</td><td>$\binom{x-1}{r-1}p^r q^{x-r}$</td><td>$r/p$</td><td>$rq/p^2$</td><td>$\left(\frac{pe^t}{1-qe^t}\right)^r$</td></tr>
+        <tr><td>泊松</td><td>$\text{Poisson}(\lambda)$</td><td>$\{0,1,2,\ldots\}$</td><td>$\lambda$</td><td>$\frac{\lambda^x e^{-\lambda}}{x!}$</td><td>$\lambda$</td><td>$\lambda$</td><td>$e^{\lambda(e^t-1)}$</td></tr>
+    </table>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>Ch1 核心公式速记</div>
+    <table class="comparison-table">
+        <tr><th>概念</th><th>公式</th></tr>
+        <tr><td>条件概率</td><td>$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$</td></tr>
+        <tr><td>乘法法则</td><td>$P(A \cap B) = P(A)P(B \mid A) = P(B)P(A \mid B)$</td></tr>
+        <tr><td>独立</td><td>$P(A \cap B) = P(A)P(B)$</td></tr>
+        <tr><td>全概率</td><td>$P(A) = \sum_i P(B_i)P(A \mid B_i)$</td></tr>
+        <tr><td>贝叶斯</td><td>$P(B_j \mid A) = \frac{P(B_j)P(A \mid B_j)}{\sum_i P(B_i)P(A \mid B_i)}$</td></tr>
+        <tr><td>容斥原理</td><td>$P(A \cup B) = P(A) + P(B) - P(A \cap B)$</td></tr>
+        <tr><td>德摩根</td><td>$(A \cup B)' = A' \cap B'$</td></tr>
+        <tr><td>排列</td><td>$_nP_r = \frac{n!}{(n-r)!}$</td></tr>
+        <tr><td>组合</td><td>$\binom{n}{r} = \frac{n!}{r!(n-r)!}$</td></tr>
+        <tr><td>可区分排列</td><td>$\frac{n!}{n_1! n_2! \cdots n_k!}$</td></tr>
+    </table>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>Ch2 核心工具速记</div>
+    <table class="comparison-table">
+        <tr><th>概念</th><th>公式</th></tr>
+        <tr><td>期望</td><td>$E[g(X)] = \sum g(x)f(x)$</td></tr>
+        <tr><td>均值</td><td>$\mu = E[X] = \sum x f(x)$</td></tr>
+        <tr><td>方差</td><td>$\mathrm{Var}(X) = E[(X-\mu)^2] = E[X^2] - (E[X])^2$</td></tr>
+        <tr><td>标准差</td><td>$\sigma = \sqrt{\mathrm{Var}(X)}$</td></tr>
+        <tr><td>mgf</td><td>$M(t) = E[e^{tX}] = \sum e^{tx} f(x)$</td></tr>
+        <tr><td>r阶矩</td><td>$M^{(r)}(0) = E[X^r]$</td></tr>
+        <tr><td>mgf性质</td><td>$M(0)=1$, 唯一性, 生成矩</td></tr>
+    </table>
+</div>
+
+</div>
+
+</div><!-- end main-content -->
+
+<script>
+function toggleLecture(el) {
+    const lecture = el.parentElement;
+    lecture.classList.toggle('collapsed');
+}
+document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('open');
+});
+document.querySelectorAll('.toc-section a').forEach(a => {
+    a.addEventListener('click', function(){
+        document.querySelectorAll('.toc-section').forEach(s => s.style.borderLeftColor = 'transparent');
+        this.parentElement.style.borderLeftColor = '#e67e22';
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+--- Page 0 ---
+FIN2010
+Financial Management
+Lecture 1: What is Finance?
+
+--- Page 1 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+What is Finance?
+2
+Borrowers who need money
+Financial Industry
+Investors who have money
+
+--- Page 2 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Agenda
+• Investors and borrowers
+• Does finance create value?
+• Financial institutions
+• About this course
+3
+
+--- Page 3 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Who are the Borrowers?
+• Government
+• Business
+• Household
+Source: World Bank, Ministry of Financial of PRC as of the end of 2022. 
+No need to memorize the numbers. 
+4
+Central Gov.
+Local Gov.
+GDP
+US
+$34.8 T
+$4.0 T
+$25.5 T
+China
+$3.74 T
+$5.07 T
+$18.0 T
+Equity
+Bond
+US
+$46.2 T
+$10.4 T
+China
+$10.7 T
+$29.8 T
+Home Loan
+Auto Loan
+US
+$17.3 T
+$1.6T
+China
+$7.5 T
+$0.03T
+
+--- Page 4 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Why Borrow—To accelerate growth!
+–
+Suppose the profit of one HEYTEA branch per year is equal to the cost of opening a new branch.
+•
+If the owner does not borrow, the number of branches doubles every year.
+–
+In reality, HEYTEA grows faster by borrowing the cost to open a new branch. 
+•
+This is one reason why finance is useful.
+5
+Year
+Stores—No debt
+Actual Stores
+Financed by
+2012
+1
+1
+2013
+2
+4
+2014
+4
+9
+2015
+8
+15
+2016
+16
+50
+IDG Capitals
+2017
+32
+80
+2018
+64
+163
+Black Ant Capital, Meituan
+
+--- Page 5 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Who are the Investors?
+6
+Individuals
+Invest directly
+Pension Funds
+Institutions
+Insurance
+Others: Endowments,
+Sovereign Funds, 
+Firms…
+Invest through 
+managers
+Money Managers
+•
+Mutual funds
+•
+Hedge funds
+•
+Venture capitals
+•
+Private equities
+
+--- Page 6 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Pension Funds (养老金)
+7
+Country
+Fund
+Assets (in billions)
+United States
+Federal Old-age and Survivors Insurance Trust Fund (Social Security)
+$2,619
+Australia
+Australian National Superannuation Scheme
+$2,568
+Japan
+Government Pension Investment Fund
+$1,790
+Norway
+Government Pension Fund of Norway
+$1,356
+United States
+Military Retirement Fund
+$1,178
+United States
+Civil Service Retirement and Disability Fund
+$1,003
+United States
+Thrift Savings Plan (TSP)
+$822
+Canada
+Canada Pension Plan and CPP Investment Board (CPPIB)
+$570
+Netherlands
+Stichting Pensioenfonds ABP (ABP)
+$498
+South Korea
+National Pension Service (NPS)
+$462
+China
+National Social Security Fund
+$405
+Model: Take monthly contribution from young people; pay back (more) when they get old.
+Investment Goal: Meet future obligations
+Source: Wikipedia, National Council for Social Security Fund, as of 2022
+
+--- Page 7 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Global Money Management Firms
+Rank
+Company
+Country of Origin
+AUM (billion USD)
+1
+BlackRock
+United States
+9,090
+2
+Vanguard Group
+United States
+7,600
+3
+Fidelity Investments
+United States
+4,240
+4
+UBS Group
+Switzerland
+3,960
+5
+State Street Global Advisors
+United States
+3,600
+6
+Morgan Stanley
+United States
+3,131
+7
+JPMorgan Chase
+United States
+3,006
+8
+Goldman Sachs
+United States
+2,672
+9
+Credit Agricole
+France
+2,660
+10
+Allianz Group
+Germany
+2,364
+8
+Model: Invest other people’s money and earn management fees, which is typically 0.1 to 
+1% of assets under management (AUM).
+Investment Goal: Maximize AUM by outperforming competitors.
+Source: ADV RATINGS, as of 2023
+
+--- Page 8 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Chinese Money Management Firms
+9
+Source: IPE; 2023 Annual Reports
+Rank
+Company
+AUM (trillion RMB)
+1
+China Life Asset Management 国寿资管
+5.37
+2
+Ping An Asset Management 平安资管
+5.03
+3
+Taikang Insurance Group 泰康资管
+3.40
+4
+CMB Wealth Management  招银理财
+2.55
+5
+CIB Wealth Management 兴银理财
+2.26
+6
+China Southern Fund Management 南方基金管理
+1.89
+7
+China Asset Management 华夏资管
+1.82
+8
+E Funds Management 易方达
+1.62
+9
+China Taiping Insurance Group 太平资管
+1.23
+10
+CCB Principal Asset Management 建信基金管理
+1.17
+
+--- Page 9 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Agenda
+• Investors and borrowers
+• Does finance create value?
+• Financial institutions
+• About this course
+10
+
+--- Page 10 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Does Financial Industry Create Value?
+• It seems the financial industry only transfers wealth but does not create wealth. 
+Is this true?
+• No! Financial industry creates value in many ways. Most important channels are:
+1.
+Allocating resources efficiently
+2.
+Making deals happen
+Other channels:
+–
+Providing liquidity (流动性), i.e., making it possible to trade whenever one wishes to
+–
+Providing information
+–
+Stabilizing the market and reducing risks
+11
+
+--- Page 11 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Value Creation — 1. Allocating Resources Efficiently
+• Suppose there are two firms:
+Firm A can turn $1 to $2 in a year
+Firm B can turn $1 to $1.1 in a year
+• If we have $100 to allocate to the two firms.
+1.
+An economy with efficient financial industry will allocate all $100 to firm A. A year later the 
+society has $200
+2.
+An economy with inefficient financial industry may allocate $50 to each firm. A year later the 
+society has $155
+• Challenge: How do you identify which is firm A and which is firm B?
+–
+Key skill: Understand and be able to model the world.
+12
+
+--- Page 12 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Value Creation — 2. Making Deals Happen (Promoting Growth)
+13
+Investor who has money but does 
+not have profitable projects
+Demands low return
+Borrowers who need money
+to carry out profitable projects
+Earn high return
+Execute projects
+Securities
+Cash
+Reward (Dividends or interest)
+Retained 
+earnings
+Challenges: 
+1.
+Where do you find the investors and borrowers?
+2.
+How do you know the borrower can repay and not run 
+away with the money?
+3.
+How do you convince the investor to invest?
+•
+Key skill: Maintain client relationship, have strong 
+interpersonal and communication skills.
+
+--- Page 13 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+What Securities do People Use?
+Products in the financial markets are called securities.
+• Equity (owning a portion of business)
+–
+Stock
+• Simple Debt (payment amount is fixed)
+–
+Bond 
+–
+Mortgage
+• Derivatives (payment amount depends on future market prices)
+–
+Forward and Futures 
+–
+Option 
+–
+Swap
+–
+…
+14
+
+--- Page 14 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Agenda
+• Investors and borrowers
+• Does finance create value?
+• Financial institutions
+• About this course
+15
+
+--- Page 15 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Why do We Need the Middleman?
+16
+•
+Reduce costs:
+•
+Without a middleman, # of negotiations: 1000
+With a middleman, # of negotiations: 110  
+— More efficient!
+•
+Specialization: the middleman provides useful service
+•
+Due diligence (collect info on borrowers)
+•
+Risk sharing, diversification, liquidity
+•
+Advisory
+•
+Monitoring
+100 Investors
+10 Borrowers
+
+--- Page 16 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Who are the Middlemen?
+17
+Investors
+Borrowers
+Financial Industry
+
+--- Page 17 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Who are the Middlemen?
+18
+Commercial Banks
+Money Managers
+Financial Market
+Exchanges (e.g. Shenzhen Stock Exchange)
+Investment banks (CICC (中金), Goldman Sachs)
+Brokerage firms (e.g. CMSC (招商证券))
+Data vendors (e.g. Wind, Bloomberg)
+Borrowers
+Individuals
+Institutions
+Sell Side
+(Offer service)
+Buy Side
+(Have money)
+
+--- Page 18 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Jobs—Buy Side Institutions
+19
+Institutions
+Tasks
+•
+Manage cash flows to meet future obligations
+•
+Manage risks of investments
+•
+Identify good money managers to delegate the investments to
+Good
+•
+Light workload/working hours
+•
+Have power so everyone respects you
+Bad
+•
+Pay is usually not as high as sell side institutions and limited 
+room to grow
+•
+Hard to get in (may require connection)
+
+--- Page 19 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Jobs—Money Managers
+20
+Money Managers
+Tasks
+•
+Generate superior investment performance
+(Create value by allocating resource efficiently)
+•
+Quantitative models
+•
+Fundamental analysis
+•
+Convince investors to put money into your fund (build trust)
+Good
+•
+Extremely high pay (if you perform well)
+•
+Everyone around you is smart
+Bad
+•
+Can be stressful because pay is usually tied to performance
+•
+Can be fired easily
+
+--- Page 20 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Investment Banking
+Tasks
+•
+Primary market: help companies finance, or make 
+deals (IPO, merger & acquisition, liquidation)
+•
+Trading: help meet the hedging needs
+Good
+•
+Very high pay (a large portion is bonus)
+•
+Able to meet with important people
+•
+Good exit options
+Bad
+•
+Extremely long working hours
+•
+Sometimes toxic working environment
+Commercial Banking
+Tasks
+•
+Deal with depositors
+•
+Make loans to borrowers
+•
+Sell investment products to investors to 
+earn incentive fees
+•
+Manage risks
+Good
+•
+Stable (hard to get fired)
+•
+Have many different posts so it is easy 
+to switch jobs
+Bad
+•
+Pay is usually not high
+•
+Can be boring
+Jobs—Banks
+21
+Banks
+
+--- Page 21 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Jobs—Other Institutions
+22
+Financial Market
+Brokers
+Brokerage Firms
+•
+Help clients access the financial markets
+•
+Technology
+•
+Compliance
+•
+Execution
+•
+Provide market research
+Data Vendors
+•
+Provide data to other participants
+Exchanges
+•
+Technology platform
+•
+Answer to regulators
+Market makers
+•
+Maintain market liquidity
+Arbitrageurs
+•
+Correct mispricing
+
+--- Page 22 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Agenda
+• Investors and borrowers
+• Does finance create value?
+• Financial institutions
+• About this course
+23
+
+--- Page 23 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Plan for this Semester
+• Basic tools (1-6)
+–
+Time value of money, institutional knowledge
+• Investors’ problems (7-13, 15-16)
+–
+Asset valuation (bond & stock)
+–
+Risk and Return
+–
+Financial Derivatives
+–
+Personal investment
+• Midterm
+• Corporates’ problems (17-23)
+–
+Capital structure
+–
+Cost of capital
+–
+Project valuation
+•
+AI and investment (25-26)
+• Final
+24
+Everyone will be an investor 
+sometime in life!
+Useful if you ever plan to start 
+your own business.
+
+--- Page 24 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Course Objectives
+• Knowledge: Understand what the financial industry does.
+• Framework: Learn the framework of quantifying financial problems.
+–
+Quantifying: interpreting the problems using numbers and equations.
+• Application: Learn how to make rational financial decisions.
+–
+Evaluate: should I buy this apartment/stock/product?
+–
+Plan: to have X amount of money, I need to …
+–
+Call out scams
+25
+
+--- Page 25 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Setting the Correct Expectation
+Social science, unlike natural science, cannot accurately describe the world.
+Then why do we learn this?
+–
+It is vastly better than a pure guess.
+–
+You need to learn the primitive models first so that you can develop more advanced models in 
+the future.
+26
+
+--- Page 26 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Materials
+• Textbooks
+–
+Fundamentals of Corporate Finance, by Stephen A. Ross, 
+Randolph W. Westerfield and Bradford D. Jordan
+–
+Not required
+–
+Strongly recommended for students without any prior 
+knowledge of finance
+• Regular calculator / financial calculator / scientific calculator
+–
+Regular calculator is sufficient. 
+–
+IF you are interested in CFA exam later, you can consider using Texas 
+Instruments BA II Plus (including BA II Plus Professional) 
+–
+Calculators that you can use to program are NOT allowed on the midterm 
+or the final.
+27
+
+--- Page 27 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Course Logistics
+• Sections
+• Grading
+–
+5% 
+Participation (you get 0.25% each time)
+–
+15% 
+Homework (5% weekly online MC quizzes, 10% problem sets)
+–
+15%   
+Group project
+–
+30% 
+Midterm
+–
+35% 
+Final
+28
+You can make up a missed class by attending 
+a different section. Send email to TA when you 
+do this.
+M/W 8:30 AM
+Jaemin Lee
+TxC 202
+T/Th 6:00 PM
+Xiyue Li
+TxC 101
+Outcome based, consistent across all sections 
+
+--- Page 28 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Group Project
+• 15% of your grade
+• Goal: apply theories to evaluate an investment opportunity
+• Format: an 8-15 pages (including tables and graphs) report
+• Logistics:
+–
+Groups of 4-5 students. Please form groups before 2026-10-31.
+–
+Due date: 2026-12-13 11:59PM (may change based on the schedule)
+29
+
+--- Page 29 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Office Hour
+• It is important that you figure out any question asap!
+31
+Mon
+Tue
+Wed
+Fri
+Shirley Wu (TA)
+1:00-2:00PM
+TxD 8th Floor
+Cubicle 11
+Xiyue Li
+5:00-6:00PM
+TxD 808
+Jaemin Lee
+1:00-2:00PM
+TxD 805
+KU Zhuo (TA)
+2:00-3:00PM
+TxD 8th Floor
+USTF — Library 
+L103
+Peixuan Sun  
+10:30-11:30AM
+Fucheng Ma  
+1:00-2:00PM
+Kailai Jiang  
+2:00-3:00PM
+
+--- Page 30 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Summary
+• What is finance?
+–
+The study of how to make money flow efficiently from investors to borrowers and all other 
+questions related to this process.
+• Who are the investors and borrowers?
+–
+Investors: individuals and institutions
+–
+Borrowers: government, corporate, individual
+• What value does the financial industry create?
+–
+Allocate resources efficiently
+–
+Make deals happen to promote growth
+• What does the industry consist of?
+–
+Commercial banks
+–
+Buy side institutions and money managers
+–
+Brokers, investment banks, data vendors, exchanges, and many others
+
+--- Page 31 ---
+Lecture 1: What is Finance
+Lecture 1: What is Finance
+Next Lecture—What is a Firm?
+• Organizational Forms of a Firm
+–
+Sole proprietorship
+–
+Partnership
+–
+Limited liability company (LLC)
+–
+Corporation
+• Organization Structure of a Corporation
+• Agency Problems
+33
+

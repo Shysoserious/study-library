@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>术语词汇表 · 理科学习库</title>
+  <meta name="description" content="理科学习库的术语词汇表：各科需要掌握的中英术语对照。">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('lib-theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <style>
+    .g-wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px 90px; }
+    .g-title { font-family: var(--font-display); font-size: 32px; font-weight: var(--head-weight); margin: 0 0 6px; }
+    .g-sub { color: var(--muted); font-size: 15px; margin: 0 0 26px; }
+    .g-search {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; margin-bottom: 18px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .g-search svg { width: 18px; height: 18px; color: var(--muted); flex-shrink: 0; }
+    .g-search input { flex: 1; border: none; outline: none; background: transparent; font-size: 16px; color: var(--text); font-family: inherit; }
+    .g-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 30px; }
+    .term-group { margin-bottom: 34px; }
+    .term-course {
+      font-family: var(--font-display); font-size: 20px; font-weight: var(--head-weight);
+      display: flex; align-items: center; gap: 12px; margin: 0 0 12px;
+    }
+    .term-course::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+    .term-course .n { font-family: var(--font-body); font-size: 12px; color: var(--muted); font-weight: 400; }
+    .term-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+    .term { display: flex; align-items: baseline; gap: 14px; padding: 9px 16px; border-bottom: 1px solid var(--border); }
+    .term:last-child { border-bottom: none; }
+    .term .en { flex: 1; font-size: 15px; color: var(--text); }
+    .term .zh { font-size: 14px; color: var(--muted); }
+    .g-empty { color: var(--muted); text-align: center; padding: 40px 0; font-size: 15px; }
+    @media (max-width: 640px) {
+      .term { flex-direction: column; gap: 2px; }
+      .term .zh { font-size: 13.5px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">术语词汇表</span>
+        <span class="logo-en">GLOSSARY</span>
+      </a>
+      <div class="header-actions" style="margin-left:auto">
+        <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+          <span id="themeIcon"></span>
+          <span class="btn-label" id="themeLabel">暗色</span>
+        </button>
+        <a class="icon-btn" href="index.html">
+          <span class="btn-label">← 返回首页</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="g-wrap">
+    <h1 class="g-title">术语词汇表</h1>
+    <p class="g-sub">各科「需要掌握的英语词汇」，中英对照。搜索或按学科筛选，点击返回首页可跳转到对应笔记。</p>
+
+    <div class="g-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="gInput" placeholder="搜索术语（中英文均可）…" autocomplete="off">
+    </div>
+
+    <div class="g-filters" id="gFilters"></div>
+    <div id="gBody"></div>
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="data.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var DATA = window.DATA;
+      var ICON_SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+      var ICON_MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+      function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]; }); }
+
+      var courseMap = {};
+      DATA.courses.forEach(function (c) { courseMap[c.id] = c; });
+      // 只保留有词汇的课程分组
+      var groups = DATA.glossary.filter(function (g) { return courseMap[g.id] && g.terms && g.terms.length; });
+
+      var currentCat = '全部';
+      var query = '';
+
+      function renderFilters() {
+        var cats = [{ id: '全部', label: '全部' }].concat(DATA.categories);
+        document.getElementById('gFilters').innerHTML = cats.map(function (ch) {
+          return '<button class="chip' + (ch.id === currentCat ? ' active' : '') + '" data-cat="' + esc(ch.id) + '">' + esc(ch.label) + '</button>';
+        }).join('');
+      }
+
+      function renderBody() {
+        var body = document.getElementById('gBody');
+        var q = query.toLowerCase().trim();
+        var tokens = q.split(/\s+/).filter(Boolean);
+
+        var html = groups.map(function (g) {
+          var c = courseMap[g.id];
+          if (currentCat !== '全部' && c.category !== currentCat) return '';
+          var terms = g.terms.filter(function (t) {
+            if (!tokens.length) return true;
+            var hay = (t.en + ' ' + t.zh).toLowerCase();
+            return tokens.every(function (tk) { return hay.indexOf(tk) !== -1; });
+          });
+          if (!terms.length) return '';
+          var items = terms.map(function (t) {
+            return '<li class="term"><span class="en">' + esc(t.en) + '</span><span class="zh">' + esc(t.zh) + '</span></li>';
+          }).join('');
+          return '<section class="term-group"><h2 class="term-course">' + esc(c.name) + '<span class="n">' + terms.length + ' 条</span></h2><ul class="term-list">' + items + '</ul></section>';
+        }).join('');
+
+        body.innerHTML = html || '<div class="g-empty">没有找到匹配的术语。</div>';
+      }
+
+      function applyTheme(name) {
+        document.documentElement.setAttribute('data-theme', name);
+        var dark = name === 'dark';
+        document.getElementById('themeIcon').innerHTML = dark ? ICON_SUN : ICON_MOON;
+        document.getElementById('themeLabel').textContent = dark ? '亮色' : '暗色';
+      }
+
+      // 主题
+      applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+      document.getElementById('themeToggle').addEventListener('click', function () {
+        var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('lib-theme', next); } catch (e) {}
+        applyTheme(next);
+      });
+
+      // 筛选
+      document.getElementById('gFilters').addEventListener('click', function (e) {
+        var chip = e.target.closest('.chip');
+        if (!chip) return;
+        currentCat = chip.getAttribute('data-cat');
+        renderFilters();
+        renderBody();
+      });
+
+      // 搜索
+      var input = document.getElementById('gInput');
+      input.addEventListener('input', function () { query = input.value; renderBody(); });
+
+      // 支持从首页搜索跳转：?q=xxx
+      try {
+        var m = location.search.match(/[?&]q=([^&]+)/);
+        if (m) { query = decodeURIComponent(m[1]); input.value = query; }
+      } catch (e) {}
+
+      renderFilters();
+      renderBody();
+      input.focus();
+    })();
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>

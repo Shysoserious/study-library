@@ -1,0 +1,585 @@
+--- Page 0 ---
+PHY1001 Mechanics（力学）
+Instructor:  Ling Han（凌晗）
+School of Science and Engineering (SSE)
+The Chinese University of Hong Kong, Shenzhen
+
+--- Page 1 ---
+Vector Calculation Summary
+´ Addition and subtraction:⃗
+𝑐=⃗𝑎+ 𝑏= 𝑏+⃗𝑎and⃗𝑑=⃗𝑎- 𝑏=⃗𝑎+ (-𝑏)
+𝑐! = 𝑎! + 𝑏!, 𝑐" = 𝑎" + 𝑏", 𝑐# = 𝑎# + 𝑏#
+´ Dot product (Scalar)
+𝑐=⃗𝑎· b = 𝑎𝑏𝑐𝑜𝑠𝜃= 𝑎!𝑏! + 𝑎"𝑏" + 𝑎#𝑏#̂
+𝚤·̂ 𝚤=̂ 𝚥·̂ 𝚥= 0𝑘· 0𝑘= 1̂
+𝚤·̂ 𝚥=̂ 𝚥· 0𝑘= 0𝑘·̂ 𝚤= 0
+´ Vector product (RHR à direction)⃗
+𝑐=⃗𝑎×𝑏= 𝑎𝑦𝑏𝑧−𝑎#𝑏"̂ 𝚤+ 𝑎𝑧𝑏𝑥−𝑎!𝑏#̂ 𝚥+ (𝑎𝑥𝑏𝑦−𝑎"𝑏!)0𝑘̂
+𝚤×̂𝚤=̂ 𝚥×̂𝚥= 0𝑘×0𝑘= 0̂
+𝚤×̂𝚥= 0𝑘= −̂𝚥×̂𝚤,̂ ȷ×0𝑘=̂ 𝚤= −0𝑘×̂𝚥, 0𝑘×̂𝚤= ̂ȷ = −̂𝚤×0𝑘
+𝑐= 𝑎𝑏𝑠𝑖𝑛𝜃=
+𝑐!$ + 𝑐"$ + 𝑐#$
+𝑐! = 𝑎𝑦𝑏𝑧−𝑎#𝑏", 𝑐" = 𝑎𝑧𝑏𝑥−𝑎!𝑏#, 𝑐# = 𝑎𝑥𝑏𝑦−𝑎"𝑏!
+Double
+Check!
+
+--- Page 2 ---
+Chapter 2: Motion Along Straight
+Line
+Chapter 1
+Copyright © 2014 John Wiley & Sons, Inc. All rights reserved.
+
+--- Page 3 ---
+Motion of Objects
+Study objects move
+along a single axis
+One-dimensional motion
+
+--- Page 4 ---
+Motion Restricted in 3 Ways
+´ Along a straight line only
+´ Only the motion itself and changes in the
+motion. The forces caused the motion
+will not be discussed.
+´ The moving object is either a particle or
+moving like a particle
+Every portion moves in the same
+direction at same rate
+✓
+✗
+
+--- Page 5 ---
+Idealized Model
+
+--- Page 6 ---
+Position and Displacement
+´ Origin (or Zero point): Reference point to locate
+the object
+´ Positive (+ve) direction of the axis is in the 
+direction of increasing numbers (coordinates);
+the opposite is the Negative (-ve) direction
+x1: Initial Position
+x2: Final Position
+Dx = x2 – x1
+Displacement: A vector with
+direction and magnitude
+Dx = x2 – x1
+= -2.5 m – 2m = -4.5 m
+x1
+x2
+
+--- Page 7 ---
+Average Velocity
+´ Average Velocity vavg: The ratio of the
+displacement Dx that occurs during a particular
+time interval Dt
+´ Vavg: Slope of the straight line of displacement vs.
+time function x(t)
+Vector
+x(t)
+vector
+
+--- Page 8 ---
+Average Speed
+´ Average Speed savg: The total distance
+travelled during the time interval Dt
+No direction included
+How fast
+Average Velocity vs. Average Speed
+´ Vector vs. Non-vector
+´ Absolute value can be the same or quite
+different
+|vavg| ≤savg
+
+--- Page 9 ---
+Instantaneous Velocity and
+Speed
+´ Instantaneous Velocity: A particle is
+moving at a given instant as Dt close to 0
+´ Derivative of x with respect to t in the x(t)
+curve
+´ Speed: Magnitude of the instantaneous
+velocity
+lim
+0
+t®
+D
+v =
+t
+x
+D
+D
+=
+t
+d
+x
+d
+
+--- Page 10 ---
+Acceleration
+´ When a particle’s velocity changes, the particle
+undergoes acceleration.
+´ Average Acceleration aavg over a time interval Dt
+aavg = 𝒗𝟐<𝒗𝟏
+𝒕𝟐<𝒕𝟏= >?
+>@
+´ The instantaneous acceleration a (or simply acceleration)
+is velocity change at the instant
+a = 𝒅𝒗
+𝒅𝒕= 𝒅
+𝒅𝒕(𝒅𝒙
+𝒅𝒕) = 𝒅𝟐𝒙
+𝒅𝒕𝟐
+´ The a of a particle at any instant is the second derivative
+of its position x(t) with respect to time
+´ Vector with magnitude and direction
+´ Common: Acceleration (+ve) or deceleration (-ve)
+´ Direction depends on 𝒅𝒗
+Unit: m/s2
+
+--- Page 11 ---
+Constant Acceleration
+´ A special case of acceleration: constant
+acceleration
+a = aavg = 𝒗<𝒗𝟎
+𝒕<𝟎
+1.
+v = v0 + a t 
+ 
+ 
+ 
+(v0 , v, a, t) 
+2.
+vavg= ½ (v0 + v)
+3.
+x - x0 = vavgt = ½ (v0 + v) t
+4.
+x - x0 = v0 t + ½ a t2     (x - x0 , v0 , a, t)
+5.
+v2 = v02 + 2a (x-x0)  (x - x0 , v0 , a, v)
+6.
+x - x0 = v t - ½ a t2  
+      (x - x0 , v, a, t)
+https://phet.colorado.edu/sims/cheerpj/moving-man/latest/moving-
+man.html?simulation=moving-man
+
+--- Page 12 ---
+Free-Fall Acceleration
+´ One of the most important
+examples of straight line motion
+with constant acceleration
+´ Falling or rising freely near the 
+Earth’s surface 
+´ Refer the motion to the vertical y 
+axis with +y vertically up and g is 
+the magnitude of the free-fall 
+acceleration 
+a= - g = -9.8 m/s2
+´ Independent of mass, density, or 
+shape…
+•
+g = 9.8 m/s2 at sea level, ignore the latitude and elevation
+•
+Eliminate the effects of air
+
+--- Page 13 ---
+Sample Problem
+In the figure, a pitcher tosses a 
+baseball up along a y axis, with an 
+initial speed of 12 m/s.
+a) What is the acceleration at the
+highest point?
+b) How long does it take to reach
+the maximum height?
+c) What is the maximum height
+above its release point?
+d) How long does the ball take to
+reach a point 5.0 m above its
+release point?
+e) Describe the motion
+
+--- Page 14 ---
+a) What is the acceleration at the highest
+point?
+SOLUTION: Once the ball leaves the pitcher
+and before it returns to his hand, its
+acceleration is always constant.
+As +y is vertically up
+a = -g = -9.8 m/s2
+
+--- Page 15 ---
+b) How long does it take to reach
+the maximum height?
+SOLUTION: 
+• The velocity v at the maximum 
+height is 0. 
+• Initial velocity v0 pointing up, +ve
+t =
+a
+v
+v
+0
+-
+=
+=  1.2 s
+2s
+/
+m
+8.9
+s
+/
+m
+12
+0
+-
+-
+
+--- Page 16 ---
+c) What is the ball's maximum height above 
+its release point?
+SOLUTION: 
+• Take the ball’s release point to be y0 = 0
+• y - y0 = y and v = 0 (at the maximum height)
+m
+3.7
+)
+s/
+m
+8.9
+(
+2
+)s/
+m
+12
+(
+0
+a
+2
+v
+v
+y
+2
+2
+2
+0
+2
+=
+-
+-
+=
+-
+=
+or
+y = v0t + ½at2
+= 12 m/s x 1.2 s + ½ x (-9.8 m/s2) x (1.2 s)2
+= 7.3 m
+
+--- Page 17 ---
+d) How long does the ball take to reach 
+a point 5.0 m above its release point?
+SOLUTION: The ball passes the point
+twice, once on the way up and once 
+on the way down
+y = v0t + ½at2
+5.0 m = 12 m/s x t + ½ x (-9.8 m/s2)x t2
+t = 0.53 s or 1.9 s
+𝑥= −𝑏±
+𝑏! −4𝑎𝑐
+2𝑎
+
+--- Page 18 ---
+e) Describe the motion
+SOLUTION:
+• t = 0 s, the particle at y0 = 0, with initial v0
+= 12 m/s
+• 0 < t <1.2 s, the particle has a +ve velocity,
+with constant a = –g. Decelerating
+• t = 1.2 s, v = 0, the particle reaches its
+highest point y = 7.3 m
+• 1.2 s < t < 2.4 s, -ve velocity with a = -g.
+Accelerating
+• t = 2.4 s, y = 0, the ball returns back to the
+pitcher with v = -12 m/s
+
+--- Page 19 ---
+Graphical Analysis
+0
+1
+2
+3
+4
+5
+6
+7
+8
+0
+0.2 0.4 0.6 0.8
+1
+1.2 1.4 1.6 1.8
+2
+2.2 2.4
+y (m)
+time (s)
+Position VS. Time
+-15
+-10
+-5
+0
+5
+10
+15
+0
+0.2 0.4 0.6 0.8
+1
+1.2 1.4 1.6 1.8
+2
+2.2 2.4
+v (m/s)
+time (s)
+Velocity VS. Time
+-12
+-10
+-8
+-6
+-4
+-2
+0
+0
+0.2 0.4 0.6 0.8
+1
+1.2 1.4 1.6 1.8
+2
+2.2 2.4
+a (m/s2)
+time (s)
+Acceleration VS. Time
+•
+Area in v vs. t curve: 
+Changing in Position
+•
+Area in a vs. t curve: 
+Changing in Velocity
+
+--- Page 20 ---
+Velocity and Position by
+Integration
+´ Acceleration in 1D
+𝑎' = 𝑑𝑣'
+𝑑𝑡
+´ When 𝑎' is NOT constant à Integration
+´ The change in 𝑥-velocity ∆𝑣! during
+∆𝑡is
+∆𝑣! = 𝑎!∆𝑡
+´ The speed 𝑣$! at 𝑡$:
+𝑣$! −𝑣%! = H
+&!
+&"
+𝑎!𝑑𝑡
+´ The displacement:
+𝑥$ −𝑥% = H
+&!
+&"
+𝑣!𝑑𝑡
+
+--- Page 21 ---
+Velocity and Position by
+Integration
+´ If 𝑡" = 0 and 𝑡! is any later time 𝑡
+𝑣# = 𝑣$# + 0
+$
+%
+𝑎#𝑑𝑡
+𝑥= 𝑥$ + 0
+$
+%
+𝑣#𝑑𝑡
+Where 𝑣$# is the initial velocity at 𝑡= 0,
+And 𝑥$ is the initial position at 𝑡= 0.
+
+--- Page 22 ---
+Sample Problem
+Sally is driving along a straight highway in her 1965 
+Mustang. At t = 0, when she is moving at 10 m/s in the 
+positive x-direction, she passes a signpost at x = 50 m. 
+Her x-acceleration as a function of time is 
+𝑎# = 2.0 𝑚𝑠&! −0.10 𝑚𝑠&' 𝑡
+a) Find her x-velocity 𝑣# and position 𝑥as functions of 
+time. 
+b) When is her x-velocity greatest? 
+c) What is that maximum x-velocity? 
+d) Where is the car when it reaches that maximum x-
+velocity? 
+
+--- Page 23 ---
+Solution
+(a)The x-velocity
+𝑣# = 𝑣$# + 0
+$
+%
+𝑎#𝑑𝑡
+𝑣# = 10 𝑚𝑠&" + 0
+$
+%
+[2.0 𝑚𝑠&! −0.10 𝑚𝑠&' 𝑡 ]𝑑𝑡
+= 10 𝑚𝑠&" + (2.0 𝑚𝑠&!) 𝑡−1
+2 0.10 𝑚𝑠&' 𝑡!
+The position:
+𝑥= 𝑥$ + 0
+$
+%
+𝑣#𝑑𝑡
+𝑥= 50 𝑚+ 0
+$
+%
+[10 𝑚𝑠&" + (2.0 𝑚𝑠&!) 𝑡−1
+2 0.10 𝑚𝑠&' 𝑡!]𝑑𝑡
+= 50 𝑚+ 10 𝑚𝑠&" 𝑡+ 1
+2 (2.0 𝑚𝑠&!) 𝑡! −1
+6 0.10 𝑚𝑠&' 𝑡'
+
+--- Page 24 ---
+(b) The maximum 𝑣# occurs when it stops increasing and
+begins to decrease.
+𝑑𝑣#
+𝑑𝑡= 𝑎# = 0
+𝑎# = 2.0 𝑚𝑠&! −0.10 𝑚𝑠&' 𝑡= 0
+𝑡= 20 𝑠
+(c) The maximum 𝑣#
+𝑣()#&# = 10 𝑚𝑠&" + 2.0 𝑚𝑠&! 𝑡−1
+2 0.10 𝑚𝑠&' 𝑡!
+= 30 𝑚𝑠&"
+(d) The position 𝑥at 20s
+𝑥= 50 𝑚+ 10 𝑚𝑠&" 𝑡+ 1
+2 2.0 𝑚𝑠&! 𝑡! −1
+6 0.10 𝑚𝑠&' 𝑡'
+= 517 𝑚'
+When Sally reaches her maximum positive 𝑥-position?
+
+--- Page 25 ---
+
+--- Page 26 ---
+Summary
+´ Position and Displacement
+´ Velocity and Speed
+´ Instantaneous and average velocity
+´ Instantaneous and average speed
+´ Acceleration
+´ Instantaneous and average acceleration
+´ Constant Acceleration motion in 1D
+´ Velocity and Position by Integration
+
+================================================================
+附录：图片内容逐页转录 + 图说（本文件要喂给"看不到 PDF"的 AI，故图里的信息一并文字化）
+================================================================
+说明：
+1. 页码为 PDF 页序号，与正文 `--- Page N ---` 一致（幻灯片页码 = N + 1）。
+2. 本附录按页覆盖本讲义**全部含图页**。每条分两部分：
+   【图】= 图形内容描述（示意图表达了什么关系、坐标轴、关键标注）；
+   [图内文字] = 原图里能读到的文字，逐字转录（这些文字用文字层提取不到）。
+3. 正文（`--- Page N ---` 段落）已完整提取的要点不在此重复，只补"图里才有的信息"。
+4. 文件末尾附「公式还原对照」：正文里被 PDF 抽字弄坏的上下标与符号的还原表。
+
+
+----------------------------------------------------------------
+第 1 页（封面）
+----------------------------------------------------------------
+--- Page 0（幻灯片第 1 页）---
+【图】封面页背景配图。
+[图内文字] 正文已提取：PHY1001 Mechanics（力学）/ Instructor: Ling Han（凌晗）/
+  School of Science and Engineering (SSE) / The Chinese University of Hong Kong, Shenzhen。
+
+----------------------------------------------------------------
+第 2 ~ 8 页（复习与引入）
+----------------------------------------------------------------
+--- Page 1（幻灯片第 2 页）---
+【图】右上角右手直角坐标系示意图（x、y、z 轴与 î、ĵ、k̂）。
+[图内文字] 正文已完整提取"Vector Calculation Summary"的全部公式（写正见末尾对照表）。
+
+--- Page 3（幻灯片第 4 页）---
+【图】三张照片：① 赛道上的赛车；② 导弹/火箭发射；③ 人体血液循环（心脏与血管中的红细胞）。
+  含义：运动的物体可以是宏观的（车、导弹）也可以是微观/生物的（血流），都可用"沿单一轴的
+  一维运动"来研究。
+[图内文字] 正文已提取：Study objects move along a single axis / One-dimensional motion。
+
+--- Page 5（幻灯片第 6 页）---
+【图】整页图片：「Idealized Model」，对比"真实棒球"与"理想化质点模型"两栏示意图
+  （左边旋转的棒球带自转箭头与三个受力虚线箭头；右边是一个质点加两个箭头）。
+[图内文字]
+  In physics, a model is a simplified version of a physical system that would be too
+  complicated to analyze in full detail.
+  （在物理中，模型是对"若完整分析会过于复杂"的物理系统的简化版本。）
+  (a) A real baseball in flight（真实飞行中的棒球）
+      · Baseball spins and has a complex shape.（棒球在旋转，形状复杂）
+      · Air resistance and wind exert forces on the ball.（空气阻力与风对球施力）
+      · Gravitational force on ball depends on altitude.（球所受重力随高度变化）
+      · Direction of motion（运动方向）
+  (b) An idealized model of the baseball（棒球的理想化模型）
+      · Baseball is treated as a point object (particle).（把棒球当作质点处理）
+      · No air resistance.（忽略空气阻力）
+      · Gravitational force on ball is constant.（球所受重力为常量）
+      · Direction of motion（运动方向）
+  图片来源：Pearson Education, Inc.
+
+--- Page 6（幻灯片第 7 页）---
+【图】一维坐标轴示意（区间 -3 ~ 3）：轴下方标 Origin（原点）；图上用红/紫两条箭头分别
+  标注 Positive direction（正方向）与 Negative direction（负方向）；两个点标为
+  x₁（在 +2 处）与 x₂（在 -2.5 处），中间用手绘曲线连接（表示运动的实际路径）。
+[图内文字] 正文已提取：Origin (or Zero point) … / Positive (+ve) direction … /
+  Negative (-ve) direction / x₁: Initial Position / x₂: Final Position /
+  Δx = x₂ − x₁ / Displacement: A vector with direction and magnitude /
+  Δx = x₂ − x₁ = -2.5 m − 2 m = -4.5 m。
+
+--- Page 7（幻灯片第 8 页）---
+【图】位置-时间图 x(t)：横轴 t (s) 0~4，纵轴 x (m) -5~4；曲线上标出
+  Start of interval（t=1 s, x=-4 m）与 End of interval（t=4 s, x=2 m），
+  两点之间画一条直线（割线），并用虚线画出竖直与水平距离。
+[图内文字] 图中标注：
+  "This is a graph of position x versus time t." /
+  "To find average velocity, first draw a straight line, start to end, and then find the
+   slope of the line." /
+  "v_avg = slope of this line = rise/run = Δx/Δt" /
+  "This vertical distance is how far it moved, start to end: Δx = 2 m − (−4 m) = 6 m" /
+  "This horizontal distance is how long it took, start to end: Δt = 4 s − 1 s = 3 s"
+  右上公式框（正文已提取）：v_avg = Δx/Δt = (x₂ − x₁)/(t₂ − t₁)，并标注 vector。
+
+----------------------------------------------------------------
+第 21 ~ 27 页（积分法与例题）
+----------------------------------------------------------------
+--- Page 20（幻灯片第 21 页）---
+【图】a_x–t 图：一条上升的 a_x(t) 曲线，其下方被分成一系列窄矩形条近似面积；
+  其中一条条被标出 Δt 宽度，并用虚线指出其高度 a_av-x。
+[图内文字] 图中标注：
+  "Area of this strip = Δv_x = Change in x-velocity during time interval Δt"
+    （这条窄条的面积 = Δv_x = Δt 时间内的 x 速度变化）
+  "Total area under the x-t graph from t₁ to t₂ = Net change in x-velocity from t₁ to t₂"
+    （从 t₁ 到 t₂ 曲线下的总面积 = 该时段 x 速度的净变化）
+    —— 原幻灯片写作 "x-t graph"，按图示应指 a_x–t 图。
+  正文已提取：a_x = dv_x/dt ；当 a_x 不是常量时要用积分；
+  Δv_x = a_x Δt ；v₂x − v₁x = ∫_{t₁}^{t₂} a_x dt ；x₂ − x₁ = ∫_{t₁}^{t₂} v_x dt。
+
+--- Page 25（幻灯片第 26 页）---
+【图】Sally 例题的三张运动学图像（本页正文文字层为空，全部信息都在图里）：
+【图1】a_x – t 图：纵轴 a_x (m/s²) 刻度 0 ~ 2.0，横轴 t (s) 0 ~ 30；
+  一条直线从 (0, 2.0) 线性下降到 (30, -1.0)，在 t = 20 s 处过零。
+[图内文字] "x-acceleration is positive before t = 20 s." /
+  "x-acceleration is negative after t = 20 s."
+【图2】v_x – t 图：纵轴 v_x (m/s) 0 ~ 30，横轴 t (s) 0 ~ 30；曲线从 v_x = 10 m/s 上升，
+  在 t = 20 s 处达到峰值 30 m/s，之后下降。
+[图内文字] "x-velocity increases before t = 20 s." / "x-velocity decreases after t = 20 s."
+【图3】x – t 图：纵轴 x (m) 0 ~ 800，横轴 t (s) 0 ~ 30；曲线从 x ≈ 50 m 上升，
+  在 t = 20 s 处 x ≈ 517 m 出现拐点，之后转为下凹。
+[图内文字] "x-t graph curves upward before t = 20 s." /
+  "x-t graph curves downward after t = 20 s."
+
+----------------------------------------------------------------
+公式还原对照（正文由 PDF 文字层线性化产生：上/下标掉行、特殊字体乱码）
+----------------------------------------------------------------
+- `aavg = 𝒗𝟐<𝒗𝟏 / 𝒕𝟐<𝒕𝟏` 实为 a_avg = (v₂ − v₁)/(t₂ − t₁)（"<" 是减号被误提取）。
+- `v2 = v02 + 2a (x-x0)` 实为 v² = v₀² + 2a(x − x₀)。
+- `x - x0 = v0 t + ½ a t2` 实为 x − x₀ = v₀t + ½at²。
+- `𝒗= 𝒗𝒙̂4 + 𝒗𝒚̂5 + 𝒗𝒛6𝒌` 实为 v = v_x î + v_y ĵ + v_z k（`̂4`/`̂5`/`6` 为字体错位）。
+- 积分上下限被拆行：`H &! &" 𝑎!𝑑𝑡` 实为 ∫_{t₀}^{t} a_x dt（`H` = ∫ 号）。
+- `𝑎# = 2.0 𝑚𝑠&! −0.10 𝑚𝑠&' 𝑡` 实为 a_x = 2.0 m/s² − (0.10 m/s³)·t。
+- `t = a/v−v0 = 1.2 s` 里的 `a/v−v0` 实为 (v − v₀)/a 。
+- Page 19 图内文字层提取顺序被打乱，实际表格为：time (s) 0~2.4、y (m) 0~8、v (m/s) -15~15、
+  a (m/s²) -12~0，三张图的纵轴分别是位置、速度、加速度。

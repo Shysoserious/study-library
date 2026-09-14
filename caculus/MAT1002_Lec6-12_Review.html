@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT1002 Lec 6-12 复习 | 级数应用·参数曲线·向量与空间</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+
+        /* Top Navigation Bar */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #667eea; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections {
+            padding-left: 20px; max-height: 500px; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #667eea; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 60px; padding: 40px 60px; max-width: 960px;
+            margin-left: max(280px, calc(50vw - 340px)); margin-right: auto;
+            font-size: 17.5px;
+        }
+
+        /* Lecture Section */
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #667eea; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #667eea;
+        }
+        .section-title {
+            font-size: 24px; color: #764ba2; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #764ba2;
+        }
+        .subsection-title {
+            font-size: 20px; color: #555; margin: 25px 0 15px 0;
+            padding-left: 12px; border-left: 4px solid #bbb;
+        }
+
+        /* Cards */
+        .card {
+            margin: 20px 0; padding: 20px; border-radius: 8px;
+            border-left: 5px solid #ddd; background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title {
+            font-weight: bold; font-size: 18px; margin-bottom: 10px;
+            display: flex; align-items: center;
+        }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+
+        /* English term tag */
+        .en {
+            display: inline-block; background-color: #e3f2fd; color: #1565c0;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+
+        /* Formula Box */
+        .formula-box {
+            background-color: #e8f4fd; border-left: 5px solid #2196F3;
+            border-radius: 6px; padding: 18px 22px; margin: 18px 0;
+            font-size: 17px; text-align: center; overflow-x: auto;
+        }
+        .formula-box.highlight {
+            background-color: #fffde7; border-left-color: #fbc02d;
+        }
+        .formula-box.important {
+            background-color: #fce4ec; border-left-color: #e91e63;
+        }
+
+        /* Step / Process */
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li {
+            counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0;
+            position: relative; background: #f8f9fa; border-radius: 6px;
+        }
+        .step-list li::before {
+            content: counter(step); position: absolute; left: 10px; top: 50%;
+            transform: translateY(-50%); background: #667eea; color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-weight: bold; font-size: 14px;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd; padding: 12px; text-align: center;
+        }
+        .comparison-table th {
+            background-color: #667eea; color: white; font-weight: bold;
+        }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+        .comparison-table td:first-child { text-align: left; }
+
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+
+        /* Extra utility styles */
+        .imp{background:#fff0f0;border-left:4px solid #f44336;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .warn{background:#fff8f0;border-left:4px solid #ff9800;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .note-green{background:#f1f8f5;border-left:4px solid #4caf50;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .tip-teal{background:#e0f7fa;border-left:4px solid #00bcd4;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:15px}
+        .moral{background:linear-gradient(135deg,#fff8e1,#fce4ec);border:2px solid #e91e63;border-radius:8px;padding:14px 18px;margin:12px 0;text-align:center}
+        .moral strong{font-size:17px;color:#880e4f}
+        .case-box{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+        .case{flex:1;min-width:160px;padding:12px;border-radius:9px;font-size:15px}
+        .c-green{background:#e8f5e9;border:1px solid #81c784}
+        .c-blue{background:#e3f2fd;border:1px solid #90caf9}
+        .c-red{background:#ffebee;border:1px solid #ef9a9a}
+        .c-yellow{background:#fff8e1;border:1px solid #ffcc02}
+        .sd{height:4px;background:linear-gradient(90deg,#667eea,#764ba2,#00bcd4);border-radius:2px;margin:32px 0}
+        .sd2{height:2px;background:linear-gradient(90deg,#b39ddb,#80cbc4);border-radius:1px;margin:20px 0}
+
+        /* Solution block */
+        .solution {
+            margin-top: 12px; padding: 12px 16px; background: #f9fbe7;
+            border-radius: 6px; border: 1px dashed #c5e1a5;
+        }
+        .solution-label { font-weight: bold; color: #689f38; margin-bottom: 8px; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; max-width: 100%; font-size: 15px; }
+            .navbar-title { font-size: 18px; }
+            .menu-toggle { display: block !important; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">☰</button>
+        <div class="navbar-title">MAT1002 级数应用·参数曲线·向量与空间</div>
+        <div class="navbar-subtitle">Lectures 6-12 Integrated Review</div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-content">
+            <!-- Lecture 6 -->
+            <div class="toc-lecture">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec6" style="color:inherit;text-decoration:none;">Lec 6 - 二项级数与Taylor定理</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s6-1">二项级数</a></div>
+                    <div class="toc-section"><a href="#s6-2">大O与小o记号</a></div>
+                    <div class="toc-section"><a href="#s6-3">Taylor定理(O/o版本)</a></div>
+                    <div class="toc-section"><a href="#s6-4">Euler公式</a></div>
+                    <div class="toc-section"><a href="#s6-5">Taylor定理的证明</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 7 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec7" style="color:inherit;text-decoration:none;">Lec 7 - 参数曲线</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s7-1">参数曲线的定义</a></div>
+                    <div class="toc-section"><a href="#s7-2">切线与二阶导</a></div>
+                    <div class="toc-section"><a href="#s7-3">弧长</a></div>
+                    <div class="toc-section"><a href="#s7-4">参数曲线下的面积</a></div>
+                    <div class="toc-section"><a href="#s7-5">旋转曲面面积</a></div>
+                    <div class="toc-section"><a href="#s7-6">极坐标简介</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 8 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec8" style="color:inherit;text-decoration:none;">Lec 8 - 极坐标与三维空间</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s8-1">极坐标对称性</a></div>
+                    <div class="toc-section"><a href="#s8-2">极坐标曲线作图</a></div>
+                    <div class="toc-section"><a href="#s8-3">极坐标斜率与弧长</a></div>
+                    <div class="toc-section"><a href="#s8-4">极坐标面积</a></div>
+                    <div class="toc-section"><a href="#s8-5">三维坐标系</a></div>
+                    <div class="toc-section"><a href="#s8-6">距离公式与球面</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 9 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec9" style="color:inherit;text-decoration:none;">Lec 9 - 向量与点积叉积</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s9-1">向量基础</a></div>
+                    <div class="toc-section"><a href="#s9-2">点积</a></div>
+                    <div class="toc-section"><a href="#s9-3">投影</a></div>
+                    <div class="toc-section"><a href="#s9-4">叉积</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 10 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec10" style="color:inherit;text-decoration:none;">Lec 10 - 空间直线与平面</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s10-1">三重标量积</a></div>
+                    <div class="toc-section"><a href="#s10-2">空间直线方程</a></div>
+                    <div class="toc-section"><a href="#s10-3">平面方程</a></div>
+                    <div class="toc-section"><a href="#s10-4">点到直线/平面距离</a></div>
+                    <div class="toc-section"><a href="#s10-5">柱面与二次曲面</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 11 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec11" style="color:inherit;text-decoration:none;">Lec 11 - 向量函数</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s11-1">向量函数的定义</a></div>
+                    <div class="toc-section"><a href="#s11-2">极限与连续</a></div>
+                    <div class="toc-section"><a href="#s11-3">导数与切向量</a></div>
+                    <div class="toc-section"><a href="#s11-4">求导法则</a></div>
+                    <div class="toc-section"><a href="#s11-5">积分与抛体运动</a></div>
+                </div>
+            </div>
+
+            <!-- Lecture 12 -->
+            <div class="toc-lecture collapsed">
+                <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                    <span class="toc-toggle">▼</span> <a href="#lec12" style="color:inherit;text-decoration:none;">Lec 12 - 弧长参数与曲率</a>
+                </div>
+                <div class="toc-sections">
+                    <div class="toc-section"><a href="#s12-1">抛体运动分析</a></div>
+                    <div class="toc-section"><a href="#s12-2">弧长参数</a></div>
+                    <div class="toc-section"><a href="#s12-3">曲率</a></div>
+                    <div class="toc-section"><a href="#s12-4">主法向量与密切圆</a></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <!-- ======================== LECTURE 6 ======================== -->
+        <div class="lecture" id="lec6">
+            <h1 class="lecture-title">Lecture 6 — 二项级数与Taylor定理</h1>
+
+            <h2 class="section-title" id="s6-1">6.1 二项级数 <span class="en">Binomial Series</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>广义二项系数</div>
+                <p>对任意实数 $\alpha$ 和正整数 $n$，定义<span class="en">generalized binomial coefficient</span>：</p>
+                <div class="formula-box">
+                    $$\binom{\alpha}{n} = \frac{\alpha(\alpha-1)(\alpha-2)\cdots(\alpha-n+1)}{n!}$$
+                </div>
+                <p>约定 $\binom{\alpha}{0} = 1$。</p>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>二项级数定理</div>
+                <p>对任意实数 $\alpha$，当 $|x| < 1$ 时：</p>
+                <div class="formula-box important">
+                    $$(1+x)^\alpha = \sum_{n=0}^{\infty}\binom{\alpha}{n}x^n = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots$$
+                </div>
+                <p>收敛半径 $R = 1$（当 $\alpha \in \mathbb{N}$ 时，级数有限项即为二项式定理）。</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>常用二项展开</div>
+                <p>$\frac{1}{\sqrt{1+x}} = (1+x)^{-1/2} = \sum_{n=0}^{\infty}\binom{-1/2}{n}x^n$，$|x|<1$</p>
+                <p>$\sqrt{1+x} = (1+x)^{1/2} = 1 + \frac{1}{2}x - \frac{1}{8}x^2 + \frac{1}{16}x^3 - \cdots$</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s6-2">6.2 大O与小o记号 <span class="en">Big O / Little o Notation</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>大O记号 Big O</div>
+                <p>设 $f,g$ 在某点 $a$ 的邻域有定义，$g(x)\neq 0$。称 $f(x) = O(g(x))$（$x\to a$），若：</p>
+                <div class="formula-box">
+                    $$\exists\, M > 0,\;\exists\,\delta > 0,\;\forall\,0<|x-a|<\delta:\;|f(x)|\le M|g(x)|$$
+                </div>
+                <p>等价地：$\frac{f(x)}{g(x)}$ 在 $x\to a$ 时有界。</p>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>小o记号 Little o</div>
+                <p>称 $f(x) = o(g(x))$（$x\to a$），若：</p>
+                <div class="formula-box">
+                    $$\lim_{x\to a}\frac{f(x)}{g(x)} = 0$$
+                </div>
+                <p>直觉：$f$ 比 $g$ "高阶无穷小"，$f$ 远小于 $g$。</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>运算法则</div>
+                <p>以 $x\to 0$ 为例：</p>
+                <p>• $o(x^n) + o(x^n) = o(x^n)$</p>
+                <p>• $o(x^m)\cdot o(x^n) = o(x^{m+n})$</p>
+                <p>• $x^m \cdot o(x^n) = o(x^{m+n})$</p>
+                <p>• 若 $m \le n$，则 $o(x^n) = o(x^m)$（高阶可并入低阶）</p>
+                <p>• $O(x^n)$ 类似，但保持有界而非趋零</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>利用 Taylor 展开 + o 记号求极限</div>
+                <p>求 $\lim_{x\to 0}\frac{\sin x - x + \frac{x^3}{6}}{x^5}$：</p>
+                <div class="solution">
+                    <div class="solution-label">解：</div>
+                    <p>$\sin x = x - \frac{x^3}{6} + \frac{x^5}{120} + o(x^5)$</p>
+                    <p>$\sin x - x + \frac{x^3}{6} = \frac{x^5}{120} + o(x^5)$</p>
+                    <p>所以极限 $= \frac{1}{120}$。</p>
+                </div>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s6-3">6.3 Taylor定理 (O/o 版本)</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>带 Peano 余项的 Taylor 定理</div>
+                <p>设 $f$ 在 $x=a$ 处 $n$ 次可微，则：</p>
+                <div class="formula-box important">
+                    $$f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k + o\big((x-a)^n\big),\quad x\to a$$
+                </div>
+                <p>这是 Taylor 定理的<span class="en">Peano remainder</span>形式，只需 $f$ 存在 $n$ 阶导数。</p>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>带 Lagrange 余项 (大 O 版本)</div>
+                <p>设 $f$ 在包含 $a$ 的开区间上 $n+1$ 次可导，则：</p>
+                <div class="formula-box">
+                    $$f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k + O\big((x-a)^{n+1}\big)$$
+                </div>
+                <p>余项 $R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$ 对某 $c$ 介于 $a,x$ 之间。</p>
+            </div>
+
+            <div class="card warning">
+                <div class="card-title"><span class="card-icon">⚠️</span>o 与 O 的区别</div>
+                <p>• $o((x-a)^n)$：余项比 $(x-a)^n$ 更高阶（只需 $n$ 阶可导）</p>
+                <p>• $O((x-a)^{n+1})$：余项与 $(x-a)^{n+1}$ 同阶有界（需 $n+1$ 阶可导）</p>
+                <p>O 版本信息更精确，但要求更强。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s6-4">6.4 Euler 公式 <span class="en">Euler's Formula</span></h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>Euler 公式</div>
+                <p>定义 $e^{i\theta}$ 通过幂级数的方式：</p>
+                <div class="formula-box important">
+                    $$e^{i\theta} = \cos\theta + i\sin\theta$$
+                </div>
+                <p>特别地，当 $\theta = \pi$ 时得到 <span class="en">Euler's identity</span>：$e^{i\pi} + 1 = 0$。</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>推导思路</div>
+                <p>将 $e^x$, $\cos x$, $\sin x$ 的 Taylor 级数形式代入 $e^{ix}$：</p>
+                <p>$e^{ix} = \sum \frac{(ix)^n}{n!} = \underbrace{\sum \frac{(-1)^k x^{2k}}{(2k)!}}_{\cos x} + i\underbrace{\sum \frac{(-1)^k x^{2k+1}}{(2k+1)!}}_{\sin x}$</p>
+            </div>
+
+            <div class="card connection">
+                <div class="card-title"><span class="card-icon">🔗</span>应用：三角恒等式</div>
+                <p>利用 $e^{i(\alpha+\beta)} = e^{i\alpha}\cdot e^{i\beta}$，可以一步推出加法公式：</p>
+                <p>$\cos(\alpha+\beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta$</p>
+                <p>$\sin(\alpha+\beta) = \sin\alpha\cos\beta + \cos\alpha\sin\beta$</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s6-5">6.5 Taylor 定理的证明</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>证明核心思路 (Rolle 定理)</div>
+                <p>对 Lagrange 余项形式的 Taylor 定理，证明的关键步骤：</p>
+                <ol class="step-list">
+                    <li>构造辅助函数 $F(t) = f(x) - \sum_{k=0}^{n}\frac{f^{(k)}(t)}{k!}(x-t)^k$</li>
+                    <li>构造 $G(t) = F(t) - \left(\frac{x-t}{x-a}\right)^{n+1}F(a)$</li>
+                    <li>验证 $G(a) = G(x) = 0$</li>
+                    <li>由 Rolle 定理，$\exists\, c$ 介于 $a,x$ 之间使得 $G'(c) = 0$</li>
+                    <li>计算 $G'(t)$ 得到余项表达式</li>
+                </ol>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+        <!-- ======================== LECTURE 7 ======================== -->
+        <div class="lecture" id="lec7">
+            <h1 class="lecture-title">Lecture 7 — 参数曲线</h1>
+
+            <h2 class="section-title" id="s7-1">7.1 参数曲线的定义 <span class="en">Parametric Curves</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>参数方程</div>
+                <p>若 $x = f(t)$，$y = g(t)$，$t\in[a,b]$，则曲线 $C$ 由参数 $t$ 参数化表示。</p>
+                <p>$t = a$ 为<span class="en">initial point</span>，$t = b$ 为<span class="en">terminal point</span>。</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>摆线 Cycloid</div>
+                <p>车轮沿直线滚动时轮缘上一点的轨迹：</p>
+                <div class="formula-box highlight">
+                    $$x = a(t - \sin t),\quad y = a(1 - \cos t)$$
+                </div>
+                <p>其中 $a$ 是车轮半径。一个完整拱形对应 $t\in[0,2\pi]$。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s7-2">7.2 切线与二阶导数</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>参数曲线的斜率</div>
+                <p>设 $x = f(t)$, $y = g(t)$ 均可微且 $f'(t)\neq 0$，则：</p>
+                <div class="formula-box important">
+                    $$\frac{dy}{dx} = \frac{g'(t)}{f'(t)} = \frac{dy/dt}{dx/dt}$$
+                </div>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>二阶导数</div>
+                <div class="formula-box">
+                    $$\frac{d^2y}{dx^2} = \frac{\frac{d}{dt}\left(\frac{dy}{dx}\right)}{\frac{dx}{dt}} = \frac{\frac{d}{dt}\left(\frac{g'(t)}{f'(t)}\right)}{f'(t)}$$
+                </div>
+                <p class="warn">注意：$\frac{d^2y}{dx^2} \neq \frac{g''(t)}{f''(t)}$！必须先对 $\frac{dy}{dx}$ 关于 $t$ 求导，再除以 $\frac{dx}{dt}$。</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>摆线的切线</div>
+                <p>摆线 $x=a(t-\sin t)$, $y=a(1-\cos t)$：</p>
+                <p>$\frac{dy}{dx} = \frac{a\sin t}{a(1-\cos t)} = \frac{\sin t}{1-\cos t}$</p>
+                <p>在 $t=\pi$ 时，切线垂直（$\frac{dx}{dt}=0$ 但 $\frac{dy}{dt}\neq 0$）。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s7-3">7.3 弧长 <span class="en">Arc Length</span></h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>参数曲线弧长公式</div>
+                <p>设 $C: x=f(t), y=g(t)$，$t\in[a,b]$，$f',g'$ 连续且曲线不自交，则：</p>
+                <div class="formula-box important">
+                    $$L = \int_a^b \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2}\,dt = \int_a^b\sqrt{f'(t)^2 + g'(t)^2}\,dt$$
+                </div>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>弧长微分</div>
+                <p><span class="en">Arc length differential</span>：</p>
+                <div class="formula-box">
+                    $$ds = \sqrt{dx^2 + dy^2} = \sqrt{f'(t)^2 + g'(t)^2}\,dt$$
+                </div>
+                <p>对 $y = h(x)$：$ds = \sqrt{1 + (dy/dx)^2}\,dx$。</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>摆线一拱弧长</div>
+                <p>$L = \int_0^{2\pi}\sqrt{a^2(1-\cos t)^2 + a^2\sin^2 t}\,dt = a\int_0^{2\pi}\sqrt{2(1-\cos t)}\,dt$</p>
+                <p>利用 $1-\cos t = 2\sin^2(t/2)$：$L = 2a\int_0^{2\pi}|\sin(t/2)|\,dt = 8a$。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s7-4">7.4 参数曲线下的面积</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>面积公式</div>
+                <p>参数曲线 $(f(t), g(t))$ 与 $x$ 轴之间的面积（$g(t)\ge 0$）：</p>
+                <div class="formula-box">
+                    $$A = \int_a^b g(t)\cdot f'(t)\,dt$$
+                </div>
+                <p>注意积分方向：若 $f(a) > f(b)$ 则需取绝对值。</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>摆线一拱面积</div>
+                <p>$A = \int_0^{2\pi}a(1-\cos t)\cdot a(1-\cos t)\,dt = a^2\int_0^{2\pi}(1-\cos t)^2\,dt = 3\pi a^2$</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s7-5">7.5 旋转曲面面积 <span class="en">Surface of Revolution</span></h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>旋转曲面面积公式</div>
+                <p>曲线绕 $x$ 轴旋转所得曲面面积：</p>
+                <div class="formula-box">
+                    $$S = \int_a^b 2\pi\,|g(t)|\,\sqrt{f'(t)^2 + g'(t)^2}\,dt = \int 2\pi\,|y|\,ds$$
+                </div>
+                <p>绕 $y$ 轴旋转则用 $2\pi|x|\,ds$。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s7-6">7.6 极坐标简介 <span class="en">Polar Coordinates</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>极坐标系</div>
+                <p>平面上的点用 $(r,\theta)$ 表示：$r$ 为到原点的距离，$\theta$ 为与正 $x$ 轴的夹角。</p>
+                <div class="formula-box">
+                    $$x = r\cos\theta,\quad y = r\sin\theta,\quad r^2 = x^2+y^2,\quad \tan\theta = \frac{y}{x}$$
+                </div>
+            </div>
+
+            <div class="card warning">
+                <div class="card-title"><span class="card-icon">⚠️</span>注意事项</div>
+                <p>• 极坐标表示<b>不唯一</b>：$(r,\theta)$ 与 $(r, \theta+2k\pi)$ 是同一点</p>
+                <p>• 允许 $r < 0$：$(-r,\theta)$ 等价于 $(r,\theta+\pi)$</p>
+                <p>• 原点用 $(0,\theta)$ 表示（任意 $\theta$）</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>常见极坐标曲线</div>
+                <p>• 圆：$r = a$（半径为 $a$ 的圆）</p>
+                <p>• 心形线 <span class="en">Cardioid</span>：$r = a(1+\cos\theta)$</p>
+                <p>• 玫瑰线 <span class="en">Rose</span>：$r = a\cos(n\theta)$</p>
+                <p>• 双纽线 <span class="en">Lemniscate</span>：$r^2 = a^2\cos(2\theta)$</p>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+        <!-- ======================== LECTURE 8 ======================== -->
+        <div class="lecture" id="lec8">
+            <h1 class="lecture-title">Lecture 8 — 极坐标与三维空间</h1>
+
+            <h2 class="section-title" id="s8-1">8.1 极坐标对称性 <span class="en">Symmetry Tests</span></h2>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>对称性判定</div>
+                <table class="comparison-table">
+                    <tr><th>对称轴</th><th>替换测试</th></tr>
+                    <tr><td>关于 $x$ 轴对称</td><td>$\theta \to -\theta$ 方程不变</td></tr>
+                    <tr><td>关于 $y$ 轴对称</td><td>$\theta \to \pi-\theta$ 方程不变</td></tr>
+                    <tr><td>关于原点对称</td><td>$r \to -r$ 方程不变</td></tr>
+                </table>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s8-2">8.2 极坐标曲线作图</h2>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>心形线 $r = 1 - \cos\theta$</div>
+                <p>分析步骤：</p>
+                <ol class="step-list">
+                    <li>对称性：$\theta\to -\theta$ 不变，关于 $x$ 轴对称</li>
+                    <li>特殊值：$\theta=0$ 时 $r=0$；$\theta=\pi$ 时 $r=2$</li>
+                    <li>$r$ 的增减：$0\to\pi$ 上 $r$ 从 0 增到 2</li>
+                    <li>由对称性画出完整图形</li>
+                </ol>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>双纽线 $r^2 = \cos 2\theta$</div>
+                <p>注意 $\cos 2\theta \ge 0$ 才有意义，即 $\theta\in[-\pi/4,\pi/4]\cup[3\pi/4,5\pi/4]$。</p>
+                <p>图形为"∞"形。关于 $x$ 轴、$y$ 轴、原点都对称。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s8-3">8.3 极坐标斜率与弧长</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>极坐标曲线的斜率</div>
+                <p>对 $r = f(\theta)$，视为参数方程 $x = r\cos\theta$, $y = r\sin\theta$：</p>
+                <div class="formula-box">
+                    $$\frac{dy}{dx} = \frac{\frac{dr}{d\theta}\sin\theta + r\cos\theta}{\frac{dr}{d\theta}\cos\theta - r\sin\theta}$$
+                </div>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>极坐标弧长公式</div>
+                <div class="formula-box important">
+                    $$L = \int_\alpha^\beta \sqrt{r^2 + \left(\frac{dr}{d\theta}\right)^2}\,d\theta$$
+                </div>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>心形线 $r = 1-\cos\theta$ 的弧长</div>
+                <p>$r' = \sin\theta$，$r^2 + r'^2 = (1-\cos\theta)^2 + \sin^2\theta = 2(1-\cos\theta)$</p>
+                <p>$L = \int_0^{2\pi}\sqrt{2(1-\cos\theta)}\,d\theta = 2\int_0^{2\pi}|\sin(\theta/2)|\,d\theta = 8$</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s8-4">8.4 极坐标面积 <span class="en">Polar Area</span></h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>极坐标面积公式</div>
+                <p>曲线 $r = f(\theta)$，$\theta\in[\alpha,\beta]$ 所围区域面积：</p>
+                <div class="formula-box important">
+                    $$A = \frac{1}{2}\int_\alpha^\beta r^2\,d\theta = \frac{1}{2}\int_\alpha^\beta [f(\theta)]^2\,d\theta$$
+                </div>
+                <p>几何直觉：将区域划分为无穷多个扇形，每个扇形面积 $\approx \frac{1}{2}r^2\,d\theta$。</p>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>心形线 $r = 1+\cos\theta$ 的面积</div>
+                <p>$A = \frac{1}{2}\int_0^{2\pi}(1+\cos\theta)^2\,d\theta = \frac{1}{2}\int_0^{2\pi}\left(1+2\cos\theta+\cos^2\theta\right)d\theta = \frac{3\pi}{2}$</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>两条极曲线之间的面积</div>
+                <p>若 $0\le g(\theta)\le f(\theta)$，则两曲线之间面积：</p>
+                <div class="formula-box">
+                    $$A = \frac{1}{2}\int_\alpha^\beta\left([f(\theta)]^2 - [g(\theta)]^2\right)d\theta$$
+                </div>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s8-5">8.5 三维坐标系 <span class="en">3D Coordinate System</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>三维笛卡尔坐标</div>
+                <p>$\mathbb{R}^3$ 中一点用 $(x,y,z)$ 表示。三个坐标平面：</p>
+                <p>• $xy$ 平面：$z=0$</p>
+                <p>• $xz$ 平面：$y=0$</p>
+                <p>• $yz$ 平面：$x=0$</p>
+                <p>坐标轴遵循<span class="en">right-hand rule</span>（右手定则）。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s8-6">8.6 距离公式与球面</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>空间距离公式</div>
+                <p>$P_1(x_1,y_1,z_1)$ 与 $P_2(x_2,y_2,z_2)$ 之间距离：</p>
+                <div class="formula-box">
+                    $$d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}$$
+                </div>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>球面方程</div>
+                <p>圆心 $(a,b,c)$、半径 $r$ 的球面：</p>
+                <div class="formula-box">
+                    $$(x-a)^2 + (y-b)^2 + (z-c)^2 = r^2$$
+                </div>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+        <!-- ======================== LECTURE 9 ======================== -->
+        <div class="lecture" id="lec9">
+            <h1 class="lecture-title">Lecture 9 — 向量与点积叉积</h1>
+
+            <h2 class="section-title" id="s9-1">9.1 向量基础 <span class="en">Vectors</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>向量的定义与运算</div>
+                <p>向量 $\vec{v} = \langle v_1, v_2, v_3\rangle$ 是有大小和方向的量。</p>
+                <p>• 加法：$\vec{u}+\vec{v} = \langle u_1+v_1, u_2+v_2, u_3+v_3\rangle$</p>
+                <p>• 数乘：$c\vec{v} = \langle cv_1, cv_2, cv_3\rangle$</p>
+                <p>• 模：$|\vec{v}| = \sqrt{v_1^2+v_2^2+v_3^2}$</p>
+                <p>• 单位向量：$\hat{v} = \frac{\vec{v}}{|\vec{v}|}$</p>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>中点公式</div>
+                <p>$P_1(x_1,y_1,z_1)$ 与 $P_2(x_2,y_2,z_2)$ 的中点：</p>
+                <div class="formula-box">
+                    $$M = \left(\frac{x_1+x_2}{2},\;\frac{y_1+y_2}{2},\;\frac{z_1+z_2}{2}\right)$$
+                </div>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>标准基向量</div>
+                <p>$\vec{i} = \langle 1,0,0\rangle$，$\vec{j} = \langle 0,1,0\rangle$，$\vec{k} = \langle 0,0,1\rangle$</p>
+                <p>任何向量 $\vec{v} = v_1\vec{i} + v_2\vec{j} + v_3\vec{k}$。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s9-2">9.2 点积 <span class="en">Dot Product</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>点积的两种定义</div>
+                <p><b>代数定义</b>：$\vec{u}\cdot\vec{v} = u_1v_1 + u_2v_2 + u_3v_3$</p>
+                <p><b>几何定义</b>：</p>
+                <div class="formula-box important">
+                    $$\vec{u}\cdot\vec{v} = |\vec{u}||\vec{v}|\cos\theta$$
+                </div>
+                <p>其中 $\theta$ 是两向量的夹角，$0\le\theta\le\pi$。</p>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>点积的性质</div>
+                <p>• $\vec{u}\cdot\vec{v} = \vec{v}\cdot\vec{u}$（交换律）</p>
+                <p>• $\vec{u}\cdot(\vec{v}+\vec{w}) = \vec{u}\cdot\vec{v}+\vec{u}\cdot\vec{w}$（分配律）</p>
+                <p>• $(c\vec{u})\cdot\vec{v} = c(\vec{u}\cdot\vec{v})$</p>
+                <p>• $\vec{u}\cdot\vec{u} = |\vec{u}|^2$</p>
+                <p>• $\vec{u}\perp\vec{v} \iff \vec{u}\cdot\vec{v} = 0$</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>夹角公式</div>
+                <div class="formula-box">
+                    $$\cos\theta = \frac{\vec{u}\cdot\vec{v}}{|\vec{u}||\vec{v}|}$$
+                </div>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s9-3">9.3 投影 <span class="en">Projection</span></h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>向量投影</div>
+                <p>$\vec{u}$ 在 $\vec{v}$ 方向上的<span class="en">scalar component</span>（标量投影）：</p>
+                <div class="formula-box">
+                    $$\text{comp}_{\vec{v}}\vec{u} = \frac{\vec{u}\cdot\vec{v}}{|\vec{v}|} = |\vec{u}|\cos\theta$$
+                </div>
+                <p>$\vec{u}$ 在 $\vec{v}$ 方向上的<span class="en">vector projection</span>：</p>
+                <div class="formula-box important">
+                    $$\text{proj}_{\vec{v}}\vec{u} = \frac{\vec{u}\cdot\vec{v}}{|\vec{v}|^2}\vec{v} = \frac{\vec{u}\cdot\vec{v}}{\vec{v}\cdot\vec{v}}\vec{v}$$
+                </div>
+            </div>
+
+            <div class="card connection">
+                <div class="card-title"><span class="card-icon">🔗</span>物理应用：功</div>
+                <p>力 $\vec{F}$ 沿位移 $\vec{d}$ 所做的功：</p>
+                <div class="formula-box">
+                    $$W = \vec{F}\cdot\vec{d} = |\vec{F}||\vec{d}|\cos\theta$$
+                </div>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s9-4">9.4 叉积 <span class="en">Cross Product</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>叉积的定义</div>
+                <p>$\vec{u}\times\vec{v}$ 是一个<b>向量</b>，用行列式计算：</p>
+                <div class="formula-box important">
+                    $$\vec{u}\times\vec{v} = \begin{vmatrix}\vec{i}&\vec{j}&\vec{k}\\u_1&u_2&u_3\\v_1&v_2&v_3\end{vmatrix} = \langle u_2v_3-u_3v_2,\; u_3v_1-u_1v_3,\; u_1v_2-u_2v_1\rangle$$
+                </div>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>叉积的几何意义</div>
+                <p>• 方向：垂直于 $\vec{u}$ 和 $\vec{v}$ 所在平面，由右手定则确定</p>
+                <p>• 大小：</p>
+                <div class="formula-box">
+                    $$|\vec{u}\times\vec{v}| = |\vec{u}||\vec{v}|\sin\theta$$
+                </div>
+                <p>• 几何意义：等于 $\vec{u}$ 与 $\vec{v}$ 张成的<span class="en">parallelogram</span>（平行四边形）面积</p>
+            </div>
+
+            <div class="card warning">
+                <div class="card-title"><span class="card-icon">⚠️</span>叉积不满足交换律</div>
+                <p>$\vec{u}\times\vec{v} = -(\vec{v}\times\vec{u})$（反交换律）</p>
+                <p>$\vec{u}\times\vec{u} = \vec{0}$</p>
+                <p>$\vec{u}\parallel\vec{v} \iff \vec{u}\times\vec{v} = \vec{0}$</p>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+        <!-- ======================== LECTURE 10 ======================== -->
+        <div class="lecture" id="lec10">
+            <h1 class="lecture-title">Lecture 10 — 空间直线与平面</h1>
+
+            <h2 class="section-title" id="s10-1">10.1 三重标量积 <span class="en">Triple Scalar Product</span></h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>三重标量积</div>
+                <div class="formula-box">
+                    $$(\vec{u}\times\vec{v})\cdot\vec{w} = \begin{vmatrix}u_1&u_2&u_3\\v_1&v_2&v_3\\w_1&w_2&w_3\end{vmatrix}$$
+                </div>
+                <p>几何意义：等于 $\vec{u}, \vec{v}, \vec{w}$ 张成的<span class="en">parallelepiped</span>（平行六面体）的有向体积。</p>
+                <div class="formula-box highlight">
+                    $$V = |(\vec{u}\times\vec{v})\cdot\vec{w}|$$
+                </div>
+            </div>
+
+            <div class="card connection">
+                <div class="card-title"><span class="card-icon">🔗</span>力矩 Torque</div>
+                <p>力 $\vec{F}$ 关于支点的力矩 <span class="en">torque</span>：</p>
+                <div class="formula-box">
+                    $$\vec{\tau} = \vec{r}\times\vec{F}$$
+                </div>
+                <p>其中 $\vec{r}$ 是从支点到力作用点的向量。$|\vec{\tau}| = |\vec{r}||\vec{F}|\sin\theta$。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s10-2">10.2 空间直线方程 <span class="en">Lines in Space</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>直线的参数方程</div>
+                <p>过点 $P_0(x_0,y_0,z_0)$、方向向量 $\vec{v} = \langle a,b,c\rangle$ 的直线：</p>
+                <div class="formula-box important">
+                    $$\vec{r}(t) = \vec{r}_0 + t\vec{v} \implies \begin{cases}x = x_0+at\\y = y_0+bt\\z = z_0+ct\end{cases}$$
+                </div>
+                <p>对称形式（$a,b,c\neq 0$）：$\frac{x-x_0}{a} = \frac{y-y_0}{b} = \frac{z-z_0}{c}$</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>两点确定直线</div>
+                <p>过 $P_1$ 和 $P_2$ 的直线：方向向量 $\vec{v} = \overrightarrow{P_1P_2}$，取 $P_0 = P_1$。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s10-3">10.3 平面方程 <span class="en">Planes</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>平面的方程</div>
+                <p>过点 $P_0(x_0,y_0,z_0)$、法向量 $\vec{n} = \langle A,B,C\rangle$ 的平面：</p>
+                <div class="formula-box important">
+                    $$A(x-x_0)+B(y-y_0)+C(z-z_0) = 0$$
+                </div>
+                <p>或一般形式：$Ax + By + Cz = D$。</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>求平面法向量的方法</div>
+                <p>• 已知平面上两个向量 $\vec{u},\vec{v}$：$\vec{n} = \vec{u}\times\vec{v}$</p>
+                <p>• 已知三点 $P,Q,R$：$\vec{n} = \overrightarrow{PQ}\times\overrightarrow{PR}$</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s10-4">10.4 点到直线/平面距离</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>点到平面的距离</div>
+                <p>点 $P(x_1,y_1,z_1)$ 到平面 $Ax+By+Cz=D$ 的距离：</p>
+                <div class="formula-box important">
+                    $$d = \frac{|Ax_1+By_1+Cz_1-D|}{\sqrt{A^2+B^2+C^2}}$$
+                </div>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>点到直线的距离</div>
+                <p>点 $S$ 到直线（过 $P$，方向 $\vec{v}$）的距离：</p>
+                <div class="formula-box">
+                    $$d = \frac{|\overrightarrow{PS}\times\vec{v}|}{|\vec{v}|}$$
+                </div>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>异面直线 <span class="en">Skew Lines</span></div>
+                <p>两条直线若既不平行也不相交，则称为<b>异面直线</b>。两异面直线之间的距离：</p>
+                <div class="formula-box">
+                    $$d = \frac{|(\overrightarrow{P_1P_2})\cdot(\vec{v}_1\times\vec{v}_2)|}{|\vec{v}_1\times\vec{v}_2|}$$
+                </div>
+                <p>其中 $P_1,P_2$ 分别在两直线上，$\vec{v}_1,\vec{v}_2$ 是方向向量。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s10-5">10.5 柱面与二次曲面 <span class="en">Cylinders and Quadric Surfaces</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>柱面</div>
+                <p><span class="en">Cylinder</span>：由平行于某一固定直线的直线族生成的曲面。</p>
+                <p>例：$x^2+y^2 = 1$ 在 $\mathbb{R}^3$ 中是圆柱面（沿 $z$ 轴方向无约束）。</p>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>二次曲面</div>
+                <p>常见二次曲面：</p>
+                <table class="comparison-table">
+                    <tr><th>名称</th><th>方程</th></tr>
+                    <tr><td>椭球面 <span class="en">Ellipsoid</span></td><td>$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$</td></tr>
+                    <tr><td>单叶双曲面</td><td>$\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$</td></tr>
+                    <tr><td>双叶双曲面</td><td>$-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$</td></tr>
+                    <tr><td>椭圆抛物面</td><td>$z=\frac{x^2}{a^2}+\frac{y^2}{b^2}$</td></tr>
+                    <tr><td>双曲抛物面 <span class="en">Hyperbolic Paraboloid</span></td><td>$z=\frac{x^2}{a^2}-\frac{y^2}{b^2}$</td></tr>
+                    <tr><td>锥面 <span class="en">Cone</span></td><td>$\frac{x^2}{a^2}+\frac{y^2}{b^2}=\frac{z^2}{c^2}$</td></tr>
+                </table>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+        <!-- ======================== LECTURE 11 ======================== -->
+        <div class="lecture" id="lec11">
+            <h1 class="lecture-title">Lecture 11 — 向量函数</h1>
+
+            <h2 class="section-title" id="s11-1">11.1 向量函数的定义 <span class="en">Vector-Valued Functions</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>向量函数</div>
+                <p>向量函数 $\vec{r}(t) = \langle f(t), g(t), h(t)\rangle = f(t)\vec{i}+g(t)\vec{j}+h(t)\vec{k}$</p>
+                <p>其中 $f,g,h$ 称为<span class="en">component functions</span>（分量函数）。</p>
+                <p>定义域：三个分量函数定义域的交集。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s11-2">11.2 极限与连续</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>分量运算</div>
+                <p>向量函数的极限、连续性都是<b>逐分量</b>进行的：</p>
+                <div class="formula-box">
+                    $$\lim_{t\to t_0}\vec{r}(t) = \left\langle\lim_{t\to t_0}f(t),\;\lim_{t\to t_0}g(t),\;\lim_{t\to t_0}h(t)\right\rangle$$
+                </div>
+                <p>$\vec{r}$ 在 $t_0$ 连续 $\iff$ 每个分量在 $t_0$ 连续。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s11-3">11.3 导数与切向量</h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>向量函数的导数</div>
+                <div class="formula-box important">
+                    $$\vec{r}'(t) = \lim_{\Delta t\to 0}\frac{\vec{r}(t+\Delta t)-\vec{r}(t)}{\Delta t} = \langle f'(t), g'(t), h'(t)\rangle$$
+                </div>
+                <p>$\vec{r}'(t)$ 是曲线在该点的<span class="en">tangent vector</span>（切向量）。</p>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>单位切向量</div>
+                <div class="formula-box">
+                    $$\vec{T}(t) = \frac{\vec{r}'(t)}{|\vec{r}'(t)|}$$
+                </div>
+                <p>$\vec{T}$ 是<span class="en">unit tangent vector</span>，指向曲线前进方向。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s11-4">11.4 求导法则</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>向量函数的求导法则</div>
+                <p>设 $\vec{u}(t)$, $\vec{v}(t)$ 可微，$c(t)$ 是标量函数：</p>
+                <ol class="step-list">
+                    <li>$\frac{d}{dt}[c(t)\vec{u}(t)] = c'(t)\vec{u}(t)+c(t)\vec{u}'(t)$</li>
+                    <li>$\frac{d}{dt}[\vec{u}(t)+\vec{v}(t)] = \vec{u}'(t)+\vec{v}'(t)$</li>
+                    <li>$\frac{d}{dt}[\vec{u}(t)\cdot\vec{v}(t)] = \vec{u}'(t)\cdot\vec{v}(t)+\vec{u}(t)\cdot\vec{v}'(t)$</li>
+                    <li>$\frac{d}{dt}[\vec{u}(t)\times\vec{v}(t)] = \vec{u}'(t)\times\vec{v}(t)+\vec{u}(t)\times\vec{v}'(t)$<br><span style="color:#f44336;font-size:15px">（叉积顺序不能交换！）</span></li>
+                    <li>$\frac{d}{dt}[\vec{u}(c(t))] = c'(t)\vec{u}'(c(t))$（链式法则）</li>
+                </ol>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>等长向量的性质</div>
+                <p>若 $|\vec{r}(t)| = $ 常数，则：</p>
+                <div class="formula-box highlight">
+                    $$\vec{r}(t)\cdot\vec{r}'(t) = 0$$
+                </div>
+                <p>即：等长向量总是与其导数正交。（想象在球面上运动，速度总是切于球面）</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s11-5">11.5 积分与抛体运动</h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>向量函数的积分</div>
+                <div class="formula-box">
+                    $$\int_a^b \vec{r}(t)\,dt = \left\langle\int_a^b f(t)\,dt,\;\int_a^b g(t)\,dt,\;\int_a^b h(t)\,dt\right\rangle$$
+                </div>
+                <p>不定积分：$\int\vec{r}(t)\,dt = \vec{R}(t)+\vec{C}$（$\vec{C}$ 为常向量）。</p>
+            </div>
+
+            <div class="card connection">
+                <div class="card-title"><span class="card-icon">🔗</span>抛体运动 <span class="en">Projectile Motion</span></div>
+                <p>设重力加速度 $\vec{a} = -g\vec{j}$，初速度 $\vec{v}_0 = (v_0\cos\alpha)\vec{i}+(v_0\sin\alpha)\vec{j}$：</p>
+                <div class="formula-box important">
+                    $$\vec{r}(t) = (v_0\cos\alpha)t\,\vec{i} + \left[(v_0\sin\alpha)t - \frac{1}{2}gt^2\right]\vec{j}$$
+                </div>
+                <p>由 $\vec{a}\to\vec{v}\to\vec{r}$ 两次积分得到。</p>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+        <!-- ======================== LECTURE 12 ======================== -->
+        <div class="lecture" id="lec12">
+            <h1 class="lecture-title">Lecture 12 — 弧长参数与曲率</h1>
+
+            <h2 class="section-title" id="s12-1">12.1 抛体运动分析</h2>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>抛体运动关键公式</div>
+                <p>初速 $v_0$，仰角 $\alpha$，重力 $g$：</p>
+                <p><b>最大高度</b>（$y$ 分量速度为零时）：</p>
+                <div class="formula-box">
+                    $$H = \frac{v_0^2\sin^2\alpha}{2g}$$
+                </div>
+                <p><b>飞行时间</b>（$y=0$ 时）：</p>
+                <div class="formula-box">
+                    $$T = \frac{2v_0\sin\alpha}{g}$$
+                </div>
+                <p><b>水平射程</b> <span class="en">Range</span>：</p>
+                <div class="formula-box highlight">
+                    $$R = \frac{v_0^2\sin 2\alpha}{g}$$
+                </div>
+                <p>最大射程在 $\alpha = 45°$ 时取得。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s12-2">12.2 弧长参数 <span class="en">Arc Length Parameter</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>弧长参数</div>
+                <p>从 $t = t_0$ 开始沿曲线测量的弧长：</p>
+                <div class="formula-box">
+                    $$s(t) = \int_{t_0}^{t}|\vec{r}'(\tau)|\,d\tau = \int_{t_0}^{t}\sqrt{f'(\tau)^2+g'(\tau)^2+h'(\tau)^2}\,d\tau$$
+                </div>
+                <p>$\frac{ds}{dt} = |\vec{r}'(t)|$（弧长变化率 = 速率）。</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>弧长参数化的好处</div>
+                <p>以弧长 $s$ 为参数时，$|\vec{r}'(s)| = 1$，即单位切向量就是 $\vec{r}'(s) = \vec{T}(s)$。</p>
+                <p>这使得曲率等几何量的表达式更简洁。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s12-3">12.3 曲率 <span class="en">Curvature</span></h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>曲率的定义</div>
+                <p>曲率衡量曲线弯曲的程度：</p>
+                <div class="formula-box important">
+                    $$\kappa = \left|\frac{d\vec{T}}{ds}\right|$$
+                </div>
+                <p>即单位切向量关于弧长的变化率的模。</p>
+            </div>
+
+            <div class="card theorem">
+                <div class="card-title"><span class="card-icon">⭐</span>曲率的计算公式</div>
+                <p><b>用参数 $t$ 计算</b>：</p>
+                <div class="formula-box important">
+                    $$\kappa = \frac{|\vec{T}'(t)|}{|\vec{r}'(t)|} = \frac{|\vec{r}'(t)\times\vec{r}''(t)|}{|\vec{r}'(t)|^3}$$
+                </div>
+                <p><b>平面曲线 $y = f(x)$</b>：</p>
+                <div class="formula-box">
+                    $$\kappa = \frac{|f''(x)|}{[1+(f'(x))^2]^{3/2}}$$
+                </div>
+            </div>
+
+            <div class="card example">
+                <div class="card-title"><span class="card-icon">📝</span>圆的曲率</div>
+                <p>半径为 $a$ 的圆：$\vec{r}(t) = a\cos t\,\vec{i}+a\sin t\,\vec{j}$</p>
+                <p>$|\vec{r}'| = a$，$|\vec{r}''| = a$，$|\vec{r}'\times\vec{r}''| = a^2$</p>
+                <p>$\kappa = \frac{a^2}{a^3} = \frac{1}{a}$。曲率恒等于半径的倒数。</p>
+            </div>
+
+            <div class="sd2"></div>
+
+            <h2 class="section-title" id="s12-4">12.4 主法向量与密切圆</h2>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>主法向量 <span class="en">Principal Unit Normal</span></div>
+                <div class="formula-box important">
+                    $$\vec{N} = \frac{\vec{T}'(t)}{|\vec{T}'(t)|}$$
+                </div>
+                <p>$\vec{N}$ 指向曲线弯曲的方向（曲线的"内侧"），且 $\vec{N}\perp\vec{T}$。</p>
+            </div>
+
+            <div class="card definition">
+                <div class="card-title"><span class="card-icon">📐</span>密切圆 <span class="en">Osculating Circle</span></div>
+                <p>在曲线某点处最佳拟合曲线的圆称为<b>密切圆</b>。</p>
+                <p>• 曲率半径 <span class="en">radius of curvature</span>：$\rho = \frac{1}{\kappa}$</p>
+                <p>• 密切圆的圆心在曲线该点沿 $\vec{N}$ 方向距离 $\rho$ 处</p>
+                <p>• 密切圆与曲线在该点有相同的切线和曲率</p>
+            </div>
+
+            <div class="card tip">
+                <div class="card-title"><span class="card-icon">💡</span>直觉理解</div>
+                <p>• $\kappa$ 大 $\Rightarrow$ $\rho$ 小 $\Rightarrow$ 曲线弯曲剧烈</p>
+                <p>• $\kappa = 0$ 表示直线（$\rho = \infty$）</p>
+                <p>• 曲率就是"每走单位弧长，方向转了多少角度"</p>
+            </div>
+
+            <div class="card connection">
+                <div class="card-title"><span class="card-icon">🔗</span>TNB 框架预告</div>
+                <p>$\vec{T}$（切向量）、$\vec{N}$（主法向量）、$\vec{B} = \vec{T}\times\vec{N}$（副法向量）构成<span class="en">Frenet-Serret frame</span>。</p>
+                <p>这个正交基在空间曲线上沿弧长移动，是微分几何的核心工具。</p>
+            </div>
+
+            <div class="sd"></div>
+        </div>
+
+    </main>
+
+    <script>
+        function toggleLecture(el) {
+            const lec = el.parentElement;
+            lec.classList.toggle('collapsed');
+        }
+        document.getElementById('menuToggle').addEventListener('click', function(){
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+    </script>
+</body>
+</html>

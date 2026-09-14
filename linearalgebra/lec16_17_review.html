@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT1002 Lecture 16-17 | Least Squares & Orthonormal Basis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #667eea; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections {
+            padding-left: 20px; max-height: 500px; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #667eea; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+
+        .main-content { margin-left: 280px; margin-top: 60px; padding: 40px; max-width: 1100px; }
+
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #667eea; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #667eea;
+        }
+        .section-title {
+            font-size: 24px; color: #764ba2; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #764ba2;
+        }
+        .subsection-title {
+            font-size: 20px; color: #555; margin: 25px 0 15px 0;
+            padding-left: 12px; border-left: 4px solid #bbb;
+        }
+
+        .card {
+            margin: 20px 0; padding: 20px; border-radius: 8px;
+            border-left: 5px solid #ddd; background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title {
+            font-weight: bold; font-size: 18px; margin-bottom: 10px;
+            display: flex; align-items: center;
+        }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+
+        .en {
+            display: inline-block; background-color: #e3f2fd; color: #1565c0;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+
+        .formula-box {
+            background-color: #e8f4fd; border-left: 5px solid #2196F3;
+            border-radius: 6px; padding: 18px 22px; margin: 18px 0;
+            font-size: 17px; text-align: center; overflow-x: auto;
+        }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li {
+            counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0;
+            position: relative; background: #f8f9fa; border-radius: 6px;
+        }
+        .step-list li::before {
+            content: counter(step); position: absolute; left: 10px; top: 50%;
+            transform: translateY(-50%); background: #667eea; color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-weight: bold; font-size: 14px;
+        }
+
+        .diagram-container {
+            text-align: center; margin: 20px 0; padding: 15px;
+            background: white; border-radius: 8px; border: 1px solid #e0e0e0;
+        }
+        .diagram-caption { text-align: center; font-size: 13px; color: #888; margin-top: 8px; }
+
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd; padding: 12px; text-align: center;
+        }
+        .comparison-table th { background-color: #667eea; color: white; font-weight: bold; }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+
+        .note {
+            margin-top: 15px; padding: 12px 15px; background-color: #fff3cd;
+            border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px;
+        }
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+
+        .equiv-list { list-style: none; padding: 0; margin: 10px 0; }
+        .equiv-list li { padding: 6px 12px; margin: 4px 0; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #667eea; }
+        .equiv-list li .num { display: inline-block; font-weight: bold; color: #667eea; width: 28px; }
+
+        svg text { font-family: 'Segoe UI', sans-serif; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; }
+            .navbar-title { font-size: 18px; }
+            .menu-toggle { display: block !important; }
+        }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">&#9776;</button>
+    <div class="navbar-title">MAT1002 线性代数复习</div>
+    <div class="navbar-subtitle">Lecture 16-17 | Least Squares & Orthonormal Basis</div>
+</nav>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture">
+            <div class="toc-lecture-title active" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 16 - Least Squares I
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L16-motivation">动机：线性回归</a></div>
+                <div class="toc-section"><a href="#L16-definition">最小二乘定义</a></div>
+                <div class="toc-section"><a href="#L16-relation">LS 与线性系统的关系</a></div>
+                <div class="toc-section"><a href="#L16-row-col">行/列形式解读</a></div>
+                <div class="toc-section"><a href="#L16-application">应用：线性回归</a></div>
+                <div class="toc-section"><a href="#L16-solving">求解最小二乘</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> Lec 17 - Orthonormal Basis
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#L17-review">回顾：正规方程</a></div>
+                <div class="toc-section"><a href="#L17-fullrank">满秩情形解</a></div>
+                <div class="toc-section"><a href="#L17-existence">解的存在性</a></div>
+                <div class="toc-section"><a href="#L17-orthogonal-set">正交集</a></div>
+                <div class="toc-section"><a href="#L17-orthonormal-set">标准正交集</a></div>
+                <div class="toc-section"><a href="#L17-independence">正交 → 线性无关</a></div>
+                <div class="toc-section"><a href="#L17-onb">标准正交基</a></div>
+                <div class="toc-section"><a href="#L17-orthogonal-matrix">正交矩阵</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> 速查总结
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#summary">核心定理速查</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="main-content">
+
+<!-- ========================================================== -->
+<!--                      LECTURE 16                             -->
+<!-- ========================================================== -->
+<div class="lecture" id="L16">
+<h1 class="lecture-title">Lecture 16 — Least Squares Problem I</h1>
+
+<!-- === Motivation === -->
+<h2 class="section-title" id="L16-motivation">Part I: 动机 — Linear Regression</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🏀</span> Example: 工资预测 (Salary Prediction)</div>
+    <p>假设你是球队老板，已知三位球员的数据：</p>
+    <table class="comparison-table">
+        <tr><th>球员</th><th>Score</th><th>Assist</th><th>Salary (百万)</th></tr>
+        <tr><td>Paul</td><td>16</td><td>10</td><td>35</td></tr>
+        <tr><td>Harden</td><td>25</td><td>8</td><td>45</td></tr>
+        <tr><td>Capela</td><td>18</td><td>3</td><td>15</td></tr>
+        <tr><td>Tom</td><td>12</td><td>14</td><td><strong style="color:#e91e63;">???</strong></td></tr>
+    </table>
+    <p>假设线性模型：<span class="en">Salary = a · Score + b · Assist</span>，代入已知数据得：</p>
+    <div class="formula-box">
+        $$\begin{cases} 16a + 10b = 35 \\ 25a + 8b = 45 \\ 18a + 3b = 15 \end{cases} \quad \Longleftrightarrow \quad \underbrace{\begin{bmatrix} 16 & 10 \\ 25 & 8 \\ 18 & 3 \end{bmatrix}}_{A} \begin{bmatrix} a \\ b \end{bmatrix} = \underbrace{\begin{bmatrix} 35 \\ 45 \\ 15 \end{bmatrix}}_{\mathbf{b}}$$
+    </div>
+    <p>这是 3 个方程 2 个未知数——<strong>方程数 &gt; 未知数</strong>，通常<span class="cross">无精确解</span>！</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 核心思路</div>
+    <p>现实问题中你不能说"无解"——老板需要一个答案！</p>
+    <p>策略：找一个 <strong>近似解</strong>（approximate solution），使误差尽可能小。</p>
+    <p>不追求"误差 ≤ 某个阈值"，而是追求 <strong>误差最小</strong>——交给决策者判断是否可接受。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="500" height="200" viewBox="0 0 500 200">
+        <defs>
+            <marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#667eea"/>
+            </marker>
+        </defs>
+        <!-- Ax=b box -->
+        <rect x="20" y="30" width="130" height="60" rx="10" fill="#e3f2fd" stroke="#2196F3" stroke-width="2"/>
+        <text x="85" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#1565c0">Ax = b</text>
+        <text x="85" y="75" text-anchor="middle" font-size="11" fill="#555">精确解（可能无解）</text>
+
+        <!-- Arrow -->
+        <line x1="155" y1="60" x2="210" y2="60" stroke="#667eea" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="183" y="50" text-anchor="middle" font-size="10" fill="#667eea">无解时</text>
+
+        <!-- min box -->
+        <rect x="215" y="20" width="170" height="80" rx="10" fill="#fce4ec" stroke="#e91e63" stroke-width="2"/>
+        <text x="300" y="48" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">min ‖Ax − b‖</text>
+        <text x="300" y="68" text-anchor="middle" font-size="11" fill="#555">使误差尽可能小</text>
+        <text x="300" y="85" text-anchor="middle" font-size="11" fill="#555">最小二乘问题</text>
+
+        <!-- Arrow to solution -->
+        <line x1="390" y1="60" x2="430" y2="60" stroke="#667eea" stroke-width="2" marker-end="url(#arr)"/>
+
+        <rect x="435" y="30" width="55" height="60" rx="10" fill="#e8f5e9" stroke="#4caf50" stroke-width="2"/>
+        <text x="462" y="55" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">ŷ</text>
+        <text x="462" y="75" text-anchor="middle" font-size="10" fill="#555">近似解</text>
+    </svg>
+    <div class="diagram-caption">从线性系统到最小二乘：当精确解不存在时，寻找最佳近似</div>
+</div>
+
+
+<!-- === Definition === -->
+<h2 class="section-title" id="L16-definition">Part II: Least Squares 定义</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Definition: Least Squares Problem（最小二乘问题）</div>
+    <p>给定 $A \in \mathbb{R}^{m \times n}$，$\mathbf{b} \in \mathbb{R}^{m \times 1}$，<span class="en">least squares problem</span> 为：</p>
+    <div class="formula-box important">
+        $$\min_{\mathbf{x} \in \mathbb{R}^{n \times 1}} \| A\mathbf{x} - \mathbf{b} \| \qquad (*)$$
+    </div>
+    <p>其中 $\|\cdot\|$ 是 <span class="en">Euclidean norm</span>（向量的 L2 范数）。</p>
+    <p><strong>$\mathbf{y}$ 是问题 (*) 的解</strong>（即 "least squares solution"）当且仅当：</p>
+    <div class="formula-box">
+        $$\| A\mathbf{y} - \mathbf{b} \| \leq \| A\mathbf{x} - \mathbf{b} \| \quad \text{for any } \mathbf{x}$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">⚠️</span> 注意区分！</div>
+    <p>$\mathbf{y}$ 是"<strong>最小二乘问题的解</strong>"，<span class="cross">不是</span> "$A\mathbf{x} = \mathbf{b}$ 的解"！这两个概念不同。</p>
+    <p>只有当 $A\mathbf{x} = \mathbf{b}$ 有解时，两者才等价。</p>
+</div>
+
+<!-- === Relation === -->
+<h2 class="section-title" id="L16-relation">LS 与线性系统的关系</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">📕</span> 两种情况</div>
+    <p><strong>情况 1：</strong>若 $\exists \mathbf{x}$ 使得 $A\mathbf{x} = \mathbf{b}$，则 $\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\| = 0$</p>
+    <p style="padding-left:40px;">此时求解 $\min \|A\mathbf{x} - \mathbf{b}\| \iff$ 求解 $A\mathbf{x} = \mathbf{b}$</p>
+    <p><strong>情况 2：</strong>若 $\nexists \mathbf{x}$ 使得 $A\mathbf{x} = \mathbf{b}$，则两个问题<span class="cross">不同</span>。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> min ‖·‖ 和 min ‖·‖² 等价</div>
+    <p>$\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|$ 和 $\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|^2$ 的<strong>解集相同</strong>。</p>
+    <p>因为 $f(t) = t^2$ 在 $t \geq 0$ 上单调递增，所以最小化 $\|\cdot\|$ 等价于最小化 $\|\cdot\|^2$。</p>
+</div>
+
+<!-- === Row/Column Form === -->
+<h2 class="section-title" id="L16-row-col">行形式 vs 列形式</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Row Form（行形式）</div>
+    <p>设 $A$ 的行向量为 $\mathbf{a}_{(1)}^\top, \mathbf{a}_{(2)}^\top, \ldots, \mathbf{a}_{(m)}^\top$，则：</p>
+    <div class="formula-box">
+        $$\|A\mathbf{x} - \mathbf{b}\|^2 = \sum_{i=1}^{m} \left(\mathbf{a}_{(i)}^\top \mathbf{x} - b_i\right)^2$$
+    </div>
+    <p><strong>解读：</strong>最小二乘目标 = <span class="en">Sum of Squares of Residuals</span>（残差平方和），即每个方程残差的平方之和。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Column Form（列形式）</div>
+    <p>设 $A$ 的列向量为 $\vec{a}_1, \vec{a}_2, \ldots, \vec{a}_n$，则：</p>
+    <div class="formula-box">
+        $$\|A\mathbf{x} - \mathbf{b}\|^2 = \|x_1 \vec{a}_1 + x_2 \vec{a}_2 + \cdots + x_n \vec{a}_n - \mathbf{b}\|^2$$
+    </div>
+    <p><strong>解读：</strong>在列空间 $C(A)$ 中寻找 $\mathbf{b}$ 的<strong>最佳近似</strong>——即 $\mathbf{b}$ 在 $C(A)$ 上的投影。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="380" height="250" viewBox="0 0 380 250">
+        <!-- Subspace plane -->
+        <polygon points="30,200 180,130 350,170 200,230" fill="#e3f2fd" stroke="#2196F3" stroke-width="1.5" opacity="0.7"/>
+        <text x="190" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">C(A) 列空间</text>
+
+        <!-- b vector -->
+        <line x1="190" y1="180" x2="190" y2="40" stroke="#e91e63" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="200" y="35" font-size="13" font-weight="bold" fill="#e91e63">b</text>
+
+        <!-- projection (Ay) on plane -->
+        <circle cx="190" cy="175" r="4" fill="#4caf50"/>
+        <text x="208" y="172" font-size="12" font-weight="bold" fill="#4caf50">Aŷ = proj</text>
+
+        <!-- residual (dashed) -->
+        <line x1="190" y1="175" x2="190" y2="40" stroke="#ff9800" stroke-width="2" stroke-dasharray="6,4"/>
+        <text x="210" y="110" font-size="11" fill="#ff9800">b − Aŷ (残差)</text>
+
+        <!-- perpendicular mark -->
+        <rect x="190" y="165" width="10" height="10" fill="none" stroke="#667eea" stroke-width="1.5"/>
+        <text x="80" y="160" font-size="11" fill="#667eea">⊥ 列空间</text>
+    </svg>
+    <div class="diagram-caption">列形式的几何直觉：ŷ 使 Aŷ 成为 b 在列空间上的投影，残差 ⊥ 列空间</div>
+</div>
+
+
+<!-- === Application === -->
+<h2 class="section-title" id="L16-application">应用：Linear Regression 步骤</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> 线性回归两步流程</div>
+    <p><strong>Step 1：估计参数</strong>——求解最小二乘问题 $\min \|A\mathbf{x} - \mathbf{b}\|^2$，得到最优参数 $\mathbf{y}$。</p>
+    <p>本例中 $A = \begin{bmatrix} 16 & 10 \\ 25 & 8 \\ 18 & 3 \end{bmatrix}$，$\mathbf{b} = \begin{bmatrix} 35 \\ 43 \\ 16 \end{bmatrix}$</p>
+    <p><strong>Step 2：预测</strong>——用 $\mathbf{y}^\top \mathbf{a}_{\text{Tom}}$ 计算 Tom 的预估工资。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">🔮</span> 线性回归的重要性</div>
+    <p><strong>Machine Learning：</strong>线性回归是第一个模型</p>
+    <p><strong>Deep Learning：</strong>线性回归是神经网络的基础</p>
+    <p><strong>Statistics / Econometrics：</strong>会花大量时间在线性回归上</p>
+</div>
+
+
+<!-- === Solving === -->
+<h2 class="section-title" id="L16-solving">Part III: 求解最小二乘</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">📕</span> Thm 16.2 + Lemma 16.1：等价条件</div>
+    <p>对于最小二乘问题，以下三个条件<strong>等价</strong>：</p>
+    <ul class="equiv-list">
+        <li><span class="num">1.</span> $\mathbf{y}$ 最小化 $\|A\mathbf{x} - \mathbf{b}\|$</li>
+        <li><span class="num">2.</span> $\mathbf{b} - A\mathbf{y} \perp S$，其中 $S = C(A)$（列空间）</li>
+        <li><span class="num">3.</span> $A^\top A \mathbf{y} = A^\top \mathbf{b}$（<span class="en">Normal Equation</span>，正规方程）</li>
+    </ul>
+</div>
+
+<div class="formula-box important">
+    <strong>正规方程 (Normal Equation):</strong><br>
+    $$A^\top A \, \mathbf{y} = A^\top \mathbf{b}$$
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 直觉理解</div>
+    <p>条件 2 的几何含义：$A\mathbf{y}$ 是 $\mathbf{b}$ 在列空间 $C(A)$ 上的<strong>正交投影</strong>。</p>
+    <p>残差向量 $\mathbf{b} - A\mathbf{y}$ 必须垂直于列空间中的每一个向量。</p>
+    <p>条件 3 就是条件 2 的代数翻译：$A^\top(\mathbf{b} - A\mathbf{y}) = \mathbf{0}$ 展开即得。</p>
+</div>
+
+</div><!-- end lecture 16 -->
+
+
+<!-- ========================================================== -->
+<!--                      LECTURE 17                             -->
+<!-- ========================================================== -->
+<div class="lecture" id="L17">
+<h1 class="lecture-title">Lecture 17 — Orthonormal Basis & Orthogonal Matrix</h1>
+
+<!-- === Review === -->
+<h2 class="section-title" id="L17-review">回顾：正规方程与 LS 解</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> 回顾 (Lec 16)</div>
+    <p>正交性定义：$\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$ 正交 ⟺ $\mathbf{u}^\top \mathbf{v} = 0$，记为 $\mathbf{u} \perp \mathbf{v}$</p>
+    <p>LS 解的等价条件：</p>
+    <ul class="equiv-list">
+        <li><span class="num">1.</span> $\mathbf{y}$ 最小化 $\|A\mathbf{x} - \mathbf{b}\|$</li>
+        <li><span class="num">2.</span> $\mathbf{b} - A\mathbf{y} \perp C(A)$</li>
+        <li><span class="num">3.</span> $A^\top A \mathbf{y} = A^\top \mathbf{b}$</li>
+    </ul>
+</div>
+
+
+<!-- === Full Rank === -->
+<h2 class="section-title" id="L17-fullrank">Part 0: 满秩情形的解</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">📕</span> Corollary: Full-Rank 公式</div>
+    <p>若 $A$ 的列<strong>线性无关</strong>（即 $\text{rank}(A) = n$，满列秩），则最小二乘问题的解<strong>唯一</strong>：</p>
+    <div class="formula-box important">
+        $$\mathbf{y} = (A^\top A)^{-1} A^\top \mathbf{b}$$
+    </div>
+    <p><strong>Remark：</strong>$A$ 列线性无关 ⟺ $\text{rank}(A) = n$ ⟺ $N(A) = \{\mathbf{0}\}$</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">📕</span> Lemma 17.0</div>
+    <p>对任意矩阵 $A$：</p>
+    <div class="formula-box highlight">
+        $$N(A^\top A) = N(A)$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> Lemma 1 的证明思路</div>
+    <p><strong>目标：</strong>$A$ 满列秩 $\Rightarrow$ $A^\top A$ 可逆。</p>
+    <ol class="step-list">
+        <li>$A$ 满列秩 ⟺ $N(A) = \{\mathbf{0}\}$（$A\mathbf{x} = \mathbf{0}$ 仅有零解）</li>
+        <li>由 Lemma 17.0：$N(A^\top A) = N(A) = \{\mathbf{0}\}$</li>
+        <li>$A^\top A$ 是方阵（$n \times n$），零空间只有 $\{\mathbf{0}\}$ ⟺ $A^\top A$ 满秩 ⟺ $A^\top A$ 可逆</li>
+    </ol>
+</div>
+
+
+<!-- === Existence === -->
+<h2 class="section-title" id="L17-existence">解的存在性</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">📕</span> Proposition: 正规方程总有解</div>
+    <p>对<strong>任意</strong>矩阵 $A$ 和向量 $\mathbf{b}$，线性系统 $A^\top A \mathbf{y} = A^\top \mathbf{b}$ <strong>至少有一个解</strong>。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> 证明思路</div>
+    <p><strong>要证：</strong>$A^\top \mathbf{b} \in C(A^\top A)$ 对所有 $\mathbf{b}$ 成立。</p>
+    <p>等价于：$C(A^\top) \subseteq C(A^\top A)$，即 $\text{Row}(A) \subseteq \text{Row}(A^\top A)$。</p>
+    <p>由 Lemma 17.0：$N(A) = N(A^\top A)$，取正交补得 $\text{Row}(A) = \text{Row}(A^\top A)$。✓</p>
+</div>
+
+
+<!-- === Orthogonal Set === -->
+<h2 class="section-title" id="L17-orthogonal-set">Part I.1: Orthogonal Set（正交集）</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Definition 17.1: Orthogonal Set（正交集）</div>
+    <p>设 $\{v_1, v_2, \ldots, v_k\}$ 是 $\mathbb{R}^n$ 中的<strong>非零</strong>向量集。</p>
+    <p>若对任意 $i \neq j$ 都有 $\langle v_i, v_j \rangle = 0$，则称其为<span class="en">orthogonal set</span>（正交集）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> Examples</div>
+    <p>以下都是正交集：</p>
+    <p>$\left\{\begin{pmatrix}1\\0\end{pmatrix}, \begin{pmatrix}0\\1\end{pmatrix}\right\}$，$\left\{\begin{pmatrix}3\\4\end{pmatrix}, \begin{pmatrix}-4\\3\end{pmatrix}\right\}$，$\left\{\begin{pmatrix}1\\0\\0\end{pmatrix}, \begin{pmatrix}0\\1\\0\end{pmatrix}, \begin{pmatrix}0\\0\\1\end{pmatrix}\right\}$</p>
+    <p>$\mathbb{R}^4$ 中的正交集：$\left\{\begin{bmatrix}1\\1\\1\\1\end{bmatrix}, \begin{bmatrix}1\\1\\-1\\-1\end{bmatrix}, \begin{bmatrix}1\\-1\\1\\-1\end{bmatrix}\right\}$</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="350" height="240" viewBox="0 0 350 240">
+        <!-- R2 orthogonal -->
+        <text x="90" y="18" text-anchor="middle" font-size="13" font-weight="bold" fill="#667eea">R² 中的正交集</text>
+        <!-- axes -->
+        <line x1="90" y1="200" x2="90" y2="30" stroke="#ccc" stroke-width="1"/>
+        <line x1="20" y1="130" x2="170" y2="130" stroke="#ccc" stroke-width="1"/>
+        <!-- v1 -->
+        <line x1="90" y1="130" x2="150" y2="78" stroke="#e91e63" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="155" y="73" font-size="12" font-weight="bold" fill="#e91e63">v₁=(3,4)</text>
+        <!-- v2 -->
+        <line x1="90" y1="130" x2="38" y2="91" stroke="#2196F3" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="20" y="82" font-size="12" font-weight="bold" fill="#2196F3">v₂=(-4,3)</text>
+        <!-- right angle -->
+        <rect x="80" y="118" width="10" height="10" fill="none" stroke="#4caf50" stroke-width="1.5"/>
+
+        <!-- R3 orthogonal -->
+        <text x="260" y="18" text-anchor="middle" font-size="13" font-weight="bold" fill="#667eea">R³ 中的正交集</text>
+        <!-- 3D axes -->
+        <line x1="260" y1="200" x2="260" y2="50" stroke="#ccc" stroke-width="1"/>
+        <line x1="200" y1="140" x2="330" y2="140" stroke="#ccc" stroke-width="1"/>
+        <line x1="260" y1="140" x2="220" y2="180" stroke="#ccc" stroke-width="1"/>
+        <!-- e1, e2, e3 -->
+        <line x1="260" y1="140" x2="310" y2="140" stroke="#e91e63" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="318" y="137" font-size="11" fill="#e91e63">e₁</text>
+        <line x1="260" y1="140" x2="260" y2="80" stroke="#2196F3" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="268" y="75" font-size="11" fill="#2196F3">e₂</text>
+        <line x1="260" y1="140" x2="228" y2="168" stroke="#4caf50" stroke-width="2.5" marker-end="url(#arr)"/>
+        <text x="215" y="180" font-size="11" fill="#4caf50">e₃</text>
+        <text x="260" y="210" text-anchor="middle" font-size="11" fill="#888">标准基：两两正交</text>
+    </svg>
+    <div class="diagram-caption">正交集示意：向量之间两两垂直</div>
+</div>
+
+
+<!-- === Orthonormal Set === -->
+<h2 class="section-title" id="L17-orthonormal-set">Orthonormal Set（标准正交集）</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Definition 17.2: Orthonormal Set（标准正交集）</div>
+    <p>若正交集中每个向量的范数都为 1（即 $\|v_i\| = 1$），则称为<span class="en">orthonormal set</span>。</p>
+    <p>等价条件：$\langle v_i, v_j \rangle = \delta_{ij} = \begin{cases} 1 & i = j \\ 0 & i \neq j \end{cases}$</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> 从正交集到标准正交集</div>
+    <p>给定正交集 $\{u_1, \ldots, u_k\}$，只需<strong>归一化</strong>每个向量：</p>
+    <div class="formula-box">
+        $$v_i = \frac{u_i}{\|u_i\|}$$
+    </div>
+    <p>就得到标准正交集 $\{v_1, \ldots, v_k\}$。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> Example</div>
+    <p>正交集 $\left\{\mathbf{u}_1 = \begin{bmatrix}1\\1\\1\end{bmatrix}, \mathbf{u}_2 = \begin{bmatrix}2\\1\\-3\end{bmatrix}, \mathbf{u}_3 = \begin{bmatrix}4\\-5\\1\end{bmatrix}\right\}$ 归一化后得标准正交集：</p>
+    <div class="formula-box">
+        $$\mathbf{v}_1 = \frac{1}{\sqrt{3}}\begin{bmatrix}1\\1\\1\end{bmatrix}, \quad \mathbf{v}_2 = \frac{1}{\sqrt{14}}\begin{bmatrix}2\\1\\-3\end{bmatrix}, \quad \mathbf{v}_3 = \frac{1}{\sqrt{42}}\begin{bmatrix}4\\-5\\1\end{bmatrix}$$
+    </div>
+</div>
+
+
+<!-- === Independence === -->
+<h2 class="section-title" id="L17-independence">正交 → 线性无关</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">📕</span> Proposition 17.1</div>
+    <p>设 $S = \{v_1, \ldots, v_k\}$ 是正交集，则 $v_1, \ldots, v_k$ <strong>线性无关</strong>。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> 证明（以 k=2 为例）</div>
+    <p>设 $\alpha_1 \vec{v}_1 + \alpha_2 \vec{v}_2 = \vec{0}$。</p>
+    <p><strong>两边左乘 $\vec{v}_1^\top$：</strong></p>
+    <div class="formula-box">
+        $$\alpha_1 \underbrace{\vec{v}_1^\top \vec{v}_1}_{\|\vec{v}_1\|^2 \neq 0} + \alpha_2 \underbrace{\vec{v}_1^\top \vec{v}_2}_{= 0} = 0 \quad \Longrightarrow \quad \alpha_1 = 0$$
+    </div>
+    <p>同理乘 $\vec{v}_2^\top$ 得 $\alpha_2 = 0$。因此 $\alpha_1 = \alpha_2 = 0$，线性无关。✓</p>
+</div>
+
+<div class="note">
+    <strong>关键思路：</strong>正交性让我们可以通过"内积投影"逐一提取系数——每个 $\alpha_i$ 可以独立确定，这是正交集最强大的性质之一。
+</div>
+
+
+<!-- === Orthonormal Basis === -->
+<h2 class="section-title" id="L17-onb">Part I.2: Orthonormal Basis（标准正交基）</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Definition 17.3: Orthonormal Basis（标准正交基）</div>
+    <p>向量集 $S = \{v_1, \ldots, v_n\}$ 是线性空间 $V$ 的<span class="en">orthonormal basis</span>，如果：</p>
+    <p>(1) $S$ 是标准正交集（两两正交 + 范数为 1）</p>
+    <p>(2) $S$ 中的向量构成 $V$ 的<strong>基</strong></p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">⚠️</span> 注意</div>
+    <p>正交集不一定是基！例如 $\mathbb{R}^3$ 中两个正交向量只是正交集，不能张成整个空间。</p>
+    <p>但如果 $\dim(V) = n$ 且有 $n$ 个标准正交向量，则自动是标准正交基（由 Proposition 17.1）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> Examples</div>
+    <p>(1) 标准基 $\{e_1, e_2, e_3\}$ 是 $\mathbb{R}^3$ 的标准正交基。</p>
+    <p>(2) $\left\{\frac{1}{\sqrt{3}}\begin{bmatrix}1\\1\\1\end{bmatrix}, \frac{1}{\sqrt{14}}\begin{bmatrix}2\\1\\-3\end{bmatrix}, \frac{1}{\sqrt{42}}\begin{bmatrix}4\\-5\\1\end{bmatrix}\right\}$ 也是 $\mathbb{R}^3$ 的标准正交基。</p>
+    <p>标准正交基<strong>不唯一</strong>——同一个空间可以有多组不同的标准正交基。</p>
+</div>
+
+
+<!-- === Orthogonal Matrix === -->
+<h2 class="section-title" id="L17-orthogonal-matrix">Orthogonal Matrix（正交矩阵）</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">📘</span> Definition 17.4: Orthogonal Matrix</div>
+    <p>正交矩阵 $Q \in \mathbb{R}^{n \times n}$ 是一个方阵，其列向量构成 $\mathbb{R}^n$ 的<span class="en">orthonormal basis</span>。</p>
+    <div class="formula-box highlight">
+        $$Q^\top Q = I \quad \Longleftrightarrow \quad Q^{-1} = Q^\top$$
+    </div>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">🟢</span> Examples of Orthogonal Matrices</div>
+    <p>$I = \begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}$，$\begin{bmatrix}-1&0&0\\0&1&0\\0&0&-1\end{bmatrix}$，$\begin{bmatrix}\frac{1}{\sqrt3}&\frac{2}{\sqrt{14}}&\frac{4}{\sqrt{42}}\\\frac{1}{\sqrt3}&\frac{1}{\sqrt{14}}&\frac{-5}{\sqrt{42}}\\\frac{1}{\sqrt3}&\frac{-3}{\sqrt{14}}&\frac{1}{\sqrt{42}}\end{bmatrix}$</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">🔮</span> 正交矩阵的核心性质</div>
+    <p><strong>$Q^\top Q = I$</strong> 意味着：</p>
+    <p>• 逆矩阵就是转置——计算极其简便</p>
+    <p>• <strong>保长</strong>：$\|Q\mathbf{x}\| = \|\mathbf{x}\|$（不改变向量长度）</p>
+    <p>• <strong>保角</strong>：$\langle Q\mathbf{x}, Q\mathbf{y}\rangle = \langle \mathbf{x}, \mathbf{y}\rangle$（不改变向量夹角）</p>
+    <p>• 简化最小二乘：若 $A$ 有正交列，则 $A^\top A$ 是对角阵，计算大大简化</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">💡</span> Claim</div>
+    <p>若 $\dim(V) = n$，且有 $n$ 个标准正交向量 $S = \{v_1, \ldots, v_n\}$，则 $S$ 是标准正交基。</p>
+    <p><strong>推论：</strong>若 $Q \in \mathbb{R}^{n \times n}$ 的列构成 $\mathbb{R}^n$ 的标准正交集，则 $Q$ 是正交矩阵。</p>
+</div>
+
+</div><!-- end lecture 17 -->
+
+
+<!-- ========================================================== -->
+<!--                      SUMMARY                                -->
+<!-- ========================================================== -->
+<div class="lecture" id="summary">
+<h1 class="lecture-title">核心定理速查</h1>
+
+<table class="comparison-table">
+    <tr><th>概念</th><th>核心内容</th><th>来源</th></tr>
+    <tr><td>Least Squares Problem</td><td>$\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|$</td><td>Def (Lec 16)</td></tr>
+    <tr><td>Normal Equation</td><td>$A^\top A \mathbf{y} = A^\top \mathbf{b}$</td><td>Thm 16.2</td></tr>
+    <tr><td>Full-Rank 公式</td><td>$\mathbf{y} = (A^\top A)^{-1} A^\top \mathbf{b}$</td><td>Corollary</td></tr>
+    <tr><td>$N(A^\top A) = N(A)$</td><td>零空间不变</td><td>Lemma 17.0</td></tr>
+    <tr><td>正规方程总有解</td><td>$A^\top\mathbf{b} \in C(A^\top A)$ always</td><td>Proposition</td></tr>
+    <tr><td>Orthogonal Set</td><td>$\langle v_i, v_j \rangle = 0$ for $i \neq j$</td><td>Def 17.1</td></tr>
+    <tr><td>Orthonormal Set</td><td>正交 + $\|v_i\| = 1$</td><td>Def 17.2</td></tr>
+    <tr><td>正交 → 线性无关</td><td>正交集中向量必线性无关</td><td>Prop 17.1</td></tr>
+    <tr><td>Orthonormal Basis</td><td>标准正交集 + 基</td><td>Def 17.3</td></tr>
+    <tr><td>Orthogonal Matrix</td><td>$Q^\top Q = I$，即 $Q^{-1} = Q^\top$</td><td>Def 17.4</td></tr>
+</table>
+
+</div>
+
+</div><!-- main-content -->
+
+<script>
+function toggleLecture(el) {
+    const lecture = el.parentElement;
+    lecture.classList.toggle('collapsed');
+}
+
+// Mobile menu
+document.getElementById('menuToggle').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('open');
+});
+
+// Highlight current section in sidebar
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            document.querySelectorAll('.toc-section a').forEach(a => {
+                a.parentElement.style.borderLeftColor = a.getAttribute('href') === '#' + entry.target.id ? '#667eea' : 'transparent';
+                a.parentElement.style.color = a.getAttribute('href') === '#' + entry.target.id ? '#ecf0f1' : '';
+            });
+        }
+    });
+}, { rootMargin: '-80px 0px -60% 0px' });
+
+document.querySelectorAll('[id]').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

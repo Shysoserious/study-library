@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STA2001 Lecture 5 | 特殊数学期望 & 二项分布</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #e67e22 0%, #e74c3c 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #e67e22; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections {
+            padding-left: 20px; max-height: 500px; overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #e67e22; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: 960px; margin-left: max(280px, calc(50vw - 340px)); margin-right: auto; font-size: 17.5px; }
+
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #e67e22; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #e67e22;
+        }
+        .section-title {
+            font-size: 24px; color: #d35400; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #d35400;
+        }
+        .subsection-title {
+            font-size: 20px; color: #555; margin: 25px 0 15px 0;
+            padding-left: 12px; border-left: 4px solid #bbb;
+        }
+
+        .card {
+            margin: 20px 0; padding: 20px; border-radius: 8px;
+            border-left: 5px solid #ddd; background-color: #fafafa;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title {
+            font-weight: bold; font-size: 18px; margin-bottom: 10px;
+            display: flex; align-items: center;
+        }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+
+        .en {
+            display: inline-block; background-color: #fff3e0; color: #bf360c;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+
+        .formula-box {
+            background-color: #e8f4fd; border-left: 5px solid #2196F3;
+            border-radius: 6px; padding: 18px 22px; margin: 18px 0;
+            font-size: 17px; text-align: center; overflow-x: auto;
+        }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li {
+            counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0;
+            position: relative; background: #f8f9fa; border-radius: 6px;
+        }
+        .step-list li::before {
+            content: counter(step); position: absolute; left: 10px; top: 50%;
+            transform: translateY(-50%); background: #e67e22; color: white;
+            width: 28px; height: 28px; border-radius: 50%; text-align: center;
+            line-height: 28px; font-weight: bold; font-size: 14px;
+        }
+
+        .comparison-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd; padding: 12px; text-align: center;
+        }
+        .comparison-table th { background-color: #e67e22; color: white; font-weight: bold; }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+
+        .note {
+            margin-top: 15px; padding: 12px 15px; background-color: #fff3cd;
+            border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px;
+        }
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+
+        .equiv-list { list-style: none; padding: 0; margin: 10px 0; }
+        .equiv-list li { padding: 6px 12px; margin: 4px 0; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #e67e22; }
+        .equiv-list li .num { display: inline-block; font-weight: bold; color: #e67e22; width: 28px; }
+
+        .diagram-container {
+            text-align: center; margin: 20px 0; padding: 15px;
+            background: white; border-radius: 8px; border: 1px solid #e0e0e0;
+        }
+        .diagram-caption { text-align: center; font-size: 13px; color: #888; margin-top: 8px; }
+
+        svg text { font-family: 'Segoe UI', sans-serif; }
+
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; padding: 20px; max-width: 100%; font-size: 15px; }
+            .navbar-title { font-size: 18px; }
+            .menu-toggle { display: block !important; }
+        }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">&#9776;</button>
+    <div class="navbar-title">STA2001 概率与统计复习</div>
+    <div class="navbar-subtitle">Lecture 5 | 特殊数学期望 · 矩母函数 · 二项分布 (Special Mathematical Expectations &amp; Binomial Distribution)</div>
+</nav>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture">
+            <div class="toc-lecture-title active" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> 课前回顾 (Review)
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#review-rv">随机变量 (Random Variable)</a></div>
+                <div class="toc-section"><a href="#review-pmf">概率质量函数 (pmf)</a></div>
+                <div class="toc-section"><a href="#review-cdf">累积分布函数 (cdf)</a></div>
+                <div class="toc-section"><a href="#review-exp">数学期望 (Expectation)</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> §2.3 特殊数学期望
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#mean-var">均值与方差 (Mean &amp; Variance)</a></div>
+                <div class="toc-section"><a href="#ex1">例1：六面骰子</a></div>
+                <div class="toc-section"><a href="#ex2">例2：方差作为离散度</a></div>
+                <div class="toc-section"><a href="#moment">第 r 阶矩 (rth Moment)</a></div>
+                <div class="toc-section"><a href="#mgf-def">矩母函数 — 定义 (mgf Definition)</a></div>
+                <div class="toc-section"><a href="#mgf-why">为什么要学矩母函数？</a></div>
+                <div class="toc-section"><a href="#mgf-detail">详解：求导为什么能"生成"矩？</a></div>
+                <div class="toc-section"><a href="#mgf-props">矩母函数的性质</a></div>
+                <div class="toc-section"><a href="#mgf-ex3">例3：从 mgf 反推 pmf</a></div>
+                <div class="toc-section"><a href="#mgf-ex4">例4：几何分布的 mgf（重点）</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> §2.4 二项分布
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#bernoulli-exp">伯努利试验 (Bernoulli Experiment)</a></div>
+                <div class="toc-section"><a href="#bernoulli-dist">伯努利分布 (Bernoulli Distribution)</a></div>
+                <div class="toc-section"><a href="#bernoulli-trials">n 重伯努利试验</a></div>
+                <div class="toc-section"><a href="#random-sample">随机样本 (Random Sample)</a></div>
+                <div class="toc-section"><a href="#binomial-dist">二项分布 — 完整推导</a></div>
+                <div class="toc-section"><a href="#binomial-ex">例：彩票问题</a></div>
+                <div class="toc-section"><a href="#summary">知识点总结与关系图</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="main-content">
+
+<!-- ==================== 课前回顾 ==================== -->
+<div class="lecture" id="review">
+<h1 class="lecture-title">课前回顾 &mdash; 随机变量、pmf、cdf、数学期望</h1>
+
+<h2 class="section-title" id="review-rv">随机变量 <span class="en">Random Variable (RV)</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：随机变量</div>
+    <p>给定一个样本空间为 $S$ 的随机试验，函数 $X: S \to \mathbb{R}$ 将每个样本点 $s \in S$ 映射到一个实数 $X(s) = x$，称为<strong>随机变量</strong>（<span class="en">Random Variable</span>）。</p>
+    <p><strong>通俗理解：</strong>随机变量不是"变量"，而是一个<strong>函数</strong>——它把随机试验的每一个可能结果转化为一个数字，这样我们就可以用数学工具来分析随机现象了。</p>
+    <p>例如：掷一枚硬币，样本空间 $S = \{\text{正面}, \text{反面}\}$。定义 $X(\text{正面}) = 1$，$X(\text{反面}) = 0$，则 $X$ 就是一个随机变量。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>几个关键注意点</div>
+    <p>&bull; RV 定义了一个<strong>新的随机试验</strong>，其样本空间为 $S_X$（数值型）</p>
+    <p>&bull; 如果 $X$ 是一对一的（one-to-one），则新试验与旧试验<strong>等价</strong></p>
+    <p>&bull; 如果 $X$ 不是一对一的，则新试验是旧试验的<strong>简化版本</strong>（多个旧结果映射到同一个数字）</p>
+    <p>&bull; 若 $S_X$ 是有限集或可数无限集，则 $X$ 称为 <span class="en">discrete RV</span>（离散随机变量）</p>
+</div>
+
+<h2 class="section-title" id="review-pmf">概率质量函数 <span class="en">Probability Mass Function (pmf)</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：概率质量函数 pmf</div>
+    <p>设 $X$ 是随机变量，取值范围为 $S$。函数 $f(x): S \to (0, 1]$ 称为 <span class="en">probability mass function</span>（概率质量函数），若满足：</p>
+    <ol>
+        <li>$f(x) > 0$，对所有 $x \in S$</li>
+        <li>$\sum_{x \in S} f(x) = 1$（所有概率之和为 1）</li>
+        <li>$P(X \in A) = \sum_{x \in A} f(x)$，对所有 $A \subseteq S$（事件的概率等于该事件中所有 $x$ 的概率之和）</li>
+    </ol>
+    <div class="note">$f(x)$ 的定义域可以从 $S$ 扩展到 $\mathbb{R}$，只需令 $f(x) = 0$ 对所有 $x \notin S$ 即可。</div>
+</div>
+
+<h2 class="section-title" id="review-cdf">累积分布函数 <span class="en">Cumulative Distribution Function (cdf)</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：累积分布函数 cdf</div>
+    <p>函数 $F(x): \mathbb{R} \to [0, 1]$ 定义为：</p>
+    <div class="formula-box">
+        $$F(x) = P(X \le x) = \sum_{x' \le x,\; x' \in S} f(x')$$
+    </div>
+    <p>称为<strong>累积分布函数</strong>（<span class="en">cdf</span>）。它表示随机变量取值<strong>不超过</strong> $x$ 的概率。</p>
+</div>
+
+<h2 class="section-title" id="review-exp">数学期望 <span class="en">Mathematical Expectation</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：数学期望</div>
+    <p>设 $X$ 是离散随机变量，取值范围为 $S$，pmf 为 $f(x)$。若 $\sum_{x \in S} g(x)f(x)$ 存在，则称其为 $g(X)$ 的<strong>数学期望</strong>（<span class="en">mathematical expectation</span>），记为：</p>
+    <div class="formula-box important">
+        $$E[g(X)] = \sum_{x \in S} g(x) f(x)$$
+    </div>
+    <p><strong>一句话理解：</strong>期望 = 每个可能取值 × 该取值的概率，全部加起来。如果 $g(X) = X$，就是<strong>随机变量本身的期望</strong>，也即"平均值"。</p>
+</div>
+
+</div><!-- end review -->
+
+<!-- ==================== §2.3 特殊数学期望 ==================== -->
+<div class="lecture" id="sec23">
+<h1 class="lecture-title">§2.3 特殊数学期望 <span class="en">Special Mathematical Expectations</span></h1>
+
+<h2 class="section-title" id="mean-var">均值与方差 <span class="en">Mean &amp; Variance</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>均值 <span class="en">Mean</span> [取 $g(X) = X$]</div>
+    <p>随机变量 $X$ 的<strong>均值</strong>（也称<strong>期望值</strong>）定义为：</p>
+    <div class="formula-box">
+        $$\mu = E[X] = \sum_{x \in S} x\, f(x)$$
+    </div>
+    <p>若 $S = \{x_1, x_2, \ldots, x_k\}$，则 $E[X] = \displaystyle\sum_{i=1}^{k} x_i f(x_i)$。</p>
+    <p><strong>直觉：</strong>$E[X]$ 是 $X$ 在长期重复试验中的<strong>平均取值</strong>。它不是某一次试验的值，而是"多次试验的平均结果"。</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>方差 <span class="en">Variance</span> [取 $g(X) = (X - E[X])^2$]</div>
+    <p>随机变量 $X$ 的<strong>方差</strong>定义为：</p>
+    <div class="formula-box highlight">
+        $$\sigma^2 = \mathrm{Var}(X) = E\big[(X - E[X])^2\big] = \sum_{x \in S} (x - \mu)^2 f(x)$$
+    </div>
+    <p><strong>计算方差最常用的公式（展开化简）：</strong></p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2$$
+    </div>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>方差公式的推导</div>
+    <p>$$\begin{aligned}
+    \mathrm{Var}(X) &= E[(X - \mu)^2] = E[X^2 - 2\mu X + \mu^2] \\
+    &= E[X^2] - 2\mu E[X] + \mu^2 \quad(\text{期望的线性性质})\\
+    &= E[X^2] - 2\mu^2 + \mu^2 = E[X^2] - \mu^2 \\
+    &= E[X^2] - (E[X])^2
+    \end{aligned}$$</p>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>标准差 <span class="en">Standard Deviation</span></div>
+    <p><strong>标准差</strong>是方差的<strong>正平方根</strong>：</p>
+    <div class="formula-box">
+        $$\sigma = \sqrt{\mathrm{Var}(X)}$$
+    </div>
+    <p>为什么要有标准差？方差的单位是原始单位的平方（比如"平方米"），标准差则与原始数据单位一致，更直观。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>方差的性质</div>
+    <p>设 $c$ 为常数，则：</p>
+    <div class="formula-box highlight">
+        $$\mathrm{Var}(c) = 0, \qquad \mathrm{Var}(cX) = c^2 \mathrm{Var}(X)$$
+    </div>
+    <p><strong>理解：</strong></p>
+    <p>&bull; 常数的方差为零——常数没有波动，完全确定。</p>
+    <p>&bull; 将随机变量缩放 $c$ 倍，方差缩放 $c^2$ 倍——因为方差衡量"距离的平方"，缩放了 $c$ 倍的距离，其平方就缩放 $c^2$ 倍。</p>
+</div>
+
+<h2 class="section-title" id="ex1">例 1：六面骰子的均值与方差（p.66）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>掷一个公平六面骰子</div>
+    <p>$X =$ 掷出点数，$S = \{1,2,3,4,5,6\}$，$f(x) = \frac{1}{6}$。</p>
+    <p><strong>均值：</strong></p>
+    <div class="formula-box">
+        $$E[X] = \frac{1}{6}(1 + 2 + 3 + 4 + 5 + 6) = \frac{21}{6} = \frac{7}{2} = 3.5$$
+    </div>
+    <p><strong>方差：</strong>先算 $E[X^2] = \frac{1}{6}(1^2 + 2^2 + 3^2 + 4^2 + 5^2 + 6^2) = \frac{91}{6}$</p>
+    <div class="formula-box">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2 = \frac{91}{6} - \frac{49}{4} = \frac{182 - 147}{12} = \frac{35}{12} \approx 2.92$$
+    </div>
+    <div class="note">注意：骰子只有 1 到 6 六个整数，但<strong>期望值 3.5 是一个非整数</strong>——期望值不必是可能的观测值。</div>
+</div>
+
+<h2 class="section-title" id="ex2">例 2：方差衡量离散度（p.66）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>两组数据的方差对比</div>
+    <p>$X$ 的 pmf：$f(x) = \frac{1}{3}, \; x \in \{-1, 0, 1\}$</p>
+    <p>$Y$ 的 pmf：$f(y) = \frac{1}{3}, \; y \in \{-2, 0, 2\}$</p>
+    <table class="comparison-table">
+        <tr><th></th><th>$X$</th><th>$Y$</th></tr>
+        <tr><td>$E[\cdot]$</td><td>$0$</td><td>$0$</td></tr>
+        <tr><td>$E[\cdot^2]$</td><td>$\frac{1}{3}(1+0+1) = \frac{2}{3}$</td><td>$\frac{1}{3}(4+0+4) = \frac{8}{3}$</td></tr>
+        <tr><td>$\mathrm{Var}$</td><td>$\frac{2}{3}$</td><td>$\frac{8}{3}$</td></tr>
+        <tr><td>$\sigma$（标准差）</td><td>$\sqrt{\frac{2}{3}}$</td><td>$\sqrt{\frac{8}{3}} = 2\sqrt{\frac{2}{3}}$</td></tr>
+    </table>
+    <p><strong>重要观察：</strong>$X$ 和 $Y$ 的均值相同（都是 0），但 $Y$ 的方差更大——因为 $Y$ 的取值范围更广（$\pm 2$ vs $\pm 1$）。方差（或标准差）衡量的是数据相对于均值的<strong>离散程度</strong>（<span class="en">dispersion / spread</span>）。</p>
+</div>
+
+<h2 class="section-title" id="moment">第 r 阶矩 <span class="en">The rth Moment</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>三种矩</div>
+    <table class="comparison-table">
+        <tr><th>名称 <span class="en">Name</span></th><th>$g(X)$</th><th>定义</th><th>例子</th></tr>
+        <tr>
+            <td><strong>第 $r$ 阶原点矩</strong><br/><span class="en">rth moment</span></td>
+            <td>$g(X) = X^r$</td>
+            <td>$E[X^r] = \sum x^r f(x)$</td>
+            <td>$E[X]$ 是一阶原点矩<br/>$E[X^2]$ 是二阶原点矩</td>
+        </tr>
+        <tr>
+            <td><strong>第 $r$ 阶中心矩（关于 b）</strong><br/><span class="en">rth moment about b</span></td>
+            <td>$g(X) = (X-b)^r$</td>
+            <td>$E[(X-b)^r] = \sum (x-b)^r f(x)$</td>
+            <td>$b = \mu$ 时，二阶中心矩 = 方差</td>
+        </tr>
+        <tr>
+            <td><strong>第 $r$ 阶阶乘矩</strong><br/><span class="en">rth factorial moment</span></td>
+            <td>$g(X) = X(X-1)\cdots(X-r+1)$</td>
+            <td>$E[X_{(r)}] = \sum (X)_{(r)} f(x)$</td>
+            <td>用于计数分布（二项、泊松等）</td>
+        </tr>
+    </table>
+    <p>回顾：$\mathrm{Var}(X) = E[X^2] - (E[X])^2$，其中 $E[X]$ 是一阶原点矩，$E[X^2]$ 是二阶原点矩。</p>
+</div>
+
+<h2 class="section-title" id="mgf-def">矩母函数 — 定义 <span class="en">Moment Generating Function (mgf)</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：矩母函数 mgf</div>
+    <p>设 $X$ 为离散随机变量，取值范围为 $S$，pmf 为 $f(x)$。若存在 $h > 0$ 使得：</p>
+    <div class="formula-box important">
+        $$M(t) = E[e^{tX}] = \sum_{x \in S} e^{tx} f(x)$$
+    </div>
+    <p>在 $(-h, h)$ 区间内存在，则函数 $M(t)$ 称为 $X$ 的<strong>矩母函数</strong>（<span class="en">moment generating function</span>），记作 mgf。</p>
+</div>
+
+<h2 class="section-title" id="mgf-why">为什么要学矩母函数？</h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>mgf 的设计思想</div>
+    <p>计算 $E[X]$ 还好，$E[X^2]$ 就有些麻烦了……如果要算 $E[X^{10}]$，难道要手算十次方再乘概率然后加起来？</p>
+    <p><strong>mgf 的思路：</strong>把所有的矩（$E[X], E[X^2], E[X^3], \ldots$）<strong>一次性打包</strong>进一个函数 $M(t)$ 里面。以后想要哪个矩，只需要对这个函数<strong>求导</strong>然后代入 $t = 0$ 就行了。</p>
+    <p>你可以把它理解为一个"快递箱"：$M(t)$ 里面装着 $E[X], E[X^2], E[X^3], \ldots$。你对它求 $r$ 次导数，就像打开第 $r$ 个包裹，取出第 $r$ 阶矩。</p>
+</div>
+
+<h2 class="section-title" id="mgf-detail">详解：求导为什么能"生成"矩？</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>核心原理：逐次求导</div>
+    <p>对 $M(t) = \sum e^{tx} f(x)$ 求导（假设可交换求导与求和次序）：</p>
+    <p><strong>一阶导数：</strong></p>
+    <div class="formula-box">
+        $$M'(t) = \frac{d}{dt}\sum_{x} e^{tx}f(x) = \sum_{x} \frac{d}{dt}(e^{tx}) f(x) = \sum_{x} x \, e^{tx} f(x)$$
+    </div>
+    <p>代入 $t = 0$，$e^{0} = 1$，所以：</p>
+    <div class="formula-box highlight">
+        $$M'(0) = \sum_{x} x \, f(x) = E[X]$$
+    </div>
+    <p><strong>二阶导数：</strong></p>
+    <div class="formula-box">
+        $$M''(t) = \sum_{x} x^2 e^{tx} f(x) \quad\Rightarrow\quad M''(0) = \sum_{x} x^2 f(x) = E[X^2]$$
+    </div>
+    <p><strong>第 $r$ 阶导数：</strong></p>
+    <div class="formula-box important">
+        $$M^{(r)}(0) = \sum_{x} x^r f(x) = E[X^r]$$
+    </div>
+    <p>所以：<strong>mgf 在 $t=0$ 处的第 $r$ 阶导数 = 第 $r$ 阶原点矩</strong>。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="620" height="180" viewBox="0 0 620 180">
+        <!-- M(t) box -->
+        <rect x="20" y="30" width="120" height="70" rx="10" fill="rgba(230,126,34,0.15)" stroke="#e67e22" stroke-width="2"/>
+        <text x="80" y="60" text-anchor="middle" font-size="14" font-weight="bold" fill="#e67e22">M(t) = E[e^(tX)]</text>
+        <text x="80" y="80" text-anchor="middle" font-size="11" fill="#888">矩母函数 mgf</text>
+
+        <!-- arrow 1st derivative -->
+        <line x1="145" y1="50" x2="230" y2="50" stroke="#2196F3" stroke-width="2" marker-end="url(#arrM1)"/>
+        <text x="187" y="40" text-anchor="middle" font-size="11" fill="#2196F3">求导 → t=0</text>
+
+        <!-- E[X] -->
+        <rect x="235" y="15" width="110" height="70" rx="8" fill="rgba(33,150,243,0.12)" stroke="#2196F3" stroke-width="1.5"/>
+        <text x="290" y="45" text-anchor="middle" font-size="13" font-weight="bold" fill="#2196F3">M'(0) = E[X]</text>
+        <text x="290" y="65" text-anchor="middle" font-size="11" fill="#888">一阶矩（均值）</text>
+
+        <!-- arrow 2nd derivative -->
+        <line x1="145" y1="80" x2="230" y2="130" stroke="#4caf50" stroke-width="2" marker-end="url(#arrM2)"/>
+        <text x="187" y="115" text-anchor="middle" font-size="11" fill="#4caf50">二次求导</text>
+
+        <!-- E[X^2] -->
+        <rect x="235" y="95" width="110" height="70" rx="8" fill="rgba(76,175,80,0.12)" stroke="#4caf50" stroke-width="1.5"/>
+        <text x="290" y="125" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">M''(0) = E[X²]</text>
+        <text x="290" y="145" text-anchor="middle" font-size="11" fill="#888">二阶矩</text>
+
+        <!-- arrow rth -->
+        <text x="400" y="80" text-anchor="middle" font-size="11" fill="#e91e63">... 依此类推 ...</text>
+        <line x1="440" y1="85" x2="500" y2="85" stroke="#e91e63" stroke-width="2" marker-end="url(#arrM3)"/>
+
+        <rect x="505" y="50" width="110" height="70" rx="8" fill="rgba(233,30,99,0.12)" stroke="#e91e63" stroke-width="1.5"/>
+        <text x="560" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">M⁽ʳ⁾(0) = E[Xʳ]</text>
+        <text x="560" y="97" text-anchor="middle" font-size="11" fill="#888">第 r 阶矩</text>
+
+        <defs>
+            <marker id="arrM1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#2196F3"/></marker>
+            <marker id="arrM2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4caf50"/></marker>
+            <marker id="arrM3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#e91e63"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">矩母函数的工作原理：对 $M(t)$ 求 $r$ 次导后代入 $t=0$，即得到第 $r$ 阶矩 $E[X^r]$</div>
+</div>
+
+<h2 class="section-title" id="mgf-props">矩母函数的性质</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>mgf 的三个关键性质</div>
+    <p><strong>性质 1：</strong>$M(0) = \sum f(x) = 1$（把所有概率加起来 = 1）</p>
+    <p><strong>性质 2（唯一性）：</strong>若两个随机变量有<strong>相同的 mgf</strong>，则它们有相同的概率分布（即相同的 pmf）。</p>
+    <div class="note">这意味着 mgf 完全刻画了一个分布——如果你知道 mgf，就等同于知道了 pmf！这个性质在后续课程中非常重要，特别是证明两个随机变量服从相同分布时。</div>
+    <p><strong>性质 3（生成矩）：</strong></p>
+    <table class="comparison-table">
+        <tr><th>导数阶数</th><th>在 $t=0$ 的值</th><th>含义</th></tr>
+        <tr><td>$M'(0)$</td><td>$E[X]$</td><td>一阶原点矩（均值）</td></tr>
+        <tr><td>$M''(0)$</td><td>$E[X^2]$</td><td>二阶原点矩</td></tr>
+        <tr><td>$M^{(r)}(0)$</td><td>$E[X^r]$</td><td>第 $r$ 阶原点矩</td></tr>
+    </table>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>微积分注意事项</div>
+    <p>mgf 的使用涉及两个微积分操作：</p>
+    <p>(1) <strong>可导性：</strong>$M(t)$ 是否一阶、二阶、...、$r$ 阶可导？（在合理的条件下，$M(t)$ 在 $t=0$ 附近是无穷次可导的）</p>
+    <p>(2) <strong>求和与求导的交换：</strong>$\frac{d}{dt}\sum e^{tx}f(x) = \sum \frac{d}{dt}(e^{tx})f(x)$ 何时成立？（当 mgf 存在时，交换是合法的）</p>
+    <p>本课程通常假设这些操作合法，但在数学上需要幂级数的一致收敛性来保证。</p>
+</div>
+
+<h2 class="section-title" id="mgf-ex3">例 3：从 mgf 反推 pmf（p.71）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>已知 mgf，求 pmf</div>
+    <p>若 $X$ 的 mgf 为：</p>
+    <div class="formula-box">
+        $$M(t) = e^t\left(\frac{3}{6}\right) + e^{2t}\left(\frac{2}{6}\right) + e^{3t}\left(\frac{1}{6}\right), \quad -\infty < t < \infty$$
+    </div>
+    <p><strong>分析：</strong>对比定义 $M(t) = \sum e^{tx}f(x)$，每一项 $e^{tx}$ 前面的系数就是 $f(x)$：</p>
+    <table class="comparison-table">
+        <tr><th>$t$ 的系数中的指数</th><th>$x$ 的取值</th><th>$f(x)$</th></tr>
+        <tr><td>$e^t$ 系数 $\frac{3}{6}$</td><td>$x = 1$</td><td>$f(1) = \frac{3}{6}$</td></tr>
+        <tr><td>$e^{2t}$ 系数 $\frac{2}{6}$</td><td>$x = 2$</td><td>$f(2) = \frac{2}{6}$</td></tr>
+        <tr><td>$e^{3t}$ 系数 $\frac{1}{6}$</td><td>$x = 3$</td><td>$f(3) = \frac{1}{6}$</td></tr>
+    </table>
+    <p><strong>因此：</strong>$S = \{1, 2, 3\}$，$f(x) = \frac{4-x}{6}, \; x = 1, 2, 3$。（验证：$\frac{3}{6} + \frac{2}{6} + \frac{1}{6} = 1$）</p>
+    <div class="note">这个例子展示了性质 2（唯一性）：mgf 唯一地确定了 pmf。只要把 mgf 写成 $\sum e^{tx} \cdot (\text{系数})$ 的形式，系数就是 $f(x)$。</div>
+</div>
+
+<h2 class="section-title" id="mgf-ex4">例 4：几何分布的 mgf（重点！p.71）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>几何分布 $X \sim \text{Geometric}(p)$ 的均值与方差</div>
+    <p>回忆几何分布的 pmf：</p>
+    <div class="formula-box">
+        $$f(x) = q^{x-1} p, \quad x = 1, 2, 3, \ldots, \qquad p \in (0, 1),\; q = 1 - p$$
+    </div>
+    <p>直观：进行一系列独立伯努利试验（每次成功概率为 $p$），$X$ 表示<strong>首次成功所需的试验次数</strong>。</p>
+
+    <h3 class="subsection-title">Step 1：求 mgf</h3>
+    <p>$$\begin{aligned}
+    M(t) &= E[e^{tX}] = \sum_{x=1}^{\infty} e^{tx} \cdot q^{x-1}p \\
+    &= \frac{p}{q} \sum_{x=1}^{\infty} (q e^t)^x \quad (\text{提出 } p/q)
+    \end{aligned}$$</p>
+    <p>里面是一个<strong>等比级数</strong>（几何级数）：首项 = $q e^t$，公比 = $q e^t$。</p>
+    <p>当 $|q e^t| < 1$（即 $t < -\ln q$）时，和为：</p>
+    <div class="formula-box">
+        $$\sum_{x=1}^{\infty} (q e^t)^x = q e^t + (q e^t)^2 + (q e^t)^3 + \cdots = \frac{q e^t}{1 - q e^t}$$
+    </div>
+    <p>代回得 mgf：</p>
+    <div class="formula-box important">
+        $$M(t) = \frac{p}{q} \cdot \frac{q e^t}{1 - q e^t} = \frac{p e^t}{1 - q e^t}, \quad t < -\ln q$$
+    </div>
+
+    <h3 class="subsection-title">Step 2：求一阶导数 → $E[X]$</h3>
+    <p>用商法则求导：</p>
+    <p>$M'(t) = \dfrac{(p e^t)'(1 - q e^t) - (p e^t)(1 - q e^t)'}{(1 - q e^t)^2}
+    = \dfrac{p e^t(1 - q e^t) - p e^t(-q e^t)}{(1 - q e^t)^2}
+    = \dfrac{p e^t}{(1 - q e^t)^2}$</p>
+    <p>代入 $t=0$，注意 $1 - q e^0 = 1 - q = p$：</p>
+    <div class="formula-box highlight">
+        $$M'(0) = \frac{p}{(1 - q)^2} = \frac{p}{p^2} = \frac{1}{p} = E[X]$$
+    </div>
+    <p>直觉验证：成功概率 $p = 0.5$ 时，期望试验次数 $E[X] = 2$（平均每两次成功一次），合理！$p$ 越小，期望试验次数越大。</p>
+
+    <h3 class="subsection-title">Step 3：求二阶导数 → $E[X^2]$ 和 $\mathrm{Var}(X)$</h3>
+    <p>再对 $M'(t) = \frac{p e^t}{(1 - q e^t)^2}$ 求导（再次用商法则，过程略）：</p>
+    <div class="formula-box">
+        $$M''(t) = \frac{p e^t(1 + q e^t)}{(1 - q e^t)^3}$$
+    </div>
+    <p>代入 $t=0$：</p>
+    <div class="formula-box">
+        $$M''(0) = \frac{p(1 + q)}{(1 - q)^3} = \frac{p(1+q)}{p^3} = \frac{1+q}{p^2} = E[X^2]$$
+    </div>
+    <p><strong>方差：</strong></p>
+    <div class="formula-box important">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2 = \frac{1+q}{p^2} - \frac{1}{p^2} = \frac{q}{p^2}$$
+    </div>
+
+    <h3 class="subsection-title">结果汇总</h3>
+    <table class="comparison-table">
+        <tr><th>几何分布 $X \sim \text{Geometric}(p)$</th><th>表达式</th></tr>
+        <tr><td>pmf</td><td>$f(x) = q^{x-1}p,\; x=1,2,3,\ldots$</td></tr>
+        <tr><td>mgf</td><td>$M(t) = \dfrac{p e^t}{1 - q e^t},\; t < -\ln q$</td></tr>
+        <tr><td>期望 $E[X]$</td><td>$\dfrac{1}{p}$</td></tr>
+        <tr><td>方差 $\mathrm{Var}(X)$</td><td>$\dfrac{q}{p^2} = \dfrac{1-p}{p^2}$</td></tr>
+    </table>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>mgf 方法 vs 直接求和</div>
+    <p>直接用定义求 $E[X] = \sum_{x=1}^{\infty} x \cdot q^{x-1}p$ 也是可以的（涉及等差-等比混合级数，需要一些技巧：$S = \sum x r^{x-1}$，用"乘公比相减"法）。</p>
+    <p>但 mgf 方法的优点是<strong>系统性</strong>：只需做微积分求导操作，对任何分布都适用，不用每次都构思级数技巧。而且一次得到所有阶的矩。</p>
+</div>
+
+</div><!-- end §2.3 -->
+
+<!-- ==================== §2.4 二项分布 ==================== -->
+<div class="lecture" id="sec24">
+<h1 class="lecture-title">§2.4 二项分布 <span class="en">Binomial Distribution</span></h1>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>本节的逻辑链条</div>
+    <p><strong>伯努利试验 → 伯努利分布 → $n$ 重伯努利试验 → 二项分布</strong></p>
+    <p>每一步都是对上一步的自然推广。理解了这条链，二项分布就是水到渠成的。</p>
+</div>
+
+<h2 class="section-title" id="bernoulli-exp">伯努利试验 <span class="en">Bernoulli Experiment</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>什么是伯努利试验？</div>
+    <p><strong>伯努利试验</strong>（<span class="en">Bernoulli experiment</span>）是指结果只能分为<strong>互斥且穷尽的两类</strong>的随机试验：</p>
+    <table class="comparison-table">
+        <tr><th>成功 <span class="en">Success</span></th><th>失败 <span class="en">Failure</span></th></tr>
+        <tr><td>正面</td><td>反面</td></tr>
+        <tr><td>女性</td><td>男性</td></tr>
+        <tr><td>存活</td><td>死亡</td></tr>
+        <tr><td>中奖</td><td>未中奖</td></tr>
+    </table>
+    <p>这几乎是<strong>最简单的非平凡随机试验</strong>——只有两种可能结果。大量复杂的随机现象都可以分解为伯努利试验的组合。</p>
+</div>
+
+<h2 class="section-title" id="bernoulli-dist">伯努利分布 <span class="en">Bernoulli Distribution</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>伯努利随机变量与伯努利分布</div>
+    <p>设 $X$ 是伯努利试验对应的随机变量，成功概率为 $p$。</p>
+    <p><strong>定义映射：</strong>$X(\text{成功}) = 1$，$X(\text{失败}) = 0$。则 $X$ 的取值范围 $S = \{0, 1\}$。</p>
+    <p><strong>pmf（概率质量函数）：</strong></p>
+    <div class="formula-box important">
+        $$f(x) = p^x (1-p)^{1-x}, \quad x \in \{0, 1\}$$
+    </div>
+    <p>展开看：$f(1) = p$（成功的概率），$f(0) = 1-p$（失败的概率）。</p>
+    <p>这个紧凑的写法 $p^x(1-p)^{1-x}$ 很方便：代入 $x=1$ 得 $p$，代入 $x=0$ 得 $1-p$。</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>伯努利分布的期望、方差与 mgf</div>
+    <p><strong>期望：</strong></p>
+    <div class="formula-box">
+        $$E[X] = \sum_{x \in S} x f(x) = 0 \cdot (1-p) + 1 \cdot p = p$$
+    </div>
+    <p><strong>方差：</strong></p>
+    <p>$E[X^2] = 0^2 \cdot (1-p) + 1^2 \cdot p = p$（伯努利变量的平方还是自身，因为 $0^2 = 0, 1^2 = 1$）</p>
+    <div class="formula-box">
+        $$\mathrm{Var}(X) = E[X^2] - (E[X])^2 = p - p^2 = p(1-p)$$
+    </div>
+    <p><strong>矩母函数 mgf：</strong></p>
+    <div class="formula-box highlight">
+        $$M(t) = E[e^{tX}] = e^{t \cdot 0} (1-p) + e^{t \cdot 1} p = (1-p) + p e^t$$
+    </div>
+    <p>因为 $S = \{0, 1\}$ 只有两个取值，mgf 只是两项的简单和。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>伯努利分布小结</div>
+    <table class="comparison-table">
+        <tr><th>伯努利 $X \sim \text{Bernoulli}(p)$</th><th>表达式</th></tr>
+        <tr><td>pmf</td><td>$f(x) = p^x(1-p)^{1-x}, \; x \in \{0,1\}$</td></tr>
+        <tr><td>$E[X]$</td><td>$p$</td></tr>
+        <tr><td>$\mathrm{Var}(X)$</td><td>$p(1-p)$</td></tr>
+        <tr><td>$M(t)$</td><td>$(1-p) + p e^t$</td></tr>
+    </table>
+</div>
+
+<h2 class="section-title" id="bernoulli-trials">n 重伯努利试验 <span class="en">n Bernoulli Trials</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：n 重伯努利试验</div>
+    <p>若一个伯努利试验被<strong>独立地重复</strong> $n$ 次，且每次的<strong>成功概率 $p$ 保持不变</strong>，则这 $n$ 次试验称为 <strong>$n$ 重伯努利试验</strong>（<span class="en">n Bernoulli trials</span>）。</p>
+    <p>两个关键条件：</p>
+    <p>(1) <strong>独立性</strong>：各次试验的结果互不影响（$P(\cap_{i=1}^n A_i) = \prod_{i=1}^n P(A_i)$）</p>
+    <p>(2) <strong>同分布</strong>：每次试验的成功概率都是 $p$</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 1：买彩票</div>
+    <p>某彩票中奖概率为 $0.001$。如果你<strong>连续 10 天各买一张</strong>，这对应了 10 重伯努利试验，每次成功概率 $p = 0.001$。</p>
+</div>
+
+<h2 class="section-title" id="random-sample">随机样本 <span class="en">Random Sample of Size n</span></h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：来自伯努利分布的随机样本</div>
+    <p>在 $n$ 重伯努利试验中，令 $X_i$ 表示第 $i$ 次试验的伯努利随机变量。</p>
+    <p>观测到的一串 $n$ 个 0 和 1 的序列（如 $(0, 0, 0, 1, 0)$）称为来自伯努利分布的<strong>容量为 $n$ 的随机样本</strong>（<span class="en">random sample of size n from a Bernoulli distribution</span>）。</p>
+</div>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 2（p.74）：彩票随机样本</div>
+    <p>即开型彩票，20% 是中奖票。买 5 张，观测到 $(0, 0, 0, 1, 0)$。</p>
+    <p><strong>该样本的概率：</strong>由独立性：</p>
+    <div class="formula-box">
+        $$P(0,0,0,1,0) = P(X_1=0) \cdot P(X_2=0) \cdot P(X_3=0) \cdot P(X_4=1) \cdot P(X_5=0)$$
+        $$= 0.8 \times 0.8 \times 0.8 \times 0.2 \times 0.8 = 0.2 \times (0.8)^4$$
+    </div>
+    <p>注意：这是<strong>这一个特定序列</strong>的概率。如果问题是"恰好中 1 张"，则还需要考虑中的那张在哪个位置，共有 5 个不同位置——这就引出了二项分布。</p>
+</div>
+
+<h2 class="section-title" id="binomial-dist">二项分布 — 完整推导 <span class="en">Binomial Distribution</span></h2>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>核心问题</div>
+    <p>$n$ 重伯努利试验中，我们不关心具体是"第几次"成功，只关心<strong>成功了"几次"</strong>。</p>
+    <p>令 $X =$ $n$ 次试验中成功的总次数，$X$ 的取值范围 $S = \{0, 1, 2, \ldots, n\}$。$X$ 的分布是什么？</p>
+</div>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>推导：二项分布的 pmf</div>
+    <p>设 $X$ 是 $n$ 重伯努利试验中成功的次数，每次成功概率为 $p$。</p>
+    <p><strong>Step 1：选位置。</strong>在 $n$ 次试验中选出 $x$ 个位置作为"成功"，选法数为：</p>
+    <div class="formula-box">
+        $$\binom{n}{x} = \frac{n!}{x! (n-x)!}$$
+    </div>
+    <p><strong>Step 2：算概率。</strong>由独立性，任何<strong>一个特定</strong>的"$x$ 次成功、$n-x$ 次失败"的序列，其概率为：</p>
+    <div class="formula-box">
+        $$p^x (1-p)^{n-x}$$
+    </div>
+    <p><strong>Step 3：乘起来。</strong>$x$ 次成功可以出现在任意 $\binom{n}{x}$ 个位置组合中，每种序列概率相同：</p>
+    <div class="formula-box important">
+        $$f(x) = P(X = x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, 2, \ldots, n$$
+    </div>
+</div>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>定义：二项分布</div>
+    <p>若随机变量 $X$ 的取值范围为 $\{0, 1, \ldots, n\}$，且 pmf 为：</p>
+    <div class="formula-box important">
+        $$f(x) = \binom{n}{x} p^x (1-p)^{n-x}, \quad x = 0, 1, \ldots, n$$
+    </div>
+    <p>则称 $X$ 服从<strong>二项分布</strong>（<span class="en">binomial distribution</span>），记作 $X \sim b(n, p)$。</p>
+    <p>其中 $n$ 和 $p$ 是分布的<strong>参数</strong>（<span class="en">parameters</span>），$n$ 是正整数，$p \in (0, 1)$。</p>
+</div>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>为什么叫"二项分布"？</div>
+    <p>二项分布的概率质量函数与<strong>二项式展开</strong>（<span class="en">binomial expansion</span>）密切相关：</p>
+    <div class="formula-box highlight">
+        $$(a + b)^n = \sum_{x=0}^{n} \binom{n}{x} a^x b^{n-x}$$
+    </div>
+    <p>取 $a = p$，$b = 1-p$，则 $\sum_{x=0}^{n} \binom{n}{x} p^x (1-p)^{n-x} = (p + (1-p))^n = 1^n = 1$——恰好验证了总概率为 1。</p>
+    <p>这个联系不是巧合：二项式系数 $\binom{n}{x}$ 同时出现在"$(a+b)^n$ 展开"和"$n$ 次中选出 $x$ 个位置"的计数中。</p>
+</div>
+
+<div class="diagram-container">
+    <svg width="600" height="380" viewBox="0 0 600 380">
+        <!-- Bernoulli trial box -->
+        <rect x="210" y="15" width="180" height="50" rx="8" fill="rgba(230,126,34,0.1)" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="300" y="40" text-anchor="middle" font-size="13" font-weight="bold" fill="#e67e22">1 次伯努利试验</text>
+        <text x="300" y="56" text-anchor="middle" font-size="11" fill="#888">Bernoulli(1) ~ b(1, p)</text>
+        <!-- arrow down -->
+        <line x1="300" y1="65" x2="300" y2="90" stroke="#999" stroke-width="1.5" marker-end="url(#arrD1)"/>
+
+        <!-- n Bernoulli trials box -->
+        <rect x="175" y="95" width="250" height="65" rx="8" fill="rgba(230,126,34,0.1)" stroke="#e67e22" stroke-width="1.5"/>
+        <text x="300" y="115" text-anchor="middle" font-size="13" font-weight="bold" fill="#e67e22">n 重伯努利试验</text>
+        <text x="300" y="132" text-anchor="middle" font-size="11" fill="#888">独立重复 n 次，每次成功概率 p</text>
+        <text x="300" y="150" text-anchor="middle" font-size="11" fill="#888">样本: (0,1,0,0,1,…) — 一串 0 和 1</text>
+        <!-- arrow down -->
+        <line x1="300" y1="160" x2="300" y2="185" stroke="#999" stroke-width="1.5" marker-end="url(#arrD2)"/>
+
+        <!-- count successes -->
+        <rect x="210" y="190" width="180" height="50" rx="8" fill="rgba(33,150,243,0.1)" stroke="#2196F3" stroke-width="1.5"/>
+        <text x="300" y="212" text-anchor="middle" font-size="13" font-weight="bold" fill="#2196F3">数成功的次数 X</text>
+        <text x="300" y="230" text-anchor="middle" font-size="11" fill="#888">X = Σ Xᵢ, X ∈ {0,1,…,n}</text>
+        <!-- arrow down -->
+        <line x1="300" y1="240" x2="300" y2="265" stroke="#999" stroke-width="1.5" marker-end="url(#arrD3)"/>
+
+        <!-- binomial distribution -->
+        <rect x="175" y="270" width="250" height="65" rx="8" fill="rgba(233,30,99,0.1)" stroke="#e91e63" stroke-width="2"/>
+        <text x="300" y="292" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">二项分布 X ~ b(n, p)</text>
+        <text x="300" y="312" text-anchor="middle" font-size="12" fill="#333">f(x) = C(n,x) · pˣ(1-p)ⁿ⁻ˣ</text>
+        <text x="300" y="328" text-anchor="middle" font-size="11" fill="#888">成功的次数</text>
+
+        <defs>
+            <marker id="arrD1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#999"/></marker>
+            <marker id="arrD2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#999"/></marker>
+            <marker id="arrD3" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#999"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">从伯努利试验到二项分布的逻辑推导：伯努利试验 → n 次独立重复 → 数成功次数 → 二项分布</div>
+</div>
+
+<h2 class="section-title" id="binomial-ex">例：彩票问题（用二项分布解决）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例 2 重访（p.74）：买 5 张彩票，中 2 张的概率</div>
+    <p>$X \sim b(n=5, p=0.2)$，即 $X$ 是买 5 张彩票中奖的张数。</p>
+    <p>$n = 5$，$p = 0.2$，$x = 2$：</p>
+    <div class="formula-box">
+        $$f(2) = P(X = 2) = \binom{5}{2} (0.2)^2 (0.8)^3$$
+        $$= 10 \times 0.04 \times 0.512 = 10 \times 0.02048 = 0.2048$$
+    </div>
+    <p>因此，恰好中 2 张的概率为 <strong>20.48%</strong>。</p>
+    <p>与之前计算特定序列 $(0,0,0,1,0)$ 的概率相比：序列概率只有 $0.2 \times 0.8^4 \approx 0.082$，而恰好中 2 张的概率要大得多，因为"哪两张中奖"有 $\binom{5}{2} = 10$ 种不同的安排方式。</p>
+</div>
+
+<h2 class="section-title" id="summary">知识点总结与关系图</h2>
+
+<div class="card connection" style="border-left-width: 6px;">
+    <div class="card-title"><span class="card-icon">&#128279;</span>Lecture 5 全课思维导图</div>
+
+    <div style="text-align: center; padding: 20px 0;">
+        <table class="comparison-table">
+            <tr><th colspan="2">§2.3 特殊数学期望</th><th colspan="2">§2.4 二项分布</th></tr>
+            <tr>
+                <td><strong>均值 $E[X]$</strong></td>
+                <td>$g(X)=X$，期望 = "平均值"</td>
+                <td rowspan="2"><strong>伯努利试验</strong></td>
+                <td rowspan="2">结果只有两类：成功 / 失败</td>
+            </tr>
+            <tr>
+                <td><strong>方差 $\mathrm{Var}(X)$</strong></td>
+                <td>$g(X)=(X-\mu)^2$，衡量离散度<br/>$\mathrm{Var}(X) = E[X^2] - (E[X])^2$</td>
+            </tr>
+            <tr>
+                <td><strong>标准差 $\sigma$</strong></td>
+                <td>$\sigma = \sqrt{\mathrm{Var}(X)}$</td>
+                <td rowspan="2"><strong>伯努利分布</strong></td>
+                <td rowspan="2">$f(x)=p^x(1-p)^{1-x}, x\in\{0,1\}$<br/>$E[X]=p$, $\mathrm{Var}(X)=p(1-p)$<br/>$M(t)=1-p+pe^t$</td>
+            </tr>
+            <tr>
+                <td><strong>原点矩</strong></td>
+                <td>$E[X^r] = \sum x^r f(x)$</td>
+            </tr>
+            <tr>
+                <td><strong>中心矩</strong></td>
+                <td>$E[(X-b)^r]$</td>
+                <td rowspan="2"><strong>$n$ 重伯努利试验</strong></td>
+                <td rowspan="2">独立重复 $n$ 次，每次 $p$ 不变<br/>随机样本：一串 0/1 序列</td>
+            </tr>
+            <tr>
+                <td><strong>阶乘矩</strong></td>
+                <td>$E[X(X-1)\cdots(X-r+1)]$</td>
+            </tr>
+            <tr>
+                <td><strong>矩母函数 mgf</strong></td>
+                <td>$M(t) = E[e^{tX}]$<br/>$M^{(r)}(0) = E[X^r]$</td>
+                <td><strong>二项分布</strong></td>
+                <td>$X \sim b(n,p)$<br/>$f(x) = \binom{n}{x}p^x(1-p)^{n-x}$</td>
+            </tr>
+            <tr>
+                <td><strong>几何分布 mgf</strong></td>
+                <td>$M(t) = \frac{p e^t}{1 - q e^t}$<br/>$E[X] = \frac{1}{p}$, $\mathrm{Var}(X) = \frac{q}{p^2}$</td>
+                <td><strong>二项系数</strong></td>
+                <td>$\binom{n}{x} = \frac{n!}{x!(n-x)!}$<br/>与 $(a+b)^n$ 展开的关系</td>
+            </tr>
+        </table>
+    </div>
+
+    <p><strong>最重要的一个公式链：</strong></p>
+    <div class="formula-box highlight">
+        $$\text{伯努利 } b(1,p) \quad\longrightarrow\quad \text{独立重复 } n \text{ 次} \quad\longrightarrow\quad \text{二项分布 } b(n,p)$$
+        $$f(x) = p^x(1-p)^{1-x} \quad\longrightarrow\quad f(x) = \binom{n}{x} p^x (1-p)^{n-x}$$
+    </div>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>考试常见易错点</div>
+    <p>1. <strong>方差公式：</strong>$\mathrm{Var}(X) = E[X^2] - (E[X])^2$，不是 $E[X]^2 - E[X^2]$（顺序不能反）</p>
+    <p>2. <strong>mgf 求导：</strong>求 $M'(0)$ 时别忘了 $t=0$；求 $M(t)$ 本身时注意 $t$ 是一个变量，要保留</p>
+    <p>3. <strong>几何分布 mgf 的条件：</strong>$M(t)$ 只在 $t < -\ln q$ 时有效（等比级数收敛条件 $q e^t < 1$）</p>
+    <p>4. <strong>伯努利分布 vs 二项分布：</strong>$b(1,p)$ 就是伯努利分布；$b(n,p)$ 是 $n$ 个独立伯努利之和</p>
+    <p>5. <strong>二项系数不要算错：</strong>$\binom{n}{x} = \frac{n!}{x!(n-x)!}$，注意 $0! = 1$</p>
+    <p>6. <strong>mgf 的唯一性：</strong>两个分布有相同的 mgf → 完全相同的分布（性质 2），这是一个有力的理论工具</p>
+    <p>7. <strong>等比级数求和：</strong>$a + ar + ar^2 + \cdots = \frac{a}{1-r}$（当 $|r| < 1$）。几何分布的 mgf 推导必须用到它</p>
+</div>
+
+</div><!-- end §2.4 -->
+
+</div><!-- end main-content -->
+
+<script>
+function toggleLecture(el) {
+    const lecture = el.parentElement;
+    lecture.classList.toggle('collapsed');
+}
+// Mobile menu
+document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('open');
+});
+// Active highlight
+document.querySelectorAll('.toc-section a').forEach(a => {
+    a.addEventListener('click', function(){
+        document.querySelectorAll('.toc-section').forEach(s => s.style.borderLeftColor = 'transparent');
+        this.parentElement.style.borderLeftColor = '#e67e22';
+    });
+});
+</script>
+</body>
+</html>

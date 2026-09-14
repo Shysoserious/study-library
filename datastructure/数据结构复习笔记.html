@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据结构 · 复习笔记（CSC 3200 Data Structures and Advanced Programming）</title>
+<style>
+  :root {
+    color-scheme: light;
+    --accent: #2563eb;
+    --accent-dark: #1e40af;
+    --bg: #f6f8fb;
+    --sidebar-bg: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --card-bg: #ffffff;
+    --code-bg: #eef2ff; --code-tx: #4338ca;
+    --th-bg: #eef2ff; --th-tx: #3730a3;
+    --td-even: #fafafa;
+    --en: #0369a1;
+    --hover-bg: #eef2ff;
+    --def-bg: #eff6ff;  --def-bd: #3b82f6;  --def-tx: #1d4ed8;
+    --thm-bg: #f5f3ff;  --thm-bd: #8b5cf6;  --thm-tx: #6d28d9;
+    --ex-bg: #f0fdf4;   --ex-bd: #22c55e;   --ex-tx: #15803d;
+    --warn-bg: #fffbeb; --warn-bd: #f59e0b; --warn-tx: #b45309;
+    --vocab-bg: #fdf2f8;--vocab-bd: #ec4899; --vocab-tx: #be185d;
+  }
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --accent: #3b82f6;
+    --accent-dark: #60a5fa;
+    --bg: #0f172a;
+    --sidebar-bg: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --card-bg: #1e293b;
+    --code-bg: #1e293b; --code-tx: #a5b4fc;
+    --th-bg: #1e293b; --th-tx: #93c5fd;
+    --td-even: #1e293b;
+    --en: #7dd3fc;
+    --hover-bg: #334155;
+    --def-bg: #1e3a5f;  --def-bd: #3b82f6;  --def-tx: #93c5fd;
+    --thm-bg: #2e2a5e;  --thm-bd: #8b5cf6;  --thm-tx: #c4b5fd;
+    --ex-bg: #14372a;   --ex-bd: #22c55e;   --ex-tx: #86efac;
+    --warn-bg: #3d2e12; --warn-bd: #f59e0b; --warn-tx: #fcd34d;
+    --vocab-bg: #4a1f3d;--vocab-bd: #ec4899; --vocab-tx: #f9a8d4;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 17px;
+  }
+  /* ===== 侧边导航栏 ===== */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 300px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 24px 16px 40px;
+    z-index: 10;
+  }
+  .sidebar .logo {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .sidebar .sub {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .sidebar .divider { height: 1px; background: var(--border); margin: 10px 0; }
+  .theme-toggle {
+    display: block;
+    width: 100%;
+    margin: 14px 0 4px;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s;
+  }
+  .theme-toggle:hover { background: var(--hover-bg); }
+  .sidebar nav a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 2px;
+    transition: background .12s, color .12s;
+  }
+  .sidebar nav a:hover { background: var(--hover-bg); color: var(--accent-dark); }
+  .sidebar nav a.lv1 {
+    font-weight: 600;
+    margin-top: 12px;
+    color: var(--accent-dark);
+    font-size: 14.5px;
+  }
+  .sidebar nav a.lv2 { padding-left: 24px; }
+  .sidebar nav a.lv3 { padding-left: 38px; font-size: 13px; color: var(--muted); }
+
+  /* ===== 手风琴式课程大索引 ===== */
+  .lecture-group { margin-bottom: 6px; }
+  .lecture-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14.5px;
+    font-weight: 700;
+    font-family: inherit;
+    color: var(--accent-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    transition: background .12s, border-color .12s;
+  }
+  .lecture-toggle:hover { background: var(--hover-bg); border-color: var(--accent); }
+  .lecture-toggle .lt-arrow { font-size: 11px; transition: transform .18s; color: var(--muted); }
+  .lecture-group.open .lecture-toggle { background: var(--hover-bg); border-color: var(--accent); }
+  .lecture-group.open .lecture-toggle .lt-arrow { transform: rotate(180deg); }
+  .lecture-body { display: none; padding: 4px 0 2px; }
+  .lecture-group.open .lecture-body { display: block; }
+
+  /* ===== 主内容 ===== */
+  .content {
+    margin-left: 300px;
+    padding: 32px 40px 120px;
+  }
+  .content-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  h1.title {
+    font-size: 32px;
+    margin: 0 0 4px;
+    color: var(--accent-dark);
+    letter-spacing: -0.5px;
+  }
+  p.course-meta { color: var(--muted); margin: 0 0 28px; font-size: 14px; }
+
+  /* ===== 每课的横幅标题 ===== */
+  .lecture { margin-top: 8px; }
+  .lecture-banner {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 26px 0 10px;
+    scroll-margin-top: 20px;
+  }
+  .lecture-banner .zh { color: var(--muted); font-weight: 500; font-size: 0.82em; }
+
+  h2 { font-size: 26px; margin: 48px 0 14px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); color: var(--accent-dark); scroll-margin-top: 20px; }
+  h3 { font-size: 20px; margin: 32px 0 10px; color: var(--text); scroll-margin-top: 20px; }
+  h4 { font-size: 17px; margin: 24px 0 8px; color: var(--text); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0; padding-left: 24px; }
+  li { margin: 4px 0; }
+  code {
+    background: var(--code-bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: var(--code-tx);
+    font-family: "SF Mono", "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 14px 0;
+  }
+  pre code { background: none; padding: 0; color: var(--code-tx); }
+  table.truth {
+    border-collapse: collapse;
+    margin: 12px auto;
+    font-size: 16px;
+  }
+  table.truth th, table.truth td {
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    text-align: center;
+  }
+  table.truth th { background: var(--th-bg); color: var(--th-tx); font-weight: 600; }
+  table.truth tr:nth-child(even) td { background: var(--td-even); }
+
+  /* 提示框 */
+  .box { border-left: 4px solid; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+  .box .box-title { font-weight: 700; display: block; margin-bottom: 4px; font-size: 15px; }
+  .def  { background: var(--def-bg);  border-color: var(--def-bd); }
+  .def .box-title  { color: var(--def-tx); }
+  .thm  { background: var(--thm-bg);  border-color: var(--thm-bd); }
+  .thm .box-title  { color: var(--thm-tx); }
+  .ex   { background: var(--ex-bg);   border-color: var(--ex-bd); }
+  .ex .box-title   { color: var(--ex-tx); }
+  .warn { background: var(--warn-bg); border-color: var(--warn-bd); }
+  .warn .box-title { color: var(--warn-tx); }
+
+  /* 英语词汇 */
+  .vocab {
+    background: var(--vocab-bg);
+    border: 1px solid var(--vocab-bd);
+    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 18px 0;
+  }
+  .vocab .vocab-title { font-weight: 700; color: var(--vocab-tx); font-size: 15px; display: block; margin-bottom: 6px; }
+  .vocab ul { margin: 0; padding-left: 20px; }
+  .vocab li { margin: 3px 0; font-size: 15.5px; }
+  .vocab b { color: var(--vocab-tx); }
+
+  /* 行内英文术语 */
+  .en { color: var(--en); font-weight: 500; }
+  .zh { color: var(--muted); font-size: 0.92em; }
+
+  /* 公式块 */
+  .formula { text-align: center; margin: 16px 0; overflow-x: auto; padding: 4px 0; }
+
+  .toc {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .toc a { color: var(--accent-dark); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .toc-title { font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .toc ol { margin: 6px 0; padding-left: 22px; }
+  .toc li { margin: 5px 0; }
+
+  @media (max-width: 860px) {
+    .sidebar { position: static; width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { margin-left: 0; padding: 20px; }
+    .content-inner { max-width: none; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+<script>
+(function () {
+  var KEY = 'ds-theme';
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  var theme = saved || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  window.__updateThemeBtn = function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.textContent = (document.documentElement.getAttribute('data-theme') === 'dark')
+      ? '切换到亮色模式' : '切换到夜间模式';
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    window.__updateThemeBtn();
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem(KEY, next); } catch (e) {}
+        window.__updateThemeBtn();
+      });
+    }
+  });
+})();
+</script>
+<script>
+(function () {
+  function initAccordion() {
+    var groups = document.querySelectorAll('.lecture-group');
+    groups.forEach(function (g) {
+      var btn = g.querySelector('.lecture-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var wasOpen = g.classList.contains('open');
+        // 手风琴：先全部收起
+        groups.forEach(function (x) { x.classList.remove('open'); });
+        // 再展开当前项（若它原本开着，则保持收起状态）
+        if (!wasOpen) g.classList.add('open');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordion);
+  } else {
+    initAccordion();
+  }
+})();
+</script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<!-- ============ 侧边导航栏 ============ -->
+<aside class="sidebar">
+  <div class="logo">数据结构<br>CSC 3200</div>
+  <div class="sub">Data Structures &amp; Advanced Programming<br>CUHK-Shenzhen · 2026 秋季<br>复习笔记（中英对照）</div>
+  <button id="themeToggle" class="theme-toggle" type="button">切换到夜间模式</button>
+  <nav>
+    <div class="lecture-group open">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第1课 · Introduction</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#part1">Part 1 · 区间和查询（开场例子）</a>
+        <a class="lv2" href="#p1-1">1.1 问题描述</a>
+        <a class="lv2" href="#p1-2">1.2 朴素解法一：循环求和</a>
+        <a class="lv2" href="#p1-3">1.3 朴素解法二：预计算所有区间</a>
+        <a class="lv2" href="#p1-4">1.4 前缀和数据结构</a>
+        <a class="lv2" href="#p1-5">1.5 隐藏成本：预处理</a>
+        <a class="lv2" href="#p1-6">1.6 更进一步：更新与更多查询</a>
+
+        <a class="lv1" href="#part2">Part 2 · 从 Python/Java 到 C++</a>
+        <a class="lv2" href="#p2-1">2.1 同一个算法，不同的职责划分</a>
+        <a class="lv2" href="#p2-2">2.2 为什么学完 Python/Java 还要学 C++</a>
+        <a class="lv2" href="#p2-3">2.3 C++ 与数据结构：抽象↔表示↔成本</a>
+
+        <a class="lv1" href="#part3">Part 3 · 语言观念的转变</a>
+        <a class="lv2" href="#p3-1">3.1 高级语言 ≠ 面向对象</a>
+        <a class="lv2" href="#p3-2">3.2 更多控制 = 更多责任</a>
+        <a class="lv2" href="#p3-3">3.3 三种执行路径</a>
+
+        <a class="lv1" href="#part4">Part 4 · 类型与变量</a>
+        <a class="lv2" href="#p4-1">4.1 类型成为程序设计的一部分</a>
+        <a class="lv2" href="#p4-2">4.2 变量在不同语言里的含义</a>
+
+        <a class="lv1" href="#part5">Part 5 · 第一个 C++ 程序</a>
+        <a class="lv2" href="#p5-1">5.1 最小 C++ 程序</a>
+        <a class="lv2" href="#p5-2">5.2 程序结构与标准 I/O</a>
+        <a class="lv2" href="#p5-3">5.3 熟悉的逻辑，新的语法</a>
+
+        <a class="lv1" href="#part6">Part 6 · 迁移清单与练习</a>
+        <a class="lv2" href="#p6-1">6.1 从 Python / Java 迁移清单</a>
+        <a class="lv2" href="#p6-2">6.2 练习：提炼算法</a>
+
+        <a class="lv1" href="#part7">Part 7 · 总结</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第2课 · C++ Fundamentals</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec2-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#lec2-p1">Part 1 · 程序骨架与编译执行</a>
+        <a class="lv2" href="#lec2-p1-1">1.1 默认程序结构</a>
+        <a class="lv2" href="#lec2-p1-2">1.2 编译与执行</a>
+        <a class="lv2" href="#lec2-p1-3">1.3 常用编译选项</a>
+
+        <a class="lv1" href="#lec2-p2">Part 2 · 类型系统</a>
+        <a class="lv2" href="#lec2-p2-1">2.1 类型检查的时机</a>
+        <a class="lv2" href="#lec2-p2-2">2.2 静态类型绑定</a>
+        <a class="lv2" href="#lec2-p2-3">2.3 常用整数类型</a>
+        <a class="lv2" href="#lec2-p2-4">2.4 更多常用类型</a>
+
+        <a class="lv1" href="#lec2-p3">Part 3 · 变量与初始化</a>
+        <a class="lv2" href="#lec2-p3-1">3.1 声明、初始化、赋值</a>
+        <a class="lv2" href="#lec2-p3-2">3.2 窄化转换：() / = / {}</a>
+        <a class="lv2" href="#lec2-p3-3">3.3 未初始化的局部变量</a>
+
+        <a class="lv1" href="#lec2-p4">Part 4 · 算术与运算符</a>
+        <a class="lv2" href="#lec2-p4-1">4.1 基本算术</a>
+        <a class="lv2" href="#lec2-p4-2">4.2 一元与二元运算符</a>
+        <a class="lv2" href="#lec2-p4-3">4.3 前缀与后缀自增</a>
+        <a class="lv2" href="#lec2-p4-4">4.4 预测值练习</a>
+        <a class="lv2" href="#lec2-p4-5">4.5 运算符优先级</a>
+        <a class="lv2" href="#lec2-p4-6">4.6 整数除法：向零截断</a>
+        <a class="lv2" href="#lec2-p4-7">4.7 得到浮点商</a>
+        <a class="lv2" href="#lec2-p4-8">4.8 负数的余数</a>
+
+        <a class="lv1" href="#lec2-p5">Part 5 · 溢出与类型陷阱</a>
+        <a class="lv2" href="#lec2-p5-1">5.1 有符号整数溢出</a>
+        <a class="lv2" href="#lec2-p5-2">5.2 无符号回绕</a>
+        <a class="lv2" href="#lec2-p5-3">5.3 先拓宽再运算</a>
+        <a class="lv2" href="#lec2-p5-4">5.4 布尔与字符算术</a>
+
+        <a class="lv1" href="#lec2-p6">Part 6 · 布尔表达式与控制流</a>
+        <a class="lv2" href="#lec2-p6-1">6.1 短路求值</a>
+        <a class="lv2" href="#lec2-p6-2">6.2 短路与程序员的责任</a>
+        <a class="lv2" href="#lec2-p6-3">6.3 链式比较</a>
+        <a class="lv2" href="#lec2-p6-4">6.4 if / else if / else</a>
+
+        <a class="lv1" href="#lec2-p7">Part 7 · 循环</a>
+        <a class="lv2" href="#lec2-p7-1">7.1 计数 for 循环</a>
+        <a class="lv2" href="#lec2-p7-2">7.2 while 循环</a>
+        <a class="lv2" href="#lec2-p7-3">7.3 do–while 循环</a>
+        <a class="lv2" href="#lec2-p7-4">7.4 break / continue / exit</a>
+        <a class="lv2" href="#lec2-p7-5">7.5 常见控制流错误</a>
+
+        <a class="lv1" href="#lec2-p8">Part 8 · auto 与 struct</a>
+        <a class="lv2" href="#lec2-p8-1">8.1 auto 类型推导</a>
+        <a class="lv2" href="#lec2-p8-2">8.2 推导出的类型固定不变</a>
+        <a class="lv2" href="#lec2-p8-3">8.3 不会自动拓宽</a>
+        <a class="lv2" href="#lec2-p8-4">8.4 auto 跟随表达式</a>
+        <a class="lv2" href="#lec2-p8-5">8.5 std::pair</a>
+        <a class="lv2" href="#lec2-p8-6">8.6 struct 具名成员</a>
+        <a class="lv2" href="#lec2-p8-7">8.7 使用与复制 struct</a>
+        <a class="lv2" href="#lec2-p8-8">8.8 struct 的运算</a>
+
+        <a class="lv1" href="#lec2-p9">Part 9 · 综合练习（LeetCode）</a>
+        <a class="lv2" href="#lec2-p9-1">9.1 1342 把数字归零</a>
+        <a class="lv2" href="#lec2-p9-2">9.2 1281 各位数字积与和</a>
+        <a class="lv2" href="#lec2-p9-3">9.3 509 迭代斐波那契</a>
+        <a class="lv2" href="#lec2-p9-4">9.4 9 回文数</a>
+        <a class="lv2" href="#lec2-p9-5">9.5 991 坏了的计算器</a>
+
+        <a class="lv1" href="#lec2-p10">Part 10 · 总结与资源</a>
+        <a class="lv2" href="#lec2-p10-1">10.1 本讲总结</a>
+        <a class="lv2" href="#lec2-p10-2">10.2 学习资源</a>
+        <a class="lv2" href="#lec2-p10-3">10.3 词汇表</a>
+      </div>
+    </div>
+  </nav>
+</aside>
+
+<!-- ============ 主内容 ============ -->
+<main class="content">
+<div class="content-inner">
+
+<h1 class="title">数据结构 · 复习笔记</h1>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照</p>
+
+<!-- ============ 第1课 ============ -->
+<div class="lecture" id="lec1">
+<div class="lecture-banner">第1课 · Introduction <span class="zh">（课间休息后部分）</span></div>
+
+<!-- ===== 本讲概览 ===== -->
+<section id="overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#part1">区间和查询</a> —— 从一道「区间求和」的小例子引出核心思想：需求 → 操作 → 数据结构 → 效率</li>
+      <li><a href="#part2">从 Python/Java 到 C++</a> —— 同样的算法，为何要换一门语言来表达</li>
+      <li><a href="#part3">语言观念的转变</a> —— 高级语言 vs 面向对象、控制与责任、三种执行路径</li>
+      <li><a href="#part4">类型与变量</a> —— C++ 里类型是「契约」、变量是「对象本身」</li>
+      <li><a href="#part5">第一个 C++ 程序</a> —— 最小程序、结构与标准 I/O、熟悉的逻辑新语法</li>
+      <li><a href="#part6">迁移清单与练习</a> —— 从 Python/Java 带来的习惯如何迁移</li>
+      <li><a href="#part7">总结</a></li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心一句话</span>
+    <p><b>需求（requirements）决定操作（operations），操作决定数据结构（data structures），数据结构决定存取效率（efficiency of storage and access）。</b></p>
+    <p>本讲前半段用「区间和查询」直观演示这个链条；后半段说明为什么用 C++ 学数据结构——因为它能让我们同时看清「操作、表示、成本」三者。</p>
+  </div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 1 区间和查询 ============ -->
+<!-- ================================================= -->
+<section id="part1">
+<h2>Part 1 · 区间和查询 <span class="zh">Range Sum Querying Oracle</span></h2>
+
+<h3 id="p1-1">1.1 问题描述</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 问题</span>
+  <p><b>输入（Input）：</b> \(n\) 个元素 \(a_1, a_2, \dots, a_n\)</p>
+  <p><b>请求（Request）：</b> 提供一个 API <code>calc(l, r)</code>，返回</p>
+  <p class="formula">\(a_l + a_{l+1} + \cdots + a_r\)</p>
+  <p>即「第 \(l\) 个到第 \(r\) 个元素的<b>区间和（range sum）</b>」。</p>
+</div>
+<p>这个例子贯穿整讲：同样一个问题，用不同的数据结构去存数据，查询和预处理的成本完全不同。下面依次看三种方案。</p>
+
+<h3 id="p1-2">1.2 朴素解法一：循环求和 <span class="zh">Naive Solution</span></h3>
+<p>把元素存进数组 \(A[\ ]\)（\(a_i\) 就是 \(A[i]\)）。每次调用 API 时，用一个循环把区间里的元素加起来。</p>
+<pre><code>ALGORITHM calc(l, r)
+  total ← 0
+  FOR i ← l TO r DO
+    total ← total + A[i]
+  RETURN total</code></pre>
+<table class="truth">
+  <tr><th>衡量指标</th><th>朴素解法一</th></tr>
+  <tr><td>每次查询的加法次数</td><td>最坏情况多达 \(n\) 次</td></tr>
+  <tr><td>存储</td><td>一个大小为 \(n\) 的数组</td></tr>
+</table>
+
+<h3 id="p1-3">1.3 朴素解法二：预计算所有区间 <span class="zh">Naive Solution 2</span></h3>
+<p>注意到不同的区间一共有 \(n(n+1)/2\) 个（任选起点 \(l\) 和终点 \(r\ge l\)）。干脆<b>提前把每个区间和都算好</b>，存进表 \(ANS[l, r]\)。查询时直接查表。</p>
+<pre><code>ALGORITHM calc(l, r)
+  RETURN ANS[l, r]</code></pre>
+<table class="truth">
+  <tr><th>衡量指标</th><th>朴素解法二</th></tr>
+  <tr><td>每次查询的加法次数</td><td>0 次（直接查表）</td></tr>
+  <tr><td>存储</td><td>一个 \(n \times n\) 的表</td></tr>
+</table>
+<div class="warn box">
+  <span class="box-title">⚠️ 用空间换时间</span>
+  <p>解法二查询极快，但存储是 \(O(n^2)\) 级别——「<b>时间（time）</b>」和「<b>空间（space）</b>」之间出现了权衡。这正是数据结构要面对的核心矛盾。</p>
+</div>
+
+<h3 id="p1-4">1.4 前缀和数据结构 <span class="zh">Prefix Data Structure</span></h3>
+<p>能不能既查询快、又省存储？答案是<b>前缀和（prefix sum）</b>：把「前 \(i\) 个元素的和」存在 \(PRE[i]\) 里。</p>
+<div class="def box">
+  <span class="box-title">📌 前缀和的定义</span>
+  <p class="formula">\(PRE[i] = a_1 + a_2 + \cdots + a_i \qquad (PRE[0] = 0)\)</p>
+  <p>查询时返回：</p>
+  <p class="formula">\(\mathrm{calc}(l, r) = PRE[r] - PRE[l-1]\)</p>
+</div>
+<h4>为什么成立？</h4>
+<p>把 \(PRE[r]\) 拆成两段：</p>
+<p class="formula">\(PRE[r] = \underbrace{a_1 + \cdots + a_{l-1}}_{=\,PRE[l-1]} + \underbrace{a_l + \cdots + a_r}_{\text{想求的区间和}}\)</p>
+<p>于是 \(PRE[r] - PRE[l-1] = a_l + \cdots + a_r\)，正好是区间和。</p>
+<pre><code>ALGORITHM calc(l, r)
+  RETURN PRE[r] − PRE[l−1]</code></pre>
+<table class="truth">
+  <tr><th>衡量指标</th><th>前缀和</th></tr>
+  <tr><td>每次查询的算术运算</td><td>1 次减法</td></tr>
+  <tr><td>存储</td><td>一个含 \(n+1\) 项的数组（含 \(PRE[0]\)）</td></tr>
+</table>
+
+<h3 id="p1-5">1.5 隐藏成本：预处理 <span class="zh">Hidden Cost: Preprocessing</span></h3>
+<p>只看「每次查询」是不够的——三种方案<b>建数据结构（预处理）</b>的成本完全不同。把隐藏成本摊开看：</p>
+<table class="truth">
+  <tr><th>方案</th><th>预处理伪代码</th><th>加法次数</th></tr>
+  <tr>
+    <td>朴素解法一</td>
+    <td><code>FOR i ← 1 TO n DO A[i] ← a_i</code></td>
+    <td>0 次（\(n\) 次赋值）</td>
+  </tr>
+  <tr>
+    <td>朴素解法二（直接构造）</td>
+    <td>三层循环：对每个 \(l, r\)，再循环 \(i\) 累加</td>
+    <td>\(n(n+1)(n+2)/6\) 次</td>
+  </tr>
+  <tr>
+    <td>朴素解法二（复用前一个答案）</td>
+    <td><code>ANS[l, r] ← ANS[l, r−1] + A[r]</code></td>
+    <td>\(n(n+1)/2\) 次</td>
+  </tr>
+  <tr>
+    <td>前缀和</td>
+    <td><code>PRE[i] ← PRE[i−1] + A[i]</code></td>
+    <td>\(n\) 次</td>
+  </tr>
+</table>
+<pre><code>前缀和预处理：
+PRE[0] ← 0
+FOR i ← 1 TO n DO
+  PRE[i] ← PRE[i−1] + A[i]</code></pre>
+<div class="thm box">
+  <span class="box-title">🎯 结论</span>
+  <p><b>前缀和完胜</b>：预处理只需 \(n\) 次加法、存储是线性的 \(O(n)\)，却能支持 \(O(1)\) 的查询。它用「一次预处理」换来「之后每次查询都极快」。</p>
+  <p>为什么解法二「复用前一个答案」比「直接构造」好？因为 \(ANS[l,r] = ANS[l,r-1] + A[r]\) 复用了刚算出的 \(ANS[l,r-1]\)，把最内层循环省掉了——<b>避免重复计算</b>是算法设计最常用的技巧之一。</p>
+</div>
+
+<h3 id="p1-6">1.6 更进一步：更新与更多查询 <span class="zh">We Always Ask for More</span></h3>
+<p>前缀和虽好，但需求一变，它就可能不够用了。老师抛出两个「进阶需求」：</p>
+<div class="ex box">
+  <span class="box-title">✏️ 需求升级</span>
+  <ul>
+    <li><b>数据会变（evolving data）：</b>还要支持 <code>update(i, x)</code>，即 \(a_i \leftarrow x\)（改掉某一个元素）。前缀和一旦改一个元素，所有 \(PRE[i], PRE[i+1], \dots\) 都要跟着改。</li>
+    <li><b>更复杂的查询（complicated queries）：</b>比如改问<b>区间乘积</b> \(a_l \times a_{l+1} \times \cdots \times a_r\)——前缀「和」就没法直接套用了。</li>
+  </ul>
+  <p>⇝ 老师留了个悬念：<b>后续课程会学到能处理这些问题的数据结构</b>（如树状数组、线段树、平衡树等）。这正是这门课要展开的方向。</p>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 2 从 Python/Java 到 C++ ============ -->
+<!-- ================================================= -->
+<section id="part2">
+<h2>Part 2 · 从 Python/Java 到 C++ <span class="zh">From Java/Python to C++</span></h2>
+
+<h3 id="p2-1">2.1 同一个算法，不同的职责划分</h3>
+<p>看一个最简单的任务：输入整数 \(n\)，输出 \(2n\)。<b>算法几乎不变，变的是「程序员、编译器、运行时」三者的职责分工</b>。</p>
+<pre><code>Python:
+n = int(input())
+print(2 * n)
+
+Java:
+import java.util.Scanner;
+class Main {
+  public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    int n = input.nextInt();
+    System.out.println(2 * n);
+  }
+}
+
+C++:
+#include &lt;iostream&gt;
+int main() {
+  int n;
+  std::cin &gt;&gt; n;
+  std::cout &lt;&lt; 2 * n &lt;&lt; '\n';
+  return 0;
+}</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 关键点</span>
+  <p>你<b>早就知道怎么写这个程序</b>；现在要学的是「<b>如何把同一个意思表达给 C++ 编译器</b>」。三种语言把这个简单任务背后的职责（类型检查、内存管理、执行时机）放在了不同的位置。</p>
+</div>
+
+<h3 id="p2-2">2.2 为什么学完 Python/Java 还要学 C++</h3>
+<p>Python、Java、C++ 在「<b>责任（responsibility）</b>」和「<b>控制（control）</b>」上做了不同的<b>默认选择（default choices）</b>。</p>
+<p>以「往列表里加一个元素」为例：</p>
+<pre><code>Python:  a = []        ; a.append(x)
+Java:    ArrayList&lt;Integer&gt; a = new ArrayList&lt;&gt;();  a.add(x);</code></pre>
+<p>C++ 会逼你追问这些被高层语言「藏起来」的问题：</p>
+<ul>
+  <li>这个 API <b>隐藏（hide）</b>了什么？</li>
+  <li>元素在<b>内存里是怎么排布（arranged in memory）</b>的？</li>
+  <li>可用空间用完时<b>会发生什么</b>？</li>
+  <li>为什么在<b>末尾插入通常很快</b>，在<b>开头插入通常很慢</b>？</li>
+  <li>扩容时<b>要不要复制</b>已有元素？</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p>Python/Java 帮你做了很多决定；C++ 让你<b>看清并自己决定</b>这些细节——这正是学数据结构需要的视角。</p>
+</div>
+
+<h3 id="p2-3">2.3 C++ 与数据结构：抽象 ↔ 表示 ↔ 成本</h3>
+<div class="def box">
+  <span class="box-title">📌 数据结构课问的三件事</span>
+  <ol>
+    <li>这个 API <b>做什么</b>？（<span class="en">abstract operation 抽象操作</span>——程序应该完成什么）</li>
+    <li>数据<b>怎么存</b>？（<span class="en">concrete representation 具体表示</span>——数据在内存里如何布局）</li>
+    <li>这个选择<b>花多少代价</b>？（<span class="en">time and space cost 时间与空间成本</span>——需要多少运算和内存）</li>
+  </ol>
+</div>
+<p class="formula">抽象操作（what the program should do）\(\longleftrightarrow\) 具体表示（how data is stored）\(\longleftrightarrow\) 时间与空间成本（what work and memory are required）</p>
+<div class="thm box">
+  <span class="box-title">🎯 为什么是 C++</span>
+  <p><b>C++ 让我们把「操作」「表示」「实际成本」三者连起来看。</b>高层语言（如 Python）把表示和成本都藏起来了，你很难体会到「换个数据结构」到底省了什么。</p>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 3 语言观念的转变 ============ -->
+<!-- ================================================= -->
+<section id="part3">
+<h2>Part 3 · 语言观念的转变 <span class="zh">Shifting Mindsets</span></h2>
+
+<h3 id="p3-1">3.1 高级语言 ≠ 面向对象 <span class="zh">High-Level and Object-Oriented Are Different</span></h3>
+<table class="truth">
+  <tr><th>概念</th><th>含义</th><th>例子</th></tr>
+  <tr>
+    <td><span class="en">高级语言<br>high-level language</span></td>
+    <td>用变量、循环、函数、容器来表达，而不必直接写机器指令</td>
+    <td><code>total += x</code> 一句可能对应底层多次 load、add、store 操作</td>
+  </tr>
+  <tr>
+    <td><span class="en">面向对象编程<br>object-oriented programming</span></td>
+    <td>通过「对象」把相关的<b>状态（state）</b>和<b>行为（behavior）</b>组织起来，常用类（class）来描述</td>
+    <td><code>account.deposit(x)</code> 让拥有余额的对象自己更新状态</td>
+  </tr>
+</table>
+<p>三种语言的定位：</p>
+<ul>
+  <li><b>Python</b>：面向对象是<b>可选</b>的、<b>动态</b>的；代码可以写在类外，名字通常指向对象。</li>
+  <li><b>Java</b>：应用代码<b>以类为中心</b>；对象变量通常持有由 JVM 管理的<b>引用</b>。</li>
+  <li><b>C++</b>：<b>多范式（multi-paradigm）</b>；代码可以写在类外，对象可以直接作为<b>值</b>存在，也可以间接访问。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 具体后果</span>
+  <p>一个<b>独立的辅助函数</b>在 Python 和 C++ 里很自然；Java 通常把它放进某个类里作为方法。<b>高层抽象仍有真实的时间和内存成本；面向对象 ≠ 所有东西都得是类。</b></p>
+</div>
+
+<h3 id="p3-2">3.2 更多控制 = 更多责任 <span class="zh">More Control Means More Responsibility</span></h3>
+<table class="truth">
+  <tr><th>语言</th><th>默认行为</th></tr>
+  <tr><td>Python</td><td>通常隐藏静态类型、对象布局、内存管理的细节</td></tr>
+  <tr><td>Java</td><td>让大多数类型显式，但 JVM 仍替你管理对象和内存</td></tr>
+  <tr><td>C++</td><td>要求你理解对象如何被<b>存储、复制、移动、销毁</b></td></tr>
+</table>
+<p>一个「预览（preview）」，现在不要求背：</p>
+<pre><code>int x = 10;
+std::cout &lt;&lt; sizeof(x) &lt;&lt; '\n';   // 查看一个对象的大小
+std::cout &lt;&lt; &amp;x &lt;&lt; '\n';          // 查看对象存放在哪里
+std::vector&lt;int&gt; a;
+a.reserve(1000);                    // 控制容器的预定容量</code></pre>
+<ul>
+  <li><code>sizeof(x)</code> —— 检查对象的大小</li>
+  <li><code>&amp;x</code> —— 观察对象的存储位置</li>
+  <li><code>a.reserve(1000)</code> —— 控制容器的计划容量</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 三种语言一句话总结</span>
+  <ul>
+    <li><b>Python</b> —— 方便地表达想法（Express ideas conveniently）</li>
+    <li><b>Java</b> —— 在受管运行时里安全地组织对象（Organize objects safely inside a managed runtime）</li>
+    <li><b>C++</b> —— 保留高层抽象的同时，控制表示和成本（Keep high-level abstractions while controlling representation and cost）</li>
+  </ul>
+  <p>在 C++ 里，我们<b>同时看到抽象、表示、操作成本和内存行为</b>。</p>
+</div>
+
+<h3 id="p3-3">3.3 三种执行路径 <span class="zh">Three Execution Paths</span></h3>
+<table class="truth">
+  <tr><th>语言</th><th>执行路径</th><th>特点</th></tr>
+  <tr>
+    <td>Python</td>
+    <td>源码 → 由 Python 运行时执行</td>
+    <td>更多行为在<b>程序运行时</b>由运行时决定</td>
+  </tr>
+  <tr>
+    <td>Java</td>
+    <td>源码 → Java 字节码 → JVM 执行或即时编译（JIT）</td>
+    <td>字节码面向受管虚拟机，虚拟机可在<b>执行中</b>优化</td>
+  </tr>
+  <tr>
+    <td>C++</td>
+    <td>源码 → C++ 编译器 → 原生可执行程序</td>
+    <td>编译器在<b>执行之前</b>解决更多问题，为目标机器生成代码</td>
+  </tr>
+</table>
+<div class="thm box">
+  <span class="box-title">🎯 关键洞察</span>
+  <p><b>算法可以保持不变；语言改变的是「实现决策在哪里、什么时候做」。</b></p>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 4 类型与变量 ============ -->
+<!-- ================================================= -->
+<section id="part4">
+<h2>Part 4 · 类型与变量 <span class="zh">Types and Variables</span></h2>
+
+<h3 id="p4-1">4.1 类型成为程序设计的一部分 <span class="zh">Types Become Part of Program Design</span></h3>
+<pre><code>Python:
+x = 10
+x = "hello"      # 同一个名字可在不同时刻绑定不同类型的对象
+
+C++:
+int x = 10;</code></pre>
+<div class="def box">
+  <span class="box-title">📌 int 不只是多写一个词</span>
+  <p>声明 <code>int x = 10;</code> 时，编译器因此知道：</p>
+  <ul>
+    <li>\(x\) <b>应该存什么</b>（整数）</li>
+    <li>需要<b>多少空间</b></li>
+    <li><b>哪些操作合法</b></li>
+    <li><code>std::cin</code> 知道该<b>解析成整数</b></li>
+    <li>很多错误能在<b>执行前</b>就被查出</li>
+  </ul>
+</div>
+<pre><code>int x = 10;
+x = "hello";   // 在执行前就被拒绝（rejected before execution）
+               // 第二次赋值违反了 int 声明的「契约」</code></pre>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p><b>在 C++ 里，类型不是语法负担，而是程序员交给编译器的一份「契约（contract）」。</b>（从 Java 转来的同学对静态类型已不陌生；C++ 进一步把存储、复制、对象生命周期也纳入同一份类型决策。）</p>
+</div>
+
+<h3 id="p4-2">4.2 变量在不同语言里的含义 <span class="zh">Variables Mean Different Things</span></h3>
+<table class="truth">
+  <tr><th>语言</th><th>变量的含义</th><th><code>b = a</code> 的效果</th></tr>
+  <tr><td>Python</td><td>变量更像<b>指向对象的「名字」</b></td><td><code>b = a</code>：a、b 通常指向<b>同一个</b>列表</td></tr>
+  <tr><td>Java</td><td>基本类型变量存<b>值</b>；对象变量通常存<b>引用</b></td><td><code>List b = a</code>：两个变量通常指向<b>同一个</b>对象</td></tr>
+  <tr><td>C++</td><td>很多变量就是<b>对象本身</b>，有明确的值语义</td><td><code>vector b = a</code>：通常<b>新建一个独立</b>的 vector</td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ 赋值后执行 b[0] = 99 会怎样？</span>
+  <ul>
+    <li><b>Python / Java</b>：<code>a[0]</code> 通常<b>也跟着变</b>——因为两个名字指向同一个对象。</li>
+    <li><b>C++</b>：<code>a[0]</code> <b>不变</b>——因为 <code>b</code> 是独立的 vector。</li>
+  </ul>
+  <p>⇝ 在 C++ 里，「<b>赋值或传参时是否复制对象</b>」既是<b>正确性（correctness）</b>问题，也是<b>性能（performance）</b>问题。</p>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 5 第一个 C++ 程序 ============ -->
+<!-- ================================================= -->
+<section id="part5">
+<h2>Part 5 · 第一个 C++ 程序 <span class="zh">A Minimal C++ Program</span></h2>
+
+<h3 id="p5-1">5.1 最小 C++ 程序</h3>
+<pre><code>#include &lt;iostream&gt;
+
+int main() {
+  int n;
+  std::cin &gt;&gt; n;
+  std::cout &lt;&lt; n &lt;&lt; '\n';
+  return 0;
+}</code></pre>
+<p>逐行拆解：</p>
+<ul>
+  <li><code>#include &lt;iostream&gt;</code> —— 把标准输入输出（standard I/O）的声明提供给编译器。</li>
+  <li><code>int main()</code> —— 定义程序从哪里开始执行。</li>
+  <li><code>std::cin</code> —— 从标准输入读取；<code>std::cout</code> —— 写到标准输出。</li>
+</ul>
+
+<h3 id="p5-2">5.2 程序结构与标准 I/O</h3>
+<table class="truth">
+  <tr><th>语法</th><th>含义</th></tr>
+  <tr><td><code>#include &lt;iostream&gt;</code></td><td>作用类似「使用一个库」，但<b>内部不同于</b> Python 的 <code>import</code></td></tr>
+  <tr><td><code>int main()</code></td><td>C++ 从独立的 <code>main</code> 函数开始；Python 可能从文件顶层执行；Java 从类里启动</td></tr>
+  <tr><td><code>{ }</code> 花括号</td><td>标记一个程序块（block）。Python 用缩进，Java 和 C++ 用花括号</td></tr>
+  <tr><td><code>std::cin &gt;&gt; n</code></td><td>从标准输入读一个值到 <code>n</code></td></tr>
+  <tr><td><code>std::cout &lt;&lt; n &lt;&lt; '\n'</code></td><td>输出 <code>n</code>，然后一个换行</td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ std:: 是什么意思？</span>
+  <p>一个实用的初步理解：<b>「到 C++ 标准库的命名空间（namespace）里找」</b>。<code>using namespace std;</code> 可以去掉这个前缀，但本课<b>保持显式</b>（keep it explicit）。</p>
+  <p>注：这些都是<b>有意简化的初阶解释</b>，预处理（preprocessing）和命名空间后面会讲得更精确。</p>
+</div>
+
+<h3 id="p5-3">5.3 熟悉的逻辑，新的语法 <span class="zh">Familiar Logic, New Syntax</span></h3>
+<p><b>判断（decision）、循环（repetition）、状态（state）都没变；变的只是类型、花括号和输入输出语法。</b></p>
+<pre><code>选择 if：
+Python:  if x &gt; 0:
+           positive += 1
+Java:    if (x &gt; 0) {
+           positive += 1;
+         }
+C++:     if (x &gt; 0) {
+           positive += 1;
+         }
+
+循环 for：
+Python:  for i in range(n):
+           total += a[i]
+Java:    for (int i = 0; i &lt; n; ++i) {
+           total += a[i];
+         }
+C++:     for (int i = 0; i &lt; n; ++i) {
+           total += a[i];
+         }</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 两个要点</span>
+  <ul>
+    <li><b>分支没变</b>：测同样的条件、更新同样的状态；Java 和 C++ 只是加了括号、花括号和分号。</li>
+    <li><b>循环更显式</b>：Python 的 <code>range(n)</code> 把「初值、停止条件、步进」打包在一起；Java 和 C++ 把这三件事一一写出来。</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 6 迁移清单与练习 ============ -->
+<!-- ================================================= -->
+<section id="part6">
+<h2>Part 6 · 迁移清单与练习 <span class="zh">Transfer Checklist &amp; Practice</span></h2>
+
+<h3 id="p6-1">6.1 从 Python / Java 迁移清单</h3>
+<div class="def box">
+  <span class="box-title">📌 从 Python 来</span>
+  <p>你已经会 <code>if</code>、<code>for</code> 和函数。到了 C++，要<b>更早</b>回答这些问题：</p>
+  <ul>
+    <li>这个变量的<b>类型</b>是什么？</li>
+    <li>这个容器<b>存什么类型</b>？</li>
+    <li>这个对象<b>会被复制吗</b>？</li>
+    <li>这个对象<b>活多久</b>？</li>
+  </ul>
+</div>
+<div class="def box">
+  <span class="box-title">📌 从 Java 来</span>
+  <p>很多语法看起来眼熟，但 C++ <b>不是「少几个关键字的 Java」</b>：</p>
+  <ul>
+    <li>并非所有东西都必须属于某个类</li>
+    <li>对象常常直接作为<b>值</b>存在</li>
+    <li><b>复制</b>和<b>销毁</b>更显式</li>
+    <li>没有一个 JVM 替你管理每个对象</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 共同的习惯</span>
+  <p>先说明<b>程序是什么意思</b>，再决定 C++ 如何表示数据、生命周期和操作（state → types → C++）。</p>
+</div>
+
+<h3 id="p6-2">6.2 练习：提炼算法 <span class="zh">Practice: Extract the Algorithm</span></h3>
+<pre><code>Python:
+n = int(input())
+positive = 0
+for _ in range(n):
+  x = int(input())
+  if x &gt; 0:
+    positive += 1
+print(positive)</code></pre>
+<p>面对这段 Python，先问六个问题：</p>
+<ol>
+  <li>程序维护了什么<b>状态（state）</b>？</li>
+  <li>每份状态可以是什么<b>类型</b>？</li>
+  <li>哪部分是<b>循环</b>？</li>
+  <li>哪部分是<b>条件</b>？</li>
+  <li>哪部分只属于 Python 的<b>输入输出</b>？</li>
+  <li>这个算法换成 Java 或 C++ 会<b>改变</b>吗？（不会，变的只是表达方式）</li>
+</ol>
+<div class="ex box">
+  <span class="box-title">✏️ 迁移三步</span>
+  <p class="formula">保留算法 \(\longrightarrow\) 说清状态与类型 \(\longrightarrow\) 用 C++ 表达输入、循环、分支与输出</p>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ Part 7 总结 ============ -->
+<!-- ================================================= -->
+<section id="part7">
+<h2>Part 7 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 本讲两条主线</span>
+  <p><b>1. 数据结构的思想：</b>需求决定操作，操作决定数据结构，数据结构决定存取的效率。</p>
+  <p class="formula">需求（requirements）\(\to\) 操作（operations）\(\to\) 数据结构（data structures）\(\to\) 效率（efficiency of storage and access）</p>
+  <p><b>2. 为什么学 C++：</b>不仅是为了写更快的程序，更是为了<b>更清楚地理解程序到底在做什么</b>。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>data structure</b> — 数据结构</li>
+    <li><b>range sum (query)</b> — 区间和（查询）</li>
+    <li><b>prefix sum</b> — 前缀和；<b>preprocessing</b> — 预处理</li>
+    <li><b>query</b> — 查询；<b>update</b> — 更新</li>
+    <li><b>API</b> — 应用程序接口</li>
+    <li><b>requirement</b> — 需求；<b>operation</b> — 操作</li>
+    <li><b>efficiency</b> — 效率；<b>storage</b> — 存储</li>
+    <li><b>time / space complexity</b> — 时间 / 空间复杂度</li>
+    <li><b>abstract operation</b> — 抽象操作；<b>concrete representation</b> — 具体表示</li>
+    <li><b>cost</b> — 成本；<b>overhead</b> — 开销</li>
+    <li><b>high-level language</b> — 高级语言</li>
+    <li><b>object-oriented programming (OOP)</b> — 面向对象编程</li>
+    <li><b>responsibility</b> — 责任；<b>control</b> — 控制</li>
+    <li><b>runtime</b> — 运行时；<b>compiler</b> — 编译器</li>
+    <li><b>bytecode</b> — 字节码；<b>JIT (just-in-time)</b> — 即时编译</li>
+    <li><b>native executable</b> — 原生可执行程序</li>
+    <li><b>static type</b> — 静态类型；<b>dynamic typing</b> — 动态类型</li>
+    <li><b>value semantics</b> — 值语义；<b>reference</b> — 引用</li>
+    <li><b>contract</b> — 契约；<b>state</b> — 状态；<b>behavior</b> — 行为</li>
+    <li><b>namespace</b> — 命名空间；<b>standard library</b> — 标准库</li>
+    <li><b>preprocessing</b> — 预处理；<b>multi-paradigm</b> — 多范式</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第1课 -->
+
+<!-- ============ 第2课 ============ -->
+<div class="lecture" id="lec2">
+<div class="lecture-banner">第2课 · C++ Fundamentals <span class="zh">（C++ 基础）</span></div>
+
+<!-- ===== 本讲概览 ===== -->
+<section id="lec2-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec2-p1">程序骨架与编译执行</a> —— 默认程序结构、三种语言的编译/执行路径、常用编译选项</li>
+      <li><a href="#lec2-p2">类型系统</a> —— 类型检查时机、静态类型绑定、整数与更多类型</li>
+      <li><a href="#lec2-p3">变量与初始化</a> —— 声明/初始化/赋值、窄化转换、未初始化变量</li>
+      <li><a href="#lec2-p4">算术与运算符</a> —— 基本算术、自增自减、优先级、整数除法与余数</li>
+      <li><a href="#lec2-p5">溢出与类型陷阱</a> —— 有符号溢出、无符号回绕、先拓宽、布尔/字符算术</li>
+      <li><a href="#lec2-p6">布尔表达式与控制流</a> —— 短路求值、链式比较、if/else</li>
+      <li><a href="#lec2-p7">循环</a> —— for / while / do–while / break·continue·exit、常见错误</li>
+      <li><a href="#lec2-p8">auto 与 struct</a> —— 类型推导、std::pair、具名结构体</li>
+      <li><a href="#lec2-p9">综合练习</a> —— 五道 LeetCode 题（1342 / 1281 / 509 / 9 / 991）</li>
+      <li><a href="#lec2-p10">总结与资源</a></li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心一句话</span>
+    <p><b>C++ 把类型和执行细节都显式化了：操作数的类型决定算术行为、布尔表达式决定决策、每个循环都需要正确的边界和状态更新。</b></p>
+    <p>写代码之前先<b>想清楚状态（state）</b>、<b>手动走一遍例子（trace）</b>、<b>测试最小和最大的有意义边界</b>——这是本讲反复强调的编程习惯。</p>
+  </div>
+</section>
+
+<!-- ============ Part 1 程序骨架与编译执行 ============ -->
+<section id="lec2-p1">
+<h2>Part 1 · 程序骨架与编译执行 <span class="zh">Default Set-up, Compilation &amp; Execution</span></h2>
+
+<h3 id="lec2-p1-1">1.1 默认程序结构 <span class="zh">Default Set-up</span></h3>
+<p>从今天起，除非特别说明，我们都假设程序是下面这个骨架：</p>
+<pre><code>#include &lt;iostream&gt;
+int main() {
+    // Our code goes here.
+    return 0;
+}</code></pre>
+<p>几条约定：</p>
+<ul>
+  <li><b>短小的语句示例</b>写在 <code>main()</code> 里面。</li>
+  <li>用 <code>std::cin</code> 和 <code>std::cout</code> 做输入输出。</li>
+  <li>任何额外的 <code>#include</code> 行放在 <code>main()</code> <b>上方</b>。</li>
+  <li>之后，<b>类型定义</b>（如 <code>struct</code>）和<b>其他函数</b>也都放在 <code>main()</code> 外面。</li>
+</ul>
+
+<h3 id="lec2-p1-2">1.2 编译与执行 <span class="zh">Compilation and Execution</span></h3>
+<p>三种语言的执行路径对比：</p>
+<table class="truth">
+  <tr><th>语言</th><th>执行路径</th></tr>
+  <tr><td>Python</td><td>源码 → Python 运行时 → 执行</td></tr>
+  <tr><td>Java</td><td>源码 → 字节码 → JVM → 执行</td></tr>
+  <tr><td>C++</td><td>源码 → C++ 编译器 → 可执行文件 → 执行</td></tr>
+</table>
+<pre><code>g++ -std=c++20 main.cpp -o main
+然后
+./main</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 关键点</span>
+  <p><b>编译成功产生可执行文件；运行它是另一个独立步骤。</b>像 Dev-C++ 这类 IDE 会把这两步合在一起：<b>Compile &amp; Run</b> 会先调用编译器，再启动你的程序。</p>
+</div>
+
+<h3 id="lec2-p1-3">1.3 常用编译选项 <span class="zh">Useful Compiler Options</span></h3>
+<pre><code>g++ -std=c++20 -Wall -Wextra -g main.cpp -o main</code></pre>
+<table class="truth">
+  <tr><th>选项</th><th>作用</th></tr>
+  <tr><td><code>-std=c++20</code></td><td>选用 C++20 语言规则与特性</td></tr>
+  <tr><td><code>-Wall -Wextra</code></td><td>开启大量有用的警告（如未使用的变量）；但<b>不能查出所有 bug</b></td></tr>
+  <tr><td><code>-g</code></td><td>为调试器加入源码行与变量信息</td></tr>
+  <tr><td><code>-o main</code></td><td>命名输出的可执行文件</td></tr>
+  <tr><td><code>-O2</code></td><td>开启优化；测性能时使用</td></tr>
+  <tr><td><code>-fsanitize=undefined</code></td><td>在支持的编译器上，对许多未定义操作（含<b>有符号溢出</b>）加运行时检查</td></tr>
+</table>
+<p>IDE 设置可以把这些选项传给 GCC。<b>请用较新的 GCC 编译器</b>：Dev-C++ 自带的老编译器可能不支持上面这些选项。</p>
+</section>
+
+<!-- ============ Part 2 类型系统 ============ -->
+<section id="lec2-p2">
+<h2>Part 2 · 类型系统 <span class="zh">Types</span></h2>
+
+<h3 id="lec2-p2-1">2.1 类型检查的时机 <span class="zh">Type Checking at Different Time</span></h3>
+<p>同一段「把两个字符串相乘」的逻辑，在不同语言里错误暴露的时机完全不同：</p>
+<pre><code>Python:
+print("Running...")
+hello = "Hello "
+world = "World!"
+print(hello * world)     # 先打印 Running...，然后运行时出错
+
+C++:
+std::cout &lt;&lt; "Running...\n";
+std::string hello = "Hello ";
+std::string world = "World!";
+std::cout &lt;&lt; hello * world;   // 编译期错误，程序根本无法启动
+// 这个 C++ 例子还需要在 main() 上方 #include &lt;string&gt;</code></pre>
+<table class="truth">
+  <tr><th>语言</th><th>出错时机</th><th>现象</th></tr>
+  <tr><td>Python</td><td>运行时（runtime）</td><td><code>Running...</code> 先出现，随后字符串相乘抛出运行时错误</td></tr>
+  <tr><td>C++</td><td>编译时（compile-time）</td><td>程序无法启动</td></tr>
+</table>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p><b>静态类型检查（static type checking）能在执行前就抓住许多错误。</b></p>
+</div>
+
+<h3 id="lec2-p2-2">2.2 静态类型绑定 <span class="zh">Static Type Binding</span></h3>
+<p>Java 或 C++ 的<b>变量有固定类型</b>；Python 的<b>名字可以被重新绑定到另一种对象</b>。</p>
+<pre><code>Python:
+x = 10
+x = "hello"     // 允许：现在 x 指向一个字符串
+
+Java:
+int x = 10;
+x = "hello";    // 拒绝：x 是 int
+
+C++:
+int x = 10;
+x = "hello";    // 拒绝：x 是 int</code></pre>
+<div class="def box">
+  <span class="box-title">📌 要点</span>
+  <p><b>值可以改变；声明出来的类型不会变。</b>有些转换是允许的，但那不代表变量「换了类型」——它仍是原来的类型。</p>
+</div>
+
+<h3 id="lec2-p2-3">2.3 常用整数类型 <span class="zh">Common Integer Types</span></h3>
+<p>每个 bit（位）是 0 或 1；\(w\) 个 bit 有 \(2^w\) 种不同的位模式。16 位类型有 \(2^{16}\) 种模式，32 位类型有 \(2^{32}\) 种。</p>
+<table class="truth">
+  <tr><th>类型</th><th>位数*</th><th>范围（2 的幂）</th><th>十进制值</th></tr>
+  <tr><td><code>short</code></td><td>16</td><td>\(-2^{15}\) 到 \(2^{15}-1\)</td><td>−32,768 到 32,767</td></tr>
+  <tr><td><code>int</code></td><td>32</td><td>\(-2^{31}\) 到 \(2^{31}-1\)</td><td>−2,147,483,648 到 2,147,483,647</td></tr>
+  <tr><td><code>unsigned int</code></td><td>32</td><td>\(0\) 到 \(2^{32}-1\)</td><td>0 到 4,294,967,295</td></tr>
+  <tr><td><code>long long</code></td><td>64</td><td>\(-2^{63}\) 到 \(2^{63}-1\)</td><td>约 ±9.22 × 10¹⁸</td></tr>
+  <tr><td><code>unsigned long long</code></td><td>64</td><td>\(0\) 到 \(2^{64}-1\)</td><td>最高约 1.84 × 10¹⁹</td></tr>
+</table>
+<ul>
+  <li><b>有符号（signed）</b>：一半位模式表示负数，另一半（含 0）给出范围 \(-2^{w-1}\) 到 \(2^{w-1}-1\)。</li>
+  <li><b>无符号（unsigned）</b>：全部 \(2^w\) 种位模式都表示非负值，范围 \(0\) 到 \(2^w-1\)。</li>
+  <li><b>*</b> 表中的位数是<b>本课例子采用的典型宽度</b>，C++ 标准允许不同宽度。</li>
+</ul>
+
+<h3 id="lec2-p2-4">2.4 更多常用类型 <span class="zh">More Common Types</span></h3>
+<table class="truth">
+  <tr><th>类型</th><th>取值 / 范围</th><th>示例</th></tr>
+  <tr><td><code>double</code></td><td>近似实数；有限幅值通常最高约 ±1.8 × 10³⁰⁸</td><td><code>double average = 2.5;</code></td></tr>
+  <tr><td><code>bool</code></td><td><code>false</code> 或 <code>true</code>；数值转换得 0 或 1</td><td><code>bool found = false;</code></td></tr>
+  <tr><td><code>char</code></td><td>通常 8 位：−128 到 127 或 0 到 255（实现相关）</td><td><code>char grade = 'A';</code></td></tr>
+  <tr><td><code>unsigned char</code></td><td>通常 8 位：0 到 255</td><td><code>unsigned char b = 255;</code></td></tr>
+  <tr><td><code>std::string</code></td><td>字符序列；<b>不是内置数值类型</b></td><td><code>std::string s = "Hello";</code></td></tr>
+</table>
+<div class="warn box">
+  <span class="box-title">⚠️ 两个提醒</span>
+  <p>一个典型的 <code>double</code> 提供约 <b>15–16 位有效十进制数字</b>，<b>不是精确的实数算术</b>。</p>
+  <p><code>std::string</code> 需要在 <code>main()</code> 上方 <code>#include &lt;string&gt;</code>。</p>
+</div>
+</section>
+
+<!-- ============ Part 3 变量与初始化 ============ -->
+<section id="lec2-p3">
+<h2>Part 3 · 变量与初始化 <span class="zh">Variables &amp; Initialization</span></h2>
+
+<h3 id="lec2-p3-1">3.1 声明、初始化、赋值 <span class="zh">Declaration / Initialization / Assignment</span></h3>
+<table class="truth">
+  <tr><th>概念</th><th>代码</th><th>含义</th></tr>
+  <tr><td>声明（declaration）</td><td><code>int total;</code></td><td>创建一个<b>没有初始值</b>的局部变量</td></tr>
+  <tr><td>初始化（initialization）</td><td><code>int total = 0;</code></td><td>创建一个<b>带起始值</b>的变量</td></tr>
+  <tr><td>赋值（assignment）</td><td><code>total = 5; total = total + 2;</code></td><td>更新已存在的变量；最终值是 7</td></tr>
+</table>
+<p>我们通常用 <code>=</code>。此外 <code>int x(5);</code> 和 <code>int x{5};</code> 也都能把 <code>x</code> 初始化成 5。</p>
+
+<h3 id="lec2-p3-2">3.2 窄化转换：小括号 / = / 花括号 <span class="zh">Narrowing Conversions</span></h3>
+<p>如果初始值是 <code>5.5</code>（而不是 5）会怎样？三种写法结果不同：</p>
+<table class="truth">
+  <tr><th>独立示例</th><th>结果</th><th>原因</th></tr>
+  <tr><td><code>int x(5.5);</code></td><td>编译通过：x = 5</td><td>丢弃小数部分</td></tr>
+  <tr><td><code>int x = 5.5;</code></td><td>编译通过：x = 5</td><td>发生同样的转换</td></tr>
+  <tr><td><code>int x{5.5};</code></td><td><b>编译期错误</b></td><td>花括号<b>拒绝窄化转换（narrowing conversion）</b></td></tr>
+</table>
+<div class="warn box">
+  <span class="box-title">⚠️ 注意</span>
+  <p>小括号和 <code>=</code> 允许<b>截断（truncate）</b>，而不是四舍五入到最近的整数；编译器可能给出警告。</p>
+  <p>要<b>零初始化</b>，<code>int total{0};</code> 和 <code>int total{};</code> 都能从 0 开始。</p>
+</div>
+
+<h3 id="lec2-p3-3">3.3 未初始化的局部变量 <span class="zh">Uninitialized Local Variables</span></h3>
+<pre><code>int count;           // 不要读这个值
+std::cout &lt;&lt; count;</code></pre>
+<p><b>没有发生初始化。在 C++20 中读取这个局部 int 是未定义行为（undefined behavior）。</b></p>
+<pre><code>int count;           // 先赋值，再读
+count = 0;
+std::cout &lt;&lt; count;  // 打印 0</code></pre>
+<div class="warn box">
+  <span class="box-title">🚫 铁律</span>
+  <p><b>永远不要假设未初始化的局部变量是 0！</b></p>
+  <p>程序可能看起来打印 0、打印别的值，或者在不同运行、不同编译器、不同编译设置、不同环境下表现各异——<b>这些观察都不构成任何保证</b>。</p>
+  <p>（全局变量和静态变量遵循不同的初始化规则；这条警告针对的是<b>普通的局部变量</b>。）</p>
+</div>
+</section>
+
+<!-- ============ Part 4 算术与运算符 ============ -->
+<section id="lec2-p4">
+<h2>Part 4 · 算术与运算符 <span class="zh">Arithmetic &amp; Operators</span></h2>
+
+<h3 id="lec2-p4-1">4.1 基本算术 <span class="zh">Basic Arithmetic</span></h3>
+<table class="truth">
+  <tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr>
+  <tr><td><code>+</code></td><td>加法</td><td><code>7 + 3</code></td><td>10</td></tr>
+  <tr><td><code>-</code></td><td>减法</td><td><code>7 - 3</code></td><td>4</td></tr>
+  <tr><td><code>*</code></td><td>乘法</td><td><code>7 * 3</code></td><td>21</td></tr>
+  <tr><td><code>/</code></td><td>除法</td><td><code>7 / 3</code></td><td>2（整数操作数）</td></tr>
+  <tr><td><code>%</code></td><td>整数取余</td><td><code>7 % 3</code></td><td>1</td></tr>
+</table>
+<pre><code>int result;
+result = 7 + 3 * 2;      // 13
+result = (7 + 3) * 2;    // 20</code></pre>
+<p>乘法先于加法；<b>括号让想要的结合方式变得明确</b>。</p>
+
+<h3 id="lec2-p4-2">4.2 一元与二元运算符 <span class="zh">Unary and Binary Operators</span></h3>
+<pre><code>一元（一个操作数）：
+-x     // 取负
++x     // 一元正号
+!ok    // 逻辑非
+++x    // 自增
+--x    // 自减
+
+二元（两个操作数）：
+a - b     // 相减
+x = 5     // 赋值
+x += 3    // 加后赋值
+x -= 3    // 减后赋值
+x *= 3    // 乘后赋值</code></pre>
+<p>在 <code>-x</code> 中，减号作用于一个值。<code>+=</code>、<code>-=</code>、<code>*=</code>、<code>/=</code>、<code>%=</code> 都是<b>二元复合赋值（compound assignment）</b>。</p>
+<table class="truth">
+  <tr><th>起点</th><th>操作</th><th>等价更新</th><th>新值</th></tr>
+  <tr><td><code>x = 10;</code></td><td><code>x += 3;</code></td><td><code>x = x + 3;</code></td><td>13</td></tr>
+  <tr><td><code>x = 10;</code></td><td><code>x /= 3;</code></td><td><code>x = x / 3;</code></td><td>3</td></tr>
+</table>
+<p>（每行独立从头开始；这里的等价性针对简单数值变量 <code>x</code>。）</p>
+
+<h3 id="lec2-p4-3">4.3 前缀与后缀自增 <span class="zh">Prefix and Postfix Increment</span></h3>
+<p>两种形式都让 <code>x</code> 增加 1，但它们的<b>表达式提供不同的值</b>：</p>
+<pre><code>前缀：用新值
+int x = 5;
+int y;
+y = ++x;    // x = 6, y = 6
+
+后缀：用旧值
+int x = 5;
+int y;
+y = x++;    // x = 6, y = 5</code></pre>
+<pre><code>int x = 5;
+std::cout &lt;&lt; x++ &lt;&lt; '\n';   // 打印 5，然后 x 变成 6
+std::cout &lt;&lt; ++x &lt;&lt; '\n';   // 先增到 7，再打印
+std::cout &lt;&lt; x &lt;&lt; '\n';     // 打印当前的 x
+// 输出：5  7  7</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 备注</span>
+  <ul>
+    <li>作为<b>独立语句</b>，<code>++x;</code> 和 <code>x++;</code> 对 int 效果相同。同样的区别适用于 <code>--x</code> 和 <code>x--</code>。</li>
+    <li>Java 有同样的区别；Python 没有自增运算符，用 <code>x += 1</code>。</li>
+  </ul>
+</div>
+
+<h3 id="lec2-p4-4">4.4 预测值练习 <span class="zh">Predict the Values</span></h3>
+<p>每个例子独立开始，问最后一条语句之后的值是多少：</p>
+<pre><code>int x = 3; int y;
+y = x++ * 2;      // x = 4, y = 6
+
+int x = 3; int y;
+y = ++x * 2;      // x = 4, y = 8
+
+int x = 3; int y;
+y = x++;
+y += ++x;         // x = 5, y = 8
+
+int x = 3; int y;
+y = x-- + 10;     // x = 2, y = 13</code></pre>
+<div class="warn box">
+  <span class="box-title">🚫 通用建议</span>
+  <p><b>让更新易于理解：用分开的语句，不要把对同一变量的多次修改塞进一个表达式。</b>不确定某段代码会怎么表现，就<b>不要写它</b>。</p>
+</div>
+
+<h3 id="lec2-p4-5">4.5 运算符优先级 <span class="zh">Operator Precedence</span></h3>
+<p>这张表从<b>高到低</b>读。括号会覆盖默认的结合方式。</p>
+<table class="truth">
+  <tr><th>优先级</th><th>运算符</th><th>示例结合</th></tr>
+  <tr><td>最高</td><td><code>x++ &nbsp; x--</code></td><td><code>x++ * 2 → (x++) * 2</code></td></tr>
+  <tr><td>↓</td><td><code>++x &nbsp; --x &nbsp; +x &nbsp; -x &nbsp; !x</code></td><td><code>-x * y → (-x) * y</code></td></tr>
+  <tr><td>↓</td><td><code>* &nbsp; / &nbsp; %</code></td><td><code>a + b * c → a + (b * c)</code></td></tr>
+  <tr><td>↓</td><td><code>+ &nbsp; -</code></td><td><code>a - b + c → (a - b) + c</code></td></tr>
+  <tr><td>↓</td><td><code>&lt; &nbsp; &lt;= &nbsp; &gt; &nbsp; &gt;=</code></td><td><code>a + b &lt; c → (a + b) &lt; c</code></td></tr>
+  <tr><td>↓</td><td><code>== &nbsp; !=</code></td><td><code>a &lt; b == ok → (a &lt; b) == ok</code></td></tr>
+  <tr><td>↓</td><td><code>&amp;&amp;</code></td><td><code>x &gt; 0 &amp;&amp; y &gt; 0</code></td></tr>
+  <tr><td>↓</td><td><code>||</code></td><td><code>a || b &amp;&amp; c → a || (b &amp;&amp; c)</code></td></tr>
+  <tr><td>最低</td><td><code>= &nbsp; += &nbsp; -= &nbsp; *= &nbsp; /= &nbsp; %=</code></td><td><code>x = y = 0 → x = (y = 0)</code></td></tr>
+</table>
+<p>（只是<b>选出的运算符</b>。优先级决定的是<b>结合方式</b>，不是操作数被求值的顺序。）</p>
+
+<h3 id="lec2-p4-6">4.6 整数除法：向零截断 <span class="zh">Integer Division: Truncate Toward Zero</span></h3>
+<p>操作数为整数时，Java 和 C++ 都<b>丢弃小数部分</b>。这是<b>向零截断</b>，不是四舍五入到最近的整数。</p>
+<table class="truth">
+  <tr><th>操作数</th><th>精确商</th><th>Java / C++ /</th><th>Python //</th></tr>
+  <tr><td>7 和 3</td><td>2.333…</td><td>2</td><td>2</td></tr>
+  <tr><td>8 和 3</td><td>2.666…</td><td>2</td><td>2</td></tr>
+  <tr><td>−7 和 3</td><td>−2.333…</td><td>−2</td><td>−3</td></tr>
+  <tr><td>7 和 −3</td><td>−2.333…</td><td>−2</td><td>−3</td></tr>
+  <tr><td>−7 和 −3</td><td>2.333…</td><td>2</td><td>2</td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ 与 Python 的区别</span>
+  <p>Python 的 <code>//</code> 向<b>负无穷方向向下取整</b>；Python 的 <code>/</code> 是<b>真除法</b>：<code>7 / 2</code> 得 3.5。</p>
+</div>
+
+<h3 id="lec2-p4-7">4.7 得到浮点商 <span class="zh">Getting a Floating-Point Quotient</span></h3>
+<p><b>把结果赋给 double 并不能改变一个已经发生过的除法。</b></p>
+<pre><code>int total = 7;
+int count = 2;
+double average;
+average = total / count;          // 3.0
+average = 1.0 * total / count;    // 3.5
+average = total / (count * 1.0);  // 3.5
+average = total / count * 1.0;    // 3.0</code></pre>
+<div class="warn box">
+  <span class="box-title">⚠️ 为什么最后一行是 3.0</span>
+  <p>在最后一行里，<code>/</code> 和 <code>*</code> 从左到右结合：<code>(total / count) * 1.0</code> 把一个<b>已经被截断成 3</b> 的结果再转成 3.0。</p>
+  <p><b>结论：在除法发生之前，先让某个操作数变成浮点数。</b></p>
+</div>
+
+<h3 id="lec2-p4-8">4.8 负数的余数 <span class="zh">Remainder and Negative Numbers</span></h3>
+<p>C++ 中合法的整数除法满足恒等式：\(a = (a / b) \times b + a\,\%\,b\)。<b>非零余数的符号与被除数 \(a\) 相同。</b></p>
+<table class="truth">
+  <tr><th>表达式</th><th>C++ / Java</th><th>Python</th><th>C++ 中的验证</th></tr>
+  <tr><td><code>7 % 3</code></td><td>1</td><td>1</td><td>7 = 2 × 3 + 1</td></tr>
+  <tr><td><code>-7 % 3</code></td><td>−1</td><td>2</td><td>−7 = (−2) × 3 − 1</td></tr>
+  <tr><td><code>7 % -3</code></td><td>1</td><td>−2</td><td>7 = (−2) × (−3) + 1</td></tr>
+</table>
+<pre><code>int x = -3;
+bool odd;
+odd = (x % 2 != 0);   // true
+odd = (x % 2 == 1);   // false：漏掉了负奇数</code></pre>
+<div class="warn box">
+  <span class="box-title">⚠️ 判断奇偶的正确姿势</span>
+  <p>判断奇数用 <code>x % 2 != 0</code>，<b>不要</b>用 <code>x % 2 == 1</code>（会漏掉负奇数）。<b>永远不要除以零或对零取余。</b></p>
+</div>
+</section>
+
+<!-- ============ Part 5 溢出与类型陷阱 ============ -->
+<section id="lec2-p5">
+<h2>Part 5 · 溢出与类型陷阱 <span class="zh">Overflow &amp; Type Pitfalls</span></h2>
+
+<h3 id="lec2-p5-1">5.1 有符号整数溢出 <span class="zh">Signed Integer Overflow</span></h3>
+<p>假设是 32 位 int：其最大值是 2,147,483,647。</p>
+<pre><code>int x;
+std::cin &gt;&gt; x;   // 输入 2147483647
+x = x + 1;
+std::cout &lt;&lt; x;</code></pre>
+<p>数学结果是 2,147,483,648，但<b>这个结果无法用 int 表示</b>。在 C++ 里，<b>有符号整数溢出是未定义行为（undefined behavior）</b>。</p>
+<table class="truth">
+  <tr><th>语言 / 类型</th><th>给 2,147,483,647 加 1</th></tr>
+  <tr><td>Python int</td><td>2147483648 —— 整数可以增长</td></tr>
+  <tr><td>Java int</td><td>−2147483648 —— 定义好的 32 位回绕</td></tr>
+  <tr><td>C++ 32 位 int</td><td><b>没有保证的结果——甚至不保证崩溃</b></td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ 为什么程序可能继续运行？</span>
+  <p>普通机器指令可能只保留<b>低 32 位</b>，未必抛出异常：</p>
+  <pre><code>01111111 11111111 11111111 11111111   （2,147,483,647）
++ 1
+10000000 00000000 00000000 00000000   （若按有符号 32 位解释为 −2,147,483,648）</code></pre>
+  <p>这只解释了一种<b>常见的观察结果</b>，是硬件层面的示意，<b>不是 C++ 对有符号溢出的有效规则</b>。编译器可能假设有符号溢出永不发生来优化；换个编译设置可能得到不同结果——甚至没有有用的结果。<b>在支持的编译器上，<code>-fsanitize=undefined</code> 能在运行时报告有符号溢出。</b></p>
+</div>
+
+<h3 id="lec2-p5-2">5.2 无符号回绕 <span class="zh">Unsigned Arithmetic Wraps Around</span></h3>
+<p>与有符号溢出不同，<b>无符号算术定义为模 \(2^w\)</b>。对 32 位 <code>unsigned int</code>，模是 4,294,967,296。</p>
+<pre><code>// 超过最大值
+unsigned int x = 4294967295U;
+x = x + 1;
+std::cout &lt;&lt; x;   // 0
+
+// 低于零
+unsigned int x = 0;
+x = x - 1;
+std::cout &lt;&lt; x;   // 4294967295</code></pre>
+<div class="warn box">
+  <span class="box-title">⚠️ 有符号 / 无符号混用很危险</span>
+  <p>无符号只是有<b>更大的非负范围</b>，<b>不是算术错误的保护伞</b>。</p>
+  <pre><code>int a = -1;
+unsigned int b = 1;
+std::cout &lt;&lt; (a &lt; b);   // 0：false！</code></pre>
+  <p>这里 <code>a</code> 在比较前被转换成 <code>unsigned int</code>。按 32 位示例，−1 变成 4,294,967,295。<b>避免随意混用有符号和无符号。</b></p>
+</div>
+
+<h3 id="lec2-p5-3">5.3 先拓宽再运算 <span class="zh">Widen Before the Operation</span></h3>
+<p><b>目标类型无法修复「计算它的表达式」里已经发生的溢出。</b></p>
+<pre><code>// 太迟了
+int a = 100000;
+long long square;
+square = a * a;      // a * a 按 int 计算；10,000,000,000 放不下
+
+// 用一个更宽的操作数
+int a = 100000;
+long long square;
+square = 1LL * a * a;   // 1LL 是 long long，两次乘法都用更宽的类型
+
+long long wide;
+wide = a;
+square = wide * a;      // 也是 10000000000</code></pre>
+<div class="warn box">
+  <span class="box-title">⚠️ 仍然要检查范围</span>
+  <p>即使 <code>long long</code> 也是有限的。先让一个操作数变宽，再运算。</p>
+</div>
+
+<h3 id="lec2-p5-4">5.4 布尔与字符算术 <span class="zh">Boolean and Character Arithmetic</span></h3>
+<p><code>bool</code> 和字符值可以参与整数算术。<b>小的整数类型通常在运算前被提升（promote）为 int。</b></p>
+<pre><code>bool
+bool ok = true;
+std::cout &lt;&lt; ok + 2;  // 3
+ok = 7;               // true：任何非零值
+// false → 0，true → 1
+
+char
+char digit = '7';
+int value;
+value = digit - '0';   // 7
+// '0' 到 '9' 的编码是连续的
+
+unsigned char
+unsigned char b = 250;
+std::cout &lt;&lt; b + 10;  // 260：int 算术
+b = b + 10;            // 4：存回 8 位
+// 假设 8 位字节：260 % 256 = 4</code></pre>
+<div class="warn box">
+  <span class="box-title">⚠️ 三个提醒</span>
+  <ul>
+    <li>要看字符的数值码，用 <code>ch + 0</code>；<code>std::cout &lt;&lt; ch</code> 打印的是字符本身。</li>
+    <li>Java <b>不允许</b>布尔算术；Python 和 C++ 允许。</li>
+    <li><code>std::cin &gt;&gt; ch</code> 读的是<b>一个字符</b>，不是数字：输入 <code>12345</code> 只存下 <code>'1'</code>，剩下 <code>2345</code> 未读。<b>char 永远不会「扩展」</b>。数值输入请用 <code>int</code> 或 <code>long long</code>（在其范围内）。</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ Part 6 布尔表达式与控制流 ============ -->
+<section id="lec2-p6">
+<h2>Part 6 · 布尔表达式与控制流 <span class="zh">Boolean Expressions &amp; Control Flow</span></h2>
+
+<h3 id="lec2-p6-1">6.1 短路求值 <span class="zh">Short-Circuit Evaluation</span></h3>
+<p>关系与逻辑运算符：<code>== != &lt; &lt;= &gt; &gt;= &amp;&amp; || !</code></p>
+<p><b>短路求值：先算左边，一旦结果已确定就停止。</b></p>
+<pre><code>// 逻辑与 &amp;&amp;
+int d = 0;
+bool result;
+result = (d != 0 &amp;&amp; 10 / d &gt; 2);
+// 左边是 false → 跳过右边，结果是 false
+// 10 / d 根本不会执行，所以没有除以零
+
+// 逻辑或 ||
+int d = 0;
+bool result;
+result = (d == 0 || 10 / d &gt; 2);
+// 左边是 true → 跳过右边，结果是 true
+// 10 / d 在这里也不会执行</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 关键点</span>
+  <p><b>被跳过的表达式完全不执行</b>——即使跳过的那一侧有 <code>++x</code>，<code>x</code> 也不会被改变。</p>
+</div>
+
+<h3 id="lec2-p6-2">6.2 短路与程序员的责任 <span class="zh">Short-Circuiting and Responsibility</span></h3>
+<p>这个数组有三个元素，合法下标是 0、1、2。</p>
+<pre><code>// &amp;&amp;：跳过不安全的数组访问
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 &lt;= i &amp;&amp; i &lt; 3) &amp;&amp; a[i] == 20);
+// i = 5：边界检查失败，所以 a[i] 被跳过
+// i = 0：读到 10，found 为 false；i = 1：读到 20，为 true
+
+// ||：故意触发失败
+bool fail();   // 提供的辅助函数：报告错误并退出
+bool valid = (0 &lt;= i &amp;&amp; i &lt; 3);
+valid || fail();
+// i = 5：valid 为 false，fail() 运行并终止程序
+// i = 1：valid 为 true，fail() 被跳过</code></pre>
+<div class="warn box">
+  <span class="box-title">⚠️ 责任边界</span>
+  <p><b>越界读取是未定义行为</b>，不是可靠的「触发失败」手段。在 C++ 里，<b>让这些操作安全是程序员自己的全部责任</b>。</p>
+</div>
+
+<h3 id="lec2-p6-3">6.3 链式比较 <span class="zh">Chained Comparisons</span></h3>
+<pre><code>Python:
+inside = 0 &lt;= x &lt;= 100   # Python 把它看成两次用 and 连接的比较
+
+C++:
+bool inside;
+inside = 0 &lt;= x &amp;&amp; x &lt;= 100;   // 把两个命题显式写出来</code></pre>
+<div class="warn box">
+  <span class="box-title">🚫 危险</span>
+  <p><code>0 &lt;= x &lt;= 100</code> 会被解析成 <code>(0 &lt;= x) &lt;= 100</code>，<b>C++ 会接受这个错误的表达式</b>——这让此类错误特别危险。请显式写成 <code>0 &lt;= x &amp;&amp; x &lt;= 100</code>。</p>
+</div>
+
+<h3 id="lec2-p6-4">6.4 if / else if / else</h3>
+<pre><code>Python:
+if score &gt;= 90:
+    grade = 'A'
+elif score &gt;= 80:
+    grade = 'B'
+else:
+    grade = 'C'
+
+C++:
+if (score &gt;= 90) {
+    grade = 'A';
+} else if (score &gt;= 80) {
+    grade = 'B';
+} else {
+    grade = 'C';
+}</code></pre>
+<p>决策逻辑不变。C++ 用<b>括号、花括号、分号</b>来标注结构。</p>
+</section>
+
+<!-- ============ Part 7 循环 ============ -->
+<section id="lec2-p7">
+<h2>Part 7 · 循环 <span class="zh">Loops</span></h2>
+
+<h3 id="lec2-p7-1">7.1 计数 for 循环 <span class="zh">Counted for Loops</span></h3>
+<pre><code>Python:
+for i in range(n):
+    print(i)
+
+C++:
+for (int i = 0; i &lt; n; ++i) {
+    std::cout &lt;&lt; i &lt;&lt; '\n';
+}</code></pre>
+<p>三段分别表示：</p>
+<ul>
+  <li><code>int i = 0</code> —— 只<b>初始化一次</b></li>
+  <li><code>i &lt; n</code> —— 每次迭代前<b>先测试</b></li>
+  <li><code>++i</code> —— 每次迭代后<b>更新</b></li>
+</ul>
+<p>两个循环都遍历<b>半开整数区间 \([0, n)\)</b>。</p>
+
+<h3 id="lec2-p7-2">7.2 while 循环 <span class="zh">while Loops</span></h3>
+<pre><code>Python:
+remaining = 3
+while remaining &gt; 0:
+    print(remaining)
+    remaining -= 1
+
+C++:
+int remaining = 3;
+while (remaining &gt; 0) {
+    std::cout &lt;&lt; remaining &lt;&lt; '\n';
+    --remaining;
+}</code></pre>
+<p>一个 while 循环的三要素：<b>状态（state）</b> <code>remaining</code>、<b>继续条件</b> <code>remaining &gt; 0</code>、<b>进展（progress）</b> <code>--remaining</code>。少了任何一个，循环就可能出错。</p>
+
+<h3 id="lec2-p7-3">7.3 do–while 循环 <span class="zh">do–while Loops</span></h3>
+<pre><code>int choice = 0;
+do {
+    std::cout &lt;&lt; "1. Continue\n";
+    std::cout &lt;&lt; "0. Exit\n";
+    std::cin &gt;&gt; choice;
+} while (choice != 0);</code></pre>
+<p><b>先执行循环体，再检查条件</b>——因此菜单至少出现一次。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 备注</span>
+  <p>Java 也有 do–while；Python 通常用 <code>while True</code> + <code>break</code> 表达同样的模式。</p>
+</div>
+
+<h3 id="lec2-p7-4">7.4 break / continue / exit</h3>
+<p>在 <code>i == 3</code> 处，把注释替换成下面三种语句之一：</p>
+<pre><code>for (int i = 1; i &lt;= 5; ++i) {
+    if (i == 3) {
+        /* 在这里放语句 */
+    }
+    std::cout &lt;&lt; i &lt;&lt; ' ';
+}
+std::cout &lt;&lt; "Done\n";</code></pre>
+<table class="truth">
+  <tr><th>语句</th><th>效果</th><th>输出</th></tr>
+  <tr><td><code>break;</code></td><td>离开循环，从循环后继续</td><td><code>1 2 Done</code></td></tr>
+  <tr><td><code>continue;</code></td><td>跳过本次迭代剩余部分；for 的更新 <code>++i</code> 仍会执行</td><td><code>1 2 4 5 Done</code></td></tr>
+  <tr><td><code>std::exit(0);</code></td><td>终止整个程序；0 表示成功终止</td><td><code>1 2</code>（没有 Done）</td></tr>
+</table>
+<div class="warn box">
+  <span class="box-title">⚠️ 注意</span>
+  <ul>
+    <li><code>std::exit</code> 是一个函数，要使用它需在 <code>main()</code> 上方 <code>#include &lt;cstdlib&gt;</code>。</li>
+    <li>在<b>嵌套循环</b>里，<code>break</code> 和 <code>continue</code> 只影响<b>最内层</b>循环。</li>
+    <li>在 while 循环里，<code>continue</code> 可能跳过手动更新、阻止进展。</li>
+  </ul>
+</div>
+
+<h3 id="lec2-p7-5">7.5 常见控制流错误 <span class="zh">Common Control-Flow Mistakes</span></h3>
+<table class="truth">
+  <tr><th>错误</th><th>代码</th><th>问题</th></tr>
+  <tr><td>多迭代一次</td><td><code>for (int i{0}; i &lt;= n; ++i)</code></td><td>数据有下标 0 到 n 吗？</td></tr>
+  <tr><td>没有进展</td><td><code>while (remaining &gt; 0) { std::cout &lt;&lt; remaining; }</code></td><td>循环条件永不改变</td></tr>
+  <tr><td>意外的空循环</td><td><code>for (int i{0}; i &lt; n; ++i);</code></td><td>分号本身就是整个循环体</td></tr>
+  <tr><td>条件里写成了赋值</td><td><code>if (x = 0) { /* ... */ }</code></td><td>想比较时请用 <code>x == 0</code></td></tr>
+</table>
+</section>
+
+<!-- ============ Part 8 auto 与 struct ============ -->
+<section id="lec2-p8">
+<h2>Part 8 · auto 与 struct <span class="zh">Type Deduction &amp; struct</span></h2>
+
+<h3 id="lec2-p8-1">8.1 auto 类型推导 <span class="zh">Type Deduction with auto</span></h3>
+<p>C++11 引入了类型推导的 <code>auto</code>，让声明更方便。编译器在<b>编译期</b>用初始值推导类型。<b>这并不会给变量带来 Python 式的动态绑定。</b></p>
+<table class="truth">
+  <tr><th>声明</th><th>推导类型</th><th>等价声明</th></tr>
+  <tr><td><code>auto count = 5;</code></td><td>int</td><td><code>int count = 5;</code></td></tr>
+  <tr><td><code>auto rate = 2.5;</code></td><td>double</td><td><code>double rate = 2.5;</code></td></tr>
+  <tr><td><code>auto ready = true;</code></td><td>bool</td><td><code>bool ready = true;</code></td></tr>
+  <tr><td><code>auto grade = 'A';</code></td><td>char</td><td><code>char grade = 'A';</code></td></tr>
+</table>
+<pre><code>auto i;     // 错误：没有初始值
+i = 5;      // 之后的赋值无法补救声明
+auto i = 5; // OK：推导为 int
+i = 6;      // 后续赋值保持同一类型</code></pre>
+
+<h3 id="lec2-p8-2">8.2 推导出的类型固定不变 <span class="zh">The Deduced Type Stays Fixed</span></h3>
+<pre><code>Python:
+x = 5
+x = 2.5
+print(x)     // 2.5：名字现在指向浮点值
+
+C++:
+auto x = 5;
+x = 2.5;
+std::cout &lt;&lt; x;   // 2：x 仍是 int，赋值丢弃小数部分</code></pre>
+<div class="def box">
+  <span class="box-title">📌 要点</span>
+  <p><code>auto y = 5.0; y = 2;</code> —— <code>y</code> 仍是 double，存 2.0。<b>初始值一次性决定类型；值可以变，推导出的类型不变。</b></p>
+</div>
+
+<h3 id="lec2-p8-3">8.3 不会自动拓宽 <span class="zh">No Automatic Widening</span></h3>
+<p><code>auto</code> 只看初始值，<b>不会预判后续计算</b>。假设 32 位 int，最大值 2,147,483,647：</p>
+<pre><code>// 初始值是 int 类型
+auto x = 1000000000;
+x = x * 3;
+std::cout &lt;&lt; x;   // x 仍是 int，乘法超出范围 → 有符号溢出，未定义行为
+
+// 刻意用更宽的类型
+auto x = 1000000000LL;
+x = x * 3;
+std::cout &lt;&lt; x;   // 3000000000：LL 让初始值成为 long long</code></pre>
+<div class="thm box">
+  <span class="box-title">🎯 一句话</span>
+  <p>Python 整数可以增长；C++ 整数变量<b>保持自己的类型、存储大小和范围</b>。<code>auto</code> 不会根据未来的用途选更宽的类型。</p>
+</div>
+
+<h3 id="lec2-p8-4">8.4 auto 跟随表达式 <span class="zh">auto Follows the Expression</span></h3>
+<p><b>先推导表达式的类型，再初始化变量。</b></p>
+<pre><code>int total = 5;
+int count = 2;
+
+auto a = total / count;        // int    → 2
+auto b = 1.0 * total / count;  // double → 2.5
+auto c = a * 1.0;              // double → 2.0</code></pre>
+<p>整数除法之后再乘 1.0，<b>无法找回已经丢失的小数部分</b>。Python 里 <code>total / count</code> 得 2.5，<code>total // count</code> 得 2。<code>auto</code> 跟随<b>表达式的类型</b>，而不是你「想要的结果」。</p>
+
+<h3 id="lec2-p8-5">8.5 std::pair <span class="zh">Two Values with std::pair</span></h3>
+<p><code>std::pair</code> 把两个值合成一个对象。<code>&lt; &gt;</code> 里的类型指定第一、第二个分量。</p>
+<pre><code>#include &lt;utility&gt;   // 在 main() 上方
+std::pair&lt;double, double&gt; roots{1.0, 2.0};
+// 在 main() 内部创建带有两个 double 分量的 roots</code></pre>
+<table class="truth">
+  <tr><th>成员访问</th><th>含义</th><th>值</th></tr>
+  <tr><td><code>roots.first</code></td><td>第一个分量</td><td>1.0</td></tr>
+  <tr><td><code>roots.second</code></td><td>第二个分量</td><td>2.0</td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ 备注</span>
+  <p>两个分量类型可以不同，如 <code>std::pair&lt;bool, double&gt;</code>。成员名永远是 <code>first</code> 和 <code>second</code>。当两个位置的含义很清楚时，pair 很方便。</p>
+</div>
+
+<h3 id="lec2-p8-6">8.6 struct 具名成员 <span class="zh">A struct with Named Members</span></h3>
+<p>一个二次方程的结果要记录「是否有实根」以及「根的值」。对 \(x^2 - 3x + 2 = 0\)，实根是 1 和 2。</p>
+<pre><code>// 嵌套 pair 的写法（不直观）
+std::pair&lt;bool, std::pair&lt;double, double&gt;&gt; result{true, {1.0, 2.0}};
+// result.first           → true（是否有实根）
+// result.second.first    → 1.0（第一个根）
+// result.second.second   → 2.0（第二个根）</code></pre>
+<p>对 \(x^2 + 1 = 0\)，布尔是 false，根字段不用。这个类型能用，但 <code>second.first</code> 让我们得自己「解码」含义。能不能让数据带上有意义的名字？——这就是 struct 的动机。</p>
+<pre><code>struct QuadraticResult {
+    bool hasRealRoots;
+    double firstRoot;
+    double secondRoot;
+};
+// 类型定义放在 main() 上方，别忘了最后的分号 ;
+
+QuadraticResult result{ true, 1.0, 2.0 };
+// 在 main() 内部创建对象，初始值按成员顺序排列</code></pre>
+<table class="truth">
+  <tr><th>嵌套 pair</th><th>具名 struct</th></tr>
+  <tr><td><code>result.first</code></td><td><code>result.hasRealRoots</code></td></tr>
+  <tr><td><code>result.second.first</code></td><td><code>result.firstRoot</code></td></tr>
+  <tr><td><code>result.second.second</code></td><td><code>result.secondRoot</code></td></tr>
+</table>
+<div class="thm box">
+  <span class="box-title">🎯 存储的信息相同，成员名解释了含义</span>
+  <p>存的信息是一样的，但<b>成员名让含义自明</b>。</p>
+</div>
+
+<h3 id="lec2-p8-7">8.7 使用与复制 struct <span class="zh">Using and Copying a struct</span></h3>
+<p>用 <code>.</code> 读写成员，就像 <code>first</code> 和 <code>second</code> 一样。</p>
+<pre><code>if (result.hasRealRoots) {
+    std::cout &lt;&lt; result.firstRoot &lt;&lt; ' ';
+    std::cout &lt;&lt; result.secondRoot &lt;&lt; '\n';
+}
+// 输出：1 2（仅当 hasRealRoots 为 true 时才用根字段）
+
+auto copy = result;
+copy.firstRoot = 5.0;
+// auto 推导出 QuadraticResult；这是字段的一份独立拷贝
+// copy.firstRoot 变成 5.0，result.firstRoot 仍是 1.0</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 什么时候用哪个</span>
+  <p>两个值有<b>清楚的位置含义</b>时用 pair；<b>具名字段让数据更易理解</b>时用 struct。</p>
+</div>
+
+<h3 id="lec2-p8-8">8.8 struct 的运算 <span class="zh">Operations on a struct</span></h3>
+<p>内置类型（如 int）已经支持算术、比较和流 I/O；我们定义的 <code>QuadraticResult</code> 并不自动提供这些运算。</p>
+<pre><code>// 对我们的 struct 没有定义
+std::cout &lt;&lt; result;   // 都编译失败
+std::cin &gt;&gt; result;
+result + result;
+result == result;
+
+// 要显式访问成员
+std::cin &gt;&gt; result.firstRoot;   // firstRoot 是 double，已有输入输出
+std::cout &lt;&lt; result.firstRoot;</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 说明</span>
+  <ul>
+    <li><b>拷贝和赋值对简单 struct 是可行的</b>：<code>auto copy = result;</code> 和 <code>copy = result;</code>。</li>
+    <li>以后可以在类里<b>添加函数、定义运算符重载（operator overloading）</b>。运算符重载定义行为，<b>但无法改变运算符优先级</b>。</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ Part 9 综合练习（LeetCode） ============ -->
+<section id="lec2-p9">
+<h2>Part 9 · 综合练习（LeetCode）<span class="zh">Hands-On Practice</span></h2>
+<p>学完基础，老师用五道题演示「<b>先想清楚状态，再动手写代码</b>」的过程。每题都给出「程序解剖（program anatomy）」和「容易出错（easy to get wrong）」的点。</p>
+
+<h3 id="lec2-p9-1">9.1 把数字归零 <span class="zh">Reduce a Number to Zero · LeetCode 1342 · Easy</span></h3>
+<p><b>题目：</b>若当前数字是偶数就除以 2，否则减 1；统计到达 0 的步数。</p>
+<p><b>走一遍 num = 14：</b>14 → 7 → 6 → 3 → 2 → 1 → 0，共 6 次状态变化，答案是 6。</p>
+<pre><code>int numberOfSteps(int num) {
+    int steps = 0;
+    while (num &gt; 0) {
+        if (num % 2 == 0) num /= 2;
+        else              num -= 1;
+        ++steps;           // 两个分支都要计数
+    }
+    return steps;
+}</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 程序解剖</span>
+  <ul>
+    <li><b>状态（state）</b>：当前数字、步数。</li>
+    <li><b>决策（decision）</b>：用 <code>num % 2</code> 判断奇偶。</li>
+    <li><b>循环</b>：当前数字为正时继续。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 容易出错</span>
+  <ul>
+    <li><b>两个分支都要把步数加一</b>。</li>
+    <li>输入<b>可能本来就是 0</b>（答案是 0）。</li>
+  </ul>
+</div>
+
+<h3 id="lec2-p9-2">9.2 各位数字的积与和 <span class="zh">Digits: Product Minus Sum · LeetCode 1281 · Easy</span></h3>
+<p><b>题目：</b>给定正整数，返回「各位数字的积」减去「各位数字的和」。</p>
+<p><b>走一遍 n = 234：</b>digits 4, 3, 2 → sum = 9, product = 24 → 24 − 9 = 15。</p>
+<pre><code>int subtractProductAndSum(int n) {
+    int sum = 0, product = 1;   // 乘积从 1 开始，不是 0
+    while (n &gt; 0) {
+        int digit = n % 10;     // 取最后一位
+        sum += digit;
+        product *= digit;
+        n /= 10;                // 去掉最后一位
+    }
+    return product - sum;
+}</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 程序解剖</span>
+  <ul>
+    <li>反复用 <code>% 10</code> 取最后一位；用 <code>n / 10</code> 去掉它。</li>
+    <li>同时维护<b>累加和（running sum）</b>与<b>累乘积（running product）</b>。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 容易出错</span>
+  <ul>
+    <li><b>乘积必须从 1 开始，而不是 0</b>（否则永远是 0）。</li>
+    <li><b>每次迭代都必须去掉一位</b>（否则死循环）。</li>
+  </ul>
+</div>
+
+<h3 id="lec2-p9-3">9.3 迭代斐波那契 <span class="zh">Iterative Fibonacci · LeetCode 509 · Easy</span></h3>
+<p><b>题目：</b>计算 \(F(n)\)，其中 \(F(0)=0, F(1)=1\)，之后每一项是前两项之和。</p>
+<pre><code>int fib(int n) {
+    if (n == 0) return 0;          // 显式处理 n = 0
+    int previous = 0, current = 1;
+    for (int i = 1; i &lt; n; ++i) {
+        int next = previous + current;  // 先用临时值算出 next
+        previous = current;
+        current = next;
+    }
+    return current;
+}</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 程序解剖</span>
+  <ul>
+    <li><b>显式处理 n = 0</b>。</li>
+    <li>只保留<b>最近两个值</b>（previous 和 current），滚动前进。</li>
+    <li><b>在替换任何一个旧值之前</b>先算好下一个值。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 容易出错</span>
+  <p>Python 允许 <code>a, b = b, a + b</code> 一次交换；<b>C++ 里要用临时变量保存旧状态</b>，避免顺序错误。</p>
+</div>
+
+<h3 id="lec2-p9-4">9.4 回文数 <span class="zh">Palindrome Number · LeetCode 9 · Easy</span></h3>
+<p><b>题目：</b>判断一个整数是否正读反读相同，<b>不要转成字符串</b>。</p>
+<pre><code>bool isPalindrome(int x) {
+    if (x &lt; 0) return false;        // 拒绝负数
+    long long remaining = x, reversed = 0;
+    while (remaining &gt; 0) {
+        reversed = reversed * 10 + remaining % 10;  // 取一位，拼到反转值
+        remaining /= 10;
+    }
+    return x == reversed;           // 保留原值做最终比较
+}</code></pre>
+<p><b>走一遍 121：</b>remaining 121 → 12 → 1 → 0；reversed 0 → 1 → 12 → 121；121 == 121。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 容易出错</span>
+  <ul>
+    <li><b>10 不是回文数</b>：反转会丢掉前导零（10 → 1）。</li>
+    <li><b>反转值用 long long</b>，防止反转过程中溢出。</li>
+  </ul>
+</div>
+
+<h3 id="lec2-p9-5">9.5 坏了的计算器 <span class="zh">Broken Calculator · LeetCode 991 · Medium</span></h3>
+<p><b>题目：</b>从 <code>start</code> 出发，用最少的操作到达 <code>target</code>。只有两种操作：<b>翻倍</b> \(x = x \times 2\)，或<b>减一</b> \(x = x - 1\)。约束 \(1 \le start, target \le 10^9\)。</p>
+<p><b>例子 start = 3, target = 10：</b></p>
+<ul>
+  <li>先翻倍直到超过再减：3 → 6 → 12 → 11 → 10（4 步）。</li>
+  <li>翻倍前先减：3 → 6 → 5 → 10（3 步）——<b>更短</b>。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 关键观察</span>
+  <p>「只要小于 target 就一直翻倍」可能<b>错过更短路径</b>。<b>换成从 target 往回走</b>，问题变得简单：逆操作是「加 1」或「把偶数除以 2」。</p>
+</div>
+<table class="truth">
+  <tr><th>当前 target</th><th>逆操作</th><th>原因</th></tr>
+  <tr><td>奇数</td><td><code>target += 1</code></td><td>加 1 是唯一合法动作</td></tr>
+  <tr><td>偶数</td><td><code>target /= 2</code></td><td>先减半更省步数</td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ 为什么偶数要先减半？</span>
+  <p>加两次再减半：10 → 11 → 12 → 6（3 步）；先减半再加：10 → 5 → 6（2 步）。<b>减半前的每两次加法，都能变成减半后的一次加法。</b></p>
+</div>
+<pre><code>int brokenCalc(int start, int target) {
+    int ops = 0;
+    while (target &gt; start) {
+        if (target % 2 == 1) target += 1;   // 奇数只能加 1
+        else                 target /= 2;   // 偶数先减半
+        ++ops;
+    }
+    return ops + (start - target);   // 剩余差距只需一路减一
+}</code></pre>
+<div class="ex box">
+  <span class="box-title">✏️ 边界检查</span>
+  <ul>
+    <li><code>start == target</code> 得 0。</li>
+    <li><code>start = 10, target = 3</code>：答案是 7（一路减一）。</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ Part 10 总结与资源 ============ -->
+<section id="lec2-p10">
+<h2>Part 10 · 总结与资源 <span class="zh">Summary &amp; Resources</span></h2>
+
+<h3 id="lec2-p10-1">10.1 本讲总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 三条主线</span>
+  <ol>
+    <li><b>C++ 把类型和执行细节都显式化了</b>：操作数的类型控制算术行为，布尔表达式控制决策，每个循环都需要正确的边界和状态更新。</li>
+    <li><b>auto 从初始值推导出一个固定类型；struct 把相关值组织成具名成员</b>，让我们能创建、使用、复制一份完整记录。</li>
+    <li><b>写代码前先想清楚状态，手动走一遍例子，测试最小和最大的有意义边界。</b></li>
+  </ol>
+</div>
+
+<h3 id="lec2-p10-2">10.2 学习资源 <span class="zh">Helpful Resources</span></h3>
+<ul>
+  <li><a href="https://cplusplus.com" target="_blank" rel="noopener">cplusplus.com</a> —— 一些参考。</li>
+  <li><b>C++ Primer</b> —— 推荐阅读。</li>
+  <li>「Why don't you ask your AI?」—— 老师鼓励用 AI 辅助学习。</li>
+  <li>但记住：<b>不确定某样东西会怎么表现，就不要用花哨的写法。</b></li>
+</ul>
+
+<h3 id="lec2-p10-3">10.3 词汇表 <span class="zh">Key Vocabulary</span></h3>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>compile / compilation</b> — 编译；<b>executable</b> — 可执行文件</li>
+    <li><b>compiler option</b> — 编译选项；<b>warning</b> — 警告；<b>debugger</b> — 调试器</li>
+    <li><b>optimization</b> — 优化；<b>runtime check</b> — 运行时检查</li>
+    <li><b>type checking</b> — 类型检查；<b>compile-time / runtime</b> — 编译期 / 运行期</li>
+    <li><b>static type checking</b> — 静态类型检查；<b>static type binding</b> — 静态类型绑定</li>
+    <li><b>signed / unsigned</b> — 有符号 / 无符号；<b>bit pattern</b> — 位模式</li>
+    <li><b>declaration / initialization / assignment</b> — 声明 / 初始化 / 赋值</li>
+    <li><b>narrowing conversion</b> — 窄化转换；<b>truncate</b> — 截断</li>
+    <li><b>uninitialized variable</b> — 未初始化变量；<b>undefined behavior</b> — 未定义行为</li>
+    <li><b>unary / binary operator</b> — 一元 / 二元运算符；<b>compound assignment</b> — 复合赋值</li>
+    <li><b>prefix / postfix increment</b> — 前缀 / 后缀自增</li>
+    <li><b>operator precedence</b> — 运算符优先级；<b>grouping</b> — 结合</li>
+    <li><b>integer division</b> — 整数除法；<b>remainder</b> — 余数</li>
+    <li><b>overflow</b> — 溢出；<b>wraparound</b> — 回绕；<b>widen</b> — 拓宽</li>
+    <li><b>promote / promotion</b> — （类型）提升</li>
+    <li><b>short-circuit evaluation</b> — 短路求值</li>
+    <li><b>chained comparison</b> — 链式比较</li>
+    <li><b>loop boundary</b> — 循环边界；<b>state change</b> — 状态更新</li>
+    <li><b>type deduction</b> — 类型推导；<b>initializer</b> — 初始值</li>
+    <li><b>struct</b> — 结构体；<b>member</b> — 成员；<b>field</b> — 字段</li>
+    <li><b>operator overloading</b> — 运算符重载</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第2课 -->
+
+</div>
+</main>
+</body>
+</html>

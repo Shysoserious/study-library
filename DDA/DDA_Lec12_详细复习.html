@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA Lecture 12 详细复习 — PCA · SVD · t-SNE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f8f7f4;color:#1a1a1a;line-height:1.8;padding:30px;}
+.main{max-width:900px;margin:0 auto;}
+h1{font-size:28px;color:#0F6E56;border-bottom:3px solid #0F6E56;padding-bottom:10px;margin-bottom:10px;}
+h2{font-size:22px;color:#0F6E56;margin:30px 0 12px;padding-bottom:6px;border-bottom:2px solid #d0f5e8;}
+h3{font-size:17px;margin:22px 0 10px;color:#1a1a1a;}
+h4{font-size:14px;margin:14px 0 6px;color:#555;}
+.subtitle{color:#666;font-size:14px;margin-bottom:20px;}
+.card{background:#fff;border:1px solid #e5e3de;border-radius:12px;padding:18px;margin:14px 0;}
+.card-green{border-left:4px solid #0F6E56;}
+.card-red{border-left:4px solid #E24B4A;}
+.card-blue{border-left:4px solid #185FA5;}
+.card-amber{border-left:4px solid #BA7517;}
+.card-pink{border-left:4px solid #C43B7A;}
+.formula{background:#f3f1ec;border-radius:10px;padding:14px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-tip{background:#E1F5EE;color:#0F6E56;}
+.key{color:#E24B4A;font-weight:600;}
+.eng{color:#185FA5;font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+ol{padding-left:20px;margin-bottom:10px;}
+ol li{margin-bottom:8px;}
+ul{padding-left:20px;margin-bottom:10px;}
+ul li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid #e5e3de;font-size:14px;}
+th{background:#f3f1ec;font-weight:600;}
+.example-box{background:#f3f1ec;border-radius:10px;padding:12px 16px;margin:10px 0;}
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:38px;margin-bottom:14px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:26px;height:26px;background:#0F6E56;color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.note{background:#fef8e7;border:1px solid #f5e6b8;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:14px;}
+.warn-box{background:#fcebeb;border:1px solid #f5c6c6;border-radius:8px;padding:12px 14px;margin:10px 0;font-size:14px;}
+.concept-map{background:#f0f7f4;border:1px solid #b8d5cc;border-radius:12px;padding:16px;margin:14px 0;text-align:center;}
+.concept-map span{display:inline-block;background:#0F6E56;color:#fff;padding:4px 12px;border-radius:20px;margin:4px;font-size:13px;}
+.concept-map .arrow{color:#0F6E56;font-size:18px;margin:0 4px;}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<div class="main">
+<h1>📘 DDA Lecture 12 详细复习笔记</h1>
+<p class="subtitle">低秩近似 &amp; 数据可视化 — PCA · SVD · t-SNE — 难点详解版（备考专用）</p>
+
+<!-- ============================================================ -->
+<!-- 内容导航 -->
+<!-- ============================================================ -->
+<div class="card" style="margin-bottom:24px;">
+<h3>本讲内容导航</h3>
+<table>
+<tr><th>章节</th><th>内容</th><th>难度</th></tr>
+<tr><td>1.</td><td>高维回归的问题：为什么要降维？</td><td>⭐⭐</td></tr>
+<tr><td>2.</td><td>PCA 主成分分析（核心）</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>2.1</td><td>PCA 的直觉与几何意义</td><td>⭐⭐⭐</td></tr>
+<tr><td>2.2</td><td>PCA 的数学推导（特征分解）</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>2.3</td><td>PCA 算法步骤</td><td>⭐⭐⭐</td></tr>
+<tr><td>3.</td><td>SVD 奇异值分解</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>3.1</td><td>SVD 是什么</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>3.2</td><td>SVD 与 PCA 的关系（重要考点）</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>3.3</td><td>低秩近似与图像压缩</td><td>⭐⭐⭐</td></tr>
+<tr><td>4.</td><td>数据可视化与 t-SNE</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>5.</td><td>快速对比与易混淆点</td><td>⭐⭐⭐</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 1. 高维回归的问题 -->
+<!-- ============================================================ -->
+<h2>1. 高维回归的问题：为什么要降维？</h2>
+
+<div class="card card-amber">
+<span class="tag tag-warn">动机</span>
+<h3>高维数据的挑战</h3>
+<p>考虑高维线性回归模型：</p>
+<div class="formula">$$Y = X\beta + \varepsilon$$</div>
+<p>其中 $X$ 有 $D$ 个特征（列）。当 $D$ 很大时，出现以下问题：</p>
+
+<h4>(1) 多重共线性 (Multicollinearity) ⭐⭐⭐</h4>
+<p><strong>是什么</strong>：特征之间高度相关（例如：身高和腿长；温度和冰激凌销量）。</p>
+<p><strong>为什么不好</strong>：回归系数 $\beta$ 的估计变得非常不稳定——特征间相关性高意味着信息重复，数据中的微小变化会导致 $\beta$ 的剧烈波动。</p>
+<p><strong>直观理解</strong>：假如你同时用"身高"和"腿长"来预测体重，这两个变量高度相关。回归不知道把权重分给谁——可能这次分给"身高"，下次分给"腿长"。这就是不稳定。</p>
+
+<h4>(2) 维度灾难 (Curse of Dimensionality)</h4>
+<p>特征太多 → 参数过多 → 过拟合风险大 → 模型泛化能力差</p>
+
+<div class="note">
+<strong>💡 解决办法</strong>：降维 (Dimensionality Reduction) —— 把高维数据投影到低维空间，同时尽量保留原始信息。
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 2. PCA -->
+<!-- ============================================================ -->
+<h2>2. PCA 主成分分析（重中之重 ⭐⭐⭐⭐⭐）</h2>
+
+<div class="concept-map">
+<span>原始高维数据</span>
+<span class="arrow">→</span>
+<span>找最大方差方向</span>
+<span class="arrow">→</span>
+<span>投影到低维空间</span>
+<span class="arrow">→</span>
+<span>保留最多信息的低维表示</span>
+</div>
+
+<h3>2.1 PCA 的核心思想与直觉</h3>
+
+<div class="card card-green">
+<span class="tag tag-thm">Goal</span>
+<h3>PCA 的目标是什么？</h3>
+<p><strong>一句话</strong>：在降维的同时，<span class="key">保留尽可能多的方差（信息）</span>。</p>
+
+<h4>直觉理解（非常重要）</h4>
+<p>想象数据是二维平面上的一堆点，形状像一根拉长的"香肠"（椭球形）：</p>
+<ul>
+  <li><strong>长轴方向</strong>：数据"散布"得最广 → 方差最大 → 包含最多信息</li>
+  <li><strong>短轴方向</strong>：数据"散布"得窄 → 方差小 → 包含信息少</li>
+  <li><strong>PCA 做的事</strong>：找到"长轴"方向（第一主成分），然后找到与长轴垂直的次长轴方向（第二主成分），依此类推。</li>
+</ul>
+
+<div class="example-box">
+<strong>🌰 类比</strong>：一本 500 页的小说，你想用 3 页总结它。
+<ul>
+  <li>你要选最重要的情节（最大方差的方向）</li>
+  <li>但不是简单地选前 3 页（这相当于选前 3 个特征）</li>
+  <li>而是要提炼精华（创造新的复合变量 = 主成分）</li>
+</ul>
+</div>
+
+<div class="warn-box">
+<strong>⚠️ 易错点</strong>：PCA 不是选原始特征中的某几个，而是创建<strong>新的特征</strong>（原始特征的线性组合）。新特征叫"主成分"。
+</div>
+</div>
+
+<h3>2.2 PCA 的数学推导（考试重点 ⭐⭐⭐⭐⭐）</h3>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Math</span>
+<h3>PCA 的数学过程</h3>
+
+<h4>第①步：数据中心化</h4>
+<p>对数据矩阵 $X$（$n$ 个样本，$D$ 个特征），先减去每个特征的均值：</p>
+<div class="formula">$$X_{\text{centered}} = X - \bar{X}$$</div>
+<p>使得每个特征的均值为 0。这一步至关重要——不然第一个主成分会被均值位置影响，而不是方差方向。</p>
+
+<h4>第②步：计算协方差矩阵</h4>
+<div class="formula">$$C = \frac{1}{n}X^TX \quad (\text{维度：} D \times D)$$</div>
+<p>协方差矩阵 $C$ 的 $(i,j)$ 元素 = 第 $i$ 个特征与第 $j$ 个特征的协方差。</p>
+<p>$C$ 告诉我们：</p>
+<ul>
+  <li>对角线上：每个特征自己的方差（数值越大，该特征越"有信息"）</li>
+  <li>非对角线上：特征间的相关性（绝对值越大，相关性越强）</li>
+</ul>
+
+<h4>第③步：特征分解（最关键的一步）</h4>
+<div class="formula">$$C = V\Lambda V^T$$</div>
+<p>其中：</p>
+<ul>
+  <li>$V$ 是 $D \times D$ 矩阵，每一列是一个<strong>特征向量 (eigenvector)</strong></li>
+  <li>$\Lambda$ 是对角矩阵，对角线上是<strong>特征值 (eigenvalues)</strong> $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_D$</li>
+</ul>
+
+<h4>第④步：理解特征值和特征向量</h4>
+<table>
+<tr><th>符号</th><th>叫什么</th><th>含义</th><th>PCA 中对应</th></tr>
+<tr><td>$V$ 的列</td><td>特征向量</td><td>一个"方向"</td><td>主成分的方向</td></tr>
+<tr><td>$\lambda_i$</td><td>特征值</td><td>该方向上的"伸展量"</td><td>该主成分解释的方差大小</td></tr>
+</table>
+
+<div class="example-box">
+<strong>💡 关键直觉</strong>：
+<ul>
+  <li>特征向量告诉你"方向"，特征值告诉你"这个方向有多重要"</li>
+  <li>$\lambda_1$ 最大 → 第一主成分方向 $v_1$ 是最重要的方向</li>
+  <li>$\lambda_2$ 第二 → 第二主成分方向 $v_2$ 是次重要的方向，且 $v_2 \perp v_1$（正交）</li>
+  <li>主成分之间<strong>互不相关</strong>（正交的）——这解决了多重共线性问题！</li>
+</ul>
+</div>
+
+<h4>第⑤步：选择前 $k$ 个主成分</h4>
+<p>取前 $k$ 个最大的特征值对应的特征向量 $V_k = [v_1, v_2, \dots, v_k]$。</p>
+<p>将数据投影到 $k$ 维空间：</p>
+<div class="formula">$$X_{\text{new}} = X_{\text{centered}} \cdot V_k \quad (n \times k)$$</div>
+</div>
+
+<div class="card card-pink">
+<span class="tag tag-tip">Explained Variance</span>
+<h3>方差解释率 (重要概念)</h3>
+<p>第 $i$ 个主成分解释的方差比例：</p>
+<div class="formula">$$\frac{\lambda_i}{\sum_{j=1}^D \lambda_j}$$</div>
+<p>前 $k$ 个主成分解释的总方差比例：</p>
+<div class="formula">$$\frac{\sum_{i=1}^k \lambda_i}{\sum_{j=1}^D \lambda_j}$$</div>
+<p><span class="key">如何选择 $k$？</span></p>
+<ul>
+  <li>看累计方差解释率——通常选到 80%-90% 以上</li>
+  <li>看"碎石图" (Scree plot)——找"拐点"</li>
+</ul>
+
+<div class="example-box">
+<strong>🌰 例子</strong>：人脸图像（16000 维），可能前 100 个主成分就解释了 95% 的方差。意味着用 100 维代替 16000 维，保留了 95% 的信息！
+</div>
+</div>
+
+<h3>2.3 PCA 算法完整步骤（考试默写级 ⭐⭐⭐⭐）</h3>
+
+<div class="card card-green">
+<span class="tag tag-exam">Algorithm</span>
+<h3>PCA 六步法</h3>
+<ol class="steps">
+<li><strong>标准化/中心化</strong>：对每个特征减去均值（有时也除以标准差，使量纲统一）</li>
+<li><strong>计算协方差矩阵</strong>：$C = \frac{1}{n}X^TX$</li>
+<li><strong>特征分解</strong>：$C = V\Lambda V^T$</li>
+<li><strong>排序</strong>：按特征值 $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_D$ 排序</li>
+<li><strong>选前 $k$ 个</strong>：取前 $k$ 个特征向量组成 $V_k$</li>
+<li><strong>投影</strong>：$X_{\text{new}} = X_{\text{centered}} V_k$</li>
+</ol>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. SVD -->
+<!-- ============================================================ -->
+<h2>3. SVD 奇异值分解（难点 ⭐⭐⭐⭐⭐）</h2>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Why SVD?</span>
+<h3>为什么需要 SVD？</h3>
+<p>PCA 需要计算协方差矩阵 $C = \frac{1}{n}X^TX$ 并做特征分解。但有<strong>两个问题</strong>：</p>
+<ol>
+  <li>$C$ 是 $D \times D$ 矩阵，当 $D$ 很大时（例如图像有 16000 维），计算 $C$ 和其特征分解非常慢</li>
+  <li>数值上，直接计算 $X^TX$ 会损失精度（数值不稳定）</li>
+</ol>
+<p><span class="key">SVD 直接对原始数据 $X$ 做分解</span>，不需要计算 $X^TX$，更高效且更稳定。</p>
+</div>
+
+<h3>3.1 SVD 的定义</h3>
+
+<div class="card card-red">
+<span class="tag tag-thm">Theorem</span>
+<h3>SVD：任意矩阵都可分解</h3>
+<p>任意 $m \times n$ 矩阵 $A$ 都可以分解为：</p>
+<div class="formula">$$A = U\Sigma V^T$$</div>
+
+<p>三个矩阵的详细解释：</p>
+
+<table>
+<tr><th>矩阵</th><th>维度</th><th>名称</th><th>含义</th></tr>
+<tr><td>$U$</td><td>$m \times m$</td><td>左奇异向量</td><td>列是 $AA^T$ 的特征向量，正交矩阵（$U^TU=I$）</td></tr>
+<tr><td>$\Sigma$</td><td>$m \times n$</td><td>奇异值矩阵</td><td>对角线上是奇异值 $\sigma_1 \ge \sigma_2 \ge \dots \ge 0$，其余为 0</td></tr>
+<tr><td>$V$</td><td>$n \times n$</td><td>右奇异向量</td><td>列是 $A^TA$ 的特征向量，正交矩阵（$V^TV=I$）</td></tr>
+</table>
+
+<div class="example-box">
+<strong>📐 几何意义</strong>：SVD 把一次线性变换拆成三步：
+<ol>
+  <li>$V^T$：先在标准坐标系中"旋转"</li>
+  <li>$\Sigma$：沿坐标轴方向"缩放"（拉长或压缩）</li>
+  <li>$U$：再"旋转"到新的坐标系</li>
+</ol>
+</div>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Key Difference</span>
+<h3>特征分解 vs SVD：对比理解</h3>
+<table>
+<tr><th></th><th>特征分解 (Eigendecomposition)</th><th>SVD</th></tr>
+<tr><td>适用对象</td><td>仅方阵 ($n\times n$)</td><td>任意矩阵 ($m\times n$)</td></tr>
+<tr><td>分解形式</td><td>$A = V\Lambda V^{-1}$</td><td>$A = U\Sigma V^T$</td></tr>
+<tr><td>正交性</td><td>不一定正交（除非对称）</td><td>$U,V$ 总是正交</td></tr>
+<tr><td>数值稳定性</td><td>一般</td><td>更稳定</td></tr>
+</table>
+</div>
+
+<h3>3.2 SVD 与 PCA 的关系（必考 ⭐⭐⭐⭐⭐）</h3>
+
+<div class="card card-red">
+<span class="tag tag-exam">Key Connection</span>
+<h3>SVD ↔ PCA 的核心联系</h3>
+<p>对<strong>中心化</strong>的数据矩阵 $X$（$n \times D$）做 SVD：</p>
+<div class="formula">$$X = U\Sigma V^T$$</div>
+
+<p>则：</p>
+<ul>
+  <li>$V$ 的列 = PCA 的主成分方向（即协方差矩阵 $C = \frac{1}{n}X^TX$ 的特征向量）</li>
+  <li>奇异值 $\sigma_i$ 与 PCA 的特征值 $\lambda_i$ 的关系：<span class="key">$\sigma_i^2 = n\lambda_i$</span></li>
+  <li>主成分得分 (PCA 投影后的数据) = $XV = U\Sigma$</li>
+</ul>
+
+<div class="note">
+<strong>💡 为什么这个关系重要？</strong><br>
+PCA 需要：计算 $C$（$D\times D$）→ 特征分解<br>
+SVD 可以：直接对 $X$（$n\times D$）做分解 → $V$ 就是主成分方向<br>
+→ <span class="key">当 $D$ 很大时，SVD 更高效</span>
+</div>
+
+<div class="example-box">
+<strong>🌰 数值例子帮助理解</strong><br>
+假设 $X$ 是 $100\times 5$ 的数据（100 个样本，5 个特征）。
+<p>PCA 路径：$X^TX$ = $5\times 5$ → 特征分解 → 得到 5 个特征向量和特征值</p>
+<p>SVD 路径：$X = U\Sigma V^T$ → $V$ 直接给出主成分方向，$\sigma_i^2$ 给出方差信息</p>
+<p>两种方法得到的主成分方向是一样的！</p>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Summary Table</span>
+<h3>SVD–PCA 对应关系速查表</h3>
+<table>
+<tr><th>SVD 中的量</th><th>PCA 中的对应</th></tr>
+<tr><td>右奇异向量 $V$</td><td>主成分方向（特征向量）</td></tr>
+<tr><td>奇异值平方 $\sigma_i^2$</td><td>$n$ 倍特征值（$n\lambda_i$）</td></tr>
+<tr><td>$U\Sigma$</td><td>主成分得分（投影后的数据）</td></tr>
+<tr><td>$\frac{\sigma_i^2}{\sum \sigma_j^2}$</td><td>方差解释比例</td></tr>
+</table>
+</div>
+
+<h3>3.3 低秩近似与图像压缩</h3>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Low-Rank Approximation</span>
+<h3>低秩近似：截断 SVD (Truncated SVD)</h3>
+
+<p>取前 $k$ 个最大的奇异值（$k \ll \min(m,n)$），其余设为 0：</p>
+<div class="formula">$$A \approx A_k = U_k\Sigma_k V_k^T$$</div>
+
+<p>原始矩阵需要存储 $m \times n$ 个数，低秩近似只需：</p>
+<div class="formula">$$\text{存储量} = k(m + n + 1) \quad \text{vs} \quad mn$$</div>
+
+<div class="example-box">
+<strong>🌰 图像压缩例子</strong><br>
+一张 $1000\times 800$ 的灰度图：
+<ul>
+  <li>原始存储：$1000 \times 800 = 800,000$ 个数</li>
+  <li>取 $k=50$ 的低秩近似：$50 \times (1000 + 800 + 1) = 90,050$ 个数</li>
+  <li><span class="key">压缩比 ≈ 8.9 倍！</span></li>
+</ul>
+<p>而且如果奇异值衰减很快（前几个就占了大部分方差），图像质量损失不大。</p>
+</div>
+
+<div class="warn-box">
+<strong>⚠️ 易错点</strong>：
+<ul>
+  <li>"低秩"中的"秩" (rank) 是指矩阵的秩——即线性无关的行/列的最大数量</li>
+  <li>截断 SVD (取 $k$ 个奇异值) = 用秩为 $k$ 的矩阵近似原矩阵</li>
+  <li><strong>SVD 给出的低秩近似是"最优"的</strong>——在所有秩 $k$ 的矩阵中，$A_k$ 与 $A$ 的误差最小（Eckart-Young 定理）</li>
+</ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. t-SNE -->
+<!-- ============================================================ -->
+<h2>4. 数据可视化 &amp; t-SNE</h2>
+
+<div class="card card-amber">
+<span class="tag tag-def">Problem</span>
+<h3>高维数据无法直接可视化</h3>
+<p>一个 $D$ 维数据点：$\mathbf{x} = [x_1, x_2, \dots, x_D]$</p>
+<p>当 $D > 3$ 时，人类无法直接看图理解数据。</p>
+<p>比如人脸图像：50×64 = 3200 维 → 需要降维到 2D 或 3D 才能画出来。</p>
+</div>
+
+<div class="card card-pink">
+<span class="tag tag-thm">t-SNE</span>
+<h3>t-SNE（考试重点 ⭐⭐⭐⭐）</h3>
+<p><strong>全称</strong>：t-distributed Stochastic Neighbor Embedding</p>
+
+<h4>核心思想</h4>
+<p>"物以类聚，人以群分"——在高维空间中相近的点，在低维空间中也要相近。</p>
+
+<h4>算法三步骤（理解逻辑即可）</h4>
+<ol class="steps">
+<li><strong>高维空间算相似度</strong>：用高斯分布计算每两个点之间的"相似度" $p_{ij}$。<br>
+  <span style="font-size:13px;">如果点 $i$ 和 $j$ 距离近，$p_{ij}$ 大；距离远，$p_{ij}$ 小。</span></li>
+<li><strong>低维空间算相似度</strong>：在低维（2D/3D）空间中用 $t$ 分布计算点对相似度 $q_{ij}$。<br>
+  <span style="font-size:13px;">为什么用 $t$ 分布？$t$ 分布尾部更厚，允许低维空间中相距较远的点有更大的相似度 → 防止"拥挤"问题。</span></li>
+<li><strong>最小化差距</strong>：用 KL 散度衡量两个相似度分布的差距，最小化它：<br>
+  <div class="formula" style="font-size:14px;">$$C = \sum_{i,j} p_{ij}\log\frac{p_{ij}}{q_{ij}}$$</div>
+</li>
+</ol>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Interpretation</span>
+<h3>t-SNE 的 Loss 函数详解（重点 ⭐⭐⭐）</h3>
+<div class="formula">$$C = \sum_{i,j} p_{ij}\log\frac{p_{ij}}{q_{ij}}$$</div>
+
+<table>
+<tr><th>情况</th><th>$p_{ij}$</th><th>$q_{ij}$</th><th>损失 $\log(p/q)$</th><th>惩罚</th></tr>
+<tr><td>本来很近，投影也很近</td><td>大</td><td>大</td><td>小</td><td>✅ 正确，小惩罚</td></tr>
+<tr><td>本来很近，投影却被拉远了</td><td><span class="key">大</span></td><td><span class="key">小</span></td><td><span class="key">大</span></td><td>❌ <strong>严重惩罚</strong></td></tr>
+<tr><td>本来很远，投影却被拉近了</td><td>小</td><td>大</td><td>负数</td><td>✅ 惩罚很小（允许）</td></tr>
+</table>
+
+<div class="note">
+<strong>💡 记忆口诀</strong>："近点拉远使劲罚，远点拉近无所谓"<br>
+→ t-SNE 优先保留局部结构（近邻关系），全局距离不一定要准确。
+</div>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">PCA vs t-SNE</span>
+<h3>PCA vs t-SNE：什么时候用哪个？</h3>
+<table>
+<tr><th></th><th>PCA</th><th>t-SNE</th></tr>
+<tr><td>类型</td><td>线性降维</td><td>非线性降维</td></tr>
+<tr><td>目标</td><td>保留全局方差</td><td>保留局部邻域结构</td></tr>
+<tr><td>速度</td><td>快（线性方法）</td><td>慢（非线性迭代）</td></tr>
+<tr><td>适合</td><td>预处理、去相关、压缩</td><td>可视化（分辨聚类）</td></tr>
+<tr><td>结果确定性</td><td>每次结果一样</td><td>每次可能不同（随机初始化）</td></tr>
+<tr><td>可用于新数据</td><td>✅ 可以（直接投影）</td><td>❌ 不可以（需要重新跑）</td></tr>
+</table>
+</div>
+
+<!-- ============================================================ -->
+<!-- 5. 对比总结 -->
+<!-- ============================================================ -->
+<h2>5. 快速对比与易混淆点总结</h2>
+
+<div class="card card-red">
+<span class="tag tag-warn">⚠️ 考试易混淆概念</span>
+<h3>常见混淆与澄清</h3>
+
+<table>
+<tr><th>混淆点</th><th>澄清</th></tr>
+<tr><td>特征向量 vs 主成分</td><td>特征向量 = 主成分的<strong>方向</strong>；主成分 = 原始数据投影到这个方向后的<strong>结果</strong></td></tr>
+<tr><td>特征值 vs 奇异值</td><td>特征值 $\lambda$ 来自 $X^TX$ 的特征分解；奇异值 $\sigma$ 来自 $X$ 的 SVD。关系：$\sigma_i^2 = n\lambda_i$</td></tr>
+<tr><td>PCA 降维 vs 特征选择</td><td>PCA 创造<strong>新特征</strong>（线性组合）；特征选择是挑<strong>原有的</strong>几个特征</td></tr>
+<tr><td>$U$ vs $V$ 的作用</td><td>$V$ 的列是主成分方向（右奇异向量）；$U\Sigma$ 是主成分得分</td></tr>
+<tr><td>SVD 和特征分解的关系</td><td>SVD 是对 $X$ 分解；特征分解是对 $X^TX$ 分解。两者通过 $X = U\Sigma V^T$ 联系</td></tr>
+<tr><td>PCA 需要中心化吗？</td><td><span class="key">必须</span>中心化！否则第一个主成分可能被均值方向带走</td></tr>
+<tr><td>t-SNE 的困惑在哪里？</td><td>它的损失函数不对称：近点拉远惩罚大，远点拉近惩罚小 → 优先保持局部结构</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<h3>📌 本讲核心公式速查</h3>
+<table>
+<tr><th>公式</th><th>含义</th></tr>
+<tr><td>$C = \frac{1}{n}X^TX$</td><td>协方差矩阵</td></tr>
+<tr><td>$C = V\Lambda V^T$</td><td>PCA 的特征分解</td></tr>
+<tr><td>$X = U\Sigma V^T$</td><td>SVD 分解</td></tr>
+<tr><td>$A_k = U_k\Sigma_k V_k^T$</td><td>低秩近似（截断 SVD）</td></tr>
+<tr><td>$\sigma_i^2 = n\lambda_i$</td><td>SVD 奇异值与 PCA 特征值的关系</td></tr>
+<tr><td>$C = \sum p_{ij}\log(p_{ij}/q_{ij})$</td><td>t-SNE 的 KL 散度损失函数</td></tr>
+</table>
+</div>
+
+<div class="card card-green">
+<h3>📝 复习建议</h3>
+<ul>
+  <li><strong>PCA 部分</strong>：要能默写六步算法，理解为什么找最大方差方向 = 找协方差矩阵的特征向量</li>
+  <li><strong>SVD 部分</strong>：弄清 $U, \Sigma, V$ 的含义，以及和 PCA 的对应关系（必考题）</li>
+  <li><strong>低秩近似</strong>：知道为什么 $k(m+n+1) \ll mn$ 实现了压缩</li>
+  <li><strong>t-SNE</strong>：理解 KL 散度的不对称性——为什么"近点拉远惩罚大，远点拉近惩罚小"</li>
+  <li><strong>对比</strong>：PCA（线性、全局方差）vs t-SNE（非线性、局部结构）</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>

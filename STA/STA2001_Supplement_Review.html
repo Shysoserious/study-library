@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STA2001 补充阅读 | 随机变量函数 · 配对生日 · 辛普森悖论 · 两孩问题</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5; color: #333; line-height: 1.8;
+        }
+        html { scroll-behavior: smooth; }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; height: 60px;
+            background: linear-gradient(135deg, #5e35b1 0%, #3949ab 100%);
+            color: white; display: flex; align-items: center; padding: 0 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000;
+        }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+        .sidebar {
+            position: fixed; left: 0; top: 60px; width: 280px;
+            height: calc(100vh - 60px); background-color: #2c3e50;
+            border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999;
+        }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title {
+            font-weight: bold; color: #ecf0f1; padding: 10px 10px;
+            cursor: pointer; user-select: none; display: flex; align-items: center;
+            transition: all 0.3s ease; font-size: 14px; border-radius: 6px;
+        }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #5e35b1; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections { padding-left: 20px; max-height: 500px; overflow: hidden; transition: max-height 0.3s ease; }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section {
+            padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent;
+            color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px;
+            border-radius: 0 4px 4px 0;
+        }
+        .toc-section:hover { background-color: #34495e; border-left-color: #5e35b1; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: calc(100vw - 320px); margin-left: 280px; margin-right: auto; font-size: 17.5px; }
+        .lecture { margin-bottom: 60px; }
+        .lecture-title {
+            font-size: 32px; color: #5e35b1; margin-bottom: 30px;
+            padding-bottom: 15px; border-bottom: 3px solid #5e35b1;
+        }
+        .section-title {
+            font-size: 24px; color: #4527a0; margin: 35px 0 20px 0;
+            padding-left: 15px; border-left: 5px solid #4527a0;
+        }
+        .subsection-title { font-size: 20px; color: #555; margin: 25px 0 15px 0; padding-left: 12px; border-left: 4px solid #bbb; }
+        .card { margin: 20px 0; padding: 20px; border-radius: 8px; border-left: 5px solid #ddd; background-color: #fafafa; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card.bigidea { border-left-color: #e91e63; background-color: #fce4ec; }
+        .card-title { font-weight: bold; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card.bigidea .card-title { color: #e91e63; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+        .en {
+            display: inline-block; background-color: #ede7f6; color: #311b92;
+            font-family: 'Courier New', Consolas, monospace; font-size: 0.92em;
+            padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600;
+        }
+        .formula-box { background-color: #e8f4fd; border-left: 5px solid #2196F3; border-radius: 6px; padding: 18px 22px; margin: 18px 0; font-size: 17px; text-align: center; overflow-x: auto; }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li { counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0; position: relative; background: #f8f9fa; border-radius: 6px; }
+        .step-list li::before { content: counter(step); position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #5e35b1; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; font-size: 14px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background-color: white; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+        .comparison-table th { background-color: #5e35b1; color: white; font-weight: bold; }
+        .comparison-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .comparison-table tr:hover { background-color: #f0f0f0; }
+        .note { margin-top: 15px; padding: 12px 15px; background-color: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px; font-size: 14px; }
+        .check { color: #4caf50; font-weight: bold; }
+        .cross { color: #f44336; font-weight: bold; }
+        p { margin: 10px 0; }
+        .diagram-container { text-align: center; margin: 20px 0; padding: 15px; background: white; border-radius: 8px; border: 1px solid #e0e0e0; }
+        .diagram-caption { text-align: center; font-size: 13px; color: #888; margin-top: 8px; }
+        svg text { font-family: 'Segoe UI', sans-serif; }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; } .sidebar.open { transform: translateX(0); } .main-content { margin-left: 0; padding: 20px; max-width: 100%; font-size: 15px; } .navbar-title { font-size: 18px; } .menu-toggle { display: block !important; } }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="menu-toggle" id="menuToggle" style="display:none;background:none;border:none;color:white;font-size:24px;cursor:pointer;">&#9776;</button>
+    <div class="navbar-title">STA2001 补充阅读</div>
+    <div class="navbar-subtitle">随机变量函数 · 配对与生日问题 · 辛普森悖论 · 两孩问题</div>
+</nav>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture">
+            <div class="toc-lecture-title active" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> 一、随机变量的函数
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#rvf-def">定义：$g(X)$ 也是随机变量</a></div>
+                <div class="toc-section"><a href="#rvf-one2one">一对一情形</a></div>
+                <div class="toc-section"><a href="#rvf-many2one">多对一情形 (Theorem 3.7.3)</a></div>
+                <div class="toc-section"><a href="#rvf-walk">例：随机游走 (Y = 2X − n)</a></div>
+                <div class="toc-section"><a href="#rvf-dist">例：距原点距离 (D = |Y|)</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> 二、配对与生日问题
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#match-trick">核心技巧：指示变量 + 线性期望</a></div>
+                <div class="toc-section"><a href="#match-cards">例1：洗牌配对</a></div>
+                <div class="toc-section"><a href="#match-bday">例2：不同的生日数</a></div>
+                <div class="toc-section"><a href="#match-pairs">例3：生日匹配对数</a></div>
+                <div class="toc-section"><a href="#match-putnam">例4：Putnam 局部极大值</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> 三、辛普森悖论
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#simp-setup">数据与设定</a></div>
+                <div class="toc-section"><a href="#simp-strat">分性别计算：B 优于 A</a></div>
+                <div class="toc-section"><a href="#simp-combined">合并计算：A 优于 B</a></div>
+                <div class="toc-section"><a href="#simp-why">为什么会这样？</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture">
+            <div class="toc-lecture-title" onclick="toggleLecture(this)">
+                <span class="toc-toggle">&#9660;</span> 四、两个孩子问题
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#two-setup">问题设定与假设</a></div>
+                <div class="toc-section"><a href="#two-elder">变体1："老大是女孩"</a></div>
+                <div class="toc-section"><a href="#two-atleast">变体2："至少有一个女孩"</a></div>
+                <div class="toc-section"><a href="#two-random">变体3："随机遇到一个是女孩"</a></div>
+                <div class="toc-section"><a href="#two-compare">三版本对比与直觉</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<div class="main-content">
+
+<!-- ==================== 一、随机变量的函数 ==================== -->
+<div class="lecture" id="rvf">
+<h1 class="lecture-title">一、随机变量的函数 <span class="en">Functions of Random Variables</span></h1>
+
+<div class="card bigidea">
+    <div class="card-title"><span class="card-icon">&#128161;</span>核心问题</div>
+    <p>我们学了很多"有名有姓"的分布（伯努利、二项、泊松……）。但实际问题中，我们往往对<strong>随机变量的某个函数</strong>感兴趣——比如 $X^2$，$e^X$，$\sin(X)$，或者 $|X|$。</p>
+    <p>这些东西的分布怎么求？这篇资料回答的就是这个问题。</p>
+</div>
+
+<h2 class="section-title" id="rvf-def">定义：$g(X)$ 也是随机变量</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>Definition 3.7.1</div>
+    <p>给定样本空间 $S$，随机变量 $X$，以及函数 $g: \mathbb{R} \to \mathbb{R}$。则 <strong>$g(X)$ 也是一个随机变量</strong>，它把每个样本点 $s$ 映射到 $g(X(s))$。</p>
+    <div class="diagram-container">
+        <svg width="650" height="160" viewBox="0 0 650 160">
+            <circle cx="45" cy="60" r="12" fill="#e3f2fd" stroke="#2196F3" stroke-width="1.5"/>
+            <circle cx="45" cy="100" r="12" fill="#e3f2fd" stroke="#2196F3" stroke-width="1.5"/>
+            <circle cx="45" cy="140" r="12" fill="#e3f2fd" stroke="#2196F3" stroke-width="1.5"/>
+            <text x="45" y="65" text-anchor="middle" font-size="10">s₁</text>
+            <text x="45" y="105" text-anchor="middle" font-size="10">s₂</text>
+            <text x="45" y="145" text-anchor="middle" font-size="10">s₃</text>
+            <text x="42" y="175" text-anchor="middle" font-size="11" fill="#888">样本空间 S</text>
+            <line x1="60" y1="60" x2="180" y2="50" stroke="#e67e22" stroke-width="2" marker-end="url(#arrO)"/>
+            <line x1="60" y1="100" x2="180" y2="80" stroke="#e67e22" stroke-width="2" marker-end="url(#arrO)"/>
+            <line x1="60" y1="140" x2="180" y2="130" stroke="#e67e22" stroke-width="2" marker-end="url(#arrO)"/>
+            <text x="120" y="35" text-anchor="middle" font-size="12" fill="#e67e22" font-weight="bold">X</text>
+            <rect x="190" y="28" width="90" height="28" rx="5" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+            <text x="235" y="48" text-anchor="middle" font-size="13" fill="#333">X(s₁)=0</text>
+            <rect x="190" y="68" width="90" height="28" rx="5" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+            <text x="235" y="88" text-anchor="middle" font-size="13" fill="#333">X(s₂)=1</text>
+            <rect x="190" y="113" width="90" height="28" rx="5" fill="#fff3e0" stroke="#e67e22" stroke-width="1.5"/>
+            <text x="235" y="133" text-anchor="middle" font-size="13" fill="#333">X(s₃)=4</text>
+            <line x1="285" y1="42" x2="380" y2="42" stroke="#5e35b1" stroke-width="2" marker-end="url(#arrP)"/>
+            <line x1="285" y1="82" x2="380" y2="65" stroke="#5e35b1" stroke-width="2" marker-end="url(#arrP)"/>
+            <line x1="285" y1="127" x2="380" y2="95" stroke="#5e35b1" stroke-width="2" marker-end="url(#arrP)"/>
+            <text x="340" y="20" text-anchor="middle" font-size="12" fill="#5e35b1" font-weight="bold">g</text>
+            <rect x="390" y="28" width="110" height="28" rx="5" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+            <text x="445" y="48" text-anchor="middle" font-size="13" fill="#333">g(X(s₁))=0</text>
+            <rect x="390" y="58" width="110" height="28" rx="5" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+            <text x="445" y="78" text-anchor="middle" font-size="13" fill="#333">g(X(s₂))=1</text>
+            <rect x="390" y="88" width="110" height="28" rx="5" fill="#ede7f6" stroke="#5e35b1" stroke-width="1.5"/>
+            <text x="445" y="108" text-anchor="middle" font-size="13" fill="#333">g(X(s₃))=2</text>
+            <defs>
+                <marker id="arrO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#e67e22"/></marker>
+                <marker id="arrP" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#5e35b1"/></marker>
+            </defs>
+        </svg>
+        <div class="diagram-caption">$g(x) = \sqrt{x}$ 的例子：先经 $X$ 映射，再经 $g$ 映射。$g(X)$ 本质上是 $g \circ X$（复合函数）。</div>
+    </div>
+    <p class="note"><strong>一句话理解：</strong>把 $X$ 的每个可能取值，塞进函数 $g$ 里算出新值，就得到了新随机变量 $g(X)$。如果 $X$ 取值 0, 1, 4 的概率分别是 $p_0, p_1, p_4$，那么 $g(X)$ 取值 $g(0), g(1), g(4)$——概率照搬……但前提是 $g$ 不能把不同值"合并"。</p>
+</div>
+
+<div class="card tip">
+    <div class="card-title"><span class="card-icon">&#128161;</span>实例：篮球七场四胜</div>
+    <p>$X$ = A 队赢的场数，$X \sim \text{Bin}(7, 1/2)$。</p>
+    <p>$g(X) = 7 - X$ = B 队赢的场数（一对一，概率照搬）</p>
+    <p>$h(X) = \begin{cases}1, & X \ge 4 \\ 0, & X < 4\end{cases}$ = A 队是否赢得系列赛（多对一，需要把 $X=4,5,6,7$ 的概率加总）</p>
+</div>
+
+<h2 class="section-title" id="rvf-one2one">情形一：$g$ 是一对一函数（简单）</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>一对一情形：概率照搬</div>
+    <p>若 $g$ 是一对一的（每个 $y$ 只对应唯一一个 $x$），则 $Y = g(X)$ 的支撑集就是 $\{g(x) : x \in \text{support}(X)\}$，且：</p>
+    <div class="formula-box important">
+        $$P(Y = g(x)) = P(g(X) = g(x)) = P(X = x)$$
+    </div>
+    <p>概率表直接翻译过去：</p>
+    <table class="comparison-table">
+        <tr><th>$x$</th><th>$P(X=x)$</th><th></th><th>$y = g(x)$</th><th>$P(Y=y)$</th></tr>
+        <tr><td>$x_1$</td><td>$p_1$</td><td></td><td>$g(x_1)$</td><td>$p_1$</td></tr>
+        <tr><td>$x_2$</td><td>$p_2$</td><td>&rarr;</td><td>$g(x_2)$</td><td>$p_2$</td></tr>
+        <tr><td>$x_3$</td><td>$p_3$</td><td></td><td>$g(x_3)$</td><td>$p_3$</td></tr>
+    </table>
+</div>
+
+<h2 class="section-title" id="rvf-many2one">情形二：$g$ 不是一对一的（需要加总）</h2>
+
+<div class="card theorem">
+    <div class="card-title"><span class="card-icon">&#9733;</span>Theorem 3.7.3：多对一情形的 PMF</div>
+    <p>对于任意函数 $g: \mathbb{R} \to \mathbb{R}$，$Y = g(X)$ 的 PMF 为：</p>
+    <div class="formula-box important">
+        $$P(Y = y) = \sum_{x:\, g(x) = y} P(X = x)$$
+    </div>
+    <p><strong>含义：</strong>把所有满足 $g(x) = y$ 的 $x$ 的概率<strong>加在一起</strong>。因为这些 $x$ 都对应同一个 $y$，是互斥事件，所以概率直接相加。</p>
+</div>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>别搞混</div>
+    <p>$g(X) = X^2$ 时，$y=4$ 可以来自 $x=2$ 或 $x=-2$：</p>
+    <div class="formula-box">
+        $$P(X^2 = 4) = P(X = 2) + P(X = -2)$$
+    </div>
+    <p>对于绝对值 $g(X) = |X|$ 也是一样：$y=3$ 来自 $x=3$ 或 $x=-3$。</p>
+</div>
+
+<h2 class="section-title" id="rvf-walk">例 3.7.2：随机游走（一对一应用）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：$n$ 步随机游走后的位置</div>
+    <p>粒子从原点出发，每步独立地以概率 $1/2$ 向右或向左移动 1 单位。$n$ 步后位置为 $Y$，求 $Y$ 的 PMF。</p>
+
+    <p><strong>解法思路：不直接求 $Y$，而是借助已知分布 $X$。</strong></p>
+
+    <p><strong>Step 1：</strong>设 $X$ = 向右的步数。则 $X \sim \text{Bin}(n, 1/2)$，这个是已知的。</p>
+
+    <p><strong>Step 2：</strong>建立 $Y$ 和 $X$ 的一对一关系。若 $X=j$（向右走 $j$ 步），则向左走 $n-j$ 步，最终位置：</p>
+    <div class="formula-box highlight">
+        $$Y = j - (n-j) = 2j - n = 2X - n$$
+    </div>
+    <p>$Y = 2X - n$ 是<strong>一对一</strong>函数（线性，斜率为正）。$X$ 取值 $\{0,1,\ldots,n\}$，则 $Y$ 取值 $\{-n, -n+2, -n+4, \ldots, n\}$。</p>
+
+    <p><strong>Step 3：</strong>一对一情形下，直接翻译概率：</p>
+    <div class="formula-box important">
+        $$P(Y = k) = P(2X - n = k) = P\left(X = \frac{n+k}{2}\right) = \binom{n}{\frac{n+k}{2}} \left(\frac{1}{2}\right)^n$$
+    </div>
+    <p>前提：$n+k$ 必须是偶数（即 $k$ 和 $n$ 同奇偶性），否则 $P(Y=k)=0$。</p>
+    <div class="note"><strong>核心技巧：</strong>把不熟悉的随机变量 $Y$ 表达为熟悉分布 $X$ 的一对一函数，概率自动照搬。</div>
+</div>
+
+<h2 class="section-title" id="rvf-dist">例 3.7.4：距原点的距离（多对一应用）</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>例：$n$ 步后的距离 $D = |Y|$</div>
+    <p>仍是上面那个随机游走，$n$ 为偶数。令 $D = |Y|$，求 $D$ 的 PMF。</p>
+
+    <p>$D = |Y|$ 不是一对一的：$Y = k$ 和 $Y = -k$ 都映射到 $D = k$（$k > 0$）。</p>
+
+    <p><strong>零点：</strong>$D = 0 \iff Y = 0$，所以 $P(D = 0) = P(Y = 0) = \binom{n}{n/2} (1/2)^n$。</p>
+
+    <p><strong>正点：</strong>$k = 2, 4, \ldots, n$：</p>
+    <div class="formula-box important">
+        $$P(D = k) = P(Y = k) + P(Y = -k) = 2 \cdot \binom{n}{\frac{n+k}{2}} \left(\frac{1}{2}\right)^n$$
+    </div>
+    <p>最后一步利用了对称性 $P(Y = k) = P(Y = -k)$（左右等概率）。</p>
+</div>
+
+</div><!-- end 一 -->
+
+<!-- ==================== 二、配对与生日问题 ==================== -->
+<div class="lecture" id="match">
+<h1 class="lecture-title">二、配对与生日问题 <span class="en">Matching &amp; Birthday Problems</span></h1>
+
+<div class="card bigidea">
+    <div class="card-title"><span class="card-icon">&#128161;</span>三合一技巧：指示变量 + 线性期望 + 对称性</div>
+    <p>这几个问题的共同模式：把复杂随机变量 $X$ 拆成简单指示变量之和 $X = I_1 + I_2 + \cdots + I_n$，然后：</p>
+    <ol>
+        <li><strong>Fundamental Bridge（基本桥梁）：</strong>$E[I_j] = P(I_j = 1)$，指示变量的期望 = 它对应事件发生的概率</li>
+        <li><strong>Linearity（线性性）：</strong>$E[X] = E[I_1] + E[I_2] + \cdots + E[I_n]$，<strong>不需要独立性</strong></li>
+        <li><strong>Symmetry（对称性）：</strong>每个 $E[I_j]$ 通常相等，所以只需算一次然后乘以 $n$</li>
+    </ol>
+    <p class="note"><strong>最震撼的一点：</strong>线性期望不要求独立！$I_j$ 之间可以乱七八糟地相关（如洗牌问题中每张牌是否配对是高度依赖的），依旧能用。</p>
+</div>
+
+<h2 class="section-title" id="match-trick">核心技巧详解：指示变量 + 线性期望</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>指示变量 <span class="en">Indicator Random Variable</span></div>
+    <div class="formula-box highlight">
+        $$I_j = \begin{cases} 1, & \text{事件 } A_j \text{ 发生} \\ 0, & \text{事件 } A_j \text{ 不发生} \end{cases}$$
+    </div>
+    <p>于是 $E[I_j] = 1 \cdot P(A_j) + 0 \cdot P(A_j^c) = P(A_j)$。</p>
+    <p>如果 $X = I_1 + I_2 + \cdots + I_n$ 计数的是"有多少个事件发生了"，那么 $E[X] = \sum_{j=1}^n P(A_j)$。</p>
+    <p><strong>这不需要 $A_j$ 之间独立！</strong></p>
+</div>
+
+<div class="diagram-container">
+    <svg width="600" height="170" viewBox="0 0 600 170">
+        <text x="300" y="22" text-anchor="middle" font-size="15" fill="#333" font-weight="bold">复杂随机变量 X → 拆成指示变量 Iⱼ → 线性期望求和 → 答案</text>
+        <rect x="20" y="45" width="160" height="80" rx="10" fill="rgba(233,30,99,0.1)" stroke="#e91e63" stroke-width="2"/>
+        <text x="100" y="75" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">复杂问题</text>
+        <text x="100" y="95" text-anchor="middle" font-size="11" fill="#555">洗牌配对 / 生日</text>
+        <text x="100" y="113" text-anchor="middle" font-size="11" fill="#555">排列局部极值</text>
+        <line x1="185" y1="85" x2="235" y2="85" stroke="#5e35b1" stroke-width="2" marker-end="url(#arrM1)"/>
+        <rect x="240" y="45" width="130" height="80" rx="10" fill="rgba(94,53,177,0.1)" stroke="#5e35b1" stroke-width="2"/>
+        <text x="305" y="70" text-anchor="middle" font-size="13" fill="#5e35b1" font-weight="bold">拆成指示变量</text>
+        <text x="305" y="93" text-anchor="middle" font-size="11" fill="#555">I₁ + I₂ + … + Iₙ</text>
+        <text x="305" y="113" text-anchor="middle" font-size="11" fill="#555">E[Iⱼ] = P(Aⱼ)</text>
+        <line x1="375" y1="85" x2="425" y2="85" stroke="#4caf50" stroke-width="2" marker-end="url(#arrM2)"/>
+        <rect x="430" y="45" width="150" height="80" rx="10" fill="rgba(76,175,80,0.1)" stroke="#4caf50" stroke-width="2"/>
+        <text x="505" y="70" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold">线性期望</text>
+        <text x="505" y="93" text-anchor="middle" font-size="11" fill="#555">无需独立！</text>
+        <text x="505" y="113" text-anchor="middle" font-size="11" fill="#555">E[X] = Σ P(Aⱼ)</text>
+        <defs>
+            <marker id="arrM1" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#5e35b1"/></marker>
+            <marker id="arrM2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4caf50"/></marker>
+        </defs>
+    </svg>
+    <div class="diagram-caption">三步流程：复杂问题 → 拆指示变量 → 线性期望求和。不需要独立性是最大优势。</div>
+</div>
+
+<h2 class="section-title" id="match-cards">例 1：洗牌配对</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example 4.4.4：洗牌后有多少张牌位置不变？</div>
+    <p>$n$ 张牌（标号 $1,2,\ldots,n$），随机排列。$X$ = 位置不变的牌的张数（i.e., 第 $j$ 张牌恰好落在第 $j$ 个位置 ）。求 $E[X]$。</p>
+
+    <p><strong>直接求 $X$ 的分布非常困难</strong>——配对数是高度依赖的（如果前 $n-1$ 张都配对，第 $n$ 张一定也配对）。但用指示变量：</p>
+
+    <p>$I_j = 1$ 若第 $j$ 张牌配对。$X = I_1 + \cdots + I_n$。</p>
+
+    <p>$P(I_j = 1) = \frac{1}{n}$（随机排列中，第 $j$ 张牌落在第 $j$ 个位置的概率）。</p>
+
+    <div class="formula-box important">
+        $$E[X] = \sum_{j=1}^n E[I_j] = \sum_{j=1}^n \frac{1}{n} = 1$$
+    </div>
+
+    <p><strong>结论：</strong>洗 $n$ 张牌，平均有<strong>恰好 1 张</strong>留在原位——与 $n$ 无关！10 张牌是 1 张，100 张牌也是 1 张。这个结果用其他方法几乎无法得到。</p>
+</div>
+
+<h2 class="section-title" id="match-bday">例 2：不同的生日数</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example 4.4.5：$n$ 个人中有多少个不同生日？</div>
+    <p>$n$ 个人，生日独立均匀分布在 365 天。$X$ = 至少有一个人的生日落在其中的天数。换句话说：365 天中有多少天"被占用了"？求 $E[X]$。</p>
+
+    <p>$X = I_1 + \cdots + I_{365}$，其中 $I_j = 1$ 若第 $j$ 天被至少一个人占用。</p>
+
+    <p>$P(I_j = 1) = 1 - P($没人这天生日$) = 1 - \left(\frac{364}{365}\right)^n$</p>
+
+    <div class="formula-box important">
+        $$E[X] = 365 \left[1 - \left(\frac{364}{365}\right)^n\right]$$
+    </div>
+
+    <p>比如 $n=23$ 时，$E[X] \approx 365 \cdot (1 - 0.9388) \approx 22.3$。23 个人，大约有 22 个不同的生日（只有约 1 对冲突）。$n=50$ 时 $E[X] \approx 46.8$。</p>
+</div>
+
+<h2 class="section-title" id="match-pairs">例 3：生日匹配对数</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>有多少对人生日相同？</div>
+    <p>同样 $n$ 个人。$Y$ = 生日相同的<strong>对数</strong>（每两个人为一对）。求 $E[Y]$。</p>
+
+    <p>$Y = J_1 + \cdots + J_{\binom{n}{2}}$，其中每个 $J_i$ 指示某一对特定的两人是否同生日。</p>
+
+    <p>任意两人的生日相同的概率 $P(J_i = 1) = \frac{1}{365}$。</p>
+
+    <div class="formula-box important">
+        $$E[Y] = \binom{n}{2} \cdot \frac{1}{365}$$
+    </div>
+
+    <p>$n=23$ 时：$E[Y] = \frac{23 \cdot 22}{2 \cdot 365} = \frac{253}{365} \approx 0.69$。平均不到 1 对。<br/>$n=50$ 时：$E[Y] = \frac{1225}{365} \approx 3.36$ 对。</p>
+</div>
+
+<h2 class="section-title" id="match-putnam">例 4：Putnam 竞赛题 — 局部极大值</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Example 4.4.6：随机排列中局部极大值的期望个数</div>
+    <p>$1,2,\ldots,n$ 的一个随机排列（$n!$ 种等可能）。位置 $j$ 处是<strong>局部极大值</strong>当 $a_j$ 比左右邻居都大（$a_{j-1} < a_j > a_{j+1}$）。两端各有一个邻居。求局部极大值的期望个数。</p>
+
+    <p><strong>这道题来自 Putnam 竞赛</strong>（全美最难的大学数学竞赛，中位数分数经常是 0）。用指示变量几十秒就能解。</p>
+
+    <p>$X = I_1 + \cdots + I_n$，$I_j$ 指示位置 $j$ 是否为局部极大值。</p>
+
+    <p><strong>中间位置</strong>（$2 \le j \le n-1$）：$a_{j-1}, a_j, a_{j+1}$ 三个数中，$a_j$ 最大的概率 = $1/3$（等可能排列，三个位置中任意一个是最大的概率相等）。所以 $E[I_j] = \frac{1}{3}$。</p>
+
+    <p><strong>两端位置</strong>（$j=1$ 或 $j=n$）：只有一个邻居，$a_j$ 比邻居大的概率 = $1/2$。所以 $E[I_1] = E[I_n] = \frac{1}{2}$。</p>
+
+    <div class="formula-box important">
+        $$E[X] = 2 \cdot \frac{1}{2} + (n-2) \cdot \frac{1}{3} = \frac{n+1}{3}$$
+    </div>
+
+    <p><strong>这就是最终的简洁答案！</strong>$n=5$ 时 $E[X]=2$；$n=100$ 时 $E[X] \approx 33.7$。一个 Putnam 竞赛题被三行解法解决，全靠指示变量 + 线性期望 + 对称性。</p>
+</div>
+
+</div><!-- end 二 -->
+
+<!-- ==================== 三、辛普森悖论 ==================== -->
+<div class="lecture" id="simp">
+<h1 class="lecture-title">三、辛普森悖论 <span class="en">Simpson's Paradox</span></h1>
+
+<div class="card bigidea">
+    <div class="card-title"><span class="card-icon">&#9888;</span>一句话描述</div>
+    <p><strong>每个子组里都是 B 更好，但合并后反而 A 更好。</strong>这不是数学错误——是分组比例不同造成的"统计错觉"。它警告你：<strong>不能盲目合并分组数据，否则结论可能完全反转。</strong></p>
+</div>
+
+<h2 class="section-title" id="simp-setup">数据与设定</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>两种疗法 A 和 B</div>
+    <table class="comparison-table">
+        <tr><th colspan="3">男性 (Men)</th><th colspan="3">女性 (Women)</th></tr>
+        <tr><th></th><th>康复 (R)</th><th>死亡 (D)</th><th></th><th>康复 (R)</th><th>死亡 (D)</th></tr>
+        <tr><td><strong>A</strong></td><td>20</td><td>80</td><td><strong>A</strong></td><td>40</td><td>20</td></tr>
+        <tr><td><strong>B</strong></td><td>50</td><td>160</td><td><strong>B</strong></td><td>15</td><td>5</td></tr>
+    </table>
+</div>
+
+<h2 class="section-title" id="simp-strat">分性别计算：B 优于 A</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>男性和女性各自内部——B 都更优</div>
+    <p><strong>男性：</strong></p>
+    <div class="formula-box">
+        $$P(\text{康复} \mid \text{男性}, \text{A}) = \frac{20}{100} = \frac{1}{5} = 0.20$$
+        $$P(\text{康复} \mid \text{男性}, \text{B}) = \frac{50}{210} = \frac{5}{21} \approx 0.238$$
+    </div>
+    <p>B 的康复率更高：$0.238 > 0.20$。</p>
+
+    <p><strong>女性：</strong></p>
+    <div class="formula-box">
+        $$P(\text{康复} \mid \text{女性}, \text{A}) = \frac{40}{60} = \frac{2}{3} \approx 0.667$$
+        $$P(\text{康复} \mid \text{女性}, \text{B}) = \frac{15}{20} = \frac{3}{4} = 0.75$$
+    </div>
+    <p>B 的康复率也更高：$0.75 > 0.667$。</p>
+
+    <p><strong>结论（分组）：无论男女，B 都比 A 好。</strong></p>
+</div>
+
+<h2 class="section-title" id="simp-combined">合并所有数据：A 反而更好</h2>
+
+<div class="card warning">
+    <div class="card-title"><span class="card-icon">&#9888;</span>合并后的反转</div>
+    <p><strong>全部患者合并：</strong></p>
+    <div class="formula-box">
+        $$P(\text{康复} \mid \text{A}) = \frac{20 + 40}{100 + 60} = \frac{60}{160} = \frac{3}{8} = 0.375$$
+        $$P(\text{康复} \mid \text{B}) = \frac{50 + 15}{210 + 20} = \frac{65}{230} = \frac{13}{46} \approx 0.283$$
+    </div>
+    <p><strong>合并后 A 的康复率 37.5% 反而高于 B 的 28.3%！</strong>结论完全反转。</p>
+    <div class="formula-box important">
+        $$\text{分组：B > A} \qquad \longrightarrow \qquad \text{合并：A > B}$$
+    </div>
+</div>
+
+<h2 class="section-title" id="simp-why">为什么会这样？</h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>本质原因：混淆变量</div>
+    <p>注意两个关键数字：</p>
+    <p>&bull; <strong>疗法 B 主要用在男性身上</strong>（210 男 vs 20 女），而<strong>男性的康复率本身就很低</strong>（不管用什么疗法）。</p>
+    <p>&bull; <strong>疗法 A 更多地用在女性身上</strong>（60 女 / 160 总 = 37.5%），而<strong>女性的康复率本身很高</strong>。</p>
+    <p>所以合并数据时，性别成为了一个<strong>混淆变量</strong>（<span class="en">confounding variable</span>）：B 看起来更差，是因为它的患者中"更难治"的男性比例太高，而不是因为疗法本身的效果差。</p>
+
+    <div class="diagram-container">
+        <svg width="600" height="200" viewBox="0 0 600 200">
+            <text x="50" y="30" font-size="13" fill="#e91e63" font-weight="bold">分组看：</text>
+            <rect x="20" y="45" width="120" height="50" rx="6" fill="rgba(76,175,80,0.15)" stroke="#4caf50" stroke-width="1.5"/>
+            <text x="80" y="65" text-anchor="middle" font-size="12" fill="#333">男性：B 优</text>
+            <text x="80" y="83" text-anchor="middle" font-size="11" fill="#555">(0.238 > 0.20)</text>
+            <rect x="160" y="45" width="120" height="50" rx="6" fill="rgba(76,175,80,0.15)" stroke="#4caf50" stroke-width="1.5"/>
+            <text x="220" y="65" text-anchor="middle" font-size="12" fill="#333">女性：B 优</text>
+            <text x="220" y="83" text-anchor="middle" font-size="11" fill="#555">(0.75 > 0.667)</text>
+
+            <text x="340" y="30" font-size="13" fill="#e91e63" font-weight="bold">合并看：</text>
+            <rect x="340" y="45" width="240" height="50" rx="6" fill="rgba(244,67,54,0.12)" stroke="#f44336" stroke-width="2"/>
+            <text x="460" y="65" text-anchor="middle" font-size="12" fill="#f44336" font-weight="bold">A 优 (0.375 > 0.283)</text>
+            <text x="460" y="83" text-anchor="middle" font-size="11" fill="#555">← 反转！</text>
+
+            <rect x="60" y="120" width="480" height="65" rx="8" fill="rgba(255,152,0,0.08)" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <text x="300" y="145" text-anchor="middle" font-size="13" fill="#ff9800" font-weight="bold">原因：B 的患者中男性占 210/230 = 91%，而男性天然更难治愈</text>
+            <text x="300" y="170" text-anchor="middle" font-size="12" fill="#555">性别是混淆变量 — 影响"用什么疗法"也影响"能不能治好"</text>
+        </svg>
+        <div class="diagram-caption">辛普森悖论的因果结构：性别同时影响疗法分配和治疗结果</div>
+    </div>
+
+    <p class="note">现实中有名的例子：1973 年加州大学伯克利分校的录取数据——每个系里女性录取率都不低于男性，但总体女性录取率低于男性。原因：女性更多地申请了录取率本来就低的系。</p>
+</div>
+
+</div><!-- end 三 -->
+
+<!-- ==================== 四、两个孩子问题 ==================== -->
+<div class="lecture" id="two">
+<h1 class="lecture-title">四、两个孩子问题 <span class="en">Two Children Problem</span></h1>
+
+<div class="card bigidea">
+    <div class="card-title"><span class="card-icon">&#128161;</span>同一个场景，不同条件 → 不同答案</div>
+    <p>核心谜题：一个家庭有两个孩子。<strong>已知的信息不同</strong>，会导致"两个都是同性别"的概率不同。这不是数学错误——是条件概率中"条件给得多精确"决定了答案。</p>
+</div>
+
+<h2 class="section-title" id="two-setup">问题设定与假设</h2>
+
+<div class="card definition">
+    <div class="card-title"><span class="card-icon">&#128214;</span>三个简化假设</div>
+    <p>1. 性别二元（男孩/女孩）</p>
+    <p>2. $P(\text{男}) = P(\text{女}) = 1/2$</p>
+    <p>3. 两个孩子性别独立</p>
+    <div class="formula-box">
+        $$\text{样本空间：} S = \{GG, GB, BG, BB\},\quad \text{各 } 1/4$$
+    </div>
+    <p>这里 GG 表示老大女孩、老二女孩。GB 表示老大女孩、老二男孩，以此类推。</p>
+</div>
+
+<h2 class="section-title" id="two-elder">变体 1：已知"老大是女孩" → 答案 1/2</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Mr. Jones：大的是女孩，问两个都是女孩的概率？</div>
+    <p>条件：老大是女孩。</p>
+    <p>排除掉 BB（老大男）和 BG（老大男），剩下 GG 和 GB。</p>
+
+    <div class="diagram-container">
+        <svg width="420" height="120" viewBox="0 0 420 120">
+            <rect x="20" y="30" width="80" height="50" rx="8" fill="rgba(76,175,80,0.25)" stroke="#4caf50" stroke-width="2"/>
+            <text x="60" y="60" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">GG ✓</text>
+            <rect x="120" y="30" width="80" height="50" rx="8" fill="rgba(76,175,80,0.25)" stroke="#4caf50" stroke-width="2"/>
+            <text x="160" y="60" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">GB ✓</text>
+            <rect x="220" y="30" width="80" height="50" rx="8" fill="rgba(244,67,54,0.1)" stroke="#f44336" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="260" y="60" text-anchor="middle" font-size="15" fill="#999">BG ✗</text>
+            <rect x="320" y="30" width="80" height="50" rx="8" fill="rgba(244,67,54,0.1)" stroke="#f44336" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="360" y="60" text-anchor="middle" font-size="15" fill="#999">BB ✗</text>
+            <text x="210" y="110" text-anchor="middle" font-size="13" fill="#333">条件："老大是女孩" → 排除 BG, BB → 剩下两个等可能 → 1/2</text>
+        </svg>
+        <div class="diagram-caption">指定了特定孩子（老大），条件排除了 2/4 的样本点</div>
+    </div>
+
+    <div class="formula-box highlight">
+        $$P(\text{两个都女} \mid \text{老大是女}) = \frac{P(GG)}{P(GG) + P(GB)} = \frac{1/4}{1/2} = \frac{1}{2}$$
+    </div>
+    <p><strong>直觉：</strong>指定了老大后，老二独立于老大，所以老二有 50% 概率是女孩。</p>
+</div>
+
+<h2 class="section-title" id="two-atleast">变体 2：已知"至少有一个女孩" → 答案 1/3</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>Mr. Smith：至少有一个女孩，问两个都是女孩的概率？</div>
+    <p>条件：至少有一个女孩。</p>
+    <p>只排除 BB，剩下 GG、GB、BG 三个等可能事件。</p>
+
+    <div class="diagram-container">
+        <svg width="420" height="120" viewBox="0 0 420 120">
+            <rect x="20" y="30" width="80" height="50" rx="8" fill="rgba(76,175,80,0.25)" stroke="#4caf50" stroke-width="2"/>
+            <text x="60" y="60" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">GG ✓</text>
+            <rect x="120" y="30" width="80" height="50" rx="8" fill="rgba(76,175,80,0.25)" stroke="#4caf50" stroke-width="2"/>
+            <text x="160" y="60" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">GB ✓</text>
+            <rect x="220" y="30" width="80" height="50" rx="8" fill="rgba(76,175,80,0.25)" stroke="#4caf50" stroke-width="2"/>
+            <text x="260" y="60" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">BG ✓</text>
+            <rect x="320" y="30" width="80" height="50" rx="8" fill="rgba(244,67,54,0.1)" stroke="#f44336" stroke-width="1" stroke-dasharray="5,3"/>
+            <text x="360" y="60" text-anchor="middle" font-size="15" fill="#999">BB ✗</text>
+            <text x="210" y="110" text-anchor="middle" font-size="13" fill="#333">条件："至少有一女" → 只排除 BB → 剩下三个等可能 → 1/3</text>
+        </svg>
+        <div class="diagram-caption">不指定具体孩子，条件只排除了 1/4 的样本点</div>
+    </div>
+
+    <div class="formula-box highlight">
+        $$P(\text{两个都女} \mid \text{至少一女}) = \frac{P(GG)}{P(GG) + P(GB) + P(BG)} = \frac{1/4}{3/4} = \frac{1}{3}$$
+    </div>
+    <p><strong>直觉：</strong>"至少有一个女孩"比"老大是女孩"条件更弱——它只告诉你"不是 BB"，但没告诉你到底是哪一个。三个符合条件的组合中，只有一个（GG）满足"两个都是女孩"。</p>
+</div>
+
+<h2 class="section-title" id="two-random">变体 3：随机遇到一个是女孩 → 答案 1/2</h2>
+
+<div class="card example">
+    <div class="card-title"><span class="card-icon">&#9998;</span>你随机碰到其中一个孩子，发现是女孩。问两个都是女孩的概率？</div>
+    <p>这个版本微妙地不同于前面两个。假设你等可能地遇到两个孩子中的任意一个，且遇到谁与性别独立。</p>
+
+    <p>令 $G_3$ = "你随机碰到的孩子是女孩"。$G_1, G_2$ 分别是老大和老二是女孩。</p>
+    <p>$P(G_1 G_2 G_3) = P(G_1 G_2) = 1/4$（两个都是女孩保证你碰到的是女孩）。$P(G_3) = 1/2$。</p>
+
+    <div class="formula-box highlight">
+        $$P(\text{两个都女} \mid \text{随机碰到的是女}) = \frac{P(G_1 G_2 G_3)}{P(G_3)} = \frac{1/4}{1/2} = \frac{1}{2}$$
+    </div>
+
+    <p><strong>直觉：</strong>随机遇到一个孩子就像"指定了一个具体孩子"。你知道这个特定孩子是女孩，另一个孩子（不管在家的是老大还是老二）有 50% 概率是女孩。这等价于变体 1。</p>
+</div>
+
+<h2 class="section-title" id="two-compare">三版本对比总结</h2>
+
+<div class="card connection">
+    <div class="card-title"><span class="card-icon">&#128279;</span>为什么答案不同？——条件信息量不同</div>
+    <table class="comparison-table">
+        <tr><th>条件</th><th>排除的样本点</th><th>符合条件的</th><th>答案</th><th>直觉</th></tr>
+        <tr><td>老大是女孩</td><td>BG, BB（2 个）</td><td>GG, GB</td><td><strong>1/2</strong></td><td>指定了具体孩子，另一个独立</td></tr>
+        <tr><td>至少有一女孩</td><td>BB（1 个）</td><td>GG, GB, BG</td><td><strong>1/3</strong></td><td>不指定谁，条件更"弱"</td></tr>
+        <tr><td>随机遇到一女</td><td>取决于遇到谁</td><td>等价于"指定"</td><td><strong>1/2</strong></td><td>随机采样 = 指定了特定孩子</td></tr>
+    </table>
+
+    <p class="note"><strong>核心教训：</strong>条件概率中，条件怎么给非常重要。"至少有一个"是一种较弱的条件，给的信息比"指定具体哪一个"少。信息越少，能排除的样本点越少，答案就可能越小（1/3 vs 1/2）。这在统计推断中至关重要——要知道你的样本是"怎么收集的"，而不只是盯着数据本身。</p>
+</div>
+
+</div><!-- end 四 -->
+
+</div><!-- end main-content -->
+
+<script>
+function toggleLecture(el) {
+    const lecture = el.parentElement;
+    lecture.classList.toggle('collapsed');
+}
+document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('open');
+});
+document.querySelectorAll('.toc-section a').forEach(a => {
+    a.addEventListener('click', function(){
+        document.querySelectorAll('.toc-section').forEach(s => s.style.borderLeftColor = 'transparent');
+        this.parentElement.style.borderLeftColor = '#5e35b1';
+    });
+});
+</script>
+</body>
+</html>

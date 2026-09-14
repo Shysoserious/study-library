@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA2001 期末考前速通 — 2024+2025 高频考点系统整理</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f8f7f4;color:#1a1a1a;line-height:1.9;font-size:16px;}
+.sidebar{position:fixed;top:0;left:0;width:250px;height:100vh;background:#f0eee9;border-right:1px solid #ddd;overflow-y:auto;padding:20px 0;z-index:100;}
+.sidebar-title{padding:0 20px 14px;font-size:16px;font-weight:700;color:#534AB7;border-bottom:1px solid #ddd;margin-bottom:10px;}
+.sidebar-sec{font-size:12px;font-weight:700;color:#888;padding:12px 20px 5px;text-transform:uppercase;letter-spacing:.5px;}
+.sidebar a{display:block;padding:6px 20px;color:#333;text-decoration:none;font-size:13px;border-left:3px solid transparent;}
+.sidebar a:hover{color:#534AB7;background:rgba(83,74,183,0.06);border-left-color:#534AB7;}
+.sidebar a.tag-hot{color:#C43B7A;font-weight:600;}
+.sidebar a.tag-hot:hover{color:#C43B7A;background:rgba(196,59,122,0.06);border-left-color:#C43B7A;}
+.main{margin-left:250px;padding:32px 44px 60px;}
+.container{max-width:900px;margin:0 auto;}
+h1{font-size:28px;font-weight:700;margin-bottom:4px;color:#534AB7;}
+h1 span{font-size:15px;font-weight:400;color:#888;}
+h2{font-size:23px;font-weight:700;margin:40px 0 16px;padding-bottom:8px;border-bottom:3px solid #534AB7;color:#534AB7;}
+h2 .pts{font-size:14px;font-weight:400;color:#888;}
+h3{font-size:19px;font-weight:600;margin:28px 0 12px;color:#1a1a1a;border-left:4px solid #534AB7;padding-left:14px;}
+h3.hot{border-left-color:#C43B7A;}
+h3.hot::before{content:"🔥 ";font-size:16px;}
+h4{font-size:16px;font-weight:600;margin:18px 0 8px;color:#333;}
+.subtitle{color:#666;font-size:14px;margin-bottom:20px;}
+p{margin-bottom:12px;}
+.card{background:#fff;border:1px solid #e5e3de;border-radius:12px;padding:18px 22px;margin:14px 0;}
+.card-ans{border-left:5px solid #0F6E56;}
+.card-know{border-left:5px solid #185FA5;}
+.card-hot{border-left:5px solid #C43B7A;background:#fef6fa;}
+.card-warn{border-left:5px solid #E24B4A;background:#fef6f6;}
+.card-cmp{border-left:5px solid #BA7517;background:#fefbf5;}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-hot{background:#fce4ec;color:#C43B7A;}
+.tag-ans{background:#E1F5EE;color:#0F6E56;}
+.tag-know{background:#E3F2FD;color:#185FA5;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-cmp{background:#fef3e2;color:#BA7517;}
+.key{color:#E24B4A;font-weight:600;}
+.blue{color:#185FA5;font-weight:600;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+ol,ul{padding-left:24px;margin-bottom:10px;}
+li{margin-bottom:6px;}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid #e5e3de;}
+th{background:#f3f1ec;font-weight:600;}
+.formula{background:#f3f1ec;border-radius:10px;padding:12px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+.formula-left{background:#f3f1ec;border-radius:10px;padding:12px 18px;margin:10px 0;font-size:15px;overflow-x:auto;}
+.box-ans{border:2px solid #0F6E56;border-radius:10px;padding:12px 18px;margin:10px 0;text-align:center;font-size:17px;font-weight:600;background:#E1F5EE;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+.progress{position:fixed;top:0;left:250px;right:0;height:3px;background:#534AB7;z-index:99;transition:width .1s;}
+@media(max-width:800px){.sidebar{display:none;}.main{margin-left:0;padding:20px;}.progress{left:0;}}
+.nav-top{position:fixed;bottom:20px;right:20px;background:#534AB7;color:#fff;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<a href="#top" class="nav-top">↑</a>
+
+<div class="sidebar">
+<div class="sidebar-title">DDA2001 考前速通</div>
+<div class="sidebar-sec">七大专区</div>
+<a href="#s1" class="tag-hot">S1 — Logistic Regression MLE</a>
+<a href="#s2" class="tag-hot">S2 — Gradient Descent</a>
+<a href="#s3">S3 — Convex Sets</a>
+<a href="#s4">S4 — Convex/Concave Functions</a>
+<a href="#s5" class="tag-hot">S5 — 均匀分布 MLE</a>
+<a href="#s6" class="tag-hot">S6 — Newsvendor / 生产问题</a>
+<a href="#s7" class="tag-hot">S7 — 综合定价题</a>
+<a href="#s8">S8 — KNN / K-Means</a>
+<div class="sidebar-sec">速查</div>
+<a href="#quick">核心公式速查卡</a>
+<a href="#mistakes">常见错误提醒</a>
+</div>
+
+<div class="main">
+<div class="container" id="top">
+
+<h1>DDA2001 期末考前速通 <span>🔥 高频考点系统整理 · 2024+2025</span></h1>
+<p class="subtitle">按专题分类（不按年份），标注跨年都考的核心套路。考前再过一遍，祝稳！</p>
+
+<p style="background:#f0eee9;border-radius:10px;padding:12px 18px;margin:16px 0;font-size:14px;">
+<strong>📌 使用建议：</strong>优先看标 🔥 的专题（S1、S2、S5、S6、S7），这些在两年卷子中都考了且占分高。每个专题先掌握 <strong>Solution Template</strong>（解题模板），再对照看 <strong>Cross-Year</strong> 的异同。
+</p>
+
+<!-- ====================================================================== -->
+<!-- SECTION 1: LOGISTIC REGRESSION -->
+<!-- ====================================================================== -->
+<h2 id="s1">S1 🔥 Logistic Regression MLE <span class="pts">2024 Q2 (14分) + 2025 Q3 (15分)</span></h2>
+
+<h3 class="hot">Log-likelihood 推导 —— 完整流程</h3>
+
+<div class="card card-hot">
+<h4>📌 题目特征</h4>
+<p>给数据 $(x_i, y_i)$, $y_i \in \{0,1\}$, 模型 $P(y=1|x,\theta) = \sigma(\theta^\top x)$。要求：</p>
+<ol>
+<li>写 log-likelihood $\ell(\theta)$</li>
+<li>证明 $-\ell(\theta)$ 是 convex（或 $\ell(\theta)$ 是 concave）</li>
+<li>写梯度上升/下降的更新公式</li>
+<li>可能涉及多项式特征（2025 加了 $\phi(x)$）</li>
+</ol>
+</div>
+
+<div class="card card-ans">
+<h4>✅ Solution Template</h4>
+<p><strong>Step 1 — 单个样本的似然（Bernoulli trick）</strong></p>
+<div class="formula-left">
+$$P(y_i | x_i, \theta) = \sigma(\theta^\top x_i)^{y_i} \cdot (1-\sigma(\theta^\top x_i))^{1-y_i}$$
+</div>
+
+<p><strong>Step 2 — 所有样本的似然（独立→连乘）</strong></p>
+<div class="formula-left">
+$$L(\theta) = \prod_{i=1}^n \sigma(\theta^\top x_i)^{y_i} (1-\sigma(\theta^\top x_i))^{1-y_i}$$
+</div>
+
+<p><strong>Step 3 — 取对数 → 乘法变加法</strong></p>
+<div class="formula-left">
+$$\ell(\theta) = \sum_{i=1}^n \big[ y_i \log\sigma(z_i) + (1-y_i)\log(1-\sigma(z_i)) \big], \quad z_i = \theta^\top x_i$$
+</div>
+
+<p><strong>Step 4 — 化简 $\log\sigma(z)$ 和 $\log(1-\sigma(z))$</strong></p>
+<div class="formula-left">
+$$\sigma(z) = \frac{1}{1+e^{-z}} \;\Rightarrow\; \log\sigma(z) = -\log(1+e^{-z})$$
+$$1-\sigma(z) = \frac{e^{-z}}{1+e^{-z}} \;\Rightarrow\; \log(1-\sigma(z)) = -z - \log(1+e^{-z})$$
+</div>
+
+<p><strong>Step 5 — 代入，化简</strong></p>
+<div class="formula-left">
+$$
+\begin{aligned}
+\ell(\theta) &= \sum_{i=1}^n \big[ y_i(-\log(1+e^{-z_i})) + (1-y_i)(-z_i - \log(1+e^{-z_i})) \big] \\
+&= \sum_{i=1}^n \big[ y_i z_i - \log(1+e^{z_i}) \big] \quad (\text{用 } \log(1+e^{-z}) = \log(1+e^{z}) - z)
+\end{aligned}
+$$
+</div>
+
+<div class="box-ans">$$\boxed{\ell(\theta) = \sum_{i=1}^n \big[ y_i \theta^\top x_i - \log(1 + e^{\theta^\top x_i}) \big]}$$</div>
+
+<p><strong>Step 6 — 证明凸性（SOC 方法）</strong></p>
+<p>取方向 $e$，定义 $h(t) = \log(1+e^{(\theta_0+te)^\top x})$：</p>
+<div class="formula-left">
+$$h'(t) = \sigma((\theta_0+te)^\top x) \cdot (e^\top x)$$
+$$h''(t) = \sigma(1-\sigma) \cdot (e^\top x)^2 \ge 0$$
+</div>
+<p>所以 $\log(1+e^{z})$ 是 convex → $-\log(1+e^{z})$ 是 concave → 加上线性项 $y_i z_i$ 后 $\ell(\theta)$ 是 <strong>concave</strong>。等价地 $-\ell(\theta)$ 是 <strong>convex</strong>。</p>
+
+<p><strong>Step 7 — 梯度公式</strong></p>
+<div class="formula-left">
+$$\frac{\partial \ell}{\partial \theta} = \sum_{i=1}^n (y_i - \sigma(\theta^\top x_i)) \cdot x_i$$
+</div>
+<p><strong>梯度上升</strong>（最大化 concave）：$\theta^{(t+1)} = \theta^{(t)} + \eta \nabla \ell(\theta^{(t)})$</p>
+<p><strong>SGD</strong>：每次随机取一个 mini-batch $B$，$\theta^{(t+1)} = \theta^{(t)} + \frac{\eta}{|B|} \sum_{i\in B} (y_i - \sigma(\theta^\top x_i))x_i$</p>
+</div>
+
+<div class="card card-cmp">
+<h4>📊 2024 vs 2025 差异</h4>
+<table>
+<tr><th></th><th>2024 Q2</th><th>2025 Q3</th></tr>
+<tr><td>特征</td><td>$\theta \in \mathbb{R}^3$，$x_i \in \mathbb{R}^3$</td><td>$\theta \in \mathbb{R}^6$，含多项式 $\phi(x)$</td></tr>
+<tr><td>要求</td><td>写 $\ell$、证凸性、写算法</td><td>写 $\ell$、证凸性、写算法、描述决策边界</td></tr>
+<tr><td>额外</td><td>无</td><td>决策边界是二次曲线</td></tr>
+</table>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>Log-likelihood 最终形式</strong>：$\ell(\theta) = \sum [y_i \theta^\top x_i - \log(1+e^{\theta^\top x_i})]$ —— 直接背，不需要再推导</li>
+<li><strong>凸性证明套路</strong>：取方向 $e$ → 算 $h''(t) \ge 0$ → 引用 affine composition 保凸 → 结论</li>
+<li><strong>多项式特征</strong>：把 $x$ 换成 $\phi(x)$ 即可，所有推导完全相同</li>
+<li><strong>Gradient Ascent vs Descent</strong>：$\ell$ 是 concave → 最大化 → 用 <strong>Ascent</strong>（正梯度）；$-\ell$ 是 convex → 最小化 → 用 <strong>Descent</strong>（负梯度）</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 2: GRADIENT DESCENT -->
+<!-- ====================================================================== -->
+<h2 id="s2">S2 🔥 Gradient Descent 收敛分析 <span class="pts">2024 Q3 (10分) + 2025 Q4 (10分)</span></h2>
+
+<h3 class="hot">核心套路：误差递推 → 等比数列 → 收敛条件</h3>
+
+<div class="card card-hot">
+<h4>📌 题目特征</h4>
+<p>给一个 quadratic 函数 $f$（concave），初始点 $x^{(0)}$，固定学习率 $\alpha$，问：</p>
+<ul>
+<li>特定 $\alpha$ 值下能否收敛到最优解？</li>
+<li>$\alpha$ 取何值时 $\lim x^{(t)} \to x^*$？</li>
+</ul>
+</div>
+
+<div class="card card-ans">
+<h4>✅ Solution Template</h4>
+<p><strong>Step 1 — 求最优解</strong>：令 $f'(x) = 0$，得 $x^*$</p>
+<p><strong>Step 2 — 写梯度上升更新公式</strong>（因为 $f$ 是 concave，要最大化）</p>
+<div class="formula-left">
+$$x^{(t+1)} = x^{(t)} + \alpha f'(x^{(t)})$$
+</div>
+
+<p><strong>Step 3 — 定义误差，找递推关系</strong></p>
+<p>令 $e^{(t)} = x^{(t)} - x^*$（当前到最优解的距离），把更新公式代入：</p>
+<div class="formula-left">
+$$e^{(t+1)} = x^{(t+1)} - x^* = x^{(t)} + \alpha f'(x^{(t)}) - x^*$$
+</div>
+<p>因为 $f$ 是二次函数 $\Rightarrow f'(x)$ 是线性函数 $\Rightarrow$ 一定会化到 $e^{(t+1)} = (1 - k\alpha) e^{(t)}$ 的形式，其中 $k = -f''(x)$（正数）。</p>
+
+<p><strong>Step 4 — 解封闭形式</strong></p>
+<div class="formula-left">
+$$e^{(t)} = (1 - k\alpha)^t \cdot e^{(0)}$$
+</div>
+
+<p><strong>Step 5 — 收敛条件</strong></p>
+<div class="box-ans">$$|1 - k\alpha| < 1 \quad\Longrightarrow\quad 0 < \alpha < \frac{2}{k}$$</div>
+
+<ul>
+<li>$|1 - k\alpha| < 1$：指数衰减到 0 ✅</li>
+<li>$|1 - k\alpha| = 1$：振荡（$\alpha=0$ 或 $\alpha=2/k$）❌</li>
+<li>$|1 - k\alpha| > 1$：发散 ❌</li>
+</ul>
+</div>
+
+<div class="card card-cmp">
+<h4>📊 跨年对比</h4>
+<table>
+<tr><th></th><th>2024 Q3</th><th>2025 Q4</th></tr>
+<tr><td>函数</td><td>$f(x) = -x^2/2 + x$</td><td>$f(x) = -\frac14(x-1)^2 + 2$</td></tr>
+<tr><td>$f'(x)$</td><td>$-x + 1$</td><td>$-\frac12(x-1)$</td></tr>
+<tr><td>$f''(x)$</td><td>$-1$</td><td>$-1/2$</td></tr>
+<tr><td>$k = -f''(x)$</td><td>$k = 1$</td><td>$k = 1/2$</td></tr>
+<tr><td>初始点</td><td>$x^{(0)} = 2$</td><td>$x^{(0)} = 3$</td></tr>
+<tr><td>最优解</td><td>$x^* = 1$</td><td>$x^* = 1$</td></tr>
+<tr><td>误差递推</td><td>$e^{(t+1)} = (1-\alpha)e^{(t)}$</td><td>$e^{(t+1)} = (1-\alpha/2)e^{(t)}$</td></tr>
+<tr><td><strong>收敛范围</strong></td><td>$\boxed{0 < \alpha < 2}$</td><td>$\boxed{0 < \alpha < 4}$</td></tr>
+</table>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>先确认 convex 还是 concave</strong>：$f''(x) < 0$ → concave → 最大化 → 梯度上升</li>
+<li><strong>$k$ 值</strong> = $-f''(x)$ 的绝对值。对于 $f(x) = -a(x-b)^2 + c$，$k = 2a$</li>
+<li><strong>收敛范围</strong>：$0 < \alpha < 2/k$。注意是<strong>开区间</strong>！$\alpha = 0$ 不收敛到最优，$\alpha = 2/k$ 振荡不收敛</li>
+<li><strong>2024 官方答案给 $(0,1]$ 是错的</strong>，正确是 $(0,2)$。考场上按 $(0,2/k)$ 公式写就行</li>
+<li>2025 收敛到最优的条件是 $0 < \alpha < 4$，$\alpha=1$ 肯定收敛 ✅</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 3: CONVEX SETS -->
+<!-- ====================================================================== -->
+<h2 id="s3">S3 Convex Sets <span class="pts">2024 Q4 (15分) + 2025 Q2 (10分)</span></h2>
+
+<h3>三大题型</h3>
+
+<div class="card card-ans">
+<h4>✅ 题型 A：用定义直接证（Simplex / 凸集的和）</h4>
+<p><strong>三步法：</strong>取任意两点 $x,y \in C$ → 凸组合 $z = \lambda x + (1-\lambda)y$ → 验证 $z \in C$</p>
+<div class="formula-left">
+<strong>Simplex $\Delta_n = \{p \ge 0, \sum p_i = 1\}$（2025 Q2a）：</strong><br>
+$z_i = \lambda p_i + (1-\lambda)q_i \ge 0$ ✓<br>
+$\sum z_i = \lambda\sum p_i + (1-\lambda)\sum q_i = \lambda\cdot 1 + (1-\lambda)\cdot 1 = 1$ ✓
+</div>
+<div class="formula-left">
+<strong>凸集的和 $S_1+S_2$（2024 Q4c）：</strong><br>
+$\lambda(x_1+y_1) + (1-\lambda)(x_2+y_2) = \underbrace{[\lambda x_1+(1-\lambda)x_2]}_{\in S_1} + \underbrace{[\lambda y_1+(1-\lambda)y_2]}_{\in S_2}$ ✓
+</div>
+</div>
+
+<div class="card card-ans">
+<h4>✅ 题型 B：Sublevel Set + 凸函数（2024 Q4b / 2025 Q2b）</h4>
+<p><strong>定理：</strong>若 $f$ 是凸函数，则 $\{x \mid f(x) \le r\}$ 是凸集。</p>
+<p><strong>套路：</strong>先把约束写成 $f(x) \le r$ 的形式 → 证明 $f$ 凸 → 引用 sublevel set 定理</p>
+
+<div class="formula-left">
+<strong>例：$x^2 \le 5 - 2y^2$（2024 Q4b）</strong><br>
+改写为 $x^2 + 2y^2 \le 5$<br>
+$g(x,y) = x^2 + 2y^2$，$g''(t) = 2e_1^2 + 4e_2^2 \ge 0$ → $g$ 凸<br>
+$\therefore S = \{g(x,y) \le 5\}$ 是凸集 ✓
+</div>
+
+<div class="formula-left">
+<strong>例：熵约束（2025 Q2b）</strong><br>
+$S = \Delta_n \cap \{-\sum p_i\ln p_i \ge C\} = \Delta_n \cap \{\sum p_i\ln p_i \le -C\}$<br>
+$h(p) = \sum p_i\ln p_i$ 是凸函数（$p_i\ln p_i$ 二阶导 $1/p_i > 0$）<br>
+所以 $\{h(p) \le -C\}$ 是凸集。$\Delta_n \cap$ 凸集 = 凸集 ✓
+</div>
+</div>
+
+<div class="card card-ans">
+<h4>✅ 题型 C：最优解集是凸集（2024 Q4a）</h4>
+<p>凸优化问题 $\min_{x\in S} f(x)$，$C$ 是最优解集。取 $x,y \in C$（即 $f(x)=f(y)=f^*$）：</p>
+<div class="formula-left">
+$f(\lambda x + (1-\lambda)y) \le \lambda f(x) + (1-\lambda)f(y) = f^*$<br>
+又 $f^*$ 是全局最小值 → $f(\lambda x + (1-\lambda)y) \ge f^*$<br>
+$\therefore f(\lambda x + (1-\lambda)y) = f^*$ → $\lambda x + (1-\lambda)y \in C$ ✓
+</div>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>凸集定义：</strong>任意两点连线上的点都在集合内</li>
+<li><strong>三种凸集证明方法：</strong>① 直接定义 ② Sublevel set ③ 交集/并集/和保凸</li>
+<li><strong>注意：</strong>sublevel set 是凸集 $\nRightarrow$ $f$ 凸（反例：$f(x)=-x^2$）</li>
+<li><strong>熵的凸性：</strong>$-x\ln x$ 是 concave（二阶导 $=-1/x < 0$），$x\ln x$ 是 convex</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 4: CONVEX/CONCAVE FUNCTIONS -->
+<!-- ====================================================================== -->
+<h2 id="s4">S4 Convex / Concave Functions <span class="pts">2024 Q5 (10分) + 2025 Q5 (10分)</span></h2>
+
+<h3>三种证明方法</h3>
+
+<div class="card card-ans">
+<h4>✅ 方法一：SOC（二阶导 ≥ 0）</h4>
+<p>一维函数：$f''(x) \ge 0$ 对所有 $x$ 成立 → $f$ 凸</p>
+<p>多维函数：沿任意方向 $e$ 的 $g''(t) \ge 0$ → $f$ 凸</p>
+<div class="formula-left">
+<strong>例：$f(x) = x^{a^2-a} + ax$ 的凸/凹性（2025 Q5b）</strong><br>
+$f''(x) = (a^2-a)(a^2-a-1)x^{a^2-a-2}$<br>
+$x > a^2 > 0$，所以 $x^{a^2-a-2} > 0$<br>
+concave 要求 $f''(x) \le 0$ → $(a^2-a)(a^2-a-1) \le 0$ → $0 \le a^2-a \le 1$<br>
+解得 $a \in [\frac{1-\sqrt{5}}{2}, 0] \cup [1, \frac{1+\sqrt{5}}{2}]$
+</div>
+<div class="formula-left">
+<strong>例：$f(x) = ax^3 + 6\ln x$ 的凸性（2024 Q5b）</strong><br>
+$f''(x) = 6ax - 6/x^2$。在 $(a^2,\infty)$ 上要求 ≥ 0 → $a \ge 1$
+</div>
+</div>
+
+<div class="card card-ans">
+<h4>✅ 方法二：排序统计量凸性（2024 Q5a）</h4>
+<p>$f(x) = \sum_{i=1}^r \alpha_i |x|_{[i]}$，$|x|_{[i]}$ 是 $|x|$ 的第 $i$ 大分量。</p>
+<p><strong>定理：</strong>若 $\alpha_1 \ge \alpha_2 \ge \cdots \ge \alpha_n \ge 0$，则 $f$ 是凸函数。</p>
+<p><strong>证明思路：</strong></p>
+<ol>
+<li>$s_k(x) = \sum_{i=1}^k |x|_{[i]}$ 是凸函数（Ky Fan $k$-范数，等价于 $\max_{I:|I|=k} \sum_{i\in I} |x_i|$）</li>
+<li>递减系数 $\alpha_i$ 可分解为 $\alpha_i = \sum_{j=i}^n \beta_j$，其中 $\beta_j = \alpha_j - \alpha_{j+1} \ge 0$</li>
+<li>代入并交换求和顺序：$f(x) = \sum_{j=1}^n \beta_j s_j(x)$</li>
+<li>凸函数的非负线性组合仍凸 ✓</li>
+</ol>
+</div>
+
+<div class="card card-ans">
+<h4>✅ 方法三：反证法（2025 Q5a）</h4>
+<p><strong>题目：</strong>$f$ 是 $\mathbb{R}^n$ 上的 concave 函数且有下界，证明 $f$ 是常数。</p>
+<p><strong>证明：</strong>假设 $f$ 不是常数，存在 $x,y$ 使 $f(x) < f(y)$。</p>
+<p>令 $z_t = y + t(y-x)$，$t > 0$。由 concavity：</p>
+<div class="formula-left">
+$f(y) \ge \frac{1}{1+t}f(z_t) + \frac{t}{1+t}f(x)$<br>
+$\Rightarrow f(z_t) \le f(y) + t(f(y) - f(x))$<br>
+当 $t \to \infty$ 时 $f(z_t) \to -\infty$，与 $f$ 有下界矛盾！∴ $f$ 必为常数。
+</div>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>SOC 步骤：</strong>确认定义域是凸集 → 算 $f''$ → 判断 $f'' \ge 0$（或 $\le 0$）→ 结论</li>
+<li><strong>单调性技巧：</strong>若 $f''(x)$ 在区间上单调，只需检查端点处的 $f''$ 符号</li>
+<li><strong>排序统计量记忆：</strong>系数递减且非负 → 凸。证明用 Ky Fan 范数 + 分解技巧</li>
+<li><strong>凹函数 + 有下界 → 常数：</strong>反证法，构造沿方向延伸到无穷远，利用凹性得矛盾</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 5: MLE FOR UNIFORM -->
+<!-- ====================================================================== -->
+<h2 id="s5">S5 🔥 均匀分布 MLE <span class="pts">2024 Q7a (4分) + 2025 Q7c (4分)</span></h2>
+
+<h3 class="hot">⚠️ 不要用求导！</h3>
+
+<div class="card card-hot">
+<h4>📌 题目特征</h4>
+<p>$D \sim U[\theta, g(\theta)]$（如 $U[\theta, 2\theta]$ 或 $U[\theta, \theta^2]$），给几个样本，求 $\hat\theta_{MLE}$。</p>
+<p><strong>关键区别：</strong>均匀分布的 MLE <strong>不是</strong>令 $\frac{dL}{d\theta}=0$！因为似然函数在可行域边界取最大值。</p>
+</div>
+
+<div class="card card-ans">
+<h4>✅ Solution Template</h4>
+<p><strong>Step 1 — 写 PDF</strong></p>
+<div class="formula-left">
+$$f(x) = \frac{1}{g(\theta) - \theta} \cdot \mathbf{1}[\theta \le x \le g(\theta)]$$
+</div>
+
+<p><strong>Step 2 — 写似然函数</strong></p>
+<div class="formula-left">
+$$L(\theta) = \prod_{i=1}^n \frac{1}{g(\theta)-\theta} \cdot \mathbf{1}[\theta \le D_i \le g(\theta)] = \frac{1}{(g(\theta)-\theta)^n} \quad \text{(当所有样本在区间内)}$$
+</div>
+
+<p><strong>Step 3 — 写出可行条件</strong></p>
+<ul>
+<li>$\theta \le \min(D_i)$（下界须 ≤ 所有样本）</li>
+<li>$g(\theta) \ge \max(D_i)$（上界须 ≥ 所有样本）</li>
+</ul>
+
+<p><strong>Step 4 — 在可行域内最大化 $L(\theta)$</strong></p>
+<p>$L(\theta) = 1/(g(\theta)-\theta)^n$，最大化 $L$ 等价于 <strong>最小化 $g(\theta)-\theta$</strong>（区间长度）。</p>
+
+<p><strong>Step 5 — 判断 $g(\theta)-\theta$ 的单调性</strong></p>
+<ul>
+<li>若 $g(\theta)-\theta$ 递增 → 取可行域下界</li>
+<li>若 $g(\theta)-\theta$ 递减 → 取可行域上界</li>
+</ul>
+</div>
+
+<div class="card card-cmp">
+<h4>📊 跨年对比</h4>
+<table>
+<tr><th></th><th>2024 Q7a</th><th>2025 Q7c</th></tr>
+<tr><td>分布</td><td>$U[\theta, 2\theta]$</td><td>$U[\theta, \theta^2]$</td></tr>
+<tr><td>样本</td><td>12, 15, 13, 20, 14</td><td>12, 15, 13, 16, 14</td></tr>
+<tr><td>min</td><td>12</td><td>12</td></tr>
+<tr><td>max</td><td>20</td><td>16</td></tr>
+<tr><td>可行条件</td><td>$\theta \le 12$, $2\theta \ge 20 \Rightarrow \theta \ge 10$</td><td>$\theta \le 12$, $\theta^2 \ge 16 \Rightarrow \theta \ge 4$</td></tr>
+<tr><td>可行域</td><td>$[10, 12]$</td><td>$[4, 12]$</td></tr>
+<tr><td>区间长度</td><td>$2\theta-\theta = \theta$（递增）</td><td>$\theta^2-\theta = \theta(\theta-1)$（递增）</td></tr>
+<tr><td><strong>MLE</strong></td><td>$\theta = 10$（取最小）</td><td>$\theta = 4$（取最小）</td></tr>
+</table>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>均匀分布的 MLE 永远在边界上！</strong>不要用求导！</li>
+<li><strong>两步走：</strong>① 找 $\theta$ 的可行域（所有样本必须在区间内）② 在可行域内最小化区间长度</li>
+<li><strong>常见变形：</strong>$U[0, \theta]$ 的 MLE 是 $\max(D_i)$；$U[\theta, 2\theta]$ 的 MLE 取 $\min(D_i)/2$ 和 $\max(D_i)$ 的大值</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 6: NEWS VENDOR / PRODUCTION -->
+<!-- ====================================================================== -->
+<h2 id="s6">S6 🔥 Newsvendor / 生产问题 <span class="pts">2024 Q7 (16分) + 2025 Q7 (19分)</span></h2>
+
+<h3 class="hot">核心框架：利润 = 收入 − 成本 − 缺货损失</h3>
+
+<div class="card card-hot">
+<h4>📌 题目特征</h4>
+<p>决策者在需求不确定的情况下决定生产/订购量 $Q$。成本可能有分段结构或两种生产方式，要求：</p>
+<ul>
+<li>写利润函数 $\pi(Q)$</li>
+<li>求最优 $Q$（允许非整数）</li>
+<li>求整数约束下的最优 $Q$</li>
+</ul>
+</div>
+
+<div class="card card-ans">
+<h4>✅ Solution Template</h4>
+<p><strong>Step 1 — 写出利润函数的通用形式</strong></p>
+<div class="formula-left">
+$$\pi(Q) = \underbrace{p \cdot E[\min(Q, D)]}_{\text{销售收入}} + \underbrace{s \cdot E[(Q-D)^+]}_{\text{残值（未卖出）}} - \underbrace{c(Q)}_{\text{生产成本}} - \underbrace{c_r \cdot E[(D-Q)^+]}_{\text{加急成本（缺货）}}$$
+</div>
+<p>其中 $(x)^+ = \max(x, 0)$。<br>
+若没有残值则 $s=0$；若没有加急则 $c_r=0$。</p>
+
+<p><strong>Step 2 — 展开 $E[\min(Q,D)]$ 和 $E[(D-Q)^+]$</strong></p>
+<p>对于 $D \sim U[a,b]$，PDF $= 1/(b-a)$：</p>
+<div class="formula-left">
+$$E[\min(Q, D)] = \frac{Q^2 - a^2}{2(b-a)} + Q \cdot \frac{b-Q}{b-a} = \frac{2bQ - Q^2 - a^2}{2(b-a)} \quad (\text{当 } a \le Q \le b)$$
+$$E[(D-Q)^+] = \int_Q^b (x-Q) \cdot \frac{1}{b-a} dx = \frac{(b-Q)^2}{2(b-a)}$$
+</div>
+<p><strong>关键公式</strong>（试卷开头会给）：$\frac{d}{dQ} E[\min(Q, D)] = P(D \ge Q)$</p>
+
+<p><strong>Step 3 — 若成本分段，分区间讨论</strong></p>
+<p>如 2024 年版：前 12 份成本 $8$，之后 $5$。分别对 $Q \le 12$ 和 $Q \ge 12$ 求 $\pi(Q)$ 和 $\pi'(Q)=0$。</p>
+
+<p><strong>Step 4 — 验证解在区间内部</strong></p>
+<p>解出的 $Q^*$ 必须属于当前讨论的区间。如果不是，则在边界取最优。</p>
+
+<p><strong>Step 5 — 整数约束</strong></p>
+<p>比较相邻两个整数 $Q$ 的利润大小，选利润更大的。</p>
+</div>
+
+<div class="card card-cmp">
+<h4>📊 跨年对比</h4>
+<table>
+<tr><th></th><th>2024 Q7（报童）</th><th>2025 Q7（生产）</th></tr>
+<tr><td>分布</td><td>$U[10, 20]$</td><td>$U[4, 16]$</td></tr>
+<tr><td>售价</td><td>$p = 10$</td><td>$p > 9$（只需满足 $p > c_r$）</td></tr>
+<tr><td>残值</td><td>$s = 2$</td><td>$s = 0$</td></tr>
+<tr><td>成本</td><td>前 12 份 $8$，之后 $5$</td><td>预产 $5$，加急 $9$</td></tr>
+<tr><td>利润公式</td><td>$\pi(Q) = 8E[\min(Q,D)] + [\text{调整}]$</td><td>$\pi(Q) = pE[D] - 5Q - 9E[(D-Q)^+]$</td></tr>
+<tr><td>$Q^*$（连续）</td><td>$16.25$</td><td>$28/3 \approx 9.33$</td></tr>
+<tr><td>$Q^*$（整数）</td><td>$16$</td><td>$9$</td></tr>
+</table>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>理解收入项</strong>：若所有需求都能被满足（有加急渠道），总收入 = $pE[D]$（2025 Q7b 考了）</li>
+<li><strong>核心公式</strong>：$\frac{d}{dQ}E[\min(Q,D)] = P(D \ge Q)$——试卷会给，直接用</li>
+<li><strong>分区间要点</strong>：每段写出不同的 $\pi(Q)$，分别求导，验证解是否在区间内</li>
+<li><strong>整数最优</strong>：比较 $Q^*$ 左右两边的整数，取利润大的</li>
+<li><strong>注意符号</strong>：$E[(D-Q)^+]$ 是"期望缺货量"，$E[(Q-D)^+]$ 是"期望剩余量"</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 7: INTEGRATED PRICING -->
+<!-- ====================================================================== -->
+<h2 id="s7">S7 🔥 综合定价题 <span class="pts">2024 Q6 (26分) + 2025 Q6 (26分)</span></h2>
+
+<h3 class="hot">概率 + 统计 + 凸优化 + ML 混合</h3>
+
+<div class="card card-hot">
+<h4>📌 题目特征</h4>
+<p>以一个商业场景（航空定价 / 网约车定价）为主线，串起：</p>
+<ol>
+<li>概率（二项分布、均匀分布）</li>
+<li>期望模型（$d(p) = n(1-F(p))$）</li>
+<li>利润优化（写目标函数、证 concavity、求最优解）</li>
+<li>MLE（写 log-likelihood）</li>
+<li>K-Means（数值计算）</li>
+</ol>
+</div>
+
+<div class="card card-ans">
+<h4>✅ 各子题模板</h4>
+
+<p><strong>📌 概率子题（2-3分）：</strong></p>
+<div class="formula-left">
+顾客购买概率 = $P(X > p) = 1 - F(p)$<br>
+$n$ 个独立顾客 → $D \sim \text{Binomial}(n, 1-F(p))$<br>
+$E[D] = n(1-F(p))$，$\text{Var}[D] = n(1-F(p))F(p)$
+</div>
+
+<p><strong>📌 利润优化子题（3-4分）：</strong></p>
+<div class="formula-left">
+决策变量：$p$（价格）<br>
+目标：$\max \pi(p) = E[D](p-c) = n(1-F(p))(p-c)$<br>
+约束：$p \ge 1$（或 $p \in [a,b]$）
+</div>
+
+<p><strong>📌 证明 Concavity 子题（3分）：</strong></p>
+<p>如 2025 Q6bi：$R(p) = p e^{-\lambda p}$，证 $p \in [0, 2/\lambda]$ 上 concave</p>
+<div class="formula-left">
+$R'(p) = e^{-\lambda p}(1 - \lambda p)$<br>
+$R''(p) = -\lambda e^{-\lambda p}(2 - \lambda p)$<br>
+当 $p \le 2/\lambda$ 时 $2-\lambda p \ge 0$ → $R''(p) \le 0$ → concave ✓
+</div>
+
+<p><strong>📌 MLE 子题（3-4分，常见于回归参数估计）：</strong></p>
+<div class="formula-left">
+$D_i \sim N(ap_i^b, \sigma^2)$ 的 log-likelihood：<br>
+$\ell(a,b) = -\frac{m}{2}\log(2\pi\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^m (D_i - ap_i^b)^2$<br>
+最大化 $\ell$ 等价于最小化 $\sum (D_i - ap_i^b)^2$（非线性最小二乘）
+</div>
+</div>
+
+<div class="card card-know">
+<h4>📖 考试必记</h4>
+<ul>
+<li><strong>Concavity 证明步骤：</strong>算 $R''(p)$ → 判断符号 → 检查区间</li>
+<li><strong>最优解公式：</strong>$R'(p^*) = 0 \Rightarrow p^* = 1/\lambda$（对 $R(p)=pe^{-\lambda p}$）</li>
+<li><strong>K-Means 数值题：</strong>算欧氏距离 → 分配 → 求均值 = 新中心。答案用分数保留</li>
+<li><strong>二项分布均值和方差：</strong>$E[S] = np$，$\text{Var}[S] = np(1-p)$ 必须背</li>
+<li><strong>$U[a,b]$ 均值和方差：</strong>$E = (a+b)/2$，$\text{Var} = (b-a)^2/12$</li>
+</ul>
+</div>
+
+<!-- ====================================================================== -->
+<!-- SECTION 8: KNN / K-MEANS -->
+<!-- ====================================================================== -->
+<h2 id="s8">S8 KNN / K-Means <span class="pts">2024 Q1 (9分) + 2025 Q1 (10分) + Q6c (8分)</span></h2>
+
+<div class="grid2">
+<div class="card card-ans">
+<h4>✅ KNN（2024 Q1）</h4>
+<p><strong>流程：</strong></p>
+<ol>
+<li>计算新点到所有训练点的距离</li>
+<li>选 K 个最近的邻居</li>
+<li>多数投票决定类别</li>
+</ol>
+<p><strong>K 的影响：</strong><br>
+小 K → 过拟合（高 variance）<br>
+大 K → 欠拟合（高 bias）</p>
+<p><strong>选 K 的方法：</strong>Cross-validation</p>
+<p><strong>距离三性质：</strong>对称性、正定性、三角不等式</p>
+</div>
+
+<div class="card card-ans">
+<h4>✅ K-Means（2025 Q1 / Q6c）</h4>
+<p><strong>流程：</strong></p>
+<ol>
+<li>初始化 K 个中心</li>
+<li>分配：每个点分到最近的中心</li>
+<li>更新：新中心 = 簇内点的均值</li>
+<li>重复 2-3 直到收敛</li>
+</ol>
+<p><strong>距离三性质：</strong>对称性、正定性、三角不等式（同 KNN）</p>
+<p><strong>数值计算注意：</strong>用欧氏距离 $\sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}$，新中心是算术平均</p>
+</div>
+</div>
+
+<div class="card card-warn">
+<h4>⚠️ KNN vs K-Means 考试区分</h4>
+<table>
+<tr><th></th><th>KNN</th><th>K-Means</th></tr>
+<tr><td>学习类型</td><td>监督学习（有标签）</td><td>无监督学习（无标签）</td></tr>
+<tr><td>K 含义</td><td>邻居数量</td><td>聚类数量</td></tr>
+<tr><td>"训练"</td><td>懒惰学习（只存数据）</td><td>迭代优化（找中心）</td></tr>
+<tr><td>输出</td><td>类别预测</td><td>簇中心 + 分配</td></tr>
+</table>
+</div>
+
+<!-- ====================================================================== -->
+<!-- QUICK REFERENCE -->
+<!-- ====================================================================== -->
+<h2 id="quick">核心公式速查卡</h2>
+
+<div class="grid2">
+<div>
+<div class="card card-know">
+<h4>📐 Convex Sets</h4>
+<div class="formula-left" style="font-size:13px;">
+定义：$\lambda x + (1-\lambda)y \in C$<br>
+Sublevel set：$f$ 凸 ⇒ $\{f \le r\}$ 凸<br>
+Simplex：$p_i \ge 0, \sum p_i = 1$ 是凸集<br>
+凸集的和是凸集<br>
+最优解集是凸集
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 Convex Functions</h4>
+<div class="formula-left" style="font-size:13px;">
+SOC：$f''(x) \ge 0$（一维）// $g''(t) \ge 0$（多维）<br>
+Affine composition 保凸：$f(Ax+b)$ 凸<br>
+凸函数非负和 → 凸<br>
+排序统计量：$\alpha_i$ 递减非负 → 凸<br>
+凹 + 有下界 → 常数
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 Gradient Descent</h4>
+<div class="formula-left" style="font-size:13px;">
+$f(x) = -k(x-b)^2/2 + c$<br>
+$e^{(t+1)} = (1 - k\alpha)e^{(t)}$<br>
+收敛条件：$0 < \alpha < 2/k$<br>
+$e^{(t)} = (1-k\alpha)^t e^{(0)}$
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 Logistic Regression</h4>
+<div class="formula-left" style="font-size:13px;">
+$\ell(\theta) = \sum [y_i\theta^\top x_i - \log(1+e^{\theta^\top x_i})]$<br>
+$\nabla \ell(\theta) = \sum (y_i - \sigma(\theta^\top x_i))x_i$<br>
+$-\ell$ 是 convex → 可用梯度下降<br>
+决策边界：$\theta^\top x = 0$
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 Uniform MLE</h4>
+<div class="formula-left" style="font-size:13px;">
+$U[\theta, g(\theta)]$：<br>
+① $\theta \le \min$, $g(\theta) \ge \max$<br>
+② 最小化 $g(\theta) - \theta$<br>
+③ 检查单调性取边界
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 Newsvendor</h4>
+<div class="formula-left" style="font-size:13px;">
+$\pi(Q) = pE[\min(Q,D)] + sE[(Q-D)^+]$<br>
+$\hphantom{\pi(Q)} - c(Q) - c_rE[(D-Q)^+]$<br>
+$\frac{d}{dQ}E[\min(Q,D)] = P(D \ge Q)$<br>
+$E[(D-Q)^+] = \frac{(b-Q)^2}{2(b-a)}$
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 概率分布</h4>
+<div class="formula-left" style="font-size:13px;">
+$X \sim \text{Bin}(n,p)$：$E = np$, Var $= np(1-p)$<br>
+$X \sim U[a,b]$：$E = (a+b)/2$, Var $= (b-a)^2/12$<br>
+$X \sim N(\mu,\sigma^2)$：$E = \mu$, Var $= \sigma^2$<br>
+KL Divergence：$D_{KL}(P\|Q) = \sum p_i \log(p_i/q_i)$
+</div>
+</div>
+</div>
+
+<div>
+<div class="card card-know">
+<h4>📐 K-Means</h4>
+<div class="formula-left" style="font-size:13px;">
+欧氏距离：$\sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}$<br>
+新中心 = 簇内所有点的算术平均<br>
+目标：最小化簇内平方距离和
+</div>
+</div>
+</div>
+</div>
+
+<!-- ====================================================================== -->
+<!-- COMMON MISTAKES -->
+<!-- ====================================================================== -->
+<h2 id="mistakes">常见错误提醒 ⚠️</h2>
+
+<div class="card card-warn">
+<table>
+<tr><th style="width:40%;">错误</th><th>正确做法</th><th>涉及题目</th></tr>
+<tr><td>均匀分布 MLE 用求导 = 0</td><td>检查边界条件，最小化区间长度</td><td>2024 Q7a, 2025 Q7c</td></tr>
+<tr><td>$\ell(\theta)$ 凸性证明不取方向</td><td>取任意方向 $e$，证一维 $h''(t) \ge 0$</td><td>2024 Q2bii, 2025 Q3b</td></tr>
+<tr><td>GD 最优解算错 $x^*$</td><td>令 $f'(x)=0$ 求解，注意 concave 找 max</td><td>2024 Q3, 2025 Q4</td></tr>
+<tr><td>GD 收敛范围写成 $[0,2/k]$</td><td><strong>开区间</strong> $(0, 2/k)$，$\alpha=0$ 或 $2/k$ 不收敛</td><td>2024 Q3b, 2025 Q4b</td></tr>
+<tr><td>KNN 和 K-Means 搞混</td><td>KNN = 监督分类；K-Means = 无监督聚类</td><td>2024 Q1 vs 2025 Q1</td></tr>
+<tr><td>优化不验证 concavity</td><td>必须先证目标函数是 concave 才能用 FOC 得全局最优</td><td>2024 Q6d, 2025 Q6bi</td></tr>
+<tr><td>$\ell(\theta)$ 梯度符号弄反</td><td>concave 用 gradient ascent（+）；convex 用 descent（-）</td><td>2024 Q2c, 2025 Q3c</td></tr>
+<tr><td>利润公式中 $E[\min(Q,D)]$ 写错</td><td>$\min(Q,D)$ 是售出量 = 取 Q 和 D 的较小者</td><td>2024 Q7, 2025 Q7</td></tr>
+</table>
+</div>
+
+<div class="card card-know">
+<h4>📖 答题规范（Lecture 19+ 硬性要求）</h4>
+<ol>
+<li><strong>写目标函数和可行域</strong></li>
+<li><strong>证明目标函数是 convex/concave</strong>（用 SOC 或保凸运算）</li>
+<li><strong>确认可行域是凸集</strong></li>
+<li><strong>用最优性条件 $\nabla f = 0$ 求解</strong></li>
+<li><strong>验证解在可行域内部</strong>（interior solution → global optimal）</li>
+</ol>
+</div>
+
+<p style="text-align:center;color:#999;font-size:14px;margin-top:40px;border-top:1px solid #ddd;padding-top:20px;">
+DDA2001 Introduction to Data Science · Final Exam Review · 2024+2025 · Good luck! 🍀
+</p>
+
+</div>
+</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=h.scrollHeight||b.scrollHeight;
+  var pct=st/(sh-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

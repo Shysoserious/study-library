@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAT2041 Sample Final — Detailed Solutions | 详解</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f2f5; color: #1a1a2e; line-height: 1.85; }
+html { scroll-behavior: smooth; }
+
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; height: 56px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  color: white; display: flex; align-items: center; padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15); z-index: 1000;
+}
+.navbar .title { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.navbar .sub { margin-left: 12px; font-size: 13px; opacity: 0.8; }
+
+.sidebar {
+  position: fixed; left: 0; top: 56px; width: 260px;
+  height: calc(100vh - 56px); background: #fff; border-right: 1px solid #e0e0e0;
+  overflow-y: auto; padding: 16px 0; z-index: 999;
+}
+.sidebar h3 { font-size: 13px; text-transform: uppercase; color: #999; padding: 8px 20px; letter-spacing: 1px; }
+.sidebar a { display: block; padding: 8px 20px; color: #444; text-decoration: none; font-size: 14px; transition: all 0.15s; border-left: 3px solid transparent; }
+.sidebar a:hover { background: #f5f7fa; border-left-color: #667eea; color: #667eea; }
+.sidebar .section-header { font-weight: 700; color: #333; padding: 14px 20px 6px; font-size: 13px; margin-top: 8px; }
+
+.main { margin-left: 260px; margin-top: 56px; padding: 32px 48px; max-width: 1100px; }
+
+h1 { font-size: 2rem; font-weight: 700; margin-bottom: 4px; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { color: #888; margin-bottom: 32px; font-size: 0.95rem; }
+
+.section { margin-bottom: 60px; }
+.section > h2 {
+  font-size: 1.5rem; color: #16213e; padding: 12px 20px; margin-bottom: 20px;
+  background: linear-gradient(135deg, #e8eaf6, #f3e5f5); border-radius: 10px;
+  border-left: 5px solid #667eea;
+}
+
+.q-block {
+  background: #fff; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); border-left: 4px solid #667eea;
+}
+.q-block .q-tag { display: inline-block; background: #667eea; color: white; padding: 3px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+.q-block .q-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 6px; color: #1a1a2e; }
+.q-block .q-stem { color: #444; margin-bottom: 16px; }
+
+.solution { margin-top: 16px; }
+.solution .sol-header { font-weight: 700; color: #0f3460; font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.sol-header::before { content: "▶"; color: #667eea; font-size: 12px; }
+
+.sol-en { color: #2d3748; margin-bottom: 8px; line-height: 1.9; }
+.sol-zh {
+  background: #f8f4ff; padding: 14px 18px; border-left: 4px solid #9c27b0;
+  border-radius: 0 8px 8px 0; margin-top: 12px; font-size: 0.95rem; color: #4a3f6b;
+}
+.sol-zh strong { color: #7c3aed; }
+
+.formula-box {
+  background: #f0f4ff; border-left: 4px solid #2196F3; border-radius: 6px;
+  padding: 16px 22px; margin: 14px 0; text-align: center; overflow-x: auto;
+}
+.formula-box.important { background: #fff3e0; border-left-color: #ff9800; }
+.formula-box.highlight { background: #fce4ec; border-left-color: #e91e63; }
+
+.kp-box {
+  background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 8px;
+  padding: 14px 18px; margin: 12px 0; font-size: 0.93rem;
+}
+.kp-box .kp-title { font-weight: 700; color: #2e7d32; margin-bottom: 6px; }
+
+.warn-box {
+  background: #fff8e1; border: 1px solid #ffcc02; border-radius: 8px;
+  padding: 12px 16px; margin: 10px 0; font-size: 0.93rem;
+}
+.warn-box strong { color: #e65100; }
+
+pre.code { background: #1e1e2e; color: #cdd6f4; padding: 14px 18px; border-radius: 8px; overflow-x: auto; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 13px; line-height: 1.6; margin: 10px 0; }
+
+table.data { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+table.data th { background: #667eea; color: white; padding: 10px 14px; text-align: center; }
+table.data td { padding: 10px 14px; border: 1px solid #e0e0e0; text-align: center; }
+table.data tr:nth-child(even) { background: #f8f9fa; }
+
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.summary-card { background: #fff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 4px solid #667eea; }
+.summary-card h4 { color: #667eea; margin-bottom: 8px; font-size: 15px; }
+.summary-card p { font-size: 13.5px; color: #555; }
+
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 20px; }
+  .summary-grid { grid-template-columns: 1fr; }
+}
+</style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <span class="title">MAT2041 Sample Finals</span>
+  <span class="sub">Detailed Solutions · 中英详解 · CUHK-Shenzhen 2023 & 2026</span>
+</nav>
+
+<aside class="sidebar">
+  <h3>Contents</h3>
+  <div class="section-header">Section 1</div>
+  <a href="#s1">Eigenvalues &amp; Eigenvectors</a>
+  <div class="section-header">Section 2</div>
+  <a href="#s2">Diagonalization &amp; Spectral Theorem</a>
+  <div class="section-header">Section 3</div>
+  <a href="#s3">Singular Value Decomposition</a>
+  <div class="section-header">Section 4</div>
+  <a href="#s4">Least Squares</a>
+  <div class="section-header">Section 5</div>
+  <a href="#s5">Quadratic Forms &amp; Definiteness</a>
+  <div class="section-header">Section 6</div>
+  <a href="#s6">Gram-Schmidt &amp; Orthogonalization</a>
+  <div class="section-header">Section 7</div>
+  <a href="#s7">Determinants &amp; Linear Transformations</a>
+  <div class="section-header">Section 8</div>
+  <a href="#s8">Four Fundamental Subspaces</a>
+  <div class="section-header">Section 9</div>
+  <a href="#s9">True / False &amp; Conceptual</a>
+  <div class="section-header">Section 10</div>
+  <a href="#s10">Mixed / Comprehensive</a>
+</aside>
+
+<main class="main">
+
+<h1>MAT2041 Sample Final — Detailed Solutions</h1>
+<p class="subtitle">English solutions with step-by-step reasoning &bull; 中文知识点解析 &bull; Common exam patterns &amp; pitfalls</p>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: Eigenvalues & Eigenvectors -->
+<!-- ============================================================ -->
+<div class="section" id="s1">
+<h2>1. Eigenvalues &amp; Eigenvectors</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q1</span>
+  <div class="q-title">Find all eigenvalues and eigenvectors of $A = \begin{pmatrix} 3 & 2 \\ -2 & -2 \end{pmatrix}$.</div>
+  <div class="q-stem">Compute the characteristic polynomial, find eigenvalues, and determine the eigenspace for each eigenvalue.</div>
+
+  <div class="solution">
+    <div class="sol-header">Step-by-Step Solution</div>
+    <div class="sol-en">
+      <strong>Step 1: Characteristic polynomial.</strong>
+      $$p_A(\lambda) = \det(\lambda I - A) = \det\begin{pmatrix} \lambda-3 & -2 \\ 2 & \lambda+2 \end{pmatrix} = (\lambda-3)(\lambda+2) + 4 = \lambda^2 - \lambda - 2 = (\lambda-2)(\lambda+1).$$
+      <strong>Step 2: Eigenvalues.</strong> $\lambda_1 = 2,\; \lambda_2 = -1$.
+      <br><br>
+      <strong>Step 3: Eigenspace for $\lambda_1 = 2$.</strong> Solve $(2I - A)v = 0$:
+      $$\begin{pmatrix} -1 & -2 \\ 2 & 4 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = 0 \implies -v_1 - 2v_2 = 0 \implies v_1 = -2v_2.$$
+      So $v = t \begin{pmatrix} -2 \\ 1 \end{pmatrix},\; t \in \mathbb{R}$. Eigenspace: $E_2 = \operatorname{span}\left\{\begin{pmatrix} -2 \\ 1 \end{pmatrix}\right\}$, $\dim(E_2) = 1$.
+      <br><br>
+      <strong>Step 4: Eigenspace for $\lambda_2 = -1$.</strong> Solve $(-I - A)v = 0$:
+      $$\begin{pmatrix} -4 & -2 \\ 2 & 1 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = 0 \implies 2v_1 + v_2 = 0 \implies v_2 = -2v_1.$$
+      So $v = s \begin{pmatrix} 1 \\ -2 \end{pmatrix},\; s \in \mathbb{R}$. Eigenspace: $E_{-1} = \operatorname{span}\left\{\begin{pmatrix} 1 \\ -2 \end{pmatrix}\right\}$, $\dim(E_{-1}) = 1$.
+    </div>
+    <div class="sol-zh">
+      <strong>知识点：特征值与特征向量的求解四步法</strong><br>
+      ① 计算特征多项式 $p_A(\lambda) = \det(\lambda I - A)$<br>
+      ② 求根得到特征值（按重数计）<br>
+      ③ 对每个特征值解齐次方程组 $(\lambda_i I - A)v = 0$ 得特征空间<br>
+      ④ 特征空间的维数 = 几何重数 ≤ 代数重数<br><br>
+      <strong>验证技巧：</strong>检查 trace = λ₁ + λ₂ → 3 + (-2) = 1 = 2 + (-1) ✓；det = λ₁·λ₂ → 3·(-2) - 2·(-2) = -2 = 2·(-1) ✓
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q2</span>
+  <div class="q-title">Find the eigenvalues of $A = \begin{pmatrix} 2 & 1 & -3 \\ 0 & 3 & 4 \\ 0 & 0 & -1 \end{pmatrix}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      Since $A$ is <strong>upper triangular</strong>, eigenvalues are the diagonal entries: $\lambda_1 = 2,\; \lambda_2 = 3,\; \lambda_3 = -1$.<br>
+      <strong>Why?</strong> For a triangular matrix, $\det(\lambda I - A) = (\lambda - a_{11})(\lambda - a_{22})\cdots(\lambda - a_{nn})$.
+    </div>
+    <div class="sol-zh">
+      <strong>考点：三角矩阵的特征值直接等于对角线元素。</strong>这是考试重要快捷技巧——看到三角矩阵不需要展开行列式。上三角/下三角都是如此。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q3</span>
+  <div class="q-title">Find the eigenvalues of $A = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 1 \\ 1 & 1 & 2 \end{pmatrix}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Method 1 — Direct computation:</strong>
+      $$\det(\lambda I - A) = \det\begin{pmatrix} \lambda-2 & -1 & -1 \\ -1 & \lambda-2 & -1 \\ -1 & -1 & \lambda-2 \end{pmatrix}.$$
+      Subtract row 1 from rows 2 and 3, then expand: $p_A(\lambda) = (\lambda-4)(\lambda-1)^2$.
+      <br><br>
+      <strong>Method 2 — Structure recognition:</strong> $A = I + J$ where $J$ is the all-ones matrix. $J$ has eigenvalues $3, 0, 0$. So $A = I + J$ has eigenvalues $1+3=4$ and $1+0=1$ (multiplicity 2).
+      <br>Eigenvalues: $\lambda = 4$ (simple), $\lambda = 1$ (double).
+      <br><br>
+      <strong>Eigenvectors:</strong> For $\lambda=4$, $v = (1,1,1)^\top$. For $\lambda=1$, any vector orthogonal to $(1,1,1)^\top$, e.g., $(1,-1,0)^\top$ and $(1,1,-2)^\top$.
+    </div>
+    <div class="sol-zh">
+      <strong>考点：结构识别（Structure Recognition）。</strong>$A = I + J$ 这类分解在考试中反复出现。全1矩阵$J$的特征值：一个$n$（对应特征向量$(1,1,...,1)^\top$），其余全是0。加上$cI$后特征值都加$c$。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q4</span>
+  <div class="q-title">Complex eigenvalues: $A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$. Find eigenvalues.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      $$\det(\lambda I - A) = \det\begin{pmatrix} \lambda & -1 \\ 1 & \lambda \end{pmatrix} = \lambda^2 + 1.$$
+      Eigenvalues: $\lambda = i$ and $\lambda = -i$ (purely imaginary).
+      <br>This shows that <strong>real matrices can have complex eigenvalues</strong>. The complex eigenvalues come in conjugate pairs.
+    </div>
+    <div class="sol-zh">
+      <strong>考点：实矩阵可以有复特征值，且复特征值共轭成对出现。</strong>由代数基本定理，$n \times n$ 矩阵在 $\mathbb{C}$ 中恰好有 $n$ 个特征值（按重数计）。
+    </div>
+  </div>
+</div>
+
+<div class="kp-box">
+  <div class="kp-title">📚 Knowledge Point Summary — Eigenvalues</div>
+  <table class="data">
+    <tr><th>Property</th><th>Formula</th><th>Key Use</th></tr>
+    <tr><td>Characteristic polynomial</td><td>$p_A(\lambda) = \det(\lambda I - A)$</td><td>Finding all eigenvalues</td></tr>
+    <tr><td>Sum = Trace</td><td>$\sum_{i=1}^n \lambda_i = \operatorname{tr}(A)$</td><td>Quick verification</td></tr>
+    <tr><td>Product = Determinant</td><td>$\prod_{i=1}^n \lambda_i = \det(A)$</td><td>Singularity check ($\det=0 \iff \exists \lambda=0$)</td></tr>
+    <tr><td>Triangular shortcut</td><td>$\lambda_i = a_{ii}$</td><td>No expansion needed</td></tr>
+    <tr><td>$A^k$ eigenvalues</td><td>$\operatorname{EIG}(A^k) = \{\lambda_i^k\}$</td><td>Dynamical systems</td></tr>
+    <tr><td>$A^{-1}$ eigenvalues</td><td>$\operatorname{EIG}(A^{-1}) = \{\lambda_i^{-1}\}$</td><td>Invertible case only</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: Diagonalization & Spectral Theorem -->
+<!-- ============================================================ -->
+<div class="section" id="s2">
+<h2>2. Diagonalization &amp; the Spectral Theorem</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q5</span>
+  <div class="q-title">Is $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ diagonalizable? Justify.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>No.</strong> $A$ is upper triangular, so eigenvalue $\lambda = 1$ (algebraic multiplicity 2).
+      <br>Eigenspace: solve $(I - A)v = 0$:
+      $$\begin{pmatrix} 0 & -1 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = 0 \implies v_2 = 0.$$
+      So $E_1 = \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \end{pmatrix}\right\}$, $\dim(E_1) = 1$.
+      <br>Geometric multiplicity (1) &lt; algebraic multiplicity (2) &rarr; <strong>not diagonalizable</strong>.
+      <br>This is a classic <strong>Jordan block</strong>.
+    </div>
+    <div class="sol-zh">
+      <strong>考点：可对角化的充要条件。</strong>每个特征值的几何重数 = 代数重数。若存在任一特征值的几何重数 < 代数重数，则矩阵<strong>不可对角化</strong>（亏损矩阵 / defective matrix）。$\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ 是最经典的反例——Jordan块。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q6</span>
+  <div class="q-title">Diagonalize $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Step 1:</strong> $\det(\lambda I - A) = \lambda^2 - 1 = (\lambda-1)(\lambda+1)$. Eigenvalues: $\lambda_1 = 1,\; \lambda_2 = -1$.
+      <br><strong>Step 2:</strong> For $\lambda = 1$: $(I - A)v = 0 \implies v = t(1,1)^\top$.
+      <br>For $\lambda = -1$: $(-I - A)v = 0 \implies v = s(1,-1)^\top$.
+      <br><strong>Step 3:</strong> Two linearly independent eigenvectors &rarr; diagonalizable.
+      $$P = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \quad D = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \quad A = P D P^{-1}.$$
+    </div>
+    <div class="sol-zh">
+      <strong>对角化步骤：</strong>①求特征值 ②求特征向量 ③以特征向量为列组成$P$，以特征值为对角线组成$D$，则 $A = PDP^{-1}$。<br>
+      <strong>注意：</strong>$P$中特征向量的顺序必须与$D$中特征值的顺序对应。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q7</span>
+  <div class="q-title">State the Spectral Theorem for real symmetric matrices.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Spectral Theorem:</strong> If $A \in \mathbb{R}^{n \times n}$ is symmetric ($A^\top = A$), then:
+      <ol style="margin:8px 0 8px 24px;">
+        <li>All eigenvalues of $A$ are <strong>real</strong>.</li>
+        <li>$A$ is <strong>orthogonally diagonalizable</strong>: there exists an orthogonal matrix $Q$ ($Q^\top Q = I$) and a diagonal matrix $\Lambda$ such that $A = Q\Lambda Q^\top$.</li>
+        <li>Equivalently, $\mathbb{R}^n$ has an <strong>orthonormal basis</strong> consisting of eigenvectors of $A$.</li>
+      </ol>
+      <strong>Key consequence:</strong> Eigenvectors corresponding to <em>distinct</em> eigenvalues of a symmetric matrix are <strong>orthogonal</strong>.
+    </div>
+    <div class="sol-zh">
+      <strong>谱定理（实对称矩阵）：</strong>对称矩阵的特征值全是实数，且可正交对角化 $A = Q\Lambda Q^\top$。这意味着存在由特征向量组成的$\mathbb{R}^n$的<strong>标准正交基</strong>。这是线性代数中最重要的定理之一。
+    </div>
+  </div>
+</div>
+
+<div class="kp-box">
+  <div class="kp-title">📚 Diagonalization — Equivalent Conditions</div>
+  <p>For $A \in \mathbb{C}^{n \times n}$, the following are <strong>equivalent</strong>:</p>
+  <ol style="margin:8px 0 0 24px;">
+    <li>$A$ is diagonalizable ($A = PDP^{-1}$ with $D$ diagonal).</li>
+    <li>$A$ has $n$ linearly independent eigenvectors (an <strong>eigenbasis</strong>).</li>
+    <li>For every eigenvalue, geometric multiplicity = algebraic multiplicity.</li>
+  </ol>
+  <p style="margin-top:8px;"><strong>Sufficient condition:</strong> If $A$ has $n$ <em>distinct</em> eigenvalues, then $A$ is diagonalizable. (Not necessary — a matrix with repeated eigenvalues can still be diagonalizable if all geometric multiplicities equal algebraic multiplicities.)</p>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: SVD -->
+<!-- ============================================================ -->
+<div class="section" id="s3">
+<h2>3. Singular Value Decomposition (SVD)</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q8</span>
+  <div class="q-title">Compute the full SVD of $A = \begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 0 & 0 \end{pmatrix}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Step 1: Compute $A^\top A$.</strong>
+      $$A^\top A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix}.$$
+      <strong>Step 2: Eigenvalues of $A^\top A$ &rarr; singular values.</strong>
+      $\det(\lambda I - A^\top A) = (\lambda-2)^2 - 4 = \lambda^2 - 4\lambda = \lambda(\lambda-4)$. Eigenvalues: $\lambda_1 = 4,\; \lambda_2 = 0$.
+      <br>Singular values: $\sigma_1 = \sqrt{4} = 2,\; \sigma_2 = 0$. Rank $r = 1$.
+      <br><br>
+      <strong>Step 3: Right singular vectors</strong> (eigenvectors of $A^\top A$).
+      <br>For $\lambda = 4$: $v_1 = \frac{1}{\sqrt{2}}(1,1)^\top$.
+      <br>For $\lambda = 0$: $v_2 = \frac{1}{\sqrt{2}}(1,-1)^\top$.
+      <br><br>
+      <strong>Step 4: Left singular vectors.</strong>
+      $u_1 = \frac{1}{\sigma_1} A v_1 = \frac{1}{2}\begin{pmatrix}1&1\\1&1\\0&0\end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix}$.
+      <br>Extend to orthonormal basis of $\mathbb{R}^3$: $u_2 = \frac{1}{\sqrt{2}}(1,-1,0)^\top$, $u_3 = (0,0,1)^\top$.
+      <br><br>
+      <strong>Step 5: Assemble.</strong>
+      $$A = U\Sigma V^\top = \underbrace{\begin{pmatrix} 1/\sqrt{2} & 1/\sqrt{2} & 0 \\ 1/\sqrt{2} & -1/\sqrt{2} & 0 \\ 0 & 0 & 1 \end{pmatrix}}_{U}
+      \underbrace{\begin{pmatrix} 2 & 0 \\ 0 & 0 \\ 0 & 0 \end{pmatrix}}_{\Sigma}
+      \underbrace{\begin{pmatrix} 1/\sqrt{2} & 1/\sqrt{2} \\ 1/\sqrt{2} & -1/\sqrt{2} \end{pmatrix}^\top}_{V^\top}.$$
+      <strong>Compact SVD:</strong> $A = \sigma_1 u_1 v_1^\top = 2 \cdot \frac{1}{\sqrt{2}}\begin{pmatrix}1\\1\\0\end{pmatrix} \cdot \frac{1}{\sqrt{2}}(1,1) = \begin{pmatrix}1&1\\1&1\\0&0\end{pmatrix}$.
+    </div>
+    <div class="sol-zh">
+      <strong>SVD 计算五步法：</strong><br>
+      ① 计算 $A^\top A$（对称半正定）<br>
+      ② 求 $A^\top A$ 的特征值 $\lambda_i$，奇异值 $\sigma_i = \sqrt{\lambda_i}$（非零的有 $r$ 个）<br>
+      ③ 求 $A^\top A$ 的标准正交特征向量 = 右奇异向量 $v_i$<br>
+      ④ $u_i = \frac{1}{\sigma_i} A v_i$（$i = 1,...,r$），再扩充为 $\mathbb{R}^m$ 的标准正交基<br>
+      ⑤ 组装 $U, \Sigma, V$<br><br>
+      <strong>简洁SVD:</strong> $A = \sum_{i=1}^r \sigma_i u_i v_i^\top$（秩-1矩阵之和）
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q9</span>
+  <div class="q-title">From SVD, identify the four fundamental subspaces.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      Given full SVD $A = U\Sigma V^\top$ where $A \in \mathbb{R}^{m \times n}$, $\text{rank}(A) = r$:
+      <table class="data">
+        <tr><th>Subspace</th><th>Basis from SVD</th><th>Dimension</th><th>Lives in</th></tr>
+        <tr><td>Column space $C(A)$</td><td>$u_1,\dots,u_r$</td><td>$r$</td><td>$\mathbb{R}^m$</td></tr>
+        <tr><td>Nullspace $N(A)$</td><td>$v_{r+1},\dots,v_n$</td><td>$n-r$</td><td>$\mathbb{R}^n$</td></tr>
+        <tr><td>Row space $\text{Row}(A)$</td><td>$v_1,\dots,v_r$</td><td>$r$</td><td>$\mathbb{R}^n$</td></tr>
+        <tr><td>Left nullspace $N(A^\top)$</td><td>$u_{r+1},\dots,u_m$</td><td>$m-r$</td><td>$\mathbb{R}^m$</td></tr>
+      </table>
+      Orthogonal complement relations: $\text{Row}(A) \perp N(A)$, $C(A) \perp N(A^\top)$.
+    </div>
+    <div class="sol-zh">
+      <strong>SVD 最强大的性质之一：直接给出四个基本子空间的标准正交基。</strong>记住：$V$ 的前 $r$ 列是行空间，后 $n-r$ 列是零空间；$U$ 的前 $r$ 列是列空间，后 $m-r$ 列是左零空间。
+    </div>
+  </div>
+</div>
+
+<div class="kp-box">
+  <div class="kp-title">📚 SVD Key Facts</div>
+  <ul style="margin:8px 0 0 20px; line-height:1.9;">
+    <li><strong>Right singular vectors</strong> $v_i$ are eigenvectors of $A^\top A$: $A^\top A v_i = \sigma_i^2 v_i$</li>
+    <li><strong>Left singular vectors</strong> $u_i$ are eigenvectors of $AA^\top$: $AA^\top u_i = \sigma_i^2 u_i$</li>
+    <li>$A^\top A$ and $AA^\top$ share the same <em>nonzero</em> eigenvalues</li>
+    <li>Number of nonzero singular values = $\text{rank}(A)$</li>
+    <li>Frobenius norm from SVD: $\|A\|_F = \sqrt{\sum_{i=1}^r \sigma_i^2}$</li>
+    <li>Compact SVD: $A = \sum_{i=1}^r \sigma_i u_i v_i^\top$ (sum of rank-1 matrices)</li>
+  </ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: Least Squares -->
+<!-- ============================================================ -->
+<div class="section" id="s4">
+<h2>4. Least Squares Problems</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q10</span>
+  <div class="q-title">Solve the least squares problem: $\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|$ with $A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{pmatrix}$, $\mathbf{b} = \begin{pmatrix} 1 \\ 2 \\ 4 \end{pmatrix}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Step 1: Form the normal equation.</strong>
+      $$A^\top A = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}, \quad A^\top \mathbf{b} = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \\ 4 \end{pmatrix} = \begin{pmatrix} 5 \\ 6 \end{pmatrix}.$$
+      Normal equation: $A^\top A \hat{\mathbf{x}} = A^\top \mathbf{b}$:
+      $$\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 5 \\ 6 \end{pmatrix}.$$
+      <strong>Step 2: Solve.</strong>
+      From row 1: $2x_1 + x_2 = 5$. From row 2: $x_1 + 2x_2 = 6$.
+      <br>Solving: $x_1 = \frac{4}{3}$, $x_2 = \frac{7}{3}$.
+      <br>The LS solution is $\hat{\mathbf{x}} = (\frac{4}{3}, \frac{7}{3})^\top$.
+      <br><strong>Verification:</strong> Residual $\mathbf{r} = \mathbf{b} - A\hat{\mathbf{x}} = (1,2,4)^\top - (\frac{4}{3}, \frac{7}{3}, \frac{11}{3})^\top = (-\frac{1}{3}, -\frac{1}{3}, \frac{1}{3})^\top$. Check $\mathbf{r} \perp C(A)$: $A^\top \mathbf{r} = (0,0)^\top$ ✓.
+    </div>
+    <div class="sol-zh">
+      <strong>最小二乘解题步骤：</strong>①计算 $A^\top A$ 和 $A^\top \mathbf{b}$ ②解正规方程 $A^\top A \hat{\mathbf{x}} = A^\top \mathbf{b}$<br>
+      <strong>几何意义：</strong>$A\hat{\mathbf{x}}$ 是 $\mathbf{b}$ 在列空间 $C(A)$ 上的<strong>正交投影</strong>，残差 $\mathbf{b} - A\hat{\mathbf{x}}$ ⟂ $C(A)$。<br>
+      <strong>满列秩时：</strong>$\hat{\mathbf{x}} = (A^\top A)^{-1} A^\top \mathbf{b}$（唯一解）
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q11</span>
+  <div class="q-title">Prove that the normal equation $A^\top A\mathbf{y} = A^\top\mathbf{b}$ always has at least one solution.</div>
+  <div class="solution">
+    <div class="sol-header">Proof</div>
+    <div class="sol-en">
+      We need to show $A^\top \mathbf{b} \in C(A^\top A)$ for any $\mathbf{b}$.
+      <br><br>
+      Recall Lemma 17.0: $N(A^\top A) = N(A)$. Taking orthogonal complements:
+      $$\text{Row}(A^\top A) = N(A^\top A)^\perp = N(A)^\perp = \text{Row}(A) = C(A^\top).$$
+      Since $C(A^\top A) = \text{Row}(A^\top A)$ (for symmetric $A^\top A$) and $A^\top \mathbf{b} \in C(A^\top) = C(A^\top A)$, the normal equation is always consistent. ∎
+    </div>
+    <div class="sol-zh">
+      利用 $N(A^\top A) = N(A)$ 取正交补：行空间相等，因此 $A^\top \mathbf{b} \in C(A^\top) = C(A^\top A)$。正规方程对任意 $\mathbf{b}$ 总有解，但解不一定唯一（除非 $A$ 列满秩）。
+    </div>
+  </div>
+</div>
+
+<div class="kp-box">
+  <div class="kp-title">📚 Least Squares — Three Equivalent Characterizations</div>
+  <p>For $\min_{\mathbf{x}} \|A\mathbf{x} - \mathbf{b}\|$, the following are <strong>equivalent</strong>:</p>
+  <ol style="margin:8px 0 0 24px;">
+    <li>$\mathbf{y}$ minimizes $\|A\mathbf{x} - \mathbf{b}\|$</li>
+    <li>$\mathbf{b} - A\mathbf{y} \perp C(A)$ (residual ⟂ column space)</li>
+    <li>$A^\top A\mathbf{y} = A^\top \mathbf{b}$ (Normal Equation)</li>
+  </ol>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: Quadratic Forms & Definiteness -->
+<!-- ============================================================ -->
+<div class="section" id="s5">
+<h2>5. Quadratic Forms &amp; Positive Definiteness</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q12</span>
+  <div class="q-title">Classify $A = \begin{pmatrix} 3 & 0 \\ 0 & -2 \end{pmatrix}$ as PD, PSD, I, NSD, or ND.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      Eigenvalues: $\lambda_1 = 3 > 0$, $\lambda_2 = -2 < 0$. Signs are mixed &rarr; <strong>Indefinite (I)</strong>.
+      <br>For $\mathbf{x} = (1,0)^\top$: $\mathbf{x}^\top A\mathbf{x} = 3 > 0$. For $\mathbf{x} = (0,1)^\top$: $\mathbf{x}^\top A\mathbf{x} = -2 < 0$.
+    </div>
+    <div class="sol-zh">
+      <strong>判定方法：</strong>看特征值的符号。<br>
+      <strong>全部 > 0</strong> → PD（正定）；<strong>全部 ≥ 0</strong> → PSD（半正定）；<strong>全部 < 0</strong> → ND（负定）；<strong>全部 ≤ 0</strong> → NSD（半负定）；<strong>有正有负</strong> → I（不定）。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q13</span>
+  <div class="q-title">Prove: If $A$ is positive definite, then all eigenvalues of $A$ are strictly positive.</div>
+  <div class="solution">
+    <div class="sol-header">Proof</div>
+    <div class="sol-en">
+      Let $\lambda$ be an eigenvalue of $A$ with eigenvector $\mathbf{v} \neq \mathbf{0}$. Then $A\mathbf{v} = \lambda\mathbf{v}$.
+      <br>Multiply by $\mathbf{v}^\top$: $\mathbf{v}^\top A\mathbf{v} = \lambda \mathbf{v}^\top \mathbf{v} = \lambda \|\mathbf{v}\|^2$.
+      <br>Since $A$ is PD, $\mathbf{v}^\top A\mathbf{v} > 0$ for $\mathbf{v} \neq \mathbf{0}$. And $\|\mathbf{v}\|^2 > 0$.
+      <br>Therefore $\lambda = \frac{\mathbf{v}^\top A\mathbf{v}}{\|\mathbf{v}\|^2} > 0$. ∎
+    </div>
+    <div class="sol-zh">
+      <strong>正定矩阵的三个等价条件：</strong>① $A$ 正定（$\mathbf{x}^\top A\mathbf{x} > 0$ 对所有 $\mathbf{x} \neq 0$）② 所有特征值 > 0 ③ $A = R^\top R$，其中 $R$ 可逆（Cholesky分解）。这三者等价，在证明题中经常互相转化使用。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q14</span>
+  <div class="q-title">Rewrite $a x^2 + b x y + c y^2 = \alpha$ using a symmetric matrix, and give conditions for an ellipse vs. hyperbola.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      Let $\mathbf{u} = (x, y)^\top$. The equation is $\mathbf{u}^\top A \mathbf{u} = \alpha$ where $A = \begin{pmatrix} a & b/2 \\ b/2 & c \end{pmatrix}$ (symmetric).
+      <br><br>
+      Diagonalize $A = Q\Lambda Q^\top$ with $\Lambda = \text{diag}(\lambda_1, \lambda_2)$. Let $\tilde{\mathbf{u}} = Q^\top\mathbf{u} = (\tilde{x}, \tilde{y})^\top$. Then:
+      $$\lambda_1 \tilde{x}^2 + \lambda_2 \tilde{y}^2 = \alpha.$$
+      <strong>Ellipse:</strong> $\lambda_1, \lambda_2$ have the <strong>same sign</strong> and $\alpha$ shares that sign. Then $\frac{\tilde{x}^2}{\alpha/\lambda_1} + \frac{\tilde{y}^2}{\alpha/\lambda_2} = 1$.
+      <br><strong>Hyperbola:</strong> $\lambda_1, \lambda_2$ have <strong>opposite signs</strong>. Then one squared term is positive, the other negative.
+      <br><strong>Parabola:</strong> one eigenvalue = 0 (degenerate case, $A$ singular).
+    </div>
+    <div class="sol-zh">
+      <strong>二次曲线分类：</strong>椭圆（特征值同号）、双曲线（特征值异号）、抛物线（一个特征值为零）。这是特征值几何应用的重要例子——通过正交对角化旋转坐标系，将一般二次方程化为标准型。
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: Gram-Schmidt -->
+<!-- ============================================================ -->
+<div class="section" id="s6">
+<h2>6. Gram-Schmidt Orthogonalization</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q15</span>
+  <div class="q-title">Apply Gram-Schmidt to $\mathbf{a}_1 = (1,1,0)^\top$, $\mathbf{a}_2 = (1,0,1)^\top$, $\mathbf{a}_3 = (0,1,1)^\top$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Step 1: Normalize the first vector.</strong>
+      $$\mathbf{q}_1 = \frac{\mathbf{a}_1}{\|\mathbf{a}_1\|} = \frac{1}{\sqrt{2}}(1,1,0)^\top.$$
+      <strong>Step 2: Subtract projection.</strong>
+      $$\mathbf{v}_2 = \mathbf{a}_2 - \langle \mathbf{a}_2, \mathbf{q}_1 \rangle \mathbf{q}_1 = (1,0,1)^\top - \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}(1,1,0)^\top = (1,0,1)^\top - \frac{1}{2}(1,1,0)^\top = (\tfrac{1}{2}, -\tfrac{1}{2}, 1)^\top.$$
+      Normalize: $\|\mathbf{v}_2\| = \sqrt{\frac{1}{4} + \frac{1}{4} + 1} = \sqrt{\frac{3}{2}}$, so $\mathbf{q}_2 = \sqrt{\frac{2}{3}}(\tfrac{1}{2}, -\tfrac{1}{2}, 1)^\top = \frac{1}{\sqrt{6}}(1,-1,2)^\top$.
+      <br><br>
+      <strong>Step 3: Third vector.</strong>
+      $$\mathbf{v}_3 = \mathbf{a}_3 - \langle \mathbf{a}_3, \mathbf{q}_1 \rangle \mathbf{q}_1 - \langle \mathbf{a}_3, \mathbf{q}_2 \rangle \mathbf{q}_2.$$
+      $\langle \mathbf{a}_3, \mathbf{q}_1 \rangle = \frac{1}{\sqrt{2}}$, $\langle \mathbf{a}_3, \mathbf{q}_2 \rangle = \frac{1}{\sqrt{6}}(-1+2) = \frac{1}{\sqrt{6}}$.
+      $$\mathbf{v}_3 = (0,1,1)^\top - \tfrac{1}{2}(1,1,0)^\top - \tfrac{1}{6}(1,-1,2)^\top = (-\tfrac{2}{3}, \tfrac{2}{3}, \tfrac{2}{3})^\top.$$
+      Normalize: $\mathbf{q}_3 = \frac{1}{\sqrt{3}}(-1,1,1)^\top$.
+      <br><br>
+      <strong>Result:</strong> Orthonormal basis $\{\mathbf{q}_1, \mathbf{q}_2, \mathbf{q}_3\}$.
+    </div>
+    <div class="sol-zh">
+      <strong>Gram-Schmidt 核心思想：</strong>对每个新向量，减去它在<strong>所有已处理向量上的投影</strong>，然后归一化。<br>
+      公式：$\mathbf{v}_k = \mathbf{a}_k - \sum_{i=1}^{k-1} \langle \mathbf{a}_k, \mathbf{q}_i \rangle \mathbf{q}_i$，$\mathbf{q}_k = \mathbf{v}_k / \|\mathbf{v}_k\|$。<br>
+      <strong>考试注意：</strong>计算容易出错，建议每步检查正交性（$\langle \mathbf{q}_i, \mathbf{q}_j \rangle = 0$ 对于 $i \neq j$）。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q16</span>
+  <div class="q-title">Define an orthogonal matrix and list three key properties.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      $Q \in \mathbb{R}^{n \times n}$ is <strong>orthogonal</strong> if $Q^\top Q = I$ (equivalently $Q^{-1} = Q^\top$, or columns form an orthonormal basis).
+      <br><br>
+      <strong>Properties:</strong>
+      <ol style="margin:8px 0 0 24px;">
+        <li><strong>Preserves length:</strong> $\|Q\mathbf{x}\| = \|\mathbf{x}\|$ for all $\mathbf{x}$.</li>
+        <li><strong>Preserves angles:</strong> $\langle Q\mathbf{x}, Q\mathbf{y} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle$.</li>
+        <li><strong>Product of orthogonal matrices is orthogonal.</strong></li>
+      </ol>
+    </div>
+    <div class="sol-zh">
+      <strong>正交矩阵</strong>的列向量构成标准正交基。最重要的性质是<strong>保长</strong>（$\|Q\mathbf{x}\| = \|\mathbf{x}\|$）——即正交变换等价于旋转或反射。
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 7: Determinants & Linear Transformations -->
+<!-- ============================================================ -->
+<div class="section" id="s7">
+<h2>7. Determinants &amp; Linear Transformations</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q17</span>
+  <div class="q-title">Compute $\det\begin{pmatrix} 2 & 1 & 0 & 0 \\ 1 & 3 & 0 & 0 \\ 0 & 0 & 4 & 2 \\ 0 & 0 & 1 & 5 \end{pmatrix}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      Block diagonal matrix: $\det = \det\begin{pmatrix}2&1\\1&3\end{pmatrix} \cdot \det\begin{pmatrix}4&2\\1&5\end{pmatrix} = (6-1) \cdot (20-2) = 5 \cdot 18 = 90$.
+    </div>
+    <div class="sol-zh">
+      <strong>分块对角矩阵的行列式等于各对角块行列式的乘积。</strong>这是行列式性质P2的重要应用。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q18</span>
+  <div class="q-title">If $A$ is $4 \times 4$ with $\det(A) = 3$, find (a) $\det(2A)$, (b) $\det(A^{-1})$, (c) $\det(A^2)$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      (a) $\det(2A) = 2^4 \det(A) = 16 \times 3 = 48$. (Scale all $n=4$ rows by 2, each multiplies determinant by 2.)
+      <br>(b) $\det(A^{-1}) = 1/\det(A) = 1/3$.
+      <br>(c) $\det(A^2) = (\det(A))^2 = 3^2 = 9$.
+    </div>
+    <div class="sol-zh">
+      <strong>行列式关键性质：</strong>$\det(cA) = c^n \det(A)$（<strong>不是</strong> $c\det(A)$！这是高频错误点）；$\det(A^{-1}) = 1/\det(A)$；$\det(AB) = \det(A)\det(B)$。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q19</span>
+  <div class="q-title">Give the definition of a linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      $T$ is a <strong>linear transformation</strong> if for all $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$ and $c \in \mathbb{R}$:
+      <div class="formula-box">$$T(c\mathbf{u} + \mathbf{v}) = cT(\mathbf{u}) + T(\mathbf{v}).$$</div>
+      Equivalently, (1) $T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})$ (additivity), and (2) $T(c\mathbf{u}) = cT(\mathbf{u})$ (homogeneity).
+      <br><br>
+      Every linear transformation can be represented by a matrix: $T(\mathbf{x}) = A\mathbf{x}$ where $A = [T(\mathbf{e}_1) \; T(\mathbf{e}_2) \; \cdots \; T(\mathbf{e}_n)]$.
+    </div>
+    <div class="sol-zh">
+      <strong>线性变换 = 矩阵。</strong>任何线性变换 $T: \mathbb{R}^n \to \mathbb{R}^m$ 都可以写成 $T(\mathbf{x}) = A\mathbf{x}$，其中 $A$ 的第 $j$ 列是 $T(\mathbf{e}_j)$。反过来，每个矩阵乘一个向量就是一个线性变换。
+    </div>
+  </div>
+</div>
+
+<div class="kp-box">
+  <div class="kp-title">📚 Determinant Properties (Quick Reference)</div>
+  <table class="data">
+    <tr><th>Property</th><th>Formula</th></tr>
+    <tr><td>Product</td><td>$\det(AB) = \det(A)\det(B)$</td></tr>
+    <tr><td>Scalar multiplication</td><td>$\det(cA) = c^n \det(A)$</td></tr>
+    <tr><td>Inverse</td><td>$\det(A^{-1}) = 1/\det(A)$</td></tr>
+    <tr><td>Transpose</td><td>$\det(A^\top) = \det(A)$</td></tr>
+    <tr><td>Row swap</td><td>$\det(A_{\text{swapped}}) = -\det(A)$</td></tr>
+    <tr><td>Triangular</td><td>$\det(A) = a_{11}a_{22}\cdots a_{nn}$</td></tr>
+    <tr><td>Product of eigenvalues</td><td>$\det(A) = \lambda_1\lambda_2\cdots\lambda_n$</td></tr>
+    <tr><td>Invertibility</td><td>$A$ invertible $\iff \det(A) \neq 0$</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 8: Four Fundamental Subspaces -->
+<!-- ============================================================ -->
+<div class="section" id="s8">
+<h2>8. Four Fundamental Subspaces</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q20</span>
+  <div class="q-title">For $A = \begin{pmatrix} 1 & 2 & 0 & 1 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 0 & 0 \end{pmatrix}$ (in RREF), find bases and dimensions of $C(A)$, $N(A)$, $\text{Row}(A)$, and $N(A^\top)$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      $A$ is $3 \times 4$, pivots at columns 1 and 3. Rank $r = 2$.
+      <br><br>
+      <strong>Column space $C(A)$:</strong> Pivot columns of <em>original</em> $A$ (columns 1 and 3). Basis: $\{(1,0,0)^\top, (0,1,0)^\top\}$. $\dim = 2$.
+      <br>
+      <strong>Nullspace $N(A)$:</strong> Free variables: $x_2, x_4$. From RREF: $x_1 + 2x_2 + x_4 = 0$, $x_3 + 3x_4 = 0$.
+      $$\mathbf{x} = s\begin{pmatrix}-2\\1\\0\\0\end{pmatrix} + t\begin{pmatrix}-1\\0\\-3\\1\end{pmatrix}.$$
+      Basis: $\{(-2,1,0,0)^\top, (-1,0,-3,1)^\top\}$. $\dim = n - r = 4 - 2 = 2$.
+      <br>
+      <strong>Row space $\text{Row}(A)$:</strong> Non-zero rows of RREF. Basis: $\{(1,2,0,1), (0,0,1,3)\}$. $\dim = r = 2$.
+      <br>
+      <strong>Left nullspace $N(A^\top)$:</strong> $A^\top\mathbf{y} = \mathbf{0}$. Row 3 of $A$ is all zeros &rarr; $y_3$ free. Basis: $\{(0,0,1)^\top\}$. $\dim = m - r = 3 - 2 = 1$.
+    </div>
+    <div class="sol-zh">
+      <strong>四个基本子空间的维数关系：</strong>对于 $m \times n$ 矩阵 $A$（秩为 $r$）：
+      <br>$\dim(C(A)) = r$（列空间 ⊂ $\mathbb{R}^m$）
+      <br>$\dim(N(A)) = n-r$（零空间 ⊂ $\mathbb{R}^n$）
+      <br>$\dim(\text{Row}(A)) = r$（行空间 ⊂ $\mathbb{R}^n$）
+      <br>$\dim(N(A^\top)) = m-r$（左零空间 ⊂ $\mathbb{R}^m$）
+      <br><br>
+      <strong>注意：</strong>列空间的基取<strong>原矩阵</strong>的pivot列（不是RREF的！），而行空间的基取RREF的非零行。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q21</span>
+  <div class="q-title">Prove that $\text{Row}(A) \perp N(A)$.</div>
+  <div class="solution">
+    <div class="sol-header">Proof</div>
+    <div class="sol-en">
+      Let $\mathbf{r}$ be any row of $A$ and $\mathbf{x} \in N(A)$. By definition, $A\mathbf{x} = \mathbf{0}$. The component corresponding to row $\mathbf{r}$ is $\langle \mathbf{r}, \mathbf{x} \rangle = 0$.
+      <br>Since this holds for every row, $\mathbf{x} \perp \mathbf{r}$ for all rows $\mathbf{r}$.
+      <br>Any vector in $\text{Row}(A)$ is a linear combination of rows: $\mathbf{w} = \sum c_i \mathbf{r}_i$.
+      <br>Then $\langle \mathbf{w}, \mathbf{x} \rangle = \sum c_i \langle \mathbf{r}_i, \mathbf{x} \rangle = 0$. Thus $\mathbf{w} \perp \mathbf{x}$ for all $\mathbf{w} \in \text{Row}(A)$ and $\mathbf{x} \in N(A)$. ∎
+    </div>
+    <div class="sol-zh">
+      <strong>零空间的几何含义：</strong>$A\mathbf{x} = \mathbf{0}$ 意味着 $\mathbf{x}$ 与 $A$ 的每一行正交，因此与行空间中的所有向量正交。所以零空间 = 行空间的正交补。这就是为什么 $\dim(N(A)) + \dim(\text{Row}(A)) = n$。
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 9: True / False -->
+<!-- ============================================================ -->
+<div class="section" id="s9">
+<h2>9. True / False &amp; Conceptual Questions</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q22</span>
+  <div class="q-title">True or False: If $A$ is invertible, then $\det(A^{-1}) = \det(A)$.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#e53935;font-weight:700;">FALSE</span></div>
+    <div class="sol-en">
+      The correct relation is $\det(A^{-1}) = 1/\det(A)$. They are equal only when $\det(A) = \pm 1$.
+      <br>Example: $A = \begin{pmatrix}2&0\\0&1\end{pmatrix}$, $\det(A)=2$, $\det(A^{-1}) = 1/2 \neq 2$.
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q23</span>
+  <div class="q-title">True or False: Every square matrix has a full set of real eigenvalues.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#e53935;font-weight:700;">FALSE</span></div>
+    <div class="sol-en">
+      Counterexample: $A = \begin{pmatrix}0&1\\-1&0\end{pmatrix}$ has eigenvalues $\lambda = i, -i$ (complex, not real).
+      <br>Only symmetric matrices are guaranteed to have all real eigenvalues (Spectral Theorem).
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q24</span>
+  <div class="q-title">True or False: If $A$ and $B$ are $n \times n$ with $AB = I$, then $BA = I$.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#43a047;font-weight:700;">TRUE</span></div>
+    <div class="sol-en">
+      For square matrices, one-sided inverse implies two-sided inverse. $AB = I$ &rarr; $B = A^{-1}$ &rarr; $BA = I$.
+      <br>(This is <strong>not</strong> true for rectangular matrices.)
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q25</span>
+  <div class="q-title">True or False: If $A$ has $n$ distinct eigenvalues, then $A$ is diagonalizable.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#43a047;font-weight:700;">TRUE</span></div>
+    <div class="sol-en">
+      Distinct eigenvalues &rarr; eigenvectors are linearly independent &rarr; $n$ linearly independent eigenvectors &rarr; eigenbasis exists &rarr; diagonalizable.
+      <br><strong>This is a sufficient condition, not necessary.</strong>
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q26</span>
+  <div class="q-title">True or False: Eigenvectors corresponding to distinct eigenvalues are always orthogonal.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#e53935;font-weight:700;">FALSE</span></div>
+    <div class="sol-en">
+      They are <strong>linearly independent</strong>, but not necessarily orthogonal.
+      <br>Orthogonality holds for <strong>symmetric</strong> (or normal) matrices specifically.
+      <br>Counterexample: $A = \begin{pmatrix}3&1\\0&2\end{pmatrix}$ has eigenvectors $(1,0)^\top$ (for $\lambda=3$) and $(-1,1)^\top$ (for $\lambda=2$), which are <em>not</em> orthogonal (dot product = -1).
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q27</span>
+  <div class="q-title">True or False: If $A$ is positive definite, then $A$ is invertible.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#43a047;font-weight:700;">TRUE</span></div>
+    <div class="sol-en">
+      PD &rarr; all eigenvalues $\lambda_i > 0$ &rarr; $\det(A) = \prod \lambda_i > 0$ &rarr; $\det(A) \neq 0$ &rarr; invertible.
+      <br>Also: if $A$ were singular, $\exists \mathbf{x} \neq \mathbf{0}$ with $A\mathbf{x} = \mathbf{0}$ &rarr; $\mathbf{x}^\top A\mathbf{x} = 0$, contradicting PD.
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q28</span>
+  <div class="q-title">True or False: Two similar matrices have the same eigenvalues.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#43a047;font-weight:700;">TRUE</span></div>
+    <div class="sol-en">
+      If $B = P^{-1}AP$, then $\det(\lambda I - B) = \det(\lambda I - P^{-1}AP) = \det(P^{-1}(\lambda I - A)P) = \det(\lambda I - A)$.
+      <br>Same characteristic polynomial &rarr; same eigenvalues with same multiplicities.
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q29</span>
+  <div class="q-title">True or False: $\det(cA) = c\det(A)$ for any $n \times n$ matrix $A$.</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#e53935;font-weight:700;">FALSE</span></div>
+    <div class="sol-en">
+      The correct formula is $\det(cA) = c^n \det(A)$, since scalar multiplication multiplies all $n$ rows by $c$, each contributing a factor of $c$.
+      <br>Example: $A = I_2$, $\det(2I_2) = 4$, not $2$.
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q30</span>
+  <div class="q-title">True or False: The nullspace $N(A)$ is always a subspace of $\mathbb{R}^m$ (where $A$ is $m \times n$).</div>
+  <div class="solution">
+    <div class="sol-header">Answer: <span style="color:#e53935;font-weight:700;">FALSE</span></div>
+    <div class="sol-en">
+      $N(A) = \{\mathbf{x} \in \mathbb{R}^n : A\mathbf{x} = \mathbf{0}\}$ is a subspace of $\mathbb{R}^n$ (the domain), not $\mathbb{R}^m$.
+      <br>$C(A)$ is a subspace of $\mathbb{R}^m$ (the codomain). $N(A^\top)$ is a subspace of $\mathbb{R}^m$.
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 10: Mixed / Comprehensive -->
+<!-- ============================================================ -->
+<div class="section" id="s10">
+<h2>10. Mixed / Comprehensive Problems</h2>
+
+<div class="q-block">
+  <span class="q-tag">Q31</span>
+  <div class="q-title">Rabbit-Wolf Population Model: $x_{k+1} = 1.2x_k - 0.2y_k$, $y_{k+1} = 0.3x_k + 0.5y_k$. With $(x_0, y_0) = (100, 40)$, find $(x_k, y_k)$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      <strong>Step 1: Matrix form.</strong> $\mathbf{z}_{k+1} = A\mathbf{z}_k$ where $A = \begin{pmatrix}1.2&-0.2\\0.3&0.5\end{pmatrix}$.
+      <br>
+      <strong>Step 2: Eigenvalues.</strong> $\det(\lambda I - A) = (\lambda-1.2)(\lambda-0.5) + 0.06 = \lambda^2 - 1.7\lambda + 0.66 = (\lambda-1.1)(\lambda-0.6)$.
+      <br>$\lambda_1 = 1.1$ (dominant), $\lambda_2 = 0.6$.
+      <br>
+      <strong>Step 3: Eigenvectors.</strong> For $\lambda = 1.1$: $\mathbf{v}_1 = (2, 1)^\top$. For $\lambda = 0.6$: $\mathbf{v}_2 = (1, 3)^\top$.
+      <br>
+      <strong>Step 4: Express initial state in eigenbasis.</strong> Solve $\alpha(2,1)^\top + \beta(1,3)^\top = (100,40)^\top$:
+      $2\alpha + \beta = 100$, $\alpha + 3\beta = 40$. Solution: $\alpha = 52$, $\beta = -4$.
+      <br>
+      <strong>Step 5: Evolution.</strong> $\mathbf{z}_k = A^k\mathbf{z}_0 = 52(1.1)^k(2,1)^\top - 4(0.6)^k(1,3)^\top$.
+      <div class="formula-box highlight">
+        $$x_k = 104(1.1)^k - 4(0.6)^k, \quad y_k = 52(1.1)^k - 12(0.6)^k.$$
+      </div>
+      As $k \to \infty$, $(0.6)^k \to 0$, so the population grows proportionally to $(1.1)^k$ along the direction $(2,1)$.
+    </div>
+    <div class="sol-zh">
+      <strong>动力系统（Diagonalization应用）：</strong>这是对角化最经典的应用。步骤：①写成矩阵形式 $\mathbf{z}_{k+1} = A\mathbf{z}_k$ ②求特征值、特征向量 ③将初值用特征向量线性表示 ④ $\mathbf{z}_k = \alpha\lambda_1^k\mathbf{v}_1 + \beta\lambda_2^k\mathbf{v}_2$。<br>
+      <strong>长期行为：</strong>由最大特征值（spectral radius）主导——当 $k$ 很大时，系统趋近于沿主特征向量方向以 $\lambda_{\max}$ 速度增长或衰减。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q32</span>
+  <div class="q-title">Compute the Frobenius norm of $B = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ and verify $\|B\|_F = \sqrt{\operatorname{tr}(B^\top B)}$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      $\|B\|_F = \sqrt{1^2 + 2^2 + 3^2 + 4^2} = \sqrt{1 + 4 + 9 + 16} = \sqrt{30}$.
+      <br>
+      Verify: $B^\top B = \begin{pmatrix}1&3\\2&4\end{pmatrix}\begin{pmatrix}1&2\\3&4\end{pmatrix} = \begin{pmatrix}10&14\\14&20\end{pmatrix}$.
+      <br>$\operatorname{tr}(B^\top B) = 10 + 20 = 30$. So $\|B\|_F = \sqrt{30}$ ✓.
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q33</span>
+  <div class="q-title">Express $\|uu^\top\|_F$ in terms of $\|u\|$ for $u \in \mathbb{R}^n$.</div>
+  <div class="solution">
+    <div class="sol-header">Solution</div>
+    <div class="sol-en">
+      $(uu^\top)_{ij} = u_i u_j$. Then:
+      $$\|uu^\top\|_F^2 = \sum_{i=1}^n \sum_{j=1}^n (u_i u_j)^2 = \left(\sum_{i=1}^n u_i^2\right)\left(\sum_{j=1}^n u_j^2\right) = \|u\|^2 \cdot \|u\|^2 = \|u\|^4.$$
+      Thus $\|uu^\top\|_F = \|u\|^2$.
+    </div>
+    <div class="sol-zh">
+      秩-1矩阵 $uu^\top$（外积）的Frobenius范数 = $\|u\|^2$。这个结论经常在SVD上下文中使用。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q34</span>
+  <div class="q-title">Let $A \in \mathbb{R}^{n \times n}$ be symmetric. Prove that eigenvectors corresponding to distinct eigenvalues are orthogonal.</div>
+  <div class="solution">
+    <div class="sol-header">Proof</div>
+    <div class="sol-en">
+      Let $A\mathbf{v}_1 = \lambda_1\mathbf{v}_1$, $A\mathbf{v}_2 = \lambda_2\mathbf{v}_2$, with $\lambda_1 \neq \lambda_2$.
+      <br>Since $A$ is symmetric: $A^\top = A$.
+      <br>Consider $\lambda_1 \langle\mathbf{v}_1, \mathbf{v}_2\rangle = \langle\lambda_1\mathbf{v}_1, \mathbf{v}_2\rangle = \langle A\mathbf{v}_1, \mathbf{v}_2\rangle = \mathbf{v}_1^\top A^\top \mathbf{v}_2 = \mathbf{v}_1^\top A \mathbf{v}_2 = \langle\mathbf{v}_1, \lambda_2\mathbf{v}_2\rangle = \lambda_2\langle\mathbf{v}_1, \mathbf{v}_2\rangle$.
+      <br>Thus $(\lambda_1 - \lambda_2)\langle\mathbf{v}_1, \mathbf{v}_2\rangle = 0$. Since $\lambda_1 \neq \lambda_2$, we must have $\langle\mathbf{v}_1, \mathbf{v}_2\rangle = 0$. ∎
+    </div>
+    <div class="sol-zh">
+      <strong>核心技巧：</strong>利用对称性 $A^\top = A$ 将内积中的$A$从一边"搬到"另一边，然后利用特征值不同推出内积为零。这是谱定理的基础证明之一，考试高频。
+    </div>
+  </div>
+</div>
+
+<div class="q-block">
+  <span class="q-tag">Q35</span>
+  <div class="q-title">If $A = R^\top R$ where $R \in \mathbb{R}^{n \times n}$ is invertible, prove $A$ is positive definite.</div>
+  <div class="solution">
+    <div class="sol-header">Proof</div>
+    <div class="sol-en">
+      For any $\mathbf{x} \neq \mathbf{0}$: $\mathbf{x}^\top A \mathbf{x} = \mathbf{x}^\top (R^\top R)\mathbf{x} = (R\mathbf{x})^\top (R\mathbf{x}) = \|R\mathbf{x}\|^2$.
+      <br>Since $R$ is invertible and $\mathbf{x} \neq \mathbf{0}$, $R\mathbf{x} \neq \mathbf{0}$. Thus $\|R\mathbf{x}\|^2 > 0$.
+      <br>Therefore $\mathbf{x}^\top A\mathbf{x} > 0$ for all $\mathbf{x} \neq \mathbf{0}$, so $A$ is positive definite. ∎
+    </div>
+    <div class="sol-zh">
+      <strong>$A = R^\top R$（$R$可逆）是正定的等价条件。</strong>这一分解就是Cholesky分解。注意：必须是<strong>可逆</strong>的$R$，若$R$不可逆则为半正定。
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- FINAL SUMMARY -->
+<!-- ============================================================ -->
+<div class="section">
+<h2>🎯 Final Review Summary</h2>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <h4>Top Computational Skills</h4>
+    <p>• Find eigenvalues/eigenvectors (one 2×2 or 3×3)<br>
+    • Check diagonalizability, diagonalize a matrix<br>
+    • Compute SVD (small matrices, rank ≤ 2)<br>
+    • Solve least squares via normal equations<br>
+    • Gram-Schmidt orthogonalization<br>
+    • Classify quadratic forms / definiteness<br>
+    • Compute determinants (block, triangular, properties)</p>
+  </div>
+  <div class="summary-card">
+    <h4>Top Proof / Theory Questions</h4>
+    <p>• Spectral Theorem: symmetric ⟹ real eigenvalues, orthogonal diagonalization<br>
+    • Eigenvectors for distinct eigenvalues of symmetric A are orthogonal<br>
+    • Three equivalent conditions for positive definiteness<br>
+    • N(A) = N(A^TA), N(A) ⟂ Row(A)<br>
+    • Pivot test / equation test for invertibility<br>
+    • All bases have same cardinality (dimension theorem)</p>
+  </div>
+  <div class="summary-card">
+    <h4>Common Pitfalls</h4>
+    <p>• det(cA) = c<sup>n</sup> det(A), NOT c·det(A)<br>
+    • (AB)<sup>T</sup> = B<sup>T</sup>A<sup>T</sup>, NOT A<sup>T</sup>B<sup>T</sup><br>
+    • (AB)<sup>-1</sup> = B<sup>-1</sup>A<sup>-1</sup>, NOT A<sup>-1</sup>B<sup>-1</sup><br>
+    • Column space basis = pivot columns of ORIGINAL A, not RREF<br>
+    • Eigenvectors ≠ orthogonal (unless symmetric)<br>
+    • N(A) ⊂ ℝ<sup>n</sup>, C(A) ⊂ ℝ<sup>m</sup> (don't mix up!)</p>
+  </div>
+  <div class="summary-card">
+    <h4>Key Formula Sheet</h4>
+    <p>• Characteristic polynomial: det(λI − A)<br>
+    • Normal equation: A<sup>T</sup>Ay = A<sup>T</sup>b<br>
+    • SVD: A = UΣV<sup>T</sup>, σ<sub>i</sub> = √λ<sub>i</sub>(A<sup>T</sup>A)<br>
+    • Frobenius norm: ‖B‖<sub>F</sub> = √(ΣB<sub>ij</sub><sup>2</sup>) = √tr(B<sup>T</sup>B)<br>
+    • Rank-Nullity: dim N(A) + rank(A) = n<br>
+    • ∑λ<sub>i</sub> = tr(A), Πλ<sub>i</sub> = det(A)<br>
+    • A<sup>k</sup> = PD<sup>k</sup>P<sup>-1</sup> (if diagonalizable)</p>
+  </div>
+</div>
+</div>
+
+</main>
+</body>
+</html>
+</body>
+</html>

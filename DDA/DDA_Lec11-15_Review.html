@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DDA 复习笔记 | Lecture 11-15 置信区间·PCA·优化</title>
+<style>
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1a;--text2:#555;--accent:#534AB7;--accent2:#0F6E56;--red:#E24B4A;--amber:#BA7517;--blue:#185FA5;--pink:#C43B7A;--border:#e5e3de;--code-bg:#f3f1ec;--sidebar-bg:#f0eee9;--sidebar-w:260px;}
+@media(prefers-color-scheme:dark){:root{--bg:#1a1a1a;--card:#252525;--text:#e8e6e0;--text2:#999;--accent:#AFA9EC;--accent2:#5DCAA5;--red:#F09595;--amber:#FAC775;--blue:#85B7EB;--pink:#F29BC1;--border:#333;--code-bg:#2c2c2a;--sidebar-bg:#1f1f1f;}}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-bg);border-right:1px solid var(--border);overflow-y:auto;padding:20px 0;z-index:100;transition:transform .3s;}
+.sidebar .logo{padding:0 20px 16px;font-size:15px;font-weight:700;color:var(--accent);border-bottom:1px solid var(--border);margin-bottom:12px;}
+.sidebar a{display:block;padding:6px 20px;color:var(--text2);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .15s;}
+.sidebar a:hover,.sidebar a.active{color:var(--accent);background:rgba(83,74,183,.06);border-left-color:var(--accent);}
+.sidebar .sec{font-size:12px;font-weight:700;color:var(--text2);padding:14px 20px 6px;text-transform:uppercase;letter-spacing:.5px;}
+.sidebar .sub{padding-left:34px;font-size:12px;}
+.main{margin-left:var(--sidebar-w);padding:30px 40px 60px;}
+.container{max-width:860px;margin:0 auto;}
+.menu-btn{display:none;position:fixed;top:12px;left:12px;z-index:200;background:var(--accent);color:#fff;border:none;border-radius:8px;width:36px;height:36px;font-size:18px;cursor:pointer;}
+@media(max-width:800px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.main{margin-left:0;padding:20px;}.menu-btn{display:flex;align-items:center;justify-content:center;}}
+h1{font-size:26px;font-weight:700;margin-bottom:6px;color:var(--accent);}
+h2{font-size:21px;font-weight:600;margin:36px 0 14px;padding-bottom:7px;border-bottom:2px solid var(--accent);color:var(--accent);}
+h3{font-size:17px;font-weight:600;margin:22px 0 10px;color:var(--text);}
+h4{font-size:14px;font-weight:600;margin:14px 0 6px;color:var(--text2);}
+p{margin-bottom:11px;}
+.subtitle{color:var(--text2);font-size:14px;margin-bottom:24px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;margin:14px 0;}
+.card-accent{border-left:4px solid var(--accent);}
+.card-green{border-left:4px solid var(--accent2);}
+.card-red{border-left:4px solid var(--red);}
+.card-amber{border-left:4px solid var(--amber);}
+.card-blue{border-left:4px solid var(--blue);}
+.card-pink{border-left:4px solid var(--pink);}
+.formula{background:var(--code-bg);border-radius:10px;padding:14px 18px;margin:10px 0;text-align:center;font-size:16px;overflow-x:auto;}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+.tag{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600;margin-right:5px;}
+.tag-def{background:#E3F2FD;color:#185FA5;}
+.tag-thm{background:#EEEDFE;color:#534AB7;}
+.tag-warn{background:#FAEEDA;color:#854F0B;}
+.tag-exam{background:#FCEBEB;color:#A32D2D;}
+.tag-tip{background:#E1F5EE;color:#0F6E56;}
+.key{color:var(--red);font-weight:600;}
+.eng{color:var(--blue);font-style:italic;}
+.highlight{background:linear-gradient(transparent 60%,#FAC77540 60%);padding:0 2px;}
+.steps{counter-reset:step;list-style:none;padding-left:0;}
+.steps li{counter-increment:step;position:relative;padding-left:38px;margin-bottom:14px;}
+.steps li::before{content:counter(step);position:absolute;left:0;top:2px;width:26px;height:26px;background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.example-box{background:var(--code-bg);border-radius:10px;padding:12px 16px;margin:10px 0;}
+.lecture-divider{background:linear-gradient(135deg,#534AB7,#8B84D8);color:#fff;padding:20px 22px;border-radius:12px;margin:36px 0 18px;}
+.lecture-divider h2{color:#fff;border:none;margin:0;padding:0;font-size:21px;}
+.lecture-divider p{color:#dfd9ff;font-size:12px;margin:3px 0 0;}
+.lecture-divider.orange{background:linear-gradient(135deg,#D8734E,#E69975);}
+.lecture-divider.orange p{color:#fff0e8;}
+.lecture-divider.teal{background:linear-gradient(135deg,#0F6E56,#5DCAA5);}
+.lecture-divider.teal p{color:#d0f5e8;}
+.lecture-divider.rose{background:linear-gradient(135deg,#C43B7A,#E97FAE);}
+.lecture-divider.rose p{color:#ffe0f0;}
+table{width:100%;border-collapse:collapse;margin:10px 0;}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);font-size:13px;}
+th{background:var(--code-bg);font-weight:600;}
+.progress{position:fixed;top:0;left:var(--sidebar-w);right:0;height:3px;background:var(--accent);z-index:99;transition:width .1s;}
+@media(max-width:800px){.progress{left:0;}}
+.nav{position:fixed;bottom:20px;right:20px;background:var(--accent);color:#fff;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:99;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<button class="menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+<a href="#top" class="nav">&uarr;</a>
+
+<nav class="sidebar">
+<div class="logo">&#x1F4CA; DDA Lec 11-15</div>
+
+<div class="sec">Lec 11 &middot; 置信区间</div>
+<a href="#L11">Confidence Interval</a>
+<a href="#L11-1" class="sub">1. 点估计 vs 区间估计</a>
+<a href="#L11-2" class="sub">2. CLT 回顾</a>
+<a href="#L11-3" class="sub">3. CI 构造</a>
+<a href="#L11-4" class="sub">4. 例题</a>
+
+<div class="sec">Lec 12 &middot; 低秩近似 &amp; 可视化</div>
+<a href="#L12">PCA &amp; Visualization</a>
+<a href="#L12-1" class="sub">1. 高维回归问题</a>
+<a href="#L12-2" class="sub">2. PCA 主成分分析</a>
+<a href="#L12-3" class="sub">3. SVD 奇异值分解</a>
+<a href="#L12-4" class="sub">4. 数据可视化 &amp; t-SNE</a>
+
+<div class="sec">Lec 14-15 &middot; 优化</div>
+<a href="#L14">Optimization</a>
+<a href="#L14-1" class="sub">1. 优化问题四要素</a>
+<a href="#L14-2" class="sub">2. 线性规划 LP</a>
+<a href="#L14-3" class="sub">3. 图解法</a>
+<a href="#L14-4" class="sub">4. Newsvendor 报童问题</a>
+<a href="#L14-5" class="sub">5. 经典例题</a>
+
+<div class="sec">速查</div>
+<a href="#summary">核心公式速查</a>
+</nav>
+
+<div class="main">
+<div class="container" id="top">
+
+<h1>置信区间 &middot; PCA &middot; 优化入门</h1>
+<p class="subtitle">Lecture 11&ndash;15 | Introduction to Data Science | Prof. Pin Gao | 期末复习专用</p>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 11                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider" id="L11">
+<h2 style="color:#fff;">Lecture 11 &mdash; Confidence Interval</h2>
+<p>置信区间 &mdash; 用区间量化不确定性</p>
+</div>
+
+<h2 id="L11-1">1. 点估计 vs 区间估计</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Comparison</span>
+<h3>两种估计方式</h3>
+<div class="grid2">
+<div class="card" style="margin:0;">
+<h4>点估计 Point Estimation</h4>
+<p style="font-size:13px;">用<span class="key">单个值</span>估计参数</p>
+<p style="font-size:13px;">例："治愈率 = 70%"</p>
+<p style="font-size:13px;">缺点：不反映不确定性</p>
+</div>
+<div class="card" style="margin:0;">
+<h4>区间估计 Interval Estimation</h4>
+<p style="font-size:13px;">给出参数可能落入的<span class="key">范围</span></p>
+<p style="font-size:13px;">例："以 90% 概率，治愈率在 [40%, 100%]"</p>
+<p style="font-size:13px;">优点：量化了估计的不确定性</p>
+</div>
+</div>
+</div>
+
+<div class="card card-amber">
+<span class="tag tag-warn">Motivation</span>
+<h3>为什么需要区间估计？</h3>
+<p><strong>场景1</strong>：药物可靠性。患者只有在"以 90% 概率治愈率 > 55%"时才愿意用药。</p>
+<p><strong>场景2</strong>：算法审计。卖家称盲盒概率 > 50%，你买了 100 个只得 49 个 Harry Potter。点估计 48% < 50%，但区间估计可能显示 50% 仍在置信区间内 &mdash; 卖家可能没骗人。</p>
+</div>
+
+<h2 id="L11-2">2. 中心极限定理回顾 <span class="eng">CLT</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">CLT</span>
+<h3>样本均值的分布（置信区间的基础）</h3>
+<p>设 $X_1,\dots,X_n$ 独立同分布，均值 $\mu$，方差 $\sigma^2$。则当 $n$ 足够大时：</p>
+<div class="formula">$$\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i \approx N\left(\mu,\;\frac{\sigma^2}{n}\right)$$</div>
+<p>标准化：</p>
+<div class="formula">$$Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1)$$</div>
+<p><span class="key">样本越多 &rarr; $\sigma/\sqrt{n}$ 越小 &rarr; 估计越精确</span></p>
+</div>
+
+<h2 id="L11-3">3. 置信区间的构造（重要考点）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Construction</span>
+<h3>$\mu$ 的 $(1-\alpha)$ 置信区间（$\sigma$ 已知）</h3>
+<p>由 $P(-z_{\alpha/2} \le Z \le z_{\alpha/2}) = 1-\alpha$，得：</p>
+<div class="formula">$$\mu \in \left[\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}},\;\;\bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right]$$</div>
+<p>其中 $z_{\alpha/2}$ 是标准正态分布的上 $\alpha/2$ 分位数。</p>
+<table>
+<tr><th>置信水平 $1-\alpha$</th><th>$z_{\alpha/2}$</th></tr>
+<tr><td>90%</td><td>1.645</td></tr>
+<tr><td>95%</td><td>1.96</td></tr>
+<tr><td>99%</td><td>2.576</td></tr>
+</table>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Unknown $\sigma$</span>
+<h3>$\sigma$ 未知时：用 $t$ 分布</h3>
+<p>用样本标准差 $S$ 代替 $\sigma$：</p>
+<div class="formula">$$T = \frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t_{n-1}$$</div>
+<div class="formula">$$\mu \in \left[\bar{X} - t_{\alpha/2,n-1}\frac{S}{\sqrt{n}},\;\;\bar{X} + t_{\alpha/2,n-1}\frac{S}{\sqrt{n}}\right]$$</div>
+<p>$n$ 大时 $t_{n-1} \approx N(0,1)$。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-tip">Interpretation</span>
+<h3>置信区间的正确解读</h3>
+<p>"95% 置信区间"意味着：若重复实验很多次，约 95% 的区间会包含真值 $\mu$。</p>
+<p><span class="key">不是</span>说"$\mu$ 有 95% 概率在这个特定区间内"（$\mu$ 是固定的，不是随机的）。</p>
+</div>
+
+<h2 id="L11-4">4. 例题</h2>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>盲盒审计</h3>
+<p>买 100 个盲盒，得到 49 个 Harry Potter。$\hat{p} = 0.49$。卖家说 $p > 0.5$，他在骗人吗？</p>
+<div class="example-box">
+<p>构造 $p$ 的 95% CI（大样本 Bernoulli 近似正态）：</p>
+<p>$\hat{p} \pm z_{0.025}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}} = 0.49 \pm 1.96\sqrt{\frac{0.49\times0.51}{100}}$</p>
+<p>$= 0.49 \pm 1.96 \times 0.05 = 0.49 \pm 0.098 = [0.392,\; 0.588]$</p>
+<p><span class="key">结论</span>：0.5 在置信区间内！不能断言卖家在骗人。</p>
+</div>
+</div>
+
+<!-- =========================================================== -->
+<!--                         LECTURE 12                          -->
+<!-- =========================================================== -->
+<div class="lecture-divider teal" id="L12">
+<h2 style="color:#fff;">Lecture 12 &mdash; Low-Rank Approximation &amp; Data Visualization</h2>
+<p>PCA &middot; SVD &middot; t-SNE &middot; 降维</p>
+</div>
+
+<h2 id="L12-1">1. 高维回归与多重共线性</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Problem</span>
+<h3>高维数据的挑战</h3>
+<p>当特征数 $D$ 很大时（高维回归 $Y = X\beta + \varepsilon$）：</p>
+<p>• <span class="key">多重共线性</span> <span class="eng">Multicollinearity</span>：特征之间高度相关，导致回归不稳定</p>
+<p>• 维度灾难：参数过多，过拟合风险</p>
+<p>解决方案：<span class="highlight">降维</span> &mdash; 把高维数据投影到低维空间。</p>
+</div>
+
+<h2 id="L12-2">2. PCA 主成分分析 <span class="eng">Principal Component Analysis</span></h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Goal &amp; Idea</span>
+<h3>PCA 核心思想（重要考点）</h3>
+<p><strong>目标</strong>：在降维的同时<span class="key">保留尽可能多的方差</span>（信息）。</p>
+<p><strong>方法</strong>：找到新变量（主成分），它们是原始特征的线性组合，且：</p>
+<ol class="steps">
+<li>各主成分之间<strong>不相关</strong>（正交）</li>
+<li>第一主成分解释<strong>最大方差</strong></li>
+<li>第二主成分解释次大方差（在与第一正交的条件下）</li>
+<li>依次类推...</li>
+</ol>
+<p><strong>几何直觉</strong>：找数据"散布最广"的方向。</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Math</span>
+<h3>PCA 与特征分解</h3>
+<p>数据矩阵 $X$（$n\times D$），协方差矩阵 $C = \frac{1}{n}X^TX$。</p>
+<p>对 $C$ 做特征分解：$C = V\Lambda V^T$</p>
+<p>• $V$ 的列 = 主成分方向（特征向量）</p>
+<p>• $\Lambda$ 对角线 = 各方向的方差（特征值）</p>
+<p>取前 $k$ 个最大特征值对应的特征向量，得到 $k$ 维表示。</p>
+</div>
+
+<h2 id="L12-3">3. SVD 奇异值分解</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">SVD</span>
+<h3>Singular Value Decomposition</h3>
+<p>任意 $m\times n$ 矩阵 $A$ 可分解为：</p>
+<div class="formula">$$A = U\Sigma V^T$$</div>
+<p>• $U$：$m\times m$ 正交矩阵（左奇异向量）</p>
+<p>• $\Sigma$：$m\times n$ 对角矩阵（奇异值 $\sigma_1\ge\sigma_2\ge\dots$）</p>
+<p>• $V$：$n\times n$ 正交矩阵（右奇异向量）</p>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Low-Rank</span>
+<h3>低秩近似</h3>
+<p>取前 $k$ 个奇异值（$k \ll \min(m,n)$）：</p>
+<div class="formula">$$A \approx A_k = U_k\Sigma_k V_k^T$$</div>
+<p><strong>应用</strong>：图像压缩 &mdash; 原始图像 $m\times n$ 需要 $mn$ 存储，秩 $k$ 近似只需 $k(m+n+1)$。</p>
+<p><strong>SVD 与 PCA 的联系</strong>：对中心化数据矩阵做 SVD，右奇异向量 $V$ 就是 PCA 的主成分方向。</p>
+</div>
+
+<h2 id="L12-4">4. 数据可视化 &amp; t-SNE</h2>
+
+<div class="card card-accent">
+<span class="tag tag-def">Data Matrix</span>
+<h3>数据的表示</h3>
+<p>• 数据向量：$\mathbf{x} = [x_1, x_2, \dots, x_D]$（$D$ 个特征）</p>
+<p>• 数据矩阵：$N$ 个样本排成 $N\times D$ 矩阵</p>
+<p>• 高维数据（如人脸 50&times;320 = 16000 维）无法直接可视化</p>
+</div>
+
+<div class="card card-pink">
+<span class="tag tag-thm">t-SNE</span>
+<h3>t-SNE 降维可视化</h3>
+<p><span class="eng">t-distributed Stochastic Neighbor Embedding</span>：将高维数据映射到 2D/3D。</p>
+<p><strong>核心思想</strong>：保持点之间的"邻近关系" &mdash; 原空间中接近的点在新空间中也应接近。</p>
+<ol class="steps">
+<li>在高维空间用高斯分布计算点对的相似度 $p_{ij}$</li>
+<li>在低维空间用 $t$ 分布计算点对的相似度 $q_{ij}$</li>
+<li>最小化 KL 散度：$C = \sum_{i,j} p_{ij}\log\frac{p_{ij}}{q_{ij}}$</li>
+</ol>
+<p><span class="key">特点</span>：$p_{ij}$ 大但 $q_{ij}$ 小 &rarr; 惩罚大（原本近的点被拉远了不行）；反过来则惩罚小。</p>
+</div>
+
+<!-- =========================================================== -->
+<!--                     LECTURE 14 & 15                         -->
+<!-- =========================================================== -->
+<div class="lecture-divider orange" id="L14">
+<h2 style="color:#fff;">Lecture 14-15 &mdash; Optimization</h2>
+<p>优化问题建模 &middot; 线性规划 &middot; 图解法 &middot; 报童问题</p>
+</div>
+
+<h2 id="L14-1">1. 优化问题四要素（重要考点）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Four Ingredients</span>
+<h3>优化问题的标准形式</h3>
+<table>
+<tr><th>要素</th><th>英文</th><th>含义</th></tr>
+<tr><td><span class="key">决策变量</span></td><td><span class="eng">Decision Variables</span></td><td>我们可以选择的量（产量、分配量...）</td></tr>
+<tr><td><span class="key">目标函数</span></td><td><span class="eng">Objective Function</span></td><td>要最大化或最小化的量（利润、成本...）</td></tr>
+<tr><td><span class="key">约束条件</span></td><td><span class="eng">Constraints</span></td><td>解必须满足的限制（资源、容量...）</td></tr>
+<tr><td><span class="key">可行域</span></td><td><span class="eng">Feasible Set/Region</span></td><td>所有满足约束的点的集合</td></tr>
+</table>
+</div>
+
+<div class="card card-accent">
+<span class="tag tag-def">Terminology</span>
+<h3>关键术语</h3>
+<p>• <span class="eng">Feasible solution</span>：满足所有约束的一个解</p>
+<p>• <span class="eng">Infeasible solution</span>：违反至少一个约束</p>
+<p>• <span class="eng">Optimal solution</span>：可行域中使目标最优的点</p>
+<p>• <span class="eng">Optimal value</span>：最优解对应的目标函数值</p>
+<p>• <span class="eng">Interior point</span>：可行域内部的点（严格满足所有不等式约束）</p>
+<p>• <span class="eng">Boundary point</span>：可行域边界上的点（至少一个约束取等号）</p>
+</div>
+
+<h2 id="L14-2">2. 线性规划 <span class="eng">Linear Programming (LP)</span></h2>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Definition</span>
+<h3>LP 的定义</h3>
+<p>当目标函数和所有约束都是决策变量的<span class="key">线性函数</span>时，称为线性规划。</p>
+<div class="formula">$$\max\; \mathbf{c}^T\mathbf{x} \quad\text{s.t.}\quad A\mathbf{x}\le\mathbf{b},\;\mathbf{x}\ge\mathbf{0}$$</div>
+<p><span class="key">关键性质</span>：若目标是线性的，<span class="highlight">最优解一定在可行域的边界上</span>（内点不可能是最优）。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>面包店问题</h3>
+<p>做面包（利润 \$3/个）和蛋糕（利润 \$5/个）。面包用面粉 2 单位 + 人工 1 小时；蛋糕用面粉 3 单位 + 人工 2 小时。今天有面粉 100、人工 40 小时。</p>
+<div class="example-box">
+<p><strong>建模</strong>：</p>
+<p>决策变量：$x$ = 面包数，$y$ = 蛋糕数</p>
+<p>$\max\; 3x + 5y$</p>
+<p>s.t. $2x + 3y \le 100$（面粉）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$x + 2y \le 40$（人工）</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$x,y \ge 0$</p>
+</div>
+</div>
+
+<h2 id="L14-3">3. 图解法（二维 LP）</h2>
+
+<div class="card card-accent">
+<span class="tag tag-thm">Method</span>
+<h3>图解法步骤（重要考点）</h3>
+<ol class="steps">
+<li>画出每个约束的<strong>边界线</strong>（令不等式取等号）</li>
+<li>确定每个约束的可行半平面（哪侧满足不等式）</li>
+<li>找到所有约束的<strong>交集</strong> = 可行域（多边形）</li>
+<li>画目标函数的<strong>等值线</strong>（$c^Tx = $ 常数）</li>
+<li>平移等值线到可行域边界最远处 &rarr; <span class="key">最优解在顶点</span></li>
+</ol>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>Flair Furniture 家具公司</h3>
+<p>桌子利润 \$7，椅子利润 \$5。约束：木工 2400h，喷漆 1000h，椅子 &le; 450，桌子 &ge; 100。</p>
+<div class="example-box">
+<p>$\max\; 7T + 5C$</p>
+<p>s.t. $3T+4C\le2400$，$2T+C\le1000$，$C\le450$，$T\ge100$，$T,C\ge0$</p>
+<p><strong>最优解</strong>：$T=320$，$C=360$，利润 = $7(320)+5(360) = \$4040$</p>
+</div>
+</div>
+
+<h2 id="L14-4">4. Newsvendor 报童问题（重要考点）</h2>
+
+<div class="card card-red">
+<span class="tag tag-thm">Model</span>
+<h3>报童问题</h3>
+<p>在需求不确定下决定最优订货量。需求 $D$ 是随机变量。</p>
+<p><strong>权衡</strong>：</p>
+<p>• 订太少 &rarr; 错失销售机会（underage cost $c_u$）</p>
+<p>• 订太多 &rarr; 剩余产品亏损（overage cost $c_o$）</p>
+<div class="formula">$$\min_q\; E[\text{Cost}(q,D)] = c_o\cdot E[\max(q-D,0)] + c_u\cdot E[\max(D-q,0)]$$</div>
+</div>
+
+<div class="card card-blue">
+<span class="tag tag-thm">Solution</span>
+<h3>最优订货量（临界比率条件）</h3>
+<div class="formula">$$F(q^*) = \frac{c_u}{c_u + c_o}$$</div>
+<p>其中 $F$ 是需求的 CDF。<span class="key">直觉</span>：underage cost 越大 &rarr; 比率越大 &rarr; 订更多。</p>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>GPU 服务器预留</h3>
+<p>AI 公司预留 GPU 服务器。预留不够 &rarr; 紧急采购贵（$c_u = 5$ 元/单位）。预留太多 &rarr; 闲置成本（$c_o = 2$ 元/单位）。</p>
+<div class="example-box">
+<p>$F(q^*) = \frac{c_u}{c_u+c_o} = \frac{5}{5+2} = \frac{5}{7} \approx 0.714$</p>
+<p>找需求分布的 71.4% 分位数作为最优预留量。</p>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>银行现金储备</h3>
+<p>储备闲置成本 $c_o = 2$ 分/元，短缺应急成本 $c_u = 5$ 分/元。</p>
+<div class="example-box">
+<p>同样的临界比率：$F(q^*) = 5/7$</p>
+<p>若取款需求 $D \sim N(\mu,\sigma^2)$，则 $q^* = \mu + \sigma\cdot\Phi^{-1}(5/7)$</p>
+</div>
+</div>
+
+<h2 id="L14-5">5. 更多建模例题</h2>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>吃派比赛</h3>
+<p>Bob 参加 1 小时吃派比赛。Torte 每个 2 分钟得 4 分；Apple pie 每个 3 分钟得 5 分。</p>
+<div class="example-box">
+<p>$\max\; 4x+5y$</p>
+<p>s.t. $2x+3y\le60$，$x,y\ge0$</p>
+<p>可行解：$x=10,y=10$ &rarr; $4(10)+5(10)=90$ &#10004;</p>
+<p>不可行：$x=10,y=15$ &rarr; $2(10)+3(15)=65>60$ &#10008;</p>
+<p><strong>最优解</strong>：$x=30,y=0$ &rarr; 得分 $= 120$</p>
+</div>
+</div>
+
+<div class="card card-green">
+<span class="tag tag-exam">Example</span>
+<h3>MLE 作为优化问题</h3>
+<p>MLE 本身就是一个优化问题！</p>
+<div class="example-box">
+<p>$\max_p\; \ell(p) = M\log p + (N-M)\log(1-p)$</p>
+<p>决策变量：$p$；目标函数：对数似然；约束：$0\le p\le 1$</p>
+<p>这是一个无约束（或简单约束）优化问题。</p>
+</div>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div class="lecture-divider" id="summary">
+<h2 style="color:#fff;">核心公式速查表</h2>
+<p>Lec 11-15 期末必备</p>
+</div>
+
+<div class="card card-accent">
+<h3>置信区间</h3>
+<table>
+<tr><th>情况</th><th>公式</th></tr>
+<tr><td>$\sigma$ 已知</td><td>$\bar{X}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$</td></tr>
+<tr><td>$\sigma$ 未知</td><td>$\bar{X}\pm t_{\alpha/2,n-1}\frac{S}{\sqrt{n}}$</td></tr>
+<tr><td>Bernoulli 大样本</td><td>$\hat{p}\pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$</td></tr>
+</table>
+<p>常用 $z$ 值：90% &rarr; 1.645，95% &rarr; 1.96，99% &rarr; 2.576</p>
+</div>
+
+<div class="card card-blue">
+<h3>PCA &amp; SVD</h3>
+<table>
+<tr><th>概念</th><th>要点</th></tr>
+<tr><td>PCA 目标</td><td>降维 + 保留最大方差</td></tr>
+<tr><td>主成分</td><td>协方差矩阵的特征向量</td></tr>
+<tr><td>SVD</td><td>$A = U\Sigma V^T$，任意矩阵可分解</td></tr>
+<tr><td>低秩近似</td><td>取前 $k$ 个奇异值，存储 $k(m+n+1)$ vs $mn$</td></tr>
+<tr><td>t-SNE</td><td>最小化 KL 散度，保持邻近关系</td></tr>
+</table>
+</div>
+
+<div class="card card-pink">
+<h3>优化 &amp; LP</h3>
+<table>
+<tr><th>概念</th><th>要点</th></tr>
+<tr><td>LP 定义</td><td>目标和约束都是线性的</td></tr>
+<tr><td>LP 性质</td><td>最优解在可行域边界（顶点）</td></tr>
+<tr><td>图解法</td><td>画约束 &rarr; 找可行域 &rarr; 移动等值线</td></tr>
+<tr><td>Newsvendor</td><td>$F(q^*)=\frac{c_u}{c_u+c_o}$（临界比率）</td></tr>
+</table>
+</div>
+
+</div>
+</div>
+
+<script>
+window.addEventListener('scroll',function(){
+  var h=document.documentElement,b=document.body;
+  var st=h.scrollTop||b.scrollTop;
+  var sh=h.scrollHeight||b.scrollHeight;
+  var pct=st/(sh-h.clientHeight)*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+</script>
+</body>
+</html>

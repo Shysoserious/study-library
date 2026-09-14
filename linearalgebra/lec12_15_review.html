@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAT1002 Lecture 12-15 | 线性无关 & 零空间 & 列空间 & 基 & 维数 & 秩 & 四个基本子空间</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; color: #333; line-height: 1.8; }
+        html { scroll-behavior: smooth; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 60px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; padding: 0 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1000; }
+        .navbar-title { font-size: 24px; font-weight: bold; margin-left: 20px; }
+        .navbar-subtitle { margin-left: 10px; font-size: 14px; opacity: 0.9; }
+        .mobile-menu-btn { display: none; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+        .sidebar { position: fixed; left: 0; top: 60px; width: 280px; height: calc(100vh - 60px); background-color: #2c3e50; border-right: 1px solid #34495e; overflow-y: auto; padding: 20px 0; z-index: 999; }
+        .sidebar-content { padding: 0 15px; }
+        .toc-lecture { margin-bottom: 10px; }
+        .toc-lecture-title { font-weight: bold; color: #ecf0f1; padding: 10px 10px; cursor: pointer; user-select: none; display: flex; align-items: center; transition: all 0.3s ease; font-size: 14px; border-radius: 6px; }
+        .toc-lecture-title:hover { background-color: #34495e; padding-left: 15px; }
+        .toc-lecture-title.active { background-color: #667eea; color: white; }
+        .toc-toggle { margin-right: 8px; transition: transform 0.3s ease; font-size: 12px; }
+        .toc-lecture.collapsed .toc-toggle { transform: rotate(-90deg); }
+        .toc-sections { padding-left: 20px; max-height: 500px; overflow: hidden; transition: max-height 0.3s ease; }
+        .toc-lecture.collapsed .toc-sections { max-height: 0; }
+        .toc-section { padding: 6px 10px; margin: 3px 0; border-left: 3px solid transparent; color: #bdc3c7; cursor: pointer; transition: all 0.2s ease; font-size: 13px; border-radius: 0 4px 4px 0; }
+        .toc-section:hover { background-color: #34495e; border-left-color: #667eea; color: #ecf0f1; }
+        .toc-section a { color: inherit; text-decoration: none; display: block; }
+        .main-content { margin-top: 60px; padding: 40px 60px; max-width: 960px; margin-left: max(280px, calc(50vw - 340px)); margin-right: auto; font-size: 17.5px; }
+        .lecture { margin-bottom: 60px; }
+        .lecture-title { font-size: 32px; color: #667eea; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 3px solid #667eea; }
+        .section-title { font-size: 24px; color: #764ba2; margin: 35px 0 20px 0; padding-left: 15px; border-left: 5px solid #764ba2; }
+        .subsection-title { font-size: 20px; color: #555; margin: 25px 0 15px 0; padding-left: 12px; border-left: 4px solid #bbb; }
+        .card { margin: 20px 0; padding: 20px; border-radius: 8px; border-left: 5px solid #ddd; background-color: #fafafa; box-shadow: 0 2px 4px rgba(0,0,0,0.05); transition: all 0.3s ease; }
+        .card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .card.definition { border-left-color: #2196F3; background-color: #f0f7ff; }
+        .card.theorem { border-left-color: #f44336; background-color: #fff0f0; }
+        .card.example { border-left-color: #4caf50; background-color: #f1f8f5; }
+        .card.warning { border-left-color: #ff9800; background-color: #fff8f0; }
+        .card.connection { border-left-color: #9c27b0; background-color: #f9f0ff; }
+        .card.tip { border-left-color: #00bcd4; background-color: #f0fcff; }
+        .card-title { font-weight: bold; font-size: 18px; margin-bottom: 10px; display: flex; align-items: center; }
+        .card.definition .card-title { color: #2196F3; }
+        .card.theorem .card-title { color: #f44336; }
+        .card.example .card-title { color: #4caf50; }
+        .card.warning .card-title { color: #ff9800; }
+        .card.connection .card-title { color: #9c27b0; }
+        .card.tip .card-title { color: #00bcd4; }
+        .card-icon { margin-right: 10px; font-size: 20px; }
+        .en { display: inline-block; background-color: #e3f2fd; color: #1565c0; font-family: 'Courier New', Consolas, monospace; font-size: 0.92em; padding: 1px 7px; border-radius: 4px; margin: 0 2px; font-weight: 600; }
+        .formula-box { background-color: #e8f4fd; border-left: 5px solid #2196F3; border-radius: 6px; padding: 18px 22px; margin: 18px 0; font-size: 17px; text-align: center; overflow-x: auto; }
+        .formula-box.highlight { background-color: #fffde7; border-left-color: #fbc02d; }
+        .formula-box.important { background-color: #fce4ec; border-left-color: #e91e63; }
+        .step-list { counter-reset: step; padding-left: 0; list-style: none; margin: 15px 0; }
+        .step-list li { counter-increment: step; padding: 10px 15px 10px 50px; margin: 8px 0; position: relative; background: #f8f9fa; border-radius: 6px; }
+        .step-list li::before { content: counter(step); position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: #667eea; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; font-size: 14px; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 15px; }
+        .comparison-table th { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px; text-align: center; }
+        .comparison-table td { padding: 10px 12px; border: 1px solid #e0e0e0; text-align: center; }
+        .comparison-table tr:nth-child(even) { background-color: #f8f9fa; }
+        .comparison-table tr:hover { background-color: #e3f2fd; }
+        @media (max-width: 768px) { .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; } .sidebar.active { transform: translateX(0); } .main-content { margin-left: 0; padding: 20px; } .mobile-menu-btn { display: block; } }
+    </style>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('active')">☰</button>
+    <span class="navbar-title">MAT1002 Lecture 12-15 复习</span>
+    <span class="navbar-subtitle">线性无关 | 零空间 | 列空间 | 基与维数 | 秩 | 四个基本子空间</span>
+</nav>
+
+<aside class="sidebar">
+    <div class="sidebar-content">
+        <div class="toc-lecture" id="toc-lec12">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec12')">
+                <span class="toc-toggle">▼</span> Lec 12: 线性无关 & 零空间 & 张成
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec12-indep">线性无关与线性相关</a></div>
+                <div class="toc-section"><a href="#lec12-indep-system">无关性与线性系统</a></div>
+                <div class="toc-section"><a href="#lec12-null">零空间 N(A)</a></div>
+                <div class="toc-section"><a href="#lec12-span">张成 Span</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture" id="toc-lec13">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec13')">
+                <span class="toc-toggle">▼</span> Lec 13: 列空间 & Ax=b 解集 & 基
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec13-colspace">列空间 C(A)</a></div>
+                <div class="toc-section"><a href="#lec13-solset">Ax=b 的解集结构</a></div>
+                <div class="toc-section"><a href="#lec13-basis">基的定义</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture" id="toc-lec14">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec14')">
+                <span class="toc-toggle">▼</span> Lec 14: 维数与秩
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec14-dim">维数的定义</a></div>
+                <div class="toc-section"><a href="#lec14-rank">秩与行秩=列秩</a></div>
+                <div class="toc-section"><a href="#lec14-solutions">解的个数 vs 秩</a></div>
+            </div>
+        </div>
+        <div class="toc-lecture" id="toc-lec15">
+            <div class="toc-lecture-title" onclick="toggleLecture('toc-lec15')">
+                <span class="toc-toggle">▼</span> Lec 15: 满秩 & 正交 & 四子空间
+            </div>
+            <div class="toc-sections">
+                <div class="toc-section"><a href="#lec15-fullrank">满秩矩阵</a></div>
+                <div class="toc-section"><a href="#lec15-ortho">正交与正交补</a></div>
+                <div class="toc-section"><a href="#lec15-four">四个基本子空间</a></div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<main class="main-content">
+
+<!-- ==================== Lecture 12 ==================== -->
+<div class="lecture" id="lecture12">
+    <h1 class="lecture-title">Lecture 12：一般线性系统理论 II — 线性无关、零空间与张成</h1>
+
+    <h2 class="section-title" id="lec12-indep">线性无关与线性相关</h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>线性相关 <span class="en">Linear Dependence</span></div>
+        <p>设 $V$ 为线性空间，$\mathbf{u}_1, \ldots, \mathbf{u}_k \in V$。若存在<strong>不全为零</strong>的系数 $c_1, \ldots, c_k$ 使得：</p>
+        <div class="formula-box important">$$c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_k\mathbf{u}_k = \mathbf{0}, \quad (c_1, \ldots, c_k) \neq (0, \ldots, 0)$$</div>
+        <p>则称 $\mathbf{u}_1, \ldots, \mathbf{u}_k$ <strong>线性相关</strong>。</p>
+    </div>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>线性无关 <span class="en">Linear Independence</span></div>
+        <p>若 $c_1\mathbf{u}_1 + \cdots + c_k\mathbf{u}_k = \mathbf{0}$ <strong>仅当</strong> $c_1 = c_2 = \cdots = c_k = 0$ 时成立，则称这些向量<strong>线性无关</strong>。</p>
+        <p>等价表述：不存在非平凡的线性组合等于零向量。</p>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>快速判断练习</div>
+        <table class="comparison-table">
+            <tr><th>向量集</th><th>相关/无关</th><th>理由</th></tr>
+            <tr><td>$\mathbf{u}, 2\mathbf{u}$</td><td>相关</td><td>$2\mathbf{u} - 2\cdot\mathbf{u} = \mathbf{0}$</td></tr>
+            <tr><td>$\mathbf{u}, \mathbf{v}, \mathbf{u}+\mathbf{v}$</td><td>相关</td><td>$1\cdot\mathbf{u} + 1\cdot\mathbf{v} + (-1)(\mathbf{u}+\mathbf{v}) = \mathbf{0}$</td></tr>
+            <tr><td>$\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3$（标准基）</td><td>无关</td><td>唯一解为全零</td></tr>
+            <tr><td>$\mathbf{u}, \mathbf{v}, \mathbf{0}$</td><td>相关</td><td>含零向量一定相关</td></tr>
+        </table>
+    </div>
+
+    <h2 class="section-title" id="lec12-indep-system">线性无关与线性系统的关系</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Claim 12.1：列向量相关性 ↔ 齐次方程</div>
+        <p>矩阵 $A$ 的列向量线性相关 $\iff$ $A\mathbf{x} = \mathbf{0}$ 有非零解。</p>
+        <p><strong>证明关键：</strong>$c_1\mathbf{a}_1 + \cdots + c_n\mathbf{a}_n = \mathbf{0}$ 就是 $A\mathbf{c} = \mathbf{0}$（矩阵-向量乘法的列形式）。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Corollary 12.1：方阵特殊情形</div>
+        <div class="formula-box important">$$n \times n \text{ 方阵 } A \text{ 可逆} \iff A \text{ 的列向量线性无关}$$</div>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>如何检验线性无关？</div>
+        <p>对 $\mathbb{R}^n$ 中的向量：将它们排成矩阵 $A$ 的列，解 $A\mathbf{x} = \mathbf{0}$。</p>
+        <p>若唯一解为 $\mathbf{x} = \mathbf{0}$ → 无关；若有非零解 → 相关。</p>
+    </div>
+
+    <h2 class="section-title" id="lec12-null">零空间 <span class="en">Null Space</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>零空间的定义（Definition 12.3）</div>
+        <p>矩阵 $A$ 的<strong>零空间</strong>（<span class="en">Null Space</span>）定义为齐次方程 $A\mathbf{x} = \mathbf{0}$ 的解集：</p>
+        <div class="formula-box">$$N(A) = \{\mathbf{x} \in \mathbb{R}^n \mid A\mathbf{x} = \mathbf{0}\}$$</div>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 12.1：零空间是线性空间</div>
+        <p>$N(A)$ 是 $\mathbb{R}^n$ 的子空间。</p>
+        <p><strong>证明三步：</strong></p>
+        <ol class="step-list">
+            <li><strong>非空：</strong>$A\mathbf{0} = \mathbf{0}$，故 $\mathbf{0} \in N(A)$</li>
+            <li><strong>数乘封闭：</strong>若 $A\mathbf{x} = \mathbf{0}$，则 $A(\alpha\mathbf{x}) = \alpha(A\mathbf{x}) = \mathbf{0}$</li>
+            <li><strong>加法封闭：</strong>若 $A\mathbf{x} = \mathbf{0}$ 且 $A\mathbf{y} = \mathbf{0}$，则 $A(\mathbf{x}+\mathbf{y}) = A\mathbf{x} + A\mathbf{y} = \mathbf{0}$</li>
+        </ol>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例：将零空间写成 Span</div>
+        <p>解 $A\mathbf{x} = \mathbf{0}$ 得到通解 $\mathbf{x} = s\begin{pmatrix}1\\-3\\-2\\1\\0\end{pmatrix} + t\begin{pmatrix}-4\\-1\\-2\\0\\1\end{pmatrix}$，则</p>
+        <div class="formula-box">$$N(A) = \text{span}\left\{\begin{pmatrix}1\\-3\\-2\\1\\0\end{pmatrix}, \begin{pmatrix}-4\\-1\\-2\\0\\1\end{pmatrix}\right\}$$</div>
+    </div>
+
+    <h2 class="section-title" id="lec12-span">张成 <span class="en">Span</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>Span 的定义（Definition 12.4）</div>
+        <p>设 $V$ 为线性空间，$\mathcal{U} = \{\mathbf{u}_1, \ldots, \mathbf{u}_k\} \subseteq V$，定义：</p>
+        <div class="formula-box">$$\text{span}(\mathcal{U}) = \{a_1\mathbf{u}_1 + \cdots + a_k\mathbf{u}_k \mid a_1, \ldots, a_k \in \mathbb{R}\}$$</div>
+        <p>即所有线性组合的集合。<strong>Span 一定是子空间。</strong></p>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>核心性质：线性组合的线性组合仍是线性组合</div>
+        <p>若 $\mathbf{x} = \alpha_1\mathbf{u} + \beta_1\mathbf{v}$ 且 $\mathbf{y} = \alpha_2\mathbf{u} + \beta_2\mathbf{v}$，则</p>
+        <p>$a\mathbf{x} + b\mathbf{y} = (a\alpha_1 + b\alpha_2)\mathbf{u} + (a\beta_1 + b\beta_2)\mathbf{v} \in \text{span}\{\mathbf{u}, \mathbf{v}\}$</p>
+        <p>这就是为什么 Span 自动满足线性空间公理。</p>
+    </div>
+</div>
+
+<!-- ==================== Lecture 13 ==================== -->
+<div class="lecture" id="lecture13">
+    <h1 class="lecture-title">Lecture 13：一般线性系统理论 III — 列空间、Ax=b 的解与基</h1>
+
+    <h2 class="section-title" id="lec13-colspace">列空间 <span class="en">Column Space</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>列空间的定义</div>
+        <p>设 $A = [\mathbf{a}_1, \ldots, \mathbf{a}_n] \in \mathbb{R}^{m \times n}$，$A$ 的<strong>列空间</strong>定义为：</p>
+        <div class="formula-box">$$C(A) = \text{span}\{\mathbf{a}_1, \ldots, \mathbf{a}_n\} = \{A\mathbf{x} \mid \mathbf{x} \in \mathbb{R}^n\}$$</div>
+        <p>列空间是 $\mathbb{R}^m$ 的子空间。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Proposition 12.1：列空间与可解性</div>
+        <div class="formula-box important">$$A\mathbf{x} = \mathbf{b} \text{ 有解} \iff \mathbf{b} \in C(A)$$</div>
+        <p><strong>证明：</strong>$A\mathbf{x} = \mathbf{b}$ 有解 $\iff$ 存在 $\mathbf{x}$ 使得 $x_1\mathbf{a}_1 + \cdots + x_n\mathbf{a}_n = \mathbf{b}$ $\iff$ $\mathbf{b}$ 是列的线性组合 $\iff$ $\mathbf{b} \in C(A)$。</p>
+    </div>
+
+    <h2 class="section-title" id="lec13-solset">$A\mathbf{x} = \mathbf{b}$ 的解集结构</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Proposition 13.1：解集 = 特解 + 零空间</div>
+        <p>$A\mathbf{x} = \mathbf{b}$ 的解集为：</p>
+        <div class="formula-box important">$$\text{解集} = \begin{cases} \emptyset & \text{（无解）} \\ \mathbf{x}_p + N(A) & \text{（有解时）} \end{cases}$$</div>
+        <p>其中 $\mathbf{x}_p$ 是<strong>任意一个特解</strong>，$\mathbf{x}_p + N(A) = \{\mathbf{x}_p + \mathbf{x}_n \mid \mathbf{x}_n \in N(A)\}$。</p>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>几何理解</div>
+        <p>$N(A)$ 是过原点的线性空间；$\mathbf{x}_p + N(A)$ 是将 $N(A)$ 平移到特解 $\mathbf{x}_p$ 处的"仿射子空间"。</p>
+        <p><strong>注意：</strong>$\mathbf{x}_p + N(A)$ 本身<strong>不是</strong>线性空间（不过原点，除非 $\mathbf{b} = \mathbf{0}$）。</p>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>例题：写出 Ax=b 的完整解集</div>
+        <p>设已求得 $A\mathbf{x} = \mathbf{b}$ 的一个特解 $\mathbf{x}_p = (1, 6, 7, 0, 0)^T$，且</p>
+        <p>$N(A) = \text{span}\{\mathbf{u}, \mathbf{v}\}$ 其中 $\mathbf{u} = (1,-3,-2,1,0)^T$，$\mathbf{v} = (-4,-1,-2,0,1)^T$</p>
+        <p>则通解为：</p>
+        <div class="formula-box">$$\mathbf{x} = \begin{pmatrix}1\\6\\7\\0\\0\end{pmatrix} + \alpha\begin{pmatrix}1\\-3\\-2\\1\\0\end{pmatrix} + \beta\begin{pmatrix}-4\\-1\\-2\\0\\1\end{pmatrix}, \quad \alpha, \beta \in \mathbb{R}$$</div>
+    </div>
+
+    <h2 class="section-title" id="lec13-basis">基 <span class="en">Basis</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>基的定义（Definition 13.1）</div>
+        <p>设 $V$ 为线性空间，$\mathcal{U} = \{\mathbf{u}_1, \ldots, \mathbf{u}_k\} \subseteq V$。若同时满足：</p>
+        <ol class="step-list">
+            <li>$\mathcal{U}$ 是<strong>线性无关</strong>的</li>
+            <li>$\text{span}(\mathcal{U}) = V$（$\mathcal{U}$ 张成整个空间 $V$）</li>
+        </ol>
+        <p>则称 $\mathcal{U}$ 为 $V$ 的一组<strong>基</strong>。</p>
+        <p>直觉：基 = "刚好够用"的向量集（不冗余、不遗漏）。</p>
+    </div>
+
+    <div class="card example">
+        <div class="card-title"><span class="card-icon">✅</span>常见基的例子</div>
+        <table class="comparison-table">
+            <tr><th>空间</th><th>标准基</th></tr>
+            <tr><td>$\mathbb{R}^n$</td><td>$\{\mathbf{e}_1, \ldots, \mathbf{e}_n\}$</td></tr>
+            <tr><td>$\mathbb{R}^{m \times n}$</td><td>$\{E_{ij} \mid i=1,\ldots,m;\ j=1,\ldots,n\}$（单位矩阵基）</td></tr>
+            <tr><td>$P_n$（$\le n$ 次多项式）</td><td>$\{1, x, x^2, \ldots, x^n\}$</td></tr>
+        </table>
+    </div>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>可逆性等价条件更新</div>
+        <p>$n \times n$ 方阵 $A$ 可逆等价于：1. $A\mathbf{x}=\mathbf{0}$ 唯一解 $\mathbf{0}$；2. $n$ 个 pivot；3. 初等矩阵乘积；4. 列线性无关；5. （即将加入更多...）</p>
+    </div>
+</div>
+
+<!-- ==================== Lecture 14 ==================== -->
+<div class="lecture" id="lecture14">
+    <h1 class="lecture-title">Lecture 14：一般线性系统理论 IV — 维数与秩</h1>
+
+    <h2 class="section-title" id="lec14-dim">维数 <span class="en">Dimension</span></h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 14.1：基的大小唯一（本课程第一个"大"定理）</div>
+        <p>若 $\{\mathbf{u}_1, \ldots, \mathbf{u}_m\}$ 和 $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ 都是线性空间 $V$ 的基，则 $m = n$。</p>
+        <p><strong>所有基的元素个数相同！</strong></p>
+    </div>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>维数的定义（Definition 14.1）</div>
+        <p>若线性空间 $V$ 有一组含 $n$ 个元素的基，则称 $V$ 的<strong>维数</strong>为 $n$：</p>
+        <div class="formula-box">$$\dim(V) = n$$</div>
+        <p><strong>特殊情况：</strong>$\dim(\{\mathbf{0}\}) = 0$；若无有限基则 $V$ 为无穷维。</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Lemma 14.1（支撑定理14.1的引理）</div>
+        <p>设 $m > n$。若 $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ 是 $V$ 的基，则 $V$ 中任意 $m$ 个向量必线性相关。</p>
+        <p><strong>推论（Lemma 14.1E）：</strong>$\mathbb{R}^n$ 中任意 $n+1$ 个向量必线性相关。</p>
+        <p>逻辑链：$m > n$ 行 → "宽矩阵" → pivot 数 $\le n < m$ 列 → 存在自由变量 → $A\mathbf{x}=\mathbf{0}$ 有非零解。</p>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>Proposition 14.2：快速判定基</div>
+        <p>设 $\dim(V) = n$，对 $V$ 中 $n$ 个向量 $\mathbf{u}_1, \ldots, \mathbf{u}_n$：</p>
+        <p>(a) 若线性无关 → 自动是基（不需要再验证张成）</p>
+        <p>(b) 若能张成 $V$ → 自动是基（不需要再验证无关）</p>
+        <p><strong>前提：必须恰好 $n$ 个向量。</strong></p>
+    </div>
+
+    <h2 class="section-title" id="lec14-rank">秩 <span class="en">Rank</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>行空间、列秩、行秩</div>
+        <p><strong>行空间：</strong>$\text{Row}(A) = $ $A$ 的行向量的 Span = $C(A^T)$</p>
+        <p><strong>行秩：</strong>$r_R(A) = \dim(\text{Row}(A))$</p>
+        <p><strong>列秩：</strong>$r_C(A) = \dim(C(A))$</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 14.3：行秩 = 列秩（第二个"大"定理）</div>
+        <div class="formula-box important">$$r_R(A) = r_C(A) = \text{rank}(A) = \text{pivot 的个数}$$</div>
+        <p><strong>证明思路：</strong>初等行变换不改变行秩也不改变列秩；对 RREF 矩阵直接验证行秩 = 列秩 = pivot 数。</p>
+    </div>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>秩的性质</div>
+        <p>对 $m \times n$ 矩阵 $A$：$\text{rank}(A) \le \min\{m, n\}$</p>
+        <p>$\dim(N(A)) = n - \text{rank}(A)$（零空间维数 = 列数 - 秩）</p>
+    </div>
+
+    <h2 class="section-title" id="lec14-solutions">解的个数 vs 秩</h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>解的个数与 $r, m, n$ 的关系</div>
+        <table class="comparison-table">
+            <tr><th>Case</th><th>条件</th><th>解的个数</th><th>说明</th></tr>
+            <tr><td>1</td><td>$r = m = n$</td><td>恰好 1 个</td><td>方阵满秩，可逆</td></tr>
+            <tr><td>2</td><td>$r = m < n$</td><td>$\infty$ 个</td><td>行满秩，存在自由变量</td></tr>
+            <tr><td>3</td><td>$r = n < m$</td><td>0 或 1 个</td><td>列满秩，无自由变量</td></tr>
+            <tr><td>4</td><td>$r < m$ 且 $r < n$</td><td>0 或 $\infty$ 个</td><td>既有冗余方程又有自由变量</td></tr>
+        </table>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Theorem 14.2a：可逆性等价条件完整版</div>
+        <p>设 $A \in \mathbb{R}^{n \times n}$，以下等价：</p>
+        <ol class="step-list">
+            <li>$A$ 可逆</li>
+            <li>$A\mathbf{x} = \mathbf{0}$ 仅有唯一解 $\mathbf{x} = \mathbf{0}$</li>
+            <li>$A$ 是初等矩阵的乘积</li>
+            <li>$A$ 有 $n$ 个 pivot</li>
+            <li>$A$ 的列线性无关</li>
+            <li>$A$ 的列张成 $\mathbb{R}^n$</li>
+            <li>$A$ 的列构成 $\mathbb{R}^n$ 的基</li>
+            <li>$\dim(C(A)) = n$，即 $\text{rank}(A) = n$</li>
+            <li>$A\mathbf{x} = \mathbf{b}$ 对任意 $\mathbf{b}$ 有解</li>
+        </ol>
+    </div>
+</div>
+
+<!-- ==================== Lecture 15 ==================== -->
+<div class="lecture" id="lecture15">
+    <h1 class="lecture-title">Lecture 15：满秩矩阵、正交性与四个基本子空间</h1>
+
+    <h2 class="section-title" id="lec15-fullrank">满秩矩阵 <span class="en">Full Rank</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>满秩的定义（Definition 14.4）</div>
+        <p>设 $A \in \mathbb{R}^{m \times n}$：</p>
+        <table class="comparison-table">
+            <tr><th>术语</th><th>条件</th><th>含义</th></tr>
+            <tr><td>行满秩（<span class="en">full row rank</span>）</td><td>$\text{rank}(A) = m$</td><td>无冗余方程</td></tr>
+            <tr><td>列满秩（<span class="en">full column rank</span>）</td><td>$\text{rank}(A) = n$</td><td>无自由变量</td></tr>
+            <tr><td>满秩（<span class="en">full rank</span>）</td><td>$\text{rank}(A) = \min\{m,n\}$</td><td>两者中较小的</td></tr>
+        </table>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Proposition 15.1 & 15.2：满秩与解的存在性</div>
+        <p><strong>行满秩</strong>（$r = m$）：$A\mathbf{x} = \mathbf{b}$ 对任意 $\mathbf{b}$<strong>至少有一个解</strong>（排除"无解"可能）。</p>
+        <p>RREF 视角：没有全零行 → 不会出现 "$0 = \text{非零}$" 的矛盾。</p>
+        <p><strong>列满秩</strong>（$r = n$）：$A\mathbf{x} = \mathbf{b}$ 对任意 $\mathbf{b}$<strong>至多有一个解</strong>（排除"无穷多解"可能）。</p>
+        <p>RREF 视角：没有自由列 → 没有自由变量 → 解唯一（若存在）。</p>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>Corollary 15.1：无关向量的唯一表示</div>
+        <p>若 $\mathbf{u}_1, \ldots, \mathbf{u}_n$ 线性无关，则 $\text{span}\{\mathbf{u}_1, \ldots, \mathbf{u}_n\}$ 中任何向量有<strong>唯一</strong>的表示方式：</p>
+        <p>$\mathbf{v} = \alpha_1\mathbf{u}_1 + \cdots + \alpha_n\mathbf{u}_n$，系数 $\alpha_i$ 唯一确定。</p>
+    </div>
+
+    <h2 class="section-title" id="lec15-ortho">正交性 <span class="en">Orthogonality</span></h2>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>正交的定义</div>
+        <p><strong>向量正交：</strong>$\mathbf{u} \perp \mathbf{v} \iff \mathbf{u}^T\mathbf{v} = 0$</p>
+        <p><strong>向量与子空间正交：</strong>$\mathbf{u} \perp V \iff \mathbf{u}^T\mathbf{v} = 0, \forall \mathbf{v} \in V$</p>
+        <p><strong>子空间正交：</strong>$U \perp V \iff \mathbf{u}^T\mathbf{v} = 0, \forall \mathbf{u} \in U, \forall \mathbf{v} \in V$</p>
+    </div>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>Claim 15.1：正交性只需检验基</div>
+        <p>若 $\mathbf{u} \perp \mathbf{v}_j$ 对所有 $j = 1, \ldots, n$ 成立，则 $\mathbf{u} \perp \text{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$。</p>
+        <p>（类似高中"线面垂直判定"：只需垂直于平面内两条相交直线。）</p>
+    </div>
+
+    <div class="card definition">
+        <div class="card-title"><span class="card-icon">📘</span>正交补 <span class="en">Orthogonal Complement</span></div>
+        <p>子空间 $V \subseteq \mathbb{R}^n$ 的<strong>正交补</strong>为：</p>
+        <div class="formula-box">$$V^\perp = \{\mathbf{u} \in \mathbb{R}^n \mid \mathbf{u}^T\mathbf{v} = 0, \forall \mathbf{v} \in V\}$$</div>
+        <p><strong>性质：</strong>$\dim(V) + \dim(V^\perp) = n$，$(V^\perp)^\perp = V$</p>
+    </div>
+
+    <h2 class="section-title" id="lec15-four">四个基本子空间 <span class="en">Four Fundamental Subspaces</span></h2>
+
+    <div class="card theorem">
+        <div class="card-title"><span class="card-icon">🔴</span>四个基本子空间及其关系</div>
+        <p>设 $A \in \mathbb{R}^{m \times n}$，$\text{rank}(A) = r$：</p>
+        <table class="comparison-table">
+            <tr><th>子空间</th><th>记号</th><th>所在空间</th><th>维数</th></tr>
+            <tr><td>列空间</td><td>$C(A)$</td><td>$\mathbb{R}^m$</td><td>$r$</td></tr>
+            <tr><td>零空间</td><td>$N(A)$</td><td>$\mathbb{R}^n$</td><td>$n - r$</td></tr>
+            <tr><td>行空间</td><td>$\text{Row}(A) = C(A^T)$</td><td>$\mathbb{R}^n$</td><td>$r$</td></tr>
+            <tr><td>左零空间</td><td>$N(A^T)$</td><td>$\mathbb{R}^m$</td><td>$m - r$</td></tr>
+        </table>
+    </div>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>正交补关系（核心！）</div>
+        <div class="formula-box important">$$\text{Row}(A) \perp N(A) \quad \text{且} \quad C(A) \perp N(A^T)$$</div>
+        <p>在 $\mathbb{R}^n$ 中：$\text{Row}(A)$ 与 $N(A)$ 互为正交补，维数之和 = $r + (n-r) = n$</p>
+        <p>在 $\mathbb{R}^m$ 中：$C(A)$ 与 $N(A^T)$ 互为正交补，维数之和 = $r + (m-r) = m$</p>
+    </div>
+
+    <div class="card warning">
+        <div class="card-title"><span class="card-icon">⚠️</span>考试常考</div>
+        <p><strong>理解 $A\mathbf{x} = \mathbf{0}$ 的几何意义：</strong>每一行 $\mathbf{a}_i^T\mathbf{x} = 0$ 表示 $\mathbf{x}$ 与第 $i$ 行正交。所以 $N(A)$ 中的向量与 $A$ 的每一行都正交 → $N(A) \perp \text{Row}(A)$。</p>
+    </div>
+</div>
+
+<!-- ==================== 总结 ==================== -->
+<div class="lecture" id="summary">
+    <h1 class="lecture-title">Lec 12-15 核心知识点总结</h1>
+
+    <div class="card connection">
+        <div class="card-title"><span class="card-icon">🔗</span>四讲内容线索</div>
+        <table class="comparison-table">
+            <tr><th>Lecture</th><th>核心概念</th><th>关键结论</th></tr>
+            <tr><td>12</td><td>线性无关、零空间、Span</td><td>$A$ 列无关 $\iff$ $A\mathbf{x}=\mathbf{0}$ 仅零解</td></tr>
+            <tr><td>13</td><td>列空间、$A\mathbf{x}=\mathbf{b}$ 解集、基</td><td>解集 = $\mathbf{x}_p + N(A)$</td></tr>
+            <tr><td>14</td><td>维数、秩</td><td>行秩 = 列秩 = pivot 数</td></tr>
+            <tr><td>15</td><td>满秩、正交补、四子空间</td><td>$N(A) \perp \text{Row}(A)$，$C(A) \perp N(A^T)$</td></tr>
+        </table>
+    </div>
+
+    <div class="card tip">
+        <div class="card-title"><span class="card-icon">💡</span>考试高频考点</div>
+        <p><strong>计算题：</strong>求零空间的基、求列空间的基、求秩、写出 $A\mathbf{x}=\mathbf{b}$ 的完整解集</p>
+        <p><strong>判断题：</strong>线性无关/相关判定、子空间验证、满秩条件、正交补关系</p>
+        <p><strong>证明题：</strong>零空间是子空间、Span 是子空间、解集结构 $\mathbf{x}_p + N(A)$</p>
+    </div>
+</div>
+
+</main>
+
+<script>
+function toggleLecture(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('collapsed');
+}
+</script>
+
+</body>
+</html>

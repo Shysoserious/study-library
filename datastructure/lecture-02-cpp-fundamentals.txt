@@ -1,0 +1,5040 @@
+--- Page 0 ---
+CSC 3200 Data Structures and Advanced Programming
+Lecture 2: C++ Fundamentals
+Jingbang Chen
+School of Data Science (SDS)
+The Chinese University of Hong Kong, Shenzhen
+
+--- Page 1 ---
+Default Set-up
+#include <iostream>
+int main() {
+    // Our code goes here.
+    return 0;
+}
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 2 ---
+Default Set-up
+#include <iostream>
+int main() {
+    // Our code goes here.
+    return 0;
+}
+From today, we assume this program structure
+unless stated otherwise.
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 3 ---
+Default Set-up
+#include <iostream>
+int main() {
+    // Our code goes here.
+    return 0;
+}
+From today, we assume this program structure
+unless stated otherwise.
+Short statement examples go inside main().
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 4 ---
+Default Set-up
+#include <iostream>
+int main() {
+    // Our code goes here.
+    return 0;
+}
+From today, we assume this program structure
+unless stated otherwise.
+Short statement examples go inside main().
+Use std::cin and std::cout for input and
+output.
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 5 ---
+Default Set-up
+#include <iostream>
+int main() {
+    // Our code goes here.
+    return 0;
+}
+From today, we assume this program structure
+unless stated otherwise.
+Short statement examples go inside main().
+Use std::cin and std::cout for input and
+output.
+Any additional #include lines belong above
+main().
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 6 ---
+Default Set-up
+#include <iostream>
+int main() {
+    // Our code goes here.
+    return 0;
+}
+From today, we assume this program structure
+unless stated otherwise.
+Short statement examples go inside main().
+Use std::cin and std::cout for input and
+output.
+Any additional #include lines belong above
+main().
+Later, type definitions and other functions also belong outside main().
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 7 ---
+Compilation and Execution
+Python
+Source code →Python runtime →Execution
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 8 ---
+Compilation and Execution
+Python
+Source code →Python runtime →Execution
+Java
+Source code →Bytecode →JVM →Execution
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 9 ---
+Compilation and Execution
+Python
+Source code →Python runtime →Execution
+Java
+Source code →Bytecode →JVM →Execution
+C++
+Source code →C++ compiler →Executable →Execution
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 10 ---
+Compilation and Execution
+Python
+Source code →Python runtime →Execution
+Java
+Source code →Bytecode →JVM →Execution
+C++
+Source code →C++ compiler →Executable →Execution
+g++ -std=c++20 main.cpp -o main
+then
+./main
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 11 ---
+Compilation and Execution
+Python
+Source code →Python runtime →Execution
+Java
+Source code →Bytecode →JVM →Execution
+C++
+Source code →C++ compiler →Executable →Execution
+g++ -std=c++20 main.cpp -o main
+then
+./main
+A successful compilation produces the executable; running it is a separate step.
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 12 ---
+Compilation and Execution
+Python
+Source code →Python runtime →Execution
+Java
+Source code →Bytecode →JVM →Execution
+C++
+Source code →C++ compiler →Executable →Execution
+g++ -std=c++20 main.cpp -o main
+then
+./main
+A successful compilation produces the executable; running it is a separate step.
+IDEs such as Dev-C++ integrate these steps.
+Compile & Run invokes the compiler, then starts your program.
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 13 ---
+Useful Compiler Options
+g++ -std=c++20 -Wall -Wextra -g main.cpp -o main
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 14 ---
+Useful Compiler Options
+g++ -std=c++20 -Wall -Wextra -g main.cpp -o main
+Option
+What it does
+-std=c++20
+Selects the C++20 language rules and features.
+-Wall -Wextra
+Enables many useful warnings, such as unused variables.
+It does not detect every bug.
+-g
+Includes information for a debugger: source lines and variables.
+-o main
+Names the output executable.
+-O2
+Enables optimization; use it when measuring performance.
+-fsanitize=undefined
+Adds runtime checks for many undefined operations,
+including signed overflow, on supported toolchains.
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 15 ---
+Useful Compiler Options
+g++ -std=c++20 -Wall -Wextra -g main.cpp -o main
+Option
+What it does
+-std=c++20
+Selects the C++20 language rules and features.
+-Wall -Wextra
+Enables many useful warnings, such as unused variables.
+It does not detect every bug.
+-g
+Includes information for a debugger: source lines and variables.
+-o main
+Names the output executable.
+-O2
+Enables optimization; use it when measuring performance.
+-fsanitize=undefined
+Adds runtime checks for many undefined operations,
+including signed overflow, on supported toolchains.
+IDE settings can pass these options to GCC. Use a recent GCC compiler:
+older compilers bundled with Dev-C++ may not support the options shown here.
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 16 ---
+Type Checking at Different Time
+Python
+print("Running...")
+hello = "Hello "
+world = "World!"
+print(hello * world)
+CSC 3200 · Data Structures and Advanced Programming
+05
+
+--- Page 17 ---
+Type Checking at Different Time
+Python
+print("Running...")
+hello = "Hello "
+world = "World!"
+print(hello * world)
+Running... appears first.
+Multiplying two strings raises a runtime error.
+CSC 3200 · Data Structures and Advanced Programming
+05
+
+--- Page 18 ---
+Type Checking at Different Time
+Python
+print("Running...")
+hello = "Hello "
+world = "World!"
+print(hello * world)
+Running... appears first.
+Multiplying two strings raises a runtime error.
+C++
+std::cout << "Running...\n";
+std::string hello = "Hello ";
+std::string world = "World!";
+std::cout << hello * world;
+The C++ example also needs #include <string> above main().
+CSC 3200 · Data Structures and Advanced Programming
+05
+
+--- Page 19 ---
+Type Checking at Different Time
+Python
+print("Running...")
+hello = "Hello "
+world = "World!"
+print(hello * world)
+Running... appears first.
+Multiplying two strings raises a runtime error.
+C++
+std::cout << "Running...\n";
+std::string hello = "Hello ";
+std::string world = "World!";
+std::cout << hello * world;
+Multiplying two strings is a compile-time error.
+This program cannot start.
+The C++ example also needs #include <string> above main().
+CSC 3200 · Data Structures and Advanced Programming
+05
+
+--- Page 20 ---
+Type Checking at Different Time
+Python
+print("Running...")
+hello = "Hello "
+world = "World!"
+print(hello * world)
+Running... appears first.
+Multiplying two strings raises a runtime error.
+C++
+std::cout << "Running...\n";
+std::string hello = "Hello ";
+std::string world = "World!";
+std::cout << hello * world;
+Multiplying two strings is a compile-time error.
+This program cannot start.
+The C++ example also needs #include <string> above main().
+Static type checking catches many mistakes before execution.
+CSC 3200 · Data Structures and Advanced Programming
+05
+
+--- Page 21 ---
+Static Type Binding
+A Java or C++ variable has a fixed type. A Python name can be rebound to a different kind of
+object.
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 22 ---
+Static Type Binding
+A Java or C++ variable has a fixed type. A Python name can be rebound to a different kind of
+object.
+Python
+x = 10
+x = "hello"
+Allowed: the name now refers to
+a string.
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 23 ---
+Static Type Binding
+A Java or C++ variable has a fixed type. A Python name can be rebound to a different kind of
+object.
+Python
+x = 10
+x = "hello"
+Allowed: the name now refers to
+a string.
+Java
+int x = 10;
+x = "hello";
+Rejected: x is an int.
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 24 ---
+Static Type Binding
+A Java or C++ variable has a fixed type. A Python name can be rebound to a different kind of
+object.
+Python
+x = 10
+x = "hello"
+Allowed: the name now refers to
+a string.
+Java
+int x = 10;
+x = "hello";
+Rejected: x is an int.
+C++
+int x = 10;
+x = "hello";
+Rejected: x is an int.
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 25 ---
+Static Type Binding
+A Java or C++ variable has a fixed type. A Python name can be rebound to a different kind of
+object.
+Python
+x = 10
+x = "hello"
+Allowed: the name now refers to
+a string.
+Java
+int x = 10;
+x = "hello";
+Rejected: x is an int.
+C++
+int x = 10;
+x = "hello";
+Rejected: x is an int.
+The value may change; the declared type does not.
+Some conversions are allowed. That does not mean the variable changes its type.
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 26 ---
+Common Integer Types
+Each bit is either 0 or 1. w bits give 2w distinct bit patterns.
+A 16-bit type has 216 patterns; a 32-bit type has 232.
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 27 ---
+Common Integer Types
+Each bit is either 0 or 1. w bits give 2w distinct bit patterns.
+A 16-bit type has 216 patterns; a 32-bit type has 232.
+Type
+Bits*
+Range: powers of 2
+Decimal values
+short
+16
+−215 to 215 − 1
+−32,768 to 32,767
+int
+32
+−231 to 231 − 1
+−2,147,483,648 to 2,147,483,647
+unsigned int
+32
+0 to 232 − 1
+0 to 4,294,967,295
+long long
+64
+−263 to 263 − 1
+About ±9.22 × 1018
+unsigned long long
+64
+0 to 264 − 1
+Up to about 1.84 × 1019
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 28 ---
+Common Integer Types
+Each bit is either 0 or 1. w bits give 2w distinct bit patterns.
+A 16-bit type has 216 patterns; a 32-bit type has 232.
+Type
+Bits*
+Range: powers of 2
+Decimal values
+short
+16
+−215 to 215 − 1
+−32,768 to 32,767
+int
+32
+−231 to 231 − 1
+−2,147,483,648 to 2,147,483,647
+unsigned int
+32
+0 to 232 − 1
+0 to 4,294,967,295
+long long
+64
+−263 to 263 − 1
+About ±9.22 × 1018
+unsigned long long
+64
+0 to 264 − 1
+Up to about 1.84 × 1019
+Signed: half the patterns represent negative values. The other half include 0,
+giving a range of −2w−1 to 2w−1 − 1.
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 29 ---
+Common Integer Types
+Each bit is either 0 or 1. w bits give 2w distinct bit patterns.
+A 16-bit type has 216 patterns; a 32-bit type has 232.
+Type
+Bits*
+Range: powers of 2
+Decimal values
+short
+16
+−215 to 215 − 1
+−32,768 to 32,767
+int
+32
+−231 to 231 − 1
+−2,147,483,648 to 2,147,483,647
+unsigned int
+32
+0 to 232 − 1
+0 to 4,294,967,295
+long long
+64
+−263 to 263 − 1
+About ±9.22 × 1018
+unsigned long long
+64
+0 to 264 − 1
+Up to about 1.84 × 1019
+Signed: half the patterns represent negative values. The other half include 0,
+giving a range of −2w−1 to 2w−1 − 1.
+Unsigned: all 2w patterns represent nonnegative values: 0 to 2w − 1.
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 30 ---
+Common Integer Types
+Each bit is either 0 or 1. w bits give 2w distinct bit patterns.
+A 16-bit type has 216 patterns; a 32-bit type has 232.
+Type
+Bits*
+Range: powers of 2
+Decimal values
+short
+16
+−215 to 215 − 1
+−32,768 to 32,767
+int
+32
+−231 to 231 − 1
+−2,147,483,648 to 2,147,483,647
+unsigned int
+32
+0 to 232 − 1
+0 to 4,294,967,295
+long long
+64
+−263 to 263 − 1
+About ±9.22 × 1018
+unsigned long long
+64
+0 to 264 − 1
+Up to about 1.84 × 1019
+Signed: half the patterns represent negative values. The other half include 0,
+giving a range of −2w−1 to 2w−1 − 1.
+Unsigned: all 2w patterns represent nonnegative values: 0 to 2w − 1.
+*Typical widths used in our examples. The C++ standard permits different widths.
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 31 ---
+More Common Types
+Type
+Values / range
+Example
+double
+Approximate real numbers;
+usually up to about ±1.8 × 10308 finite magnitude
+double average = 2.5;
+bool
+false or true;
+numeric conversion gives 0 or 1
+bool found = false;
+char
+Usually 8 bits: −128 to 127
+or 0 to 255; implementation-dependent
+char grade = 'A';
+unsigned char
+Usually 8 bits: 0 to 255
+unsigned char b = 255;
+std::string
+A sequence of characters,
+not a built-in numeric type
+std::string s = "Hello";
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 32 ---
+More Common Types
+Type
+Values / range
+Example
+double
+Approximate real numbers;
+usually up to about ±1.8 × 10308 finite magnitude
+double average = 2.5;
+bool
+false or true;
+numeric conversion gives 0 or 1
+bool found = false;
+char
+Usually 8 bits: −128 to 127
+or 0 to 255; implementation-dependent
+char grade = 'A';
+unsigned char
+Usually 8 bits: 0 to 255
+unsigned char b = 255;
+std::string
+A sequence of characters,
+not a built-in numeric type
+std::string s = "Hello";
+A typical double offers about 15–16 significant decimal digits, not exact real arithmetic.
+std::string requires #include <string> above main().
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 33 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 34 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 35 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 36 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+We usually use =. int x(5); and int x{5}; also initialize x to 5.
+What happens when the initial value is 5.5 instead?
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 37 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+We usually use =. int x(5); and int x{5}; also initialize x to 5.
+What happens when the initial value is 5.5 instead?
+Independent example
+Result
+Reason
+int x(5.5);
+int x = 5.5;
+int x{5.5};
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 38 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+We usually use =. int x(5); and int x{5}; also initialize x to 5.
+What happens when the initial value is 5.5 instead?
+Independent example
+Result
+Reason
+int x(5.5);
+Compiles: x = 5
+Discards the fractional part.
+int x = 5.5;
+int x{5.5};
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 39 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+We usually use =. int x(5); and int x{5}; also initialize x to 5.
+What happens when the initial value is 5.5 instead?
+Independent example
+Result
+Reason
+int x(5.5);
+Compiles: x = 5
+Discards the fractional part.
+int x = 5.5;
+Compiles: x = 5
+The same conversion occurs.
+int x{5.5};
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 40 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+We usually use =. int x(5); and int x{5}; also initialize x to 5.
+What happens when the initial value is 5.5 instead?
+Independent example
+Result
+Reason
+int x(5.5);
+Compiles: x = 5
+Discards the fractional part.
+int x = 5.5;
+Compiles: x = 5
+The same conversion occurs.
+int x{5.5};
+Compile-time error
+Braces reject narrowing conversions.
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 41 ---
+Variables and Initialization
+Declaration
+int total;
+Creates a local variable with no
+initial value.
+Initialization
+int total = 0;
+Creates a variable with a starting
+value.
+Assignment
+total = 5;
+total = total + 2;
+Updates an existing variable.
+Its final value is 7.
+We usually use =. int x(5); and int x{5}; also initialize x to 5.
+What happens when the initial value is 5.5 instead?
+Independent example
+Result
+Reason
+int x(5.5);
+Compiles: x = 5
+Discards the fractional part.
+int x = 5.5;
+Compiles: x = 5
+The same conversion occurs.
+int x{5.5};
+Compile-time error
+Braces reject narrowing conversions.
+Parentheses and = allow truncation, not rounding to the nearest integer; the compiler may warn.
+For zero initialization, int total{0}; and int total{}; both start at zero.
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 42 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 43 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+No initialization occurred. Reading this local
+int has undefined behavior in C++20.
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 44 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+No initialization occurred. Reading this local
+int has undefined behavior in C++20.
+Assign before reading
+int count;
+count = 0;
+std::cout << count;
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 45 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+No initialization occurred. Reading this local
+int has undefined behavior in C++20.
+Assign before reading
+int count;
+count = 0;
+std::cout << count;
+The assignment establishes a value.
+This program prints 0.
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 46 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+No initialization occurred. Reading this local
+int has undefined behavior in C++20.
+Assign before reading
+int count;
+count = 0;
+std::cout << count;
+The assignment establishes a value.
+This program prints 0.
+Never assume an uninitialized local variable is 0!
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 47 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+No initialization occurred. Reading this local
+int has undefined behavior in C++20.
+Assign before reading
+int count;
+count = 0;
+std::cout << count;
+The assignment establishes a value.
+This program prints 0.
+Never assume an uninitialized local variable is 0!
+The program may appear to print 0, another value, or behave differently across runs, compilers,
+build settings, and environments. None of these observations is a guarantee.
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 48 ---
+Uninitialized Local Variables
+Do not read this value
+int count;
+std::cout << count;
+No initialization occurred. Reading this local
+int has undefined behavior in C++20.
+Assign before reading
+int count;
+count = 0;
+std::cout << count;
+The assignment establishes a value.
+This program prints 0.
+Never assume an uninitialized local variable is 0!
+The program may appear to print 0, another value, or behave differently across runs, compilers,
+build settings, and environments. None of these observations is a guarantee.
+Global variables and static variables follow different initialization rules; this warning concerns ordinary local
+variables.
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 49 ---
+Basic Arithmetic
+Operator
+Meaning
+Example
+Result
++
+Addition
+7 + 3
+10
+-
+Subtraction
+7 - 3
+4
+*
+Multiplication
+7 * 3
+21
+/
+Division
+7 / 3
+2 (integer operands)
+%
+Integer remainder
+7 % 3
+1
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 50 ---
+Basic Arithmetic
+Operator
+Meaning
+Example
+Result
++
+Addition
+7 + 3
+10
+-
+Subtraction
+7 - 3
+4
+*
+Multiplication
+7 * 3
+21
+/
+Division
+7 / 3
+2 (integer operands)
+%
+Integer remainder
+7 % 3
+1
+int result;
+result = 7 + 3 * 2;      // 13
+result = (7 + 3) * 2;    // 20
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 51 ---
+Basic Arithmetic
+Operator
+Meaning
+Example
+Result
++
+Addition
+7 + 3
+10
+-
+Subtraction
+7 - 3
+4
+*
+Multiplication
+7 * 3
+21
+/
+Division
+7 / 3
+2 (integer operands)
+%
+Integer remainder
+7 % 3
+1
+int result;
+result = 7 + 3 * 2;      // 13
+result = (7 + 3) * 2;    // 20
+Multiplication comes before addition. Parentheses make the intended grouping explicit.
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 52 ---
+Unary and Binary Operators
+Unary: one operand
+-x     // negate x
++x     // unary plus
+!ok    // logical NOT
+++x    // increment x
+--x    // decrement x
+In -x, the minus sign acts on one value.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 53 ---
+Unary and Binary Operators
+Unary: one operand
+-x     // negate x
++x     // unary plus
+!ok    // logical NOT
+++x    // increment x
+--x    // decrement x
+In -x, the minus sign acts on one value.
+Binary: two operands
+a - b     // subtract
+x = 5     // assign
+x += 3    // add, then assign
+x -= 3    // subtract, then assign
+x *= 3    // multiply, then assign
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 54 ---
+Unary and Binary Operators
+Unary: one operand
+-x     // negate x
++x     // unary plus
+!ok    // logical NOT
+++x    // increment x
+--x    // decrement x
+In -x, the minus sign acts on one value.
+Binary: two operands
+a - b     // subtract
+x = 5     // assign
+x += 3    // add, then assign
+x -= 3    // subtract, then assign
+x *= 3    // multiply, then assign
++=, -=, *=, /=, and %= are binary compound
+assignments.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 55 ---
+Unary and Binary Operators
+Unary: one operand
+-x     // negate x
++x     // unary plus
+!ok    // logical NOT
+++x    // increment x
+--x    // decrement x
+In -x, the minus sign acts on one value.
+Binary: two operands
+a - b     // subtract
+x = 5     // assign
+x += 3    // add, then assign
+x -= 3    // subtract, then assign
+x *= 3    // multiply, then assign
++=, -=, *=, /=, and %= are binary compound
+assignments.
+Start with
+Operation
+Equivalent update
+New value
+x = 10;
+x += 3;
+x = x + 3;
+13
+x = 10;
+x /= 3;
+x = x / 3;
+3
+Each row starts over. The equivalence here is for a simple numeric variable x.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 56 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 57 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 58 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+x = 6, y = 6
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 59 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+x = 6, y = 6
+Postfix: use the old value
+int x = 5;
+int y;
+y = x++;
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 60 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+x = 6, y = 6
+Postfix: use the old value
+int x = 5;
+int y;
+y = x++;
+x = 6, y = 5
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 61 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+x = 6, y = 6
+Postfix: use the old value
+int x = 5;
+int y;
+y = x++;
+x = 6, y = 5
+int x = 5;
+std::cout << x++ << '\n';
+std::cout << ++x << '\n';
+std::cout << x << '\n';
+What does this code print?
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 62 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+x = 6, y = 6
+Postfix: use the old value
+int x = 5;
+int y;
+y = x++;
+x = 6, y = 5
+int x = 5;
+std::cout << x++ << '\n';
+std::cout << ++x << '\n';
+std::cout << x << '\n';
+What does this code print?
+5
+7
+7
+Print 5, then x becomes 6.
+Increment to 7, then print it.
+Finally, print the current x.
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 63 ---
+Prefix and Postfix Increment
+Both forms increase x by 1. Their expressions supply different values.
+Prefix: use the new value
+int x = 5;
+int y;
+y = ++x;
+x = 6, y = 6
+Postfix: use the old value
+int x = 5;
+int y;
+y = x++;
+x = 6, y = 5
+int x = 5;
+std::cout << x++ << '\n';
+std::cout << ++x << '\n';
+std::cout << x << '\n';
+What does this code print?
+5
+7
+7
+Print 5, then x becomes 6.
+Increment to 7, then print it.
+Finally, print the current x.
+As standalone statements, ++x; and x++; have the same effect for an int. The same distinction
+applies to --x and x--.
+Java has the same distinction. Python has no increment operator; use x += 1.
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 64 ---
+Predict the Values
+Each example starts independently. What are the values after the last statement?
+int x = 3;
+int y;
+y = x++ * 2;
+int x = 3;
+int y;
+y = ++x * 2;
+int x = 3;
+int y;
+y = x++;
+y += ++x;
+int x = 3;
+int y;
+y = x-- + 10;
+Keep updates easy to follow: use separate statements instead of combining several changes to the same variable in
+one expression.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 65 ---
+Predict the Values
+Each example starts independently. What are the values after the last statement?
+int x = 3;
+int y;
+y = x++ * 2;
+x = 4, y = 6
+int x = 3;
+int y;
+y = ++x * 2;
+int x = 3;
+int y;
+y = x++;
+y += ++x;
+int x = 3;
+int y;
+y = x-- + 10;
+Keep updates easy to follow: use separate statements instead of combining several changes to the same variable in
+one expression.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 66 ---
+Predict the Values
+Each example starts independently. What are the values after the last statement?
+int x = 3;
+int y;
+y = x++ * 2;
+x = 4, y = 6
+int x = 3;
+int y;
+y = ++x * 2;
+x = 4, y = 8
+int x = 3;
+int y;
+y = x++;
+y += ++x;
+int x = 3;
+int y;
+y = x-- + 10;
+Keep updates easy to follow: use separate statements instead of combining several changes to the same variable in
+one expression.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 67 ---
+Predict the Values
+Each example starts independently. What are the values after the last statement?
+int x = 3;
+int y;
+y = x++ * 2;
+x = 4, y = 6
+int x = 3;
+int y;
+y = ++x * 2;
+x = 4, y = 8
+int x = 3;
+int y;
+y = x++;
+y += ++x;
+x = 5, y = 8
+int x = 3;
+int y;
+y = x-- + 10;
+Keep updates easy to follow: use separate statements instead of combining several changes to the same variable in
+one expression.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 68 ---
+Predict the Values
+Each example starts independently. What are the values after the last statement?
+int x = 3;
+int y;
+y = x++ * 2;
+x = 4, y = 6
+int x = 3;
+int y;
+y = ++x * 2;
+x = 4, y = 8
+int x = 3;
+int y;
+y = x++;
+y += ++x;
+x = 5, y = 8
+int x = 3;
+int y;
+y = x-- + 10;
+x = 2, y = 13
+Keep updates easy to follow: use separate statements instead of combining several changes to the same variable in
+one expression.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 69 ---
+Predict the Values
+Each example starts independently. What are the values after the last statement?
+int x = 3;
+int y;
+y = x++ * 2;
+x = 4, y = 6
+int x = 3;
+int y;
+y = ++x * 2;
+x = 4, y = 8
+int x = 3;
+int y;
+y = x++;
+y += ++x;
+x = 5, y = 8
+int x = 3;
+int y;
+y = x-- + 10;
+x = 2, y = 13
+Keep updates easy to follow: use separate statements instead of combining several changes to the same variable in
+one expression.
+General advice: Don't write code if you're unsure how it behaves!
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 70 ---
+Operator Precedence
+Read this table from higher to lower precedence. Parentheses override the usual grouping.
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 71 ---
+Operator Precedence
+Read this table from higher to lower precedence. Parentheses override the usual grouping.
+Priority
+Operators
+Example grouping
+Highest
+x++   x--
+x++ * 2 → (x++) * 2
+↓
+++x   --x   +x   -x   !x
+-x * y → (-x) * y
+↓
+*   /   %
+a + b * c → a + (b * c)
+↓
++   -
+a - b + c → (a - b) + c
+↓
+<   <=   >   >=
+a + b < c → (a + b) < c
+↓
+==   !=
+a < b == ok → (a < b) == ok
+↓
+&&
+x > 0 && y > 0
+↓
+||
+a || b && c → a || (b && c)
+Lowest
+=   +=   -=   *=   /=   %=
+x = y = 0 → x = (y = 0)
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 72 ---
+Operator Precedence
+Read this table from higher to lower precedence. Parentheses override the usual grouping.
+Priority
+Operators
+Example grouping
+Highest
+x++   x--
+x++ * 2 → (x++) * 2
+↓
+++x   --x   +x   -x   !x
+-x * y → (-x) * y
+↓
+*   /   %
+a + b * c → a + (b * c)
+↓
++   -
+a - b + c → (a - b) + c
+↓
+<   <=   >   >=
+a + b < c → (a + b) < c
+↓
+==   !=
+a < b == ok → (a < b) == ok
+↓
+&&
+x > 0 && y > 0
+↓
+||
+a || b && c → a || (b && c)
+Lowest
+=   +=   -=   *=   /=   %=
+x = y = 0 → x = (y = 0)
+Selected operators only. Precedence determines grouping, not the order in which operands are evaluated.
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 73 ---
+Integer Division: Truncate Toward Zero
+With integer operands, Java and C++ discard the fractional part.
+This is truncation toward zero, not rounding to the nearest integer.
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 74 ---
+Integer Division: Truncate Toward Zero
+With integer operands, Java and C++ discard the fractional part.
+This is truncation toward zero, not rounding to the nearest integer.
+Operands
+Exact quotient
+Java / C++ /
+Python //
+7 and 3
+2.333…
+2
+2
+8 and 3
+2.666…
+2
+2
+-7 and 3
+−2.333…
+-2
+-3
+7 and -3
+−2.333…
+-2
+-3
+-7 and -3
+2.333…
+2
+2
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 75 ---
+Integer Division: Truncate Toward Zero
+With integer operands, Java and C++ discard the fractional part.
+This is truncation toward zero, not rounding to the nearest integer.
+Operands
+Exact quotient
+Java / C++ /
+Python //
+7 and 3
+2.333…
+2
+2
+8 and 3
+2.666…
+2
+2
+-7 and 3
+−2.333…
+-2
+-3
+7 and -3
+−2.333…
+-2
+-3
+-7 and -3
+2.333…
+2
+2
+Python // rounds down toward negative infinity.
+Python / performs true division: 7 / 2 gives 3.5.
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 76 ---
+Getting a Floating-Point Quotient
+Assigning into a double does not change a division that has already happened.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 77 ---
+Getting a Floating-Point Quotient
+Assigning into a double does not change a division that has already happened.
+int total = 7;
+int count = 2;
+double average;
+average = total / count;          // 3.0
+average = 1.0 * total / count;    // 3.5
+average = total / (count * 1.0);  // 3.5
+average = total / count * 1.0;    // 3.0
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 78 ---
+Getting a Floating-Point Quotient
+Assigning into a double does not change a division that has already happened.
+int total = 7;
+int count = 2;
+double average;
+average = total / count;          // 3.0
+average = 1.0 * total / count;    // 3.5
+average = total / (count * 1.0);  // 3.5
+average = total / count * 1.0;    // 3.0
+In the last line, / and * group left to right:
+(total / count) * 1.0 converts an already-truncated 3 to 3.0.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 79 ---
+Getting a Floating-Point Quotient
+Assigning into a double does not change a division that has already happened.
+int total = 7;
+int count = 2;
+double average;
+average = total / count;          // 3.0
+average = 1.0 * total / count;    // 3.5
+average = total / (count * 1.0);  // 3.5
+average = total / count * 1.0;    // 3.0
+In the last line, / and * group left to right:
+(total / count) * 1.0 converts an already-truncated 3 to 3.0.
+Make an operand floating-point before the division.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 80 ---
+Remainder and Negative Numbers
+For valid integer division in C++, a = (a / b) * b + a % b.
+A nonzero remainder has the same sign as a, the dividend.
+CSC 3200 · Data Structures and Advanced Programming
+18
+
+--- Page 81 ---
+Remainder and Negative Numbers
+For valid integer division in C++, a = (a / b) * b + a % b.
+A nonzero remainder has the same sign as a, the dividend.
+Expression
+C++ / Java
+Python
+Check in C++
+7 % 3
+1
+1
+7 = 2 * 3 + 1
+-7 % 3
+-1
+2
+-7 = (-2) * 3 - 1
+7 % -3
+1
+-2
+7 = (-2) * (-3) + 1
+CSC 3200 · Data Structures and Advanced Programming
+18
+
+--- Page 82 ---
+Remainder and Negative Numbers
+For valid integer division in C++, a = (a / b) * b + a % b.
+A nonzero remainder has the same sign as a, the dividend.
+Expression
+C++ / Java
+Python
+Check in C++
+7 % 3
+1
+1
+7 = 2 * 3 + 1
+-7 % 3
+-1
+2
+-7 = (-2) * 3 - 1
+7 % -3
+1
+-2
+7 = (-2) * (-3) + 1
+int x = -3;
+bool odd;
+odd = (x % 2 != 0);   // true
+odd = (x % 2 == 1);   // false: misses negative odd values
+CSC 3200 · Data Structures and Advanced Programming
+18
+
+--- Page 83 ---
+Remainder and Negative Numbers
+For valid integer division in C++, a = (a / b) * b + a % b.
+A nonzero remainder has the same sign as a, the dividend.
+Expression
+C++ / Java
+Python
+Check in C++
+7 % 3
+1
+1
+7 = 2 * 3 + 1
+-7 % 3
+-1
+2
+-7 = (-2) * 3 - 1
+7 % -3
+1
+-2
+7 = (-2) * (-3) + 1
+int x = -3;
+bool odd;
+odd = (x % 2 != 0);   // true
+odd = (x % 2 == 1);   // false: misses negative odd values
+Never divide or take a remainder by zero.
+CSC 3200 · Data Structures and Advanced Programming
+18
+
+--- Page 84 ---
+Signed Integer Overflow
+Assume a 32-bit int: its largest value is 2,147,483,647.
+int x;
+std::cin >> x;  // enter 2147483647
+x = x + 1;
+std::cout << x;
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 85 ---
+Signed Integer Overflow
+Assume a 32-bit int: its largest value is 2,147,483,647.
+int x;
+std::cin >> x;  // enter 2147483647
+x = x + 1;
+std::cout << x;
+The mathematical result is 2,147,483,648.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 86 ---
+Signed Integer Overflow
+Assume a 32-bit int: its largest value is 2,147,483,647.
+int x;
+std::cin >> x;  // enter 2147483647
+x = x + 1;
+std::cout << x;
+The mathematical result is 2,147,483,648.
+That result cannot be represented as an int.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 87 ---
+Signed Integer Overflow
+Assume a 32-bit int: its largest value is 2,147,483,647.
+int x;
+std::cin >> x;  // enter 2147483647
+x = x + 1;
+std::cout << x;
+The mathematical result is 2,147,483,648.
+That result cannot be represented as an int.
+In C++, signed integer overflow has
+undefined behavior.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 88 ---
+Signed Integer Overflow
+Assume a 32-bit int: its largest value is 2,147,483,647.
+int x;
+std::cin >> x;  // enter 2147483647
+x = x + 1;
+std::cout << x;
+The mathematical result is 2,147,483,648.
+That result cannot be represented as an int.
+In C++, signed integer overflow has
+undefined behavior.
+Language / type
+Adding 1 to 2,147,483,647
+Python int
+2147483648 — integers can grow.
+Java int
+-2147483648 — defined 32-bit wraparound.
+C++ 32-bit int
+No guaranteed result — not even a guaranteed crash.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 89 ---
+Why Might the Program Keep Running?
+Ordinary machine instructions may keep only the low 32 bits. They do not necessarily raise an
+exception.
+01111111 11111111 11111111 11111111
+2,147,483,647
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 90 ---
+Why Might the Program Keep Running?
+Ordinary machine instructions may keep only the low 32 bits. They do not necessarily raise an
+exception.
+01111111 11111111 11111111 11111111
+2,147,483,647
++ 1   ↓
+10000000 00000000 00000000 00000000
+−2,147,483,648 if interpreted as a signed 32-bit value
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 91 ---
+Why Might the Program Keep Running?
+Ordinary machine instructions may keep only the low 32 bits. They do not necessarily raise an
+exception.
+01111111 11111111 11111111 11111111
+2,147,483,647
++ 1   ↓
+10000000 00000000 00000000 00000000
+−2,147,483,648 if interpreted as a signed 32-bit value
+This explains one commonly observed output. It is a hardware-level illustration, not a valid
+C++ rule for signed overflow.
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 92 ---
+Why Might the Program Keep Running?
+Ordinary machine instructions may keep only the low 32 bits. They do not necessarily raise an
+exception.
+01111111 11111111 11111111 11111111
+2,147,483,647
++ 1   ↓
+10000000 00000000 00000000 00000000
+−2,147,483,648 if interpreted as a signed 32-bit value
+This explains one commonly observed output. It is a hardware-level illustration, not a valid
+C++ rule for signed overflow.
+The compiler may optimize assuming signed overflow never occurs.
+A different build may produce a different result—or no useful result at all.
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 93 ---
+Why Might the Program Keep Running?
+Ordinary machine instructions may keep only the low 32 bits. They do not necessarily raise an
+exception.
+01111111 11111111 11111111 11111111
+2,147,483,647
++ 1   ↓
+10000000 00000000 00000000 00000000
+−2,147,483,648 if interpreted as a signed 32-bit value
+This explains one commonly observed output. It is a hardware-level illustration, not a valid
+C++ rule for signed overflow.
+The compiler may optimize assuming signed overflow never occurs.
+A different build may produce a different result—or no useful result at all.
+When supported, -fsanitize=undefined can report signed overflow while the program runs.
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 94 ---
+Unsigned Arithmetic Wraps Around
+Unlike signed overflow, unsigned arithmetic is defined modulo 2w.
+For a 32-bit unsigned int, the modulus is 4,294,967,296.
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 95 ---
+Unsigned Arithmetic Wraps Around
+Unlike signed overflow, unsigned arithmetic is defined modulo 2w.
+For a 32-bit unsigned int, the modulus is 4,294,967,296.
+Past the maximum
+unsigned int x = 4294967295U;
+x = x + 1;
+std::cout << x;  // 0
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 96 ---
+Unsigned Arithmetic Wraps Around
+Unlike signed overflow, unsigned arithmetic is defined modulo 2w.
+For a 32-bit unsigned int, the modulus is 4,294,967,296.
+Past the maximum
+unsigned int x = 4294967295U;
+x = x + 1;
+std::cout << x;  // 0
+Below zero
+unsigned int x = 0;
+x = x - 1;
+std::cout << x;  // 4294967295
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 97 ---
+Unsigned Arithmetic Wraps Around
+Unlike signed overflow, unsigned arithmetic is defined modulo 2w.
+For a 32-bit unsigned int, the modulus is 4,294,967,296.
+Past the maximum
+unsigned int x = 4294967295U;
+x = x + 1;
+std::cout << x;  // 0
+Below zero
+unsigned int x = 0;
+x = x - 1;
+std::cout << x;  // 4294967295
+Unsigned has a larger nonnegative range—not protection from arithmetic mistakes.
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 98 ---
+Unsigned Arithmetic Wraps Around
+Unlike signed overflow, unsigned arithmetic is defined modulo 2w.
+For a 32-bit unsigned int, the modulus is 4,294,967,296.
+Past the maximum
+unsigned int x = 4294967295U;
+x = x + 1;
+std::cout << x;  // 0
+Below zero
+unsigned int x = 0;
+x = x - 1;
+std::cout << x;  // 4294967295
+Unsigned has a larger nonnegative range—not protection from arithmetic mistakes.
+int a = -1;
+unsigned int b = 1;
+std::cout << (a < b);   // 0: false
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 99 ---
+Unsigned Arithmetic Wraps Around
+Unlike signed overflow, unsigned arithmetic is defined modulo 2w.
+For a 32-bit unsigned int, the modulus is 4,294,967,296.
+Past the maximum
+unsigned int x = 4294967295U;
+x = x + 1;
+std::cout << x;  // 0
+Below zero
+unsigned int x = 0;
+x = x - 1;
+std::cout << x;  // 4294967295
+Unsigned has a larger nonnegative range—not protection from arithmetic mistakes.
+int a = -1;
+unsigned int b = 1;
+std::cout << (a < b);   // 0: false
+Here, a is converted to unsigned int before comparison.
+On our 32-bit example, -1 becomes 4,294,967,295. Avoid casual signed/unsigned mixing.
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 100 ---
+Widen Before the Operation
+The destination type cannot repair an overflow in the expression used to compute its value.
+Too late
+int a = 100000;
+long long square;
+square = a * a;
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 101 ---
+Widen Before the Operation
+The destination type cannot repair an overflow in the expression used to compute its value.
+Too late
+int a = 100000;
+long long square;
+square = a * a;
+a * a is computed as an int.
+10,000,000,000 does not fit.
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 102 ---
+Widen Before the Operation
+The destination type cannot repair an overflow in the expression used to compute its value.
+Too late
+int a = 100000;
+long long square;
+square = a * a;
+a * a is computed as an int.
+10,000,000,000 does not fit.
+Use a wider operand
+int a = 100000;
+long long square;
+square = 1LL * a * a;
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 103 ---
+Widen Before the Operation
+The destination type cannot repair an overflow in the expression used to compute its value.
+Too late
+int a = 100000;
+long long square;
+square = a * a;
+a * a is computed as an int.
+10,000,000,000 does not fit.
+Use a wider operand
+int a = 100000;
+long long square;
+square = 1LL * a * a;
+1LL has type long long.
+Both multiplications use the wider type.
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 104 ---
+Widen Before the Operation
+The destination type cannot repair an overflow in the expression used to compute its value.
+Too late
+int a = 100000;
+long long square;
+square = a * a;
+a * a is computed as an int.
+10,000,000,000 does not fit.
+Use a wider operand
+int a = 100000;
+long long square;
+square = 1LL * a * a;
+1LL has type long long.
+Both multiplications use the wider type.
+long long wide;
+wide = a;
+square = wide * a;  // also 10000000000
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 105 ---
+Widen Before the Operation
+The destination type cannot repair an overflow in the expression used to compute its value.
+Too late
+int a = 100000;
+long long square;
+square = a * a;
+a * a is computed as an int.
+10,000,000,000 does not fit.
+Use a wider operand
+int a = 100000;
+long long square;
+square = 1LL * a * a;
+1LL has type long long.
+Both multiplications use the wider type.
+long long wide;
+wide = a;
+square = wide * a;  // also 10000000000
+Still check the range: even long long is finite.
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 106 ---
+Boolean and Character Arithmetic
+bool and character values can participate in integer arithmetic.
+Small integer types are usually promoted to int before the operation.
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 107 ---
+Boolean and Character Arithmetic
+bool and character values can participate in integer arithmetic.
+Small integer types are usually promoted to int before the operation.
+bool
+bool ok = true;
+std::cout << ok + 2;  // 3
+ok = 7;              // true: any nonzero value
+false → 0
+true → 1
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 108 ---
+Boolean and Character Arithmetic
+bool and character values can participate in integer arithmetic.
+Small integer types are usually promoted to int before the operation.
+bool
+bool ok = true;
+std::cout << ok + 2;  // 3
+ok = 7;              // true: any nonzero value
+false → 0
+true → 1
+char
+char digit = '7';
+int value;
+value = digit - '0';  // 7
+'0' through '9'
+have consecutive
+codes.
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 109 ---
+Boolean and Character Arithmetic
+bool and character values can participate in integer arithmetic.
+Small integer types are usually promoted to int before the operation.
+bool
+bool ok = true;
+std::cout << ok + 2;  // 3
+ok = 7;              // true: any nonzero value
+false → 0
+true → 1
+char
+char digit = '7';
+int value;
+value = digit - '0';  // 7
+'0' through '9'
+have consecutive
+codes.
+unsigned char
+unsigned char b = 250;
+std::cout << b + 10;  // 260: int arithmetic
+b = b + 10;          // 4: stored in 8 bits
+Assuming 8-bit bytes:
+260 % 256 = 4
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 110 ---
+Boolean and Character Arithmetic
+bool and character values can participate in integer arithmetic.
+Small integer types are usually promoted to int before the operation.
+bool
+bool ok = true;
+std::cout << ok + 2;  // 3
+ok = 7;              // true: any nonzero value
+false → 0
+true → 1
+char
+char digit = '7';
+int value;
+value = digit - '0';  // 7
+'0' through '9'
+have consecutive
+codes.
+unsigned char
+unsigned char b = 250;
+std::cout << b + 10;  // 260: int arithmetic
+b = b + 10;          // 4: stored in 8 bits
+Assuming 8-bit bytes:
+260 % 256 = 4
+To display a character's numeric code, use ch + 0; std::cout << ch prints the character.
+Java does not allow boolean arithmetic; Python and C++ do.
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 111 ---
+Boolean and Character Arithmetic
+bool and character values can participate in integer arithmetic.
+Small integer types are usually promoted to int before the operation.
+bool
+bool ok = true;
+std::cout << ok + 2;  // 3
+ok = 7;              // true: any nonzero value
+false → 0
+true → 1
+char
+char digit = '7';
+int value;
+value = digit - '0';  // 7
+'0' through '9'
+have consecutive
+codes.
+unsigned char
+unsigned char b = 250;
+std::cout << b + 10;  // 260: int arithmetic
+b = b + 10;          // 4: stored in 8 bits
+Assuming 8-bit bytes:
+260 % 256 = 4
+To display a character's numeric code, use ch + 0; std::cout << ch prints the character.
+Java does not allow boolean arithmetic; Python and C++ do.
+char ch;
+std::cin >> ch;
+Warning: std::cin >> ch reads one character, not a number.
+Input 12345 stores '1'; 2345 remains unread. A char never expands.
+For numeric input, use int or long long within their ranges.
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 112 ---
+Boolean Expressions
+==
+!=
+<
+<=
+>
+>=
+&&
+||
+!
+Short-circuit evaluation: evaluate the left side first.
+Stop once the result is determined.
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 113 ---
+Boolean Expressions
+==
+!=
+<
+<=
+>
+>=
+&&
+||
+!
+Short-circuit evaluation: evaluate the left side first.
+Stop once the result is determined.
+Logical AND: &&
+int d = 0;
+bool result;
+result = (d != 0 && 10 / d > 2);
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 114 ---
+Boolean Expressions
+==
+!=
+<
+<=
+>
+>=
+&&
+||
+!
+Short-circuit evaluation: evaluate the left side first.
+Stop once the result is determined.
+Logical AND: &&
+int d = 0;
+bool result;
+result = (d != 0 && 10 / d > 2);
+Left side is false.
+Skip the right side. The result is false.
+10 / d never runs, so no division by zero occurs.
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 115 ---
+Boolean Expressions
+==
+!=
+<
+<=
+>
+>=
+&&
+||
+!
+Short-circuit evaluation: evaluate the left side first.
+Stop once the result is determined.
+Logical AND: &&
+int d = 0;
+bool result;
+result = (d != 0 && 10 / d > 2);
+Left side is false.
+Skip the right side. The result is false.
+10 / d never runs, so no division by zero occurs.
+Logical OR: ||
+int d = 0;
+bool result;
+result = (d == 0 || 10 / d > 2);
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 116 ---
+Boolean Expressions
+==
+!=
+<
+<=
+>
+>=
+&&
+||
+!
+Short-circuit evaluation: evaluate the left side first.
+Stop once the result is determined.
+Logical AND: &&
+int d = 0;
+bool result;
+result = (d != 0 && 10 / d > 2);
+Left side is false.
+Skip the right side. The result is false.
+10 / d never runs, so no division by zero occurs.
+Logical OR: ||
+int d = 0;
+bool result;
+result = (d == 0 || 10 / d > 2);
+Left side is true.
+Skip the right side. The result is true.
+10 / d never runs here either.
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 117 ---
+Boolean Expressions
+==
+!=
+<
+<=
+>
+>=
+&&
+||
+!
+Short-circuit evaluation: evaluate the left side first.
+Stop once the result is determined.
+Logical AND: &&
+int d = 0;
+bool result;
+result = (d != 0 && 10 / d > 2);
+Left side is false.
+Skip the right side. The result is false.
+10 / d never runs, so no division by zero occurs.
+Logical OR: ||
+int d = 0;
+bool result;
+result = (d == 0 || 10 / d > 2);
+Left side is true.
+Skip the right side. The result is true.
+10 / d never runs here either.
+The skipped expression does not execute at all.
+Even ++x on a skipped right side would not change x.
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 118 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 119 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+&&: Skip an unsafe array access
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 <= i && i < 3) && a[i] == 20);
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 120 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+&&: Skip an unsafe array access
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 <= i && i < 3) && a[i] == 20);
+i = 5: the bounds check fails, so a[i] is skipped.
+i = 0: read 10, so found is false. i = 1: read 20, so it is true.
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 121 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+&&: Skip an unsafe array access
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 <= i && i < 3) && a[i] == 20);
+i = 5: the bounds check fails, so a[i] is skipped.
+i = 0: read 10, so found is false. i = 1: read 20, so it is true.
+||: Deliberately trigger failure
+bool fail();  // Provided helper: reports an error and exits
+bool valid = (0 <= i && i < 3);
+valid || fail();
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 122 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+&&: Skip an unsafe array access
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 <= i && i < 3) && a[i] == 20);
+i = 5: the bounds check fails, so a[i] is skipped.
+i = 0: read 10, so found is false. i = 1: read 20, so it is true.
+||: Deliberately trigger failure
+bool fail();  // Provided helper: reports an error and exits
+bool valid = (0 <= i && i < 3);
+valid || fail();
+i = 5: valid is false, so fail() runs and stops the program.
+i = 1: valid is true, so fail() is skipped.
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 123 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+&&: Skip an unsafe array access
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 <= i && i < 3) && a[i] == 20);
+i = 5: the bounds check fails, so a[i] is skipped.
+i = 0: read 10, so found is false. i = 1: read 20, so it is true.
+||: Deliberately trigger failure
+bool fail();  // Provided helper: reports an error and exits
+bool valid = (0 <= i && i < 3);
+valid || fail();
+i = 5: valid is false, so fail() runs and stops the program.
+i = 1: valid is true, so fail() is skipped.
+An out-of-bounds read is undefined behavior, not a reliable way to trigger failure.
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 124 ---
+Short-Circuiting and Responsibility
+This array has three elements. Its valid indices are 0, 1, and 2.
+&&: Skip an unsafe array access
+int a[3] = {10, 20, 30};
+int i = 5;
+bool found = ((0 <= i && i < 3) && a[i] == 20);
+i = 5: the bounds check fails, so a[i] is skipped.
+i = 0: read 10, so found is false. i = 1: read 20, so it is true.
+||: Deliberately trigger failure
+bool fail();  // Provided helper: reports an error and exits
+bool valid = (0 <= i && i < 3);
+valid || fail();
+i = 5: valid is false, so fail() runs and stops the program.
+i = 1: valid is true, so fail() is skipped.
+An out-of-bounds read is undefined behavior, not a reliable way to trigger failure.
+In C++, the programmer takes full responsibility
+for making these operations safe.
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 125 ---
+Chained Comparisons
+Python
+inside = 0 <= x <= 100
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 126 ---
+Chained Comparisons
+Python
+inside = 0 <= x <= 100
+Python treats this as two comparisons joined by and.
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 127 ---
+Chained Comparisons
+Python
+inside = 0 <= x <= 100
+Python treats this as two comparisons joined by and.
+C++
+bool inside;
+inside = 0 <= x && x <= 100;
+Write the two propositions explicitly.
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 128 ---
+Chained Comparisons
+Python
+inside = 0 <= x <= 100
+Python treats this as two comparisons joined by and.
+C++
+bool inside;
+inside = 0 <= x && x <= 100;
+Write the two propositions explicitly.
+0 <= x <= 100
+is parsed as
+(0 <= x) <= 100
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 129 ---
+Chained Comparisons
+Python
+inside = 0 <= x <= 100
+Python treats this as two comparisons joined by and.
+C++
+bool inside;
+inside = 0 <= x && x <= 100;
+Write the two propositions explicitly.
+0 <= x <= 100
+is parsed as
+(0 <= x) <= 100
+C++ accepts the incorrect expression, which makes this mistake especially dangerous.
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 130 ---
+if, else if, and else
+Python
+if score >= 90:
+    grade = 'A'
+elif score >= 80:
+    grade = 'B'
+else:
+    grade = 'C'
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 131 ---
+if, else if, and else
+Python
+if score >= 90:
+    grade = 'A'
+elif score >= 80:
+    grade = 'B'
+else:
+    grade = 'C'
+C++
+if (score >= 90) {
+    grade = 'A';
+} else if (score >= 80) {
+    grade = 'B';
+} else {
+    grade = 'C';
+}
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 132 ---
+if, else if, and else
+Python
+if score >= 90:
+    grade = 'A'
+elif score >= 80:
+    grade = 'B'
+else:
+    grade = 'C'
+C++
+if (score >= 90) {
+    grade = 'A';
+} else if (score >= 80) {
+    grade = 'B';
+} else {
+    grade = 'C';
+}
+The decision is unchanged. C++ uses parentheses, braces, and semicolons to mark its
+structure.
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 133 ---
+Counted for Loops
+Python
+for i in range(n):
+    print(i)
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 134 ---
+Counted for Loops
+Python
+for i in range(n):
+    print(i)
+C++
+for (int i = 0; i < n; ++i) {
+    std::cout << i << '\n';
+}
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 135 ---
+Counted for Loops
+Python
+for i in range(n):
+    print(i)
+C++
+for (int i = 0; i < n; ++i) {
+    std::cout << i << '\n';
+}
+int i = 0
+initialize once
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 136 ---
+Counted for Loops
+Python
+for i in range(n):
+    print(i)
+C++
+for (int i = 0; i < n; ++i) {
+    std::cout << i << '\n';
+}
+int i = 0
+initialize once
+i < n
+test before each iteration
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 137 ---
+Counted for Loops
+Python
+for i in range(n):
+    print(i)
+C++
+for (int i = 0; i < n; ++i) {
+    std::cout << i << '\n';
+}
+int i = 0
+initialize once
+i < n
+test before each iteration
+++i
+update after each iteration
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 138 ---
+Counted for Loops
+Python
+for i in range(n):
+    print(i)
+C++
+for (int i = 0; i < n; ++i) {
+    std::cout << i << '\n';
+}
+int i = 0
+initialize once
+i < n
+test before each iteration
+++i
+update after each iteration
+Both loops visit the half-open integer range [0, n).
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 139 ---
+while Loops
+Python
+remaining = 3
+while remaining > 0:
+    print(remaining)
+    remaining -= 1
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 140 ---
+while Loops
+Python
+remaining = 3
+while remaining > 0:
+    print(remaining)
+    remaining -= 1
+C++
+int remaining = 3;
+while (remaining > 0) {
+    std::cout << remaining << '\n';
+    --remaining;
+}
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 141 ---
+while Loops
+Python
+remaining = 3
+while remaining > 0:
+    print(remaining)
+    remaining -= 1
+C++
+int remaining = 3;
+while (remaining > 0) {
+    std::cout << remaining << '\n';
+    --remaining;
+}
+State
+remaining
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 142 ---
+while Loops
+Python
+remaining = 3
+while remaining > 0:
+    print(remaining)
+    remaining -= 1
+C++
+int remaining = 3;
+while (remaining > 0) {
+    std::cout << remaining << '\n';
+    --remaining;
+}
+State
+remaining
+Continue while
+remaining > 0
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 143 ---
+while Loops
+Python
+remaining = 3
+while remaining > 0:
+    print(remaining)
+    remaining -= 1
+C++
+int remaining = 3;
+while (remaining > 0) {
+    std::cout << remaining << '\n';
+    --remaining;
+}
+State
+remaining
+Continue while
+remaining > 0
+Progress
+--remaining
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 144 ---
+do–while Loops
+int choice = 0;
+do {
+    std::cout << "1. Continue\n";
+    std::cout << "0. Exit\n";
+    std::cin >> choice;
+} while (choice != 0);
+CSC 3200 · Data Structures and Advanced Programming
+30
+
+--- Page 145 ---
+do–while Loops
+int choice = 0;
+do {
+    std::cout << "1. Continue\n";
+    std::cout << "0. Exit\n";
+    std::cin >> choice;
+} while (choice != 0);
+The body runs first.
+CSC 3200 · Data Structures and Advanced Programming
+30
+
+--- Page 146 ---
+do–while Loops
+int choice = 0;
+do {
+    std::cout << "1. Continue\n";
+    std::cout << "0. Exit\n";
+    std::cin >> choice;
+} while (choice != 0);
+The body runs first.
+The condition is checked afterward.
+CSC 3200 · Data Structures and Advanced Programming
+30
+
+--- Page 147 ---
+do–while Loops
+int choice = 0;
+do {
+    std::cout << "1. Continue\n";
+    std::cout << "0. Exit\n";
+    std::cin >> choice;
+} while (choice != 0);
+The body runs first.
+The condition is checked afterward.
+The menu therefore appears at least once.
+CSC 3200 · Data Structures and Advanced Programming
+30
+
+--- Page 148 ---
+do–while Loops
+int choice = 0;
+do {
+    std::cout << "1. Continue\n";
+    std::cout << "0. Exit\n";
+    std::cin >> choice;
+} while (choice != 0);
+The body runs first.
+The condition is checked afterward.
+The menu therefore appears at least once.
+Java also has do–while. Python usually expresses the same pattern with while True and
+break.
+CSC 3200 · Data Structures and Advanced Programming
+30
+
+--- Page 149 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 150 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+break;
+Leave the loop. Continue after it.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 151 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+break;
+Leave the loop. Continue after it.
+Output: 1 2 Done
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 152 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+break;
+Leave the loop. Continue after it.
+Output: 1 2 Done
+continue;
+Skip the rest of this iteration.
+The for update ++i still runs.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 153 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+break;
+Leave the loop. Continue after it.
+Output: 1 2 Done
+continue;
+Skip the rest of this iteration.
+The for update ++i still runs.
+Output: 1 2 4 5 Done
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 154 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+std::exit is a function.
+Add #include <cstdlib>
+above main() to use it.
+break;
+Leave the loop. Continue after it.
+Output: 1 2 Done
+continue;
+Skip the rest of this iteration.
+The for update ++i still runs.
+Output: 1 2 4 5 Done
+std::exit(0);
+Terminate the whole program.
+0 reports successful termination.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 155 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+std::exit is a function.
+Add #include <cstdlib>
+above main() to use it.
+break;
+Leave the loop. Continue after it.
+Output: 1 2 Done
+continue;
+Skip the rest of this iteration.
+The for update ++i still runs.
+Output: 1 2 4 5 Done
+std::exit(0);
+Terminate the whole program.
+0 reports successful termination.
+Output: 1 2 (no Done)
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 156 ---
+break, continue, and exit
+At i == 3, replace the comment with one of the statements below.
+for (int i = 1; i <= 5; ++i) {
+    if (i == 3) {
+        /* statement here */
+    }
+    std::cout << i << ' ';
+}
+std::cout << "Done\n";
+std::exit is a function.
+Add #include <cstdlib>
+above main() to use it.
+break;
+Leave the loop. Continue after it.
+Output: 1 2 Done
+continue;
+Skip the rest of this iteration.
+The for update ++i still runs.
+Output: 1 2 4 5 Done
+std::exit(0);
+Terminate the whole program.
+0 reports successful termination.
+Output: 1 2 (no Done)
+In nested loops, break and continue affect only the innermost loop.
+In a while loop, continue can skip a manual update and prevent progress.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 157 ---
+Common Control-Flow Mistakes
+One iteration too many
+for (int i{0}; i <= n; ++i)
+No progress
+while (remaining > 0) {
+    std::cout << remaining;
+}
+An accidental empty loop
+for (int i{0}; i < n; ++i);
+Assignment inside a condition
+if (x = 0) { /* ... */ }
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 158 ---
+Common Control-Flow Mistakes
+One iteration too many
+for (int i{0}; i <= n; ++i)
+Does the data have indices 0 through n?
+No progress
+while (remaining > 0) {
+    std::cout << remaining;
+}
+An accidental empty loop
+for (int i{0}; i < n; ++i);
+Assignment inside a condition
+if (x = 0) { /* ... */ }
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 159 ---
+Common Control-Flow Mistakes
+One iteration too many
+for (int i{0}; i <= n; ++i)
+Does the data have indices 0 through n?
+No progress
+while (remaining > 0) {
+    std::cout << remaining;
+}
+The loop condition never changes.
+An accidental empty loop
+for (int i{0}; i < n; ++i);
+Assignment inside a condition
+if (x = 0) { /* ... */ }
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 160 ---
+Common Control-Flow Mistakes
+One iteration too many
+for (int i{0}; i <= n; ++i)
+Does the data have indices 0 through n?
+No progress
+while (remaining > 0) {
+    std::cout << remaining;
+}
+The loop condition never changes.
+An accidental empty loop
+for (int i{0}; i < n; ++i);
+The semicolon is the entire loop body.
+Assignment inside a condition
+if (x = 0) { /* ... */ }
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 161 ---
+Common Control-Flow Mistakes
+One iteration too many
+for (int i{0}; i <= n; ++i)
+Does the data have indices 0 through n?
+No progress
+while (remaining > 0) {
+    std::cout << remaining;
+}
+The loop condition never changes.
+An accidental empty loop
+for (int i{0}; i < n; ++i);
+The semicolon is the entire loop body.
+Assignment inside a condition
+if (x = 0) { /* ... */ }
+Use x == 0 when you mean comparison.
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 162 ---
+BREAK
+10-Minute Break
+Please be back in ten minutes.
+《Wherever you are》 ONE OK ROCK
+《もしも命が描けたら》 YOASOBI
+CSC 3200 · Data Structures and Advanced Programming
+33
+
+--- Page 163 ---
+Type Deduction with auto
+C++11 introduced type-deducing auto for more convenient declarations.
+The compiler performs type deduction at compile time using the initializer.
+This does not give a variable Python-style dynamic binding.
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 164 ---
+Type Deduction with auto
+C++11 introduced type-deducing auto for more convenient declarations.
+The compiler performs type deduction at compile time using the initializer.
+This does not give a variable Python-style dynamic binding.
+Declaration
+Deduced type
+Equivalent declaration
+auto count = 5;
+auto rate = 2.5;
+auto ready = true;
+auto grade = 'A';
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 165 ---
+Type Deduction with auto
+C++11 introduced type-deducing auto for more convenient declarations.
+The compiler performs type deduction at compile time using the initializer.
+This does not give a variable Python-style dynamic binding.
+Declaration
+Deduced type
+Equivalent declaration
+auto count = 5;
+int
+int count = 5;
+auto rate = 2.5;
+double
+double rate = 2.5;
+auto ready = true;
+bool
+bool ready = true;
+auto grade = 'A';
+char
+char grade = 'A';
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 166 ---
+Type Deduction with auto
+C++11 introduced type-deducing auto for more convenient declarations.
+The compiler performs type deduction at compile time using the initializer.
+This does not give a variable Python-style dynamic binding.
+Declaration
+Deduced type
+Equivalent declaration
+auto count = 5;
+int
+int count = 5;
+auto rate = 2.5;
+double
+double rate = 2.5;
+auto ready = true;
+bool
+bool ready = true;
+auto grade = 'A';
+char
+char grade = 'A';
+auto i;  // Error: no initializer
+i = 5;
+A later assignment cannot fix the declaration.
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 167 ---
+Type Deduction with auto
+C++11 introduced type-deducing auto for more convenient declarations.
+The compiler performs type deduction at compile time using the initializer.
+This does not give a variable Python-style dynamic binding.
+Declaration
+Deduced type
+Equivalent declaration
+auto count = 5;
+int
+int count = 5;
+auto rate = 2.5;
+double
+double rate = 2.5;
+auto ready = true;
+bool
+bool ready = true;
+auto grade = 'A';
+char
+char grade = 'A';
+auto i;  // Error: no initializer
+i = 5;
+A later assignment cannot fix the declaration.
+auto i = 5;  // OK: deduced as int
+i = 6;
+The initializer supplies the type.
+Later assignments keep that same type.
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 168 ---
+The Deduced Type Stays Fixed
+Both programs start with an integer. What happens after assigning 2.5?
+Python
+x = 5
+x = 2.5
+print(x)
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 169 ---
+The Deduced Type Stays Fixed
+Both programs start with an integer. What happens after assigning 2.5?
+Python
+x = 5
+x = 2.5
+print(x)
+Output: 2.5
+The name now refers to a floating-point value.
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 170 ---
+The Deduced Type Stays Fixed
+Both programs start with an integer. What happens after assigning 2.5?
+Python
+x = 5
+x = 2.5
+print(x)
+Output: 2.5
+The name now refers to a floating-point value.
+C++
+auto x = 5;
+x = 2.5;
+std::cout << x;
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 171 ---
+The Deduced Type Stays Fixed
+Both programs start with an integer. What happens after assigning 2.5?
+Python
+x = 5
+x = 2.5
+print(x)
+Output: 2.5
+The name now refers to a floating-point value.
+C++
+auto x = 5;
+x = 2.5;
+std::cout << x;
+Output: 2
+x stays an int. Assignment discards the
+fractional part.
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 172 ---
+The Deduced Type Stays Fixed
+Both programs start with an integer. What happens after assigning 2.5?
+Python
+x = 5
+x = 2.5
+print(x)
+Output: 2.5
+The name now refers to a floating-point value.
+C++
+auto x = 5;
+x = 2.5;
+std::cout << x;
+Output: 2
+x stays an int. Assignment discards the
+fractional part.
+auto y = 5.0;
+y = 2;
+y stays a double and stores 2.0.
+The initializer determines the type once.
+The value may change. The deduced type does not.
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 173 ---
+No Automatic Widening
+auto uses the initializer, without anticipating later calculations.
+Assume a 32-bit int. Its maximum is 2,147,483,647.
+An initial value of type int
+auto x = 1000000000;
+x = x * 3;
+std::cout << x;
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 174 ---
+No Automatic Widening
+auto uses the initializer, without anticipating later calculations.
+Assume a 32-bit int. Its maximum is 2,147,483,647.
+An initial value of type int
+auto x = 1000000000;
+x = x * 3;
+std::cout << x;
+x remains an int.
+The multiplication exceeds its range.
+Signed overflow: undefined behavior.
+There is no guaranteed output.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 175 ---
+No Automatic Widening
+auto uses the initializer, without anticipating later calculations.
+Assume a 32-bit int. Its maximum is 2,147,483,647.
+An initial value of type int
+auto x = 1000000000;
+x = x * 3;
+std::cout << x;
+x remains an int.
+The multiplication exceeds its range.
+Signed overflow: undefined behavior.
+There is no guaranteed output.
+A deliberately wider type
+auto x = 1000000000LL;
+x = x * 3;
+std::cout << x;
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 176 ---
+No Automatic Widening
+auto uses the initializer, without anticipating later calculations.
+Assume a 32-bit int. Its maximum is 2,147,483,647.
+An initial value of type int
+auto x = 1000000000;
+x = x * 3;
+std::cout << x;
+x remains an int.
+The multiplication exceeds its range.
+Signed overflow: undefined behavior.
+There is no guaranteed output.
+A deliberately wider type
+auto x = 1000000000LL;
+x = x * 3;
+std::cout << x;
+LL makes the initializer a long long.
+The multiplication uses that wider type.
+Output: 3000000000
+x was a long long from the start.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 177 ---
+No Automatic Widening
+auto uses the initializer, without anticipating later calculations.
+Assume a 32-bit int. Its maximum is 2,147,483,647.
+An initial value of type int
+auto x = 1000000000;
+x = x * 3;
+std::cout << x;
+x remains an int.
+The multiplication exceeds its range.
+Signed overflow: undefined behavior.
+There is no guaranteed output.
+A deliberately wider type
+auto x = 1000000000LL;
+x = x * 3;
+std::cout << x;
+LL makes the initializer a long long.
+The multiplication uses that wider type.
+Output: 3000000000
+x was a long long from the start.
+Python integers can grow to hold larger values.
+A C++ integer variable keeps its type, storage size, and range.
+auto will not choose a wider type based on future use.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 178 ---
+auto Follows the Expression
+Deduce the type of the expression first, then initialize the variable.
+int total = 5;
+int count = 2;
+CSC 3200 · Data Structures and Advanced Programming
+37
+
+--- Page 179 ---
+auto Follows the Expression
+Deduce the type of the expression first, then initialize the variable.
+int total = 5;
+int count = 2;
+Declaration
+Type
+Value
+auto a = total / count;
+auto b = 1.0 * total / count;
+auto c = a * 1.0;
+CSC 3200 · Data Structures and Advanced Programming
+37
+
+--- Page 180 ---
+auto Follows the Expression
+Deduce the type of the expression first, then initialize the variable.
+int total = 5;
+int count = 2;
+Declaration
+Type
+Value
+auto a = total / count;
+int
+2
+auto b = 1.0 * total / count;
+auto c = a * 1.0;
+CSC 3200 · Data Structures and Advanced Programming
+37
+
+--- Page 181 ---
+auto Follows the Expression
+Deduce the type of the expression first, then initialize the variable.
+int total = 5;
+int count = 2;
+Declaration
+Type
+Value
+auto a = total / count;
+int
+2
+auto b = 1.0 * total / count;
+double
+2.5
+auto c = a * 1.0;
+CSC 3200 · Data Structures and Advanced Programming
+37
+
+--- Page 182 ---
+auto Follows the Expression
+Deduce the type of the expression first, then initialize the variable.
+int total = 5;
+int count = 2;
+Declaration
+Type
+Value
+auto a = total / count;
+int
+2
+auto b = 1.0 * total / count;
+double
+2.5
+auto c = a * 1.0;
+double
+2.0
+Multiplying by 1.0 after integer division cannot recover the lost fraction.
+In Python, total / count gives 2.5, while total // count gives 2.
+auto follows the expression's type, not the result you intended.
+CSC 3200 · Data Structures and Advanced Programming
+37
+
+--- Page 183 ---
+Two Values with std::pair
+A std::pair groups two values into one object.
+The types inside < > specify the first and second components.
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 184 ---
+Two Values with std::pair
+A std::pair groups two values into one object.
+The types inside < > specify the first and second components.
+#include <utility>  // Above main()
+std::pair<double, double> roots{1.0, 2.0};
+Inside main(), this creates roots with two double components.
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 185 ---
+Two Values with std::pair
+A std::pair groups two values into one object.
+The types inside < > specify the first and second components.
+#include <utility>  // Above main()
+std::pair<double, double> roots{1.0, 2.0};
+Inside main(), this creates roots with two double components.
+Member access
+Meaning
+Value
+roots.first
+The first component
+roots.second
+The second component
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 186 ---
+Two Values with std::pair
+A std::pair groups two values into one object.
+The types inside < > specify the first and second components.
+#include <utility>  // Above main()
+std::pair<double, double> roots{1.0, 2.0};
+Inside main(), this creates roots with two double components.
+Member access
+Meaning
+Value
+roots.first
+The first component
+1.0
+roots.second
+The second component
+2.0
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 187 ---
+Two Values with std::pair
+A std::pair groups two values into one object.
+The types inside < > specify the first and second components.
+#include <utility>  // Above main()
+std::pair<double, double> roots{1.0, 2.0};
+Inside main(), this creates roots with two double components.
+Member access
+Meaning
+Value
+roots.first
+The first component
+1.0
+roots.second
+The second component
+2.0
+The component types may differ, as in std::pair<bool, double>.
+The member names are always first and second.
+A pair is convenient when the meaning of two positions is clear.
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 188 ---
+Why We Need a struct
+A quadratic result must record whether real roots exist and their values.
+For x2 − 3x + 2 = 0, the real roots are 1 and 2.
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 189 ---
+Why We Need a struct
+A quadratic result must record whether real roots exist and their values.
+For x2 − 3x + 2 = 0, the real roots are 1 and 2.
+std::pair<bool, std::pair<double, double>> result{true, {1.0, 2.0}};
+The outer pair stores a bool and another pair containing the roots.
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 190 ---
+Why We Need a struct
+A quadratic result must record whether real roots exist and their values.
+For x2 − 3x + 2 = 0, the real roots are 1 and 2.
+std::pair<bool, std::pair<double, double>> result{true, {1.0, 2.0}};
+The outer pair stores a bool and another pair containing the roots.
+Code
+Meaning
+Value
+result.first
+Do real roots exist?
+true
+result.second.first
+The first root
+1.0
+result.second.second
+The second root
+2.0
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 191 ---
+Why We Need a struct
+A quadratic result must record whether real roots exist and their values.
+For x2 − 3x + 2 = 0, the real roots are 1 and 2.
+std::pair<bool, std::pair<double, double>> result{true, {1.0, 2.0}};
+The outer pair stores a bool and another pair containing the roots.
+Code
+Meaning
+Value
+result.first
+Do real roots exist?
+true
+result.second.first
+The first root
+1.0
+result.second.second
+The second root
+2.0
+For x2 + 1 = 0, the Boolean would be false and the root fields unused.
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 192 ---
+Why We Need a struct
+A quadratic result must record whether real roots exist and their values.
+For x2 − 3x + 2 = 0, the real roots are 1 and 2.
+std::pair<bool, std::pair<double, double>> result{true, {1.0, 2.0}};
+The outer pair stores a bool and another pair containing the roots.
+Code
+Meaning
+Value
+result.first
+Do real roots exist?
+true
+result.second.first
+The first root
+1.0
+result.second.second
+The second root
+2.0
+For x2 + 1 = 0, the Boolean would be false and the root fields unused.
+This type works, but second.first makes us decode the meaning.
+Can the data carry more meaningful names?
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 193 ---
+A struct with Named Members
+A struct defines a new type whose members have names that we choose.
+struct QuadraticResult {
+    bool hasRealRoots;
+    double firstRoot;
+    double secondRoot;
+};
+Define the type above main().
+Remember the final ;.
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 194 ---
+A struct with Named Members
+A struct defines a new type whose members have names that we choose.
+struct QuadraticResult {
+    bool hasRealRoots;
+    double firstRoot;
+    double secondRoot;
+};
+Define the type above main().
+Remember the final ;.
+QuadraticResult result{
+    true, 1.0, 2.0
+};
+Create an object inside main().
+Initial values follow the member order.
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 195 ---
+A struct with Named Members
+A struct defines a new type whose members have names that we choose.
+struct QuadraticResult {
+    bool hasRealRoots;
+    double firstRoot;
+    double secondRoot;
+};
+Define the type above main().
+Remember the final ;.
+QuadraticResult result{
+    true, 1.0, 2.0
+};
+Create an object inside main().
+Initial values follow the member order.
+Nested pair
+Named struct
+result.first
+result.second.first
+result.second.second
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 196 ---
+A struct with Named Members
+A struct defines a new type whose members have names that we choose.
+struct QuadraticResult {
+    bool hasRealRoots;
+    double firstRoot;
+    double secondRoot;
+};
+Define the type above main().
+Remember the final ;.
+QuadraticResult result{
+    true, 1.0, 2.0
+};
+Create an object inside main().
+Initial values follow the member order.
+Nested pair
+Named struct
+result.first
+result.hasRealRoots
+result.second.first
+result.firstRoot
+result.second.second
+result.secondRoot
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 197 ---
+A struct with Named Members
+A struct defines a new type whose members have names that we choose.
+struct QuadraticResult {
+    bool hasRealRoots;
+    double firstRoot;
+    double secondRoot;
+};
+Define the type above main().
+Remember the final ;.
+QuadraticResult result{
+    true, 1.0, 2.0
+};
+Create an object inside main().
+Initial values follow the member order.
+Nested pair
+Named struct
+result.first
+result.hasRealRoots
+result.second.first
+result.firstRoot
+result.second.second
+result.secondRoot
+The stored information is the same. The member names explain its meaning.
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 198 ---
+Using and Copying a struct
+Use . to read or update a member, just as with first and second.
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 199 ---
+Using and Copying a struct
+Use . to read or update a member, just as with first and second.
+if (result.hasRealRoots) {
+    std::cout << result.firstRoot << ' ';
+    std::cout << result.secondRoot << '\n';
+}
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 200 ---
+Using and Copying a struct
+Use . to read or update a member, just as with first and second.
+if (result.hasRealRoots) {
+    std::cout << result.firstRoot << ' ';
+    std::cout << result.secondRoot << '\n';
+}
+Output: 1 2
+Only use the root fields when hasRealRoots is true.
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 201 ---
+Using and Copying a struct
+Use . to read or update a member, just as with first and second.
+if (result.hasRealRoots) {
+    std::cout << result.firstRoot << ' ';
+    std::cout << result.secondRoot << '\n';
+}
+Output: 1 2
+Only use the root fields when hasRealRoots is true.
+auto copy = result;
+copy.firstRoot = 5.0;
+auto deduces QuadraticResult.
+This creates a separate copy of these fields.
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 202 ---
+Using and Copying a struct
+Use . to read or update a member, just as with first and second.
+if (result.hasRealRoots) {
+    std::cout << result.firstRoot << ' ';
+    std::cout << result.secondRoot << '\n';
+}
+Output: 1 2
+Only use the root fields when hasRealRoots is true.
+auto copy = result;
+copy.firstRoot = 5.0;
+auto deduces QuadraticResult.
+This creates a separate copy of these fields.
+For this copy-editing example, copy.firstRoot becomes 5.0.
+result.firstRoot stays 1.0. The edited copy no longer describes the original roots.
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 203 ---
+Using and Copying a struct
+Use . to read or update a member, just as with first and second.
+if (result.hasRealRoots) {
+    std::cout << result.firstRoot << ' ';
+    std::cout << result.secondRoot << '\n';
+}
+Output: 1 2
+Only use the root fields when hasRealRoots is true.
+auto copy = result;
+copy.firstRoot = 5.0;
+auto deduces QuadraticResult.
+This creates a separate copy of these fields.
+For this copy-editing example, copy.firstRoot becomes 5.0.
+result.firstRoot stays 1.0. The edited copy no longer describes the original roots.
+Use a pair for two values with clear positional meaning.
+Use a struct when named fields make the data easier to understand.
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 204 ---
+Operations on a struct
+Built-in types such as int already support arithmetic, comparisons, and stream I/O.
+Our QuadraticResult definition does not supply those operations.
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 205 ---
+Operations on a struct
+Built-in types such as int already support arithmetic, comparisons, and stream I/O.
+Our QuadraticResult definition does not supply those operations.
+Not defined for our struct
+std::cout << result;
+std::cin >> result;
+result + result;
+result == result;
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 206 ---
+Operations on a struct
+Built-in types such as int already support arithmetic, comparisons, and stream I/O.
+Our QuadraticResult definition does not supply those operations.
+Not defined for our struct
+std::cout << result;
+std::cin >> result;
+result + result;
+result == result;
+Each line fails to compile.
+Field names alone do not define these behaviors.
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 207 ---
+Operations on a struct
+Built-in types such as int already support arithmetic, comparisons, and stream I/O.
+Our QuadraticResult definition does not supply those operations.
+Not defined for our struct
+std::cout << result;
+std::cin >> result;
+result + result;
+result == result;
+Each line fails to compile.
+Field names alone do not define these behaviors.
+Access the members explicitly
+std::cin >> result.firstRoot;
+std::cout << result.firstRoot;
+firstRoot is a double.
+Its input and output operations already exist.
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 208 ---
+Operations on a struct
+Built-in types such as int already support arithmetic, comparisons, and stream I/O.
+Our QuadraticResult definition does not supply those operations.
+Not defined for our struct
+std::cout << result;
+std::cin >> result;
+result + result;
+result == result;
+Each line fails to compile.
+Field names alone do not define these behaviors.
+Access the members explicitly
+std::cin >> result.firstRoot;
+std::cout << result.firstRoot;
+firstRoot is a double.
+Its input and output operations already exist.
+Copying and assignment do work for this simple struct:
+auto copy = result;   and   copy = result;
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 209 ---
+Operations on a struct
+Built-in types such as int already support arithmetic, comparisons, and stream I/O.
+Our QuadraticResult definition does not supply those operations.
+Not defined for our struct
+std::cout << result;
+std::cin >> result;
+result + result;
+result == result;
+Each line fails to compile.
+Field names alone do not define these behaviors.
+Access the members explicitly
+std::cin >> result.firstRoot;
+std::cout << result.firstRoot;
+firstRoot is a double.
+Its input and output operations already exist.
+Copying and assignment do work for this simple struct:
+auto copy = result;   and   copy = result;
+We can add functions and define operator overloads in a future class.
+Operator overloading defines behavior. It cannot change operator precedence.
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 210 ---
+Enough of the boring stuff.
+Let's get hands-on!
+CSC 3200 · Data Structures and Advanced Programming
+43
+
+--- Page 211 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 212 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 213 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 214 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 215 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 216 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 217 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 218 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 219 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+Six state changes, so the answer is 6.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 220 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+Six state changes, so the answer is 6.
+Program anatomy
+State: the current number and the number of steps.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 221 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+Six state changes, so the answer is 6.
+Program anatomy
+State: the current number and the number of steps.
+Decision: test parity with num % 2.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 222 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+Six state changes, so the answer is 6.
+Program anatomy
+State: the current number and the number of steps.
+Decision: test parity with num % 2.
+Continue while the current number is positive.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 223 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+Six state changes, so the answer is 6.
+Program anatomy
+State: the current number and the number of steps.
+Decision: test parity with num % 2.
+Continue while the current number is positive.
+Easy to get wrong
+Increment the step count in both branches.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 224 ---
+Reduce a Number to Zero
+LeetCode 1342 · Easy
+If the current number is even, divide it by two. Otherwise subtract one. Count the steps to
+reach zero.
+Trace num = 14
+14
+→
+7
+→
+6
+→
+3
+→
+2
+→
+1
+→
+0
+Six state changes, so the answer is 6.
+Program anatomy
+State: the current number and the number of steps.
+Decision: test parity with num % 2.
+Continue while the current number is positive.
+Easy to get wrong
+Increment the step count in both branches.
+The input may already be 0.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 225 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 226 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 227 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 228 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 229 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+24 - 9 = 15
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 230 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+24 - 9 = 15
+Program anatomy
+Repeatedly extract the last digit with % 10.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 231 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+24 - 9 = 15
+Program anatomy
+Repeatedly extract the last digit with % 10.
+Remove it with integer division by 10.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 232 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+24 - 9 = 15
+Program anatomy
+Repeatedly extract the last digit with % 10.
+Remove it with integer division by 10.
+Maintain both a running sum and a running product.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 233 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+24 - 9 = 15
+Program anatomy
+Repeatedly extract the last digit with % 10.
+Remove it with integer division by 10.
+Maintain both a running sum and a running product.
+Easy to get wrong
+The product must start at 1, not 0.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 234 ---
+Digits: Product Minus Sum
+LeetCode 1281 · Easy
+Given a positive integer, return the product of its digits minus the sum of its digits.
+Trace n = 234
+digit
+sum
+product
+4
+4
+4
+3
+7
+12
+2
+9
+24
+24 - 9 = 15
+Program anatomy
+Repeatedly extract the last digit with % 10.
+Remove it with integer division by 10.
+Maintain both a running sum and a running product.
+Easy to get wrong
+The product must start at 1, not 0.
+Every iteration must remove one digit.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 235 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 236 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 237 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 238 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 239 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+4
+2
+3
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 240 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+4
+2
+3
+Program anatomy
+Handle n = 0 explicitly.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 241 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+4
+2
+3
+Program anatomy
+Handle n = 0 explicitly.
+Keep only the two most recent values.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 242 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+4
+2
+3
+Program anatomy
+Handle n = 0 explicitly.
+Keep only the two most recent values.
+Compute the next value before replacing either old value.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 243 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+4
+2
+3
+Program anatomy
+Handle n = 0 explicitly.
+Keep only the two most recent values.
+Compute the next value before replacing either old value.
+Easy to get wrong
+Python permits a, b = b, a + b.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 244 ---
+Iterative Fibonacci
+LeetCode 509 · Easy
+Compute F(n), where F(0) = 0, F(1) = 1, and each later value is the sum of the previous
+two.
+Two pieces of state
+index
+previous
+current
+1
+0
+1
+2
+1
+1
+3
+1
+2
+4
+2
+3
+Program anatomy
+Handle n = 0 explicitly.
+Keep only the two most recent values.
+Compute the next value before replacing either old value.
+Easy to get wrong
+Python permits a, b = b, a + b.
+In C++, use a temporary value to preserve the old state.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 245 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 246 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 247 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 248 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 249 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+remaining = 0
+reversed = 121
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 250 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+remaining = 0
+reversed = 121
+Program anatomy
+Preserve the original value for the final comparison.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 251 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+remaining = 0
+reversed = 121
+Program anatomy
+Preserve the original value for the final comparison.
+Extract one digit and append it to the reversed value.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 252 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+remaining = 0
+reversed = 121
+Program anatomy
+Preserve the original value for the final comparison.
+Extract one digit and append it to the reversed value.
+Reject negative inputs.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 253 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+remaining = 0
+reversed = 121
+Program anatomy
+Preserve the original value for the final comparison.
+Extract one digit and append it to the reversed value.
+Reject negative inputs.
+Easy to get wrong
+10 is not a palindrome; reversing loses the leading zero.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 254 ---
+Palindrome Number
+LeetCode 9 · Easy
+Determine whether an integer reads the same forward and backward, without converting it
+to a string.
+Reverse the digits
+remaining = 121
+reversed = 0
+remaining = 12
+reversed = 1
+remaining = 1
+reversed = 12
+remaining = 0
+reversed = 121
+Program anatomy
+Preserve the original value for the final comparison.
+Extract one digit and append it to the reversed value.
+Reject negative inputs.
+Easy to get wrong
+10 is not a palindrome; reversing loses the leading zero.
+Use long long for the reversed value.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 255 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 256 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+Only two operations are available
+Double the current value: x = x * 2.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 257 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+Only two operations are available
+Double the current value: x = x * 2.
+Subtract one: x = x - 1.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 258 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+Only two operations are available
+Double the current value: x = x * 2.
+Subtract one: x = x - 1.
+Example: start = 3, target = 10
+Strategy
+Sequence
+Operations
+Double until past the target,
+then subtract
+3 → 6 → 12 → 11 → 10
+4
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 259 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+Only two operations are available
+Double the current value: x = x * 2.
+Subtract one: x = x - 1.
+Example: start = 3, target = 10
+Strategy
+Sequence
+Operations
+Double until past the target,
+then subtract
+3 → 6 → 12 → 11 → 10
+4
+Subtract before doubling again
+3 → 6 → 5 → 10
+3
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 260 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+Only two operations are available
+Double the current value: x = x * 2.
+Subtract one: x = x - 1.
+Example: start = 3, target = 10
+Strategy
+Sequence
+Operations
+Double until past the target,
+then subtract
+3 → 6 → 12 → 11 → 10
+4
+Subtract before doubling again
+3 → 6 → 5 → 10
+3
+Always doubling while below the target can miss a shorter path.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 261 ---
+Broken Calculator
+LeetCode 991 · Medium · 1 ≤ start, target ≤ 10⁹
+Starting from start, reach target using the fewest operations.
+Only two operations are available
+Double the current value: x = x * 2.
+Subtract one: x = x - 1.
+Example: start = 3, target = 10
+Strategy
+Sequence
+Operations
+Double until past the target,
+then subtract
+3 → 6 → 12 → 11 → 10
+4
+Subtract before doubling again
+3 → 6 → 5 → 10
+3
+Always doubling while below the target can miss a shorter path.
+What changes if we work backward from target?
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 262 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 263 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 264 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 265 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 266 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 267 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+Each pair of additions before halving can become one addition afterward.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 268 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+Each pair of additions before halving can become one addition afterward.
+For start = 3: 10 → 5
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 269 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+Each pair of additions before halving can become one addition afterward.
+For start = 3: 10 → 5 → 6
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 270 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+Each pair of additions before halving can become one addition afterward.
+For start = 3: 10 → 5 → 6 → 3, so the answer is 3.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 271 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+Each pair of additions before halving can become one addition afterward.
+For start = 3: 10 → 5 → 6 → 3, so the answer is 3.
+When target ≤ start, stop the loop and add start - target.
+In the original direction, this gap takes only subtraction.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 272 ---
+Working Backward
+Reverse the operations: add 1, or divide an even value by 2.
+Work on target while target > start.
+Current target
+Reverse operation
+Reason
+Odd
+target += 1
+Adding 1 is the only legal move.
+Even
+target /= 2
+Halving first saves operations.
+Why halve first?
+Adding twice before halving: 10 → 11 → 12 → 6 (3 moves).
+Halving before adding: 10 → 5 → 6 (2 moves).
+Each pair of additions before halving can become one addition afterward.
+For start = 3: 10 → 5 → 6 → 3, so the answer is 3.
+When target ≤ start, stop the loop and add start - target.
+In the original direction, this gap takes only subtraction.
+Boundary checks: start = target gives 0.
+For start = 10, target = 3, the answer is 7.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 273 ---
+Helpful Resources
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 274 ---
+Helpful Resources
+cplusplus.com
+For some references.
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 275 ---
+Helpful Resources
+cplusplus.com
+For some references.
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 276 ---
+Helpful Resources
+cplusplus.com
+For some references.
+C++ Primer
+Recommended reading
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 277 ---
+Helpful Resources
+cplusplus.com
+For some references.
+C++ Primer
+Recommended reading
+Why don't you ask your AI?
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 278 ---
+Helpful Resources
+cplusplus.com
+For some references.
+C++ Primer
+Recommended reading
+Why don't you ask your AI?
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 279 ---
+Helpful Resources
+cplusplus.com
+For some references.
+C++ Primer
+Recommended reading
+Why don't you ask your AI?
+Don't use fancy things if you're unsure how they behave!
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 280 ---
+Summary
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 281 ---
+Summary
+C++ makes types and execution details explicit. Operand types control arithmetic,
+Boolean expressions control decisions, and every loop needs a correct boundary and
+a state change.
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 282 ---
+Summary
+C++ makes types and execution details explicit. Operand types control arithmetic,
+Boolean expressions control decisions, and every loop needs a correct boundary and
+a state change.
+auto deduces a fixed type from an initial value. A struct groups related values into
+named members, so we can create, use, and copy a complete record.
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 283 ---
+Summary
+C++ makes types and execution details explicit. Operand types control arithmetic,
+Boolean expressions control decisions, and every loop needs a correct boundary and
+a state change.
+auto deduces a fixed type from an initial value. A struct groups related values into
+named members, so we can create, use, and copy a complete record.
+Before writing code, identify the state, trace one example, and test the smallest
+and largest meaningful cases.
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 284 ---
+CSC 3200 · Data Structures and Advanced Programming
+52
+Thank you for listening!
+
