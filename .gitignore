@@ -7,6 +7,9 @@ Thumbs.db
 .workbuddy/
 *.tmp
 
+# 本地一键发布脚本（不部署）
+publish.bat
+
 # 本地构建缓存
 __pycache__/
 

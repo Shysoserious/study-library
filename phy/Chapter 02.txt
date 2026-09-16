@@ -572,6 +572,55 @@ Summary
   "x-t graph curves downward after t = 20 s."
 
 ----------------------------------------------------------------
+补录：第二轮排查发现的漏页（首轮按"图片字节数 > 20KB"过滤时被漏掉）
+本讲义中有若干图片是**低分辨率、被放大到半页大小**的位图（只有 3~20 KB），
+覆盖率却能达到 0.05~0.35，里面装的是公式框与示意图。按字节数过滤会漏掉，故补录。
+----------------------------------------------------------------
+--- Page 2（幻灯片第 3 页）---
+【图】章节分隔页的框与出版社标志。
+[图内文字] 位图内：WILEY（右下角出版社标志）。
+  正文已提取：Chapter 2: Motion Along Straight Line / Chapter 1 /
+  Copyright © 2014 John Wiley & Sons, Inc. All rights reserved.
+
+--- Page 4（幻灯片第 5 页）---
+【图】两幅对比图：【图1】导弹在海面上飞行，旁边打绿色大勾 ✓；【图2】一个弹簧玩具
+  （Slinky），旁边打红色大叉 ✗。
+[图内文字] 图中标注：✓ ／ ✗（这两个符号正文已提取）。
+  蓝色说明："Every portion moves in the same direction at same rate"
+  （每个部分都以相同的方向、相同的速率运动 —— 这才算质点）。
+  含义：导弹可以当作质点（✓），弹簧不行（✗，各段运动不同步）。
+  正文已提取：Along a straight line only / Only the motion itself and changes in the motion.
+  The forces caused the motion will not be discussed. / The moving object is either a particle
+  or moving like a particle。
+
+--- Page 8（幻灯片第 9 页）---
+【图】公式框。
+[图内文字] s_avg = total distance / Δt      （平均速率 = 总路程 ÷ 时间间隔）
+  正文已提取：Average Speed s_avg: The total distance travelled during the time interval Δt /
+  No direction included / How fast / Average Velocity vs. Average Speed / Vector vs. Non-vector /
+  Absolute value can be the same or quite different / |v_avg| ≤ s_avg。
+
+--- Page 12（幻灯片第 13 页）---
+【图】频闪照片：真空管中一根羽毛与一个苹果同时下落（各自留下多个重影），两者每一帧的高度
+  完全相同。用来直观说明"自由落体与质量、密度、形状无关"。
+[图内文字] 无（图中没有文字）。
+  正文已提取：Free-Fall Acceleration / One of the most important examples of straight line
+  motion with constant acceleration / Falling or rising freely near the Earth's surface /
+  a = −g = −9.8 m/s² / Independent of mass, density, or shape… / g = 9.8 m/s² at sea level,
+  ignore the latitude and elevation / Eliminate the effects of air。
+
+--- Page 13（幻灯片第 14 页）---
+【图】右侧竖直方向的抛球示意图（本页正文只有题干，图注全在图里）。
+[图内文字] 图中标注：
+    Ball（球）、竖直 y 轴、"v = 0 at highest point"（最高点处 v = 0）；
+    "During ascent, a = −g, speed decreases, and velocity becomes less positive"
+      （上升段 a = −g，速率减小，速度的正值变小）
+    "During descent, a = −g, speed increases, and velocity becomes more negative"
+      （下降段 a = −g，速率增大，速度变得更负）
+    "y = 0"（抛出点位置）、投球手插画。
+  正文已提取题干与 (a)~(e) 五问。
+----------------------------------------------------------------
+----------------------------------------------------------------
 公式还原对照（正文由 PDF 文字层线性化产生：上/下标掉行、特殊字体乱码）
 ----------------------------------------------------------------
 - `aavg = 𝒗𝟐<𝒗𝟏 / 𝒕𝟐<𝒕𝟏` 实为 a_avg = (v₂ − v₁)/(t₂ − t₁)（"<" 是减号被误提取）。

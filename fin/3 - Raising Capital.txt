@@ -1123,3 +1123,129 @@ the table is defined as the closing market price on the first day of trading min
     的欺诈性不当行为提起一系列联邦证券法违规指控。S&P 同意支付超过 5,800 万美元与 SEC 和解，
     并额外支付 1,900 万美元以了结纽约州总检察长办公室（1,200 万美元）与
     马萨诸塞州总检察长办公室（700 万美元）提起的平行案件。
+
+================================================================
+补录：第二轮排查发现的漏页（首轮只按"低文字页/大图覆盖率"挑页，遗漏了这些）
+================================================================
+说明：本讲义的**模板装饰图**不再单独列条，包括——每页页眉色条（1713×159）、页脚
+"香港中文大学（深圳）｜经管学院"校徽条（568×160）、反复出现在 Page 5~8 等页右下角的
+"金色天平"插画（380×309）、以及整页圆角边框（3475×2141）。它们不含文字信息。
+以下只补"图里有文字/数据"的页。
+
+--- Page 17（幻灯片第 18 页）图片：Facebook 官方壁纸 + Peter Thiel 照片 ---
+[图内文字]
+  (a) Facebook 早期官方壁纸，图上写着：
+      "Have you been poked, yet?" ／ "facebook" ／ "(Add me as a friend!)" ／
+      "Official facebook wallpaper"，右下角是 "The facebook" 标志。
+  (b) Peter Thiel 的照片，照片下方标 "Peter Thiel"。
+  正文已提取：VC Types: Affluent Investors / Provide (1) seed stage (also called angel round)
+  funding, and (2) guidance / Example: Facebook / Invested in the seed round and series A /
+  Helped with timing and selection of the subsequent financing rounds。
+
+--- Page 19（幻灯片第 20 页）图片：被投公司 logo 墙 ---
+[图内文字] UBER ；jet（其下小字 "Acquired by Walmart, 2016"，且被一个灰色大叉划掉）；
+  slack ；23andMe。
+  正文已提取：VC Types: Large Corporations / Corporations also play a big role in venture
+  capital funding / To acquire innovative technologies / To protect the company value by
+  taking over competitors / Example: GV (Google Ventures) / 400 portfolio companies。
+
+--- Page 23（幻灯片第 24 页）图片：PE vs. VC 对比插画 ---
+[图内文字] 左侧红条标题 "Private Equity"（其下是一棵果实累累的大树，一名园丁在修剪，
+  树下有编号 ①）；右侧红条标题 "Venture Capital"（其下是一株刚种下的小树苗，一名园丁
+  提着水壶在浇水，编号 ②）。
+  含义：PE 投的是"成熟的大树"，VC 投的是"刚起步的树苗"。
+  正文已提取：Private Equity 的定义（直接投私企，或收购上市公司使其退市）与
+  PE vs. VC 的三点差异（Firm type / Industry / Investment size）。
+
+--- Page 27（幻灯片第 28 页）图片：IPO 流程中的机构标志与照片（流程文字已在正文提取） ---
+[图内文字]
+  (a) 阿里巴巴 "Alibaba.com" 橙色 logo（第 1 步 "Managers and the board approve" 旁）；
+  (b) "CREDIT SUISSE" 字标与徽标（第 2 步 "Find investment banks" 下方）；
+  (c) 美国证监会（SEC）蓝色圆形徽记，环绕文字为
+      "UNITED STATES SECURITIES AND EXCHANGE COMMISSION · MCMXXXIV"（1934 年）；
+      其左侧标注蓝字 "证监会（CSRC）" 与超链接 "Filing of Alibaba"（第 4 步附近）；
+  (d) 照片：纽约证券交易所（NYSE）大楼外墙与飘扬的美国国旗（第 7 步 "Shares start
+      trading on exchanges" 旁）。
+  正文已提取 IPO 流程 7 步，以及 Primary Market（一级市场：第 5~6 步，路演定价、
+  按发行价买入）与 Secondary Market（二级市场：第 7 步，股份开始在交易所交易）的划分。
+
+--- Page 29（幻灯片第 30 页）图片：阿里巴巴上市首日行情截图（重点补录） ---
+【图】雅虎财经（Yahoo Finance）个股行情页截图，含当日分时图。
+[图内文字]
+  ALIBABA GROUP HOLDING LTD (BABA) - NYSE   ☆ Follow
+  93.89   ↑ 25.89 (38.07%)   Sep 19, 4:00PM EDT
+  After Hours: 93.30   ↓ 0.59 (0.63%)   Sep 19, 7:59PM EDT
+  分时图：横轴 12:00 PM → 4:00 PM，纵轴约 70 ~ 95（刻度 70/75/80/85/90/95）；
+    开盘即冲高至约 95，随后回落并在 90~93 区间震荡，尾盘收于 93.89。
+  正文已提取（对得上）：Alibaba (2014-9-19) 以 $68/股发行 3.68 亿股，共募资 $25B；
+  二级市场首日收盘价 $93.89；IPO 抑价 = 首日收盘价 − 发行价；间接成本 =
+  ($93.89 − $68)/股 × 3.68 亿股 = $9.5 billion；直接成本（承销费）= $300 million。
+
+--- Page 37（幻灯片第 38 页）图片：三大评级机构信用评级对照表（重点补录） ---
+【图】一张大表，列头为 Moody's / S&P / Fitch（各含 Long-term 与 Short-term 两列），
+  最右一列是 Rating description（评级说明），并用竖线把整表分成
+  Investment-grade（投资级，上半）与 Non-investment grade（非投资级，下半）。
+[图内文字] 逐行转录（长期评级 | 短期评级）：
+  投资级 Investment-grade
+    Aaa  | (Moody's 短期 P-1 覆盖 Aaa~A3)  | AAA   | (S&P 短期 A-1+ 覆盖 AAA~AA-)  |
+      AAA  | (Fitch 短期 F1+ 覆盖 AAA~AA-)  | Prime
+    Aa1  |                                 | AA+   |                            | AA+  |
+    Aa2  |                                 | AA    |                            | AA   | High grade
+    Aa3  |                                 | AA-   |                            | AA-  |
+    A1   |                                 | A+    | (S&P 短期 A-1 覆盖 A+~A)     | A+   |
+      (Fitch 短期 F1 覆盖 A+~A)          | Upper medium grade
+    A2   |                                 | A     |                            | A    |
+    A3   | (Moody's 短期 P-2)              | A-    | (S&P 短期 A-2 覆盖 A-~BBB+)  | A-   |
+      (Fitch 短期 F2 覆盖 A-~BBB-)       | Lower medium grade
+    Baa1 |                                 | BBB+  |                            | BBB+ |
+    Baa2 | (Moody's 短期 P-3)              | BBB   | (S&P 短期 A-3)              | BBB  |
+      (Fitch 短期 F3)                    |
+    Baa3 |                                 | BBB-  |                            | BBB- |
+  非投资级 Non-investment grade
+    Ba1  |                                 | BB+   |                            | BB+  |
+      | Non-investment grade speculative（投机级）
+    Ba2  |                                 | BB    |                            | BB   |
+    Ba3  |                                 | BB-   |                            | BB-  |
+    B1   |                                 | B+    |                            | B+   |
+      | Highly speculative（高度投机）
+    B2   |                                 | B     | (S&P 短期 B)                | B    |
+      (Fitch 短期 B)                     |
+    B3   |                                 | B-    |                            | B-   |
+    Caa1 | (Moody's 短期 Not prime)        | CCC+  | (S&P 短期 C)                | CCC+ |
+      (Fitch 短期 C)                     | Substantial risks（风险较大）
+    Caa2 |                                 | CCC   |                            | CCC  |
+      | Extremely speculative（极度投机）
+    Caa3 |                                 | CCC-  |                            |      |
+      | Default imminent with little prospect for recovery
+      | （违约在即，回收前景渺茫）
+    Ca   |                                 | CC    |                            |      |
+    C    |                                 | C     |                            | DDD  |
+    ／   |                                 | D     | (S&P 用 ／)                 | DD   |
+      (Fitch 用 ／)                      | In default（已违约）
+                                         |       |                            | D    |
+  表右栏另标注：Non-investment grade 也叫 AKA high-yield bonds（高收益债）、
+  AKA junk bonds（垃圾债）。
+  正文已提取：Credit Ratings 定义（对借款人信用风险的评估，预测其还债能力，即违约可能性）；
+  主要评级机构——中国：大公、中诚信、联合、上海新世纪；美国：S&P、Moody's、Fitch；
+  评级越高（越接近 AAA）债券越安全；以及图注
+  "Investment grade: 85% of money, 50% of issues (in the US)" 与 "Default rates"。
+
+--- Page 2（幻灯片第 3 页）图片：公司治理架构图（重点补录） ---
+【图】左侧一个卡通人物抱着钱袋（标注 "Investors"）；箭头标注 "Vote"（投票）指向右侧灰色
+  方框内的组织架构图，方框下标注 "Firm"。
+[图内文字] 方框内自上而下：
+    Board of Directors（董事会）
+      └ Chief Executive Officer（首席执行官，CEO）
+          ├ Chief Financial Officer（首席财务官，CFO）
+          └ Chief Operating Officer（首席运营官，COO）
+  方框右侧标注："Selects"（董事会选出 CEO，CEO 再选出 CFO 与 COO）。
+  （注意：这四个职位名称只存在于图片里，正文文字层只有 "Firm / Investors / Vote / Selects"。）
+  正文已提取：Review—What is a Firm / Separation of ownership and management（所有权与管理权
+  分离）/ Investors elect the board, the board chooses the CEO / Agency problem（代理问题）/
+  Theoretical goals of the manager: maximize shareholders' wealth. /
+  Reality: maximize his/her own value。
+
+--- Page 25（幻灯片第 26 页）装饰图（无文字，仅登记备查） ---
+【图】页脚"香港中文大学（深圳）｜经管学院"校徽条（953×407 位图）。
+  本页全部文字（Initial Public Offering (IPO) 的 What / Why、Corporation—Private and Public
+  等要点）已在正文完整提取，此图不含额外信息。

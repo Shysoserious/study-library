@@ -1,0 +1,959 @@
+--- Page 0 ---
+PHY1001 Mechanics（力学）
+Instructor:  Ling Han（凌晗）
+School of Science and Engineering (SSE)
+The Chinese University of Hong Kong, Shenzhen
+
+--- Page 1 ---
+Review
+´ Position and Displacement
+∆⃗𝑟= ∆𝑥̂𝚤+ ∆𝑦̂𝚥+ ∆𝑧,𝑘
+´ Average Velocity and Instantaneous Velocity⃗
+𝑣= 𝑣!̂𝚤+ 𝑣"̂𝚥+ 𝑣#,𝑘
+´ Average Acceleration and Instantaneous 
+Acceleration⃗
+𝑎= 𝑎!̂𝚤+ 𝑎"̂𝚥+ 𝑎#,𝑘
+´ Projectile Motion
+𝑣! = 𝑣0 𝑐𝑜𝑠𝜃0;
+ ∆𝑥= (𝑣0 𝑐𝑜𝑠𝜃0) 𝑡; 
+𝑣𝑦= 𝑣0 𝑠𝑖𝑛𝜃0 −𝑔𝑡;
+∆𝑦= 𝑣0 𝑠𝑖𝑛𝜃0 𝑡−1
+2 𝑔𝑡2
+
+--- Page 2 ---
+Review
+´ Uniform Circular Motion
+𝑎= 𝑣2
+𝑟
+𝑇= 2𝜋𝑟
+𝑣
+´ Relative Motion in one/two Dimension⃗
+𝑟𝑃𝐴=⃗𝑟𝑃𝐵+⃗𝑟𝐵𝐴⃗
+𝑣𝑃𝐴=⃗𝑣𝑃𝐵+⃗𝑣𝐵𝐴
+´ If the two frames A and B are at
+constant velocity towards each
+other⃗
+𝑎𝑃𝐴=⃗𝑎𝑃𝐵
+
+--- Page 3 ---
+Chapter 4: Newton’s Laws of
+Motion
+Chapter 1
+
+--- Page 4 ---
+What Causes Motion?
+´ Forces: First understood by
+Sir Isaac Newton in later
+1600s.
+´ Newton’s laws of motion:
+Governing moving objects
+in classic physics
+´ Verified by huge
+experimental results
+´ Simple in statement, but
+intricate in applications
+
+--- Page 5 ---
+6
+"Every body 
+perseveres in its state 
+of rest or of uniform 
+motion in a right line 
+unless it is
+compelled to 
+change that state by 
+forces impressed 
+upon it."
+
+--- Page 6 ---
+Newtonian Mechanics
+´ The study of the relation between a force
+and the acceleration it causes
+´ Based on the laws presented by Isaac 
+Newton (1642-1727). 
+´ At very large speeds (an appreciable 
+fraction of the speed of light c), Newtonian 
+mechanics must be replaced by Einstein’s 
+special theory of relativity. 
+´ If objects are very small (at atomic 10-10 m or 
+nano 10-9 m scale), Newtonian mechanics 
+must be replaced by quantum mechanics. 
+
+--- Page 7 ---
+Force and Interactions
+´ A push or pull on objects
+´ An interaction between two bodies or between
+a body and its environment
+PUSH
+PULL
+´ Properties
+´ Unit: Newton (N)
+´ 1 𝑁= 1 𝑘𝑔×1𝑚/𝑠2
+´ Vectors
+´ Same direction as the
+acceleration
+´ Net Force: Adding individual
+force vectors
+´ Principle of superposition
+
+--- Page 8 ---
+Force and Interactions
+´ A push or pull on objects
+´ An interaction between two bodies or between a
+body and its environment
+PUSH
+PULL
+´ Contact Force: direct
+contact of two bodies
+´ Common contact forces:
+1.
+Normal force
+2.
+Friction force
+3.
+Tension force
+´ Noncontact (long-range)
+force:
+1.
+Gravitational force
+
+--- Page 9 ---
+Common Forces
+
+--- Page 10 ---
+Force Vectors
+´ Use a vector arrow to indicate the magnitude 
+and direction of the force.
+
+--- Page 11 ---
+Superposition of Forces
+´ Principle of superposition: a single force that has
+the
+same
+magnitude
+and
+direction
+as
+the
+calculated net force would then have the same
+effect as all the individual forces.
+´ Net force: Vector sum of all
+individual
+forces
+acting
+on
+the body
+𝑅= F⃗𝐹=⃗𝐹$ +⃗𝐹% +⃗𝐹& + ⋯
+´ Force components
+𝑅! = ∑𝐹!; 𝑅" = ∑𝐹"; 𝑅# = ∑𝐹#
+´ The magnitude of net force
+𝑅=
+𝑅!% + 𝑅"% + 𝑅#%
+
+--- Page 12 ---
+Newton’s First Law
+´ Need some “force” to
+keep objects moving?
+´ Smaller frictional force,
+longer distance
+´ Curling
+´ Frictionless Surface, keeping
+moving with constant
+velocity if no force acts on it.
+Newton’s First Law: If no force acts on a body, the
+body’s velocity cannot change; the body cannot
+accelerate.
+Curling
+
+--- Page 13 ---
+Newton’s First Law: If no Net force⃗𝐹(⃗𝐹= 0) acts
+on a body, the body’s velocity cannot change;
+the body cannot accelerate.
+If a body’s velocity is constant, we can
+immediately say that the Net force⃗𝐹is zero
+(⃗𝐹= 0)
+If an object has no acceleration, can you conclude 
+there are no forces acting on it? Explain.
+No, there may be several forces acting on 
+an object but the net force, i.e., the vector 
+sum of the forces, is zero.
+
+--- Page 14 ---
+Examples
+´ Figure a： Net force acts, causing 
+acceleration
+´ Figure b: No net force acts, resulting in
+no acceleration
+Law of inertia: A body at rest, or moving
+with constant velocity, will remain at rest,
+or moving with constant velocity, unless it
+is acted on by a net force.
+´ Tendency
+´ Moving body à keep moving
+´ At rest à at rest⃗
+𝐹'() = 0 (∑Fx = 0 and ∑Fy = 0.)
+à EQUILIBRIUM
+
+--- Page 15 ---
+⃗𝐹'() = 0 (∑Fx = 0 
+and ∑Fy = 0.)
+à EQUILIBRIUM
+
+--- Page 16 ---
+Law of inertia
+A body at rest, or moving
+with constant velocity,
+will remain at rest, or
+moving with constant
+velocity, unless it is acted
+on by a net force
+
+--- Page 17 ---
+Inertial Reference Frames
+´ Reference Frame: Central concept
+to Newton’s Law
+´ Skater ref. to ground: at rest à⃗
+𝐹'() = 0
+´ Skater ref. to the bus: move
+backward with⃗𝑎≠0, and⃗𝐹'() = 0
+à 1st Law failed
+´ Inertial reference frame:
+´ A frame of reference in which
+newton’s first law is valid
+´ A reference frame at rest or 
+with constant velocity is an 
+inertial frame. (No absolute
+inertial ref.)
+
+--- Page 18 ---
+Inertial Reference Frames
+´ Skater ref. to Ground (A): move at
+constant⃗𝑣à eq. state à⃗𝐹'() = 0
+´ Skater ref. to the bus (B): The skater
+is moving forward when⃗𝐹'() = 0 à
+1st Law failed
+´ If the ground (A) is inertial ref. frame:
+´⃗𝑎*+ ≠0 à the bus (B) is NOT
+´ If the relative velocity between
+A and B is a constant⃗𝑎*+ = 0 ,
+then B is also an inertial ref.
+frame.
+
+--- Page 19 ---
+Newton’s Second Law
+The net external force on a body is equal to the
+product of the body’s mass and its acceleration.⃗
+𝐹𝑛𝑒𝑡= 𝑚⃗𝑎⃗
+𝐹𝑛𝑒𝑡, 𝑥= 𝑚⃗𝑎x,⃗𝐹𝑛𝑒𝑡, 𝑦= 𝑚⃗𝑎y,⃗𝐹𝑛𝑒𝑡, 𝑧= 𝑚⃗𝑎z
+The acceleration component along a given axis is 
+caused only by the sum of the force components 
+along 
+that 
+same 
+axis, 
+and 
+not 
+by 
+force 
+components along any other axis.
+
+--- Page 20 ---
+Newton’s Second Law⃗
+𝐹𝑛𝑒𝑡= 0 à⃗𝑎= 0⃗
+𝐹𝑛𝑒𝑡= 0 (∑Fx = 0 and ∑Fy = 0.)
+à EQUILIBRIUM
+TABLE 5-1
+Units in Newton's Second Law
+System
+Force
+Mass
+Acceleration
+SI
+newton (N)
+kilogram (kg)
+m/s2
+CGSa
+dyne
+gram (g)
+cm/s2
+Britishb
+pound (lb)
+slug
+ft/s2
+a 1 dyne = 1 g·cm/s2.
+b 1 lb = 1 slug·ft/s2.
+2
+2
+s/
+m
+kg
+1
+)
+s/
+m
+1
+()
+kg
+1(
+N
+1
+×
+=
+=
+
+--- Page 21 ---
+Mass and Weight
+What is mass (or inertia mass)?
+´ Size? Density? Weight?
+´ Common sense: An object with greater mass 
+accelerates less when the same force is applied.
+´ For a given body, the ratio of the magnitude of the
+net force to the magnitude of acceleration
+´ Quantitative measure of inertia: ↑mass à ↑the body
+“resists” being accelerated
+´ Intrinsic property: constant regardless of location
+
+--- Page 22 ---
+Mass and Weight
+Weight
+´ The pull of gravity on an object
+´ The gravitational force that the
+earth exerts on the body
+𝑤=⃗𝐹, = 𝑚⃗𝑎,
+Object placed on the moon or on
+earth
+´ Same mass
+´ Different weight
+
+--- Page 23 ---
+Equilibrium
+Can Newton’s Law be 
+proven? 
+The answer is no, because 
+it’s impossible to be sure
+that your reference frame is 
+without any accelerations.
+Do we believe in this? 
+Yes, we do.
+We believe in it since it is 
+consistent within the 
+uncertainty of the 
+measurements with all 
+experiments that have been 
+done.
+
+--- Page 24 ---
+Here we find a missing force by using the acceleration. In the
+overhead view of Fig., a 2.00 kg cookie tin is accelerated at
+3.00 m/s2 in the direction shown by⃗𝑎, over a frictionless
+horizontal surface. The acceleration is caused by three
+horizontal forces, only two of which are shown:⃗𝐹1 of
+magnitude 10.0 N and⃗𝐹2 of magnitude 20.0 N. what is the
+third force⃗𝐹3 in unit-vector notation and in magnitude-angle
+notation?
+Sample Problems
+x
+y⃗
+𝑎⃗
+𝐹2⃗
+𝐹1
+50°
+30°
+
+--- Page 25 ---
+SOLUTION⃗
+𝐹𝑛𝑒𝑡= 𝑚⃗𝑎⃗
+𝐹1 +⃗𝐹2 +⃗𝐹3 = 𝑚⃗𝑎
+x-axis:
+𝐹3, 𝑥= 𝑚𝑎𝑥−𝐹1, 𝑥−𝐹2, 𝑥
+= 2.00×3.00× cos 50° −−10.0× cos 30° −0 = 12.5 𝑁
+y-axis:
+𝐹3, 𝑦= 𝑚𝑎𝑦−𝐹1, 𝑦−𝐹2, 𝑦
+= 2.00×3.00× sin 50° −(−10.0× sin 30°) −20.0
+= −10.4 𝑁
+In unit-vector notation⃗
+𝐹3 = (12.5 𝑁)X𝑖−(10.4 𝑁)X𝑗
+In magnitude-angle notation
+𝐹3 =
+2 𝐹3,𝑥
+2 + 𝐹3,𝑦
+2 = 16.3 𝑁
+𝜃= tan−1 𝐹3,𝑦
+𝐹3,𝑥
+= −40.0°
+PAY ATTENTION TO THE DIRECTION!
+
+--- Page 26 ---
+Free-body Diagram
+To solve the problem with Newton’s Second Law
+Free-body diagram
+´ In a coordinate system, we represent the body as 
+a dot, each force on the body is a vector arrow 
+with its tail on the body. 
+´ A collection of two or more bodies is called a 
+system, and any force on the bodies inside the 
+system caused by external agents outside the 
+system is called an external force. If the bodies 
+are rigidly connected, then we can treat the 
+system as one composite body, and the net force⃗
+𝐹 on it is the vector sum of all external forces.
+
+--- Page 27 ---
+Examples
+The wind exerts a constant horizontal force on the boat.
+With horizontal 
+friction force
+
+--- Page 28 ---
+More Examples
+a sketch showing all the forces acting on an object
+
+--- Page 29 ---
+Free-body Diagram
+´ The normal force must be perpendicular to the surface. 
+´ There is no “ma force.” 
+
+--- Page 30 ---
+𝑁B
+B
+F𝑔⃗
+𝐹CB⃗
+𝑓
+𝑁𝐶
+C
+Consider B and C
+separately:
+•⃗𝐹CB and⃗𝐹BC both
+external forces
+•⃗𝐹CB is the force from 
+crate on book and⃗𝐹BC
+is the force from book 
+on crate.⃗
+𝑓⃗
+𝐹BC
+F𝑔
+BC system
+Consider B and C as a system:
+FCB/FBC are internal forces
+𝑁BC⃗
+𝐹𝑔, 𝐵𝐶⃗
+𝐹𝐶𝐵= −⃗𝐹𝐵𝐶
+
+--- Page 31 ---
+Newton’s Third Law
+´ Interact: Push or Pull each other
+´ When two bodies interact, the 
+forces on the bodies from each 
+other are always equal in 
+magnitude and opposite in 
+direction.
+´ Third-law Force Pair
+´ Every action has an equal and 
+opposite reaction.
+´ Be careful how you treat others. ⃗
+𝐹𝐶𝐵= −⃗𝐹𝐵𝐶
+When the two bodies interact, the forces on
+the bodies from each other are always equal
+in magnitude and opposite in direction.
+
+--- Page 32 ---
+´ We can treat the milk carton and tray as separate 
+bodies, or we can treat them as a single composite 
+body.
+
+--- Page 33 ---
+In the figure, a constant horizontal force⃗𝐹𝑎𝑝 of magnitude 20 N is 
+applied to block A of mass mA = 4.0 kg, which pushes against block B 
+of mass mB = 6.0 kg. The blocks slide over a frictionless surface, along 
+an x axis. (a) What is the acceleration of the blocks?
+SOLUTION:
+𝐹𝑛𝑒𝑡= 𝑚𝑎
+20 𝑁= 4.0 𝑘𝑔× 𝑎à a=5.0 m/s2
+1.
+Identify A and B as one system
+20 𝑁= (4.0 + 6.0) 𝑘𝑔× 𝑎à a = 2.0 m/s2
+2.
+Analyze each block separately
+A: 𝐹𝑎𝑝−𝐹+* = 𝑚+×𝑎+
+B: 𝐹𝐵𝐴= 𝑚*×𝑎*
+𝐹𝐴𝐵= 𝐹𝐵𝐴& 𝑎𝐴= 𝑎* = 𝑎
+𝐹𝑎𝑝−𝑚*×𝑎= 𝑚+×𝑎
+20 𝑁−6.0 𝑘𝑔× 𝑎= 4.0 𝑘𝑔× 𝑎à a = 2.0 m/s2
++ve direction
+along x-axis
+
+--- Page 34 ---
+(b) What is the horizontal force⃗𝐹𝐵𝐴on block B from
+block A in Fig(c)?
+𝐹𝐵𝐴= 𝑚*× 𝑎* = 6.0 × 2.0 𝑁= 12.0 𝑁
++ve direction along x-axis
+´ Remember to indicate the direction for vectors.
+´ Velocity, Acceleration, Force, and etc.
+
+--- Page 35 ---
+The figure shows a block S (the sliding block) with mass M = 
+3.3 kg. The block is free to move along a horizontal 
+frictionless surface such as an air table. We assume that the 
+table is an inertia frame. This first block is connected by a 
+cord that wraps over a frictionless pulley to a second block 
+H (the hanging block), with mass m = 2.1 kg. The cord and 
+pulley have negligible masses compared to the blocks 
+(they are “massless”). The hanging block H falls as the 
+sliding block S accelerates to the right. 
+Find (a) the acceleration of the 
+sliding block S, 
+(b) 
+the 
+acceleration 
+of 
+the 
+hanging block H, and 
+(c) the tension in the cord.
+More Problems
+
+--- Page 36 ---
+SOLUTION
+For S,
+𝑇= 𝑀⃗𝑎𝑆
+For H,⃗
+𝐹𝑔+ 𝑇= 𝑚⃗𝑎𝐻
+−𝑚𝑔+ 𝑀𝑎𝑆= −𝑚𝑎4
+The +ve direction is upward
+𝑎𝑆= 𝑎4 = 𝑎
+The two objects moving at
+the same speed and
+magnitude of acceleration
+𝑎=
+𝑚𝑔
+𝑀+ 𝑚= 3.8 𝑚/𝑠2
+𝑇= 𝑀𝑎= 3.3×3.8 = 13 𝑁
+
+--- Page 37 ---
+More Problems
+In the figure, a cord holds a stationary block of mass m = 15 
+kg, on a frictionless plane that is inclined at angle  = 27°.
+a) What are the magnitudes of the force 𝑇on the block 
+from the cord and the normal force 𝑁 on the block from 
+the plane?
+b) If We now cut the cord. As the block then slides down the 
+inclined plane, does it accelerate? If so, what is its 
+acceleration?
+PAY ATTENTION TO THE DIRECTION!
+
+--- Page 38 ---
+If no Net force⃗𝐹(⃗𝐹= 0) acts on a body, the body’s velocity
+cannot change; the body cannot accelerate.
+𝐹5 = 0 ↔⃑𝑎= 0
+The net external force on a body is equal to the product of
+the body’s mass and its acceleration.⃗
+𝐹𝑛𝑒𝑡= 𝑚⃗𝑎⃗
+𝐹𝑛𝑒𝑡, 𝑥= 𝑚⃗𝑎x,⃗𝐹𝑛𝑒𝑡, 𝑦= 𝑚⃗𝑎y,⃗𝐹𝑛𝑒𝑡, 𝑧= 𝑚⃗𝑎z
+When the two bodies interact, the forces on the bodies from
+each other are always equal in magnitude and opposite in
+direction.⃗
+𝐹𝐶𝐵= −⃗𝐹𝐵𝐶
+Summary
+
+================================================================
+附录：图片内容逐页转录 + 图说（本文件要喂给"看不到 PDF"的 AI，故图里的信息一并文字化）
+================================================================
+说明：
+1. 页码为 PDF 页序号，与正文 `--- Page N ---` 一致（幻灯片页码按正文页脚，见各页"页脚标注"）。
+2. 本附录按页覆盖本讲义**全部含图页**。每条分两部分：
+   【图】= 图形内容描述（示意图表达了什么关系、坐标轴、关键标注）；
+   [图内文字] = 原图里能读到的文字，逐字转录（这些文字用文字层提取不到）。
+3. 正文（`--- Page N ---` 段落）已完整提取的要点不在此重复，只补"图里才有的信息"。
+4. 文件末尾附「公式还原对照」：正文里被 PDF 抽字弄坏的上下标与符号的还原表。
+
+
+----------------------------------------------------------------
+第 1 ~ 13 页（复习、封面与力的引入）
+----------------------------------------------------------------
+--- Page 0（幻灯片第 1 页）---
+【图】封面照片：香港中文大学（深圳）校园建筑与校名石碑。
+[图内文字] 校徽内："香港中文大學（深圳）/ The Chinese University of Hong Kong, Shenzhen"；
+  石碑上："The Chinese University of Hong Kong, Shenzhen"。
+  正文已提取：PHY1001 Mechanics（力学）/ Instructor: Ling Han（凌晗）/
+  School of Science and Engineering (SSE) / The Chinese University of Hong Kong, Shenzhen。
+
+--- Page 1（幻灯片第 2 页）---
+【图】抛体运动示意图：x-y 坐标系中画出一条抛物线轨迹，轨迹上五个位置各画出速度 v⃗
+  及其水平分量 vₓ（绿箭头）、竖直分量 vᵧ（绿箭头）；竖直方向另有橙色向下箭头标注
+  aᵧ = −g。
+[图内文字] 图中标注：y、x、O（原点）、v⃗、vₓ、vᵧ、aᵧ = −g。
+  正文已提取公式（写正见末尾对照表）：Δr⃗ = Δx î + Δy ĵ + Δz k̂ ；v⃗ = vₓ î + vᵧ ĵ + v_z k̂ ；
+  a⃗ = aₓ î + aᵧ ĵ + a_z k̂ ；vₓ = v₀cosθ₀ ；Δx = (v₀cosθ₀)t ；vᵧ = v₀sinθ₀ − gt ；
+  Δy = (v₀sinθ₀)t − ½gt²。
+
+--- Page 2（幻灯片第 3 页）---
+【图1】匀速圆周运动示意图：蓝色虚线圆，圆周上 8 个位置各画出切向速度 v⃗（绿色）
+  与指向圆心的加速度 a_rad（橙色），并从圆心向各点引半径线。
+【图2】相对运动示意图：一架飞机 P 在"运动的空气 B"中飞行，其下方是"地面观察者 A"；
+  图右侧画出矢量三角形 v⃗_P/A = v⃗_P/B + v⃗_B/A。
+[图内文字] 图中标注：v⃗、a_rad、v⃗_B/A、v⃗_P/A、v⃗_P/B、P (plane)、B (moving air)、
+  A (ground observer)。
+  正文已提取：a = v²/r ；T = 2πr/v ；r⃗_PA = r⃗_PB + r⃗_BA ；v⃗_PA = v⃗_PB + v⃗_BA ；
+  若两参考系 A、B 相对速度恒定，则 a⃗_PA = a⃗_PB。
+
+--- Page 3（幻灯片第 4 页）---
+【图】章节分隔页：绿色折角矩形框内为章节标题（文字已在正文提取，框本身为矢量图形）。
+[图内文字] Chapter 4: Newton's Laws of Motion。
+
+--- Page 4（幻灯片第 5 页）---
+【图1】右上：Isaac Newton 画像（黑底），图内标题 "Isaac Newton"。
+【图2】右下：三个圆两两相交的维恩图，底部标题 "Newton's Laws"。
+[图内文字] 维恩图内：
+    左圆：1st Law:  Inertia
+    右圆：2nd Law:  F = ma
+    下圆：3rd Law:  Equal & Opposite
+    两两相交处分别写：1st Law special case ；all matter ；FΔt = mΔv ；F1 = -F2
+  正文已提取：Forces: First understood by Sir Isaac Newton in later 1600s. /
+  Newton's laws of motion: Governing moving objects in classic physics / Verified by huge
+  experimental results / Simple in statement, but intricate in applications。
+
+--- Page 5（幻灯片第 6 页）---
+【图】《自然哲学的数学原理》1687 年初版扉页照片（拉丁文），右上角页码标注 6。
+[图内文字] PHILOSOPHIÆ / NATURALIS / PRINCIPIA / MATHEMATICA. /
+  Auctore J. S. NEWTON, Trin. Coll. Cantab. Soc. Matheseos Professore Lucasiano,
+  & Societatis Regalis Sodali. / IMPRIMATUR. S. PEPYS, Reg. Soc. PRÆSES. Julii 5. 1686. /
+  LONDINI, Julii Societatis Regiæ ac Typis Josephi Streater. Prostat apud plures Bibliopolas.
+  Anno MDCLXXXVII.
+  右侧引文（正文已提取）："Every body perseveres in its state of rest or of uniform motion in
+  a right line unless it is compelled to change that state by forces impressed upon it."
+
+--- Page 7（幻灯片第 8 页）---
+【图】两幅电影剧照：上为钢铁侠飞行（图内红字标 "PUSH"），下为蜘蛛侠拉丝（图内红字标
+  "PULL"）。两个词已在正文提取。
+[图内文字] 正文已提取：A push or pull on objects / An interaction between two bodies or between
+  a body and its environment / Properties / Unit: Newton (N) / 1 N = 1 kg × 1 m/s² / Vectors /
+  Same direction as the acceleration / Net Force: Adding individual force vectors /
+  Principle of superposition。
+
+--- Page 8（幻灯片第 9 页）---
+【图】与 Page 7 相同的那两张剧照（钢铁侠 PUSH / 蜘蛛侠 PULL），用于区分"接触力"与"非接触力"。
+[图内文字] 正文已提取：Contact Force: direct contact of two bodies / Common contact forces:
+  1. Normal force 2. Friction force 3. Tension force / Noncontact (long-range) force:
+  1. Gravitational force。
+
+--- Page 9（幻灯片第 10 页）---
+【图】四格配图，本页正文只有标题"Common Forces"，**四种常见力的定义全在图里**（重点补录）。
+[图内文字]
+  (a) Normal force n⃗: When an object rests or pushes on a surface, the surface exerts a push on
+      it that is directed perpendicular to the surface.
+      （支持力 n⃗：当物体静止在表面上或挤压表面时，表面对它施加一个垂直于表面的推力。）
+      配图：水平面上与斜面上的物块，n⃗ 均垂直于接触面。
+  (b) Friction force f⃗: In addition to the normal force, a surface may exert a frictional force
+      on an object, directed parallel to the surface.
+      （摩擦力 f⃗：除支持力外，表面还可能对物体施加平行于表面的摩擦力。）
+      配图：物块受 n⃗（上）与 f⃗（左）作用。
+  (c) Tension force T⃗: A pulling force exerted on an object by a rope, cord, etc.
+      （张力 T⃗：绳、索等对物体施加的拉力。）配图：手通过绳子斜拉物块，T⃗ 沿绳方向。
+  (d) Weight w⃗: The pull of gravity on an object is a long-range force (a force that acts over
+      a distance).
+      （重力 w⃗：物体受到的重力作用是长程力，即隔一段距离也能作用的力。）配图：物块受 w⃗ 向下。
+
+--- Page 10（幻灯片第 11 页）---
+【图】两幅弹簧秤拉 / 推物块的示意图。
+[图内文字]
+  (a) A 10-N pull directed 30° above the horizontal
+      （10 N 的拉力，方向在水平线以上 30°；图中力箭头标 10 N，虚线与箭头间标 30°）
+  (b) A 10-N push directed 45° below the horizontal
+      （10 N 的推力，方向在水平线以下 45°；图中力箭头标 10 N，虚线与箭头间标 45°）
+  正文已提取：Use a vector arrow to indicate the magnitude and direction of the force.
+
+--- Page 11（幻灯片第 12 页）---
+【图】力的合成矢量图：x-y 坐标系中画出 F⃗₁、F⃗₂ 与合矢量 R⃗ = ΣF⃗，并用虚线标出分量
+  F₁ₓ、F₂ₓ、Rₓ（沿 x）与 F₁ᵧ、F₂ᵧ、Rᵧ（沿 y），原点标 O。
+[图内文字]
+  "R⃗ is the sum (resultant) of F⃗₁ and F⃗₂."
+  "The y-component of R⃗ equals the sum of the y-components of F⃗₁ and F⃗₂."
+  "The same goes for the x-components."
+  （R⃗ 是 F⃗₁ 与 F⃗₂ 的合矢量；R⃗ 的 y 分量等于 F⃗₁、F⃗₂ 的 y 分量之和；x 分量同理。）
+  正文已提取：R⃗ = ΣF⃗ = F⃗₁ + F⃗₂ + F⃗₃ + ⋯ ；Rₓ = ΣFₓ ; Rᵧ = ΣFᵧ ; R_z = ΣF_z ；
+  R = √(Rₓ² + Rᵧ² + R_z²)。
+
+--- Page 12（幻灯片第 13 页）---
+【图1】右上：2022 北京冬奥会会徽（"BEIJING 2022" + 奥运五环）。
+【图2】左中：冰壶比赛照片，图内蓝字标注 "Curling"。
+[图内文字] 正文已提取：Need some "force" to keep objects moving? / Smaller frictional force,
+  longer distance / Curling / Frictionless Surface, keeping moving with constant velocity if no
+  force acts on it. / Newton's First Law: If no force acts on a body, the body's velocity cannot
+  change; the body cannot accelerate.
+
+--- Page 14（幻灯片第 15 页）---
+【图】右侧两幅冰球示意（灰色弯曲边界内画橙色圆盘）。
+[图内文字]
+  (a) A puck on a frictionless surface accelerates when acted on by a single horizontal force.
+      （无摩擦表面上的冰球，受单个水平力作用时会加速。）图中标 F⃗₁（向右）、a⃗（向右）。
+  (b) An object acted on by forces whose vector sum is zero behaves as though no forces act on
+      it.（受合力为零的多力作用的物体，表现得就像没有受力一样。）
+      图中标 F⃗₁（向右）、F⃗₂（向左）、ΣF⃗ = 0、a⃗ = 0。
+  正文已提取：Law of inertia: A body at rest, or moving with constant velocity, will remain at
+  rest, or moving with constant velocity, unless it is acted on by a net force. / Tendency /
+  Moving body → keep moving / At rest → at rest / F⃗_net = 0 (ΣFₓ = 0 and ΣFᵧ = 0.)
+  → EQUILIBRIUM。
+
+----------------------------------------------------------------
+第 16 ~ 20 页（牛顿第一定律与惯性系）
+----------------------------------------------------------------
+--- Page 15（幻灯片第 16 页）---
+【图】本页正文只有右侧的"平衡条件"框，**题干、受力图与整段推导都在图里**（重点补录）。
+[图内文字]
+  题干：Why does a wire stretched between two posts always sag in the middle no matter how
+  tightly it is stretched?（为什么绷在两根柱子之间的绳子，无论拉得多紧，中间总会下垂？）
+  上图：两柱之间取绳子中间的一小段，受力 F⃗₁（向左）、F⃗₂（向右）、w⃗（向下）。
+  推导原文：
+    Assume wire is horizontal and consider a small section of wire in the middle:
+    As the wire is in equilibrium, i.e., no motion, then there is no net force, i.e.,
+    |F₁| = |F₂|
+    … but there are no vertical components of F₁ and F₂ to compensate w⃗ and produce no net
+    vertical force. Therefore, our assumption that the wire is horizontal is incorrect;
+    clearly, to compensate for w⃗, F₁ and F₂ must have vertical components. Therefore, they must
+    "slope upward", i.e., the wire must sag in the middle, viz:
+    （先假设绳是水平的并取中间一小段：绳处于平衡（无运动）则无净力，即 |F₁| = |F₂|；
+      但 F₁、F₂ 没有竖直分量来抵消 w⃗、使竖直合力为零。所以"绳是水平的"这个假设是错的——
+      为了抵消 w⃗，F₁ 和 F₂ 必须有竖直分量，也就是必须"向上倾斜"，即绳子中间必须下垂。）
+  下图：F⃗₁ 斜向左上、F⃗₂ 斜向右上、w⃗ 向下。
+  右侧框（正文已提取）：F⃗_net = 0 (ΣFₓ = 0 and ΣFᵧ = 0.) → EQUILIBRIUM
+
+--- Page 16（幻灯片第 17 页）---
+【图1】右上照片：一个人坐在正在加速的汽车座椅中，图上有红色向右箭头（座椅给他的力）。
+【图2】左下：汽车转弯的频闪照片（同一辆车连续 5 个位置的叠影），标出 F（红箭头，指向
+  弯道内侧）与黑色箭头（车头/切线方向）。
+[图内文字]
+  上图："Are you "thrown" backwards when a car accelerates from rest? NO!! There is no
+       "throwing" force; you tend to remain at rest as the seat moves forward!"
+       （汽车从静止加速时你会被"向后抛"吗？不会！不存在"抛"的力；只是座椅前移时，
+        你倾向于保持静止。）
+  下图："Are you "thrown" outwards when a car turns a corner? NO!! There is no "throwing"
+       force; as the car turns, you tend to continue to move in a straight line; so the side of
+       the car exerts an inwards force on you!"
+       （汽车转弯时你会被"向外抛"吗？不会！不存在"抛"的力；转弯时你倾向于继续沿直线运动，
+        所以是车厢侧壁向内推你。）
+  右侧（正文已提取）：Law of inertia — A body at rest, or moving with constant velocity, will
+  remain at rest, or moving with constant velocity, unless it is acted on by a net force。
+
+--- Page 17（幻灯片第 18 页）---
+【图】四帧时间序列（t = 0、Δt、2Δt、3Δt）：车厢从静止开始加速（车厢的 v⃗ 绿色箭头向右，
+  从 t=0 的 v⃗ = 0 逐渐增大；a⃗ 橙色箭头向右），车内的人相对车厢逐渐向后移动。
+[图内文字] "(a) Initially, you and the vehicle are at rest." / 图中标 "v⃗ = 0" /
+  "You tend to remain at rest as the vehicle accelerates around you."
+  （(a) 起初你和车都静止。（即 v⃗ = 0。）车在你周围加速时，你倾向于保持静止。）
+  正文已提取：Reference Frame: Central concept to Newton's Law / Skater ref. to ground: at rest
+  → F⃗_net = 0 / Skater ref. to the bus: move backward with a⃗ ≠ 0, and F⃗_net = 0 → 1st Law
+  failed / Inertial reference frame: A frame of reference in which newton's first law is valid /
+  A reference frame at rest or with constant velocity is an inertial frame. (No absolute
+  inertial ref.)
+
+--- Page 18（幻灯片第 19 页）---
+【图】四帧时间序列（t = 0、Δt、2Δt、3Δt）：车厢本来就在运动（v⃗ 绿色箭头向右），
+  随后减速（a⃗ 橙色箭头向左），车内的人相对车厢逐渐向前移动。
+[图内文字] "Initially, you and the vehicle are in motion." /
+  "You tend to continue moving with constant velocity as the vehicle slows down around you."
+  （起初你和车都在运动。车在你周围减速时，你倾向于继续以恒定速度运动。）
+  正文已提取：Skater ref. to Ground (A): move at constant v⃗ → eq. state → F⃗_net = 0 /
+  Skater ref. to the bus (B): The skater is moving forward when F⃗_net = 0 → 1st Law failed /
+  If the ground (A) is inertial ref. frame: a⃗_BA ≠ 0 → the bus (B) is NOT /
+  If the relative velocity between A and B is a constant a⃗_BA = 0, then B is also an inertial
+  ref. frame。
+
+----------------------------------------------------------------
+第 21 ~ 23 页（质量与重量、平衡）
+----------------------------------------------------------------
+--- Page 21（幻灯片第 22 页）---
+【图】右下粉色方框内的补充说明"Relativity"（本页正文没有，属图内文字）。
+[图内文字] Relativity
+  In Einstein's special relativity, there is mass-energy equivalence (relation) m = E/c².
+  ("Does the inertia of a body depend upon its energy-content?") In general relativity, the
+  equivalence principle is the equivalence of gravitational and inertial mass.
+  （相对论：在狭义相对论中有质能等价关系 m = E/c²（"物体的惯性是否取决于它的能量含量？"）；
+    在广义相对论中，等效原理就是引力质量与惯性质量的等效。）
+  正文已提取：What is mass (or inertia mass)? / Size? Density? Weight? / Common sense: An object
+  with greater mass accelerates less when the same force is applied. / For a given body, the
+  ratio of the magnitude of the net force to the magnitude of acceleration / Quantitative
+  measure of inertia: ↑mass → ↑the body "resists" being accelerated / Intrinsic property:
+  constant regardless of location。
+
+--- Page 22（幻灯片第 23 页）---
+【图】左侧两幅对比图。
+[图内文字]
+  "Falling body, mass m"（下落的物体，质量 m）：a⃗ = g⃗（橙色向下）、Weight w⃗ = mg⃗（红色向下）、
+    ΣF⃗ = w⃗。
+  "Hanging body, mass m"（悬挂的物体，质量 m）：T⃗（红色向上）、a⃗ = 0、Weight w⃗ = mg⃗、
+    ΣF⃗ = 0。
+  "• The relationship of mass to weight: w⃗ = mg⃗."
+  "• This relationship is the same whether a body is falling or stationary."
+    （质量与重量的关系是 w⃗ = mg⃗；无论物体在下落还是静止，这个关系都成立。）
+  正文已提取：Weight / The pull of gravity on an object / The gravitational force that the earth
+  exerts on the body / w⃗ = F⃗_g = m a⃗_g / Object placed on the moon or on earth / Same mass /
+  Different weight。
+
+--- Page 23（幻灯片第 24 页）---
+【图】左侧三幅"草地上的球"受力示意（本页正文只有右侧问答，左侧图注全在图里，重点补录）。
+[图内文字]
+  ① 标题 Equilibrium：
+     Two forces: the weight of the ball downward (due to the attraction of the Earth) is
+     balanced by the "normal" force of the ground on the ball. → No net force ⇒ no motion.
+     （两个力：球向下的重力（地球吸引）被地面对球的"支持力"平衡。→ 无净力 ⇒ 无运动。）
+     图中标 N⃗（向上）、W（向下）。
+  ② Two forces: the weight of the ball downward and the force of the foot on the ball. →
+     Net resultant force ⇒ change in motion / acceleration.
+     （两个力：球向下的重力 + 脚对球的力。→ 有净合力 ⇒ 运动改变 / 加速。）
+     图中标 F⃗、F_R、W⃗。
+  ③ One force: the weight of the ball downward. → Net force ⇒ change in motion / acceleration.
+     （一个力：球向下的重力。→ 有净力 ⇒ 运动改变 / 加速。）图中标 W⃗。
+  底部红字：Important concept … ／ … we cannot neglect the effect of the Earth … it always
+    produces a non-contact force!
+    （重要概念：不能忽略地球的作用，它总会产生非接触力！）
+  右侧（正文已提取）：Can Newton's Law be proven? The answer is no, because it's impossible to
+  be sure that your reference frame is without any accelerations. / Do we believe in this?
+  Yes, we do. We believe in it since it is consistent within the uncertainty of the measurements
+  with all experiments that have been done.
+
+----------------------------------------------------------------
+第 27 ~ 37 页（自由体图与例题）
+----------------------------------------------------------------
+--- Page 27（幻灯片第 28 页）---
+【图】三幅图。
+[图内文字]
+  (a) Iceboat and rider on frictionless ice
+      （无摩擦冰面上的冰船与驾驶者；船帆上标 "B1"，图右侧有一个表示风的灰色箭头）
+  (b) Free-body diagram for iceboat and rider（冰船 + 驾驶者的自由体图）：
+      n（向上）、w = mg（向下）、F_w（向右）、aₓ（向右）
+  (c) 右侧标题 "With horizontal friction force"（加入水平摩擦力后）：
+      在同一自由体图上增加 f（向左），并用红圈圈出
+  正文已提取：The wind exerts a constant horizontal force on the boat.
+
+--- Page 28（幻灯片第 29 页）---
+【图】三组"实物照片 + 自由体图"，本页只有副标题在正文，**所有图注都在图里**（重点补录）。
+[图内文字]
+  (a) 短跑运动员起跑：自由体图含 F⃗_block on runner（画出竖直分量 F_y 与水平分量 F_x）与 w⃗。
+      "The force of the starting block on the runner has a vertical component that counteracts
+       her weight and a large horizontal component that accelerates her."
+       （起跑器对运动员的力有一个竖直分量抵消她的体重，还有一个很大的水平分量使她加速。）
+  (b) 篮球运动员起跳：照片 + 自由体图（n⃗ 向上、w⃗ 向下，另画一个虚线 w⃗）。
+      "To jump up, this player will push down against the floor, increasing the upward reaction
+       force n of the floor on him."
+       （为了跳起，运动员向下蹬地，从而增大地面对他向上的反作用力 n。）
+      "This player is a freely falling object."（起跳离地后，该运动员是一个自由落体。）
+  (c) 潜水者水下游泳：照片 + 自由体图（F⃗_buoyancy 向上、F⃗_thrust 向右、F⃗_drag 向左、
+      w⃗ 向下）。
+      "The water exerts a buoyancy force that counters the swimmer's weight."
+      "Kicking causes the water to exert a forward reaction force, or thrust, on the swimmer."
+      "Thrust is countered by drag forces exerted by the water on the moving swimmer."
+      （水给出抵消游泳者体重的浮力；蹬水使水对游泳者施加向前的反作用力（推力）；推力被水对
+        运动者的阻力抵消。）
+  副标题（正文已提取）：a sketch showing all the forces acting on an object。
+
+--- Page 29（幻灯片第 30 页）---
+【图】左"正确"、右"错误"两幅雪橇自由体图。
+[图内文字]
+  (a) Correct free-body diagram for the sled（雪橇的正确自由体图）：
+      "RIGHT! Normal force is perpendicular to the surface."（对！支持力垂直于表面。）
+      "It's OK to draw the acceleration vector adjacent to (but not touching) the body."
+      （把加速度矢量画在物体附近（但不接触物体）是可以的。）"
+      "RIGHT!"
+      图中：n 与斜面垂直，w = mg 竖直向下，aₓ 水平向右。
+  (b) Incorrect free-body diagram for the sled（雪橇的错误自由体图）：
+      "WRONG: Normal force is not vertical because the surface (which is along the x-axis) is
+       inclined."（错：支持力不是竖直的，因为表面（沿 x 轴）是倾斜的。）
+      "The quantity ma is not a force."（量 ma 不是一个力。)
+      "WRONG"
+      图中：n 被错误地画成竖直，并且把 ma 当成一个力画出——两处都打了红叉。
+  正文已提取：The normal force must be perpendicular to the surface. / There is no "ma force."。
+
+--- Page 30（幻灯片第 31 页）---
+【图】上方示意图（本页唯一的位图）：一条木条斜靠着木箱放在桌面上。
+[图内文字] 位图内标注：Book B（木条）／Crate C（木箱）。
+  正文已提取其余全部内容：B 的自由体图（N⃗_B、F⃗_CB、f⃗、F⃗_g）；
+  C 的自由体图（N⃗_C、f⃗、F⃗_BC、F⃗_g）；BC 整体的自由体图（N⃗_BC、F⃗_g,BC）；
+  以及 "Consider B and C separately: F⃗_CB and F⃗_BC both external forces / F⃗_CB is the force
+  from crate on book and F⃗_BC is the force from book on crate." /
+  "Consider B and C as a system: F_CB/F_BC are internal forces" / F⃗_CB = −F⃗_BC。
+
+--- Page 31（幻灯片第 32 页）---
+【图】(a) Book B 斜靠在 Crate C 上的示意图（同 Page 30 的位图）；
+  (b) 两个小球 B（粉）与 C（青），分别画出 F⃗_BC（向左）与 F⃗_CB（向右）——第三定律的一对力。
+[图内文字] 图中标注：Book B、Crate C、(a)、(b)、F⃗_BC、F⃗_CB、B、C。
+  正文已提取：Interact: Push or Pull each other / When two bodies interact, the forces on the
+  bodies from each other are always equal in magnitude and opposite in direction. /
+  Third-law Force Pair / Every action has an equal and opposite reaction. /
+  Be careful how you treat others. / F⃗_CB = −F⃗_BC。
+
+--- Page 32（幻灯片第 33 页）---
+【图】四格图，本页图内文字与正文互补，以下为图里才有的一层信息（重要）。
+[图内文字]
+  (a) A milk carton and a food tray（牛奶盒与托盘）：
+      m_C = 0.50 kg（牛奶盒质量）、m_T = 1.00 kg（托盘质量）、F = 9.0 N（手施加的力）
+  (b) Free-body diagram for milk carton（牛奶盒的自由体图）：
+      n_C（向上）、w_C（向下）、F_T on C（向右，托盘对牛奶盒的力）、aₓ（向右）
+  (c) Free-body diagram for food tray（托盘的自由体图）：
+      n_T（向上）、w_T（向下）、F_T on C = F_C on T（互相作用的一对力）、F（向右）、aₓ（向右）
+  (d) Free-body diagram for carton and tray as a composite body（把牛奶盒与托盘看成一个整体）：
+      n（向上）、w（向下）、F（向右）、aₓ（向右）
+  正文已提取：We can treat the milk carton and tray as separate bodies, or we can treat them as
+  a single composite body.
+
+--- Page 33（幻灯片第 34 页）---
+【图】三格受力示意图 + 一处红叉（本页题目文字已在正文提取，下面是图里才有的信息）。
+[图内文字]
+  (a) F⃗_ap（20 N，向右）作用于 A（橙色方块），A 推着 B（绿色方块），沿 +x 轴；
+  (b) A 的自由体图：F⃗_ap（向右）、F⃗_AB（向左，B 对 A 的力）；
+  (c) B 的自由体图：F⃗_BA（向右，A 对 B 的力）。
+  图中另有一处红色大叉，划掉了 "20 N = 4.0 kg × a → a = 5.0 m/s²"，
+  提示"只用 A 的受力算"是错的。
+  正文已提取题干与完整解答（两种解法，最终 a = 2.0 m/s²）。
+
+--- Page 35（幻灯片第 36 页）---
+【图】示意图：水平无摩擦桌面上放滑块 S（质量 M），跨过桌边滑轮的一条绳另一端悬挂木块 H
+  （质量 m）；图中画出 S 向右的箭头与 H 向下的箭头、滑轮上的转动箭头。
+[图内文字] 图中标注：Sliding block S、M、Frictionless surface、Hanging block H、m。
+  正文已提取题干（M = 3.3 kg、m = 2.1 kg、无摩擦、绳与滑轮质量可忽略等）与 (a)(b)(c) 三问。
+
+--- Page 36（幻灯片第 37 页）---
+【图】右侧两幅自由体图。
+[图内文字]
+  (a) Sliding block S 的自由体图：N⃗（向上）、T⃗（向右）、F⃗_gS（向下）、a⃗（橙色，向右，
+      画在质量 M 所在的点旁）
+  (b) Hanging block H 的自由体图：T⃗（向上）、F⃗_gH（向下）、a⃗（橙色，向下，画在质量 m
+      所在的点旁）
+  正文已提取解答：T⃗ = M a⃗_S ；F⃗_g + T⃗ = m a⃗_H ；−mg + Ma_S = −ma_H（+ve 方向向上） ；
+  a_S = a_H = a ；a = mg/(M + m) = 3.8 m/s² ；T = Ma = 3.3 × 3.8 = 13 N。
+
+--- Page 37（幻灯片第 38 页）---
+【图】三幅图（题目文字已在正文提取，下面是图里才有的信息）。
+[图内文字]
+  (a) 物块 m 放在倾角 θ 的无摩擦斜面上，上端由一条绳（另一端固定于竖直墙面）拉住；
+      斜面上标 "Frictionless"。
+  (b) 自由体图：x 轴沿斜面、y 轴垂直斜面；N⃗ 沿 +y、T⃗ 沿 +x、F_g 竖直向下；
+      标出 F_g 与 y 轴的夹角 90° − θ，以及斜面倾角 θ。
+  (c) 把 F_g 分解为沿 −y 的 F_g cos θ 与沿 −x 的 F_g sin θ。
+  正文已提取题干（m = 15 kg、θ = 27°）与红字提醒 "PAY ATTENTION TO THE DIRECTION!"。
+
+----------------------------------------------------------------
+无位图、只有矢量图元的页（内容已在正文文字层完整提取）
+----------------------------------------------------------------
+Page 6、13、19、20、24、25、26、34、38：这些页上的图形是标题色块、文字框、表格线与矢量
+箭头，其上的文字已被正文完整提取，无遗漏。其中两页需要说明：
+- Page 20 的 TABLE 5-1「Units in Newton's Second Law」已在正文提取完整：
+  SI 用 newton (N) / kilogram (kg) / m/s²；CGS 用 dyne / gram (g) / cm/s²；
+  British 用 pound (lb) / slug / ft/s²；脚注 a：1 dyne = 1 g·cm/s²；b：1 lb = 1 slug·ft/s²。
+- Page 24 例题配图（2.00 kg 罐头盒在三力作用下的俯视图）标注已在正文提取：
+  y 轴、x 轴、F⃗₂ 沿 +y 方向、F⃗₁ 与 +x 轴成 30° 指向左下方、a⃗ 与 +x 轴成 50°。
+
+----------------------------------------------------------------
+公式还原对照（正文由 PDF 文字层线性化产生：上/下标掉行、特殊字体乱码）
+----------------------------------------------------------------
+- `∆⃗𝑟= ∆𝑥̂𝚤+ ∆𝑦̂𝚥+ ∆𝑧,𝑘` 实为 Δr⃗ = Δx î + Δy ĵ + Δz k̂（`,𝑘` 是 k̂ 被误提取）。
+- `𝑣⃗= 𝑣!̂𝚤+ 𝑣"̂𝚥+ 𝑣#,𝑘` 实为 v⃗ = vₓ î + vᵧ ĵ + v_z k̂（`!`/`"`/`#` 是下标 x/y/z 的字体错位）。
+- `𝑎⃗= 𝑎!̂𝚤+ 𝑎"̂𝚥+ 𝑎#,𝑘` 实为 a⃗ = aₓ î + aᵧ ĵ + a_z k̂。
+- `1 𝑁= 1 𝑘𝑔×1𝑚/𝑠2` 实为 1 N = 1 kg × 1 m/s²。
+- `𝑅= F⃗𝐹=⃗𝐹$ +⃗𝐹% +⃗𝐹& + ⋯` 实为 R⃗ = ΣF⃗ = F⃗₁ + F⃗₂ + F⃗₃ + ⋯
+  （`F⃗` 是 ΣF⃗，`$`/`%`/`&` 分别是下标 1/2/3）。
+- `𝑅! = ∑𝐹!; 𝑅" = ∑𝐹"; 𝑅# = ∑𝐹#` 实为 Rₓ = ΣFₓ ; Rᵧ = ΣFᵧ ; R_z = ΣF_z。
+- `𝑅= √(𝑅!% + 𝑅"% + 𝑅#%)` 实为 R = √(Rₓ² + Rᵧ² + R_z²)。
+- `⃗𝑎= 𝒗𝟐<𝒗𝟏 / 𝒕𝟐<𝒕𝟏` 一类里的 `<` 是减号被误提取。
+- `𝑋𝑖`、`X𝑗`（Page 25）实为单位矢量 î、ĵ。
+- `𝐹'() = 0` 实为 F⃗_net = 0；`⃗𝑎*+ ≠ 0` 实为 a⃗_BA ≠ 0；`⃗𝐹,+` 一类连写是下标字体错位。
+- 列表符号：`´`、`l`、`•`、`à`（箭头 →）均为项目符号或符号被逐个提取，不是正文内容。
+- Page 25 中的双负号 `−−10.0× cos 30°` 是原式所写（F⃗₁ 在该轴上的分量本身为负）。

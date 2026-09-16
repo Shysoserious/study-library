@@ -636,3 +636,67 @@ Next Lecture—Time Value of Money II
     黄花园嘉陵江大桥、解放碑商圈、渝中区、长江等）+ 李嘉诚照片；
     图注: "李嘉诚旗下和记黄埔地产有限公司 2007年以24.5亿元投得重庆市杨家山地块"
 （该页全部文字与公式已在文字层中，公式的指数/伪粗体问题见本附录开头的"说明 3"）
+
+================================================================
+补录：第二轮排查发现的漏页（首轮只按"低文字页/大图覆盖率"挑页，遗漏了这些）
+================================================================
+说明：本讲义的**模板装饰图**不再单独列条，包括——每页页眉色条（1553×144）、整页圆角边框
+（3475×2141）、以及 Page 1 等页出现的"金色天平"插画（380×309）。它们不含文字信息。
+
+--- Page 7（幻灯片第 8 页）图片：两张时间轴折现图 ---
+【图】两张"0—1—2"的时间轴图，用于对比单利与复利下的折现。
+[图内文字]
+  图1：时间轴 0 — 1 — 2；每期现金流均为 1000；
+    从 t=0 的 1000 指向 t=1 的箭头对应 50（红色），从 t=1 的 1000 指向 t=2 的箭头也对应
+    50（红色）。
+  图2：同一时间轴，但折现结果标为 50（t=1，绿色）、50（t=2，绿色）、2.5（t=2，红色）。
+  含义：单利每年只产生 50 的利息（1000 × 5%）；复利第二个 50 是在第一个 50 上再生出的
+  利息，折算回 t=2 时多出的那部分是 2.5（= 0.05 × 50）。
+  正文已提取：FV with simple interest = 1,000 + 50 + 50 = 1,100 ；
+  FV with compound interest = 1050(1 + 0.05) = 1,102.50 ；
+  The extra 2.50 comes from the interest of .05(50) = 2.50 earned on the first interest payment。
+
+--- Page 10（幻灯片第 11 页）图片：时间轴图（现值记号） ---
+【图】一条 0 —（标注 7%）— 1 — 2 的时间轴。
+[图内文字] 右端标 "FV₂ = $1,000"；下方箭头从 FV₂ 指回 FV₁，再从 FV₁ 指回 "PV"（绿色）。
+  含义：已知 2 期后的终值 FV₂ = $1,000、年折现率 7%，先倒推 1 期后的 FV₁，再倒推
+  0 时刻的现值 PV。
+  正文已提取（写正）：FV₁ = FV₂/(1 + r) = $1,000/(1 + 7%) ；
+  PV = FV₁/(1 + r) = FV₂/(1 + r)² = FV₂(1 + r)^-2 = $1,000/(1 + 7%)² ；
+  General present value formula: PV = FV_t (1 + r)^-t ；
+  Recall: FV_t = PV(1 + r)^t ；
+  Interest rate is the KEY to converting present value to future value (or future value to
+  present value)。
+
+--- Page 23（幻灯片第 24 页）图片：信用卡 APR 条款截图（重点补录） ---
+【图】一份信用卡条款说明的截图，标题为 Effective Annual Rate (EAR) 部分的例子。
+[图内文字]（原文为英文，逐条转录）
+  Annual Percentage Rate (APR) for Purchases: 18.99%
+    （原图用红笔圈出 18.99%）"…when you open your account. This APR will vary with the market
+    based on the Prime Rate."
+  APR for Balance Transfers: 18.99%. This APR will vary with the market based on the Prime Rate.
+  APR for Cash Advances: 25.24%. This APR will vary with the market based on the Prime Rate.
+  Penalty APR and When it Applies: Up to 29.99%, based on your creditworthiness. This APR will
+    vary with the market based on the Prime Rate. This APR may be applied to your account if
+    you: 1. Make a late payment; 2. Go over your credit limit; or 3. Make a payment that is
+    returned.
+  How Long Will the Penalty APR Apply? If your APRs are increased for any of these reasons,
+    the Penalty APRs may apply indefinitely.
+  （中文要点：购物年利率 18.99%；余额转账 18.99%；取现 25.24%；惩罚性年利率最高 29.99%，
+    由你的信用状况决定；触发条件为——逾期还款、超出信用额度、还款被退回；
+    一旦因上述原因调高，惩罚性年利率可能无限期适用。）
+  正文已提取：Effective annual rate (EAR): the actual interest rate during the year, after
+  accounting for compounding / APR is the quoted interest rate (on paper). EAR is the actual
+  interest rate (you pay). / You can always convert APR to EAR using the compounding frequency. /
+  Example: Assume that you borrow $100 …If compounded annually, annual interest for a $100 debt
+  is $18.99（即本页正是用这张 18.99% 的条款截图作为算例来源）。
+
+--- Page 1（幻灯片第 2 页）装饰图（无文字，仅登记备查） ---
+【图】"金色天平"插画（380×309 位图），本讲义多页复用的装饰图形，不含文字。
+  本页文字（课程名、Lecture 4: Time Value of Money、Time Value of Money 要点）已在正文提取。
+
+--- Page 3（幻灯片第 4 页）装饰图（无文字，仅登记备查） ---
+【图】两处**黄色荧光笔高亮色块**（位图，分别覆盖倒数第二行与最后一行文字）。
+  目的是视觉强调，本身不含文字；被高亮的文字（"You already recognize that there is TIME
+  VALUE OF MONEY!!" 与 "TIME allows you the opportunity to postpone consumption and earn
+  INTEREST."）已在正文完整提取。

@@ -1,0 +1,4697 @@
+--- Page 0 ---
+CSC 3200 Data Structures and Advanced Programming
+Lecture 3: The Standard Library
+Jingbang Chen
+School of Data Science (SDS)
+The Chinese University of Hong Kong, Shenzhen
+
+--- Page 1 ---
+Using the Standard Library
+The standard library provides reusable types, functions, and I/O tools.
+Common headers
+What they provide
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 2 ---
+Using the Standard Library
+The standard library provides reusable types, functions, and I/O tools.
+Common headers
+What they provide
+<iostream>, <iomanip>, <cstdio>
+<fstream>, <sstream>
+Input, output, formatting, and parsing
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 3 ---
+Using the Standard Library
+The standard library provides reusable types, functions, and I/O tools.
+Common headers
+What they provide
+<iostream>, <iomanip>, <cstdio>
+<fstream>, <sstream>
+Input, output, formatting, and parsing
+<string>, <vector>, <cstring>
+Text and sequences
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 4 ---
+Using the Standard Library
+The standard library provides reusable types, functions, and I/O tools.
+Common headers
+What they provide
+<iostream>, <iomanip>, <cstdio>
+<fstream>, <sstream>
+Input, output, formatting, and parsing
+<string>, <vector>, <cstring>
+Text and sequences
+<algorithm>, <numeric>
+Searching, sorting, and combining values
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 5 ---
+Using the Standard Library
+The standard library provides reusable types, functions, and I/O tools.
+Common headers
+What they provide
+<iostream>, <iomanip>, <cstdio>
+<fstream>, <sstream>
+Input, output, formatting, and parsing
+<string>, <vector>, <cstring>
+Text and sequences
+<algorithm>, <numeric>
+Searching, sorting, and combining values
+<cmath>, <utility>
+Mathematical functions and small tools
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 6 ---
+Using the Standard Library
+The standard library provides reusable types, functions, and I/O tools.
+Common headers
+What they provide
+<iostream>, <iomanip>, <cstdio>
+<fstream>, <sstream>
+Input, output, formatting, and parsing
+<string>, <vector>, <cstring>
+Text and sequences
+<algorithm>, <numeric>
+Searching, sorting, and combining values
+<cmath>, <utility>
+Mathematical functions and small tools
+#include <bits/stdc++.h>
+Includes many library headers at once, but is non-standard
+and is not supported by every compiler setup.
+Not recommended for engineering projects: include the headers you need.
+CSC 3200 · Data Structures and Advanced Programming
+02
+
+--- Page 7 ---
+Common Headers
+Know where to look. You do not need to memorize every function.
+Header
+Examples
+Purpose
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 8 ---
+Common Headers
+Know where to look. You do not need to memorize every function.
+Header
+Examples
+Purpose
+<cmath>
+std::sqrt, std::floor
+Mathematical functions
+<cstdlib>
+std::abs, std::exit
+Integer absolute value; termination
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 9 ---
+Common Headers
+Know where to look. You do not need to memorize every function.
+Header
+Examples
+Purpose
+<cmath>
+std::sqrt, std::floor
+Mathematical functions
+<cstdlib>
+std::abs, std::exit
+Integer absolute value; termination
+<utility>
+std::pair, std::swap
+Group or exchange values
+<numeric>
+std::accumulate
+Combine values over a range
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 10 ---
+Common Headers
+Know where to look. You do not need to memorize every function.
+Header
+Examples
+Purpose
+<cmath>
+std::sqrt, std::floor
+Mathematical functions
+<cstdlib>
+std::abs, std::exit
+Integer absolute value; termination
+<utility>
+std::pair, std::swap
+Group or exchange values
+<numeric>
+std::accumulate
+Combine values over a range
+More containers have their own headers:
+<stack>, <queue>, <set>, and <map> — in Lecture 8.
+CSC 3200 · Data Structures and Advanced Programming
+03
+
+--- Page 11 ---
+Headers and std::
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double x;
+    x = 25.0;
+    cout << sqrt(x) << '\n';
+    return 0;
+}
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 12 ---
+Headers and std::
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double x;
+    x = 25.0;
+    cout << sqrt(x) << '\n';
+    return 0;
+}
+<cmath> provides the declaration of
+std::sqrt.
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 13 ---
+Headers and std::
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double x;
+    x = 25.0;
+    cout << sqrt(x) << '\n';
+    return 0;
+}
+<cmath> provides the declaration of
+std::sqrt.
+std:: identifies a name in the
+standard namespace.
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 14 ---
+Headers and std::
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double x;
+    x = 25.0;
+    cout << sqrt(x) << '\n';
+    return 0;
+}
+<cmath> provides the declaration of
+std::sqrt.
+std:: identifies a name in the
+standard namespace.
+using namespace std;
+lets us write cout and sqrt without
+the std:: prefix.
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 15 ---
+Headers and std::
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double x;
+    x = 25.0;
+    cout << sqrt(x) << '\n';
+    return 0;
+}
+<cmath> provides the declaration of
+std::sqrt.
+std:: identifies a name in the
+standard namespace.
+using namespace std;
+lets us write cout and sqrt without
+the std:: prefix.
+We will use this shorthand in the following examples.
+We will learn more about namespaces in a later lecture.
+It does not replace the required #include directives.
+CSC 3200 · Data Structures and Advanced Programming
+04
+
+--- Page 16 ---
+CSC 3200 · Data Structures and Advanced Programming
+05
+Input and Output
+
+--- Page 17 ---
+Standard Input and Output
+A stream carries a sequence of characters into or out of a program.
+Stream from <iostream>
+Role
+Typical use
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 18 ---
+Standard Input and Output
+A stream carries a sequence of characters into or out of a program.
+Stream from <iostream>
+Role
+Typical use
+cin
+Standard input
+Read input values
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 19 ---
+Standard Input and Output
+A stream carries a sequence of characters into or out of a program.
+Stream from <iostream>
+Role
+Typical use
+cin
+Standard input
+Read input values
+cout
+Standard output
+Write the required result
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 20 ---
+Standard Input and Output
+A stream carries a sequence of characters into or out of a program.
+Stream from <iostream>
+Role
+Typical use
+cin
+Standard input
+Read input values
+cout
+Standard output
+Write the required result
+cerr
+Standard error
+Write error messages
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 21 ---
+Standard Input and Output
+A stream carries a sequence of characters into or out of a program.
+Stream from <iostream>
+Role
+Typical use
+cin
+Standard input
+Read input values
+cout
+Standard output
+Write the required result
+cerr
+Standard error
+Write error messages
+int n;
+cin >> n;
+cout << n << '\n';
+cin >> n reads a value into n.
+cout << n writes its value.
+CSC 3200 · Data Structures and Advanced Programming
+06
+
+--- Page 22 ---
+Reading Typed Values
+Input: 12 3.5 A\n
+int count;
+double price;
+char grade;
+cin >> count >> price >> grade;
+Extraction
+Stored value
+Input still waiting
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 23 ---
+Reading Typed Values
+Input: 12 3.5 A\n
+int count;
+double price;
+char grade;
+cin >> count >> price >> grade;
+Extraction
+Stored value
+Input still waiting
+>> count
+12
+" 3.5 A\n"
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 24 ---
+Reading Typed Values
+Input: 12 3.5 A\n
+int count;
+double price;
+char grade;
+cin >> count >> price >> grade;
+Extraction
+Stored value
+Input still waiting
+>> count
+12
+" 3.5 A\n"
+>> price
+3.5
+" A\n"
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 25 ---
+Reading Typed Values
+Input: 12 3.5 A\n
+int count;
+double price;
+char grade;
+cin >> count >> price >> grade;
+Extraction
+Stored value
+Input still waiting
+>> count
+12
+" 3.5 A\n"
+>> price
+3.5
+" A\n"
+>> grade
+'A'
+"\n"
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 26 ---
+Reading Typed Values
+Input: 12 3.5 A\n
+int count;
+double price;
+char grade;
+cin >> count >> price >> grade;
+Extraction
+Stored value
+Input still waiting
+>> count
+12
+" 3.5 A\n"
+>> price
+3.5
+" A\n"
+>> grade
+'A'
+"\n"
+The destination's type determines how characters are interpreted.
+By default, >> skips leading whitespace.
+It returns the same stream, allowing the next extraction to follow.
+CSC 3200 · Data Structures and Advanced Programming
+07
+
+--- Page 27 ---
+Whitespace and Character Input
+Start each example with fresh input: A B\n
+Formatted extraction
+char a, b;
+cin >> a;
+cin >> b;
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 28 ---
+Whitespace and Character Input
+Start each example with fresh input: A B\n
+Formatted extraction
+char a, b;
+cin >> a;
+cin >> b;
+a == 'A'
+b == 'B'
+Leading whitespace is skipped.
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 29 ---
+Whitespace and Character Input
+Start each example with fresh input: A B\n
+Formatted extraction
+char a, b;
+cin >> a;
+cin >> b;
+a == 'A'
+b == 'B'
+Leading whitespace is skipped.
+Read actual characters
+char a, b;
+cin.get(a);
+cin.get(b);
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 30 ---
+Whitespace and Character Input
+Start each example with fresh input: A B\n
+Formatted extraction
+char a, b;
+cin >> a;
+cin >> b;
+a == 'A'
+b == 'B'
+Leading whitespace is skipped.
+Read actual characters
+char a, b;
+cin.get(a);
+cin.get(b);
+a == 'A'
+b == ' '
+The space is data too.
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 31 ---
+Whitespace and Character Input
+Start each example with fresh input: A B\n
+Formatted extraction
+char a, b;
+cin >> a;
+cin >> b;
+a == 'A'
+b == 'B'
+Leading whitespace is skipped.
+Read actual characters
+char a, b;
+cin.get(a);
+cin.get(b);
+a == 'A'
+b == ' '
+The space is data too.
+Use >> when whitespace separates values.
+Use get when each individual character matters.
+Spaces, tabs, and newlines are all whitespace.
+CSC 3200 · Data Structures and Advanced Programming
+08
+
+--- Page 32 ---
+What Does a Read Consume?
+int whole;
+double fraction;
+cin >> whole;
+cin >> fraction;
+Input: 12.5\n
+Does the first read fail?
+What does the second read see?
+Operation
+Result
+Input still waiting
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 33 ---
+What Does a Read Consume?
+int whole;
+double fraction;
+cin >> whole;
+cin >> fraction;
+Input: 12.5\n
+Does the first read fail?
+What does the second read see?
+Operation
+Result
+Input still waiting
+cin >> whole
+whole == 12
+".5\n"
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 34 ---
+What Does a Read Consume?
+int whole;
+double fraction;
+cin >> whole;
+cin >> fraction;
+Input: 12.5\n
+Does the first read fail?
+What does the second read see?
+Operation
+Result
+Input still waiting
+cin >> whole
+whole == 12
+".5\n"
+cin >> fraction
+fraction == 0.5
+"\n"
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 35 ---
+What Does a Read Consume?
+int whole;
+double fraction;
+cin >> whole;
+cin >> fraction;
+Input: 12.5\n
+Does the first read fail?
+What does the second read see?
+Operation
+Result
+Input still waiting
+cin >> whole
+whole == 12
+".5\n"
+cin >> fraction
+fraction == 0.5
+"\n"
+A successful integer read does not validate the whole token.
+Python int("12.5") raises ValueError.
+C++ reads an integer prefix and leaves the remaining characters.
+CSC 3200 · Data Structures and Advanced Programming
+09
+
+--- Page 36 ---
+Writing with cout
+Do these produce the same output?
+Python
+print(12, 7)
+C++
+cout << 12 << 7;
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 37 ---
+Writing with cout
+Do these produce the same output?
+Python
+print(12, 7)
+Prints 12 7.
+Adds a newline.
+C++
+cout << 12 << 7;
+Prints 127.
+Adds no space or newline.
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 38 ---
+Writing with cout
+Do these produce the same output?
+Python
+print(12, 7)
+Prints 12 7.
+Adds a newline.
+C++
+cout << 12 << 7;
+Prints 127.
+Adds no space or newline.
+In C++, choose the spaces and line breaks explicitly:
+cout << 12 << ' ' << 7 << '\n';
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 39 ---
+Writing with cout
+Do these produce the same output?
+Python
+print(12, 7)
+Prints 12 7.
+Adds a newline.
+C++
+cout << 12 << 7;
+Prints 127.
+Adds no space or newline.
+In C++, choose the spaces and line breaks explicitly:
+cout << 12 << ' ' << 7 << '\n';
+Each << returns the same stream, so another << can follow.
+CSC 3200 · Data Structures and Advanced Programming
+10
+
+--- Page 40 ---
+Formatting Output
+Manipulators change how a stream formats later output.
+Add #include <iomanip> for setprecision.
+double value;
+value = 12.3456;
+cout << fixed << setprecision(2);
+cout << value << '\n';
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 41 ---
+Formatting Output
+Manipulators change how a stream formats later output.
+Add #include <iomanip> for setprecision.
+double value;
+value = 12.3456;
+cout << fixed << setprecision(2);
+cout << value << '\n';
+Output: 12.35. With fixed, precision counts decimal places.
+The stored value has not changed.
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 42 ---
+Formatting Output
+Manipulators change how a stream formats later output.
+Add #include <iomanip> for setprecision.
+double value;
+value = 12.3456;
+cout << fixed << setprecision(2);
+cout << value << '\n';
+Output: 12.35. With fixed, precision counts decimal places.
+The stored value has not changed.
+cout << true << '\n';
+cout << boolalpha;
+cout << true << '\n';
+Default: 1
+With boolalpha: true
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 43 ---
+Formatting Output
+Manipulators change how a stream formats later output.
+Add #include <iomanip> for setprecision.
+double value;
+value = 12.3456;
+cout << fixed << setprecision(2);
+cout << value << '\n';
+Output: 12.35. With fixed, precision counts decimal places.
+The stored value has not changed.
+cout << true << '\n';
+cout << boolalpha;
+cout << true << '\n';
+Default: 1
+With boolalpha: true
+These settings stay active on this stream until changed.
+Without fixed or scientific, precision counts significant digits.
+CSC 3200 · Data Structures and Advanced Programming
+11
+
+--- Page 44 ---
+Input Can Fail
+int x;
+if (cin >> x) {
+    cout << x << '\n';
+} else {
+    cerr << "Invalid input\n";
+}
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 45 ---
+Input Can Fail
+int x;
+if (cin >> x) {
+    cout << x << '\n';
+} else {
+    cerr << "Invalid input\n";
+}
+Input: 23
+Reading succeeds.
+The program prints 23.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 46 ---
+Input Can Fail
+int x;
+if (cin >> x) {
+    cout << x << '\n';
+} else {
+    cerr << "Invalid input\n";
+}
+Input: 23
+Reading succeeds.
+The program prints 23.
+Input: hello
+Reading fails.
+The program prints
+Invalid input.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 47 ---
+Input Can Fail
+int x;
+if (cin >> x) {
+    cout << x << '\n';
+} else {
+    cerr << "Invalid input\n";
+}
+Input: 23
+Reading succeeds.
+The program prints 23.
+Input: hello
+Reading fails.
+The program prints
+Invalid input.
+An integer outside the range of int also makes the read fail.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 48 ---
+Input Can Fail
+int x;
+if (cin >> x) {
+    cout << x << '\n';
+} else {
+    cerr << "Invalid input\n";
+}
+Input: 23
+Reading succeeds.
+The program prints 23.
+Input: hello
+Reading fails.
+The program prints
+Invalid input.
+An integer outside the range of int also makes the read fail.
+Check whether reading succeeded before using the value.
+CSC 3200 · Data Structures and Advanced Programming
+12
+
+--- Page 49 ---
+Read While Reading Succeeds
+Read, then process
+int x;
+long long total = 0;
+while (cin >> x) {
+    total += x;
+}
+Input: 4 7 -2
+Then the input ends.
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 50 ---
+Read While Reading Succeeds
+Read, then process
+int x;
+long long total = 0;
+while (cin >> x) {
+    total += x;
+}
+Input: 4 7 -2
+Then the input ends.
+Three successful reads.
+Three executions of the body.
+total = 9.
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 51 ---
+Read While Reading Succeeds
+Read, then process
+int x;
+long long total = 0;
+while (cin >> x) {
+    total += x;
+}
+Input: 4 7 -2
+Then the input ends.
+Three successful reads.
+Three executions of the body.
+total = 9.
+The next read fails.
+The loop body is not entered.
+CSC 3200 · Data Structures and Advanced Programming
+13
+
+--- Page 52 ---
+scanf and printf
+C uses <stdio.h> for scanf and printf.
+In C++, include <cstdio> and use scanf / printf.
+int n;
+double price;
+if (scanf("%d %lf", &n, &price) == 2) {
+    printf("n=%d, price=%.2f\n", n, price);
+}
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 53 ---
+scanf and printf
+C uses <stdio.h> for scanf and printf.
+In C++, include <cstdio> and use scanf / printf.
+int n;
+double price;
+if (scanf("%d %lf", &n, &price) == 2) {
+    printf("n=%d, price=%.2f\n", n, price);
+}
+Input 3 12.5 produces n=3, price=12.50.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 54 ---
+scanf and printf
+C uses <stdio.h> for scanf and printf.
+In C++, include <cstdio> and use scanf / printf.
+int n;
+double price;
+if (scanf("%d %lf", &n, &price) == 2) {
+    printf("n=%d, price=%.2f\n", n, price);
+}
+Input 3 12.5 produces n=3, price=12.50.
+Input format
+%d reads an int; %lf reads a double.
+&n and &price specify where to store the values.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 55 ---
+scanf and printf
+C uses <stdio.h> for scanf and printf.
+In C++, include <cstdio> and use scanf / printf.
+int n;
+double price;
+if (scanf("%d %lf", &n, &price) == 2) {
+    printf("n=%d, price=%.2f\n", n, price);
+}
+Input 3 12.5 produces n=3, price=12.50.
+Input format
+%d reads an int; %lf reads a double.
+&n and &price specify where to store the values.
+Return value
+Check for 2 successful assignments before using both values.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 56 ---
+scanf and printf
+C uses <stdio.h> for scanf and printf.
+In C++, include <cstdio> and use scanf / printf.
+int n;
+double price;
+if (scanf("%d %lf", &n, &price) == 2) {
+    printf("n=%d, price=%.2f\n", n, price);
+}
+Input 3 12.5 produces n=3, price=12.50.
+Input format
+%d reads an int; %lf reads a double.
+&n and &price specify where to store the values.
+Return value
+Check for 2 successful assignments before using both values.
+Output format
+%.2f prints two decimal places in this call.
+The format string describes the conversions.
+We will explain addresses and & in Lecture 5.
+CSC 3200 · Data Structures and Advanced Programming
+14
+
+--- Page 57 ---
+Format Strings and Types
+For each row, x has the type shown.
+The format must match the argument actually passed.
+Type of x
+Reading with scanf
+Writing with printf
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 58 ---
+Format Strings and Types
+For each row, x has the type shown.
+The format must match the argument actually passed.
+Type of x
+Reading with scanf
+Writing with printf
+int
+scanf("%d", &x);
+printf("%d", x);
+long long
+scanf("%lld", &x);
+printf("%lld", x);
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 59 ---
+Format Strings and Types
+For each row, x has the type shown.
+The format must match the argument actually passed.
+Type of x
+Reading with scanf
+Writing with printf
+int
+scanf("%d", &x);
+printf("%d", x);
+long long
+scanf("%lld", &x);
+printf("%lld", x);
+float
+scanf("%f", &x);
+printf("%f", x);
+double
+scanf("%lf", &x);
+printf("%f", x);
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 60 ---
+Format Strings and Types
+For each row, x has the type shown.
+The format must match the argument actually passed.
+Type of x
+Reading with scanf
+Writing with printf
+int
+scanf("%d", &x);
+printf("%d", x);
+long long
+scanf("%lld", &x);
+printf("%lld", x);
+float
+scanf("%f", &x);
+printf("%f", x);
+double
+scanf("%lf", &x);
+printf("%f", x);
+printf receives a float promoted to double.
+scanf must distinguish the two destination types.
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 61 ---
+Format Strings and Types
+For each row, x has the type shown.
+The format must match the argument actually passed.
+Type of x
+Reading with scanf
+Writing with printf
+int
+scanf("%d", &x);
+printf("%d", x);
+long long
+scanf("%lld", &x);
+printf("%lld", x);
+float
+scanf("%f", &x);
+printf("%f", x);
+double
+scanf("%lf", &x);
+printf("%f", x);
+printf receives a float promoted to double.
+scanf must distinguish the two destination types.
+A mismatched format can cause undefined behavior.
+Compiler warnings help, but the format is not a type-safe interface.
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 62 ---
+Format Strings and Types
+For each row, x has the type shown.
+The format must match the argument actually passed.
+Type of x
+Reading with scanf
+Writing with printf
+int
+scanf("%d", &x);
+printf("%d", x);
+long long
+scanf("%lld", &x);
+printf("%lld", x);
+float
+scanf("%f", &x);
+printf("%f", x);
+double
+scanf("%lf", &x);
+printf("%f", x);
+printf receives a float promoted to double.
+scanf must distinguish the two destination types.
+A mismatched format can cause undefined behavior.
+Compiler warnings help, but the format is not a type-safe interface.
+For a char ch, use scanf(" %c", &ch) to skip whitespace.
+"%c" alone reads the next character, even a newline.
+CSC 3200 · Data Structures and Advanced Programming
+15
+
+--- Page 63 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 64 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+Formatting
+Compact format in each call
+"n=%d, price=%.2f\n"
+Explicit << chains and manipulators
+Some settings persist
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 65 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+Formatting
+Compact format in each call
+"n=%d, price=%.2f\n"
+Explicit << chains and manipulators
+Some settings persist
+Checking input
+Test the number of assignments
+scanf("%d", &n) == 1
+Test the stream after extraction
+if (cin >> n)
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 66 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+Formatting
+Compact format in each call
+"n=%d, price=%.2f\n"
+Explicit << chains and manipulators
+Some settings persist
+Checking input
+Test the number of assignments
+scanf("%d", &n) == 1
+Test the stream after extraction
+if (cin >> n)
+Numeric range
+errors
+An out-of-range conversion has
+undefined behavior
+Out-of-range extraction records
+failure
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 67 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+Formatting
+Compact format in each call
+"n=%d, price=%.2f\n"
+Explicit << chains and manipulators
+Some settings persist
+Checking input
+Test the number of assignments
+scanf("%d", &n) == 1
+Test the stream after extraction
+if (cin >> n)
+Numeric range
+errors
+An out-of-range conversion has
+undefined behavior
+Out-of-range extraction records
+failure
+Where they fit
+C programs and existing C APIs
+C++ types and a common interface
+for terminal, file, and string I/O
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 68 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+Formatting
+Compact format in each call
+"n=%d, price=%.2f\n"
+Explicit << chains and manipulators
+Some settings persist
+Checking input
+Test the number of assignments
+scanf("%d", &n) == 1
+Test the stream after extraction
+if (cin >> n)
+Numeric range
+errors
+An out-of-range conversion has
+undefined behavior
+Out-of-range extraction records
+failure
+Where they fit
+C programs and existing C APIs
+C++ types and a common interface
+for terminal, file, and string I/O
+Both can be efficient. Performance depends on the workload,
+buffering, synchronization, and implementation.
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 69 ---
+Choosing an I/O Interface
+Consideration
+scanf / printf
+cin / cout
+Types
+Programmer keeps format and
+arguments consistent
+Argument types select the stream
+operations
+Formatting
+Compact format in each call
+"n=%d, price=%.2f\n"
+Explicit << chains and manipulators
+Some settings persist
+Checking input
+Test the number of assignments
+scanf("%d", &n) == 1
+Test the stream after extraction
+if (cin >> n)
+Numeric range
+errors
+An out-of-range conversion has
+undefined behavior
+Out-of-range extraction records
+failure
+Where they fit
+C programs and existing C APIs
+C++ types and a common interface
+for terminal, file, and string I/O
+Both can be efficient. Performance depends on the workload,
+buffering, synchronization, and implementation.
+We will use cin/cout in our examples and recognize both interfaces.
+CSC 3200 · Data Structures and Advanced Programming
+16
+
+--- Page 70 ---
+Things that we might skip
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 71 ---
+Things that we might skip
+File input and output
+Read data from files and save results with <fstream>.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 72 ---
+Things that we might skip
+File input and output
+Read data from files and save results with <fstream>.
+Buffering and flushing
+Control when pending output reaches its destination.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 73 ---
+Things that we might skip
+File input and output
+Read data from files and save results with <fstream>.
+Buffering and flushing
+Control when pending output reaches its destination.
+Input error recovery
+Handle invalid input and decide whether to retry.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 74 ---
+Things that we might skip
+File input and output
+Read data from files and save results with <fstream>.
+Buffering and flushing
+Control when pending output reaches its destination.
+Input error recovery
+Handle invalid input and decide whether to retry.
+More output formatting
+Set field widths, alignment, or numeric bases.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 75 ---
+Things that we might skip
+File input and output
+Read data from files and save results with <fstream>.
+Buffering and flushing
+Control when pending output reaches its destination.
+Input error recovery
+Handle invalid input and decide whether to retry.
+More output formatting
+Set field widths, alignment, or numeric bases.
+Feel free to explore these on your own when you need them.
+CSC 3200 · Data Structures and Advanced Programming
+17
+
+--- Page 76 ---
+CSC 3200 · Data Structures and Advanced Programming
+18
+Strings
+
+--- Page 77 ---
+Fixed-Size Arrays
+An array stores a fixed number of elements of the same type.
+int a[3] = {10, 20, 30};
+int: the element type.
+3: the number of elements.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 78 ---
+Fixed-Size Arrays
+An array stores a fixed number of elements of the same type.
+int a[3] = {10, 20, 30};
+int: the element type.
+3: the number of elements.
+Array index
+0
+1
+2
+Initial value
+10
+20
+30
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 79 ---
+Fixed-Size Arrays
+An array stores a fixed number of elements of the same type.
+int a[3] = {10, 20, 30};
+int: the element type.
+3: the number of elements.
+Array index
+0
+1
+2
+Initial value
+10
+20
+30
+a[1] = 99;
+cout << a[1];
+Index 1 selects the second element.
+This prints 99.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 80 ---
+Fixed-Size Arrays
+An array stores a fixed number of elements of the same type.
+int a[3] = {10, 20, 30};
+int: the element type.
+3: the number of elements.
+Array index
+0
+1
+2
+Initial value
+10
+20
+30
+a[1] = 99;
+cout << a[1];
+Index 1 selects the second element.
+This prints 99.
+The size is fixed at compile time. Indices start at 0,
+so this array has valid indices 0, 1, and 2.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 81 ---
+Fixed-Size Arrays
+An array stores a fixed number of elements of the same type.
+int a[3] = {10, 20, 30};
+int: the element type.
+3: the number of elements.
+Array index
+0
+1
+2
+Initial value
+10
+20
+30
+a[1] = 99;
+cout << a[1];
+Index 1 selects the second element.
+This prints 99.
+The size is fixed at compile time. Indices start at 0,
+so this array has valid indices 0, 1, and 2.
+The array cannot grow. Accessing a[3] is out of bounds.
+CSC 3200 · Data Structures and Advanced Programming
+19
+
+--- Page 82 ---
+Character Arrays and Text
+char word[4] = "cat";
+4 char slots, 3 text characters.
+'\0' marks the end of a C-style string.
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 83 ---
+Character Arrays and Text
+char word[4] = "cat";
+4 char slots, 3 text characters.
+'\0' marks the end of a C-style string.
+Array index
+0
+1
+2
+3
+Stored character
+'c'
+'a'
+'t'
+'\0'
+This fixed buffer cannot grow. C-string functions need the final
+'\0' to know where the text ends.
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 84 ---
+Character Arrays and Text
+char word[4] = "cat";
+4 char slots, 3 text characters.
+'\0' marks the end of a C-style string.
+Array index
+0
+1
+2
+3
+Stored character
+'c'
+'a'
+'t'
+'\0'
+This fixed buffer cannot grow. C-string functions need the final
+'\0' to know where the text ends.
+Text has common operations beyond accessing one character:
+Substring
+Extract "ell" from "hello".
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 85 ---
+Character Arrays and Text
+char word[4] = "cat";
+4 char slots, 3 text characters.
+'\0' marks the end of a C-style string.
+Array index
+0
+1
+2
+3
+Stored character
+'c'
+'a'
+'t'
+'\0'
+This fixed buffer cannot grow. C-string functions need the final
+'\0' to know where the text ends.
+Text has common operations beyond accessing one character:
+Substring
+Extract "ell" from "hello".
+Concatenation
+Join "cat" and "s" to get "cats".
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 86 ---
+Character Arrays and Text
+char word[4] = "cat";
+4 char slots, 3 text characters.
+'\0' marks the end of a C-style string.
+Array index
+0
+1
+2
+3
+Stored character
+'c'
+'a'
+'t'
+'\0'
+This fixed buffer cannot grow. C-string functions need the final
+'\0' to know where the text ends.
+Text has common operations beyond accessing one character:
+Substring
+Extract "ell" from "hello".
+Concatenation
+Join "cat" and "s" to get "cats".
+Libraries provide operations for working with text.
+C++ provides the string type with these operations
+and storage that can grow with the text.
+CSC 3200 · Data Structures and Advanced Programming
+20
+
+--- Page 87 ---
+A String Stores Text
+C++ provides string for text and its operations.
+Include <string> to use it.
+One character
+char grade;
+grade = 'A';
+A sequence of characters
+string name;
+name = "Ada Lovelace";
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 88 ---
+A String Stores Text
+C++ provides string for text and its operations.
+Include <string> to use it.
+One character
+char grade;
+grade = 'A';
+Single quotes: a char.
+A sequence of characters
+string name;
+name = "Ada Lovelace";
+Double quotes supply text for a string.
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 89 ---
+A String Stores Text
+C++ provides string for text and its operations.
+Include <string> to use it.
+One character
+char grade;
+grade = 'A';
+Single quotes: a char.
+A sequence of characters
+string name;
+name = "Ada Lovelace";
+Double quotes supply text for a string.
+string text;
+cout << text.size();
+Prints 0: a default-constructed string is
+empty.
+CSC 3200 · Data Structures and Advanced Programming
+21
+
+--- Page 90 ---
+C Strings and std::string
+Use <cstring> for C-string functions in C++.
+In C, the corresponding header is <string.h>.
+Operation
+C-style character buffer
+std::string
+Length
+strlen(text)
+Searches for the first '\0'
+text.size()
+Uses the stored length
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 91 ---
+C Strings and std::string
+Use <cstring> for C-string functions in C++.
+In C, the corresponding header is <string.h>.
+Operation
+C-style character buffer
+std::string
+Length
+strlen(text)
+Searches for the first '\0'
+text.size()
+Uses the stored length
+Replace / append
+strcpy(dst, src)
+strcat(dst, src)
+dst = src
+dst += src
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 92 ---
+C Strings and std::string
+Use <cstring> for C-string functions in C++.
+In C, the corresponding header is <string.h>.
+Operation
+C-style character buffer
+std::string
+Length
+strlen(text)
+Searches for the first '\0'
+text.size()
+Uses the stored length
+Replace / append
+strcpy(dst, src)
+strcat(dst, src)
+dst = src
+dst += src
+Equal contents?
+strcmp(a, b) == 0
+a == b
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 93 ---
+C Strings and std::string
+Use <cstring> for C-string functions in C++.
+In C, the corresponding header is <string.h>.
+Operation
+C-style character buffer
+std::string
+Length
+strlen(text)
+Searches for the first '\0'
+text.size()
+Uses the stored length
+Replace / append
+strcpy(dst, src)
+strcat(dst, src)
+dst = src
+dst += src
+Equal contents?
+strcmp(a, b) == 0
+a == b
+Character buffer
+Fits C APIs and explicitly bounded storage
+without dynamic allocation.
+You must provide enough room, including
+'\0', before copying or appending.
+std::string
+Manages length and growth. Assignment and
+comparison work on text.
+Growth may allocate or copy data. Valid
+indices still matter.
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 94 ---
+C Strings and std::string
+Use <cstring> for C-string functions in C++.
+In C, the corresponding header is <string.h>.
+Operation
+C-style character buffer
+std::string
+Length
+strlen(text)
+Searches for the first '\0'
+text.size()
+Uses the stored length
+Replace / append
+strcpy(dst, src)
+strcat(dst, src)
+dst = src
+dst += src
+Equal contents?
+strcmp(a, b) == 0
+a == b
+Character buffer
+Fits C APIs and explicitly bounded storage
+without dynamic allocation.
+You must provide enough room, including
+'\0', before copying or appending.
+std::string
+Manages length and growth. Assignment and
+comparison work on text.
+Growth may allocate or copy data. Valid
+indices still matter.
+Raw arrays do not support whole-array assignment with =. For C strings, == does not compare
+contents. These are different operations, not interchangeable spellings.
+CSC 3200 · Data Structures and Advanced Programming
+22
+
+--- Page 95 ---
+Reading Values, Not Lines
+Input: 42 Ada Lovelace
+Python
+parts = input().split()
+age = int(parts[0])
+name = parts[1]
+C++
+int age;
+string name;
+cin >> age >> name;
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 96 ---
+Reading Values, Not Lines
+Input: 42 Ada Lovelace
+Python
+parts = input().split()
+age = int(parts[0])
+name = parts[1]
+C++
+int age;
+string name;
+cin >> age >> name;
+age becomes 42; name becomes "Ada".
+In the C++ input stream, " Lovelace" is still waiting.
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 97 ---
+Reading Values, Not Lines
+Input: 42 Ada Lovelace
+Python
+parts = input().split()
+age = int(parts[0])
+name = parts[1]
+C++
+int age;
+string name;
+cin >> age >> name;
+age becomes 42; name becomes "Ada".
+In the C++ input stream, " Lovelace" is still waiting.
+>> an int
+Skips leading whitespace, then parses an integer.
+>> a string
+Skips leading whitespace, then reads one word.
+>> a char
+Skips leading whitespace, then reads one character.
+CSC 3200 · Data Structures and Advanced Programming
+23
+
+--- Page 98 ---
+Reading C-Style Strings
+Start each example with fresh input: abcdef.
+C-style buffer
+char word[4];
+scanf("%3s", word);
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 99 ---
+Reading C-Style Strings
+Start each example with fresh input: abcdef.
+C-style buffer
+char word[4];
+scanf("%3s", word);
+Stores "abc" plus '\0'.
+The input still contains "def".
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 100 ---
+Reading C-Style Strings
+Start each example with fresh input: abcdef.
+C-style buffer
+char word[4];
+scanf("%3s", word);
+Stores "abc" plus '\0'.
+The input still contains "def".
+std::string
+string word;
+cin >> word;
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 101 ---
+Reading C-Style Strings
+Start each example with fresh input: abcdef.
+C-style buffer
+char word[4];
+scanf("%3s", word);
+Stores "abc" plus '\0'.
+The input still contains "def".
+std::string
+string word;
+cin >> word;
+Stores the complete word "abcdef", growing
+its storage as needed.
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 102 ---
+Reading C-Style Strings
+Start each example with fresh input: abcdef.
+C-style buffer
+char word[4];
+scanf("%3s", word);
+Stores "abc" plus '\0'.
+The input still contains "def".
+std::string
+string word;
+cin >> word;
+Stores the complete word "abcdef", growing
+its storage as needed.
+For char word[4], "%3s" leaves one slot for '\0'.
+An unrestricted "%s" can overflow this buffer.
+Both read one word, not a whole line. Pass word, not &word, to %s. Limiting the width prevents
+overflow here, but does not consume or reject an overlong word.
+CSC 3200 · Data Structures and Advanced Programming
+24
+
+--- Page 103 ---
+Reading a Whole Line
+For a name, a sentence, or a line of data, use getline.
+Python
+name = input()
+C++
+string name;
+getline(cin, name);
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 104 ---
+Reading a Whole Line
+For a name, a sentence, or a line of data, use getline.
+Python
+name = input()
+C++
+string name;
+getline(cin, name);
+Input Ada Lovelace\n → name == "Ada Lovelace".
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 105 ---
+Reading a Whole Line
+For a name, a sentence, or a line of data, use getline.
+Python
+name = input()
+C++
+string name;
+getline(cin, name);
+Input Ada Lovelace\n → name == "Ada Lovelace".
+Spaces inside the line are preserved.
+The newline is consumed, but is not stored in the string.
+An empty line produces an empty string.
+CSC 3200 · Data Structures and Advanced Programming
+25
+
+--- Page 106 ---
+Streams: One Interface, Different Sources
+So far, we have read from standard input.
+The same operations also work with text in memory and files.
+Source / destination
+Input
+Output
+Header
+Standard I/O
+Existing objects
+cin
+cout
+<iostream>
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 107 ---
+Streams: One Interface, Different Sources
+So far, we have read from standard input.
+The same operations also work with text in memory and files.
+Source / destination
+Input
+Output
+Header
+Standard I/O
+Existing objects
+cin
+cout
+<iostream>
+Text in memory
+Types we create
+istringstream
+ostringstream
+<sstream>
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 108 ---
+Streams: One Interface, Different Sources
+So far, we have read from standard input.
+The same operations also work with text in memory and files.
+Source / destination
+Input
+Output
+Header
+Standard I/O
+Existing objects
+cin
+cout
+<iostream>
+Text in memory
+Types we create
+istringstream
+ostringstream
+<sstream>
+A file (optional)
+Types we create
+ifstream
+ofstream
+<fstream>
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 109 ---
+Streams: One Interface, Different Sources
+So far, we have read from standard input.
+The same operations also work with text in memory and files.
+Source / destination
+Input
+Output
+Header
+Standard I/O
+Existing objects
+cin
+cout
+<iostream>
+Text in memory
+Types we create
+istringstream
+ostringstream
+<sstream>
+A file (optional)
+Types we create
+ifstream
+ofstream
+<fstream>
+>> extracts a value; << writes a value.
+getline reads a line from an input stream.
+Check whether opening or reading succeeded.
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 110 ---
+Streams: One Interface, Different Sources
+So far, we have read from standard input.
+The same operations also work with text in memory and files.
+Source / destination
+Input
+Output
+Header
+Standard I/O
+Existing objects
+cin
+cout
+<iostream>
+Text in memory
+Types we create
+istringstream
+ostringstream
+<sstream>
+A file (optional)
+Types we create
+ifstream
+ofstream
+<fstream>
+>> extracts a value; << writes a value.
+getline reads a line from an input stream.
+Check whether opening or reading succeeded.
+Change the source, keep the reading logic.
+CSC 3200 · Data Structures and Advanced Programming
+26
+
+--- Page 111 ---
+Parse a String with a Stream
+#include <sstream> lets us read values from text already in memory.
+string line = "CSC3200 42 3.5";
+istringstream in(line);
+string course;
+int students;
+double hours;
+if (in >> course >> students >> hours) {
+    cout << course << ' ' << students << ' ' << hours;
+}
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 112 ---
+Parse a String with a Stream
+#include <sstream> lets us read values from text already in memory.
+string line = "CSC3200 42 3.5";
+istringstream in(line);
+string course;
+int students;
+double hours;
+if (in >> course >> students >> hours) {
+    cout << course << ' ' << students << ' ' << hours;
+}
+The stream parses three values: "CSC3200", 42, and 3.5.
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 113 ---
+Parse a String with a Stream
+#include <sstream> lets us read values from text already in memory.
+string line = "CSC3200 42 3.5";
+istringstream in(line);
+string course;
+int students;
+double hours;
+if (in >> course >> students >> hours) {
+    cout << course << ' ' << students << ' ' << hours;
+}
+The stream parses three values: "CSC3200", 42, and 3.5.
+Use the same >>, getline, and success checks as with cin.
+We can test a parser repeatedly using fixed input strings.
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 114 ---
+Parse a String with a Stream
+#include <sstream> lets us read values from text already in memory.
+string line = "CSC3200 42 3.5";
+istringstream in(line);
+string course;
+int students;
+double hours;
+if (in >> course >> students >> hours) {
+    cout << course << ' ' << students << ' ' << hours;
+}
+The stream parses three values: "CSC3200", 42, and 3.5.
+Use the same >>, getline, and success checks as with cin.
+We can test a parser repeatedly using fixed input strings.
+Reading from in does not modify line.
+The stream maintains its own input position.
+CSC 3200 · Data Structures and Advanced Programming
+27
+
+--- Page 115 ---
+Number of Segments in a String
+LeetCode 434 · Easy
+Count the nonempty groups of characters separated by spaces.
+Punctuation belongs to a group, just like letters.
+Input s
+Number of segments
+" learn C++ together! "
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 116 ---
+Number of Segments in a String
+LeetCode 434 · Easy
+Count the nonempty groups of characters separated by spaces.
+Punctuation belongs to a group, just like letters.
+Input s
+Number of segments
+" learn C++ together! "
+3
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 117 ---
+Number of Segments in a String
+LeetCode 434 · Easy
+Count the nonempty groups of characters separated by spaces.
+Punctuation belongs to a group, just like letters.
+Input s
+Number of segments
+" learn C++ together! "
+3
+"hello,world"
+1
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 118 ---
+Number of Segments in a String
+LeetCode 434 · Easy
+Count the nonempty groups of characters separated by spaces.
+Punctuation belongs to a group, just like letters.
+Input s
+Number of segments
+" learn C++ together! "
+3
+"hello,world"
+1
+"" or " "
+0
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 119 ---
+Number of Segments in a String
+LeetCode 434 · Easy
+Count the nonempty groups of characters separated by spaces.
+Punctuation belongs to a group, just like letters.
+Input s
+Number of segments
+" learn C++ together! "
+3
+"hello,world"
+1
+"" or " "
+0
+Extracted words: "learn", "C++", "together!".
+CSC 3200 · Data Structures and Advanced Programming
+28
+
+--- Page 120 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 121 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 122 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+Read one string word at a time.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 123 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+Read one string word at a time.
+Increase the count only after a successful
+extraction.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 124 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+Read one string word at a time.
+Increase the count only after a successful
+extraction.
+Easy to Get Wrong
+Counting spaces gives the wrong answer
+when spaces repeat.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 125 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+Read one string word at a time.
+Increase the count only after a successful
+extraction.
+Easy to Get Wrong
+Counting spaces gives the wrong answer
+when spaces repeat.
+A comma does not end a segment.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 126 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+Read one string word at a time.
+Increase the count only after a successful
+extraction.
+Easy to Get Wrong
+Counting spaces gives the wrong answer
+when spaces repeat.
+A comma does not end a segment.
+Start the count at 0 to handle empty
+input.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 127 ---
+Counting Segments: Program Anatomy
+Program Anatomy
+Create an istringstream from s.
+Read one string word at a time.
+Increase the count only after a successful
+extraction.
+Easy to Get Wrong
+Counting spaces gives the wrong answer
+when spaces repeat.
+A comma does not end a segment.
+Start the count at 0 to handle empty
+input.
+Keep only the current word and the count.
+CSC 3200 · Data Structures and Advanced Programming
+29
+
+--- Page 128 ---
+2-Song Break
+《自己肯定感爆上げ↑↑しゅきしゅきソング》 初星学園
+《Bad Apple!!》
+CSC 3200 · Data Structures and Advanced Programming
+30
+
+--- Page 129 ---
+Strings: Same Text, Different Behavior
+Python
+text = "cat"
+text[0] = 'b'
+C++
+string text = "cat";
+text[0] = 'b';
+cout << text;
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 130 ---
+Strings: Same Text, Different Behavior
+Python
+text = "cat"
+text[0] = 'b'
+Error: a Python string is immutable.
+C++
+string text = "cat";
+text[0] = 'b';
+cout << text;
+Prints bat. A C++ string can be
+modified.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 131 ---
+Strings: Same Text, Different Behavior
+Python
+text = "cat"
+text[0] = 'b'
+Error: a Python string is immutable.
+C++
+string text = "cat";
+text[0] = 'b';
+cout << text;
+Prints bat. A C++ string can be
+modified.
+Java String is also immutable. Do not transfer that expectation to string.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 132 ---
+Strings: Same Text, Different Behavior
+Python
+text = "cat"
+text[0] = 'b'
+Error: a Python string is immutable.
+C++
+string text = "cat";
+text[0] = 'b';
+cout << text;
+Prints bat. A C++ string can be
+modified.
+Java String is also immutable. Do not transfer that expectation to string.
+text[0] = 'b';     // one character: valid
+// text[0] = "b";  // a string literal: not a char
+Use an existing character position: 0 ≤ i < text.size(). Negative indices do not count
+backward from the end in C++.
+CSC 3200 · Data Structures and Advanced Programming
+31
+
+--- Page 133 ---
+Useful String Operations
+Each row starts with string s = "algorithm";
+Expression / statement
+Meaning
+Result
+s.size()
+Number of char units
+9
+s.empty()
+Is the string empty?
+false
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 134 ---
+Useful String Operations
+Each row starts with string s = "algorithm";
+Expression / statement
+Meaning
+Result
+s.size()
+Number of char units
+9
+s.empty()
+Is the string empty?
+false
+s.substr(2, 4)
+Start at 2, take 4
+"gori"
+s.find("rit")
+First matching position
+4
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 135 ---
+Useful String Operations
+Each row starts with string s = "algorithm";
+Expression / statement
+Meaning
+Result
+s.size()
+Number of char units
+9
+s.empty()
+Is the string empty?
+false
+s.substr(2, 4)
+Start at 2, take 4
+"gori"
+s.find("rit")
+First matching position
+4
+s += "s";
+Append to s
+"algorithms"
+s.erase(2, 4);
+Remove 4 from position 2
+"althm"
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 136 ---
+Useful String Operations
+Each row starts with string s = "algorithm";
+Expression / statement
+Meaning
+Result
+s.size()
+Number of char units
+9
+s.empty()
+Is the string empty?
+false
+s.substr(2, 4)
+Start at 2, take 4
+"gori"
+s.find("rit")
+First matching position
+4
+s += "s";
+Append to s
+"algorithms"
+s.erase(2, 4);
+Remove 4 from position 2
+"althm"
+Python s[2:6] uses an ending position.
+C++ s.substr(2, 4) uses a count.
+substr creates a new string; erase modifies s. If the count runs past the end, substr takes
+the remaining characters; a start beyond size throws an exception.
+CSC 3200 · Data Structures and Advanced Programming
+32
+
+--- Page 137 ---
+A Failed Search Is Not Position Zero
+string text = "banana";
+auto pos = text.find("ban");
+if (pos != string::npos) {
+    cout << "Found at " << pos;
+}
+CSC 3200 · Data Structures and Advanced Programming
+33
+
+--- Page 138 ---
+A Failed Search Is Not Position Zero
+string text = "banana";
+auto pos = text.find("ban");
+if (pos != string::npos) {
+    cout << "Found at " << pos;
+}
+Search
+Result
+text.find("ban")
+0 — found at the beginning
+text.find("ana")
+1 — first match
+text.find("pear")
+string::npos — not found
+CSC 3200 · Data Structures and Advanced Programming
+33
+
+--- Page 139 ---
+A Failed Search Is Not Position Zero
+string text = "banana";
+auto pos = text.find("ban");
+if (pos != string::npos) {
+    cout << "Found at " << pos;
+}
+Search
+Result
+text.find("ban")
+0 — found at the beginning
+text.find("ana")
+1 — first match
+text.find("pear")
+string::npos — not found
+Do not write if (text.find(...)). Position 0 is a successful result!
+CSC 3200 · Data Structures and Advanced Programming
+33
+
+--- Page 140 ---
+A Failed Search Is Not Position Zero
+string text = "banana";
+auto pos = text.find("ban");
+if (pos != string::npos) {
+    cout << "Found at " << pos;
+}
+Search
+Result
+text.find("ban")
+0 — found at the beginning
+text.find("ana")
+1 — first match
+text.find("pear")
+string::npos — not found
+Do not write if (text.find(...)). Position 0 is a successful result!
+Python str.find returns -1 when absent. In C++, keep the result with auto and compare
+with std::string::npos; do not assume its position type is int.
+CSC 3200 · Data Structures and Advanced Programming
+33
+
+--- Page 141 ---
+Text Is Not a Number
+string a = "10";
+string b = "2";
+cout << (a < b);
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 142 ---
+Text Is Not a Number
+string a = "10";
+string b = "2";
+cout << (a < b);
+Prints 1: text is compared lexicographically,
+not as an integer.
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 143 ---
+Text Is Not a Number
+string a = "10";
+string b = "2";
+cout << (a < b);
+Prints 1: text is compared lexicographically,
+not as an integer.
+string label = "Score: ";
+label += to_string(42);
+// string bad = "Score: " + "42";  // does not compile
+The string operations are defined for string.
+Adding two string literals does not concatenate them.
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 144 ---
+Text Is Not a Number
+string a = "10";
+string b = "2";
+cout << (a < b);
+Prints 1: text is compared lexicographically,
+not as an integer.
+string label = "Score: ";
+label += to_string(42);
+// string bad = "Score: " + "42";  // does not compile
+The string operations are defined for string.
+Adding two string literals does not concatenate them.
+auto name = "Ada";              // not a string
+string name2 = "Ada";      // a string
+auto deduces from the initializer, not from what we intend to do later.
+For now, write std::string explicitly when creating text to modify. We will explain the literal's
+underlying type when we study pointers.
+CSC 3200 · Data Structures and Advanced Programming
+34
+
+--- Page 145 ---
+Merge Strings Alternately
+LeetCode 1768 · Easy
+Alternate characters from two strings, starting with word1.
+When one string ends, append the remaining characters of the other.
+word1 = "cat"   word2 = "dogs"
+Position
+From word1
+From word2
+Result so far
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 146 ---
+Merge Strings Alternately
+LeetCode 1768 · Easy
+Alternate characters from two strings, starting with word1.
+When one string ends, append the remaining characters of the other.
+word1 = "cat"   word2 = "dogs"
+Position
+From word1
+From word2
+Result so far
+0
+c
+d
+"cd"
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 147 ---
+Merge Strings Alternately
+LeetCode 1768 · Easy
+Alternate characters from two strings, starting with word1.
+When one string ends, append the remaining characters of the other.
+word1 = "cat"   word2 = "dogs"
+Position
+From word1
+From word2
+Result so far
+0
+c
+d
+"cd"
+1
+a
+o
+"cdao"
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 148 ---
+Merge Strings Alternately
+LeetCode 1768 · Easy
+Alternate characters from two strings, starting with word1.
+When one string ends, append the remaining characters of the other.
+word1 = "cat"   word2 = "dogs"
+Position
+From word1
+From word2
+Result so far
+0
+c
+d
+"cd"
+1
+a
+o
+"cdao"
+2
+t
+g
+"cdaotg"
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 149 ---
+Merge Strings Alternately
+LeetCode 1768 · Easy
+Alternate characters from two strings, starting with word1.
+When one string ends, append the remaining characters of the other.
+word1 = "cat"   word2 = "dogs"
+Position
+From word1
+From word2
+Result so far
+0
+c
+d
+"cd"
+1
+a
+o
+"cdao"
+2
+t
+g
+"cdaotg"
+3
+No character
+s
+"cdaotgs"
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 150 ---
+Merge Strings Alternately
+LeetCode 1768 · Easy
+Alternate characters from two strings, starting with word1.
+When one string ends, append the remaining characters of the other.
+word1 = "cat"   word2 = "dogs"
+Position
+From word1
+From word2
+Result so far
+0
+c
+d
+"cd"
+1
+a
+o
+"cdao"
+2
+t
+g
+"cdaotg"
+3
+No character
+s
+"cdaotgs"
+The shorter string must not stop us from finishing the longer one.
+CSC 3200 · Data Structures and Advanced Programming
+35
+
+--- Page 151 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 152 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 153 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+Continue while either string still has a
+character at i.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 154 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+Continue while either string still has a
+character at i.
+Check each string's bound separately,
+then append its character.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 155 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+Continue while either string still has a
+character at i.
+Check each string's bound separately,
+then append its character.
+Easy to Get Wrong
+Using && in the loop condition drops
+leftover characters.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 156 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+Continue while either string still has a
+character at i.
+Check each string's bound separately,
+then append its character.
+Easy to Get Wrong
+Using && in the loop condition drops
+leftover characters.
+Writing result[i] does not create a
+character.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 157 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+Continue while either string still has a
+character at i.
+Check each string's bound separately,
+then append its character.
+Easy to Get Wrong
+Using && in the loop condition drops
+leftover characters.
+Writing result[i] does not create a
+character.
+Adding two chars performs arithmetic.
+Append them one at a time.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 158 ---
+Merging Strings: Program Anatomy
+Program Anatomy
+Keep a position i and an initially empty
+result.
+Continue while either string still has a
+character at i.
+Check each string's bound separately,
+then append its character.
+Easy to Get Wrong
+Using && in the loop condition drops
+leftover characters.
+Writing result[i] does not create a
+character.
+Adding two chars performs arithmetic.
+Append them one at a time.
+Test equal lengths, then a longer first string and a longer second string.
+CSC 3200 · Data Structures and Advanced Programming
+36
+
+--- Page 159 ---
+CSC 3200 · Data Structures and Advanced Programming
+37
+Vectors
+
+--- Page 160 ---
+Store a Sequence with vector
+int scores[3]; has room for only three values.
+When more values arrive, this fixed-size array cannot grow.
+Python
+scores = []
+scores.append(85)
+Java
+ArrayList<Integer> scores = new ArrayList<>();
+scores.add(85);
+C++
+vector<int> scores;
+scores.push_back(85);
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 161 ---
+Store a Sequence with vector
+int scores[3]; has room for only three values.
+When more values arrive, this fixed-size array cannot grow.
+Python
+scores = []
+scores.append(85)
+Java
+ArrayList<Integer> scores = new ArrayList<>();
+scores.add(85);
+C++
+vector<int> scores;
+scores.push_back(85);
+Add #include <vector>.
+int specifies the element type; the number of elements can grow.
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 162 ---
+Store a Sequence with vector
+int scores[3]; has room for only three values.
+When more values arrive, this fixed-size array cannot grow.
+Python
+scores = []
+scores.append(85)
+Java
+ArrayList<Integer> scores = new ArrayList<>();
+scores.add(85);
+C++
+vector<int> scores;
+scores.push_back(85);
+Add #include <vector>.
+int specifies the element type; the number of elements can grow.
+A vector can add elements and manage the extra storage for us.
+CSC 3200 · Data Structures and Advanced Programming
+38
+
+--- Page 163 ---
+Creating a vector
+Declaration
+Elements
+vector<int> a;
+Empty
+vector<int> b(3);
+0, 0, 0
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 164 ---
+Creating a vector
+Declaration
+Elements
+vector<int> a;
+Empty
+vector<int> b(3);
+0, 0, 0
+vector<int> c(3, 7);
+7, 7, 7
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 165 ---
+Creating a vector
+Declaration
+Elements
+vector<int> a;
+Empty
+vector<int> b(3);
+0, 0, 0
+vector<int> c(3, 7);
+7, 7, 7
+vector<int> d{3, 7};
+3, 7
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 166 ---
+Creating a vector
+Declaration
+Elements
+vector<int> a;
+Empty
+vector<int> b(3);
+0, 0, 0
+vector<int> c(3, 7);
+7, 7, 7
+vector<int> d{3, 7};
+3, 7
+Parentheses and braces do not mean the same thing here.
+(count, value) repeats a value.
+{value1, value2, ...} lists the elements.
+std::vector<int> b(3) contains three initialized ints. This is different from an uninitialized
+local declaration such as int x.
+CSC 3200 · Data Structures and Advanced Programming
+39
+
+--- Page 167 ---
+The Operations We Need First
+Start with vector<int> v{10, 20};
+Operation
+Effect / result
+v.size() / v.empty()
+Number of elements / whether there are none
+v.front() / v.back()
+First element / last element
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 168 ---
+The Operations We Need First
+Start with vector<int> v{10, 20};
+Operation
+Effect / result
+v.size() / v.empty()
+Number of elements / whether there are none
+v.front() / v.back()
+First element / last element
+v.push_back(30);
+Append 30: 10, 20, 30
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 169 ---
+The Operations We Need First
+Start with vector<int> v{10, 20};
+Operation
+Effect / result
+v.size() / v.empty()
+Number of elements / whether there are none
+v.front() / v.back()
+First element / last element
+v.push_back(30);
+Append 30: 10, 20, 30
+v.pop_back();
+Remove the last element: 10, 20
+v.clear();
+Remove all elements; size becomes 0
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 170 ---
+The Operations We Need First
+Start with vector<int> v{10, 20};
+Operation
+Effect / result
+v.size() / v.empty()
+Number of elements / whether there are none
+v.front() / v.back()
+First element / last element
+v.push_back(30);
+Append 30: 10, 20, 30
+v.pop_back();
+Remove the last element: 10, 20
+v.clear();
+Remove all elements; size becomes 0
+front(), back(), and pop_back() require a nonempty vector.
+Unlike Python list.pop(), C++ pop_back() returns no value.
+If you need the last value, read back() before removing it.
+CSC 3200 · Data Structures and Advanced Programming
+40
+
+--- Page 171 ---
+An Index Does Not Create an Element
+vector<int> v{10, 20, 30};
+v[1] = 99;        // valid: 10, 99, 30
+// v[3] = 40;     // invalid: there is no fourth element
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 172 ---
+An Index Does Not Create an Element
+vector<int> v{10, 20, 30};
+v[1] = 99;        // valid: 10, 99, 30
+// v[3] = 40;     // invalid: there is no fourth element
+Valid indices satisfy 0 ≤ i < v.size().
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 173 ---
+An Index Does Not Create an Element
+vector<int> v{10, 20, 30};
+v[1] = 99;        // valid: 10, 99, 30
+// v[3] = 40;     // invalid: there is no fourth element
+Valid indices satisfy 0 ≤ i < v.size().
+Access
+When the index is out of range
+v[i]
+No required bounds check; undefined behavior in C++20
+v.at(i)
+Throws an out-of-range exception
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 174 ---
+An Index Does Not Create an Element
+vector<int> v{10, 20, 30};
+v[1] = 99;        // valid: 10, 99, 30
+// v[3] = 40;     // invalid: there is no fourth element
+Valid indices satisfy 0 ≤ i < v.size().
+Access
+When the index is out of range
+v[i]
+No required bounds check; undefined behavior in C++20
+v.at(i)
+Throws an out-of-range exception
+[] does not grow a vector. Use push_back or resize.
+Python list indexing and Java ArrayList.get check bounds. Python's negative-index
+convention does not apply to C++ vector. We will study exceptions later.
+CSC 3200 · Data Structures and Advanced Programming
+41
+
+--- Page 175 ---
+Size Is Not Capacity
+Size: how many elements exist.
+Capacity: how many can fit without another storage allocation.
+Statements, in order
+Size
+Elements
+vector<int> v;
+0
+Empty
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 176 ---
+Size Is Not Capacity
+Size: how many elements exist.
+Capacity: how many can fit without another storage allocation.
+Statements, in order
+Size
+Elements
+vector<int> v;
+0
+Empty
+v.reserve(5);
+0
+Still empty; capacity ≥ 5
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 177 ---
+Size Is Not Capacity
+Size: how many elements exist.
+Capacity: how many can fit without another storage allocation.
+Statements, in order
+Size
+Elements
+vector<int> v;
+0
+Empty
+v.reserve(5);
+0
+Still empty; capacity ≥ 5
+v.push_back(8);
+1
+8
+v.resize(3);
+3
+8, 0, 0
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 178 ---
+Size Is Not Capacity
+Size: how many elements exist.
+Capacity: how many can fit without another storage allocation.
+Statements, in order
+Size
+Elements
+vector<int> v;
+0
+Empty
+v.reserve(5);
+0
+Still empty; capacity ≥ 5
+v.push_back(8);
+1
+8
+v.resize(3);
+3
+8, 0, 0
+v.resize(1);
+1
+8; capacity is not reduced
+Reserved space is not a collection of accessible elements.
+You can use push_back without reserving first. reserve is an optional hint about space, not
+a requirement for growth; exact growth factors are not fixed by the language.
+CSC 3200 · Data Structures and Advanced Programming
+42
+
+--- Page 179 ---
+Loop over the Elements
+Given vector<int> v{4, 7, 2};
+When we need a position
+int n = v.size();
+for (int i = 0; i < n; ++i) {
+    cout << i << ": " << v[i] << '\n';
+}
+CSC 3200 · Data Structures and Advanced Programming
+43
+
+--- Page 180 ---
+Loop over the Elements
+Given vector<int> v{4, 7, 2};
+When we need a position
+int n = v.size();
+for (int i = 0; i < n; ++i) {
+    cout << i << ": " << v[i] << '\n';
+}
+When we only need each value
+for (auto x : v) {
+    cout << x << '\n';
+}
+CSC 3200 · Data Structures and Advanced Programming
+43
+
+--- Page 181 ---
+Loop over the Elements
+Given vector<int> v{4, 7, 2};
+When we need a position
+int n = v.size();
+for (int i = 0; i < n; ++i) {
+    cout << i << ": " << v[i] << '\n';
+}
+When we only need each value
+for (auto x : v) {
+    cout << x << '\n';
+}
+Both loops visit 4, then 7, then 2.
+An empty vector executes neither loop body.
+CSC 3200 · Data Structures and Advanced Programming
+43
+
+--- Page 182 ---
+Loop over the Elements
+Given vector<int> v{4, 7, 2};
+When we need a position
+int n = v.size();
+for (int i = 0; i < n; ++i) {
+    cout << i << ": " << v[i] << '\n';
+}
+When we only need each value
+for (auto x : v) {
+    cout << x << '\n';
+}
+Both loops visit 4, then 7, then 2.
+An empty vector executes neither loop body.
+Here, auto x deduces int.
+CSC 3200 · Data Structures and Advanced Programming
+43
+
+--- Page 183 ---
+A Loop Variable Can Be a Copy
+Local
+value
+vector<int> v{1, 2, 3};
+for (auto x : v) {
+    x *= 2;
+}
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 184 ---
+A Loop Variable Can Be a Copy
+Local
+value
+vector<int> v{1, 2, 3};
+for (auto x : v) {
+    x *= 2;
+}
+v remains 1, 2, 3.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 185 ---
+A Loop Variable Can Be a Copy
+Local
+value
+vector<int> v{1, 2, 3};
+for (auto x : v) {
+    x *= 2;
+}
+v remains 1, 2, 3.
+Stored
+value
+vector<int> v{1, 2, 3};
+int n = v.size();
+for (int i = 0; i < n; ++i) {
+    v[i] *= 2;
+}
+v becomes 2, 4, 6.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 186 ---
+A Loop Variable Can Be a Copy
+Local
+value
+vector<int> v{1, 2, 3};
+for (auto x : v) {
+    x *= 2;
+}
+v remains 1, 2, 3.
+Stored
+value
+vector<int> v{1, 2, 3};
+int n = v.size();
+for (int i = 0; i < n; ++i) {
+    v[i] *= 2;
+}
+v becomes 2, 4, 6.
+auto x creates a value; it does not automatically create an alias.
+This is the same value-copy idea we saw in Lecture 2.
+In Lecture 4, references will give us another way to modify elements.
+CSC 3200 · Data Structures and Advanced Programming
+44
+
+--- Page 187 ---
+Plus One
+LeetCode 66 · Easy
+A vector stores the decimal digits of a nonnegative integer, most significant digit first.
+Add one and produce the new digits.
+[4, 2, 9] 
+Digit being processed
+New digit
+Carry left?
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 188 ---
+Plus One
+LeetCode 66 · Easy
+A vector stores the decimal digits of a nonnegative integer, most significant digit first.
+Add one and produce the new digits.
+[4, 2, 9] → [4, 3, 0]
+Digit being processed
+New digit
+Carry left?
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 189 ---
+Plus One
+LeetCode 66 · Easy
+A vector stores the decimal digits of a nonnegative integer, most significant digit first.
+Add one and produce the new digits.
+[4, 2, 9] → [4, 3, 0]
+Digit being processed
+New digit
+Carry left?
+9, the units digit
+0
+Yes
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 190 ---
+Plus One
+LeetCode 66 · Easy
+A vector stores the decimal digits of a nonnegative integer, most significant digit first.
+Add one and produce the new digits.
+[4, 2, 9] → [4, 3, 0]
+Digit being processed
+New digit
+Carry left?
+9, the units digit
+0
+Yes
+2, the tens digit
+3
+No. The remaining 4 stays unchanged.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 191 ---
+Plus One
+LeetCode 66 · Easy
+A vector stores the decimal digits of a nonnegative integer, most significant digit first.
+Add one and produce the new digits.
+[4, 2, 9] → [4, 3, 0]
+Digit being processed
+New digit
+Carry left?
+9, the units digit
+0
+Yes
+2, the tens digit
+3
+No. The remaining 4 stays unchanged.
+[9, 9] → [1, 0, 0]   A new leading digit appears.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 192 ---
+Plus One
+LeetCode 66 · Easy
+A vector stores the decimal digits of a nonnegative integer, most significant digit first.
+Add one and produce the new digits.
+[4, 2, 9] → [4, 3, 0]
+Digit being processed
+New digit
+Carry left?
+9, the units digit
+0
+Yes
+2, the tens digit
+3
+No. The remaining 4 stays unchanged.
+[9, 9] → [1, 0, 0]   A new leading digit appears.
+The input can contain 100 digits. Converting it to int or long long is unsafe.
+CSC 3200 · Data Structures and Advanced Programming
+45
+
+--- Page 193 ---
+Plus One: Program Anatomy
+Program Anatomy
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 194 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 195 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+A 9 becomes 0 and passes the carry.
+Otherwise increase the digit and finish.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 196 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+A 9 becomes 0 and passes the carry.
+Otherwise increase the digit and finish.
+If carry remains after every digit, resize by
+one and set the first digit to 1.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 197 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+A 9 becomes 0 and passes the carry.
+Otherwise increase the digit and finish.
+If carry remains after every digit, resize by
+one and set the first digit to 1.
+Easy to Get Wrong
+Store the length in int n; start at
+int i = n - 1.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 198 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+A 9 becomes 0 and passes the carry.
+Otherwise increase the digit and finish.
+If carry remains after every digit, resize by
+one and set the first digit to 1.
+Easy to Get Wrong
+Store the length in int n; start at
+int i = n - 1.
+Continue while i >= 0. Index n is already
+outside the vector.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 199 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+A 9 becomes 0 and passes the carry.
+Otherwise increase the digit and finish.
+If carry remains after every digit, resize by
+one and set the first digit to 1.
+Easy to Get Wrong
+Store the length in int n; start at
+int i = n - 1.
+Continue while i >= 0. Index n is already
+outside the vector.
+The all-9 case needs one extra element.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 200 ---
+Plus One: Program Anatomy
+Program Anatomy
+Start with carry 1 and process digits from
+right to left.
+A 9 becomes 0 and passes the carry.
+Otherwise increase the digit and finish.
+If carry remains after every digit, resize by
+one and set the first digit to 1.
+Easy to Get Wrong
+Store the length in int n; start at
+int i = n - 1.
+Continue while i >= 0. Index n is already
+outside the vector.
+The all-9 case needs one extra element.
+After an all-9 carry, all old digits are 0.
+resize appends another 0. Set the first digit to 1.
+CSC 3200 · Data Structures and Advanced Programming
+46
+
+--- Page 201 ---
+Copying a Container
+Python
+a = [1, 2, 3]
+b = a
+b[0] = 99
+C++
+vector<int> a{1, 2, 3};
+auto b = a;
+b[0] = 99;
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 202 ---
+Copying a Container
+Python
+a = [1, 2, 3]
+b = a
+b[0] = 99
+a is now [99, 2, 3].
+Both names refer to one list.
+C++
+vector<int> a{1, 2, 3};
+auto b = a;
+b[0] = 99;
+a is still {1, 2, 3}.
+b contains independent int values.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 203 ---
+Copying a Container
+Python
+a = [1, 2, 3]
+b = a
+b[0] = 99
+a is now [99, 2, 3].
+Both names refer to one list.
+C++
+vector<int> a{1, 2, 3};
+auto b = a;
+b[0] = 99;
+a is still {1, 2, 3}.
+b contains independent int values.
+Java
+ArrayList<Integer> b = a;
+b.set(0, 99);
+As with the Python assignment above, both variables refer to one list.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 204 ---
+Copying a Container
+Python
+a = [1, 2, 3]
+b = a
+b[0] = 99
+a is now [99, 2, 3].
+Both names refer to one list.
+C++
+vector<int> a{1, 2, 3};
+auto b = a;
+b[0] = 99;
+a is still {1, 2, 3}.
+b contains independent int values.
+Java
+ArrayList<Integer> b = a;
+b.set(0, 99);
+As with the Python assignment above, both variables refer to one list.
+For vector<int>, copying the container copies its elements.
+CSC 3200 · Data Structures and Advanced Programming
+47
+
+--- Page 205 ---
+A Container Does Not Define Its I/O
+vector<int> values{4, 7, 2};
+// cout << values;  // no standard vector output operator
+// cin >> values;   // no standard vector input operator
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 206 ---
+A Container Does Not Define Its I/O
+vector<int> values{4, 7, 2};
+// cout << values;  // no standard vector output operator
+// cin >> values;   // no standard vector input operator
+A string has stream input/output operations. A vector does not automatically inherit
+them.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 207 ---
+A Container Does Not Define Its I/O
+vector<int> values{4, 7, 2};
+// cout << values;  // no standard vector output operator
+// cin >> values;   // no standard vector input operator
+A string has stream input/output operations. A vector does not automatically inherit
+them.
+for (auto x : values) {
+    cout << x << ' ';
+}
+cout << '\n';
+This program chooses one line, with a
+space after each number.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 208 ---
+A Container Does Not Define Its I/O
+vector<int> values{4, 7, 2};
+// cout << values;  // no standard vector output operator
+// cin >> values;   // no standard vector input operator
+A string has stream input/output operations. A vector does not automatically inherit
+them.
+for (auto x : values) {
+    cout << x << ' ';
+}
+cout << '\n';
+This program chooses one line, with a
+space after each number.
+The data structure stores values. Your program defines the input and output
+format.
+The sample prints a trailing space. If a task requires exact separators, handle the first or
+last element explicitly.
+CSC 3200 · Data Structures and Advanced Programming
+48
+
+--- Page 209 ---
+A vector Can Contain Other Values
+Text values
+vector<string> names{"Ada", "Alan"};
+names.push_back("Grace");
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 210 ---
+A vector Can Contain Other Values
+Text values
+vector<string> names{"Ada", "Alan"};
+names.push_back("Grace");
+Each element is a string.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 211 ---
+A vector Can Contain Other Values
+Text values
+vector<string> names{"Ada", "Alan"};
+names.push_back("Grace");
+Each element is a string.
+Rows of values
+vector<vector<int>> rows{
+    {1, 2, 3},
+    {4, 5}
+};
+cout << rows[1][0];
+Prints 4: row 1,
+then element 0 in that row.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 212 ---
+A vector Can Contain Other Values
+Text values
+vector<string> names{"Ada", "Alan"};
+names.push_back("Grace");
+Each element is a string.
+Rows of values
+vector<vector<int>> rows{
+    {1, 2, 3},
+    {4, 5}
+};
+cout << rows[1][0];
+Prints 4: row 1,
+then element 0 in that row.
+A vector of vectors is a sequence of separate rows.
+The rows do not have to have equal lengths.
+Include <vector> and <string> as needed.
+This idea will help us store tables and graph adjacency lists later.
+CSC 3200 · Data Structures and Advanced Programming
+49
+
+--- Page 213 ---
+Inside a vector
+A vector<int> keeps its elements next to one another
+in a contiguous block of memory.
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 214 ---
+Inside a vector
+A vector<int> keeps its elements next to one another
+in a contiguous block of memory.
+Stored values
+10
+20
+30
+size = 3: three existing elements.
+capacity = 8: room for eight elements before reallocation.
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 215 ---
+Inside a vector
+A vector<int> keeps its elements next to one another
+in a contiguous block of memory.
+Stored values
+10
+20
+30
+size = 3: three existing elements.
+capacity = 8: room for eight elements before reallocation.
+After push_back(40)
+10
+20
+30
+40
+size = 4; capacity = 8. Use the next spare slot.
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 216 ---
+Inside a vector
+A vector<int> keeps its elements next to one another
+in a contiguous block of memory.
+Stored values
+10
+20
+30
+size = 3: three existing elements.
+capacity = 8: room for eight elements before reallocation.
+After push_back(40)
+10
+20
+30
+40
+size = 4; capacity = 8. Use the next spare slot.
+The empty slots are reserved storage, not elements.
+You cannot access them with v[i] yet.
+CSC 3200 · Data Structures and Advanced Programming
+50
+
+--- Page 217 ---
+When the Storage Is Full
+For this explanation, use a doubling model:
+when the block is full, allocate a block with twice the capacity.
+Before appending 50
+10
+20
+30
+40
+size = 4; capacity = 4
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 218 ---
+When the Storage Is Full
+For this explanation, use a doubling model:
+when the block is full, allocate a block with twice the capacity.
+Before appending 50
+10
+20
+30
+40
+size = 4; capacity = 4
+New storage
+10
+20
+30
+40
+50
+size = 5; capacity = 8
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 219 ---
+When the Storage Is Full
+For this explanation, use a doubling model:
+when the block is full, allocate a block with twice the capacity.
+Before appending 50
+10
+20
+30
+40
+size = 4; capacity = 4
+New storage
+10
+20
+30
+40
+50
+size = 5; capacity = 8
+Allocate → Transfer 4 values → Append 50 → Release old storage
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 220 ---
+When the Storage Is Full
+For this explanation, use a doubling model:
+when the block is full, allocate a block with twice the capacity.
+Before appending 50
+10
+20
+30
+40
+size = 4; capacity = 4
+New storage
+10
+20
+30
+40
+50
+size = 5; capacity = 8
+Allocate → Transfer 4 values → Append 50 → Release old storage
+The vector manages this work for us.
+The exact growth factor depends on the library implementation.
+CSC 3200 · Data Structures and Advanced Programming
+51
+
+--- Page 221 ---
+Why Grow by Doubling?
+Start with capacity 1 and append eight values.
+How often do we have to transfer the existing values?
+Growth policy
+One extra slot
+Double the capacity
+CSC 3200 · Data Structures and Advanced Programming
+52
+
+--- Page 222 ---
+Why Grow by Doubling?
+Start with capacity 1 and append eight values.
+How often do we have to transfer the existing values?
+Growth policy
+One extra slot
+Double the capacity
+Capacities used
+1, 2, 3, 4, 5, 6, 7, 8
+1, 2, 4, 8
+CSC 3200 · Data Structures and Advanced Programming
+52
+
+--- Page 223 ---
+Why Grow by Doubling?
+Start with capacity 1 and append eight values.
+How often do we have to transfer the existing values?
+Growth policy
+One extra slot
+Double the capacity
+Capacities used
+1, 2, 3, 4, 5, 6, 7, 8
+1, 2, 4, 8
+Reallocations
+7
+3
+CSC 3200 · Data Structures and Advanced Programming
+52
+
+--- Page 224 ---
+Why Grow by Doubling?
+Start with capacity 1 and append eight values.
+How often do we have to transfer the existing values?
+Growth policy
+One extra slot
+Double the capacity
+Capacities used
+1, 2, 3, 4, 5, 6, 7, 8
+1, 2, 4, 8
+Reallocations
+7
+3
+Values transferred
+1 + 2 + 3 + 4 + 5 + 6 + 7
+28
+1 + 2 + 4
+7
+CSC 3200 · Data Structures and Advanced Programming
+52
+
+--- Page 225 ---
+Why Grow by Doubling?
+Start with capacity 1 and append eight values.
+How often do we have to transfer the existing values?
+Growth policy
+One extra slot
+Double the capacity
+Capacities used
+1, 2, 3, 4, 5, 6, 7, 8
+1, 2, 4, 8
+Reallocations
+7
+3
+Values transferred
+1 + 2 + 3 + 4 + 5 + 6 + 7
+28
+1 + 2 + 4
+7
+Spare capacity lets many later appends use the same block.
+Growing by one would transfer the same early values over and over.
+CSC 3200 · Data Structures and Advanced Programming
+52
+
+--- Page 226 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 227 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 228 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+3
+4
+1
+2
+3
+2
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 229 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+3
+4
+1
+2
+3
+2
+5
+8
+1
+2
+3
+4
+5
+3
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 230 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+3
+4
+1
+2
+3
+2
+5
+8
+1
+2
+3
+4
+5
+3
+9
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+4
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 231 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+3
+4
+1
+2
+3
+2
+5
+8
+1
+2
+3
+4
+5
+3
+9
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+4
+16
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11 12 13 14 15 16
+4
+Values 10–16 fit in the same block. No more expansion.
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 232 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+3
+4
+1
+2
+3
+2
+5
+8
+1
+2
+3
+4
+5
+3
+9
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+4
+16
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11 12 13 14 15 16
+4
+Values 10–16 fit in the same block. No more expansion.
+16 values: 4 expansions = log216.
+For n = 2k values: k expansions = log2n.
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 233 ---
+Counting the Expansions
+Start with capacity 1. Append values one at a time.
+When the storage fills up, double its capacity.
+Size
+Capacity
+Storage
+Expansions
+1
+1
+1
+0
+2
+2
+1
+2
+1
+3
+4
+1
+2
+3
+2
+5
+8
+1
+2
+3
+4
+5
+3
+9
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+4
+16
+16
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11 12 13 14 15 16
+4
+Values 10–16 fit in the same block. No more expansion.
+16 values: 4 expansions = log216.
+For n = 2k values: k expansions = log2n.
+Across n insertions, fewer than 2n element moves in total:
+fewer than 2 per insertion on average.
+CSC 3200 · Data Structures and Advanced Programming
+53
+
+--- Page 234 ---
+Planning Storage with reserve
+If we already know how many values to expect,
+we can request enough storage before the loop.
+vector<int> values;
+values.reserve(8);
+for (int i = 0; i < 8; ++i) {
+    values.push_back(i * 10);
+}
+CSC 3200 · Data Structures and Advanced Programming
+54
+
+--- Page 235 ---
+Planning Storage with reserve
+If we already know how many values to expect,
+we can request enough storage before the loop.
+vector<int> values;
+values.reserve(8);
+for (int i = 0; i < 8; ++i) {
+    values.push_back(i * 10);
+}
+After reserve(8):
+size = 0
+capacity ≥ 8
+CSC 3200 · Data Structures and Advanced Programming
+54
+
+--- Page 236 ---
+Planning Storage with reserve
+If we already know how many values to expect,
+we can request enough storage before the loop.
+vector<int> values;
+values.reserve(8);
+for (int i = 0; i < 8; ++i) {
+    values.push_back(i * 10);
+}
+After reserve(8):
+size = 0
+capacity ≥ 8
+After the loop:
+size = 8
+No reallocation during these
+appends.
+CSC 3200 · Data Structures and Advanced Programming
+54
+
+--- Page 237 ---
+Planning Storage with reserve
+If we already know how many values to expect,
+we can request enough storage before the loop.
+vector<int> values;
+values.reserve(8);
+for (int i = 0; i < 8; ++i) {
+    values.push_back(i * 10);
+}
+After reserve(8):
+size = 0
+capacity ≥ 8
+After the loop:
+size = 8
+No reallocation during these
+appends.
+reserve prepares storage; resize changes the number of elements.
+Reserving space does not make values[0] valid in an empty vector.
+CSC 3200 · Data Structures and Advanced Programming
+54
+
+--- Page 238 ---
+Planning Storage with reserve
+If we already know how many values to expect,
+we can request enough storage before the loop.
+vector<int> values;
+values.reserve(8);
+for (int i = 0; i < 8; ++i) {
+    values.push_back(i * 10);
+}
+After reserve(8):
+size = 0
+capacity ≥ 8
+After the loop:
+size = 8
+No reallocation during these
+appends.
+reserve prepares storage; resize changes the number of elements.
+Reserving space does not make values[0] valid in an empty vector.
+Use vector through its interface—and understand the work behind it.
+CSC 3200 · Data Structures and Advanced Programming
+54
+
+--- Page 239 ---
+Read the Contract, Not Just the Name
+You do not need to memorize every library function.
+You do need to check what an operation requires and guarantees.
+v.pop_back();
+CSC 3200 · Data Structures and Advanced Programming
+55
+
+--- Page 240 ---
+Read the Contract, Not Just the Name
+You do not need to memorize every library function.
+You do need to check what an operation requires and guarantees.
+v.pop_back();
+Header
+<vector>
+Before the call
+v must not be empty.
+CSC 3200 · Data Structures and Advanced Programming
+55
+
+--- Page 241 ---
+Read the Contract, Not Just the Name
+You do not need to memorize every library function.
+You do need to check what an operation requires and guarantees.
+v.pop_back();
+Header
+<vector>
+Before the call
+v must not be empty.
+Effect
+Removes the last element and reduces the size by one.
+Return value
+None (void): the removed value is not returned.
+CSC 3200 · Data Structures and Advanced Programming
+55
+
+--- Page 242 ---
+Read the Contract, Not Just the Name
+You do not need to memorize every library function.
+You do need to check what an operation requires and guarantees.
+v.pop_back();
+Header
+<vector>
+Before the call
+v must not be empty.
+Effect
+Removes the last element and reduces the size by one.
+Return value
+None (void): the removed value is not returned.
+Other
+consequences
+The old last index is no longer valid.
+Example reference: cplusplus.com — vector::pop_back. An AI explanation is useful, but still
+check the operation's contract and test your assumptions.
+CSC 3200 · Data Structures and Advanced Programming
+55
+
+--- Page 243 ---
+Add Strings
+LeetCode 415 · Easy
+Given two non-negative integers stored as strings,
+return their sum as a string.
+CSC 3200 · Data Structures and Advanced Programming
+56
+
+--- Page 244 ---
+Add Strings
+LeetCode 415 · Easy
+Given two non-negative integers stored as strings,
+return their sum as a string.
+Each input can contain 10,000 digits.
+No conversion of the whole input to an integer; no big-integer library.
+CSC 3200 · Data Structures and Advanced Programming
+56
+
+--- Page 245 ---
+Add Strings
+LeetCode 415 · Easy
+Given two non-negative integers stored as strings,
+return their sum as a string.
+Each input can contain 10,000 digits.
+No conversion of the whole input to an integer; no big-integer library.
+num1
+num2
+Result
+"456"
+"77"
+"533"
+CSC 3200 · Data Structures and Advanced Programming
+56
+
+--- Page 246 ---
+Add Strings
+LeetCode 415 · Easy
+Given two non-negative integers stored as strings,
+return their sum as a string.
+Each input can contain 10,000 digits.
+No conversion of the whole input to an integer; no big-integer library.
+num1
+num2
+Result
+"456"
+"77"
+"533"
+"999"
+"1"
+"1000"
+CSC 3200 · Data Structures and Advanced Programming
+56
+
+--- Page 247 ---
+Add Strings
+LeetCode 415 · Easy
+Given two non-negative integers stored as strings,
+return their sum as a string.
+Each input can contain 10,000 digits.
+No conversion of the whole input to an integer; no big-integer library.
+num1
+num2
+Result
+"456"
+"77"
+"533"
+"999"
+"1"
+"1000"
+"0"
+"0"
+"0"
+CSC 3200 · Data Structures and Advanced Programming
+56
+
+--- Page 248 ---
+Add Strings
+LeetCode 415 · Easy
+Given two non-negative integers stored as strings,
+return their sum as a string.
+Each input can contain 10,000 digits.
+No conversion of the whole input to an integer; no big-integer library.
+num1
+num2
+Result
+"456"
+"77"
+"533"
+"999"
+"1"
+"1000"
+"0"
+"0"
+"0"
+string
+Read the input digits
+→
+vector<int>
+Store the computed digits →
+string
+Build the output text
+CSC 3200 · Data Structures and Advanced Programming
+56
+
+--- Page 249 ---
+Adding Digit by Digit
+Work right to left; treat a missing digit as 0.
+Convert a character to a digit: '6' - '0' gives 6.
+4 5 6
++
+7 7
+CSC 3200 · Data Structures and Advanced Programming
+57
+
+--- Page 250 ---
+Adding Digit by Digit
+Work right to left; treat a missing digit as 0.
+Convert a character to a digit: '6' - '0' gives 6.
+1
+4 5 6
++
+7 7
+3
+Place
+Sum
+Digit
+Carry
+Ones
+6 + 7 + 0 = 13
+3
+1
+CSC 3200 · Data Structures and Advanced Programming
+57
+
+--- Page 251 ---
+Adding Digit by Digit
+Work right to left; treat a missing digit as 0.
+Convert a character to a digit: '6' - '0' gives 6.
+1
+1
+4 5 6
++
+7 7
+3 3
+Place
+Sum
+Digit
+Carry
+Ones
+6 + 7 + 0 = 13
+3
+1
+Tens
+5 + 7 + 1 = 13
+3
+1
+CSC 3200 · Data Structures and Advanced Programming
+57
+
+--- Page 252 ---
+Adding Digit by Digit
+Work right to left; treat a missing digit as 0.
+Convert a character to a digit: '6' - '0' gives 6.
+1
+1
+4 5 6
++
+7 7
+5 3 3
+Place
+Sum
+Digit
+Carry
+Ones
+6 + 7 + 0 = 13
+3
+1
+Tens
+5 + 7 + 1 = 13
+3
+1
+Hundreds
+4 + 0 + 1 = 5
+5
+0
+CSC 3200 · Data Structures and Advanced Programming
+57
+
+--- Page 253 ---
+Adding Digit by Digit
+Work right to left; treat a missing digit as 0.
+Convert a character to a digit: '6' - '0' gives 6.
+1
+1
+4 5 6
++
+7 7
+5 3 3
+Place
+Sum
+Digit
+Carry
+Ones
+6 + 7 + 0 = 13
+3
+1
+Tens
+5 + 7 + 1 = 13
+3
+1
+Hundreds
+4 + 0 + 1 = 5
+5
+0
+digits.push_back(sum % 10);
+carry = sum / 10;
+Even with a 10,000-digit input,
+each local sum is at most
+9 + 9 + 1 = 19.
+CSC 3200 · Data Structures and Advanced Programming
+57
+
+--- Page 254 ---
+Adding Digit by Digit
+Work right to left; treat a missing digit as 0.
+Convert a character to a digit: '6' - '0' gives 6.
+1
+1
+4 5 6
++
+7 7
+5 3 3
+Place
+Sum
+Digit
+Carry
+Ones
+6 + 7 + 0 = 13
+3
+1
+Tens
+5 + 7 + 1 = 13
+3
+1
+Hundreds
+4 + 0 + 1 = 5
+5
+0
+digits.push_back(sum % 10);
+carry = sum / 10;
+Even with a 10,000-digit input,
+each local sum is at most
+9 + 9 + 1 = 19.
+Stored digits: [3, 3, 5] — least significant first.
+Read them backwards and append characters to build "533".
+CSC 3200 · Data Structures and Advanced Programming
+57
+
+--- Page 255 ---
+Add Strings: Program Anatomy
+Program Anatomy
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 256 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 257 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 258 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 259 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+Output: visit the vector backwards;
+append char('0' + digits[k]).
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 260 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+Output: visit the vector backwards;
+append char('0' + digits[k]).
+Easy to Get Wrong
+Check each index before accessing its
+string; the lengths may differ.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 261 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+Output: visit the vector backwards;
+append char('0' + digits[k]).
+Easy to Get Wrong
+Check each index before accessing its
+string; the lengths may differ.
+Use ||, not &&, to keep processing the
+longer input.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 262 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+Output: visit the vector backwards;
+append char('0' + digits[k]).
+Easy to Get Wrong
+Check each index before accessing its
+string; the lengths may differ.
+Use ||, not &&, to keep processing the
+longer input.
+Do not forget the final carry:
+"999" + "1" → "1000".
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 263 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+Output: visit the vector backwards;
+append char('0' + digits[k]).
+Easy to Get Wrong
+Check each index before accessing its
+string; the lengths may differ.
+Use ||, not &&, to keep processing the
+longer input.
+Do not forget the final carry:
+"999" + "1" → "1000".
+'0' is a character, not the integer 0.
+Convert in both directions.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 264 ---
+Add Strings: Program Anatomy
+Program Anatomy
+State: two indices at the last characters, a
+carry, and an empty digit vector.
+Repeat: while either input has digits left, or
+the carry is nonzero.
+Progress: read the available digits, append
+one result digit, and move left.
+Output: visit the vector backwards;
+append char('0' + digits[k]).
+Easy to Get Wrong
+Check each index before accessing its
+string; the lengths may differ.
+Use ||, not &&, to keep processing the
+longer input.
+Do not forget the final carry:
+"999" + "1" → "1000".
+'0' is a character, not the integer 0.
+Convert in both directions.
+Test: zero; unequal lengths; no carry; a chain of carries.
+CSC 3200 · Data Structures and Advanced Programming
+58
+
+--- Page 265 ---
+Summary
+CSC 3200 · Data Structures and Advanced Programming
+59
+
+--- Page 266 ---
+Summary
+Streams turn input text into values. Choose between reading a value, a word,
+and a whole line, and check whether the read succeeded.
+CSC 3200 · Data Structures and Advanced Programming
+59
+
+--- Page 267 ---
+Summary
+Streams turn input text into values. Choose between reading a value, a word,
+and a whole line, and check whether the read succeeded.
+Strings and vectors store sequences for us. Their operations still have rules
+about types, bounds, copies, and changes to the stored data.
+CSC 3200 · Data Structures and Advanced Programming
+59
+
+--- Page 268 ---
+Summary
+Streams turn input text into values. Choose between reading a value, a word,
+and a whole line, and check whether the read succeeded.
+Strings and vectors store sequences for us. Their operations still have rules
+about types, bounds, copies, and changes to the stored data.
+A vector keeps spare capacity to support growth. Understanding its storage
+and reallocation helps us explain the cost behind a simple operation.
+CSC 3200 · Data Structures and Advanced Programming
+59
+
+--- Page 269 ---
+CSC 3200 · Data Structures and Advanced Programming
+60
+Thank you for listening!
+
+================================================================
+附录：图片内容核对（本文件要喂给"看不到 PDF"的 AI）
+================================================================
+说明：页码为 PDF 页序号，与正文 `--- Page N ---` 一致。
+
+--- 核对结论（先说结果）---
+本讲义（CSC 3200 Lecture 3: The Standard Library，共 270 页）是 LaTeX Beamer 导出的
+**纯文字 + 矢量图形**课件：
+- 全篇 270 页中，**只有第 0 页（封面）含 1 张位图**（学校校徽），其余页面**没有任何位图**；
+- 页面上出现的标题色块、彩色圆角框、表格线、代码框、页眉色带等，都是矢量图形绘制，
+  其上的文字**已被正文文字层完整提取**；
+- 因此除封面校徽外，**没有"图片里套文字"需要补录的内容**，正文即完整内容。
+
+--- Page 0（幻灯片第 1 页）图片：校徽 ---
+[图内文字] 香港中文大學（深圳）
+           The Chinese University of Hong Kong, Shenzhen
+  正文已提取：CSC 3200 Data Structures and Advanced Programming / Lecture 3: The Standard
+  Library / Jingbang Chen / School of Data Science (SDS) / The Chinese University of Hong Kong,
+  Shenzhen。
+
+--- 低文字量页说明（均为"分节页"或"分步动画起始帧"，不是信息缺失）---
+逐页核对字符数偏少的页（Page 16、70、76、120、151、159、193、255、265、269 等），结论：
+- 它们要么是**章节标题页**（如 Page 76 / 159 = "Strings" / "Vectors"），
+  要么是**分步动画（build-up）的起始帧**——每点一下才多出一行，所以单帧文字少。
+- 分步动画的内容在**同一小节的后续帧里逐行累积**，最后一帧包含全部内容。
+  例如 Page 120 只有标题与 "Program Anatomy"，到 Page 121~125 逐行补齐：
+    Create an istringstream from s. → Read one string word at a time. → Increase the count only
+    after a successful extraction. → Easy to Get Wrong: Counting spaces gives the wrong answer
+    when spaces repeat. → A comma does not end a segment.
+- 因此**不存在信息遗漏**；阅读正文时若某页显得"半截话"，继续往后读同一标题的后续页即可。

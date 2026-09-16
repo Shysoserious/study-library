@@ -1386,6 +1386,90 @@ Gradient(梯度), Divergence
             = (∂F_z/∂y − ∂F_y/∂z) î − (∂F_z/∂x − ∂F_x/∂z) ĵ + (∂F_y/∂x − ∂F_x/∂y) k̂
 
 ----------------------------------------------------------------
+补录：第二轮排查发现的漏页（首轮按"图片字节数 > 20KB"过滤时被漏掉）
+本讲义中有若干图片是**低分辨率、被放大到半页大小**的位图（只有 3~20 KB），
+覆盖率却能达到 0.2~0.35，里面装的是公式框、选择题题干、示意图。
+按字节数过滤会全部漏掉，故此处补录（正确的口径是只看覆盖率）。
+----------------------------------------------------------------
+--- Page 13（幻灯片第 14 页）---
+【图1】章节标题框（矢量）；【图2】右下角出版社标志（白色大字 "WILEY"）。
+[图内文字] 位图内：WILEY。
+  正文已提取：Chapter 1: Units, Physical Quantities, and Vectors / Chapter 1 /
+  Copyright © 2014 John Wiley & Sons, Inc. All rights reserved.
+
+--- Page 31（幻灯片第 32 页）---
+【图】两个浅黄色公式框（正文里没有这两个算例）。
+[图内文字]
+  科学计数法示例：3 560 000 000 m = 3.56 × 10⁹ m ；0.000 000 492 s = 4.92 × 10⁻⁷ s
+  单位换算示例：2 min = (2 min)(1) = (2 min)(60 s / 1 min) = 120 s
+    （原图中 "min" 被红笔划掉，表示单位约去）
+  正文已提取：Scientific notation employs powers of 10 to write large or small numbers /
+  A conversion factor is / A ratio of units that is equal to 1 / Used to convert between units /
+  Units obey the same algebraic rules as variables and numbers。
+
+--- Page 32（幻灯片第 33 页）---
+【图1】密度公式框：ρ = m / V 。
+【图2】中文表情包：王健林"先定一个能达到的小目标，比方说先挣它1个亿"。
+[图内文字] 表情包上写：先定一个能达到的小目标 ／ 比方说先挣它1个亿。
+  正文已提取：Mass per unit volume is called density / ￥100,000,000 in ￥100 → Vol? /
+  For new ￥100, Mass = 1.15 g / Density = 966 kg/m³。
+
+--- Page 38（幻灯片第 39 页）---
+【图】一幅插图：一条纠结缠绕的黑色路径，起点与终点各有一个圆点，两点之间画一条紫色直线
+  （位移矢量）；右侧另画三条互相平行的紫色箭头，表示"大小与方向相同的矢量可以平移"。
+[图内文字] 无（图中没有文字，只有图形）。
+  正文已提取：Displacement vector: change of the position / The purple array indicate the
+  displacement vector graphically. / Nothing about the actual path, only the overall effect of
+  the motion / The vectors with same direction and length/magnitude can be shifted。
+
+--- Page 40（幻灯片第 41 页）---
+【图】矢量减法示意 (a)(b)：(a) 把 −b⃗ 与 a⃗ 首尾相接相加；(b) d⃗ = a⃗ − b⃗。
+[图内文字] 图中标注：a⃗、b⃗、−b⃗、d⃗ = a⃗ − b⃗、(a)、(b)，以及
+  "Note head-to-tail arrangement for addition"（注意：相加以"首尾相接"方式排列）。
+  正文已提取：Adding −b⃗ has the same effect of subtracting b⃗ / d⃗ = a⃗ − b⃗ = a⃗ + (−b⃗) /
+  d⃗ + b⃗ = a⃗ or a⃗ = d⃗ + b⃗。
+
+--- Page 46（幻灯片第 47 页）---
+【图】两个公式框。
+[图内文字] r⃗ = a⃗ + b⃗ , ；rₓ = aₓ + bₓ ；rᵧ = aᵧ + bᵧ ；r_z = a_z + b_z
+  正文已提取：Combine their components axis by axis / Also apply to vector subtractions。
+
+--- Page 47（幻灯片第 48 页）---
+【图】两幅带网格的坐标图：
+  (a) 在 x-y 网格上画出 a⃗、b⃗、c⃗ 与合矢量 r⃗（三矢量首尾相接）；
+  (b) 在网格上画出 r⃗ 的两个分量：水平 2.6î 与竖直 2.3ĵ。
+[图内文字] 图中标注：y、x、(a)、(b)、2.6i、2.3j、r⃗。
+  正文已提取题干与解答：a⃗ = (4.2 m) î − (1.5 m) ĵ，b⃗ = (−1.6 m) î + (2.9 m) ĵ，
+  c⃗ = (−3.7 m) ĵ；解得 r⃗ = (2.6 m) î − (2.3 m) ĵ，大小 3.5 m，方向 −41°。
+
+--- Page 49（幻灯片第 50 页）---
+【图】点积的几何意义图 + 公式框。
+[图内文字] 图中标注："Component of b⃗ along direction of a⃗ is b cos φ"
+  （b⃗ 沿 a⃗ 方向的分量是 b cos φ）／
+  "Component of a⃗ along direction of b⃗ is a cos φ"（a⃗ 沿 b⃗ 方向的分量是 a cos φ）；
+  公式：a⃗ · b⃗ = a b cos φ ；cos φ = cos(360° − φ) ；
+    a⃗ · b⃗ = (aₓ î + aᵧ ĵ + a_z k̂) · (bₓ î + bᵧ ĵ + b_z k̂) ；
+    a⃗ · b⃗ = aₓbₓ + aᵧbᵧ + a_zb_z ；a⃗ · b⃗ = b⃗ · a⃗
+  正文已提取：Scalar or Dot Product 的关键式子（线性化后较乱，见末尾对照表）。
+
+--- Page 51（幻灯片第 52 页）---
+【图】右手定则示意：两只手的照片，分别展示 a⃗ × b⃗ 与 b⃗ × a⃗ 的方向（拇指指向结果矢量，
+  四指从第一个矢量弯向第二个矢量）；上方公式框 a⃗ × b⃗ = −(b⃗ × a⃗)。
+[图内文字] 图中标注：c⃗ = a⃗ × b⃗ 、c⃗ = b⃗ × a⃗ 、a⃗、b⃗、φ、a⃗ × b⃗ = −(b⃗ × a⃗)。
+  正文已提取：Direction / Right-Hand Rule / a⃗ × b⃗ = −(b⃗ × a⃗) / 叉积的坐标展开式。
+
+--- Page 56（幻灯片第 57 页）---
+【图】本页正文只有 "Problem" 与一行公式，**选择题的题干与选项全在图里**（重点补录）。
+[图内文字]
+  Two vectors lie with their tails at the same point. When the angle between them is increased by
+  20° their scalar product has the same magnitude but changes from positive to negative. The
+  original angle between them was:
+    A) 0°    B) 60°    C) 70°    D) 80°（原图已用紫圈圈出此项，为正确答案）    E) 90°
+  （两个矢量尾端相接。当它们之间的夹角增大 20° 时，它们的标量积大小不变，但由正变负。
+    它们原来的夹角是多少？答案 D）80°）
+  图中另有一行紫色公式：cos φ = −cos(φ + 20°)（这一行正文已提取）。
+----------------------------------------------------------------
+----------------------------------------------------------------
 公式还原对照（正文由 PDF 文字层线性化产生：上/下标掉行、特殊字体乱码）
 ----------------------------------------------------------------
 - 上标被压平：`m/s2` → m/s²；`t2`/`t.` → t²；`10-27` → 10^-27；`x2 + y2` → x² + y²。
