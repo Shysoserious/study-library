@@ -232,6 +232,19 @@ window.MathJax = {
   else initAccordion();
 })();
 </script>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('back-to-lib'))return;
+    var a=document.createElement('a');
+    a.id='back-to-lib';
+    a.href='../index.html';
+    a.textContent='← 返回学习库';
+    a.setAttribute('style','position:fixed;left:16px;bottom:16px;z-index:999999;display:inline-flex;align-items:center;padding:8px 14px;font-size:14px;color:#fff;background:#1f4e79;border-radius:999px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.28);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;');
+    (document.body||document.documentElement).appendChild(a);
+  });
+})();
+</script>
 </head>
 <body>
 

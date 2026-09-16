@@ -31,7 +31,8 @@ window.DATA = {
     { id: "计算机",   label: "计算机" },
     { id: "统计",     label: "统计" },
     { id: "数据科学", label: "数据科学" },
-    { id: "物理",     label: "物理" }
+    { id: "物理",     label: "物理" },
+    { id: "金融",     label: "金融" }
   ],
 
   courses: [
@@ -78,6 +79,21 @@ window.DATA = {
       desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 抽象与类型",
       notes: [
         { title: "数据结构复习笔记", file: "datastructure/数据结构复习笔记.html" }
+      ],
+      attachments: []
+    },
+    {
+      id: "fin",
+      name: "金融基础",
+      nameEn: "Financial Management",
+      code: "FIN2010",
+      semester: "大二上",
+      category: "金融",
+      status: "active",
+      teacher: "",
+      desc: "金融是什么 · 公司形式 · 融资 · 货币时间价值",
+      notes: [
+        { title: "金融基础复习笔记", file: "fin/金融基础复习笔记.html" }
       ],
       attachments: []
     },
@@ -161,14 +177,16 @@ window.DATA = {
     {
       id: "phy",
       name: "物理",
-      nameEn: "Physics",
-      code: "",
+      nameEn: "Mechanics",
+      code: "PHY1001",
       semester: "大二上",
       category: "物理",
       status: "active",
       teacher: "",
       desc: "大学物理 · 更新中",
-      notes: [],
+      notes: [
+        { title: "物理复习笔记", file: "phy/物理复习笔记.html" }
+      ],
       attachments: []
     },
 
@@ -445,6 +463,31 @@ window.DATA = {
       { en: "Merge Sort", zh: "归并排序" },
       { en: "Order of Growth", zh: "增长阶" },
       { en: "Amortized Analysis", zh: "摊还分析" }
+    ]},
+    { course: "fin", terms: [
+      { en: "Allocate Resources", zh: "配置资源" },
+      { en: "Liquidity", zh: "流动性" },
+      { en: "Sell Side / Buy Side", zh: "卖方 / 买方" },
+      { en: "Commercial Bank", zh: "商业银行" },
+      { en: "Investment Bank", zh: "投资银行" },
+      { en: "IPO (Go Public)", zh: "首次公开发行（上市）" },
+      { en: "Borrower", zh: "借款人" },
+      { en: "Investor", zh: "投资者" },
+      { en: "Agency Problem", zh: "代理问题" },
+      { en: "Principal", zh: "委托人" },
+      { en: "Agent", zh: "代理人" },
+      { en: "Covenant", zh: "（债务）契约条款" },
+      { en: "Sole Proprietorship", zh: "个体户" },
+      { en: "Partnership", zh: "合伙企业" },
+      { en: "Limited Partnership (LP)", zh: "有限合伙企业" },
+      { en: "General Partner (GP)", zh: "普通合伙人（无限责任）" },
+      { en: "Limited Liability Company (LLC)", zh: "有限责任公司" },
+      { en: "Corporation", zh: "股份有限公司" },
+      { en: "Legal Entity", zh: "法人" },
+      { en: "Board of Directors", zh: "董事会" },
+      { en: "Shareholder", zh: "股东" },
+      { en: "Raising Capital", zh: "融资" },
+      { en: "Time Value of Money", zh: "货币时间价值" }
     ]}
   ]
 };
