@@ -454,6 +454,59 @@ window.MathJax = {
         <a class="lv2" href="#lec3-p2-7">2.7 标准形变换</a>
       </div>
     </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第4课 · Linear Programming: Implementation, Modeling &amp; Transformation <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec4-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec4-recap">回顾 · SVM</a>
+        <a class="lv1" href="#lec4-p1">Part 1 · 线性规划基础</a>
+        <a class="lv2" href="#lec4-p1-1">1.1 定义</a>
+        <a class="lv2" href="#lec4-p1-2">1.2 「线性」的含义</a>
+        <a class="lv2" href="#lec4-p1-3">1.3 LP 的几何</a>
+        <a class="lv2" href="#lec4-p1-4">1.4 一般与紧凑形式</a>
+        <a class="lv2" href="#lec4-p1-5">1.5 标准形式</a>
+        <a class="lv2" href="#lec4-p1-6">1.6 为什么 m &lt; n</a>
+        <a class="lv2" href="#lec4-p1-7">1.7 标准形的几何视图</a>
+        <a class="lv1" href="#lec4-p2">Part 2 · 标准形变换</a>
+        <a class="lv2" href="#lec4-p2-1">2.1 四条变换规则</a>
+        <a class="lv2" href="#lec4-p2-2">2.2 变换 1：max → min</a>
+        <a class="lv2" href="#lec4-p2-3">2.3 变换 2：不等式 → 等式</a>
+        <a class="lv2" href="#lec4-p2-4">2.4 变换 3：符号限制</a>
+        <a class="lv2" href="#lec4-p2-5">2.5 变换 4：自由变量</a>
+        <a class="lv2" href="#lec4-p2-6">2.6 变换后跟踪变量</a>
+        <a class="lv1" href="#lec4-p3">Part 3 · 软件实现</a>
+        <a class="lv2" href="#lec4-p3-1">3.1 为什么用 CVX / CVXPY</a>
+        <a class="lv2" href="#lec4-p3-2">3.2 生产规划 CVX 实现</a>
+        <a class="lv2" href="#lec4-p3-3">3.3 最短路径 LP 建模</a>
+        <a class="lv2" href="#lec4-p3-4">3.4 最短路径矩阵实现与松弛</a>
+        <a class="lv1" href="#lec4-p4">Part 4 · 建模与再变换</a>
+        <a class="lv2" href="#lec4-p4-1">4.1 空中交通管制</a>
+        <a class="lv2" href="#lec4-p4-2">4.2 maximin 目标</a>
+        <a class="lv2" href="#lec4-p4-3">4.3 引入最小间隔变量</a>
+        <a class="lv2" href="#lec4-p4-4">4.4 化回 LP</a>
+        <a class="lv2" href="#lec4-p4-5">4.5 仿射函数 min/max 统一方法</a>
+        <a class="lv2" href="#lec4-p4-6">4.6 minimax 目标</a>
+        <a class="lv2" href="#lec4-p4-7">4.7 辅助变量重构</a>
+        <a class="lv2" href="#lec4-p4-8">4.8 最小化绝对值</a>
+        <a class="lv2" href="#lec4-p4-9">4.9 通用建模工具（引理）</a>
+        <a class="lv2" href="#lec4-p4-10">4.10 最大化绝对值（非凸）</a>
+        <a class="lv2" href="#lec4-p4-11">4.11 线性分式规划</a>
+        <a class="lv1" href="#lec4-p5">Part 5 · 总结</a>
+        <a class="lv1" href="#lec4-appendix">附录 · 线性代数基础</a>
+        <a class="lv2" href="#lec4-ap-1">A.1 向量与基本运算</a>
+        <a class="lv2" href="#lec4-ap-2">A.2 转置与内积</a>
+        <a class="lv2" href="#lec4-ap-3">A.3 线性无关、张成与基</a>
+        <a class="lv2" href="#lec4-ap-4">A.4 内积、正交与范数</a>
+        <a class="lv2" href="#lec4-ap-5">A.5 p-范数与柯西-施瓦茨</a>
+        <a class="lv2" href="#lec4-ap-6">A.6 单位球</a>
+        <a class="lv2" href="#lec4-ap-7">A.7 矩阵与转置</a>
+        <a class="lv2" href="#lec4-ap-8">A.8 矩阵作为线性变换</a>
+        <a class="lv2" href="#lec4-ap-9">A.9 矩阵乘法</a>
+        <a class="lv2" href="#lec4-ap-10">A.10 秩与逆</a>
+        <a class="lv2" href="#lec4-ap-11">A.11 正交矩阵与 PSD</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -462,7 +515,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">最优化 · 复习笔记</h1>
-<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–3</p>
+<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–4</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -1525,6 +1578,502 @@ window.MathJax = {
 </div>
 
 </div><!-- /第3课 -->
+
+<!-- ============ 第4课 ============ -->
+<div class="lecture" id="lec4">
+<div class="lecture-banner">第4课 · Linear Programming: Implementation, Modeling &amp; Transformation <span class="zh">（线性规划：实现、建模与变换）</span></div>
+
+<section id="lec4-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec4-recap">回顾</a> —— SVM 的硬 / 软间隔模型</li>
+      <li><a href="#lec4-p1">线性规划基础</a> —— 定义、线性、几何、一般形式、标准形</li>
+      <li><a href="#lec4-p2">标准形变换</a> —— 四条变换规则与变量跟踪</li>
+      <li><a href="#lec4-p3">软件实现</a> —— CVX / CVXPY、生产规划、最短路径</li>
+      <li><a href="#lec4-p4">建模与再变换</a> —— maximin、minimax、绝对值、分式规划</li>
+      <li><a href="#lec4-p5">总结</a></li>
+      <li><a href="#lec4-appendix">附录：线性代数基础</a> —— 向量、范数、矩阵、秩、PSD</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>在「会写 LP」的基础上，学习<b>如何用软件求解</b>（CVX / CVXPY），以及<b>如何把非线性的目标（maximin、minimax、绝对值、分式）变换成 LP</b>；最后补一份<b>线性代数基础</b>作为后续几何理论的工具。</p>
+  </div>
+</section>
+
+<section id="lec4-recap">
+<h2>回顾 · SVM <span class="zh">Recap: Support Vector Machine</span></h2>
+<p>上一讲用 SVM 演示了建模。回顾两个模型：</p>
+<p class="formula">\(\min_{w,b} \dfrac{1}{2}\|w\|^2 \quad \text{s.t. } y_i(w^\top x_i + b)\ge 1,\ \forall i\)（硬间隔，数据线性可分）</p>
+<p class="formula">\(\min_{w,b} \dfrac{\lambda}{2}\|w\|^2 + \sum_{i=1}^{m}\max\{0,\ 1-y_i(w^\top x_i+b)\}\)（软间隔，数据不可分）</p>
+<p>本讲转入线性规划（LP）的系统方法：先精确定义 LP，再学会把它化到标准形、用软件求解、以及把更复杂的模型变换成 LP。</p>
+</section>
+
+<section id="lec4-p1">
+<h2>Part 1 · 线性规划基础 <span class="zh">Linear Programming Basics</span></h2>
+
+<h3 id="lec4-p1-1">1.1 定义 Definition</h3>
+<div class="def box">
+  <span class="box-title">📌 线性规划（LP）</span>
+  <p><b>线性优化 / 线性规划</b>：目标函数与约束函数都是决策变量的<b>线性</b>函数（允许常数项）。LP 是<b>连续优化</b>的子类。</p>
+  <p>例（生产规划 Production Planning）：</p>
+  <p class="formula">\(\max_{x_1,x_2} x_1 + 2x_2 \quad \text{s.t. } x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)</p>
+</div>
+
+<h3 id="lec4-p1-2">1.2 「线性」的含义 What Does “Linear” Mean?</h3>
+<p>线性函数形如 \(a_1x_1+a_2x_2+\cdots+a_nx_n\)（\(a_1,\dots,a_n\) 是常数）。</p>
+<p>LP 允许的写法：常数项 \(3x_1-2x_2+5\)（<b>仿射 affine</b>，LP 允许）；乘常数 \(100x_1,\ -0.7x_2\)；变量求和 \(x_1+x_2+x_3\)。</p>
+<p>按原写法<b>非线性</b>：变量乘积 \(x_1x_2\)；非线性幂 \(x_1^2,\ \sqrt{x_2}\)；绝对值 \(|x_1|\)（可变换，但本身不是线性的）。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 快速判断</span>
+  <p>含 \(x_ix_j\)、\(x_i^2\)、\(\sin(x_i)\)、\(\exp(x_i)\)、\(\log(x_i)\) 的项按原写法都不是线性的。</p>
+</div>
+
+<h3 id="lec4-p1-3">1.3 LP 的几何 Geometry of LP</h3>
+<p>两变量 \((x_1,x_2)\) 下，每个线性不等式描述一个<b>半平面（half-plane）</b>。画法：画边界（把 \(\le\) 换成 \(=\)），再用测试点（常用 \((0,0)\)）选满足不等式的一侧。可行域 = 所有半平面的交集 = <b>凸多面体（convex polyhedron）</b>。</p>
+<p><b>关键洞见：线性约束的边界是平的，永不弯曲。</b></p>
+<div class="figure">
+  <svg viewBox="0 0 380 320" width="480" role="img" aria-label="生产规划可行域">
+    <line x1="50" y1="270" x2="330" y2="270" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="50" y1="270" x2="50" y2="30" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="334" y="274" class="svg-muted">x₁</text>
+    <text x="40" y="24" class="svg-muted">x₂</text>
+    <polygon points="50,270 210,270 210,190 130,110 50,110" style="fill: var(--accent); opacity: 0.15; stroke: var(--accent); stroke-width: 2"/>
+    <line x1="210" y1="270" x2="210" y2="30" style="stroke: var(--sv-pos); stroke-width: 2"/>
+    <text x="216" y="60" class="svg-muted">x₁ ≤ 100</text>
+    <line x1="50" y1="110" x2="330" y2="110" style="stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="240" y="102" class="svg-muted">x₂ ≤ 100</text>
+    <line x1="290" y1="270" x2="50" y2="30" style="stroke: var(--sv-hl); stroke-width: 2"/>
+    <text x="88" y="62" class="svg-muted">x₁ + x₂ ≤ 150</text>
+    <circle cx="210" cy="190" r="5" style="fill: var(--accent)"/>
+    <text x="210" y="176" class="svg-muted" text-anchor="middle">(100, 50)</text>
+    <circle cx="130" cy="110" r="5" style="fill: var(--accent)"/>
+    <text x="126" y="128" class="svg-muted" text-anchor="end">(50, 100)</text>
+    <text x="44" y="286" class="svg-muted">0</text>
+    <text x="196" y="286" class="svg-muted">100</text>
+    <text x="34" y="114" class="svg-muted">100</text>
+  </svg>
+  <div class="figcap">图：生产规划的可行域——三条约束 x₁≤100、x₂≤100、x₁+x₂≤150 与 x≥0 的交集是一个凸多边形，顶点含 (100,50) 与 (50,100)。</div>
+</div>
+
+<h3 id="lec4-p1-4">1.4 一般与紧凑形式 General &amp; Compact Formulations</h3>
+<p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x\)</p>
+<p>三类约束（标量 / 紧凑 / 指标集合）：</p>
+<table class="truth">
+  <tr><th>标量约束</th><th>紧凑形式</th><th>指标</th></tr>
+  <tr><td>\(a_i^\top x \ge b_i\)</td><td>\(A_1 x \ge b\)</td><td>\(i\in M_1\)</td></tr>
+  <tr><td>\(a_i^\top x \le d_i\)</td><td>\(A_2 x \le d\)</td><td>\(i\in M_2\)</td></tr>
+  <tr><td>\(a_i^\top x = e_i\)</td><td>\(A_3 x = e\)</td><td>\(i\in M_3\)</td></tr>
+  <tr><td>\(x_i\ge 0\)</td><td>\(x_i\ge 0\)</td><td>\(i\in N_1\)</td></tr>
+  <tr><td>\(x_i\le 0\)</td><td>\(x_i\le 0\)</td><td>\(i\in N_2\)</td></tr>
+  <tr><td>\(x_i\) free</td><td>\(x_i\) free</td><td>\(i\in N_3\)</td></tr>
+</table>
+<p>对 \(j=1,2,3\)，\(M_j\subseteq\{1,\dots,m\}\)，\(N_j\subseteq\{1,\dots,n\}\)，\(m_j=|M_j|\)。\(A_j\) 大小 \(m_j\times n\)；向量 \(b,d,e\) 分别为 \(m_1\times 1,\ m_2\times 1,\ m_3\times 1\)。\(\ge,\le,=\) 表示<b>逐分量</b>比较。同样适用于最大化。</p>
+
+<h3 id="lec4-p1-5">1.5 标准形式 Standard Form</h3>
+<div class="def box">
+  <span class="box-title">📌 LP 标准形</span>
+  <p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x \quad \text{s.t. } Ax=b,\ x\ge 0\)</p>
+  <p>\(x\in\mathbb{R}^n\)，\(A\) 是 \(m\times n\) 矩阵，\(b\in\mathbb{R}^m\)。常 \(m&lt;n\)（但非必需）。<b>任何 LP 都可用合适变换写成标准形。</b></p>
+  <p>注：各书对标准形的定义不同；本课程沿用 Bertsimas &amp; Tsitsiklis 的定义。</p>
+</div>
+
+<h3 id="lec4-p1-6">1.6 为什么常有 \(m&lt;n\) Why Often m &lt; n?</h3>
+<ul>
+  <li>每个<b>独立等式</b>减少一个自由度；</li>
+  <li>若 \(m=n\) 且 \(A\) 可逆，则 \(Ax=b\) 有唯一解 \(x=A^{-1}b\)，可能违反 \(x\ge 0\)；</li>
+  <li>要有可优化的空间，需要独立等式数少于变量数：\(\operatorname{rank}(A)&lt;n\)；行独立时即 \(m&lt;n\)。</li>
+</ul>
+<p><b>几何洞见：</b>一致时 \(Ax=b\) 是一个平「片」（仿射子空间 affine subspace），加 \(x\ge 0\) 把它切成多面体可行集。</p>
+
+<h3 id="lec4-p1-7">1.7 标准形的几何视图 A Geometric View</h3>
+<p>两个面板都是两变量、带 \(x\ge 0\)。左：一条独立等式 \(x_1+x_2=2\)，\(\operatorname{rank}(A)=1&lt;2\)，可行集是一段（从 \((2,0)\) 到 \((0,2)\)）。右：两条独立等式 \(x_1+x_2=2\) 与 \(x_1-x_2=0\)，\(\operatorname{rank}(A)=2\)，可行集是一点 \((1,1)\)。</p>
+<p><b>记住：</b>更少的独立等式留下自由度，但非负性可能仍只留下一点。例：\(x_1+x_2=0,\ x\ge 0 \Rightarrow x=0\)。</p>
+<div class="figure">
+  <svg viewBox="0 0 460 250" width="500" role="img" aria-label="标准形几何视图">
+    <text x="20" y="22" class="svg-muted">One independent equality</text>
+    <line x1="40" y1="210" x2="220" y2="210" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="40" y1="210" x2="40" y2="25" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="220" y1="210" x2="40" y2="30" style="stroke: var(--sv-pos); stroke-width: 2.5"/>
+    <line x1="40" y1="30" x2="220" y2="210" style="stroke: var(--sv-hl); stroke-width: 5" opacity="0.5"/>
+    <circle cx="220" cy="210" r="5" style="fill: var(--accent)"/>
+    <text x="220" y="232" class="svg-muted" text-anchor="middle">(2, 0)</text>
+    <circle cx="40" cy="30" r="5" style="fill: var(--accent)"/>
+    <text x="22" y="26" class="svg-muted" text-anchor="end">(0, 2)</text>
+    <text x="130" y="240" class="svg-muted" text-anchor="middle">rank(A) = 1 &lt; 2,  x ≥ 0</text>
+    <text x="260" y="22" class="svg-muted">Two independent equalities</text>
+    <line x1="280" y1="210" x2="460" y2="210" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="280" y1="210" x2="280" y2="25" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="280" y1="30" x2="460" y2="210" style="stroke: var(--sv-pos); stroke-width: 2"/>
+    <line x1="280" y1="210" x2="460" y2="30" style="stroke: var(--sv-neg); stroke-width: 2"/>
+    <circle cx="370" cy="120" r="5" style="fill: var(--accent)"/>
+    <text x="376" y="112" class="svg-muted">(1, 1)</text>
+    <text x="370" y="240" class="svg-muted" text-anchor="middle">rank(A) = 2,  x ≥ 0</text>
+  </svg>
+  <div class="figcap">图：标准形的几何——左图一条独立等式 x₁+x₂=2 与 x≥0 交出可行线段（rank 1 &lt; 2）；右图两条独立等式 x₁+x₂=2、x₁−x₂=0 交于唯一点 (1,1)（rank 2）。</div>
+</div>
+</section>
+
+<section id="lec4-p2">
+<h2>Part 2 · 标准形变换 <span class="zh">Standard Form Transformations</span></h2>
+
+<h3 id="lec4-p2-1">2.1 四条变换规则 Four Rules</h3>
+<ol>
+  <li><b>max → min</b>：\(\max c^\top x \Leftrightarrow \min (-c)^\top x\)（约束不变）。</li>
+  <li><b>不等式 → 等式</b>：\(Ax\le b\) 用 \(Ax+s=b,\ s\ge 0\)；\(Ax\ge b\) 用 \(Ax-s=b,\ s\ge 0\)。这些 \(s\) 是<b>松弛变量（slack）</b>或<b>剩余变量（surplus）</b>。</li>
+  <li><b>\(x_i\le 0\)</b>：令 \(x_i=-y_i,\ y_i\ge 0\)。</li>
+  <li><b>\(x_i\) free</b>：令 \(x_i=x_i^+ - x_i^-,\ x_i^+,x_i^-\ge 0\)。</li>
+</ol>
+
+<h3 id="lec4-p2-2">2.2 变换 1：max → min</h3>
+<p>最大化一个数等于最小化它的相反数。若 \(c^\top x\) 取值 \(5,7,9\)，则 \((-c)^\top x\) 取 \(-5,-7,-9\)：</p>
+<p class="formula">\(\max\{5,7,9\}=9 \ \Leftrightarrow\ \min\{-5,-7,-9\}=-9\)</p>
+<p><b>记住：每次变换后跟踪决策变量。</b></p>
+
+<h3 id="lec4-p2-3">2.3 变换 2：不等式 → 等式</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 上界：加松弛（add slack）</span>
+  <p>\(x_1+x_2\le 10\)。定义 \(s\ge 0\) 使 \(x_1+x_2+s=10\)，即 \(s=10-(x_1+x_2)\)。</p>
+  <ul>
+    <li>若 \(x_1+x_2=10\)，则 \(s=0\)：约束是<b>紧的（tight）</b>；</li>
+    <li>若 \(x_1+x_2&lt;10\)，则 \(s&gt;0\)：<b>未用容量（unused capacity）</b>。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 下界：减剩余（subtract surplus）</span>
+  <p>\(x_1+x_2\ge 10\)。为什么是减号？</p>
+  <p class="formula">\(x_1+x_2\ge 10 \ \Leftrightarrow\ x_1+x_2 = 10+s,\ s\ge 0 \ \Leftrightarrow\ x_1+x_2 - s = 10,\ s\ge 0\)</p>
+  <p>这里 \(s\) 衡量超出最低要求的量。几何上每个不等式描述半平面，其边界垂距是 \(s/\sqrt{2}\)；\(s\) 本身是约束缺口。</p>
+</div>
+
+<h3 id="lec4-p2-4">2.4 变换 3：变量符号限制 Sign Restrictions</h3>
+<p>若变量需满足 \(x_i\le 0\)，不符合 \(x\ge 0\)。技巧：翻号，令 \(x_i=-y_i\)，\(y_i\ge 0\)。为什么成立：</p>
+<p class="formula">\(x_i\le 0 \ \Leftrightarrow\ -y_i\le 0 \ \Leftrightarrow\ y_i\ge 0\)</p>
+<p><b>实用提醒：</b>替代后，把目标与约束中每一处 \(x_i\) 都改写。</p>
+
+<h3 id="lec4-p2-5">2.5 变换 4：自由变量 Free Variables</h3>
+<p>自由变量可正、可负、可零。技巧：表示成两个非负变量之差：</p>
+<p class="formula">\(x_i = x_i^+ - x_i^-,\quad x_i^+\ge 0,\ x_i^-\ge 0\)</p>
+<ul>
+  <li>若 \(x_i=7\)：取 \(x_i^+=7,\ x_i^-=0\)；</li>
+  <li>若 \(x_i=-3\)：取 \(x_i^+=0,\ x_i^-=3\)；</li>
+  <li>若 \(x_i=0\)：取 \(x_i^+=0,\ x_i^-=0\)。</li>
+</ul>
+<p><b>提示：</b>\((x_i^+,x_i^-)\) 不唯一（如 \(7=8-1\)），但替代保持可行性与目标值。替代后改写每处 \(x_i\)。</p>
+
+<h3 id="lec4-p2-6">2.6 变换后跟踪决策变量</h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 变换后跟踪变量</span>
+  <p>变换常会：加松弛变量 \(s\)；换新变量（翻号）；把自由变量拆成 \(x^+,x^-\)。原变量的可行解通过替代对应新变量的可行解。建议每次变换后写一行「字典（dictionary）」，如：\(x_3\ (\text{free}) = x_3^+ - x_3^-\)，\(s_1 = 150-(x_1+x_2)\)。</p>
+</div>
+</section>
+
+<section id="lec4-p3">
+<h2>Part 3 · 软件实现 <span class="zh">Implementation with Software</span></h2>
+
+<h3 id="lec4-p3-1">3.1 为什么用 CVX / CVXPY Why CVX?</h3>
+<p>目标：把纸上的 LP 快速变成代码，得到可信答案。</p>
+<ul>
+  <li>CVX（MATLAB）/ CVXPY（Python）让你用<b>接近数学写法</b>写优化问题；</li>
+  <li>后台自动调用可靠求解器；</li>
+  <li>减少常见编码错误（符号写反、漏约束）。</li>
+</ul>
+<p>软件：下载安装 CVX for MATLAB（快速入门见 cvxr.com/cvx）；替代有 CVXPY（Python）、Convex.jl（Julia）。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 关键信息</span>
+  <p><b>软件求解方程；你必须保证模型符合真实情况。</b></p>
+</div>
+
+<h3 id="lec4-p3-2">3.2 生产规划 CVX 实现</h3>
+<p>回到生产规划：\(\max_{x_1,x_2} x_1+2x_2\) s.t. \(x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)。</p>
+<div class="ex box">
+  <span class="box-title">💻 CVX 代码（MATLAB）</span>
+  <p>cvx_begin<br>variables x1 x2<br>maximize( x1 + 2*x2 )<br>subject to<br>&nbsp;&nbsp;x1 &lt;= 100;<br>&nbsp;&nbsp;2*x2 &lt;= 200;<br>&nbsp;&nbsp;x1 + x2 &lt;= 150;<br>&nbsp;&nbsp;x1 &gt;= 0;<br>&nbsp;&nbsp;x2 &gt;= 0;<br>cvx_end</p>
+</div>
+<p>从输出读什么：</p>
+<ul>
+  <li><b>x1, x2</b>：决策变量（应对应角点解）；</li>
+  <li><b>cvx_optval</b>：最优目标值（这里期望 250）；</li>
+  <li><b>Status: Solved</b>：求解器找到了最优解。</li>
+</ul>
+<p>验算：把 \(x_1,x_2\) 代回约束数值验证；识别在最优处几乎绑定的<b>活跃约束（active constraints）</b>。</p>
+
+<h3 id="lec4-p3-3">3.3 最短路径的 LP 建模 Shortest Path as LP</h3>
+<p>图 \(G=(V,E)\)，\(V=\{1,\dots,n\}\)，源 \(1\)、终点 \(n\)。\(w_{ij}\) 是 \(i\to j\) 的距离（可有 \(w_{ij}\ne w_{ji}\)，即<b>有向</b>）。假设 \(E\) 含所有有序对；若 \((i,j)\) 无边，令 \(w_{ij}\) 极大（如大于 \(n\) 倍最大权）。</p>
+<p>决策变量 \(x_{ij}\in\{0,1\}\)（是否经过边 \((i,j)\)），目标最小化总距离，约束为<b>流量守恒（flow conservation）</b>：</p>
+<p class="formula">\(\min_{x} \sum_{(i,j)\in E} w_{ij}x_{ij}\)</p>
+<p class="formula">\(\text{s.t. } \sum_{j} x_{1j}-\sum_{j} x_{j1}=1,\quad \sum_{j} x_{jn}-\sum_{j} x_{nj}=1,\quad \sum_{j} x_{ij}=\sum_{j} x_{ji}\ (\forall i\ne 1,n),\quad x_{ij}\in\{0,1\}\)</p>
+
+<h3 id="lec4-p3-4">3.4 最短路径矩阵实现与松弛 Matrix Form &amp; Relaxation</h3>
+<p>为便于实现，把 \(x_{ii}\) 也纳入决策变量并令 \(w_{ii}\) 极大。决策变量是矩阵 \(X=\{x_{ij}\}_{i,j=1}^n\)，目标 \(\sum_{i,j} w_{ij}x_{ij}\)（MATLAB：<b>sum(sum(W.*X))</b>）。约束（MATLAB）：</p>
+<ul>
+  <li>sum(X(1,:)) − sum(X(:,1)) == 1；</li>
+  <li>sum(X(:,n)) − sum(X(n,:)) == 1；</li>
+  <li>sum(X(i,:)) − sum(X(:,i)) == 0，\(i\ne 1,n\)。</li>
+</ul>
+<p><b>整数约束的松弛：</b>把 \(x_{ij}\in\{0,1\}\) 放松为 \(0\le x_{ij}\le 1\)。对这个问题，最优值不变，且存在整数最优解（细节后讲）。</p>
+</section>
+
+<section id="lec4-p4">
+<h2>Part 4 · 建模与再变换 <span class="zh">Modeling &amp; More Transformations</span></h2>
+
+<h3 id="lec4-p4-1">4.1 空中交通管制 Air Traffic Control</h3>
+<p>管制员要安排 \(n\) 架飞机的着陆时间：</p>
+<ul>
+  <li>航班按 \(1,\dots,n\) 顺序着陆；</li>
+  <li>航班 \(j\) 必须在时间窗 \([a_j,b_j]\) 内着陆；</li>
+  <li>目标：最大化<b>最小间隔时间</b>（两次着陆之间的间隔）。</li>
+</ul>
+<div class="figure">
+  <svg viewBox="0 0 460 220" width="500" role="img" aria-label="空中交通管制时间线">
+    <line x1="40" y1="180" x2="430" y2="180" style="stroke: var(--muted); stroke-width: 2"/>
+    <path d="M430,175 L438,180 L430,185 Z" style="fill: var(--muted)"/>
+    <text x="430" y="200" class="svg-muted" text-anchor="middle">time t</text>
+    <line x1="90" y1="40" x2="180" y2="40" style="stroke: var(--sv-pos); stroke-width: 4"/>
+    <text x="78" y="28" class="svg-muted" text-anchor="end">flight 1</text>
+    <text x="86" y="60" class="svg-muted" text-anchor="end">a₁</text>
+    <text x="184" y="60" class="svg-muted">b₁</text>
+    <circle cx="130" cy="40" r="4" style="fill: var(--accent)"/>
+    <line x1="130" y1="44" x2="130" y2="180" style="stroke: var(--muted); stroke-width: 1" stroke-dasharray="4 3"/>
+    <text x="134" y="172" class="svg-muted">t₁</text>
+    <line x1="200" y1="90" x2="310" y2="90" style="stroke: var(--sv-pos); stroke-width: 4"/>
+    <text x="188" y="78" class="svg-muted" text-anchor="end">flight 2</text>
+    <text x="196" y="110" class="svg-muted" text-anchor="end">a₂</text>
+    <text x="314" y="110" class="svg-muted">b₂</text>
+    <circle cx="255" cy="90" r="4" style="fill: var(--accent)"/>
+    <line x1="255" y1="94" x2="255" y2="180" style="stroke: var(--muted); stroke-width: 1" stroke-dasharray="4 3"/>
+    <text x="259" y="172" class="svg-muted">t₂</text>
+    <line x1="320" y1="140" x2="410" y2="140" style="stroke: var(--sv-pos); stroke-width: 4"/>
+    <text x="308" y="128" class="svg-muted" text-anchor="end">flight 3</text>
+    <text x="316" y="160" class="svg-muted" text-anchor="end">a₃</text>
+    <text x="414" y="160" class="svg-muted">b₃</text>
+    <circle cx="365" cy="140" r="4" style="fill: var(--accent)"/>
+    <line x1="365" y1="144" x2="365" y2="180" style="stroke: var(--muted); stroke-width: 1" stroke-dasharray="4 3"/>
+    <text x="369" y="172" class="svg-muted">t₃</text>
+    <line x1="130" y1="150" x2="255" y2="150" style="stroke: var(--sv-hl); stroke-width: 2"/>
+    <path d="M255,144 L247,150 L255,156 Z" style="fill: var(--sv-hl)"/>
+    <path d="M130,144 L138,150 L130,156 Z" style="fill: var(--sv-hl)"/>
+    <text x="192" y="143" class="svg-muted" text-anchor="middle">Δ = t₂ − t₁</text>
+  </svg>
+  <div class="figcap">图：空中交通管制——每架航班有一个着陆时间窗 [aⱼ,bⱼ]（色条），在窗内选着陆点 tⱼ；目标是最大化相邻着陆点之间的最小间隔 Δ。</div>
+</div>
+
+<h3 id="lec4-p4-2">4.2 maximin 目标 An Optimization Formulation</h3>
+<p><b>决策变量</b>：\(t_j\) = 航班 \(j\) 的着陆时间。约束：时间窗 \(a_j\le t_j\le b_j\)；按序（不超车）\(t_1\le t_2\le\cdots\le t_n\)。</p>
+<p><b>目标</b>：让相邻航班间的最小间隔尽可能大。最紧的间隔是 \(\min_{j=1,\dots,n-1}\{t_{j+1}-t_j\}\)，最大化这个最差间隔：</p>
+<p class="formula">\(\max_{t\in\mathbb{R}^n} \min_{j=1,\dots,n-1}\{t_{j+1}-t_j\} \quad \text{s.t. } a_j\le t_j\le b_j,\ t_j\le t_{j+1}\)</p>
+<p>这是<b>maximin 目标</b>（最大化最小值）。函数 \(\min(\cdot)\) 使目标<b>尚非线性</b>。</p>
+
+<h3 id="lec4-p4-3">4.3 引入最小间隔变量 Introduce the Minimum Gap</h3>
+<p>引入下界变量 \(\Delta\)。最优时 \(\Delta=\min_{j}\{t_{j+1}-t_j\}\)。<b>关键想法：用不等式替换 min。</b></p>
+<div class="thm box">
+  <span class="box-title">🎯 等价性</span>
+  <p>\(\Delta\le \min_j(t_{j+1}-t_j)\) 等价于要求 <b>对每个 \(j\)</b> 都 \(t_{j+1}-t_j\ge \Delta\)。</p>
+  <ul>
+    <li>若所有 \(t_{j+1}-t_j\ge\Delta\)，则 \(\Delta\) 不大于每个间隔，故不大于最小间隔；</li>
+    <li>反之，若 \(\Delta\) 不大于最小间隔，则它不大于每个间隔，所有不等式成立。</li>
+  </ul>
+</div>
+<p>于是不用目标里的 \(\min(\cdot)\)，改用线性约束。</p>
+
+<h3 id="lec4-p4-4">4.4 化回 LP Reformulation as an LP</h3>
+<p class="formula">\(\max_{t,\Delta} \Delta \quad \text{s.t. } t_{j+1}-t_j-\Delta\ge 0\ (j=1,\dots,n-1),\ a_j\le t_j\le b_j,\ t_j\le t_{j+1}\)</p>
+<p>为什么最大化 \(\Delta\) 有效？对任意固定时刻表 \(t\)：约束迫使 \(\Delta\le t_{j+1}-t_j\)（所有 \(j\)），故 \(\Delta\) 不超过最小间隔；所以对给定 \(t\) 最好的可行 \(\Delta\) 正是 \(\Delta=\min_j(t_{j+1}-t_j)\)。于是对所有可行 \(t\) 最大化 \(\Delta\)，就是在最大化最小间隔——LP 与原 maximin 问题等价。</p>
+
+<h3 id="lec4-p4-5">4.5 仿射函数 min/max 统一方法 Unified Recipe</h3>
+<p>设仿射函数 \(\ell_i(x)=a_i^\top x+b_i\)（\(i=1,\dots,m\)）。重要恒等式（连接 maximin 与 minimax）：</p>
+<p class="formula">\(\min_i u_i = -\max_i(-u_i)\)</p>
+<p>因此：</p>
+<p class="formula">\(\max_{x} \min_i \ell_i(x) \ \Leftrightarrow\ \max_x\Big[-\max_i(-\ell_i(x))\Big] \ \Leftrightarrow\ \min_{x} \max_i\big(-\ell_i(x)\big)\)</p>
+<p><b>仿射函数的 max–min 等于它们相反数的 min–max。</b>例：</p>
+<p class="formula">\(\max_{t} \min_{j=1,\dots,n-1}\{t_{j+1}-t_j\} \ \Leftrightarrow\ \min_{t} \max_{j=1,\dots,n-1}\{-t_{j+1}+t_j\}\)</p>
+
+<h3 id="lec4-p4-6">4.6 minimax 目标 Minimax Objective</h3>
+<p class="formula">\(\min_{x} \max_{i=1,\dots,n}\{c_i^\top x+d_i\} \quad \text{s.t. } Ax=b,\ x\ge 0\)</p>
+<p>解读：每个 \(i\) 的 \(c_i^\top x+d_i\) 是一个代价，我们关心其中最坏者 \(\max_i\{c_i^\top x+d_i\}\)，再选 \(x\) 使这个最坏者尽可能小。</p>
+<p><b>几何图景：</b>函数 \(f(x)=\max_{i=1,\dots,n}\{c_i^\top x+d_i\}\) 是若干仿射（平）函数的<b>上包络（upper envelope）</b>。最小化它 = 在可行时把包络往下压。</p>
+
+<h3 id="lec4-p4-7">4.7 辅助变量重构 Reformulation via Auxiliary Variable</h3>
+<p>第 1 步：引入上界变量 \(y\in\mathbb{R}\)。最小化 \(y\) 时，最优处 \(y=\max_i\{c_i^\top x+d_i\}\)。</p>
+<p>第 2 步：用线性不等式表示上界。\(y\ge \max_i(c_i^\top x+d_i)\) 等价于对每个 \(i\) 都有 \(y\ge c_i^\top x+d_i\)。</p>
+<div class="thm box">
+  <span class="box-title">🎯 为什么等价？</span>
+  <ul>
+    <li>若每个 \(i\) 都 \(y\ge c_i^\top x+d_i\)，则 \(y\) 至少不小于其中最大者，故 \(y\ge\max_i(\cdot)\)；</li>
+    <li>若 \(y\ge\max_i(\cdot)\)，则 \(y\) 不小于每个单独项，所有不等式成立。</li>
+  </ul>
+</div>
+<p>得到 LP：</p>
+<p class="formula">\(\min_{x,y} y \quad \text{s.t. } y\ge c_i^\top x+d_i\ (i=1,\dots,n),\ Ax=b,\ x\ge 0\)</p>
+
+<h3 id="lec4-p4-8">4.8 最小化绝对值 Minimizing Absolute Values</h3>
+<p>含绝对值的问题（如图像修复 image inpainting 的稀疏表示）也可用 LP 处理：</p>
+<p class="formula">\(\min_{x} \sum_{i=1}^{n}|x_i| \quad \text{s.t. } Ax=b\)</p>
+<p>等价写成：</p>
+<p class="formula">\(\min_{x,t} \sum_{i=1}^{n} t_i \quad \text{s.t. } x_i\le t_i,\ x_i\ge -t_i,\ Ax=b\)</p>
+<p>类似想法可用于约束 \(|a^\top x+b|\le c\)。</p>
+
+<h3 id="lec4-p4-9">4.9 通用建模工具（引理）A General Modeling Tool</h3>
+<p>考虑：</p>
+<p class="formula">\(\min_{x} \sum_{i=1}^{m} f_i(x) \ \text{s.t. } x\in\Omega \qquad (2)\)</p>
+<p class="formula">\(\min_{x,t} \sum_{i=1}^{m} t_i \ \text{s.t. } x\in\Omega,\ f_i(x)\le t_i\ \forall i \qquad (3)\)</p>
+<p>其中 \(f_i:\mathbb{R}^n\to\mathbb{R}\) 给定，\(\Omega\subset\mathbb{R}^n\) 是可行集。</p>
+<div class="thm box">
+  <span class="box-title">🎯 引理：建模工具 Modeling Tool</span>
+  <p>问题 (2) 与 (3) 等价：</p>
+  <ul>
+    <li>若 \(x^*\) 是 (2) 的最优解，则 \((x^*, t^*)\)（\(t^*=f_i(x^*)\)）是 (3) 的最优解；</li>
+    <li>若 \((x^*,t^*)\) 是 (3) 的最优解，则 \(x^*\) 是 (2) 的最优解。</li>
+  </ul>
+  <p>两种情况下最优值相同。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 证明思路（取 m=1）</span>
+  <p><b>Step 0.</b> 对任意 \(x\in\Omega\)，\((x,\ t=f(x))\) 对 (3) 可行（\(f(x)\le t\) 取等）。</p>
+  <p><b>“⇒”</b> 设 \(x^*\) 是 (2) 最优解，令 \(t^*:=f(x^*)\)。可行：\(x^*\in\Omega\) 且 \(f(x^*)\le t^*\)。最优：对 (3) 任意可行 \((x,t)\)，有 \(x\in\Omega\)、\(f(x)\le t\)。因 \(x^*\) 最小化 \(f\)，\(t^*=f(x^*)\le f(x)\le t\)，故无可行 \((x,t)\) 能取到比 \(t^*\) 更小的目标。</p>
+  <p><b>“⇐”</b> 设 \((x^*,t^*)\) 是 (3) 最优解。可行给出 \(x^*\in\Omega\) 且 \(f(x^*)\le t^*\)。对任意 \(x\in\Omega\)，由 Step 0 知 \((x,f(x))\) 对 (3) 可行，(3) 最优性给出 \(t^*\le f(x)\)（\(\forall x\in\Omega\)）。结合 \(f(x^*)\le t^*\) 得 \(f(x^*)\le f(x)\)（\(\forall x\)），即 \(x^*\) 是 (2) 最优解。</p>
+</div>
+
+<h3 id="lec4-p4-10">4.10 最大化绝对值（非凸）Maximizing Absolute Values</h3>
+<p>考虑类似问题：</p>
+<p class="formula">\(\max_{x} \sum_{i=1}^{n}|x_i| \quad \text{s.t. } Ax=b\)</p>
+<p>能否用类似想法变换成：\(\max\sum t_i\) s.t. \(t_i\ge x_i,\ t_i\ge -x_i,\ Ax=b\)？</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 答案：不能</span>
+  <p>存在某种<b>内在性质</b>使我们无法把它写成 LP（<b>非凸性 non-convexity</b>）。课程后半部分会讨论。</p>
+</div>
+
+<h3 id="lec4-p4-11">4.11 线性分式规划 Linear Fractional Programming</h3>
+<p>考虑：</p>
+<p class="formula">\(\min_{x} \dfrac{c^\top x+d}{e^\top x+a} \quad \text{s.t. } Ax\le b\)</p>
+<p>假设对任意满足 \(Ax\le b\) 的 \(x\) 有 \(e^\top x+a&gt;0\)。例：公司目标可能是最小化比率（总生产成本）/（总利润）。如何变换成 LP？</p>
+<p>定义：</p>
+<p class="formula">\(y = \dfrac{x}{e^\top x+a},\qquad z = \dfrac{1}{e^\top x+a}\)</p>
+<p>可写为：</p>
+<p class="formula">\(\min_{y,z} c^\top y + dz \quad \text{s.t. } Ay-bz\le 0,\ e^\top y+az=1,\ z\ge 0\)</p>
+<p>这是一个 LP。等价性：若原问题可行，则下确界一致；\(z&gt;0\) 时恢复 \(x=y/z\)，\(z=0\) 表示极限行为。详见 Boyd &amp; Vandenberghe（补充阅读 p.151）。</p>
+</section>
+
+<section id="lec4-p5">
+<h2>Part 5 · 总结 <span class="zh">Summary</span></h2>
+<p>到目前为止，我们学会了：</p>
+<ul>
+  <li>建立一个优化问题（formulate）；</li>
+  <li>把 LP 变换到标准形（transform to standard form）；</li>
+  <li>把某些 NLP 变换成 LP（transform certain NLPs into LPs）；</li>
+  <li>用软件求解线性优化问题（solve with software）。</li>
+</ul>
+<p>下一步：如何求解一个线性优化问题？从 LP 的基本几何性质开始（下一讲）。</p>
+</section>
+
+<section id="lec4-appendix">
+<h2>附录 · 线性代数基础 <span class="zh">Appendix: Basics of Linear Algebra</span></h2>
+
+<h3 id="lec4-ap-1">A.1 向量与基本运算 Vector &amp; Basic Operations</h3>
+<p>\(x\in\mathbb{R}^n\) 是 \(n\) 维实<b>列向量</b>：\(x=(x_1,x_2,\dots,x_n)^\top\)，\(x_i\in\mathbb{R}\)。可把 \(x\) 看作 \(n\) 维空间中的点（想 \(n=2,3\)）。向量加法 = 对应坐标相加（仅同维可加）；标量乘法 = 每个坐标乘 \(a\)。交换律 \(x+y=y+x\)；分配律 \(a(x+y)=ax+ay\)、\((a+b)x=ax+bx\)。</p>
+
+<h3 id="lec4-ap-2">A.2 转置与内积 Transpose &amp; Inner Product</h3>
+<p>转置：\(x\) 是 \(n\times 1\)，\(x^\top\) 是 \(1\times n\)。许多公式因此变紧凑：\(x^\top y=\sum_{i=1}^n x_iy_i\)，\(Ax\) = \(A\) 各列的线性组合。<b>永远检查维度。</b>\(x^\top y\) 是 \(1\times 1\)（标量）。</p>
+
+<h3 id="lec4-ap-3">A.3 线性无关、张成与基 Independence, Span &amp; Basis</h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <ul>
+    <li><b>线性相关</b>：存在不全为 0 的标量 \(a_1,\dots,a_m\) 使 \(\sum_i a_ix_i=0\)；否则<b>线性无关</b>。</li>
+    <li><b>张成 span</b>：\(\operatorname{span}\{x_1,\dots,x_m\}=\{\sum_i a_ix_i : a\in\mathbb{R}^m\}\)。</li>
+    <li><b>基 basis</b>：\(\mathbb{R}^n\) 中一组线性无关且张成 \(\mathbb{R}^n\) 的向量。如 \(\{(1,2)^\top,(3,4)^\top\}\) 与 \(\{e_1,e_2\}\) 都是 \(\mathbb{R}^2\) 的基。</li>
+  </ul>
+</div>
+<p>在 \(\mathbb{R}^2\) 中两向量线性无关 ⇔ 不成倍数。例：\(a=(1,2)^\top,\ b=(2,4)^\top\) 中 \(b=2a\) 相关，只张成一条线；\(a=(1,2)^\top,\ b=(3,4)^\top\) 不成倍数，独立并张成 \(\mathbb{R}^2\)。<b>独立 = 没有冗余向量。</b></p>
+
+<h3 id="lec4-ap-4">A.4 内积、正交与范数 Inner Product, Orthogonality &amp; Norm</h3>
+<p>内积：\(\langle x,y\rangle=x^\top y=\sum_i x_iy_i\)。\(x,y\) <b>正交（orthogonal）</b>若 \(x^\top y=0\)。</p>
+<p>\(\ell_2\)-范数（Euclidean）：\(\|x\|_2=\sqrt{x^\top x}=\sqrt{\sum_i x_i^2}\)，度量长度，常简写 \(\|x\|\)。</p>
+<p>更一般地，<b>范数</b> \(\|\cdot\|:\mathbb{R}^n\to\mathbb{R}\) 满足：① \(\|x\|&gt;0\)（\(x\ne 0\)）且 \(\|x\|=0\) 仅当 \(x=0\)；② \(\|ax\|=|a|\|x\|\)；③ 三角不等式 \(\|x+y\|\le\|x\|+\|y\|\)。</p>
+
+<h3 id="lec4-ap-5">A.5 p-范数与柯西-施瓦茨 p-Norms &amp; Cauchy–Schwarz</h3>
+<p>Hölder \(p\)-范数（\(1\le p\le\infty\)）：</p>
+<p class="formula">\(\|x\|_p=\Big(\sum_{i=1}^n |x_i|^p\Big)^{1/p}\ (1\le p&lt;\infty),\qquad \|x\|_\infty=\max_{1\le i\le n}|x_i|\)</p>
+<p>特例：\(p=2\) 回到 \(\ell_2\)；\(p=1\) 是 \(\ell_1\)：\(\|x\|_1=\sum_i |x_i|\)。</p>
+<p><b>柯西-施瓦茨不等式（Cauchy–Schwarz）：</b>\(x^\top y\le\|x\|_2\|y\|_2\)。</p>
+
+<h3 id="lec4-ap-6">A.6 单位球 Unit Balls</h3>
+<p>范数度量长度，也定义距离 \(d(x,y)=\|x-y\|\)。在 \(\mathbb{R}^2\) 中单位球形状不同：\(\|x\|_2\le 1\) 是圆盘；\(\|x\|_1\le 1\) 是菱形；\(\|x\|_\infty\le 1\) 是正方形。</p>
+<div class="figure">
+  <svg viewBox="0 0 460 180" width="500" role="img" aria-label="三种范数的单位球">
+    <circle cx="80" cy="90" r="55" style="fill: var(--sv-pos); opacity: 0.25; stroke: var(--sv-pos); stroke-width: 2"/>
+    <line x1="10" y1="90" x2="150" y2="90" style="stroke: var(--muted); stroke-width: 1"/>
+    <line x1="80" y1="20" x2="80" y2="160" style="stroke: var(--muted); stroke-width: 1"/>
+    <text x="80" y="170" class="svg-muted" text-anchor="middle">‖x‖₂ ≤ 1（圆盘）</text>
+    <polygon points="240,35 295,90 240,145 185,90" style="fill: var(--sv-neg); opacity: 0.25; stroke: var(--sv-neg); stroke-width: 2"/>
+    <line x1="170" y1="90" x2="310" y2="90" style="stroke: var(--muted); stroke-width: 1"/>
+    <line x1="240" y1="20" x2="240" y2="160" style="stroke: var(--muted); stroke-width: 1"/>
+    <text x="240" y="170" class="svg-muted" text-anchor="middle">‖x‖₁ ≤ 1（菱形）</text>
+    <rect x="345" y="35" width="110" height="110" style="fill: var(--sv-hl); opacity: 0.25; stroke: var(--sv-hl); stroke-width: 2"/>
+    <line x1="330" y1="90" x2="470" y2="90" style="stroke: var(--muted); stroke-width: 1"/>
+    <line x1="400" y1="20" x2="400" y2="160" style="stroke: var(--muted); stroke-width: 1"/>
+    <text x="400" y="170" class="svg-muted" text-anchor="middle">‖x‖∞ ≤ 1（正方形）</text>
+  </svg>
+  <div class="figcap">图：三种范数的单位球——ℓ₂ 是圆盘、ℓ₁ 是菱形、ℓ∞ 是正方形。</div>
+</div>
+<p><b>为什么后面重要：</b>优化里的正则化常意味着「把 \(x\) 限制在范数球内」。</p>
+
+<h3 id="lec4-ap-7">A.7 矩阵与转置 Matrix &amp; Transpose</h3>
+<p>\(\mathbb{R}^{m\times n}\) = \(m\times n\) 实矩阵集合。转置 \(A^\top\) 是 \(n\times m\) 矩阵（行列互换）。<b>对称矩阵</b>：\(m\times m\) 实矩阵满足 \(A=A^\top\)。</p>
+
+<h3 id="lec4-ap-8">A.8 矩阵作为线性变换 Matrix as Linear Transformation</h3>
+<p>\(A\in\mathbb{R}^{m\times n}\) 定义函数 \(x\mapsto Ax\in\mathbb{R}^m\)。<b>列图景</b>：若 \(A=[a_1\ a_2\ \cdots\ a_n]\)（列向量），则 \(Ax=x_1a_1+\cdots+x_na_n\)。例：\(A=\begin{pmatrix}1&amp;0\\2&amp;1\end{pmatrix},\ x=(3,1)^\top \Rightarrow Ax=(5,1)^\top\)。几何：矩阵表示旋转、伸缩、剪切的组合。</p>
+
+<h3 id="lec4-ap-9">A.9 矩阵乘法 Matrix Multiplication</h3>
+<p>\(A\in\mathbb{R}^{m\times n}\)、\(B\in\mathbb{R}^{n\times p}\)：\(C=AB\in\mathbb{R}^{m\times p}\)，\(c_{ij}=\sum_{k=1}^n a_{ik}b_{kj}\)。矩阵-向量乘法是特例。\(AB\) 表示「先做 \(B\) 再做 \(A\)」。维数检查：\(m\times n\) 乘 \(n\times p\) 得 \(m\times p\)。<b>矩阵乘法一般不交换（\(AB\ne BA\)）。</b></p>
+<p>三种等价视角：① 按定义 \(c_{ij}=\sum_k a_{ik}b_{kj}\)；② 按<b>外积</b> \(C=\sum_{k=1}^n a_k b_k^\top\)（\(a_k\) 列、\(b_k^\top\) 行）；③ 按矩阵-向量 \(c_j=Ab_j\)（\(b_j\) 是 \(B\) 第 \(j\) 列）。</p>
+
+<h3 id="lec4-ap-10">A.10 秩与逆 Rank &amp; Inverse</h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <ul>
+    <li><b>秩 rank</b>：极大线性无关列 / 行子集的元素个数。性质：\(\operatorname{rank}(A)=\operatorname{rank}(A^\top)\)；\(\operatorname{rank}(A+B)\le\operatorname{rank}(A)+\operatorname{rank}(B)\)；\(\operatorname{rank}(AB)\le\min\{\operatorname{rank}(A),\operatorname{rank}(B)\}\)。</li>
+    <li><b>逆 inverse</b>：\(n\times n\) 方阵 \(A\) 可逆若列满秩；\(AA^{-1}=A^{-1}A=I\)。\((A^{-1})^{-1}=A\)；\((AB)^{-1}=B^{-1}A^{-1}\)。</li>
+  </ul>
+</div>
+<p>几何：\(\operatorname{rank}(A)\) 是输出空间 \(\{Ax:x\in\mathbb{R}^n\}\)（列空间 / 值域）的维数。例：\(A=\begin{pmatrix}1&amp;2\\2&amp;4\end{pmatrix}\)，第二列是第一列 2 倍，\(\operatorname{rank}(A)=1\)，故 \(Ax\) 总在一条线上。若 \(A\in\mathbb{R}^{n\times n}\) 可逆，则对每个输出 \(b\) 有唯一输入 \(x=A^{-1}b\)；可逆矩阵不把平面压成线，保持维数。\(\operatorname{rank}(A)&lt;n\) ⇒ 不可逆（信息丢失）。</p>
+
+<h3 id="lec4-ap-11">A.11 正交矩阵与 PSD Orthonormal Matrix &amp; PSD</h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <ul>
+    <li><b>正交 / 标准正交矩阵</b>：列与行是标准正交向量，即 \(A^\top A=AA^\top=I\)，等价于 \(A^\top=A^{-1}\)。</li>
+    <li><b>半正定 PSD / 正定 PD</b>：\(n\times n\) 实矩阵 \(A\) 满足 \(x^\top Ax\ge 0\)（\(\forall x\)）/ \(&gt;0\)（\(\forall x\in\mathbb{R}^n\setminus\{0\}\)）。</li>
+  </ul>
+</div>
+<p>正交矩阵性质：\(\|Ax\|_2^2=(Ax)^\top(Ax)=x^\top(A^\top A)x=x^\top x=\|x\|_2^2\)，故 \(\|Ax\|_2=\|x\|_2\)——正交矩阵只做旋转与反射（不伸缩）。</p>
+<p>PSD 的几何：若 \(Q\) PSD，则 \(x^\top Qx\ge 0\)，形似「碗」（从不低于 0），水平集 \(x^\top Qx=c\) 是椭圆（半定时可能为线 / 平方向）。例：\(Q=\begin{pmatrix}2&amp;0\\0&amp;1\end{pmatrix}\Rightarrow x^\top Qx=2x_1^2+x_2^2\ge 0\)。PSD 矩阵出现在凸优化中，保证良好的优化几何。</p>
+</section>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>linear programming (LP)</b> — 线性规划；<b>linear / affine</b> — 线性 / 仿射</li>
+    <li><b>half-plane</b> — 半平面；<b>convex polyhedron</b> — 凸多面体</li>
+    <li><b>general / compact form</b> — 一般形式 / 紧凑形式；<b>standard form</b> — 标准形</li>
+    <li><b>slack variable</b> — 松弛变量；<b>surplus variable</b> — 剩余变量</li>
+    <li><b>free variable</b> — 自由变量；<b>tight / active constraint</b> — 紧约束 / 活跃约束</li>
+    <li><b>CVX / CVXPY</b> — 优化建模软件（MATLAB / Python）</li>
+    <li><b>flow conservation</b> — 流量守恒；<b>relaxation</b> — 松弛</li>
+    <li><b>maximin / minimax</b> — 最大化最小值 / 最小化最大值</li>
+    <li><b>upper envelope</b> — 上包络；<b>auxiliary variable</b> — 辅助变量</li>
+    <li><b>absolute value</b> — 绝对值；<b>sparse representation</b> — 稀疏表示</li>
+    <li><b>linear fractional programming</b> — 线性分式规划；<b>non-convexity</b> — 非凸性</li>
+    <li><b>vector / inner product / norm</b> — 向量 / 内积 / 范数</li>
+    <li><b>linear independence / span / basis</b> — 线性无关 / 张成 / 基</li>
+    <li><b>Cauchy–Schwarz inequality</b> — 柯西-施瓦茨不等式；<b>triangle inequality</b> — 三角不等式</li>
+    <li><b>rank / inverse</b> — 秩 / 逆；<b>orthonormal matrix</b> — 标准正交矩阵</li>
+    <li><b>positive semi-definite (PSD)</b> — 半正定；<b>quadratic form</b> — 二次型</li>
+  </ul>
+</div>
+
+</div><!-- /第4课 -->
 
 </div>
 </main>
