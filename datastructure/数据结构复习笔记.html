@@ -635,7 +635,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–4</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -2951,6 +2951,802 @@ carry = sum / 10;
 </section>
 
 </div><!-- /第3课 -->
+
+<!-- ============ 第4课 ============ -->
+<div class="lecture" id="lec4">
+  <div class="lecture-banner">第4课 · Functions, References, and Iterators <span class="zh">（函数、引用与迭代器）</span></div>
+
+  <section id="lec4-overview">
+    <div class="toc">
+      <div class="toc-title">本讲导览</div>
+      <ol>
+        <li>函数基础：函数接口、参数与实参、先声明后使用、返回值与 void、局部变量与作用域</li>
+        <li>重载与默认参数：函数重载、默认参数</li>
+        <li>引用入门：按值传参的局限、引用是别名、赋值不会重绑引用</li>
+        <li>引用参数与 const：引用参数、什么能绑定到 int&amp;、const 只读引用、读容器而不复制、选择参数类型</li>
+        <li>返回与对象生命周期：返回值与对象生命周期、带引用的范围 for、Python/Java/C++ 参数模型</li>
+        <li>迭代器入门：为什么需要迭代器、begin()/end()、迭代器循环、位置 vs 值</li>
+        <li>算法与区间：查找、sort/reverse、区间、常用算法、迭代器算术</li>
+        <li>迭代器端点：begin/end/cbegin/cend/rbegin/rend、反向迭代器、只读迭代器</li>
+        <li>谓词与比较器：谓词、函数作参数、自定义排序、排序记录、一致的比较器</li>
+        <li>修改容器：插入/删除、迭代器失效、读契约、边迭代边删除</li>
+        <li>综合练习：LeetCode 680 / 242 / 1356、lambda 比较器</li>
+        <li>接口与总结：函数接口表达意图、本讲总结、词汇表</li>
+      </ol>
+    </div>
+
+    <div class="warn box">
+      <div class="box-title">本讲主线</div>
+      <p>前三讲已经会写「一段线性执行的代码」，但真实程序要拆成可复用的<span class="en">函数（function）</span>。本讲先讲函数的声明、参数、返回值、重载与默认参数；接着引入 C++ 最重要的语法之一——<span class="en">引用（reference）</span>，理解「传值 vs 传引用」；最后讲<span class="en">迭代器（iterator）</span>，它是标准库算法与容器之间的桥梁，是 C++ 泛型编程的核心。三个主题层层递进：<b>函数 → 引用 → 迭代器</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec4-p1">
+    <h2>Part 1 · 函数基础 <span class="en">Functions</span></h2>
+
+    <h3 id="lec4-p1-1">1.1 函数接口 <span class="en">The Function Interface</span></h3>
+    <p>函数把一段代码打包成有名字、可复用的单元。调用者只需关心它的<span class="en">接口（interface）</span>，不必关心内部如何实现。接口由三部分组成：</p>
+    <ul>
+      <li><b>函数名</b>（function name）——用来调用它；</li>
+      <li><b>参数列表</b>（parameter list）——它需要什么输入；</li>
+      <li><b>返回类型</b>（return type）——它产出什么。</li>
+    </ul>
+    <pre><code>// 计算两个 int 中较大者的函数
+int max(int a, int b) {
+    if (a &gt; b)
+        return a;
+    else
+        return b;
+}
+
+int main() {
+    int x = 3, y = 5;
+    std::cout &lt;&lt; max(x, y);   // 输出 5
+}</code></pre>
+    <p>函数头 <code>int max(int a, int b)</code> 是接口：调用者看到「给我两个 <code>int</code>，还你一个 <code>int</code>」。函数体是内部实现，调用者不必读。</p>
+
+    <h3 id="lec4-p1-2">1.2 参数与实参 <span class="en">Parameters versus Arguments</span></h3>
+    <div class="def box">
+      <div class="box-title">定义</div>
+      <p><b>参数（parameter）</b>是函数定义中声明的「占位变量」，如 <code>int a</code>、<code>int b</code>；<b>实参（argument）</b>是调用时实际传入的值，如 <code>max(x, y)</code> 里的 <code>x</code>、<code>y</code>。</p>
+    </div>
+    <p>调用时，实参被用来<b>初始化</b>参数。二者类型需要匹配（或可隐式转换）。</p>
+    <pre><code>int add(int a, int b) { return a + b; }
+
+int main() {
+    int x = 10, y = 20;
+    add(x, y);        // x、y 是实参，绑定到参数 a、b
+    add(10, 20);      // 字面量也是实参
+    add(x + 1, y);    // 表达式先求值，再作为实参传入
+}</code></pre>
+
+    <h3 id="lec4-p1-3">1.3 先声明后使用 <span class="en">Declaration Before Use</span></h3>
+    <p>C++ 要求<b>名字在被使用之前必须已经声明</b>。如果想在 <code>main</code> 里调用一个定义在 <code>main</code> 之后的函数，编译器会因为「还不认识这个名字」而报错。</p>
+    <div class="ex box">
+      <div class="box-title">声明与定义的区别</div>
+      <p><b>声明（declaration）</b>只告诉编译器「有这么一个函数，签名是什么」；<b>定义（definition）</b>才给出函数体。一个函数可以被声明多次，但只能定义一次。</p>
+    </div>
+    <pre><code>#include &lt;iostream&gt;
+
+int add(int a, int b);   // 声明（函数原型 prototype）
+
+int main() {
+    std::cout &lt;&lt; add(2, 3);   // OK：add 已声明
+}
+
+int add(int a, int b) {  // 定义
+    return a + b;
+}</code></pre>
+    <p>声明末尾要加分号，定义末尾（函数体后）不加。函数原型是接口的完整表达：<code>int add(int a, int b);</code>。</p>
+
+    <h3 id="lec4-p1-4">1.4 返回值与 void <span class="en">Return Values and void</span></h3>
+    <p>函数用 <code>return</code> 把值交还给调用者。返回类型写在函数名前面。如果函数不需要返回值，返回类型写作 <code>void</code>。</p>
+    <pre><code>void print_sum(int a, int b) {
+    std::cout &lt;&lt; a + b &lt;&lt; '\n';
+    // 没有 return 值；到函数末尾自动返回
+}
+
+int main() {
+    print_sum(3, 4);   // 打印 7，不产生值
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">注意事项</div>
+      <p>非 <code>void</code> 函数必须在<b>所有执行路径</b>上都 <code>return</code> 一个值，否则是未定义行为（编译器会警告）。<code>main</code> 函数特例：可以省略 <code>return</code>，编译器隐式返回 <code>0</code>。</p>
+    </div>
+
+    <h3 id="lec4-p1-5">1.5 局部变量与作用域 <span class="en">Local Variables and Scope</span></h3>
+    <p>在函数体（或任意 <code>{}</code> 块）内声明的变量是<span class="en">局部变量（local variable）</span>，其<span class="en">作用域（scope）</span>从声明点起，到所在块的 <code>}</code> 结束。离开作用域后变量被销毁，名字失效。</p>
+    <pre><code>void f() {
+    int x = 1;        // x 的作用域从这行开始
+    {
+        int y = 2;    // y 只在这个内层块内可见
+        x += y;
+    }
+    // std::cout &lt;&lt; y;   // 错误：y 已经不在作用域内
+    std::cout &lt;&lt; x;      // OK：x 仍可见
+}
+
+int main() {
+    f();
+    // std::cout &lt;&lt; x;     // 错误：x 是 f 的局部变量
+}</code></pre>
+    <div class="def box">
+      <div class="box-title">要点</div>
+      <p>局部变量让不同函数可以有同名变量、互不干扰；作用域界定了变量的「生命周期」和「可见性」。理解作用域是理解后续「对象生命周期」「悬垂引用」的前提。</p>
+    </div>
+  </section>
+
+  <section id="lec4-p2">
+    <h2>Part 2 · 重载与默认参数 <span class="en">Overloading &amp; Default Arguments</span></h2>
+
+    <h3 id="lec4-p2-1">2.1 函数重载 <span class="en">Function Overloading</span></h3>
+    <p>C++ 允许<b>同名函数</b>共存，只要它们的<b>参数列表不同</b>（参数个数或类型不同）。编译器根据实参类型选出匹配的那个，这一机制叫<span class="en">重载（overloading）</span>。</p>
+    <pre><code>int   max(int a, int b)     { return a &gt; b ? a : b; }
+double max(double a, double b) { return a &gt; b ? a : b; }
+int   max(int a, int b, int c) {
+    return max(max(a, b), c);
+}
+
+int main() {
+    max(3, 5);        // 调用 int 版
+    max(3.5, 1.2);    // 调用 double 版
+    max(1, 2, 3);     // 调用三参数版
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">只看参数，不看返回类型</div>
+      <p>重载的区分依据<b>只是参数列表</b>。仅返回类型不同的两个同名函数不能共存，因为调用时编译器无法仅凭返回值区分。默认参数造成的「歧义」也会让重载决议失败。</p>
+    </div>
+
+    <h3 id="lec4-p2-2">2.2 默认参数 <span class="en">Default Arguments</span></h3>
+    <p>声明时可以给参数指定<b>默认值</b>，调用时若省略该实参就用默认值。默认参数必须从右往左连续声明。</p>
+    <pre><code>// 声明处给出默认值
+int power(int base, int exp = 2);
+
+int power(int base, int exp) {
+    int r = 1;
+    for (int i = 0; i &lt; exp; ++i)
+        r *= base;
+    return r;
+}
+
+int main() {
+    power(3);       // 等价 power(3, 2) = 9
+    power(3, 4);    // = 81
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">两条规则</div>
+      <p>① 默认值写在<b>声明</b>里（不写在定义里），且一个作用域内只给一次；② 一旦某参数给了默认值，它右边的所有参数都必须有默认值——因为实参是从左往右逐个绑定的。</p>
+    </div>
+  </section>
+
+  <section id="lec4-p3">
+    <h2>Part 3 · 引用入门 <span class="en">References</span></h2>
+
+    <h3 id="lec4-p3-1">3.1 按值传参的局限 <span class="en">A Copied Parameter</span></h3>
+    <p>默认情况下 C++ 是<span class="en">按值传递（pass by value）</span>：实参被<b>复制</b>一份交给参数。函数里修改参数，改的是副本，不影响调用者的原变量。</p>
+    <pre><code>void add_one(int a) {
+    a = a + 1;   // 改的是副本
+}
+
+int main() {
+    int x = 10;
+    add_one(x);
+    std::cout &lt;&lt; x;   // 仍是 10
+}</code></pre>
+    <p>按值传递带来两个问题：一是「想改原变量却改不到」；二是「对象很大时复制开销高」（例如整个 <code>vector</code>）。引用正是为了解决这两点。</p>
+
+    <h3 id="lec4-p3-2">3.2 引用是别名 <span class="en">A Reference Is Another Name</span></h3>
+    <div class="def box">
+      <div class="box-title">定义</div>
+      <p><b>引用（reference）</b>是某个已存在对象的<b>别名（alias）</b>。声明时用 <code>&amp;</code>：<code>int&amp; r = x;</code> 表示 <code>r</code> 和 <code>x</code> 指向<b>同一块内存</b>，对 <code>r</code> 的读写就是对 <code>x</code> 的读写。</p>
+    </div>
+    <pre><code>int main() {
+    int x = 10;
+    int&amp; r = x;   // r 是 x 的引用（别名）
+
+    r = 20;        // 通过 r 修改 x
+    std::cout &lt;&lt; x;   // 20
+
+    std::cout &lt;&lt; &amp;x &lt;&lt; ' ' &lt;&lt; &amp;r;   // 地址相同
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">引用必须在声明时初始化</div>
+      <p>引用一旦绑定到某个对象就<b>终身指向它</b>，因此声明时<b>必须立即初始化</b>，不存在「空的引用」。</p>
+    </div>
+
+    <h3 id="lec4-p3-3">3.3 赋值不会重绑引用 <span class="en">Assignment Does Not Rebind a Reference</span></h3>
+    <p>对引用做赋值，是把值写进它绑定的对象，而不是让它改绑到别的对象。</p>
+    <pre><code>int main() {
+    int a = 1, b = 2;
+    int&amp; r = a;   // r 绑定 a
+    r = b;         // 把 b 的值(2)赋给 a，r 仍绑定 a
+
+    std::cout &lt;&lt; a &lt;&lt; ' ' &lt;&lt; b &lt;&lt; ' ' &lt;&lt; r;
+    // 2 2 2
+}</code></pre>
+    <p>这与指针不同：指针本身可以改指向，而引用「改不了对象」，只能改对象的值。把引用想成「同一个对象的第二个名字」，很多疑惑自然消失。</p>
+  </section>
+
+  <section id="lec4-p4">
+    <h2>Part 4 · 引用参数与 const <span class="en">Reference Parameters &amp; const</span></h2>
+
+    <h3 id="lec4-p4-1">4.1 引用参数 <span class="en">Reference Parameters</span></h3>
+    <p>把形参声明为引用（<code>int&amp; a</code>），就实现了<span class="en">按引用传递（pass by reference）</span>：函数内对 <code>a</code> 的修改直接作用到实参上，且不产生复制。</p>
+    <pre><code>void add_one(int&amp; a) {
+    a = a + 1;   // 直接改调用者的变量
+}
+
+int main() {
+    int x = 10;
+    add_one(x);
+    std::cout &lt;&lt; x;   // 11
+}</code></pre>
+    <p>引用参数常见用途：① 让函数「返回多个结果」；② 避免复制大对象（如 <code>vector</code>）。</p>
+
+    <h3 id="lec4-p4-2">4.2 什么能绑定到 int&amp; <span class="en">What Can Bind to int&amp;?</span></h3>
+    <p>非常量引用 <code>int&amp;</code> 只能绑定到<b>可修改的左值（lvalue）</b>——一个真正存在、有名字、可被赋值的对象。它<b>不能</b>绑定到：</p>
+    <ul>
+      <li>字面量：<code>add_one(5)</code> ❌</li>
+      <li>临时值（右值）：<code>add_one(x + 1)</code> ❌</li>
+      <li>不同类型需要转换的值：<code>add_one(3.5)</code> ❌（<code>double</code> 要先转成临时 <code>int</code>）</li>
+    </ul>
+    <pre><code>void f(int&amp; x) { x += 1; }
+
+int main() {
+    int a = 1;
+    f(a);        // OK：a 是左值
+    // f(2);     // 错误：不能绑定字面量
+    // f(a + 1); // 错误：不能绑定临时值
+}</code></pre>
+
+    <h3 id="lec4-p4-3">4.3 const 与只读引用 <span class="en">const and Read-only References</span></h3>
+    <div class="def box">
+      <div class="box-title">定义</div>
+      <p><b>const 引用（const reference）</b>写作 <code>const int&amp;</code>，是「只读」别名：可以通过它读值，但不能通过它修改。它比 <code>int&amp;</code> 更宽松，可以绑定到字面量、临时值，因为它承诺「不改」。</p>
+    </div>
+    <pre><code>void print(const int&amp; x) {
+    std::cout &lt;&lt; x;   // 只读
+    // x += 1;         // 错误：const 引用不可修改
+}
+
+int main() {
+    int a = 5;
+    print(a);      // OK
+    print(10);     // OK：const 引用可绑定字面量
+    print(a + 1);  // OK
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">何时用 const 引用</div>
+      <p>函数<b>只需读、不需改</b>参数时，用 <code>const T&amp;</code>：既避免复制大对象的开销，又明确表达「我不会改你的数据」。这是 C++ 的默认最佳实践。</p>
+    </div>
+
+    <h3 id="lec4-p4-4">4.4 读容器而不复制 <span class="en">Read a Container Without Copying It</span></h3>
+    <p>如果按值传入 <code>vector</code>，整个容器会被复制，非常昂贵。用 <code>const vector&lt;int&gt;&amp;</code> 就能「只读、零复制」。</p>
+    <pre><code>#include &lt;vector&gt;
+#include &lt;iostream&gt;
+
+int sum(const std::vector&lt;int&gt;&amp; v) {
+    int s = 0;
+    for (int x : v)
+        s += x;
+    return s;
+}
+
+int main() {
+    std::vector&lt;int&gt; v = {1, 2, 3, 4};
+    std::cout &lt;&lt; sum(v);   // 10，v 没有被复制
+}</code></pre>
+
+    <h3 id="lec4-p4-5">4.5 选择参数类型 <span class="en">Choosing a Parameter Type</span></h3>
+    <p>选择参数类型时，按「是否需要修改」和「对象是否昂贵」两个维度决定：</p>
+    <table class="truth">
+      <thead>
+        <tr><th>需求</th><th>参数类型</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>只读 + 小型（int/double…）</td><td><code>T</code>（按值）</td><td>复制便宜，语义清晰</td></tr>
+        <tr><td>只读 + 大型（容器/字符串）</td><td><code>const T&amp;</code></td><td>避免复制</td></tr>
+        <tr><td>需要修改实参</td><td><code>T&amp;</code></td><td>按引用传递，直接改原对象</td></tr>
+      </tbody>
+    </table>
+    <p>经验法则：<b>先想「要不要改」</b>——不改就加 <code>const</code>；<b>再想「大不大」</b>——大对象用引用避免复制。</p>
+  </section>
+
+  <section id="lec4-p5">
+    <h2>Part 5 · 返回与对象生命周期 <span class="en">Return &amp; Object Lifetime</span></h2>
+
+    <h3 id="lec4-p5-1">5.1 返回值与对象生命周期 <span class="en">Return Values and Object Lifetime</span></h3>
+    <p>函数可以<b>按值返回</b>（复制一份出去）或<b>返回引用</b>。返回引用要格外小心：绝不能返回指向<b>局部变量</b>的引用，因为局部变量在函数返回时就被销毁了，剩下的引用就是<span class="en">悬垂引用（dangling reference）</span>。</p>
+    <pre><code>int&amp; bad() {
+    int x = 10;
+    return x;   // 错误！返回局部变量的引用
+}               // x 在这里被销毁，引用悬空
+
+const std::string&amp; longer(const std::string&amp; a, const std::string&amp; b) {
+    return a.size() &gt;= b.size() ? a : b;   // OK：返回的仍是调用者的对象
+}</code></pre>
+    <div class="def box">
+      <div class="box-title">定义</div>
+      <p><b>悬垂引用（dangling reference）</b>：指向一个已经结束生命周期的对象的引用。访问它属于<span class="en">未定义行为（undefined behavior）</span>，可能读到垃圾值、可能崩溃。</p>
+    </div>
+    <p>安全做法：返回<b>值</b>（<code>int</code>、<code>std::string</code>…）让编译器复制/移动，或返回<b>调用者传入的引用</b>（像 <code>longer</code> 那样）。</p>
+
+    <h3 id="lec4-p5-2">5.2 带引用的范围 for <span class="en">Range-based Loops with References</span></h3>
+    <p>范围 for 循环默认把每个元素<b>复制</b>到循环变量。要原地修改元素，用引用；要只读遍历大对象又不想复制，用 <code>const</code> 引用。</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 2, 3};
+
+for (int x : v)        // 副本：改 x 不影响 v
+    x *= 10;
+
+for (int&amp; x : v)       // 引用：原地修改 v
+    x *= 10;
+
+for (const int&amp; x : v) // const 引用：只读、零复制
+    std::cout &lt;&lt; x &lt;&lt; ' ';</code></pre>
+    <div class="warn box">
+      <div class="box-title">用 auto 时的习惯</div>
+      <p>惯用法：<code>for (auto&amp; x : v)</code> 表示「可改」，<code>for (const auto&amp; x : v)</code> 表示「只读」。除非元素很小，否则默认用引用，避免无谓复制。</p>
+    </div>
+
+    <h3 id="lec4-p5-3">5.3 Python / Java / C++ 参数模型 <span class="en">Parameters in Three Languages</span></h3>
+    <p>三种语言对「传参」的默认行为不同，理解差异能避免把 Python/Java 的习惯带进 C++：</p>
+    <table class="truth">
+      <thead>
+        <tr><th>语言</th><th>默认模型</th><th>能否原地修改传入对象</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Python</td><td>对象引用 + 不可变/可变之分</td><td>int/str 不行；list/dict 可改内容</td></tr>
+        <tr><td>Java</td><td>按值传「引用」（对象句柄）</td><td>对象内容可改，但重绑参数不影响实参</td></tr>
+        <tr><td>C++</td><td>按值（复制）</td><td>只有显式写 <code>T&amp;</code> 才原地修改</td></tr>
+      </tbody>
+    </table>
+    <p>核心差异：C++ 的默认行为是<b>复制</b>，想要「引用语义」必须显式写 <code>&amp;</code>；而 Python/Java 里对象变量天然是引用，反而「复制」需要显式。</p>
+  </section>
+
+  <section id="lec4-p6">
+    <h2>Part 6 · 迭代器入门 <span class="en">Iterators</span></h2>
+
+    <h3 id="lec4-p6-1">6.1 为什么需要迭代器 <span class="en">Why Do We Need Iterators?</span></h3>
+    <p>不同容器（<code>vector</code>、<code>string</code>、<code>list</code>…）内部结构不同，如何统一地「遍历、查找、排序」？<span class="en">迭代器（iterator）</span>提供了统一的抽象：它像一个「指向容器元素的指针」，无论底层是数组还是链表，都能用同一套接口访问。</p>
+    <div class="def box">
+      <div class="box-title">定义</div>
+      <p><b>迭代器</b>是「指向容器中某个位置的泛化指针」。通过它可以<b>访问元素的值</b>（解引用 <code>*it</code>），并<b>移动到下一个位置</b>（<code>++it</code>）。</p>
+    </div>
+
+    <h3 id="lec4-p6-2">6.2 begin() 与 end() <span class="en">begin() and end()</span></h3>
+    <p>每个容器都有 <code>begin()</code> 返回「第一个元素」的迭代器，<code>end()</code> 返回「最后一个元素<b>之后</b>」的迭代器（哨兵，不指向任何元素）。区间 <code>[begin, end)</code> 左闭右开。</p>
+    <pre><code>std::vector&lt;int&gt; v = {10, 20, 30};
+auto it = v.begin();   // 指向 10
+auto e  = v.end();     // 哨兵：指向 30 之后</code></pre>
+    <div class="warn box">
+      <div class="box-title">end() 不是最后一个元素</div>
+      <p><code>end()</code> 是「尾后」位置，<b>不能解引用</b>。它只是循环的终止标记。空容器中 <code>begin() == end()</code>。</p>
+    </div>
+
+    <h3 id="lec4-p6-3">6.3 写迭代器循环 <span class="en">Write an Iterator Loop</span></h3>
+    <p>经典迭代器遍历：从 <code>begin()</code> 出发，每次 <code>++it</code>，直到等于 <code>end()</code>。</p>
+    <pre><code>std::vector&lt;int&gt; v = {10, 20, 30};
+
+for (auto it = v.begin(); it != v.end(); ++it)
+    std::cout &lt;&lt; *it &lt;&lt; ' ';   // 10 20 30</code></pre>
+    <ul>
+      <li><code>*it</code> —— 解引用，得到当前元素（可读可写）；</li>
+      <li><code>++it</code> —— 前进到下一个位置；</li>
+      <li><code>it != v.end()</code> —— 判断是否到末尾。</li>
+    </ul>
+
+    <h3 id="lec4-p6-4">6.4 位置 vs 值 <span class="en">Position versus Value</span></h3>
+    <p>迭代器本身是「位置」，<code>*it</code> 才是「值」。二者是两回事：</p>
+    <pre><code>std::vector&lt;int&gt; v = {7, 8, 9};
+auto it = v.begin();   // it 是位置（指向 7）
+*it = 70;              // 通过位置改值：v 变成 {70, 8, 9}
+++it;                  // 位置前进到 8
+int val = *it;         // 读出值 8</code></pre>
+    <p>很多新手混淆「把迭代器往前挪」和「把值加一」。记住：<code>++it</code> 动位置，<code>(*it)++</code> 或 <code>*it += 1</code> 才动值。</p>
+  </section>
+
+  <section id="lec4-p7">
+    <h2>Part 7 · 算法与区间 <span class="en">Algorithms &amp; Ranges</span></h2>
+
+    <h3 id="lec4-p7-1">7.1 查找元素 <span class="en">Find an Element</span></h3>
+    <p><code>std::find(first, last, value)</code> 在区间 <code>[first, last)</code> 中查找 <code>value</code>，返回第一个匹配位置的迭代器；找不到返回 <code>last</code>。</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 4, 2, 4, 5};
+auto it = std::find(v.begin(), v.end(), 4);
+if (it != v.end())
+    std::cout &lt;&lt; "found at index " &lt;&lt; (it - v.begin());
+else
+    std::cout &lt;&lt; "not found";</code></pre>
+
+    <h3 id="lec4-p7-2">7.2 string::find vs std::find <span class="en">Two Kinds of find</span></h3>
+    <p>字符串有成员函数 <code>s.find(...)</code>，返回的是<b>下标</b>（找不到返回 <code>std::string::npos</code>）；而 <code>std::find</code> 是通用算法，返回<b>迭代器</b>。</p>
+    <pre><code>std::string s = "hello";
+std::size_t pos = s.find('l');        // 返回下标 2（找不到为 npos）
+
+auto it = std::find(s.begin(), s.end(), 'l');   // 返回迭代器
+// it - s.begin() == 2</code></pre>
+    <div class="warn box">
+      <div class="box-title">别搞混返回值</div>
+      <p><code>string::find</code> → <code>size_t</code> 下标；<code>std::find</code> → 迭代器。两者「找不到」的哨兵也不同：<code>npos</code> vs <code>end()</code>。</p>
+    </div>
+
+    <h3 id="lec4-p7-3">7.3 在普通数组里查找 <span class="en">Find in an Ordinary Array</span></h3>
+    <p>算法对<b>迭代器</b>工作，而指针天然是数组的迭代器。所以 <code>std::find</code> 也能用在 C 风格数组上，用「首指针」和「尾后指针」表达区间。</p>
+    <pre><code>int a[] = {1, 2, 3, 4, 5};
+int* it = std::find(a, a + 5, 3);
+// 或用 std::begin(a), std::end(a)
+auto it2 = std::find(std::begin(a), std::end(a), 4);</code></pre>
+
+    <h3 id="lec4-p7-4">7.4 让算法干活：sort / reverse <span class="en">Let an Algorithm Do the Work</span></h3>
+    <p>与其手写循环，不如调用标准算法——更短、更不易错、意图更清晰。</p>
+    <pre><code>std::vector&lt;int&gt; v = {4, 1, 3, 2};
+
+std::sort(v.begin(), v.end());    // 升序：1 2 3 4
+std::reverse(v.begin(), v.end()); // 逆序：4 3 2 1</code></pre>
+
+    <h3 id="lec4-p7-5">7.5 算法作用于区间 <span class="en">Algorithms Work on Ranges</span></h3>
+    <p>几乎所有算法都接收「一对迭代器」<code>[first, last)</code> 表示待处理的区间，且不会触碰区间之外的元素。这是标准库算法的统一约定。</p>
+    <pre><code>std::vector&lt;int&gt; v = {5, 1, 9, 2, 8, 3};
+
+// 只排序前三个：5 1 9 → 1 5 9
+std::sort(v.begin(), v.begin() + 3);
+// 结果：1 5 9 2 8 3</code></pre>
+
+    <h3 id="lec4-p7-6">7.6 常用区间算法 <span class="en">Common Range Algorithms</span></h3>
+    <p>几个高频算法（均在 <code>&lt;algorithm&gt;</code> 或 <code>&lt;numeric&gt;</code>）：</p>
+    <table class="truth">
+      <thead>
+        <tr><th>算法</th><th>作用</th><th>示例</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>std::find</code></td><td>查找值，返回迭代器</td><td><code>find(b, e, v)</code></td></tr>
+        <tr><td><code>std::count</code></td><td>统计值出现次数</td><td><code>count(b, e, v)</code></td></tr>
+        <tr><td><code>std::sort</code></td><td>升序排序</td><td><code>sort(b, e)</code></td></tr>
+        <tr><td><code>std::reverse</code></td><td>原地逆序</td><td><code>reverse(b, e)</code></td></tr>
+        <tr><td><code>std::min_element</code></td><td>最小元素的迭代器</td><td><code>min_element(b, e)</code></td></tr>
+        <tr><td><code>std::max_element</code></td><td>最大元素的迭代器</td><td><code>max_element(b, e)</code></td></tr>
+        <tr><td><code>std::accumulate</code></td><td>求和（numeric）</td><td><code>accumulate(b, e, 0)</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="lec4-p7-7">7.7 迭代器算术 <span class="en">Iterator Arithmetic</span></h3>
+    <p>对<b>随机访问迭代器</b>（如 <code>vector</code>、<code>string</code>、数组的迭代器），可以像指针一样做算术：</p>
+    <pre><code>std::vector&lt;int&gt; v = {10, 20, 30, 40, 50};
+auto it = v.begin();
+
+it += 2;              // 前进 2 步 → 指向 30
+it - 1;               // 回退 1 步
+int idx = it - v.begin();   // 迭代器相减得「距离」（下标）
+v.end() - v.begin();        // = 5，元素个数</code></pre>
+    <div class="warn box">
+      <div class="box-title">不是所有迭代器都能算术</div>
+      <p>链表 <code>list</code> 的迭代器只能 <code>++</code>，不能 <code>+ n</code> 或相减。能随意跳跃的是<b>随机访问迭代器（random access iterator）</b>。写通用代码时按「最弱的迭代器」来假设。</p>
+    </div>
+  </section>
+
+  <section id="lec4-p8">
+    <h2>Part 8 · 迭代器端点 <span class="en">Iterator Endpoints</span></h2>
+
+    <h3 id="lec4-p8-1">8.1 端点对照表 <span class="en">The Endpoint Table</span></h3>
+    <p>每个容器提供多组端点迭代器，覆盖「正向 / 反向」×「可写 / 只读」四种组合：</p>
+    <table class="truth">
+      <thead>
+        <tr><th>端点</th><th>方向</th><th>可写？</th><th>含义</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>begin() / end()</code></td><td>正向</td><td>可写</td><td>首元素 / 尾后</td></tr>
+        <tr><td><code>cbegin() / cend()</code></td><td>正向</td><td>只读</td><td>const 版本</td></tr>
+        <tr><td><code>rbegin() / rend()</code></td><td>反向</td><td>可写</td><td>末元素 / 首前</td></tr>
+        <tr><td><code>crbegin() / crend()</code></td><td>反向</td><td>只读</td><td>const 反向</td></tr>
+      </tbody>
+    </table>
+
+    <h3 id="lec4-p8-2">8.2 从 rbegin() 反向遍历 <span class="en">Starting from rbegin()</span></h3>
+    <p><code>rbegin()</code> 指向<b>最后一个元素</b>，<code>rend()</code> 是「第一个元素之前」的哨兵。对反向迭代器 <code>++</code> 是往数组头部走。</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+
+for (auto it = v.rbegin(); it != v.rend(); ++it)
+    std::cout &lt;&lt; *it &lt;&lt; ' ';   // 5 4 3 2 1</code></pre>
+
+    <h3 id="lec4-p8-3">8.3 反向迭代器与算法 <span class="en">Algorithms with Reverse Iterators</span></h3>
+    <p>标准算法只认「一对迭代器」，所以把 <code>rbegin()/rend()</code> 传进去，就能让算法<b>反向</b>工作。</p>
+    <pre><code>std::string s = "hello";
+
+std::sort(s.rbegin(), s.rend());    // 从大到小：o l l h e
+std::reverse(s.rbegin(), s.rend()); // 再反向一次又变回正向</code></pre>
+
+    <h3 id="lec4-p8-4">8.4 只读迭代器 <span class="en">Read-only Iterators</span></h3>
+    <p><code>cbegin()/cend()</code>（和 <code>crbegin()/crend()</code>）返回 const 迭代器，解引用得到<b>只读引用</b>，防止误改容器。</p>
+    <pre><code>const std::vector&lt;int&gt;&amp; cv = v;
+for (auto it = cv.begin(); it != cv.end(); ++it)
+    std::cout &lt;&lt; *it;   // 只读
+
+for (auto it = v.cbegin(); it != v.cend(); ++it)
+    std::cout &lt;&lt; *it;   // 即使 v 可写，也强制只读</code></pre>
+  </section>
+
+  <section id="lec4-p9">
+    <h2>Part 9 · 谓词与比较器 <span class="en">Predicates &amp; Comparators</span></h2>
+
+    <h3 id="lec4-p9-1">9.1 谓词 <span class="en">Predicates</span></h3>
+    <div class="def box">
+      <div class="box-title">定义</div>
+      <p><b>谓词（predicate）</b>是返回 <code>bool</code> 的函数（或可调用对象），回答「这个元素满足某条件吗」。例如「是偶数吗」「是正数吗」。</p>
+    </div>
+    <pre><code>bool is_even(int x) {
+    return x % 2 == 0;
+}
+
+bool is_positive(int x) {
+    return x &gt; 0;
+}</code></pre>
+
+    <h3 id="lec4-p9-2">9.2 函数作为算法参数 <span class="en">Functions as Algorithm Arguments</span></h3>
+    <p>很多算法接受一个谓词作为额外参数，从而把「找什么 / 数什么」交给调用者决定：</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 2, 3, 4, 5, 6};
+
+auto it = std::find_if(v.begin(), v.end(), is_even);
+// 返回第一个偶数 2 的迭代器
+
+int cnt = std::count_if(v.begin(), v.end(), is_positive);
+// 统计正数个数 = 6</code></pre>
+    <ul>
+      <li><code>find_if(b, e, pred)</code> —— 找第一个满足谓词的元素；</li>
+      <li><code>count_if(b, e, pred)</code> —— 数满足谓词的元素个数。</li>
+    </ul>
+
+    <h3 id="lec4-p9-3">9.3 自定义排序 <span class="en">Custom Sort Order</span></h3>
+    <p><code>std::sort</code> 默认升序，但可以传入<b>比较器（comparator）</b>自定义顺序。比较器 <code>cmp(a, b)</code> 应返回「<code>a</code> 是否应排在 <code>b</code> 之前」。</p>
+    <pre><code>bool descending(int a, int b) {
+    return a &gt; b;   // a 排在 b 前，当 a 更大
+}
+
+std::vector&lt;int&gt; v = {3, 1, 4, 1, 5};
+std::sort(v.begin(), v.end(), descending);
+// 5 4 3 1 1</code></pre>
+
+    <h3 id="lec4-p9-4">9.4 排序记录 <span class="en">Sorting Records</span></h3>
+    <p>比较器常用于排序「记录」（如 <code>struct</code> 或 <code>pair</code>）。例如按第一个字段排序、相同则按第二个字段。</p>
+    <pre><code>struct Student {
+    std::string name;
+    int score;
+};
+
+bool by_score(const Student&amp; a, const Student&amp; b) {
+    return a.score &gt; b.score;   // 分数高者在前
+}
+
+std::vector&lt;Student&gt; s = {...};
+std::sort(s.begin(), s.end(), by_score);</code></pre>
+
+    <h3 id="lec4-p9-5">9.5 一致的比较器 <span class="en">A Consistent Comparator</span></h3>
+    <div class="def box">
+      <div class="box-title">严格弱序</div>
+      <p>比较器必须满足<b>严格弱序（strict weak ordering）</b>：① 反自反——<code>cmp(x, x)</code> 必为假；② 反对称——若 <code>cmp(a,b)</code> 真则 <code>cmp(b,a)</code> 假；③ 传递——若 <code>cmp(a,b)</code> 且 <code>cmp(b,c)</code>，则 <code>cmp(a,c)</code>。等价元素（互相都不「在前」）视作相等。</p>
+    </div>
+    <div class="warn box">
+      <div class="box-title">常见错误</div>
+      <p>写 <code>return a &lt;= b;</code> 而不是 <code>a &lt; b</code> 会违反反自反性，导致 <code>sort</code> 行为未定义、甚至崩溃。相等元素应返回 <code>false</code>。多关键字时用「先比主键，不等则返回；相等再比次键」保证传递性。</p>
+    </div>
+    <pre><code>// 正确：先比第一键，相等再比第二键
+bool cmp(const std::pair&lt;int,int&gt;&amp; a, const std::pair&lt;int,int&gt;&amp; b) {
+    if (a.first != b.first)
+        return a.first &lt; b.first;
+    return a.second &lt; b.second;
+}</code></pre>
+  </section>
+
+  <section id="lec4-p10">
+    <h2>Part 10 · 修改容器 <span class="en">Modifying Containers</span></h2>
+
+    <h3 id="lec4-p10-1">10.1 在指定位置插入 / 删除 <span class="en">Insert and Erase at a Position</span></h3>
+    <p><code>vector</code> 支持在<b>迭代器指定位置</b>插入或删除元素。<code>insert(pos, value)</code> 在 <code>pos</code> 前插入；<code>erase(pos)</code> 删除 <code>pos</code> 处的元素。</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 2, 4, 5};
+
+v.insert(v.begin() + 2, 3);   // {1, 2, 3, 4, 5}
+v.erase(v.begin());            // {2, 3, 4, 5}</code></pre>
+    <div class="warn box">
+      <div class="box-title">删除任意位置是 O(n)</div>
+      <p><code>vector</code> 是连续内存，中间插入/删除需要把后面元素整体搬移，平均 <code>O(n)</code>。频繁在中间增删应改用 <code>list</code> 等结构。</p>
+    </div>
+
+    <h3 id="lec4-p10-2">10.2 旧迭代器可能失效 <span class="en">Old Iterators May Become Invalid</span></h3>
+    <p>插入/删除（尤其是触发 <code>vector</code> 扩容）会破坏旧迭代器，因为底层内存可能被重新分配、元素位置改变。继续使用失效的迭代器是<b>未定义行为</b>。</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+auto it = v.begin();
+
+v.push_back(6);   // 可能触发扩容，it 失效！
+// std::cout &lt;&lt; *it;   // 危险：未定义行为</code></pre>
+
+    <h3 id="lec4-p10-3">10.3 读契约而不是读名字 <span class="en">Read the Contract, Not Just the Name</span></h3>
+    <p>不要凭函数名猜测行为，要读文档里的<b>契约（contract）</b>：它接收什么、返回什么、有哪些前置条件、哪些操作会使迭代器失效。</p>
+    <pre><code>// erase(pos) 返回指向被删元素之后位置的迭代器
+// 且会使 pos 及其后的迭代器失效
+
+std::vector&lt;int&gt; v = {1, 2, 3, 4, 5};
+auto it = v.begin() + 2;      // 指向 3
+it = v.erase(it);             // 删除 3，it 现在指向 4
+// v = {1, 2, 4, 5}</code></pre>
+
+    <h3 id="lec4-p10-4">10.4 边迭代边删除 <span class="en">Erasing While Iterating</span></h3>
+    <p>要边遍历边删除，应利用 <code>erase</code> 的<b>返回值</b>（指向下一个有效元素），而不是盲目 <code>++it</code>：</p>
+    <pre><code>std::vector&lt;int&gt; v = {1, 2, 3, 2, 4, 2};
+
+for (auto it = v.begin(); it != v.end(); ) {
+    if (*it == 2)
+        it = v.erase(it);   // 删除并前进，不要额外 ++
+    else
+        ++it;
+}
+// v = {1, 3, 4}</code></pre>
+    <div class="warn box">
+      <div class="box-title">经典坑</div>
+      <p>写 <code>for (auto it = v.begin(); it != v.end(); ++it)</code> 再在循环里 <code>erase</code> 会跳过元素或越界。要么用上面「返回值更新」的写法，要么用后面提到的 <code>erase-remove</code> 惯用法。</p>
+    </div>
+  </section>
+
+  <section id="lec4-p11">
+    <h2>Part 11 · 综合练习（LeetCode） <span class="en">Practice Problems</span></h2>
+
+    <h3 id="lec4-p11-1">11.1 680 验证回文串 II <span class="en">Valid Palindrome II</span></h3>
+    <div class="ex box">
+      <div class="box-title">题目</div>
+      <p>给定字符串 <code>s</code>，判断在<b>最多删除一个字符</b>后能否成为回文串。例如 <code>"abca"</code> 删除 <code>'b'</code> 得 <code>"aca"</code> 是回文。</p>
+    </div>
+    <p><b>思路：</b>双指针从两端向中间靠拢。当遇到不相等的一对字符时，有两种选择：删左边的或删右边的，分别检查剩余部分是否回文；只要有一个成立即可。</p>
+    <pre><code>bool is_pal(const std::string&amp; s, int l, int r) {
+    while (l &lt; r) {
+        if (s[l] != s[r]) return false;
+        ++l; --r;
+    }
+    return true;
+}
+
+bool validPalindrome(std::string s) {
+    int l = 0, r = (int)s.size() - 1;
+    while (l &lt; r) {
+        if (s[l] != s[r])
+            return is_pal(s, l + 1, r) || is_pal(s, l, r - 1);
+        ++l; --r;
+    }
+    return true;
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">易错点</div>
+      <p>① 只能删<b>一个</b>字符——第一次不匹配时分别尝试两种删除即可，不用递归深入；② 子串检查仍是回文判断，可复用同一个 <code>is_pal</code> 函数，体现「函数复用」。</p>
+    </div>
+
+    <h3 id="lec4-p11-2">11.2 242 有效的字母异位词 <span class="en">Valid Anagram</span></h3>
+    <div class="ex box">
+      <div class="box-title">题目</div>
+      <p>判断两个字符串 <code>s</code> 和 <code>t</code> 是否互为<span class="en">字母异位词（anagram）</span>——即用完全相同的字母、每个字母出现次数相同（顺序可不同）。</p>
+    </div>
+    <p><b>思路：</b>统计每个字符的出现次数并比较。这里结合本讲知识，用 <code>std::sort</code> 把两个字符串各自排序后比较是否相等。</p>
+    <pre><code>bool isAnagram(std::string s, std::string t) {
+    if (s.size() != t.size()) return false;
+    std::sort(s.begin(), s.end());
+    std::sort(t.begin(), t.end());
+    return s == t;
+}</code></pre>
+    <p>也可以用计数数组 <code>count[26]</code>，时间复杂度 <code>O(n)</code>，但排序法更直接地示范了「让算法干活」的思想。</p>
+
+    <h3 id="lec4-p11-3">11.3 1356 按二进制 1 的个数排序 <span class="en">Sort Integers by The Number of 1 Bits</span></h3>
+    <div class="ex box">
+      <div class="box-title">题目</div>
+      <p>给一个整数数组，按每个数二进制表示中 <code>1</code> 的个数升序排序；若 <code>1</code> 的个数相同，则按数值升序。例如 <code>[0,1,2,3,4,5,6,7,8]</code> 排序后 <code>[0,1,2,4,8,3,5,6,7]</code>。</p>
+    </div>
+    <p><b>思路：</b>这题是「两个排序关键字」的典型应用——主键是 <code>popcount(x)</code>，次键是 <code>x</code> 本身。写一个一致的比较器即可。</p>
+    <pre><code>int popcount(int x) {
+    return __builtin_popcount(x);   // GCC/Clang 内置：数 1 的个数
+}
+
+bool cmp(int a, int b) {
+    int ca = popcount(a), cb = popcount(b);
+    if (ca != cb)
+        return ca &lt; cb;    // 主键：1 的个数
+    return a &lt; b;          // 次键：数值本身
+}
+
+std::vector&lt;int&gt; sortByBits(std::vector&lt;int&gt;&amp; arr) {
+    std::sort(arr.begin(), arr.end(), cmp);
+    return arr;
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">两个排序关键字</div>
+      <p>比较器先比「1 的个数」，不等就返回；相等再比「数值」。这样保证<b>传递性</b>，是稳定、正确的写法。若只写 <code>return popcount(a) &lt; popcount(b)</code> 会漏掉次键，相等元素的顺序不确定。</p>
+    </div>
+
+    <h3 id="lec4-p11-4">11.4 用 lambda 写比较器 <span class="en">Another Way to Write the Comparator</span></h3>
+    <p>只为排序写一个独立函数有些啰嗦，<span class="en">lambda 表达式（lambda expression）</span> 可以就地定义匿名函数，尤其适合临时的小比较器。</p>
+    <pre><code>std::vector&lt;int&gt; arr = {0,1,2,3,4,5,6,7,8};
+
+std::sort(arr.begin(), arr.end(),
+    [](int a, int b) {
+        int ca = __builtin_popcount(a);
+        int cb = __builtin_popcount(b);
+        if (ca != cb) return ca &lt; cb;
+        return a &lt; b;
+    });</code></pre>
+    <div class="def box">
+      <div class="box-title">lambda 语法</div>
+      <p><code>[捕获列表](参数列表) { 函数体 }</code>。捕获列表 <code>[]</code> 为空表示不捕获外部变量；<code>[&amp;]</code> 按引用捕获、<code>[=]</code> 按值捕获。lambda 的类型是编译器生成的匿名类型，通常配合 <code>auto</code> 或直接传给算法。</p>
+    </div>
+  </section>
+
+  <section id="lec4-p12">
+    <h2>Part 12 · 接口与总结 <span class="en">Interfaces &amp; Summary</span></h2>
+
+    <h3 id="lec4-p12-1">12.1 函数接口表达意图 <span class="en">Function Interfaces Express Intent</span></h3>
+    <p>好的函数签名是「可执行的设计文档」。看参数类型就知道函数能做什么、不能做什么：</p>
+    <table class="truth">
+      <thead>
+        <tr><th>签名</th><th>表达的含义</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>void f(int)</code></td><td>按值，改不到实参，开销小</td></tr>
+        <tr><td><code>void f(int&amp;)</code></td><td>可能修改实参</td></tr>
+        <tr><td><code>void f(const int&amp;)</code></td><td>只读，承诺不改</td></tr>
+        <tr><td><code>int&amp; f()</code></td><td>返回引用——需警惕悬垂</td></tr>
+      </tbody>
+    </table>
+    <p>接口是「意图的表达」：<code>const&amp;</code> 说「我只读你的数据」，<code>&amp;</code> 说「我会改你」，按值说「我给你一份副本」。选对类型，代码自然清晰安全。</p>
+
+    <h3 id="lec4-p12-2">12.2 本讲总结 <span class="en">Summary</span></h3>
+    <ul>
+      <li><b>函数</b>：接口 = 名字 + 参数 + 返回类型；声明与定义分离；重载按参数区分；默认参数从右往左。</li>
+      <li><b>引用</b>：别名，声明时必须初始化，赋值不重绑；<code>const T&amp;</code> 只读、可绑临时值；大对象传引用避免复制。</li>
+      <li><b>对象生命周期</b>：不要返回局部变量的引用（悬垂引用 = 未定义行为）。</li>
+      <li><b>迭代器</b>：泛化指针，<code>[begin, end)</code> 左闭右开；<code>*it</code> 取值、<code>++it</code> 前进。</li>
+      <li><b>算法</b>：统一作用于「一对迭代器」区间，<code>find/sort/reverse/count</code> 让代码更简洁。</li>
+      <li><b>端点</b>：<code>cbegin/rbegin/rend</code> 覆盖只读与反向遍历。</li>
+      <li><b>谓词与比较器</b>：谓词返回 <code>bool</code> 描述条件；比较器须满足严格弱序；多关键字先主后次。</li>
+      <li><b>修改容器</b>：<code>insert/erase</code> 以迭代器定位；增删可能使迭代器失效，边删边遍历用 <code>erase</code> 的返回值。</li>
+      <li><b>lambda</b>：就地匿名函数，适合临时比较器。</li>
+    </ul>
+
+    <h3 id="lec4-p12-3">12.3 词汇表 <span class="en">Vocabulary</span></h3>
+    <div class="vocab">
+      <div class="vocab-title">需要掌握的英语词汇</div>
+      <ul>
+        <li><b>function</b> — 函数</li>
+        <li><b>parameter</b> — 参数（形参，定义处的占位）</li>
+        <li><b>argument</b> — 实参（调用处传入的值）</li>
+        <li><b>declaration / definition</b> — 声明 / 定义</li>
+        <li><b>prototype</b> — 函数原型</li>
+        <li><b>return value / return type</b> — 返回值 / 返回类型</li>
+        <li><b>void</b> — 无返回值</li>
+        <li><b>local variable</b> — 局部变量</li>
+        <li><b>scope</b> — 作用域</li>
+        <li><b>function overloading</b> — 函数重载</li>
+        <li><b>default argument</b> — 默认参数</li>
+        <li><b>pass by value / by reference</b> — 按值 / 按引用传递</li>
+        <li><b>reference / alias</b> — 引用 / 别名</li>
+        <li><b>const reference</b> — 只读引用</li>
+        <li><b>lvalue / rvalue</b> — 左值 / 右值</li>
+        <li><b>temporary</b> — 临时值</li>
+        <li><b>dangling reference</b> — 悬垂引用</li>
+        <li><b>range-based for loop</b> — 范围 for 循环</li>
+        <li><b>iterator</b> — 迭代器</li>
+        <li><b>begin / end</b> — 首 / 尾后迭代器</li>
+        <li><b>dereference</b> — 解引用（<code>*it</code>）</li>
+        <li><b>range [first, last)</b> — 区间（左闭右开）</li>
+        <li><b>iterator arithmetic</b> — 迭代器算术</li>
+        <li><b>random access iterator</b> — 随机访问迭代器</li>
+        <li><b>rbegin / rend</b> — 反向首 / 首前迭代器</li>
+        <li><b>cbegin / cend</b> — 只读迭代器</li>
+        <li><b>reverse iterator</b> — 反向迭代器</li>
+        <li><b>predicate</b> — 谓词</li>
+        <li><b>comparator</b> — 比较器</li>
+        <li><b>strict weak ordering</b> — 严格弱序</li>
+        <li><b>lambda expression</b> — lambda 表达式</li>
+        <li><b>find / sort / reverse / count</b> — 查找 / 排序 / 逆序 / 计数</li>
+        <li><b>insert / erase</b> — 插入 / 删除</li>
+        <li><b>iterator invalidation</b> — 迭代器失效</li>
+        <li><b>contract</b> — 契约（前置条件 / 行为约定）</li>
+        <li><b>undefined behavior</b> — 未定义行为</li>
+      </ul>
+    </div>
+  </section>
+</div><!-- /第4课 -->
 
 </div>
 </main>
