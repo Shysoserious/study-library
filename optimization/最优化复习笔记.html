@@ -444,14 +444,6 @@ window.MathJax = {
         <a class="lv2" href="#lec3-p1-14">1.14 软间隔 SVM 模型</a>
         <a class="lv2" href="#lec3-p1-15">1.15 松弛变量的等价形式</a>
         <a class="lv2" href="#lec3-p1-16">1.16 从软间隔到 LP</a>
-        <a class="lv1" href="#lec3-p2">Part 2 · 线性规划</a>
-        <a class="lv2" href="#lec3-p2-1">2.1 定义</a>
-        <a class="lv2" href="#lec3-p2-2">2.2 「线性」的含义</a>
-        <a class="lv2" href="#lec3-p2-3">2.3 LP 的几何</a>
-        <a class="lv2" href="#lec3-p2-4">2.4 一般与紧凑形式</a>
-        <a class="lv2" href="#lec3-p2-5">2.5 标准形式</a>
-        <a class="lv2" href="#lec3-p2-6">2.6 为什么 m &lt; n</a>
-        <a class="lv2" href="#lec3-p2-7">2.7 标准形变换</a>
       </div>
     </div>
 
@@ -1342,12 +1334,11 @@ window.MathJax = {
     <span class="toc-title">📑 目录（Table of Contents）</span>
     <ol>
       <li><a href="#lec3-p1">支持向量机（SVM）的优化建模</a> —— 分类、间隔、hinge 损失、软/硬间隔</li>
-      <li><a href="#lec3-p2">线性规划（LP）</a> —— 定义、几何、标准形与变换</li>
     </ol>
   </div>
   <div class="warn box">
     <span class="box-title">💡 本讲核心</span>
-    <p>用 SVM 这一完整案例展示「<b>几何直觉 → 优化模型</b>」的建模过程，然后系统学习<b>线性规划（LP）</b>：什么是线性、LP 的几何、以及把任意 LP 化到<b>标准形</b>的四条变换。</p>
+    <p>用 SVM 这一完整案例展示「<b>几何直觉 → 优化模型</b>」的建模过程。线性规划（LP）的理论内容已并入第4课，这里只保留 SVM 的优化建模。</p>
   </div>
 </section>
 
@@ -1497,66 +1488,6 @@ window.MathJax = {
 </div>
 </section>
 
-<section id="lec3-p2">
-<h2>Part 2 · 线性规划 <span class="zh">Linear Programming</span></h2>
-
-<h3 id="lec3-p2-1">2.1 定义 Definition</h3>
-<div class="def box">
-  <span class="box-title">📌 线性规划（LP）</span>
-  <p><b>线性优化 / 线性规划（LP）</b>：目标与约束函数都对决策变量<b>线性</b>（也允许常数项）。LP 是连续优化的子类。</p>
-  <p class="formula">\(\max_{x_1,x_2} x_1+2x_2 \quad \text{s.t. } x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)</p>
-</div>
-
-<h3 id="lec3-p2-2">2.2 「线性」的含义 What Does "Linear" Mean?</h3>
-<p>线性函数形如 \(a_1x_1+a_2x_2+\cdots+a_nx_n\)（\(a_i\) 为常数）。LP 允许：常数项 \(3x_1-2x_2+5\)（仿射）、乘常数 \(100x_1\)、变量和 \(x_1+x_2+x_3\)。作为书写就非线性：变量乘积 \(x_1x_2\)、非线性幂 \(x_1^2,\sqrt{x_2}\)、绝对值 \(|x_1|\)（可变换，但本身非线性）。</p>
-<div class="warn box">
-  <span class="box-title">⚠️ 快速判断</span>
-  <p>形如 \(x_ix_j\)、\(x_i^2\)、\(\sin(x_i)\)、\(\exp(x_i)\)、\(\log(x_i)\) 的项按原写法都不是线性的。</p>
-</div>
-
-<h3 id="lec3-p2-3">2.3 LP 的几何 Geometry of LP</h3>
-<p>两变量下，每个线性不等式描述一个<b>半平面</b>。画边界（如把 \(\le\) 换成 \(=\)），再用测试点（常用 (0,0)）选满足不等式的一侧。可行域 = 所有半平面的交集，是一个<b>凸多面体（convex polyhedron）</b>。关键洞见：<b>线性约束的边界是平的，永不弯曲</b>。</p>
-
-<h3 id="lec3-p2-4">2.4 一般与紧凑形式 General &amp; Compact Formulations</h3>
-<p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x \quad \text{s.t. } A_1x\ge b\ (i\in M_1),\ A_2x\le d\ (i\in M_2),\ A_3x=e\ (i\in M_3),\ x_i\ge 0/\le 0/\text{free}\)</p>
-<p>紧凑形式：\(\min c^\top x\) s.t. \(A_1x\ge b,\ A_2x\le d,\ A_3x=e\)，且 \(x_i\ge 0\ (i\in N_1)\)、\(x_i\le 0\ (i\in N_2)\)、\(x_i\) free \((i\in N_3)\)。\(A_j\) 大小 \(m_j\times n\)；\(\ge,\le,=\) 表示逐分量比较。同样适用于最大化。</p>
-
-<h3 id="lec3-p2-5">2.5 标准形式 Standard Form</h3>
-<div class="def box">
-  <span class="box-title">📌 LP 标准形</span>
-  <p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x \quad \text{s.t. } Ax=b,\ x\ge 0\)</p>
-  <p>\(A\) 是 \(m\times n\) 矩阵、\(b\in\mathbb{R}^m\)。常 \(m&lt;n\)（非必需）。任何 LP 都可用适当变换写成标准形。（本课程沿用 Bertsimas &amp; Tsitsiklis 的标准形定义，其他书可能不同。）</p>
-</div>
-
-<h3 id="lec3-p2-6">2.6 为什么常有 \(m&lt;n\) Why Often m &lt; n?</h3>
-<ul>
-  <li>每个独立等式减少一个自由度；</li>
-  <li>若 \(m=n\) 且 \(A\) 可逆，\(Ax=b\) 有唯一解 \(x=A^{-1}b\)，可能违反 \(x\ge 0\)；</li>
-  <li>要有可优化空间，需要独立等式数少于变量数：\(\operatorname{rank}(A)&lt;n\)，独立行时即 \(m&lt;n\)。</li>
-</ul>
-<p>几何：一致时 \(Ax=b\) 是一个平「片」（仿射子空间），加 \(x\ge 0\) 把它切成多面体可行集。</p>
-
-<h3 id="lec3-p2-7">2.7 标准形变换 Four Transformations</h3>
-<ol>
-  <li><b>max → min</b>：\(\max c^\top x \Leftrightarrow \min (-c)^\top x\)（同约束）。因为最大化一个数等于最小化它的相反数。</li>
-  <li><b>不等式 → 等式</b>：\(Ax\le b\) 用 \(Ax+s=b,\ s\ge 0\)（<b>松弛变量 slack</b>）；\(Ax\ge b\) 用 \(Ax-s=b,\ s\ge 0\)（<b>剩余变量 surplus</b>）。</li>
-  <li><b>\(x_i\le 0\)</b>：令 \(x_i=-y_i,\ y_i\ge 0\)（翻号）。</li>
-  <li><b>\(x_i\) free</b>：令 \(x_i=x_i^+ - x_i^-,\ x_i^+,x_i^-\ge 0\)（拆成两非负变量之差）。</li>
-</ol>
-<div class="ex box">
-  <span class="box-title">✏️ 变换 2 的细节</span>
-  <p>上界 \(x_1+x_2\le 10\)：加松弛 \(x_1+x_2+s=10\)，\(s=10-(x_1+x_2)\)。若等式成立则 \(s=0\)（紧），否则 \(s>0\)（未用容量）。下界 \(x_1+x_2\ge 10\)：\(x_1+x_2-s=10\)，\(s\ge 0\) 衡量超出最低要求的量。</p>
-</div>
-<div class="ex box">
-  <span class="box-title">✏️ 变换 4 的细节</span>
-  <p>\(x_i=7\) 取 \(x_i^+=7,x_i^-=0\)；\(x_i=-3\) 取 \(x_i^+=0,x_i^-=3\)；\(x_i=0\) 取两者都 0。\((x_i^+,x_i^-)\) 不唯一（如 \(7=8-1\)），但替代保持可行性与目标值。</p>
-</div>
-<div class="warn box">
-  <span class="box-title">⚠️ 变换后跟踪决策变量</span>
-  <p>标准形变换常加入松弛变量 \(s\)、换新变量（翻号）、把自由变量拆成 \(x^+,x^-\)。原变量的可行解通过替代对应新变量的可行解。建议每次变换后写一行「字典」，如：\(x_3\ (\text{free}) = x_3^+ - x_3^-\)，\(s_1 = 150-(x_1+x_2)\)。</p>
-</div>
-</section>
-
 <div class="vocab">
   <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
   <ul>
@@ -1570,10 +1501,6 @@ window.MathJax = {
     <li><b>hard margin / soft margin</b> — 硬间隔 / 软间隔</li>
     <li><b>hinge loss</b> — hinge（铰链）损失；<b>slack variable</b> — 松弛变量</li>
     <li><b>quadratic program (QP)</b> — 二次规划；<b>convex</b> — 凸</li>
-    <li><b>linear programming (LP)</b> — 线性规划；<b>affine</b> — 仿射</li>
-    <li><b>half-plane</b> — 半平面；<b>convex polyhedron</b> — 凸多面体</li>
-    <li><b>standard form</b> — 标准形；<b>slack / surplus variable</b> — 松弛 / 剩余变量</li>
-    <li><b>free variable</b> — 自由变量；<b>rank</b> — 秩</li>
   </ul>
 </div>
 
