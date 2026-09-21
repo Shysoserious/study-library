@@ -358,6 +358,37 @@ window.MathJax = {
         <a class="lv2" href="#lec4-p5-4">5.4 例题：斜面</a>
       </div>
     </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第5课 · Applying Newton's Laws <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec5-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec5-p1">Part 1 · 平衡与动力学</a>
+        <a class="lv2" href="#lec5-p1-1">1.1 平衡（牛顿第一定律）</a>
+        <a class="lv2" href="#lec5-p1-2">1.2 动力学（牛顿第二定律）</a>
+        <a class="lv2" href="#lec5-p1-3">1.3 例题：电梯</a>
+        <a class="lv2" href="#lec5-p1-4">1.4 表观重量</a>
+        <a class="lv1" href="#lec5-p2">Part 2 · 常见力</a>
+        <a class="lv2" href="#lec5-p2-1">2.1 重力</a>
+        <a class="lv2" href="#lec5-p2-2">2.2 张力</a>
+        <a class="lv2" href="#lec5-p2-3">2.3 支持力</a>
+        <a class="lv1" href="#lec5-p3">Part 3 · 摩擦力</a>
+        <a class="lv2" href="#lec5-p3-1">3.1 静摩擦与动摩擦</a>
+        <a class="lv2" href="#lec5-p3-2">3.2 摩擦的微观本质（冷焊）</a>
+        <a class="lv2" href="#lec5-p3-3">3.3 摩擦系数表 Table 5.1</a>
+        <a class="lv2" href="#lec5-p3-4">3.4 例题：硬币在斜书上</a>
+        <a class="lv1" href="#lec5-p4">Part 4 · 流体阻力与终极速度</a>
+        <a class="lv2" href="#lec5-p4-1">4.1 低速阻力 f = kv</a>
+        <a class="lv2" href="#lec5-p4-2">4.2 高速阻力 f = Dv²</a>
+        <a class="lv2" href="#lec5-p4-3">4.3 例题：雨滴</a>
+        <a class="lv1" href="#lec5-p5">Part 5 · 匀速圆周运动</a>
+        <a class="lv2" href="#lec5-p5-1">5.1 向心力</a>
+        <a class="lv2" href="#lec5-p5-2">5.2 例题：环道骑车（loop-the-loop）</a>
+        <a class="lv2" href="#lec5-p5-3">5.3 飞行员在环内各位置</a>
+        <a class="lv2" href="#lec5-p5-4">5.4 例题：水平转弯</a>
+        <a class="lv2" href="#lec5-p5-5">5.5 例题：倾斜赛道（banked track）</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -366,7 +397,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">物理 · 复习笔记</h1>
-<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–4</p>
+<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–5</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -1376,6 +1407,259 @@ window.MathJax = {
 </div>
 
 </div><!-- /第4课 -->
+
+<!-- ============ 第5课 ============ -->
+<div class="lecture" id="lec5">
+<div class="lecture-banner">第5课 · Applying Newton's Laws <span class="zh">（牛顿定律的应用）</span></div>
+
+<section id="lec5-overview">
+  <h2>本讲概览 <span class="zh">Overview</span></h2>
+  <div class="def box">
+    <span class="box-title">📌 本讲内容</span>
+    <p>上一章给出了牛顿三定律，本讲把它们<b>应用到具体问题</b>：平衡与动力学（电梯、表观重量）、常见力（重力/张力/支持力/摩擦力）、流体阻力与终极速度、以及匀速圆周运动（向心力、环道、倾斜赛道）。</p>
+    <p>复习三条定律：① \(F_{\text{net}}=0 \leftrightarrow a=0\)（惯性）；② \(\vec{F}_{\text{net}}=m\vec{a}\)（分量式 \(F_{\text{net},x}=ma_x\) 等）；③ 相互作用力大小相等、方向相反 \(\vec{F}_{CB}=-\vec{F}_{BC}\)。</p>
+  </div>
+</section>
+
+<h2>Part 1 · 平衡与动力学 <span class="zh">Equilibrium &amp; Dynamics</span></h2>
+
+<h3 id="lec5-p1-1">1.1 平衡（牛顿第一定律）Equilibrium</h3>
+<div class="def box">
+  <span class="box-title">📌 质点的平衡</span>
+  <p>平衡指 \(\vec{F}_{\text{net}}=\sum\vec{F}=0\)。分量形式：\(\sum F_x=0\) 且 \(\sum F_y=0\)。<br>
+  任何<b>静止</b>或<b>匀速运动</b>的物体问题都用牛顿第一定律（\(\sum F=0\)）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：体操运动员悬挂（gymnast）</span>
+  <p>质量 \(m_G=50.0\ \text{kg}\) 的运动员吊在轻绳下端（绳上端固定于天花板）。(a) 体重 \(w=m_G g=50.0\times9.8=490\ \text{N}\)；(b) 绳对运动员拉力 \(T_{R\text{ on }G}\) 大小 490 N、方向向上（与重力平衡）；(c) 绳顶端的张力同值 490 N、方向相反。</p>
+</div>
+
+<h3 id="lec5-p1-2">1.2 动力学（牛顿第二定律）Dynamics</h3>
+<div class="def box">
+  <span class="box-title">📌 加速物体的动力学</span>
+  <p>矢量式 \(\vec{F}_{\text{net}}=m\vec{a}\)；分量式 \(F_{\text{net},x}=ma_x,\;F_{\text{net},y}=ma_y,\;F_{\text{net},z}=ma_z\)。<br>
+  任何<b>加速</b>物体的受力问题都用牛顿第二定律。</p>
+</div>
+
+<h3 id="lec5-p1-3">1.3 例题：电梯 Elevator</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 电梯减速求张力</span>
+  <p>电梯及其负载总质量 800 kg，起初以 10.0 m/s <b>向下</b>运动，在 25.0 m 内匀减速停下。求缆绳张力 \(T\)。<br>
+  取向上为正，先由运动学求加速度：
+  \[a_y=\frac{v_y^2-v_{0y}^2}{2(y-y_0)}=\frac{0^2-(-10.0)^2}{2(-25.0)}=+2.00\ \text{m/s}^2\]
+  再由 \(\sum F_y=T-w=ma_y\) 得
+  \[T=w+ma_y=m(g+a_y)=800\times(9.8+2.0)=9440\ \text{N}\]
+  加速度向上（正），符合「向下减速」的预期。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 乘客站在电梯秤上</span>
+  <p>质量 \(m=72.2\ \text{kg}\) 的乘客站在电梯内的平台秤上。(a) 一般解：\(N-mg=ma\)，故 \(N=m(g+a)\)，质量读数 \(=m(1+a/g)\)（向上为正）。<br>
+  (b) 静止或匀速上行（0.50 m/s）：\(a=0\)，\(N=mg=72.2\times9.8=707.6\ \text{N}\)。<br>
+  (c) 向上加速 \(a=+3.2\)：\(N=72.2\times(9.8+3.2)=938.6\ \text{N}\)；向下加速 \(a=-3.2\)：\(N=72.2\times(9.8-3.2)=476.5\ \text{N}\)。<br>
+  (d) 净力 \(F_{\text{net}}=ma=72.2\times3.2=231.0\ \text{N}\)。</p>
+</div>
+
+<h3 id="lec5-p1-4">1.4 表观重量 Apparent Weight</h3>
+<div class="def box">
+  <span class="box-title">📌 表观重量</span>
+  <p>质量 \(m\) 的乘客在竖直加速度 \(a_y\) 的电梯里，其<b>表观重量</b>为
+  \[N=m(g+a_y)\]
+  极端情形：电梯以 \(a_y=-g\) 向下加速时 \(N=0\)，即<b>失重（weightless）</b>。同理，绕地飞行的宇航员经历表观失重。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 自由落体（free-fall）的辨析</span>
+  <p><b>自由落体</b>定义为「<b>只有重力</b>作用」的运动。<br>
+  (a) 达到终极速度的跳伞者是否在自由落体？<b>不是</b>——除重力外还有空气阻力，二力平衡时匀速下落。<br>
+  (b) 绕地卫星是否在自由落体？<b>是</b>——无空气阻力，唯一作用力就是（提供向心力的）重力。</p>
+</div>
+
+<h2>Part 2 · 常见力 <span class="zh">Some Particular Forces</span></h2>
+
+<h3 id="lec5-p2-1">2.1 重力 Gravity</h3>
+<div class="def box">
+  <span class="box-title">📌 重力（非接触力）</span>
+  <p>重力是把物体拉向地心的力（非接触力），\(\vec{F}_g=m\vec{g}\)，自由落体加速度 \(a=-g\)，故大小 \(F_g=w=mg\)。<br>
+  重力是四种基本力（引力、电磁力、强/弱核力）中<b>最弱</b>者，对亚原子粒子影响可忽略，但在<b>宏观尺度上主导</b>：使行星绕日、月球绕地、潮汐、星系恒星演化等。<br>
+  称重（weighing）必须在<b>无加速的参考系</b>中测量（天平/弹簧秤）。</p>
+</div>
+
+<h3 id="lec5-p2-2">2.2 张力 Tension</h3>
+<div class="def box">
+  <span class="box-title">📌 张力（接触力）</span>
+  <p>张力是绳/索对物体的<b>拉力</b>（接触力）。<b>假设</b>：绳无质量（massless）、滑轮无质量且无摩擦。<br>
+  同一根绳的张力<b>大小处处相同</b>（方向取决于它作用的物体）；无摩擦滑轮两侧张力大小相同。滑轮受到的净力 = 各张力的矢量和（例如两端向下拉时合力为 \(-2T\)）。</p>
+</div>
+
+<h3 id="lec5-p2-3">2.3 支持力 Normal Force</h3>
+<div class="def box">
+  <span class="box-title">📌 支持力（接触力）</span>
+  <p>物体压表面时，表面沿<b>垂直于表面</b>方向反推物体。竖直方向：
+  \[F_N-mg=ma_y\ \Rightarrow\ F_N=m(g+a_y)\]
+  或矢量式 \(\vec{F}_N+\vec{F}_g=m\vec{a}_y\)，即 \(\vec{F}_N=m\vec{a}_y-\vec{F}_g\)。<br>
+  支持力<b>自动调节</b>到等于把物体压向表面的力（self-adjusts）。</p>
+</div>
+
+<h2>Part 3 · 摩擦力 <span class="zh">Friction</span></h2>
+
+<h3 id="lec5-p3-1">3.1 静摩擦与动摩擦 Static &amp; Kinetic Friction</h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p>滑动（或试图滑动）时，物体与表面间的「键合」会产生阻力——即<b>摩擦力 \(\vec{f}\)</b>，方向沿表面、<b>与（试图的）运动方向相反</b>。简化时可假设无摩擦（frictionless）。</p>
+  <ul>
+    <li><b>静摩擦力 \(f_s\)</b>：大小正好<b>抵消</b>所施的力，物体不动；随施力增大而增大，直到<b>最大值</b> \(f_{s,\max}=\mu_s F_N\)（刚要「挣脱」滑动前）。</li>
+    <li><b>动摩擦力 \(f_k\)</b>：滑动后的阻力，\(f_k=\mu_k F_N\)。通常 \(f_k<f_{s,\max}\)。</li>
+  </ul>
+  <p>\(\mu_s/\mu_k\)：无量纲，需实验测定；\(\mu_k\) 常假设不随滑动速度变化。例：鸡蛋在特氟龙锅上 \(\mu_s=0.04\)，攀岩鞋与岩石高达 1.2。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 摩擦的利与弊</span>
+  <p><b>弊</b>：不可避免，汽车约 20% 的汽油用于克服发动机与传动系统的摩擦。<br>
+  <b>利</b>：走路/攀爬、抓握物体、机械结构（都依赖摩擦）。</p>
+</div>
+
+<h3 id="lec5-p3-2">3.2 摩擦的微观本质（冷焊）Microscopic View</h3>
+<div class="def box">
+  <span class="box-title">📌 微观机制</span>
+  <p>摩擦源于两表面<b>分子间的相互作用</b>，是两物体表面原子间众多力的矢量和。<br>
+  普通表面只有<b>凸点相互接触</b>，实际微观接触面积远小于表观宏观面积（可差约 \(10^4\) 倍）；原子尺度远非平整（AFM 测得的金属表面形貌）。许多接触点会<b>冷焊（cold-weld）</b>在一起。<br>
+  施加的力足够大时，先撕开焊点（breakaway），滑动中焊点不断「撕开—重组」。压得越紧，冷焊点越多，所需拉力越大。粗糙表面还会发声（如小提琴）。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 费曼名言</span>
+  <p>「当接触的原子都是同一种时，原子无法『知道』自己属于不同的铜块；但当中间隔着氧化物、油脂等杂质层时，原子就『知道』自己不属于同一部分。」—— Richard Feynman，《费曼物理学讲义》12–2 Friction。</p>
+</div>
+
+<h3 id="lec5-p3-3">3.3 摩擦系数表 Table 5.1</h3>
+<table class="truth">
+  <tr><th>材料 Materials</th><th>静摩擦系数 \(\mu_s\)</th><th>动摩擦系数 \(\mu_k\)</th></tr>
+  <tr><td>Steel on steel（钢-钢）</td><td>0.74</td><td>0.57</td></tr>
+  <tr><td>Aluminum on steel（铝-钢）</td><td>0.61</td><td>0.47</td></tr>
+  <tr><td>Copper on steel（铜-钢）</td><td>0.53</td><td>0.36</td></tr>
+  <tr><td>Brass on steel（黄铜-钢）</td><td>0.51</td><td>0.44</td></tr>
+  <tr><td>Zinc on cast iron（锌-铸铁）</td><td>0.85</td><td>0.21</td></tr>
+  <tr><td>Copper on cast iron（铜-铸铁）</td><td>1.05</td><td>0.29</td></tr>
+  <tr><td>Glass on glass（玻璃-玻璃）</td><td>0.94</td><td>0.40</td></tr>
+  <tr><td>Copper on glass（铜-玻璃）</td><td>0.68</td><td>0.53</td></tr>
+  <tr><td>Teflon on Teflon（特氟龙-特氟龙）</td><td>0.04</td><td>0.04</td></tr>
+  <tr><td>Teflon on steel（特氟龙-钢）</td><td>0.04</td><td>0.04</td></tr>
+  <tr><td>Rubber on concrete, dry（橡胶-干混凝土）</td><td>1.0</td><td>0.8</td></tr>
+  <tr><td>Rubber on concrete, wet（橡胶-湿混凝土）</td><td>0.30</td><td>0.25</td></tr>
+</table>
+
+<h3 id="lec5-p3-4">3.4 例题：硬币在斜书上</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 求静摩擦系数 \(\mu_s\)</span>
+  <p>质量为 \(m\) 的硬币静置于倾角 \(\theta\) 的书上，当 \(\theta\) 增到 \(13^\circ\) 时即将下滑。求 \(\mu_s\)。<br>
+  硬币静止，x、y 方向净力均为零：<br>
+  x 轴：\(f_{s,\max}-F_g\sin\theta=0\Rightarrow f_{s,\max}=F_g\sin\theta\)；<br>
+  y 轴：\(N-F_g\cos\theta=0\Rightarrow N=F_g\cos\theta\)。<br>
+  于是
+  \[\mu_s=\frac{f_{s,\max}}{N}=\frac{F_g\sin\theta}{F_g\cos\theta}=\tan\theta=\tan 13^\circ=0.23\]
+  结论：\(\mu_s\) 越大，能保持静止的倾角 \(\theta\) 越大。</p>
+</div>
+
+<h2>Part 4 · 流体阻力与终极速度 <span class="zh">Fluid Resistance &amp; Terminal Speed</span></h2>
+
+<h3 id="lec5-p4-1">4.1 低速阻力 \(f=kv\)</h3>
+<div class="def box">
+  <span class="box-title">📌 流体阻力</span>
+  <p><b>流体</b>：任何能流动的东西（气体或液体）。物体在流体中运动时受到与<b>相对速度方向相反</b>、随速度增大而增大的阻力。<br>
+  <b>小物体低速</b>（如金属球在油中下落）：\(f=kv\)，\(k\) 取决于形状和大小。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 终极速度与速度随时间变化</span>
+  <p>下落达到平衡 \(f-F_g=0\) 时，速度为<b>终极速度</b>
+  \[v_t=\frac{F_g}{k}\]
+  速度随时间变化（由 \(ma_y=mg-kv_y\) 解微分方程）：
+  \[v_y=v_t\left[1-e^{-(k/m)t}\right]\]
+  \[a_y=g\,e^{-(k/m)t}\]
+  \[y=v_t\left[t-\frac{m}{k}\left(1-e^{-(k/m)t}\right)\right]\]</p>
+</div>
+
+<h3 id="lec5-p4-2">4.2 高速阻力 \(f=Dv^2\)</h3>
+<div class="def box">
+  <span class="box-title">📌 大物体高速（钝体）</span>
+  <p>大物体高速（如网球在空气中）时阻力为<b>空气曳力（drag force）</b>
+  \[f=Dv^2,\qquad D=\tfrac12 C\rho A\]
+  \(C\) 是<b>阻力系数（drag coefficient）</b>（典型 0.4~1.0，此处当常数）；\(\rho\) 是空气密度；\(A\) 是有效横截面积（垂直于速度）。<br>
+  终极速度：
+  \[v_t=\sqrt{\frac{F_g}{D}}=\sqrt{\frac{2F_g}{C\rho A}}\]
+  改变 \(A\) 即可改变速度：增大 \(A\) 上升、减小 \(A\) 下降（如跳伞、羽毛 vs 棒球）。重物体（\(F_g\) 大、\(A\) 小）在空气中更快落地。</p>
+</div>
+
+<h3 id="lec5-p4-3">4.3 例题：雨滴 Raindrop</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 雨滴的终极速度</span>
+  <p>半径 \(R=1.5\ \text{mm}\) 的雨滴从高度 \(h=1200\ \text{m}\) 落下，阻力系数 \(C=0.60\)，水滴密度 \(\rho_w=1000\ \text{kg/m}^3\)，空气密度 \(\rho_a=1.2\ \text{kg/m}^3\)。<br>
+  (a) 重力 \(F_g=V\rho_w g=\tfrac43\pi R^3\rho_w g\)，横截面积 \(A=\pi R^2\)，故
+  \[v_t=\sqrt{\frac{2F_g}{C\rho_a A}}=\sqrt{\frac{8R\rho_w g}{3C\rho_a}}=\sqrt{\frac{8\times1.5\times10^{-3}\times1000\times9.8}{3\times0.60\times1.2}}=7.4\ \text{m/s}\approx27\ \text{km/h}\]
+  (b) 若无阻力，则 \(v=\sqrt{2gh}=\sqrt{2\times9.8\times1200}=153\ \text{m/s}\approx550\ \text{km/h}\)——接近大口径手枪子弹的速度！（正因有空气阻力，才「润物细无声」。）</p>
+</div>
+
+<h2>Part 5 · 匀速圆周运动 <span class="zh">Uniform Circular Motion</span></h2>
+
+<h3 id="lec5-p5-1">5.1 向心力 Centripetal Force</h3>
+<div class="def box">
+  <span class="box-title">📌 向心力</span>
+  <p>匀速圆周运动的加速度 \(a=\dfrac{v^2}{r}\)（指向圆心），所需<b>向心力</b>大小为
+  \[F=\frac{mv^2}{r}\]
+  方向始终指向圆心。<b>向心力只改变速度方向、不改变速率</b>。</p>
+</div>
+
+<h3 id="lec5-p5-2">5.2 例题：环道骑车 loop-the-loop</h3>
+<div class="ex box">
+  <span class="box-title">✏️ Diavolo 的环道自行车</span>
+  <p>1901 年马戏团表演：骑自行车沿半径 \(R=2.7\ \text{m}\) 的竖直圆环行驶，求过<b>顶点</b>仍保持接触的最小速度。<br>
+  顶点处取向下为正（指向圆心）：\(N+mg=\dfrac{mv^2}{R}\)。恰在脱离边缘时 \(N=0\)，故
+  \[v=\sqrt{gR}=\sqrt{9.8\times2.7}=5.1\ \text{m/s}\]
+  他必须以至少 5.1 m/s 通过顶点，否则会掉下轨道。</p>
+</div>
+
+<h3 id="lec5-p5-3">5.3 飞行员在环内各位置 Pilot in a Loop</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 环内不同位置的支持力</span>
+  <p><b>顶部</b>（环内，N 与 mg 均向下）：\(\dfrac{mv^2}{R}=N_t+mg\Rightarrow N_t=\dfrac{mv^2}{R}-mg\)。若 \(v\ge\sqrt{gR}\) 则 \(N_t>0\)；若 \(v<\sqrt{gR}\) 则 \(N_t<0\)（失接触）。<br>
+  <b>底部</b>：\(\dfrac{mv^2}{R}=N_b-mg\Rightarrow N_b=mg+\dfrac{mv^2}{R}\)（最大）。<br>
+  <b>某角度 \(\theta\)</b>（重力分解为径向 \(mg\sin\theta\) 与切向 \(mg\cos\theta\)）：
+  \[\frac{mv^2}{R}=N+mg\sin\theta\Rightarrow N=m\left(\frac{v^2}{R}-g\sin\theta\right)\]</p>
+</div>
+
+<h3 id="lec5-p5-4">5.4 例题：水平转弯 Circular Turn</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 求静摩擦系数 \(\mu_s\)</span>
+  <p>质量 \(m=1600\ \text{kg}\) 的车以 \(v=20\ \text{m/s}\) 沿半径 \(R=190\ \text{m}\) 的水平圆轨道行驶，求即将侧滑时的 \(\mu_s\)。<br>
+  静摩擦提供向心力：\(f_s=\dfrac{mv^2}{R}=\mu_s mg\)（方向指向圆心），故
+  \[\mu_s=\frac{v^2}{gR}=\frac{20^2}{9.8\times190}=0.21\]</p>
+</div>
+
+<h3 id="lec5-p5-5">5.5 例题：倾斜赛道 Banked Track</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 求倾角 \(\theta\)（无摩擦）</span>
+  <p>车以 \(v=20\ \text{m/s}\) 沿半径 \(R=190\ \text{m}\) 的倾斜赛道匀速行驶，摩擦可忽略，求倾角 \(\theta\)。<br>
+  支持力的水平分量提供向心力：<br>
+  x 轴：\(-F_N\sin\theta=-\dfrac{mv^2}{R}\)；<br>
+  y 轴：\(F_N\cos\theta-mg=0\Rightarrow F_N\cos\theta=mg\)。<br>
+  两式相除：
+  \[\tan\theta=\frac{v^2}{Rg}=\frac{20^2}{190\times9.8}=0.215\Rightarrow\theta=12.1^\circ\]</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>equilibrium</b> — 平衡；<b>apparent weight</b> — 表观重量；<b>weightless</b> — 失重的</li>
+    <li><b>free-fall</b> — 自由落体；<b>terminal speed</b> — 终极速度</li>
+    <li><b>gravitational force</b> — 重力；<b>tension</b> — 张力；<b>normal force</b> — 支持力</li>
+    <li><b>friction / frictional force</b> — 摩擦（力）</li>
+    <li><b>static friction / kinetic friction</b> — 静摩擦 / 动摩擦</li>
+    <li><b>coefficient of static/kinetic friction</b> — 静/动摩擦系数（\(\mu_s,\mu_k\)）</li>
+    <li><b>breakaway</b> — 挣脱（起滑瞬间）；<b>cold-welding</b> — 冷焊</li>
+    <li><b>fluid resistance</b> — 流体阻力；<b>drag force / air drag</b> — 曳力 / 空气曳力</li>
+    <li><b>drag coefficient</b> — 阻力系数（\(C\)）；<b>cross-sectional area</b> — 横截面积（\(A\)）</li>
+    <li><b>uniform circular motion</b> — 匀速圆周运动；<b>centripetal force</b> — 向心力</li>
+    <li><b>loop-the-loop</b> — 竖直环道；<b>banked track</b> — 倾斜赛道</li>
+  </ul>
+</div>
+</div><!-- /第5课 -->
 
 </div>
 </main>

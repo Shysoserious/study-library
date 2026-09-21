@@ -486,6 +486,71 @@ window.MathJax = {
         <a class="lv1" href="#fin4-p4">Part 4 · 总结</a>
       </div>
     </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第5课 · Time Value of Money II</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#fin5-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#fin5-p1">Part 1 · 现金流串流的 TVM</a>
+        <a class="lv2" href="#fin5-p1-1">1.1 基本原则与时间线</a>
+        <a class="lv2" href="#fin5-p1-2">1.2 例题：终值 FV</a>
+        <a class="lv2" href="#fin5-p1-3">1.3 例题：现值 PV</a>
+
+        <a class="lv1" href="#fin5-p2">Part 2 · 标准现金流（年金与永续）</a>
+        <a class="lv2" href="#fin5-p2-1">2.1 年金与永续的类型</a>
+        <a class="lv2" href="#fin5-p2-2">2.2 普通年金 Ordinary Annuity</a>
+        <a class="lv2" href="#fin5-p2-3">2.3 期初年金 Annuity Due</a>
+        <a class="lv2" href="#fin5-p2-4">2.4 永续年金 Perpetuity</a>
+
+        <a class="lv1" href="#fin5-p3">Part 3 · 年金与永续例题</a>
+        <a class="lv2" href="#fin5-p3-1">3.1 退休储蓄规划</a>
+        <a class="lv2" href="#fin5-p3-2">3.2 彩票的现值</a>
+        <a class="lv2" href="#fin5-p3-3">3.3 年金的终值</a>
+        <a class="lv2" href="#fin5-p3-4">3.4 水平永续（优先股）</a>
+        <a class="lv2" href="#fin5-p3-5">3.5 增长永续（Apple）</a>
+        <a class="lv2" href="#fin5-p3-6">3.6 不规则起始时间</a>
+        <a class="lv2" href="#fin5-p3-7">3.7 非整数时间间隔</a>
+
+        <a class="lv1" href="#fin5-p4">Part 4 · 总结</a>
+      </div>
+    </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第6课 · Time Value of Money III</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#fin6-overview">📖 本讲概览</a>
+        <div class="divider"></div>
+
+        <a class="lv1" href="#fin6-p1">Part 1 · 摊销贷款 Amortized Loan</a>
+        <a class="lv2" href="#fin6-p1-1">1.1 什么是摊销贷款</a>
+        <a class="lv2" href="#fin6-p1-2">1.2 例题：房贷</a>
+        <a class="lv2" href="#fin6-p1-3">1.3 摊销表 Amortization Schedule</a>
+
+        <a class="lv1" href="#fin6-p2">Part 2 · 净现值 NPV</a>
+        <a class="lv2" href="#fin6-p2-1">2.1 决策规则</a>
+        <a class="lv2" href="#fin6-p2-2">2.2 例题</a>
+
+        <a class="lv1" href="#fin6-p3">Part 3 · 内部收益率 IRR</a>
+        <a class="lv2" href="#fin6-p3-1">3.1 决策规则</a>
+        <a class="lv2" href="#fin6-p3-2">3.2 例题：现金流</a>
+        <a class="lv2" href="#fin6-p3-3">3.3 永续的 IRR</a>
+        <a class="lv2" href="#fin6-p3-4">3.4 年金的 IRR</a>
+
+        <a class="lv1" href="#fin6-p4">Part 4 · 手续费率 Fee Ratio</a>
+
+        <a class="lv1" href="#fin6-p5">Part 5 · NPV 应用：读研值得吗</a>
+
+        <a class="lv1" href="#fin6-p6">Part 6 · 总结</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -494,7 +559,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">金融基础 · 复习笔记</h1>
-<p class="course-meta">FIN2010 Financial Management · 中英对照 · 覆盖 Lecture 1–2</p>
+<p class="course-meta">FIN2010 Financial Management · 中英对照 · 覆盖 Lecture 1–6</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -1615,6 +1680,390 @@ window.MathJax = {
 </section>
 
 </div><!-- /第4课 -->
+
+<!-- ============ 第5课 ============ -->
+<div class="lecture" id="lec5">
+<div class="lecture-banner">第5课 · Time Value of Money II <span class="zh">（货币的时间价值 II：现金流串、年金与永续）</span></div>
+
+<section id="fin5-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#fin5-p1">现金流串流的 TVM</a> —— 时间线、FV/PV 相加</li>
+      <li><a href="#fin5-p2">标准现金流（年金与永续）</a> —— 普通年金、期初年金、水平/增长永续</li>
+      <li><a href="#fin5-p3">年金与永续例题</a> —— 退休、彩票、优先股、Apple、不规则时间</li>
+      <li><a href="#fin5-p4">总结</a></li>
+    </ol>
+  </div>
+  <div class="def box">
+    <span class="box-title">📌 复习：TVM 要点</span>
+    <p>货币有时间价值——今天的 1 美元比明天的 1 美元更值钱；利率（贴现率）把现值与终值互相转换。单一现金流：\(FV=PV(1+\tfrac{APR}{m})^{m\cdot n}\)；APR 应转换为每期有效利率；EAR 反映借款人实际支付的利率。</p>
+  </div>
+</section>
+
+<section id="fin5-p1">
+<h2>Part 1 · 现金流串流的 TVM <span class="zh">TVM of Cash Flow Streams</span></h2>
+
+<h3 id="fin5-p1-1">1.1 基本原则与时间线 <span class="zh">Basic Principle &amp; Timeline</span></h3>
+<div class="def box">
+  <span class="box-title">📌 基本原则</span>
+  <p><b>一串现金流的 PV（或 FV）等于每一笔现金流 PV（或 FV）之和</b>。<br>
+  <b>时间线（timeline）</b>是把「文字」转成「数值」的有用工具——线性表示每笔现金流的时间与金额。<br>
+  例：今天借出 $1,000，之后三期分别收回 $200、$300、$600。</p>
+</div>
+
+<h3 id="fin5-p1-2">1.2 例题：终值 FV <span class="zh">FV Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 求三年/四年后有多少钱</span>
+  <p>你现在（年初）账户有 $7,000，计划在接下来三年的<b>每年年末</b>各存入 $4,000，银行年利率 8%（每年复利）。<br>
+  画时间线，把每笔现金流折到第 3 年再相加：</p>
+  <ul>
+    <li>今天（第 0 年）：\(7000\times1.08^3=8{,}817.98\)</li>
+    <li>第 1 年：\(4000\times1.08^2=4{,}665.60\)</li>
+    <li>第 2 年：\(4000\times1.08=4{,}320\)</li>
+    <li>第 3 年：\(4{,}000\)</li>
+  </ul>
+  <p>三年后总额 \(=8{,}817.98+4{,}665.60+4{,}320+4{,}000=21{,}803.58\)。<br>
+  第四年 \(=21{,}803.58\times1.08=23{,}547.87\)。</p>
+</div>
+
+<h3 id="fin5-p1-3">1.3 例题：现值 PV <span class="zh">PV Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 求一串现金流的现值</span>
+  <p>一项投资将在一年后给 $200、两年后 $400、三年后 $600、四年末 $800。你能赚 12%，求其现值。</p>
+  <ul>
+    <li>第 1 年：\(200/1.12^1=178.57\)</li>
+    <li>第 2 年：\(400/1.12^2=318.88\)</li>
+    <li>第 3 年：\(600/1.12^3=427.07\)</li>
+    <li>第 4 年：\(800/1.12^4=508.41\)</li>
+  </ul>
+  <p>总现值 \(=178.57+318.88+427.07+508.41=1{,}432.93\)。</p>
+</div>
+</section>
+
+<section id="fin5-p2">
+<h2>Part 2 · 标准现金流（年金与永续）<span class="zh">Standardized Cash Flow Streams</span></h2>
+
+<h3 id="fin5-p2-1">2.1 年金与永续的类型 <span class="zh">Types</span></h3>
+<div class="def box">
+  <span class="box-title">📌 分类</span>
+  <ul>
+    <li><b>年金（annuity）</b>：在固定间隔发生、金额相等、<b>有限期</b>的支付序列。首期在<b>期末</b>发生叫<b>普通年金（ordinary annuity）</b>；首期在<b>期初</b>发生叫<b>期初年金（annuity due）</b>。例：房租、学费。</li>
+    <li><b>永续年金（perpetuity）</b>：在固定间隔发生、<b>无限期</b>的支付序列。等额支付叫<b>水平永续（level perpetuity）</b>；按固定比率增长叫<b>增长永续（growth perpetuity）</b>。例：股票分红。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 复习：等比级数</span>
+  <p>有限等比级数 \(a+ax+ax^2+\cdots+ax^{n-1}\)：和 \(=a\,\dfrac{1-x^n}{1-x}\)（\(a\) 首项、\(n\) 项数、\(x\) 公比）。<br>
+  无限等比级数（\(|x|&lt;1\)）：和 \(=\dfrac{a}{1-x}\)。</p>
+</div>
+
+<h3 id="fin5-p2-2">2.2 普通年金 Ordinary Annuity <span class="zh">（期末支付）</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 普通年金公式（t 期、每期 PMT、每期利率 r）</span>
+  <p class="formula">\(FV_{OA}=PMT\left[\dfrac{(1+r)^t-1}{r}\right]\)</p>
+  <p class="formula">\(PV_{OA}=PMT\left[\dfrac{1-\dfrac{1}{(1+r)^t}}{r}\right]\)</p>
+</div>
+
+<h3 id="fin5-p2-3">2.3 期初年金 Annuity Due <span class="zh">（期初支付）</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 期初年金公式</span>
+  <p>每笔支付都比普通年金<b>早一期</b>发生，所以整体多乘一个 \((1+r)\)：</p>
+  <p class="formula">\(FV_{AD}=FV_{OA}\times(1+r)\)</p>
+  <p class="formula">\(PV_{AD}=PV_{OA}\times(1+r)\)</p>
+  <p>（AD = annuity due；OA = 同 PMT、同 r、同 t 的普通年金。）</p>
+</div>
+
+<h3 id="fin5-p2-4">2.4 永续年金 Perpetuity <span class="zh">（无限期）</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 永续年金公式</span>
+  <p><b>水平永续</b>（每期 PMT 不变）：</p>
+  <p class="formula">\(PV_{LP}=PMT\cdot\dfrac{1}{r}\)</p>
+  <p><b>增长永续</b>（下期 PMT₁，此后按 g 增长）：</p>
+  <p class="formula">\(PV=\dfrac{PMT_1}{r-g}\)</p>
+  <p>（注：必须 \(g&lt;r\)。PMT₁ 是第 1 期（下一期）的现金流。）</p>
+</div>
+</section>
+
+<section id="fin5-p3">
+<h2>Part 3 · 年金与永续例题 <span class="zh">Examples</span></h2>
+
+<h3 id="fin5-p3-1">3.1 退休储蓄规划 Retirement Planning</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 期初年金的 PMT</span>
+  <p>今天是你 23 岁生日，想在 60 岁退休时攒够 1000 万。计划从 23 岁到 59 岁的<b>每个生日</b>存 PMT，年利率 8%。<br>
+  这是「23 到 60」的<b>期初年金</b>（现在就开始存，直到最后一年前）。用期初年金终值公式：
+  \[PMT\cdot\frac{1.08^{37}-1}{0.08}\times1.08=10{,}000{,}000\]
+  解得 \(PMT=45{,}596\)。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 启示（Takeaways）</span>
+  <ul>
+    <li>财富<b>指数增长</b>：37 年共投入 \(45{,}596\times37\approx169\) 万，却能滚到 1000 万。</li>
+    <li>年轻时存的钱<b>更值钱</b>：第一笔存款 37 年后增长 \(1.08^{37}=17.25\) 倍。</li>
+    <li>前 8 笔（共 37 笔）储蓄贡献了终值的 <b>48%</b>。</li>
+    <li>52 岁时才达到目标的 50%（500 万），但已走过 78% 的时间。</li>
+  </ul>
+</div>
+
+<h3 id="fin5-p3-2">3.2 彩票的现值 PV of Annuities</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 1000 万彩票到底值多少</span>
+  <p>中 $1000 万彩票，分 20 年每年等额领 $500,000，贴现率 5%（EAR）。<br>
+  若第一笔<b>一年后</b>领（普通年金）：\(PV=500{,}000\times\dfrac{1-1.05^{-20}}{0.05}=6{,}231{,}105.17\)。<br>
+  若第一笔<b>今天</b>领（期初年金）：\(PV=500{,}000\times1.05\times\dfrac{1-1.05^{-20}}{0.05}=6{,}542{,}660.43\)。</p>
+</div>
+
+<h3 id="fin5-p3-3">3.3 年金的终值 FV of Annuities</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 每年 $2000 vs 每两年 $4000</span>
+  <p>每年年末存 $2000，40 年，利率 7.5%：\(FV=2000\times\dfrac{1.075^{40}-1}{0.075}=454{,}513.04\)。<br>
+  改为<b>每两年</b>存 $4000（第 2 年末首次），两期有效利率 \(r_{2y}=1.075^2-1=15.56\%\)：
+  \[FV=4000\times\frac{(1.075^2)^{20}-1}{1.075^2-1}=438{,}084.86\]
+  少了一点（因为 $4000 里有一半晚存了一年）。</p>
+</div>
+
+<h3 id="fin5-p3-4">3.4 水平永续（优先股）Level Perpetuity</h3>
+<div class="ex box">
+  <span class="box-title">✏️ Fellini 优先股分红</span>
+  <p>Fellini 想以 $1 亿发行优先股，每季分红（水平永续）。投资者要求回报 10%（APR、按季复利），即每季有效利率 \(r=10\%/4=2.5\%\)。由 \(PV=PMT/r\)：
+  \[100\text{m}=\frac{PMT}{2.5\%}\ \Rightarrow\ PMT=2.50\text{m（每季）}\]</p>
+</div>
+
+<h3 id="fin5-p3-5">3.5 增长永续（Apple）Growth Perpetuity</h3>
+<div class="ex box">
+  <span class="box-title">✏️ Apple 的分红价值</span>
+  <p>Apple 每年分红，刚派了 $2.6，此后每年增长 3%，贴现率 10%。<br>
+  下一期分红 \(PMT_1=2.6\times1.03=2.678\)，故
+  \[PV=\frac{2.6\times1.03}{10\%-3\%}=\$38.26\]</p>
+</div>
+
+<h3 id="fin5-p3-6">3.6 不规则起始时间 Irregular Starting Time</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 三种领奖方式选哪个</span>
+  <p>中了 $1000 万，三种选择（公平利率 7%）：① 现在就领 1000 万；② 从现在起每年领 100 万、共 12 年；③ 从第 5 年末到第 11 年每年领 200 万。<br>
+  比较各方案的现值 PV 与第 11 年末终值 FV：</p>
+  <table class="truth">
+    <tr><th>方案</th><th>PV</th><th>FV（第 11 年末）</th></tr>
+    <tr><td>① 立即领</td><td>10M</td><td>\(10\text{M}\times1.07^{11}=21.049\text{M}\)</td></tr>
+    <tr><td>② 每年 100 万 ×12</td><td>\(1\text{M}\left[1+\tfrac{1-1.07^{-11}}{0.07}\right]=8.499\text{M}\)</td><td>\(1\text{M}\cdot\tfrac{1.07^{12}-1}{0.07}=17.889\text{M}\)</td></tr>
+    <tr><td>③ 第 5~11 年每年 200 万</td><td>\(2\text{M}\cdot1.07^{-4}\cdot\tfrac{1-1.07^{-7}}{0.07}=8.223\text{M}\)</td><td>\(2\text{M}\cdot\tfrac{1.07^{7}-1}{0.07}=17.308\text{M}\)</td></tr>
+  </table>
+  <p>无论看 PV 还是 FV，<b>方案 ①（现在领）最优</b>。</p>
+</div>
+
+<h3 id="fin5-p3-7">3.7 非整数时间间隔 Non-integer Time Interval</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 四种月薪方案比较</span>
+  <p>比较四种月薪方案（5% EAR，月利率 \(=(1.05)^{1/12}-1\)）：① 月初发 $1000；② 月末发 $1004；③ 月初+月中各发 $501；④ 月中+月末各发 $502。都覆盖相同月数、相同 EAR，比较各自<b>月末价值</b>：</p>
+  <ul>
+    <li>① \(1000\times1.05^{1/12}\approx1004.07\)</li>
+    <li>② \(1004\)</li>
+    <li>③ \(501\times1.05^{1/12}+501\times1.05^{1/24}\approx1005.06\)</li>
+    <li>④ \(502\times1.05^{1/24}+502\approx1005.02\)</li>
+  </ul>
+  <p>方案 ③ 最优。</p>
+</div>
+</section>
+
+<section id="fin5-p4">
+<h2>Part 4 · 总结 <span class="zh">Summary</span></h2>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>cash flow stream</b> — 现金流串流；<b>timeline</b> — 时间线</li>
+    <li><b>annuity</b> — 年金；<b>ordinary annuity</b> — 普通年金；<b>annuity due</b> — 期初年金</li>
+    <li><b>perpetuity</b> — 永续年金；<b>level perpetuity</b> — 水平永续；<b>growth perpetuity</b> — 增长永续</li>
+    <li><b>payment (PMT)</b> — 每期支付额；<b>geometric series</b> — 等比级数</li>
+    <li><b>retirement planning</b> — 退休规划；<b>preferred stock</b> — 优先股；<b>dividend</b> — 分红</li>
+  </ul>
+</div>
+</section>
+</div><!-- /第5课 -->
+
+<!-- ============ 第6课 ============ -->
+<div class="lecture" id="lec6">
+<div class="lecture-banner">第6课 · Time Value of Money III <span class="zh">（货币的时间价值 III：摊销贷款、NPV/IRR、手续费率）</span></div>
+
+<section id="fin6-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#fin6-p1">摊销贷款 Amortized Loan</a> —— 房贷、月供、摊销表</li>
+      <li><a href="#fin6-p2">净现值 NPV</a> —— 决策规则与例题</li>
+      <li><a href="#fin6-p3">内部收益率 IRR</a> —— 决策规则、永续/年金 IRR</li>
+      <li><a href="#fin6-p4">手续费率 Fee Ratio</a> —— 警惕表面低费率</li>
+      <li><a href="#fin6-p5">NPV 应用：读研值得吗</a></li>
+      <li><a href="#fin6-p6">总结</a></li>
+    </ol>
+  </div>
+  <div class="def box">
+    <span class="box-title">📌 复习：TVM 公式</span>
+    <p>单一现金流：\(FV=PV(1+\tfrac{APR}{m})^{m n}\)。现金流串：FV（或 PV）= 各笔现金流 FV（或 PV）之和。普通年金 \(PV=PMT\dfrac{1-(1+r)^{-n}}{r}\)；期初年金 \(PV=PMT\left[1+\dfrac{1-(1+r)^{-(n-1)}}{r}\right]=PMT(1+r)\dfrac{1-(1+r)^{-n}}{r}\)；水平永续 \(PV=PMT/r\)；增长永续 \(PV=PMT/(r-g)\)。</p>
+  </div>
+</section>
+
+<section id="fin6-p1">
+<h2>Part 1 · 摊销贷款 Amortized Loan <span class="zh"></span></h2>
+
+<h3 id="fin6-p1-1">1.1 什么是摊销贷款 <span class="zh">What is amortized loan?</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义</span>
+  <p><b>摊销贷款</b>：本金按摊销表在期限内分期还清，通常<b>等额还款</b>。即你和银行签合同——银行现在给你钱（本金 principal），你未来一点点还（payment）。典型例子是<b>房贷（mortgage）</b>。<br>
+  每期还款拆成两部分：① <b>本金偿还（principal repayment）</b>；② <b>利息支付（interest payment）</b>。<br>
+  两个问题：每期还多少？每期中多少还本金、多少付利息？</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 核心思想</span>
+  <p><b>任意时点的当前余额 = 未来所有支付的现值</b>。把未来还款看作银行获得的收益，贷款额是成本，两者经利率调整后必须「公平」（PV 相等）。</p>
+</div>
+
+<h3 id="fin6-p1-2">1.2 例题：房贷 Home Mortgage</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 480 万公寓的月供</span>
+  <p>买一套 480 万公寓，首套、单身，首付 15%，30 年期房贷，每月末等额还款。<br>
+  总价 ￥4,800,000；首付 \(4{,}800{,}000\times15\%=720{,}000\)；贷款额（PV）\(=4{,}800{,}000\times85\%=4{,}080{,}000\)。<br>
+  月利率 \(r=3.15\%/12=0.2625\%\)，共 \(t=360\) 个月。<br>
+  令每月还款 \(x\)，则
+  \[4{,}080{,}000=\frac{x}{1+r}+\frac{x}{(1+r)^2}+\cdots+\frac{x}{(1+r)^{360}}=x\cdot\frac{1-(1+r)^{-360}}{r}\]
+  解得 \(x=17{,}533.26\)（每月）。</p>
+</div>
+
+<h3 id="fin6-p1-3">1.3 摊销表 Amortization Schedule</h3>
+<div class="def box">
+  <span class="box-title">📌 摊销表</span>
+  <p>摊销表逐期展示每笔还款的构成：<b>利息支付随时间递减</b>，<b>本金偿还随时间递增</b>。<br>
+  每期：利息支付 \(=\) 月利率 \(\times\) 未偿余额；本金偿还 \(=\) 每期还款 \(-\) 利息支付；未偿余额 \(=\) 剩余所有支付的现值。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 前几期摊销表</span>
+  <table class="truth">
+    <tr><th>月</th><th>期初余额</th><th>月供</th><th>利息 (3)=r×(1)</th><th>还本金 (4)=(2)−(3)</th><th>期末余额 (5)=(1)−(4)</th></tr>
+    <tr><td>1</td><td>4,080,000.00</td><td>17,533.26</td><td>10,710.00</td><td>6,823.26</td><td>4,073,176.74</td></tr>
+    <tr><td>2</td><td>4,073,176.74</td><td>17,533.26</td><td>10,692.09</td><td>6,841.18</td><td>4,066,335.56</td></tr>
+    <tr><td>3</td><td>4,066,335.56</td><td>17,533.26</td><td>10,674.13</td><td>6,859.13</td><td>4,059,476.43</td></tr>
+    <tr><td>4</td><td>4,059,476.43</td><td>17,533.26</td><td>10,656.13</td><td>6,877.14</td><td>4,052,599.29</td></tr>
+  </table>
+  <p>② 第 358 期还款后还剩两期，欠款 \(=\dfrac{17{,}533.26}{1.002625}+\dfrac{17{,}533.26}{1.002625^2}=34{,}928.94\)。<br>
+  ③ 30 年总利息 \(=\) 总还款 \(-\) 本金 \(=17{,}533.26\times360-4{,}080{,}000=2{,}231{,}975.33\)。</p>
+</div>
+</section>
+
+<section id="fin6-p2">
+<h2>Part 2 · 净现值 NPV <span class="zh">Net Present Value</span></h2>
+
+<h3 id="fin6-p2-1">2.1 决策规则 <span class="zh">Decision Rule</span></h3>
+<div class="def box">
+  <span class="box-title">📌 NPV</span>
+  <p>典型投资：钱现在出去、以后进来。<b>净现值 NPV = PV（现金流入 − 流出）= 收益 − 成本</b>。<br>
+  决策规则：若 \(NPV\ge0\)（收益 ≥ 成本）则<b>接受</b>投资；若 \(NPV&lt;0\) 则<b>拒绝</b>。</p>
+</div>
+
+<h3 id="fin6-p2-2">2.2 例题 <span class="zh">Examples</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 现在付 $6000 值不值</span>
+  <p>贴现率 7% 下，是否愿为「第 1 年 $3000、第 2 年 $2000、第 3 年 $2000」的现金流现在付 $6000？<br>
+  收益现值 \(=\dfrac{3000}{1.07}+\dfrac{2000}{1.07^2}+\dfrac{2000}{1.07^3}=6183.21\)；成本现值 $6000（现在发生）。<br>
+  \(NPV=6183.21-6000=183.21&gt;0\)，接受。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 愿付多少钱</span>
+  <p>一项投资将在一年后给 $1000、两年后 $2000、三年后 $3000，你想赚 10%。<br>
+  流入现值 \(=\dfrac{1000}{1.1}+\dfrac{2000}{1.1^2}+\dfrac{3000}{1.1^3}=4{,}815.93\)。愿付 $5000 吗？<b>不</b>——\(NPV=4{,}815.93-5{,}000=-184.07&lt;0\)。</p>
+</div>
+</section>
+
+<section id="fin6-p3">
+<h2>Part 3 · 内部收益率 IRR <span class="zh">Internal Rate of Return</span></h2>
+
+<h3 id="fin6-p3-1">3.1 决策规则 <span class="zh">Decision Rule</span></h3>
+<div class="def box">
+  <span class="box-title">📌 IRR</span>
+  <p><b>内部收益率 IRR = 使 NPV=0 的贴现率</b>——即让「收益=成本」的回报率。计算等同于在 TVM 题里解 \(r\)。<br>
+  决策规则：若你认为 IRR 足够高就<b>接受</b>该项目。</p>
+</div>
+
+<h3 id="fin6-p3-2">3.2 例题：现金流 <span class="zh">Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 求 IRR</span>
+  <p>为「第 1 年 $1000、第 2 年 $2000、第 3 年 $3000」的现金流付 $5000，IRR 是多少？<br>
+  解方程 \(\dfrac{1000}{1+r}+\dfrac{2000}{(1+r)^2}+\dfrac{3000}{(1+r)^3}=5000\)，可用试错法/金融计算器/Excel，得 \(r=8.2\%\)。</p>
+</div>
+
+<h3 id="fin6-p3-3">3.3 永续的 IRR <span class="zh">IRR in Perpetuity</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ Jessica 的创业</span>
+  <p>初始投入 $100 万，一年后开始每年产生 $10 万现金流、之后每年增长 4%、无限期。求 IRR。<br>
+  由增长永续：\(1{,}000{,}000=\dfrac{100{,}000}{r-0.04}\Rightarrow r=0.14\)。</p>
+</div>
+
+<h3 id="fin6-p3-4">3.4 年金的 IRR <span class="zh">IRR in Annuity</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ Baker 的投资回报</span>
+  <p>Baker 出资 $100 万，Jessica 承诺未来 30 年每年末付 $125,000。求 IRR。<br>
+  年金问题：\(1{,}000{,}000=125{,}000\times\dfrac{1}{r}\left(1-\dfrac{1}{(1+r)^{30}}\right)\Rightarrow r=12\%\)。</p>
+</div>
+
+<div class="warn box">
+  <span class="box-title">💡 PV、NPV、IRR 的含义对比</span>
+  <p><b>PV</b>：用某个贴现率 r，未来现金流现在值多少？<br>
+  <b>NPV</b>：为赚这些未来现金流要先付成本，用 r 调整后净收益是多少（收益 − 成本）？<br>
+  <b>IRR</b>：在哪个贴现率下 NPV=0（即打平，break even）？</p>
+</div>
+</section>
+
+<section id="fin6-p4">
+<h2>Part 4 · 手续费率 Fee Ratio <span class="zh"></span></h2>
+<div class="def box">
+  <span class="box-title">📌 什么是手续费率</span>
+  <p>金融机构有时不报 APR，而是报「<b>手续费率（fee ratio）</b>」。例：借 ￥10,000 分 6 期还，银行说手续费率 4.8%——意思是你要在 6 个月内还 \(10{,}000\times1.048=10{,}480\)，每月还 \(10{,}480/6=1746.67\)。<br>
+  这个支付方案对应的真实利率是多少？由 \(10{,}000=1746.67\times\dfrac{1-(1+r_m)^{-6}}{r_m}\) 解得月有效利率 \(r_m=1.356\%\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 换算成 APR 与 EAR</span>
+  <p>月利率 \(r_m=1.356\%\)，则<br>
+  等效 \(EAR=(1+1.356\%)^{12}-1=17.55\%\)；<br>
+  等效 \(APR=1.356\%\times12=16.28\%\)。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 警惕手续费率！</span>
+  <p>「手续费率」表面看很小，换成 APR/EAR 后大得多。例如每期 0.60% 的手续费，6 期总手续费 3.60%，对应 APR 12.24%、EAR 12.95%；12 期总手续费 7.20% 对应 APR 13.03%、EAR 13.84%。<b>分期越短、费率越高，真实年化越高</b>。</p>
+</div>
+</section>
+
+<section id="fin6-p5">
+<h2>Part 5 · NPV 应用：读研值得吗 <span class="zh">NPV of a Master's Degree</span></h2>
+<div class="ex box">
+  <span class="box-title">✏️ 出国读研 vs 直接工作</span>
+  <p>假设：不读研，起薪 ￥15 万/年，30 岁前每年涨 10%、之后每年 5%；读研，两年每年花 ￥40 万，起薪 ￥18 万，35 岁前每年涨 10%、之后 5%。<br>
+  当 \(r=8\%\)：NPV（22 岁时）\(=￥-290\text{K}\)，FV（60 岁）\(=￥-5.39\text{M}\)。<br>
+  当 \(r=6\%\)：NPV \(=￥70.6\text{K}\)，FV \(=￥647\text{K}\)。<br>
+  <b>IRR = 6.32%</b>——即只有当你能接受低于 6.32% 的贴现率（机会成本很低）时，出国读研才划算。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 在职硕士（part-time master's）</span>
+  <p>假设：边工作边读 4 年，其中两年每年花 ￥25 万，毕业后工资跳到 ￥30 万，35 岁前每年涨 10%、之后 5%。<br>
+  当 \(r=8\%\)：NPV \(=￥0.96\text{M}\)，FV \(=￥17.87\text{M}\)。<br>
+  当 \(r=6\%\)：NPV \(=￥1.60\text{M}\)，FV \(=￥14.61\text{M}\)。<br>
+  <b>IRR = 20%</b>——在职硕士是<b>划算得多</b>的选择（因为不牺牲太多工资收入）。</p>
+</div>
+</section>
+
+<section id="fin6-p6">
+<h2>Part 6 · 总结 <span class="zh">Summary</span></h2>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>amortized loan</b> — 摊销贷款；<b>amortization schedule</b> — 摊销表；<b>mortgage</b> — 房贷</li>
+    <li><b>principal</b> — 本金；<b>interest payment</b> — 利息支付；<b>principal repayment</b> — 本金偿还</li>
+    <li><b>down payment</b> — 首付；<b>outstanding balance</b> — 未偿余额</li>
+    <li><b>net present value (NPV)</b> — 净现值；<b>internal rate of return (IRR)</b> — 内部收益率</li>
+    <li><b>break even</b> — 打平/盈亏平衡；<b>accept / decline</b> — 接受 / 拒绝</li>
+    <li><b>fee ratio</b> — 手续费率；<b>installment</b> — 分期付款</li>
+  </ul>
+</div>
+</section>
+</div><!-- /第6课 -->
 
 </div>
 </main>

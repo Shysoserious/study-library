@@ -299,6 +299,22 @@ window.MathJax = {
     <a class="lv2" href="#ln2-2b">2.2 否定 Negation</a>
     <a class="lv2" href="#ln2-2c">2.3 多重量词 Multiple Quantifiers</a>
     <a class="lv2" href="#ln2-2d">2.4 量词论证 Arguments</a>
+
+    <a class="lv1" href="#ln3">LN3 · 证明方法 Methods of Proofs</a>
+    <a class="lv2" href="#ln3-1">3.1 直接证明 Direct Proof</a>
+    <a class="lv2" href="#ln3-2">3.2 逆否证明 Contrapositive</a>
+    <a class="lv2" href="#ln3-3">3.3 反证法 Contradiction</a>
+    <a class="lv2" href="#ln3-4">3.4 分类讨论 Cases</a>
+
+    <a class="lv1" href="#ln4">LN4 · 数学归纳法 Mathematical Induction</a>
+    <a class="lv2" href="#ln4-1">4.1 归纳法思想与规则</a>
+    <a class="lv2" href="#ln4-2">4.2 基本归纳证明（等式/性质/不等式）</a>
+    <a class="lv2" href="#ln4-3">4.3 柯西-施瓦茨不等式</a>
+    <a class="lv2" href="#ln4-4">4.4 归纳构造（格雷码/拼图/哈达玛矩阵）</a>
+    <a class="lv2" href="#ln4-5">4.5 马匹悖论（错误证明）</a>
+    <a class="lv2" href="#ln4-6">4.6 强归纳法</a>
+    <a class="lv2" href="#ln4-7">4.7 良序原理</a>
+    <a class="lv2" href="#ln4-8">4.8 不变量方法</a>
   </nav>
 </aside>
 
@@ -317,6 +333,8 @@ window.MathJax = {
       <li><a href="#ln1">LN1 命题逻辑 Propositional Logic</a> —— 逻辑运算符、逻辑等价、德摩根律、条件语句、论证</li>
       <li><a href="#ln2-1">LN2.1 集合 Sets</a> —— 集合定义、集合运算、集合恒等式、罗素悖论</li>
       <li><a href="#ln2-2">LN2.2 一阶逻辑 First-order Logic</a> —— 量词、否定、多重量词、量词论证</li>
+      <li><a href="#ln3">LN3 证明方法 Methods of Proofs</a> —— 直接证明、逆否、反证法、分类讨论</li>
+      <li><a href="#ln4">LN4 数学归纳法 Mathematical Induction</a> —— 归纳法、柯西-施瓦茨、归纳构造、强归纳、良序原理、不变量</li>
     </ol>
   </div>
 </section>
@@ -612,6 +630,38 @@ window.MathJax = {
   <p>例子：若台风，则停课。没停课。所以没有台风。Modus tollens 是拉丁语「否定法」。</p>
 </div>
 
+<h4>更多推理规则 More Rules of Inference</h4>
+<p>课堂手写板书完整列出了七条常用推理规则。上面两条（MP、MT）之外，还有五条：</p>
+<table class="truth">
+  <tr><th>规则 Rule</th><th>形式</th><th>中文名</th></tr>
+  <tr><td>Modus Ponens</td><td>\(p\rightarrow q,\; p \Longrightarrow q\)</td><td>肯定前件式</td></tr>
+  <tr><td>Modus Tollens</td><td>\(p\rightarrow q,\; \neg q \Longrightarrow \neg p\)</td><td>否定后件式</td></tr>
+  <tr><td>Elimination</td><td>\(p\lor q,\; \neg q \Longrightarrow p\)</td><td>消解律 / 选言三段论</td></tr>
+  <tr><td>Generalization</td><td>\(p \Longrightarrow p\lor q\)</td><td>概括律 / 附加律</td></tr>
+  <tr><td>Specialization</td><td>\(p\land q \Longrightarrow p\)</td><td>特化律 / 化简律</td></tr>
+  <tr><td>Contradiction</td><td>\(\neg p \rightarrow C \Longrightarrow p\)</td><td>反证法 / 矛盾律</td></tr>
+  <tr><td>Transitivity</td><td>\(p\rightarrow q,\; q\rightarrow r \Longrightarrow p\rightarrow r\)</td><td>传递律 / 假言三段论</td></tr>
+</table>
+<div class="ex box">
+  <span class="box-title">✏️ 各规则的一句话示例</span>
+  <p><b>消解律</b>：他要么在家、要么在图书馆；他不在家；所以他在图书馆。<br>
+  <b>概括律</b>：今天下雨；所以「今天下雨或明天晴天」成立（只要 \(p\) 真，\(p\lor q\) 必真）。<br>
+  <b>特化律</b>：今天又下雨又刮风；所以今天下雨。<br>
+  <b>传递律</b>：若下雨则地湿；若地湿则路滑；所以若下雨则路滑。<br>
+  <b>矛盾法</b>：假设 \(\neg p\) 会推出矛盾 \(C\)；所以 \(p\) 成立（详见 LN3 反证法）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 综合练习：由三个前提推出 P</span>
+  <p>前提：① \((\neg P \lor \neg Q) \rightarrow (S \land R)\)；② \(S \rightarrow W\)；③ \(\neg W\)。<br>证明可推出 \(P\)：</p>
+  <ol>
+    <li>\(\neg S\)　　（由 ②③，MT）</li>
+    <li>\(\neg(S\land R) \rightarrow \neg(\neg P\lor\neg Q)\)　　（由 ①，逆否）</li>
+    <li>\(\neg S\lor\neg R \rightarrow P\land Q\)　　（由 2，德摩根律）</li>
+    <li>\(P\land Q\)　　（由 1,3，MP）</li>
+    <li>\(P\)　　（由 4，特化律）</li>
+  </ol>
+</div>
+
 <h4>无效论证（谬误）Invalid Arguments</h4>
 <div class="warn box">
   <span class="box-title">⚠️ 两种常见谬误</span>
@@ -798,6 +848,18 @@ window.MathJax = {
   \(\iff x\in\overline{A} \land x\in\overline{B}\)<br>
   \(\iff x\in\overline{A}\cap\overline{B}\)。<br>
   因此两边元素完全相同，证明完成。（QED）</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 手写笔记补充：三个集合恒等式的证明</span>
+  <p>课堂手写板书给出了三道完整的「元素论证」例题，是上面方法的具体演练：</p>
+  <p><b>Q1：</b>证明 \(A - (B\cap C) \subseteq (A-B)\cup(A-C)\)。<br>
+  设 \(x\in A-(B\cap C)\)，则 \(x\in A\) 且 \(x\notin B\cap C\)。由德摩根律，\(\neg(p\land q)\equiv\neg p\lor\neg q\)，故 \(x\notin B\) 或 \(x\notin C\)。于是 \(x\in A-B\) 或 \(x\in A-C\)，即 \(x\in(A-B)\cup(A-C)\)。</p>
+  <p><b>Q2：</b>证明 \((A\cap B)\times C = (A\times C)\cap(B\times C)\)（分两个方向）。<br>
+  ① LHS \(\subseteq\) RHS：若 \((x,y)\in(A\cap B)\times C\)，则 \(x\in A\cap B\)，故 \(x\in A\) 且 \(x\in B\)，于是 \((x,y)\in A\times C\) 且 \((x,y)\in B\times C\)，即 \((x,y)\in(A\times C)\cap(B\times C)\)。<br>
+  ② RHS \(\subseteq\) LHS：若 \((x,y)\in(A\times C)\cap(B\times C)\)，则 \(x\in A\)、\(x\in B\) 且 \(y\in C\)，故 \(x\in A\cap B\)，即 \((x,y)\in(A\cap B)\times C\)。</p>
+  <p><b>Q3：</b>证明 \(A-(A\cap B)=A-B\)（代数法）。<br>
+  \(A-(A\cap B)=A\cap\overline{A\cap B}=A\cap(\overline{A}\cup\overline{B})=(A\cap\overline{A})\cup(A\cap\overline{B})=\varnothing\cup(A\cap\overline{B})=A\cap\overline{B}=A-B\)。</p>
 </div>
 
 <h3 id="ln2-1d">2.4 罗素悖论与停机问题 <span class="zh">Russell's Paradox &amp; the Halting Problem</span></h3>
@@ -1023,7 +1085,415 @@ window.MathJax = {
     <li><b>tautology</b> — 永真式；<b>valid / invalid</b> — 有效 / 无效</li>
     <li><b>counterexample</b> — 反例</li>
     <li><b>Gödel's incompleteness theorem</b> — 哥德尔不完备定理</li>
-    <li><b>mathematical induction</b> — 数学归纳法（后续内容）</li>
+    <li><b>mathematical induction</b> — 数学归纳法（见 LN4）</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN3 证明方法 ============ -->
+<!-- ================================================= -->
+<section id="ln3">
+<h2>LN3 · 证明方法 <span class="zh">Methods of Proofs</span></h2>
+<p>学完逻辑基础后，我们把逻辑规则用到<b>数学定理的证明</b>上。本讲四种方法：<b>直接证明、逆否证明、反证法、分类讨论</b>。</p>
+
+<h3 id="ln3-1">3.1 直接证明 <span class="zh">Direct Proof</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 基本定义（奇偶性 Parity）</span>
+  <p>整数 \(n\) 是<b>偶数（even）</b>：存在整数 \(k\) 使 \(n=2k\)。<br>
+  整数 \(n\) 是<b>奇数（odd）</b>：存在整数 \(k\) 使 \(n=2k+1\)。</p>
+</div>
+
+<p><b>证明蕴含「若 P 则 Q」</b>的方法一（直接证明）：<b>假设 P 成立，然后逻辑推出 Q</b>。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 1：两偶数之和是偶数</span>
+  <p>设 \(x=2m\)，\(y=2n\)（\(m,n\) 为整数），则
+  \[x+y=2m+2n=2(m+n)\]
+  是偶数。∎</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 2：两奇数之积是奇数</span>
+  <p>设 \(x=2m+1\)，\(y=2n+1\)，则
+  \[xy=(2m+1)(2n+1)=4mn+2m+2n+1=2(2mn+m+n)+1\]
+  是奇数。∎</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 3：完全平方数之和</span>
+  <p>若 \(m,n\) 都是完全平方数，则 \(m+n+2\sqrt{mn}\) 也是完全平方数。<br>
+  证：设 \(m=a^2\)，\(n=b^2\)，则
+  \[m+n+2\sqrt{mn}=a^2+b^2+2ab=(a+b)^2\]
+  是完全平方数。∎</p>
+</div>
+
+<h3 id="ln3-2">3.2 逆否证明 <span class="zh">Contrapositive</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 有理数 Rational Number</span>
+  <p>实数 \(r\) 是<b>有理数（rational）</b>：存在整数 \(a,b\)（\(b\neq 0\)）使 \(r=\tfrac{a}{b}\)。\(a\) 叫<b>分子（numerator）</b>，\(b\) 叫<b>分母（denominator）</b>。</p>
+  <ul>
+    <li>\(0.281\) 有理吗？是，\(281/1000\)。</li>
+    <li>\(0\) 有理吗？是，\(0/1\)。</li>
+    <li>两有理数之和有理吗？是，\(\tfrac{a}{b}+\tfrac{c}{d}=\tfrac{ad+bc}{bd}\)。</li>
+    <li>\(x=0.121212\cdots\) 有理吗？是：\(100x-x=12\)，故 \(x=12/99\)。</li>
+  </ul>
+</div>
+
+<p><b>方法二（逆否证明）</b>：证「若 P 则 Q」等价于证它的<b>逆否命题</b>「若 \(\neg Q\) 则 \(\neg P\)」。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例：若 \(r\) 无理，则 \(\sqrt{r}\) 无理</span>
+  <p>证其逆否：<b>「若 \(\sqrt{r}\) 有理，则 \(r\) 有理」</b>。<br>
+  因 \(\sqrt{r}=a/b\)（\(a,b\) 整数），故 \(r=a^2/b^2\)。\(a,b\) 是整数 ⇒ \(a^2,b^2\) 是整数 ⇒ \(r\) 是有理数。Q.E.D.</p>
+</div>
+
+<div class="warn box">
+  <span class="box-title">💡 Q.E.D. 的含义</span>
+  <p>Q.E.D. 是拉丁语 <b>quod erat demonstrandum</b> 的缩写，意为「<b>证毕</b>（thus it has been demonstrated）」，或戏称「quite easily done」。放在证明结尾。</p>
+</div>
+
+<h4>「当且仅当」的证明方法</h4>
+<p>要证 \(P\iff Q\)（两命题逻辑等价），有三种方法：</p>
+<ul>
+  <li><b>方法 1a</b>：证 \(P\rightarrow Q\) 且 \(Q\rightarrow P\)。</li>
+  <li><b>方法 1b</b>：证 \(P\rightarrow Q\) 且 \(\neg P\rightarrow\neg Q\)。</li>
+  <li><b>方法 2</b>：构造一条「当且仅当」链：\(P\iff R_1\iff\cdots\iff Q\)。</li>
+</ul>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(n\) 为偶数当且仅当 \(n^2\) 为偶数</span>
+  <p><b>方向一</b>（直接，\(n\) 偶 ⇒ \(n^2\) 偶）：设 \(n=2k\)，则 \(n^2=4k^2=2(2k^2)\)，偶。<br>
+  <b>方向二</b>（逆否，\(n^2\) 偶 ⇒ \(n\) 偶）：证逆否「\(n\) 奇 ⇒ \(n^2\) 奇」。设 \(n=2k+1\)，则
+  \[n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\]
+  奇。∎（本方向直接证 \(n^2=2k\Rightarrow n=\sqrt{2k}\) 会卡住——这正是要换逆否的原因。）</p>
+</div>
+
+<h3 id="ln3-3">3.3 反证法 <span class="zh">Proof by Contradiction</span></h3>
+
+<p><b>方法三（反证法）</b>：要证 \(P\)，假设 \(\neg P\) 会推出荒谬结果（矛盾），所以 \(P\) 必真。图示：\(\neg P \rightarrow\)（矛盾/假）。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(\sqrt{2}\) 是无理数</span>
+  <p>假设 \(\sqrt{2}\) 有理，则 \(\sqrt{2}=m/n\)，其中 \(m,n\) 是<b>互素</b>的整数（总可约去公因子）。<br>
+  平方得 \(m^2=2n^2\)，故 \(m^2\) 偶 ⇒ \(m\) 偶（上例），设 \(m=2l\)。<br>
+  则 \(4l^2=2n^2\)，即 \(n^2=2l^2\)，故 \(n\) 偶。<br>
+  \(m,n\) 同为偶 ⇒ 有公因子 2，与「互素」矛盾。所以 \(\sqrt{2}\) 无理。∎</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例：素数有无穷多个（Infinitude of Primes）</span>
+  <p>假设只有有限个素数 \(p_1,p_2,\dots,p_k\)。考虑 \(N=p_1p_2\cdots p_k+1\)。<br>
+  引理：若 \(p\mid a\) 则 \(p\nmid a+1\)（否则 \(a=cp\)、\(a+1=dp\) ⇒ \(1=(d-c)p\)，但 \(p\ge 2\)，矛盾）。<br>
+  由引理，任何 \(p_i\) 都不整除 \(N\)；另一方面 \(N>1\) 必被某个素数整除（见下），矛盾。<br>
+  所以素数有无穷多个。∎</p>
+</div>
+
+<div class="thm box">
+  <span class="box-title">🎯 引理：任何整数 \(n>1\) 都能被某个素数整除</span>
+  <p>若 \(n\) 是素数则显然。否则 \(n=ab\)（\(a,b<n\)）。若 \(a\) 或 \(b\) 是素数则得证；否则继续分解，数字越来越小，最终必停在一个素数因子上。（后面 LN4 用强归纳法可更简洁地证明，甚至更强的「素分解」定理。）</p>
+</div>
+
+<h3 id="ln3-4">3.4 分类讨论 <span class="zh">Proof by Cases</span></h3>
+
+<p><b>方法四（分类讨论）</b>：把情况分成若干互斥的类（如 \(x>0\) 或 \(x<0\)），逐一证明。</p>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 1：奇数的平方 ≡ 1 (mod 8)</span>
+  <p>设奇数为 \(2k+1\)，则
+  \[(2k+1)^2=4k^2+4k+1=4k(k+1)+1\]
+  因 \(k(k+1)\) 必为偶数（相邻两数之积），故 \(4k(k+1)\) 被 8 整除，于是平方 \(\equiv 1 \pmod 8\)。<br>
+  （另一思路：分别讨论 \(k\) 为偶/奇，二者都使 \(k^2+k\) 为偶。）</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 2：存在无理数 \(a,b\) 使 \(a^b\) 为有理数</span>
+  <p>考虑 \(\sqrt{2}^{\sqrt{2}}\)：<br>
+  <b>情形 1</b>：若 \(\sqrt{2}^{\sqrt{2}}\) 有理，则取 \(a=b=\sqrt{2}\) 即可。<br>
+  <b>情形 2</b>：若 \(\sqrt{2}^{\sqrt{2}}\) 无理，则取 \(a=\sqrt{2}^{\sqrt{2}}\)，\(b=\sqrt{2}\)，得
+  \[a^b=\left(\sqrt{2}^{\sqrt{2}}\right)^{\sqrt{2}}=\sqrt{2}^{2}=2\]
+  有理。<br>
+  <b>无论哪种情形都成立</b>——而且我们<b>无需知道</b>到底哪种情形为真！这是分类讨论的精妙之处。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>direct proof</b> — 直接证明；<b>contrapositive</b> — 逆否证明</li>
+    <li><b>proof by contradiction</b> — 反证法；<b>proof by cases</b> — 分类讨论</li>
+    <li><b>even / odd</b> — 偶数 / 奇数；<b>parity</b> — 奇偶性</li>
+    <li><b>perfect square</b> — 完全平方数</li>
+    <li><b>rational / irrational</b> — 有理数 / 无理数</li>
+    <li><b>numerator / denominator</b> — 分子 / 分母</li>
+    <li><b>Q.E.D.</b> — 证毕</li>
+    <li><b>prime number</b> — 素数；<b>divisible / divisible by</b> — 整除 / 被……整除</li>
+    <li><b>if and only if (iff)</b> — 当且仅当</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN4 数学归纳法 ============ -->
+<!-- ================================================= -->
+<section id="ln4">
+<h2>LN4 · 数学归纳法 <span class="zh">Mathematical Induction</span></h2>
+<p>归纳法是计算机科学中<b>最重要</b>的证明技巧（证明算法正确性、分析运行时间都要靠它）。本讲分两部分：<b>LN4.1</b> 讲归纳法思想、基本归纳证明、归纳构造与一个「悖论」；<b>LN4.2</b> 讲三个变体——<b>强归纳法、良序原理、不变量方法</b>。</p>
+
+<h3 id="ln4-1">4.1 归纳法思想与规则 <span class="zh">Idea &amp; Induction Rule</span></h3>
+
+<div class="def box">
+  <span class="box-title">📌 目标与思想</span>
+  <p>目标：证明<b>「对所有整数 \(n\ge 0\)，\(P(n)\) 成立」</b>（for-all 命题）。<br>
+  <b>思想（多米诺骨牌）</b>：先无条件证 \(P(0)\)，再用 \(P(0)\) 证 \(P(1)\)，用 \(P(1)\) 证 \(P(2)\)……无限传递下去。</p>
+</div>
+
+<div class="thm box">
+  <span class="box-title">🎯 归纳法规则（公理）The Induction Rule (an axiom)</span>
+  <p class="formula">\[\frac{P(0),\quad \forall n\in\mathbb{N}\; [P(n)\rightarrow P(n+1)]}{\forall m\in\mathbb{N}\; P(m)}\]</p>
+  <p>\(P(0)\)「非常好证」；第二项「<b>以 \(P(n)\) 为假设</b>来证 \(P(n+1)\) 就容易得多」。<br>
+  <b>核心</b>：用<b>小问题的已知结论</b>（可假设 \(P(n)\)）去解<b>大问题</b>（证 \(P(n+1)\)）。对比全称推广规则（universal generalization）。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 引入例子：奇数的幂仍为奇数</span>
+  <p>事实：若 \(m\) 奇且 \(n\) 奇，则 \(mn\) 奇。<br>
+  命题：对任意奇数 \(m\)，\(m^i\) 对一切非负整数 \(i\) 都为奇。<br>
+  令 \(P(i)\) 表示「\(m^i\) 为奇」：\(P(1)\) 由定义成立；\(P(2)\) 由 \(P(1)\) 与事实成立；\(P(i+1)\) 由 \(P(i)\) 与事实成立。故 \(P(i)\) 对一切 \(i\) 成立。</p>
+</div>
+
+<div class="warn box">
+  <span class="box-title">⚠️ 归纳证明三要素</span>
+  <p>① 把<b>归纳假设 \(P(n)\)</b> 写清楚（有时极其重要）；<br>
+  ② 证<b>基础情形</b> \(P(1),P(2),\dots\)（有时需多个基础情形，如柯西-施瓦茨要 \(n=1,2\)）；<br>
+  ③ 证<b>归纳步</b> \(P(n)\Rightarrow P(n+1)\)（<b>务必用到假设 \(P(n)\)</b>）。</p>
+</div>
+
+<h3 id="ln4-2">4.2 基本归纳证明 <span class="zh">Basic Induction Proofs</span></h3>
+
+<div class="ex box">
+  <span class="box-title">✏️ 等式：\(1^3+2^3+\cdots+n^3=\left(\tfrac{n(n+1)}{2}\right)^2\)（\(\forall n\ge 1\)）</span>
+  <p><b>基础步</b> \(P(1)\)：左 \(=1\)，右 \(=(1\cdot 2/2)^2=1\)，成立。<br>
+  <b>归纳步</b>：假设 \(P(n)\)，证 \(P(n+1)\)：
+  \[1^3+\cdots+n^3+(n+1)^3=\left(\tfrac{n(n+1)}{2}\right)^2+(n+1)^3\]
+  \[=(n+1)^2\left(\tfrac{n^2}{4}+n+1\right)=(n+1)^2\cdot\tfrac{n^2+4n+4}{4}=\left(\tfrac{(n+1)(n+2)}{2}\right)^2\]
+  即 \(P(n+1)\) 成立。∎</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 性质：\(2^{2n}-1\) 被 3 整除（\(\forall n\ge 1\)）</span>
+  <p><b>基础步</b> \(n=1\)：\(2^{2}-1=3\)，被 3 整除。<br>
+  <b>归纳步</b>：假设 \(2^{2i}-1\) 被 3 整除，证 \(2^{2(i+1)}-1\)：
+  \[2^{2(i+1)}-1=2^{2i+2}-1=4\cdot 2^{2i}-1=3\cdot 2^{2i}+(2^{2i}-1)\]
+  第一项显然被 3 整除，第二项由归纳假设被 3 整除。∎</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 不等式：\(\tfrac{1}{\sqrt1}+\tfrac{1}{\sqrt2}+\cdots+\tfrac{1}{\sqrt n}>\sqrt n\)（\(\forall n\ge 2\)）</span>
+  <p><b>基础步</b> \(n=2\)：\(1+\tfrac{1}{\sqrt2}>\sqrt2\)，成立。<br>
+  <b>归纳步</b>：假设对 \(i\ge 2\) 成立，证 \(i+1\)：
+  \[\tfrac{1}{\sqrt1}+\cdots+\tfrac{1}{\sqrt n}+\tfrac{1}{\sqrt{n+1}}
+  >\sqrt n+\tfrac{1}{\sqrt{n+1}}
+  =\frac{\sqrt{n(n+1)}+1}{\sqrt{n+1}}
+  >\frac{n+1}{\sqrt{n+1}}=\sqrt{n+1}\]
+  （关键一步：\(\sqrt{n(n+1)}>n\)，故 \(\sqrt{n(n+1)}+1>n+1\)。）
+  （关键一步用了 \(\sqrt{n(n+1)}>n\)。）∎</p>
+</div>
+
+<h3 id="ln4-3">4.3 柯西-施瓦茨不等式 <span class="zh">Cauchy-Schwarz Inequality</span></h3>
+
+<div class="thm box">
+  <span class="box-title">🎯 Cauchy-Schwarz 不等式</span>
+  <p>对任意 \(a_1,\dots,a_n\) 与 \(b_1,\dots,b_n\)：
+  \[a_1b_1+\cdots+a_nb_n \le \sqrt{a_1^2+\cdots+a_n^2}\cdot\sqrt{b_1^2+\cdots+b_n^2}\]</p>
+</div>
+<p><b>对 \(n\) 归纳</b>：</p>
+<ul>
+  <li><b>基础 \(n=1\)</b>：\(a_1b_1\le |a_1||b_1|\)，成立。</li>
+  <li><b>基础 \(n=2\)</b>：要证 \(a_1b_1+a_2b_2\le\sqrt{a_1^2+a_2^2}\sqrt{b_1^2+b_2^2}\)。等价于
+  \[(a_1^2+a_2^2)(b_1^2+b_2^2)-(a_1b_1+a_2b_2)^2=(a_1b_2-a_2b_1)^2\ge 0\]
+  成立（平方差恒等式）。</li>
+  <li><b>归纳步</b>：假设对 \(n\) 成立，令 \(c=\sqrt{a_1^2+\cdots+a_n^2}\)，\(d=\sqrt{b_1^2+\cdots+b_n^2}\)，则
+  \[a_1b_1+\cdots+a_nb_n+a_{n+1}b_{n+1}\le cd+a_{n+1}b_{n+1}\]
+  \[\le\sqrt{c^2+a_{n+1}^2}\cdot\sqrt{d^2+b_{n+1}^2}\quad(\text{这正是 } P(2)!)\]
+  \[=\sqrt{a_1^2+\cdots+a_n^2+a_{n+1}^2}\cdot\sqrt{b_1^2+\cdots+b_n^2+b_{n+1}^2}\]
+  即对 \(n+1\) 成立。∎</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">💡 要点</span>
+  <p>本证明<b>需要两个基础情形（\(n=1\) 和 \(n=2\)）</b>，因为归纳步把 \(n+1\) 个项「打包」成两个数（\(c,d\) 与 \(a_{n+1},b_{n+1}\)），恰好调用 \(P(2)\)。</p>
+</div>
+
+<h3 id="ln4-4">4.4 归纳构造 <span class="zh">Inductive Constructions</span></h3>
+<p>归纳法不仅能<b>证</b>，还能<b>构造</b>——用小结构搭大结构。可用它构造：码、图、矩阵、电路、算法、设计、证明、建筑……</p>
+
+<h4>格雷码 Gray Code</h4>
+<div class="def box">
+  <span class="box-title">📌 格雷码</span>
+  <p>能否把所有 \(n\) 位二进制串排成一列，使<b>相邻两个串只差一位</b>？这就是<b>格雷码（Gray code）</b>。</p>
+</div>
+<p><b>归纳构造</b>：2 位格雷码是 \(00,01,11,10\)。由 \(n\) 位构造 \((n+1)\) 位：先写 \(n\) 位格雷码（每个前加 \(0\)），再写它的<b>逆序</b>（每个前加 \(1\)）。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 3 位格雷码</span>
+  <p>\(n=2\) 的格雷码 \(00,01,11,10\)，逆序 \(10,11,01,00\)。<br>
+  前加 \(0\)：\(000,001,011,010\)；前加 \(1\)：\(110,111,101,100\)。<br>
+  合起来：\(000,001,011,010,110,111,101,100\)——相邻仅差一位，且每个串恰好出现一次。∎</p>
+</div>
+
+<h4>拼图 Puzzle（多米诺骨牌 tromino）</h4>
+<div class="def box">
+  <span class="box-title">📌 问题</span>
+  <p>用 L 形三格<b>骨牌（tromino）</b>铺满 \(2^n\times 2^n\) 棋盘，只留<b>正中间一格</b>给 Bill（Bill 站的那格不铺）。能否做到？</p>
+</div>
+<p><b>定理</b>：对任意 \(2^n\times 2^n\) 棋盘，存在「Bill 在中间」的铺法。<br>
+<b>更强的定理 B</b>：对任意 \(2^n\times 2^n\) 棋盘，存在「<b>Bill 在任意一格</b>」的铺法。</p>
+<div class="thm box">
+  <span class="box-title">🎯 归纳证明（证更强的定理 B）</span>
+  <p><b>基础 \(n=0\)</b>：\(1\times 1\) 棋盘无需铺。<br>
+  <b>归纳步</b>：假设 \(2^n\times 2^n\) 能把 Bill 放任意位置，证 \(2^{n+1}\times 2^{n+1}\)。把大棋盘分成四个 \(2^n\times 2^n\) 象限；Bill 在某象限，在中心放一块 L 形骨牌盖住其余三个象限「靠近中心」的各一格；再对四个象限分别用归纳假设（Bill 在各自缺的那格）铺满。∎</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 两条重要注记</span>
+  <p><b>注 1</b>：有时选一个<b>更强的命题</b>（如「Bill 任意位置」）反而更好证——更强的假设让归纳步更好做。<br>
+  <b>注 2</b>：这个归纳证明<b>隐式定义了一个递归算法</b>来找铺法。</p>
+</div>
+
+<h4>哈达玛矩阵 Hadamard Matrix</h4>
+<div class="def box">
+  <span class="box-title">📌 哈达玛矩阵</span>
+  <p>能否构造一个 \(n\times n\) 矩阵，元素全为 \(\pm 1\)，且<b>任意两行互相正交</b>（内积为 0）？两行 \(a=(a_1,\dots,a_n)\)、\(b=(b_1,\dots,b_n)\) 的内积 \(a\cdot b=a_1b_1+\cdots+a_nb_n\)。该矩阵在编码理论中有重要应用。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 归纳构造</span>
+  <p>由 \(n\times n\) 哈达玛矩阵 \(H_n\) 构造 \(2n\times 2n\) 矩阵：
+  \[H_{2n}=\begin{pmatrix}H_n & H_n\\ H_n & -H_n\end{pmatrix}\]
+  可验证 \(H_{2n}\) 仍是哈达玛矩阵（分「前 \(n\) 行内部、后 \(n\) 行内部、跨前后」三种情况检验内积为 0）。<br>
+  基础 \(H_1=[1]\)，故对任意 \(k\) 存在 \(2^k\times 2^k\) 哈达玛矩阵。∎</p>
+</div>
+<p>对<b>奇数 \(n\)</b> 不存在哈达玛矩阵（NO）；对<b>偶数 \(n\)</b> 是否存在尚不明确——这就是长期未解决的<b>哈达玛猜想（Hadamard conjecture）</b>。</p>
+
+<h3 id="ln4-5">4.5 马匹悖论（错误证明）<span class="zh">A "Paradox" — a wrong proof</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 错误定理：所有马颜色相同</span>
+  <p>归纳假设 \(P(n)\)：任意 \(n\) 匹马颜色相同。<br>
+  <b>基础 \(n=0\)</b>：没有马，显然成立。<br>
+  <b>归纳步</b>：假设任意 \(n\) 匹马同色，证任意 \(n+1\) 匹马同色。取出 \(n+1\) 匹，前 \(n\) 匹同色（假设），后 \(n\) 匹同色（假设），两群有重叠 ⇒ 全部 \(n+1\) 匹同色。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 错在哪？</span>
+  <p>\(P(n)\rightarrow P(n+1)\) 在 <b>\(n=1\)</b> 时不成立：两群「前 1 匹」「后 1 匹」<b>没有重叠</b>，无法推出「两匹同色」。证明对 \(n\ne 1\) 都对，唯独 \(n=1\) 这关键一环断掉。这正是「基础情形选错/没覆盖到」的经典教训。</p>
+</div>
+
+<h3 id="ln4-6">4.6 强归纳法 <span class="zh">Strong Induction</span></h3>
+<div class="def box">
+  <span class="box-title">📌 强归纳法</span>
+  <p>证 \(P(0)\)，然后假设 <b>\(P(0),P(1),\dots,P(n)\) 全都成立</b>（而非只 \(P(n)\)）来证 \(P(n+1)\)，最后得出 \(\forall n\,P(n)\)。强归纳与普通归纳<b>等价</b>；好处是假设更多，往往更好证。</p>
+</div>
+
+<h4>拆盒子游戏 Unstacking Game</h4>
+<div class="def box">
+  <span class="box-title">📌 规则</span>
+  <p>从一摞盒子开始；每步把一堆分成两堆（大小 \(a,b>0\)），得 \(ab\) 分；直到无法再拆为止。总分 = 各步得分之和。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：4 个盒子</span>
+  <p>拆法一：\(4\to(2,2)\) 得 4 分，\(2\to(1,1)\) 得 1 分，另一个 \(2\to(1,1)\) 得 1 分，共 \(4+1+1=6\)。<br>
+  拆法二：\(4\to(1,3)\) 得 3 分，\(3\to(1,2)\) 得 2 分，\(2\to(1,1)\) 得 1 分，共 \(3+2+1=6\)。<br>
+  <b>无论怎么拆，总分都相同！</b></p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 定理：\(n\) 摞的总分恒为 \(\tfrac{n(n-1)}{2}\)</span>
+  <p><b>基础 \(n=1\)</b>：得分 0，\(1\cdot 0/2=0\)。<br>
+  <b>归纳步</b>：假设 \(C(n)\) 对 \(n\) 成立，证 \(C(n+1)\)。把 \((n+1)\) 摞拆成 \(a\) 摞与 \(b\) 摞（\(a+b=n+1\)）：
+  \[\text{总分}=ab+\tfrac{a(a-1)}{2}+\tfrac{b(b-1)}{2}=\tfrac{2ab+a^2-a+b^2-b}{2}=\tfrac{(a+b)(a+b-1)}{2}=\tfrac{(n+1)n}{2}\]
+  ∎</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 为什么必须用强归纳？</span>
+  <p>这里要同时假设 \(C(a)\) 和 \(C(b)\)（\(1\le a,b\le n\)），而普通归纳只能假设 \(C(n)\)。修正方法：把归纳假设改成 \(Q(n)\;\text{::=}\;\forall m\le n.\ C(m)\)，即「<b>对所有不超过 \(n\) 的数都成立</b>」。</p>
+</div>
+
+<h4>素分解 Prime Products</h4>
+<div class="thm box">
+  <span class="box-title">🎯 定理：每个整数 \(n>1\) 都是素数的乘积</span>
+  <p><b>强归纳</b>：假设对一切 \(2\le i<n\) 成立，考虑 \(n\)。<br>
+  若 \(n\) 是素数，则显然。否则 \(n=km\)（\(2\le k,m<n\)）。由归纳假设，\(k=p_1\cdots p_u\)，\(m=q_1\cdots q_v\)，故 \(n=km=p_1\cdots p_u q_1\cdots q_v\) 是素数乘积。∎</p>
+</div>
+
+<h4>邮资问题 Postage by Strong Induction</h4>
+<div class="thm box">
+  <span class="box-title">🎯 3¢ 与 5¢ 邮票可凑出一切 \(\ge 8¢\)</span>
+  <p><b>基础 \(n=8,9,10\)</b>：\(8=3+5\)，\(9=3+3+3\)，\(10=5+5\)。<br>
+  <b>归纳步</b> \(n\ge 11\)：令 \(m=n-3\)，则 \(n>m\ge 8\)。由归纳假设可凑出 \(m\)¢，再加一张 3¢ 即可得 \(n\)¢。∎</p>
+  <p>类似地，<b>5¢ 与 7¢ 邮票可凑出一切 \(\ge 24¢\)</b>。</p>
+</div>
+
+<h3 id="ln4-7">4.7 良序原理 <span class="zh">Well Ordering Principle</span></h3>
+<div class="def box">
+  <span class="box-title">📌 良序原理（WOP）</span>
+  <p><b>每个非空的自然数集都有最小元素</b>（least element，即最小者）。<br>
+  变体：有限个负整数与自然数之并也有最小元素；\(\mathbb{Z}^+\) 的任意非空子集有最小元素。<br>
+  <b>注意</b>：「非负实数集有最小元素」是<b>错</b>的（如开区间 \((0,1)\) 无最小元）；「非负整数集有最小元素」才对。</p>
+</div>
+
+<div class="thm box">
+  <span class="box-title">🎯 用 WOP 证 \(\sqrt{2}\) 无理</span>
+  <p>假设 \(\sqrt{2}=m/n\)。总能选到「无公因子」的 \(m,n\)。由 WOP，取 \(|m|\) <b>最小</b>的那组 \(\sqrt{2}=m_0/n_0\)。<br>
+  但若 \(m_0,n_0\) 有公因子 \(c>1\)，则 \(\sqrt{2}=\tfrac{m_0/c}{n_0/c}\) 且 \(|m_0/c|<|m_0|\)，与 \(|m_0|\) 最小矛盾。<br>
+  所以 \(m_0,n_0\) 互素，再按反证法推出 \(m_0,n_0\) 同偶，矛盾。∎</p>
+</div>
+
+<div class="warn box">
+  <span class="box-title">💡 WOP 在证明中的通用套路</span>
+  <p>① 构造集合 \(S=\{n\in\mathbb{N}\mid \neg P(n)\}\)；② 假设 \(S\) 非空；③ 由 WOP 取最小元 \(n_0\in S\)；④ 推出矛盾（常靠找到一个比 \(n_0\) 更小的 \(S\) 中元素）；⑤ 得出 \(P(n)\) 恒真。QED。</p>
+</div>
+
+<h4>非费马定理 Non-Fermat Theorem</h4>
+<div class="thm box">
+  <span class="box-title">🎯 定理：\(4a^3+2b^3=c^3\) 无正整数解</span>
+  <p>（对比费马大定理：\(a^n+b^n=c^n\) 对 \(n\ge 3\) 无正整数解，很难证；本题容易证。）<br>
+  构造 \(S=\{a\in\mathbb{Z}^+\mid \exists b,c\in\mathbb{Z}^+,\ 4a^3+2b^3=c^3\}\)。假设定理不真，则 \(S\) 非空。<br>
+  由 WOP 取最小 \(a\in S\)。我们要证 \(a,b,c\) 必为偶，于是 \((a/2,b/2,c/2)\in S\) 且 \(a/2<a\)，矛盾。<br>
+  证法：\(c^3\) 偶 ⇒ \(c\) 偶（奇数的奇次幂仍奇）。令 \(c=2c'\)，得 \(4a^3+2b^3=8c'^3\)，即 \(b^3=4c'^3-2a^3\) 为偶 ⇒ \(b\) 偶。令 \(b=2b'\)，得 \(a^3=2c'^3-4b'^3\) 为偶 ⇒ \(a\) 偶。故 \(a,b,c\) 全偶。∎</p>
+</div>
+
+<h3 id="ln4-8">4.8 不变量方法 <span class="zh">Invariant Method</span></h3>
+<div class="def box">
+  <span class="box-title">📌 不变量方法</span>
+  <p>① 观察在整个过程中始终满足的<b>性质（不变量 invariant）</b>；② 证明目标状态不满足该性质；③ 得出结论：目标不可达。算法分析中非常有用。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 1：象（bishop）走对角</span>
+  <p>象只能沿对角线走，所以<b>红色格上的象只能走到红色格</b>（不变量 = 格子的颜色）。若目标格是白色，则不可能到达。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 例 2：多米诺铺棋盘</span>
+  <p>\(8\times 8\) 棋盘挖去两个同色（如两个红色）格，问能否用 31 块多米诺（每块盖一红一白）铺满？<br>
+  <b>不变量</b>：每块多米诺盖 1 红 1 白。棋盘原有 32 红 32 白，挖去 2 红后剩 <b>30 红 32 白</b>，红白不等 ⇒ <b>不可能</b>。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 挑战：15-拼图（Challenge）</span>
+  <p>\(4\times 4\) 滑板：左态数字 \(1\dots 15\) 顺序排列（右下空格），能否移动到右态（仅 14 与 15 互换）？<br>
+  <b>不变量是「排列的奇偶性」</b>——每次滑动保持一个不变量，而左、右两态的奇偶性不同，故不可能。通常不变量方法都不易，此问题留待后续深入。</p>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>mathematical induction</b> — 数学归纳法</li>
+    <li><b>base case</b> — 基础情形；<b>inductive step</b> — 归纳步；<b>induction hypothesis</b> — 归纳假设</li>
+    <li><b>strong induction</b> — 强归纳法</li>
+    <li><b>well ordering principle (WOP)</b> — 良序原理</li>
+    <li><b>invariant method</b> — 不变量方法</li>
+    <li><b>domino / tromino</b> — 多米诺骨牌 / L 形三格骨牌</li>
+    <li><b>Gray code</b> — 格雷码；<b>Hadamard matrix</b> — 哈达玛矩阵</li>
+    <li><b>orthogonal</b> — 正交的；<b>inner product</b> — 内积</li>
+    <li><b>Cauchy-Schwarz inequality</b> — 柯西-施瓦茨不等式</li>
+    <li><b>prime product / prime factorization</b> — 素分解；<b>postage</b> — 邮资</li>
   </ul>
 </div>
 </section>

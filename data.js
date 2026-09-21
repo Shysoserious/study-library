@@ -13,7 +13,7 @@ window.DATA = {
     title: "理科学习库",
     subtitle: "从大一到现在，每一门课的复习笔记，都收在这里。",
     author: "李思源",
-    lastUpdated: "2026-09-10"
+    lastUpdated: "2026-09-21"
   },
 
   // 学期顺序（用于首页分组；新课程会自动归入对应分组）
@@ -46,7 +46,7 @@ window.DATA = {
       category: "数学",
       status: "active",           // active = 进行中 | done = 已完成 | self = 自学
       teacher: "",
-      desc: "命题逻辑 · 集合 · 一阶逻辑",
+      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法",
       notes: [
         { title: "离散数学复习笔记", file: "discretemath/离散数学复习笔记.html" }
       ],
@@ -91,7 +91,7 @@ window.DATA = {
       category: "金融",
       status: "active",
       teacher: "",
-      desc: "金融是什么 · 公司形式 · 融资 · 货币时间价值",
+      desc: "金融是什么 · 公司形式 · 融资 · 货币时间价值 · 年金与永续 · 摊销贷款/NPV/IRR",
       notes: [
         { title: "金融基础复习笔记", file: "fin/金融基础复习笔记.html" }
       ],
@@ -183,7 +183,7 @@ window.DATA = {
       category: "物理",
       status: "active",
       teacher: "",
-      desc: "大学物理 · 更新中",
+      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）",
       notes: [
         { title: "物理复习笔记", file: "phy/物理复习笔记.html" }
       ],
@@ -251,6 +251,26 @@ window.DATA = {
       { en: "Contradiction", zh: "矛盾式" },
       { en: "Modus Ponens", zh: "肯定前件" },
       { en: "Modus Tollens", zh: "否定后件" },
+      { en: "Elimination (Disjunctive Syllogism)", zh: "消解律 / 选言三段论" },
+      { en: "Generalization (Addition)", zh: "概括律 / 附加律" },
+      { en: "Specialization (Simplification)", zh: "特化律 / 化简律" },
+      { en: "Transitivity (Hypothetical Syllogism)", zh: "传递律 / 假言三段论" },
+      { en: "Rule of Inference", zh: "推理规则" },
+      { en: "Premise / Assumption", zh: "前提 / 假设" },
+      { en: "Conclusion", zh: "结论" },
+      { en: "Valid / Invalid Argument", zh: "有效 / 无效论证" },
+      { en: "Fallacy", zh: "谬误" },
+      { en: "Direct Proof", zh: "直接证明" },
+      { en: "Proof by Contrapositive", zh: "逆否证明" },
+      { en: "Proof by Contradiction", zh: "反证法" },
+      { en: "Proof by Cases", zh: "分情况证明" },
+      { en: "Mathematical Induction", zh: "数学归纳法" },
+      { en: "Strong Induction", zh: "强归纳法" },
+      { en: "Well-Ordering Principle", zh: "良序原理" },
+      { en: "Invariant Method", zh: "不变量方法" },
+      { en: "Counterexample", zh: "反例" },
+      { en: "Rational / Irrational Number", zh: "有理数 / 无理数" },
+      { en: "Parity (Even / Odd)", zh: "奇偶性（偶 / 奇）" },
       { en: "Set", zh: "集合" },
       { en: "Subset", zh: "子集" },
       { en: "Union", zh: "并集" },
@@ -262,7 +282,12 @@ window.DATA = {
       { en: "Universal Quantifier", zh: "全称量词" },
       { en: "Existential Quantifier", zh: "存在量词" },
       { en: "Russell's Paradox", zh: "罗素悖论" },
-      { en: "Halting Problem", zh: "停机问题" }
+      { en: "Halting Problem", zh: "停机问题" },
+      { en: "Power Set", zh: "幂集" },
+      { en: "Set Difference", zh: "差集" },
+      { en: "Distributive Law", zh: "分配律" },
+      { en: "Set Identity", zh: "集合恒等式" },
+      { en: "Venn Diagram", zh: "韦恩图" }
     ]},
     { course: "optimization", terms: [
       { en: "Optimization", zh: "最优化" },
@@ -551,7 +576,60 @@ window.DATA = {
       { en: "Board of Directors", zh: "董事会" },
       { en: "Shareholder", zh: "股东" },
       { en: "Raising Capital", zh: "融资" },
-      { en: "Time Value of Money", zh: "货币时间价值" }
+      { en: "Time Value of Money", zh: "货币时间价值" },
+      { en: "Cash Flow Stream", zh: "现金流串流" },
+      { en: "Timeline", zh: "时间线" },
+      { en: "Annuity", zh: "年金" },
+      { en: "Ordinary Annuity", zh: "普通年金" },
+      { en: "Annuity Due", zh: "期初年金" },
+      { en: "Perpetuity", zh: "永续年金" },
+      { en: "Level Perpetuity", zh: "水平永续" },
+      { en: "Growth Perpetuity", zh: "增长永续" },
+      { en: "Payment (PMT)", zh: "每期支付额" },
+      { en: "Geometric Series", zh: "等比级数" },
+      { en: "Retirement Planning", zh: "退休规划" },
+      { en: "Preferred Stock", zh: "优先股" },
+      { en: "Dividend", zh: "分红" },
+      { en: "Amortized Loan", zh: "摊销贷款" },
+      { en: "Amortization Schedule", zh: "摊销表" },
+      { en: "Mortgage", zh: "房贷" },
+      { en: "Principal", zh: "本金" },
+      { en: "Interest Payment", zh: "利息支付" },
+      { en: "Principal Repayment", zh: "本金偿还" },
+      { en: "Down Payment", zh: "首付" },
+      { en: "Outstanding Balance", zh: "未偿余额" },
+      { en: "Net Present Value (NPV)", zh: "净现值" },
+      { en: "Internal Rate of Return (IRR)", zh: "内部收益率" },
+      { en: "Break Even", zh: "盈亏平衡 / 打平" },
+      { en: "Fee Ratio", zh: "手续费率" },
+      { en: "Installment", zh: "分期付款" }
+    ]},
+    { course: "phy", terms: [
+      { en: "Position / Displacement", zh: "位置 / 位移" },
+      { en: "Velocity / Speed", zh: "速度 / 速率" },
+      { en: "Acceleration", zh: "加速度" },
+      { en: "Scalar / Vector", zh: "标量 / 矢量" },
+      { en: "Kinematics", zh: "运动学" },
+      { en: "Frame of Reference", zh: "参考系" },
+      { en: "Projectile Motion", zh: "抛体运动" },
+      { en: "Uniform Circular Motion", zh: "匀速圆周运动" },
+      { en: "Newton's First Law (Inertia)", zh: "牛顿第一定律（惯性）" },
+      { en: "Newton's Second Law", zh: "牛顿第二定律" },
+      { en: "Newton's Third Law", zh: "牛顿第三定律" },
+      { en: "Force", zh: "力" },
+      { en: "Mass / Weight", zh: "质量 / 重量" },
+      { en: "Normal Force", zh: "支持力（法向力）" },
+      { en: "Tension", zh: "张力" },
+      { en: "Friction", zh: "摩擦力" },
+      { en: "Static / Kinetic Friction", zh: "静摩擦 / 动摩擦" },
+      { en: "Coefficient of Friction", zh: "摩擦系数" },
+      { en: "Free-body Diagram", zh: "受力分析图" },
+      { en: "Equilibrium / Dynamics", zh: "平衡 / 动力学" },
+      { en: "Apparent Weight", zh: "视重" },
+      { en: "Centripetal Force", zh: "向心力" },
+      { en: "Centripetal Acceleration", zh: "向心加速度" },
+      { en: "Drag / Fluid Resistance", zh: "阻力 / 流体阻力" },
+      { en: "Terminal Speed", zh: "终端速度" }
     ]}
   ]
 };
