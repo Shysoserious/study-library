@@ -499,6 +499,34 @@ window.MathJax = {
         <a class="lv2" href="#lec4-ap-11">A.11 正交矩阵与 PSD</a>
       </div>
     </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第5课 · Linear Programming: Geometry <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec5-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec5-p1">Part 1 · 回顾与重要通知</a>
+        <a class="lv1" href="#lec5-p2">Part 2 · 图形化求解 LP</a>
+        <a class="lv1" href="#lec5-p3">Part 3 · 多面体与凸集</a>
+        <a class="lv2" href="#lec5-p3-1">3.1 多面体 Polyhedron</a>
+        <a class="lv2" href="#lec5-p3-2">3.2 凸集 Convex Set</a>
+        <a class="lv2" href="#lec5-p3-3">3.3 凸组合 Convex Combination</a>
+        <a class="lv1" href="#lec5-p4">Part 4 · 极点 Extreme Points</a>
+        <a class="lv2" href="#lec5-p4-1">4.1 极点定义</a>
+        <a class="lv2" href="#lec5-p4-2">4.2 可行域的极点例子</a>
+        <a class="lv1" href="#lec5-p5">Part 5 · 基本解与基本可行解</a>
+        <a class="lv2" href="#lec5-p5-1">5.1 基本解 Basic Solution</a>
+        <a class="lv2" href="#lec5-p5-2">5.2 记号与关键方程</a>
+        <a class="lv2" href="#lec5-p5-3">5.3 基本可行解 BFS</a>
+        <a class="lv2" href="#lec5-p5-4">5.4 生产问题的全部 BFS</a>
+        <a class="lv1" href="#lec5-p6">Part 6 · 极点 ⇔ BFS 定理</a>
+        <a class="lv1" href="#lec5-p7">Part 7 · 退化 Degeneracy</a>
+        <a class="lv1" href="#lec5-p8">Part 8 · 线性规划基本定理</a>
+        <a class="lv2" href="#lec5-p8-1">8.1 基本定理</a>
+        <a class="lv2" href="#lec5-p8-2">8.2 稀疏性推论</a>
+        <a class="lv2" href="#lec5-p8-3">8.3 证明概要</a>
+        <a class="lv1" href="#lec5-p9">Part 9 · 从 BFS 到单纯形法</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -507,7 +535,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">最优化 · 复习笔记</h1>
-<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–4</p>
+<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–5</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -2001,6 +2029,418 @@ window.MathJax = {
 </div>
 
 </div><!-- /第4课 -->
+
+<!-- ============ 第5课 ============ -->
+<div class="lecture" id="lec5">
+<div class="lecture-banner">第5课 · Linear Programming: Geometry <span class="zh">（线性规划：几何）</span></div>
+
+<section id="lec5-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec5-p1">回顾与重要通知</a> —— minimax、辅助变量、建模工具 + 期中/作业</li>
+      <li><a href="#lec5-p2">图形化求解 LP</a> —— 半平面、可行域、最优角点</li>
+      <li><a href="#lec5-p3">多面体与凸集</a> —— polyhedron、convex set、convex combination</li>
+      <li><a href="#lec5-p4">极点 Extreme Points</a> —— 角点的形式化定义</li>
+      <li><a href="#lec5-p5">基本解与基本可行解</a> —— 代数化的极点、BFS、生产问题全部 BFS</li>
+      <li><a href="#lec5-p6">极点 ⇔ BFS 定理</a> —— 几何与代数的对应</li>
+      <li><a href="#lec5-p7">退化 Degeneracy</a> —— 「零太多」的 BFS</li>
+      <li><a href="#lec5-p8">线性规划基本定理</a> —— BFS 的存在性、稀疏性、证明概要</li>
+      <li><a href="#lec5-p9">从 BFS 到单纯形法</a> —— 只需在角点中搜索</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>前几讲学会了「写 LP、变换、用软件解」，本讲回答<b>为什么 LP 的几何解法成立</b>：最优解总出现在<b>角点（极点 / BFS）</b>上。先把「角点」形式化成<b>极点</b>，再用代数把它翻译成<b>基本可行解（BFS）</b>，最后证明两者是一回事，从而引出<b>单纯形法</b>——只在角点之间移动即可找到最优。</p>
+  </div>
+</section>
+
+<section id="lec5-p1">
+<h2>Part 1 · 回顾与重要通知 <span class="zh">Recap &amp; Announcements</span></h2>
+
+<h3 id="lec5-p1-1">1.1 重要通知</h3>
+<table class="truth">
+  <tr><th>事项</th><th>内容</th></tr>
+  <tr><td>期中 Midterm</td><td>11 月 7 日 14:00–16:00</td></tr>
+  <tr><td>补考申请 Make-up</td><td>仅限「与另一门课有可证实的冲突」或「极罕见且有充分证据」的情况；申请表 <code>v.wjx.cn/vm/YM9Non8.aspx</code>，截止 <b>10 月 12 日</b>，逾期或不充分一律不受理</td></tr>
+  <tr><td>上周作业 Homework</td><td>截止 <b>9 月 25 日</b></td></tr>
+</table>
+
+<h3 id="lec5-p1-2">1.2 回顾：minimax 与辅助变量（第4课已讲）</h3>
+<p>本讲开头快速回顾两个第4课的工具，它们是本讲「几何」的铺垫：</p>
+<div class="def box">
+  <span class="box-title">📌 minimax 目标</span>
+  <p class="formula">\(\min_{x}\ \max_{i=1,\dots,n}\{c_i^\top x+d_i\}\quad \text{s.t. } Ax=b,\ x\ge 0\)</p>
+  <p>解读：每个 \(i\) 的 \(c_i^\top x+d_i\) 是一个代价，我们关心最坏者 \(\max_i\{\cdot\}\)，再选 \(x\) 使这个最坏者尽可能小。几何上 \(f(x)=\max_i\{c_i^\top x+d_i\}\) 是若干仿射函数的<b>上包络（upper envelope）</b>，最小化它就是往下压包络。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 辅助变量重构</span>
+  <p>引入上界变量 \(y\)：\(y\ge\max_i(c_i^\top x+d_i)\) 等价于「对每个 \(i\) 都有 \(y\ge c_i^\top x+d_i\)」，于是得到 LP：</p>
+  <p class="formula">\(\min_{x,y}\ y \quad \text{s.t. } y\ge c_i^\top x+d_i\ (i=1,\dots,n),\ Ax=b,\ x\ge 0\)</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 通用建模工具（引理）</span>
+  <p>\(\min_x \sum_{i=1}^m f_i(x)\ \text{s.t. } x\in\Omega\) 与 \(\min_{x,t}\sum_i t_i\ \text{s.t. } x\in\Omega,\ f_i(x)\le t_i\ \forall i\) 等价：\(x^*\) 最优 ⟺ \((x^*,t^*=f_i(x^*))\) 最优，且最优值相同。</p>
+</div>
+</section>
+
+<section id="lec5-p2">
+<h2>Part 2 · 图形化求解 LP <span class="zh">Solving LP Graphically</span></h2>
+
+<h3 id="lec5-p2-1">2.1 起点：生产问题的图形解</h3>
+<p>回到生产问题：</p>
+<p class="formula">\(\max_{x_1,x_2} x_1+2x_2 \quad \text{s.t. } x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)</p>
+<ul>
+  <li>每个不等式给出一个<b>半平面（half-plane）</b>；它们的重叠是<b>可行域（feasible region）</b>。</li>
+  <li>边界三条：\(x_1=100\)、\(x_2=100\)、\(x_1+x_2=150\)（\(2x_2\le 200\) 即 \(x_2\le 100\)）。</li>
+  <li>可行点落在着色区域内部或边界上。</li>
+</ul>
+
+<h3 id="lec5-p2-2">2.2 图形直觉：选最优角点</h3>
+<p>每条虚线是固定利润的水平线，朝利润更高的方向平移，直到「碰到」可行域：</p>
+<ul>
+  <li><b>单个最优角点</b>（\(\max x_1+2x_2\)）：最优角点 \(A=(50,100)\)，利润 \(250\)。</li>
+  <li><b>整条边都最优</b>（\(\max x_1+x_2\)）：利润线平行于边 \(AB\)，整条边 \(AB\)（\(B=(100,50)\)）都最优，利润 \(150\)。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 关键结论</span>
+  <p>两种情形下，<b>总可以选一个最优角点</b>——即使整条边都最优，端点也是最优的。这就是「只需在角点里找最优」的几何来源。</p>
+</div>
+
+<div class="figure">
+  <svg viewBox="0 0 420 380" width="480" role="img" aria-label="生产问题可行域与极点">
+    <line x1="40" y1="320" x2="400" y2="320" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="396" y="340" class="svg-muted" text-anchor="end">x₁</text>
+    <line x1="40" y1="320" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
+    <polygon points="40,320 240,320 240,220 140,120 40,120" style="fill: var(--accent); opacity: 0.15; stroke: var(--accent); stroke-width: 2"/>
+    <line x1="240" y1="320" x2="240" y2="40" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
+    <line x1="40" y1="120" x2="400" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="332" y="112" class="svg-muted">x₂ = 100</text>
+    <line x1="40" y1="20" x2="340" y2="320" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="120" y="82" class="svg-muted">x₁ + x₂ = 150</text>
+    <line x1="40" y1="70" x2="340" y2="220" style="stroke: var(--sv-hl); stroke-width: 1.5" stroke-dasharray="6 4"/>
+    <text x="282" y="188" class="svg-muted" style="fill: var(--sv-hl)">x₁+2x₂ = 250</text>
+    <!-- 5 个极点 -->
+    <circle cx="40" cy="320" r="4" style="fill: var(--muted)"/>
+    <circle cx="240" cy="320" r="4" style="fill: var(--muted)"/>
+    <circle cx="240" cy="220" r="4" style="fill: var(--muted)"/>
+    <circle cx="40" cy="120" r="4" style="fill: var(--muted)"/>
+    <circle cx="140" cy="120" r="7" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="152" y="102" class="svg-muted" style="fill: var(--sv-hl)">A(50,100)</text>
+    <text x="24" y="342" class="svg-muted">(0,0)</text>
+    <text x="222" y="342" class="svg-muted">(100,0)</text>
+    <text x="240" y="210" class="svg-muted">(100,50)</text>
+    <text x="18" y="108" class="svg-muted" text-anchor="end">(0,100)</text>
+  </svg>
+  <div class="figcap">图：生产问题的可行域与 5 个极点 (0,0)、(100,0)、(100,50)、(50,100)、(0,100)；目标 x₁+2x₂ 在极点 (50,100) 取最大值 250。</div>
+</div>
+</section>
+
+<section id="lec5-p3">
+<h2>Part 3 · 多面体与凸集 <span class="zh">Polyhedron &amp; Convex Sets</span></h2>
+
+<h3 id="lec5-p3-1">3.1 多面体 Polyhedron</h3>
+<div class="def box">
+  <span class="box-title">📌 多面体 Polyhedron</span>
+  <p>多面体是能写成 \(\{x\in\mathbb{R}^n : Ax\ge b\}\) 的集合。</p>
+  <p><b>标准形 LP 的可行集是多面体吗？是。</b>标准形有 \(Ax=b,\ x\ge 0\)。关键技巧：<b>一个等式 = 两个不等式</b></p>
+  <p class="formula">\(Ax=b \ \Leftrightarrow\ Ax\ge b \ \text{且}\ Ax\le b\)</p>
+  <p>又有 \(x\ge 0 \Leftrightarrow Ix\ge 0\)（\(I\) 是单位阵）。所以标准形可行集是<b>有限多个半空间的交集</b>，从而是多面体。</p>
+</div>
+
+<h3 id="lec5-p3-2">3.2 凸集 Convex Set</h3>
+<div class="def box">
+  <span class="box-title">📌 凸集 Convex Set</span>
+  <p>集合 \(S\subseteq\mathbb{R}^n\) 是<b>凸</b>的，若对任意 \(x,y\in S\)、任意 \(\lambda\in[0,1]\)，有</p>
+  <p class="formula">\(\lambda x + (1-\lambda)y \in S\)</p>
+  <p>几何（2D）：任取两个可行点，连一条直线段，<b>整条线段都留在可行域内</b>，则集合是凸的。<br>
+  <b>性质：两个凸集的交集仍是凸集。</b></p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 为什么 LP 可行域是凸的</span>
+  <p>每个线性不等式定义<b>半空间</b>（凸的），凸集的交集仍凸，所以 LP 可行域是凸的。</p>
+</div>
+
+<h3 id="lec5-p3-3">3.3 凸组合 Convex Combination</h3>
+<div class="def box">
+  <span class="box-title">📌 凸组合 Convex Combination</span>
+  <p>给定点 \(x_1,\dots,x_k\) 与权重 \(\lambda_1,\dots,\lambda_k\ge 0\) 且 \(\lambda_1+\cdots+\lambda_k=1\)，点</p>
+  <p class="formula">\(\sum_{i=1}^{k}\lambda_i x_i\)</p>
+  <p>是 \(x_1,\dots,x_k\) 的一个<b>凸组合</b>。直观：它就是这些点的「加权平均」。</p>
+</div>
+</section>
+
+<section id="lec5-p4">
+<h2>Part 4 · 极点 Extreme Points <span class="zh"></span></h2>
+
+<h3 id="lec5-p4-1">4.1 极点定义</h3>
+<div class="def box">
+  <span class="box-title">📌 极点 Extreme Point</span>
+  <p>设 \(P\) 是多面体。点 \(x\in P\) 是<b>极点</b>，若我们<b>找不到</b>两个不同的点 \(y,z\in P\) 和 \(0&lt;\lambda&lt;1\) 使得</p>
+  <p class="formula">\(x = \lambda y + (1-\lambda)z\)</p>
+  <p>即：<b>极点不能严格落在另外两个可行点之间。</b></p>
+  <ul>
+    <li>边内部的点不是极点：它是两端点的加权平均。</li>
+    <li>顶点是极点：你无法朝两个相反方向各移动一点点还留在多面体内。</li>
+    <li>有时极点也叫<b>顶点（vertex）</b>或<b>角点（corner）</b>。</li>
+  </ul>
+</div>
+
+<h3 id="lec5-p4-2">4.2 可行域的极点例子</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 生产问题可行域的极点</span>
+  <p>可行域有 <b>5 个极点</b>：\((0,0),\ (100,0),\ (100,50),\ (50,100),\ (0,100)\)——每个都是可行域的角。</p>
+  <p>边上的一点不同：取 \(y=(50,100)\)、\(z=(100,50)\)，中点</p>
+  <p class="formula">\(x=(75,75)=\tfrac{1}{2}y+\tfrac{1}{2}z\)</p>
+  <p>所以 \(x\) 可行，但不是极点。</p>
+  <p><b>关键想法：极点不能严格落在另外两个可行点之间。</b></p>
+</div>
+</section>
+
+<section id="lec5-p5">
+<h2>Part 5 · 基本解与基本可行解 <span class="zh">Basic Solutions &amp; BFS</span></h2>
+
+<p>接下来要一个<b>系统的代数方法</b>来找极点。考虑标准形</p>
+<p class="formula">\(\min_{x\in\mathbb{R}^n} c^\top x \quad \text{s.t. } Ax=b,\ x\ge 0,\quad A\in\mathbb{R}^{m\times n},\ m&lt;n,\ b\in\mathbb{R}^m\)</p>
+<p><b>一般假设：\(A\) 行线性无关（行满秩 \(m\)）。</b>几何图景：\(Ax=b\) 是维数 \(n-m\) 的仿射子空间，\(x\ge 0\) 是非负象限（边界 \(x_i=0\)），两者交集是可行多面体（可能为空）。若行相关，可删去冗余方程；方程矛盾则不可行。</p>
+
+<h3 id="lec5-p5-1">5.1 基本解 Basic Solution</h3>
+<div class="def box">
+  <span class="box-title">📌 基本解 Basic Solution</span>
+  <p>称 \(x\) 为<b>基本解</b>，当且仅当：</p>
+  <ol>
+    <li>\(Ax=b\)；</li>
+    <li>存在指标 \(B=\{B(1),\dots,B(m)\}\) 使得：列 \(A_{B(1)},\dots,A_{B(m)}\) 线性无关，且对 \(i\notin\{B(1),\dots,B(m)\}\) 有 \(x_i=0\)。</li>
+  </ol>
+  <p>为什么这匹配几何：令 \(n-m\) 个变量为 0 = 选取 \(n-m\) 条边界 \(x_i=0\)；独立列保证这些边界与 \(Ax=b\) 交于<b>唯一点</b>。还需检查 \(x\ge 0\)。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 关键几何想法：角点来自「足够多」的紧约束</span>
+  <p>2D 中角点是两条独立边界线的交点；3D 中是三个独立平面的交点。标准形里：等式 \(Ax=b\) 始终是紧的（定义仿射子空间），每个不等式 \(x_i\ge 0\) 的边界是 \(x_i=0\)。<br>
+  有 \(m\) 个独立等式，再选 \(n-m\) 条边界 \(x_i=0\) 去掉剩余自由度，剩下的 \(m\) 列独立则变量唯一确定。</p>
+</div>
+
+<h3 id="lec5-p5-2">5.2 记号与关键方程</h3>
+<p>记基矩阵与基变量：</p>
+<p class="formula">\(A_B = \begin{bmatrix} A_{B(1)} & A_{B(2)} & \cdots & A_{B(m)}\end{bmatrix},\qquad x_B=\begin{bmatrix}x_{B(1)}\\ \vdots \\ x_{B(m)}\end{bmatrix}\)</p>
+<p>把所有<b>非基变量</b>设为 0，则 \(Ax=b\) 变成</p>
+<p class="formula">\(A_B x_B = b\)</p>
+<p>因 \(A_B\) 列独立，\(A_B\) 可逆，故</p>
+<p class="formula">\(x_B = A_B^{-1} b\)</p>
+<ul>
+  <li>\(B=\{B(1),\dots,B(m)\}\)：<b>基指标</b>；\(A_B\)：<b>基矩阵</b>；\(A_{B(i)}\)：<b>基列</b>；\(x_B\)：<b>基变量</b>。</li>
+  <li>其余指标 / 列 / 变量：<b>非基</b>。</li>
+  <li>「基本」指「被选中用来求解」。基本变量可能为正、零或负。</li>
+</ul>
+
+<h4>基本解的几点观察</h4>
+<ul>
+  <li><b>基本解能有多少个非零分量？最多 \(m\) 个。</b>理由：定义要求至少 \(n-m\) 个变量为 0，所以最多 \(m\) 个可能非零；可能是 0 到 \(m\) 之间的任何数（通常正好 \(m\)）。</li>
+  <li><b>一个 LP 能有多少个基本解？最多 \(C(n,m)=\frac{n!}{m!(n-m)!}\)。</b>因为从 \(n\) 列里选 \(m\) 列；不同基可能给出同一点，所以这是上界。</li>
+</ul>
+
+<h3 id="lec5-p5-3">5.3 基本可行解 BFS</h3>
+<div class="def box">
+  <span class="box-title">📌 基本可行解 Basic Feasible Solution (BFS)</span>
+  <p>向量 \(x\) 是<b>基本可行解（BFS）</b>，若：</p>
+  <ol>
+    <li>\(x\) 是基本解（选 \(m\) 个独立列、其余变量设 0、解 \(A_B x_B=b\)）；</li>
+    <li>\(x\ge 0\)（满足非负性）。</li>
+  </ol>
+  <p>一句话：<b>BFS = 既基本又可行的「角点候选」</b>。</p>
+  <p>迷你检查清单：① 选基 \(B\) 并算 \(x_B=A_B^{-1}b\)；② 若 \(x_B\ge 0\) 则是 BFS，若任一分量为负则不可行。</p>
+</div>
+
+<div class="ex box">
+  <span class="box-title">✏️ 几何图景：为什么 BFS 对应「角点」</span>
+  <p>小例子（\(m=1,\ n=2\)）：\(P=\{(x_1,x_2): x_1-x_2=1,\ x_1,x_2\ge 0\}\)。</p>
+  <ul>
+    <li>选 \(B=\{1\}\)：令 \(x_2=0\)，得 \((1,0)\)——一个 <b>BFS</b>。</li>
+    <li>选 \(B=\{2\}\)：令 \(x_1=0\)，得 \((0,-1)\)——<b>基本但不可行</b>。</li>
+    <li>\((2,1)\) 呢？<b>可行但不是基本</b>：两个变量都不为 0。</li>
+  </ul>
+  <p><b>关键：基本解只有在可行时才成为 BFS。</b></p>
+</div>
+
+<h3 id="lec5-p5-4">5.4 生产问题的全部 BFS</h3>
+<p>回到生产问题，引入松弛变量 \(s_1,s_2,s_3\ge 0\)：</p>
+<p class="formula">\(\min -x_1-2x_2 \quad \text{s.t. } x_1+s_1=100,\ 2x_2+s_2=200,\ x_1+x_2+s_3=150,\ x_1,x_2,s_1,s_2,s_3\ge 0\)</p>
+<p>\(s_1,s_2,s_3\) 度量<b>未用资源</b>（离每条不等式变紧还差多少）。变量 \(x=(x_1,x_2,s_1,s_2,s_3)^\top\)，</p>
+<p class="formula">\(A=\begin{bmatrix}1&0&1&0&0\\0&2&0&1&0\\1&1&0&0&1\end{bmatrix},\qquad b=\begin{bmatrix}100\\200\\150\end{bmatrix}\)</p>
+<p>选基 \(B=\{1,2,3\}\)（列 \(x_1,x_2,s_1\)），令 \(s_2=s_3=0\) 求解：</p>
+<p class="formula">\(x_B=\begin{bmatrix}1&0&1\\0&2&0\\1&1&0\end{bmatrix}^{-1}\begin{bmatrix}100\\200\\150\end{bmatrix}=\begin{bmatrix}50\\100\\50\end{bmatrix}\)</p>
+<p>得 \((x_1,x_2,s_1,s_2,s_3)=(50,100,50,0,0)\)，可行，故是 BFS。把所有基本解列成表：</p>
+<table class="truth">
+  <tr><th>基 B</th><th>解 (x₁,x₂,s₁,s₂,s₃)</th><th>状态</th></tr>
+  <tr><td>{1,2,3}</td><td>(50, 100, 50, 0, 0)</td><td>BFS</td></tr>
+  <tr><td>{1,2,4}</td><td>(100, 50, 0, 100, 0)</td><td>BFS</td></tr>
+  <tr><td>{1,2,5}</td><td>(100, 100, 0, 0, −50)</td><td>基本，不可行</td></tr>
+  <tr><td>{1,3,4}</td><td>(150, 0, −50, 200, 0)</td><td>基本，不可行</td></tr>
+  <tr><td>{1,4,5}</td><td>(100, 0, 0, 200, 50)</td><td>BFS</td></tr>
+  <tr><td>{2,3,4}</td><td>(0, 150, 100, −100, 0)</td><td>基本，不可行</td></tr>
+  <tr><td>{2,3,5}</td><td>(0, 100, 100, 0, 50)</td><td>BFS</td></tr>
+  <tr><td>{3,4,5}</td><td>(0, 0, 100, 200, 150)</td><td>BFS</td></tr>
+</table>
+<div class="warn box">
+  <span class="box-title">⚠️ 如何解读结果</span>
+  <ul>
+    <li>基本解若含负分量，违反 \(x\ge 0\)，<b>不可行</b>。</li>
+    <li>另两个选择 \(\{1,3,5\}\) 与 \(\{2,4,5\}\) 的基列<b>线性相关</b>，\(A_B\) 不可逆，故得不到基本解。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 核对：2D 角点 = 标准形 BFS</span>
+  <p>这些 BFS 恰好对应可行域的全部角点。对本例，<b>2D 的角点与标准形的 BFS 一一对应</b>——这就是下一部分要证的定理。</p>
+</div>
+</section>
+
+<section id="lec5-p6">
+<h2>Part 6 · 极点 ⇔ BFS 定理 <span class="zh">Extreme Points and BFS</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 定理：极点 ⇔ BFS</span>
+  <p>对 \(P=\{x\in\mathbb{R}^n: Ax=b,\ x\ge 0\}\)（\(A\) 行满秩），</p>
+  <p class="formula">\(x \text{ 是 } P \text{ 的极点} \ \Longleftrightarrow\ x \text{ 是 BFS}\)</p>
+</div>
+<p><b>为什么 BFS 是极点：</b>设 \(x=\lambda y+(1-\lambda)z\)，其中 \(y,z\in P\)，\(0&lt;\lambda&lt;1\)。</p>
+<ul>
+  <li>\(x\) 的每个非基分量都是 0。因 \(y,z\ge 0\)，这些分量在 \(y,z\) 中也必须是 0。</li>
+  <li>其余分量满足 \(A_B y_B = b = A_B z_B\)。因 \(A_B\) 可逆，\(y_B=z_B=x_B\)。</li>
+</ul>
+<p>于是 \(y=z=x\)：BFS 不能落在两个不同可行点之间，故是极点。</p>
+
+<p><b>证明思路：极点 ⇒ BFS。</b>设 \(x\) 可行，令 \(S=\{i: x_i&gt;0\}\) 为正分量的指标。</p>
+<ul>
+  <li>若 \(S\) 的列独立，把它扩充成一个含 \(m\) 列的基 \(B\)。新增基变量是 0，非基变量也都是 0，故 \(x\) 是 BFS。</li>
+  <li>若 \(x\) 不是 BFS，则 \(S\) 的列必线性相关，存在非零方向 \(\alpha\)（只改正分量、满足 \(A\alpha=0\)）。对小的 \(\epsilon&gt;0\)，\(x+\epsilon\alpha\) 与 \(x-\epsilon\alpha\) 都可行，于是 \(x\) 严格落在两可行点之间，不是极点。</li>
+</ul>
+
+<div class="ex box">
+  <span class="box-title">✏️ 完整证明（极点 ⇒ BFS）</span>
+  <p>设 \(x\) 是 \(P\) 的极点，则 \(Ax=b,\ x\ge 0\)。令 \(S=\{i:x_i&gt;0\}\)。若 \(x\) 不是 BFS，则列 \(\{A_i:i\in S\}\) 线性相关，存在不全为零的系数 \(\alpha_i\ (i\in S)\) 使 \(\sum_{i\in S}\alpha_i A_i=0\)。对 \(i\notin S\) 令 \(\alpha_i=0\)，则</p>
+  <p class="formula">\(A\alpha=\sum_{i\in S}\alpha_i A_i=0\)</p>
+  <p>于是对任意 \(\epsilon\)，\(A(x\pm\epsilon\alpha)=Ax\pm\epsilon A\alpha=b\)。因 \(x_i&gt;0\ (i\in S)\)，可取 \(\epsilon&gt;0\) 足够小使 \(x\pm\epsilon\alpha\ge 0\)。此时</p>
+  <p class="formula">\(x=\tfrac{1}{2}(x+\epsilon\alpha)+\tfrac{1}{2}(x-\epsilon\alpha)\)</p>
+  <p>是两个不同可行点的凸组合，与极点矛盾。故 \(x\) 必是 BFS。∎</p>
+</div>
+</section>
+
+<section id="lec5-p7">
+<h2>Part 7 · 退化 Degeneracy <span class="zh"></span></h2>
+<div class="def box">
+  <span class="box-title">📌 退化 BFS Degenerate BFS</span>
+  <p>一个 BFS 是<b>退化</b>的，若它的严格正分量<b>少于 \(m\) 个</b>；等价地，<b>至少有一个基变量为 0</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子：把 \(x_1+x_2\le 150\) 改成 \(x_1+x_2\le 200\)</span>
+  <p>在 \((x_1,x_2)=(100,100)\) 处，\(s_1=s_2=s_3=0\)。按顺序 \((x_1,x_2,s_1,s_2,s_3)\)，</p>
+  <p class="formula">\(x=(100,100,0,0,0)^\top\)</p>
+  <p>有 \(m=3\) 个基变量，但只有 <b>2 个正分量</b>。几何上三条边界线交于同一个角点。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 为什么退化重要</span>
+  <ul>
+    <li>改后的例子中，<b>不同基描述同一个角点</b>：\(B=\{1,2,3\}\) 解出 \((100,100,0)\)，\(B'=\{1,2,4\}\) 也解出 \((100,100,0)\)，得到同一个 BFS \(x=(100,100,0,0,0)^\top\)。</li>
+    <li>基记录的是「我们为哪些变量求解」，BFS 是结果点。<b>一个退化的单纯形步可以换基却不改变点或目标值。</b></li>
+    <li>退化不是错误：BFS 仍是合法角点；特殊的<b>主元规则（pivot rules）</b>可防止循环（cycling）。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec5-p8">
+<h2>Part 8 · 线性规划基本定理 <span class="zh">Fundamental Theorem of LP</span></h2>
+
+<h3 id="lec5-p8-1">8.1 基本定理</h3>
+<div class="thm box">
+  <span class="box-title">🎯 线性规划基本定理</span>
+  <p>考虑标准形可行集 \(P=\{x\in\mathbb{R}^n: Ax=b,\ x\ge 0\}\)，设 \(A\) 行满秩 \(m\)。</p>
+  <ol>
+    <li>若 \(P\ne\emptyset\)，则 \(P\) 有基本可行解（BFS）。</li>
+    <li>若最优解存在，则存在一个最优 BFS。</li>
+  </ol>
+  <p><b>关键结论：只要最优解存在，某个 BFS 就是最优的。</b>正如开头的例子，整条边也可能同时最优。</p>
+</div>
+
+<h3 id="lec5-p8-2">8.2 稀疏性推论</h3>
+<div class="thm box">
+  <span class="box-title">🎯 推论（稀疏性 Sparsity）</span>
+  <p>若标准形 LP 有最优解且 \(A\) 行满秩 \(m\)，则存在一个<b>最多 \(m\) 个正分量</b>的最优解。</p>
+  <p>直觉：一个基含 \(m\) 个基变量（其中有些可能为零）；非基变量设为 0。既然最优 BFS 存在，就能选一个只有少数非零分量的最优解。</p>
+</div>
+
+<h3 id="lec5-p8-3">8.3 证明概要 Proof Sketch</h3>
+<div class="ex box">
+  <span class="box-title">✏️ (i) 从可行点走到 BFS</span>
+  <p>目标：从任意可行点出发到达一个 BFS。想法：</p>
+  <ul>
+    <li>若该点不是 BFS，其正分量对应的列线性相关。利用这个相关性移动，同时保持 \(Ax=b\)；</li>
+    <li>一直移到某个正分量变成 0（已有的零分量保持为零）；</li>
+    <li>重复直到这些列独立，此时点就是 BFS。</li>
+  </ul>
+  <p><b>关键计算：</b>设可行点 \(x\) 非 BFS，\(S=\{i:x_i&gt;0\}\)，列相关，故存在 \(\alpha\ne 0\) 使 \(A\alpha=0\)、\(\alpha_i=0\ (i\notin S)\)。必要时把 \(\alpha\) 换成 \(-\alpha\) 使某些 \(\alpha_i&gt;0\)，令</p>
+  <p class="formula">\(\epsilon^\star=\min_{i\in S,\ \alpha_i&gt;0}\frac{x_i}{\alpha_i},\qquad x'=x-\epsilon^\star\alpha\)</p>
+  <ul>
+    <li>没有分量变负，旧零保持为零；</li>
+    <li>至少一个正分量变成 0，正分量个数减少。</li>
+  </ul>
+  <p>每步减少一个正分量，有限步后剩余列独立，最终点是 BFS。∎</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ (ii) 最优 BFS 存在</span>
+  <p>目标：从最优可行点出发到达一个最优 BFS。</p>
+  <ul>
+    <li>从一个最优可行解 \(x\) 出发；</li>
+    <li>若它不是 BFS，存在方向 \(\alpha\ne 0\) 使 \(x+\epsilon\alpha\) 与 \(x-\epsilon\alpha\) 对小 \(\epsilon&gt;0\) 都可行；</li>
+    <li>若沿该方向目标会变，则某一侧会更优，与最优性矛盾；</li>
+    <li>故该移动必须保持目标不变，于是可用 (i) 的「压到一个零」技巧，且不损失最优性。</li>
+  </ul>
+  <p><b>关键断言：\(c^\top\alpha=0\)。</b>否则：若 \(c^\top\alpha&lt;0\)，则 \(x+\epsilon\alpha\) 目标更小；若 \(c^\top\alpha&gt;0\)，则 \(x-\epsilon\alpha\) 目标更小；任一情形都与 \(x\) 最优矛盾。故沿 \(\pm\alpha\) 移动目标不变，可重复 (i) 到达最优 BFS。∎</p>
+  <p><b>要记住的图景：</b>在最优点，任何双向可行移动都必须保持目标不变。</p>
+</div>
+</section>
+
+<section id="lec5-p9">
+<h2>Part 9 · 从 BFS 到单纯形法 <span class="zh">From BFS to the Simplex Method</span></h2>
+<p>本讲学到：</p>
+<ul>
+  <li>若最优解存在，某个 <b>BFS 就是最优的</b>；</li>
+  <li>所以<b>只需要在 BFS（角点）中搜索</b>。</li>
+</ul>
+<p>为什么不能把它们全列出来？</p>
+<ul>
+  <li>每个 BFS 来自从 \(n\) 列中选 \(m\) 列；</li>
+  <li>选择数最多 \(C(n,m)=\frac{n!}{m!(n-m)!}\)；</li>
+  <li>即使 \((n,m)\) 中等大小，这个数也可能极大。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 通向单纯形法的几何洞见</span>
+  <ul>
+    <li>BFS 是角点；</li>
+    <li>一个<b>单纯形步（simplex step）</b>把一个基变量换成一个非基变量，移动到<b>相邻角点</b>；</li>
+    <li>目标改善或保持不变。退化时基可能改变而点不动。</li>
+  </ul>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>graphical solution</b> — 图形解；<b>half-plane</b> — 半平面；<b>feasible region</b> — 可行域</li>
+    <li><b>optimal corner</b> — 最优角点；<b>optimal edge</b> — 最优边</li>
+    <li><b>polyhedron</b> — 多面体；<b>convex set</b> — 凸集；<b>convex combination</b> — 凸组合</li>
+    <li><b>extreme point / vertex / corner</b> — 极点 / 顶点 / 角点</li>
+    <li><b>basic solution</b> — 基本解；<b>basic feasible solution (BFS)</b> — 基本可行解</li>
+    <li><b>basis / basis matrix</b> — 基 / 基矩阵；<b>basic / nonbasic variable</b> — 基变量 / 非基变量</li>
+    <li><b>full row rank</b> — 行满秩；<b>affine subspace</b> — 仿射子空间；<b>nonnegative orthant</b> — 非负象限</li>
+    <li><b>degenerate / degeneracy</b> — 退化；<b>cycling</b> — 循环</li>
+    <li><b>fundamental theorem of LP</b> — 线性规划基本定理；<b>sparsity</b> — 稀疏性</li>
+    <li><b>pivot rule</b> — 主元规则；<b>simplex method</b> — 单纯形法</li>
+    <li><b>midpoint</b> — 中点；<b>tight / active constraint</b> — 紧约束 / 活跃约束</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第5课 -->
 
 </div>
 </main>

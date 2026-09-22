@@ -61,7 +61,7 @@ window.DATA = {
       category: "数学",
       status: "active",
       teacher: "Nachuan Xiao",
-      desc: "凸优化基础 · 经典建模 · 基本术语 · 线性规划（实现/建模/变换）",
+      desc: "凸优化基础 · 经典建模 · 基本术语 · 线性规划（实现/建模/变换/几何）",
       notes: [
         { title: "最优化复习笔记", file: "optimization/最优化复习笔记.html" }
       ],
@@ -183,7 +183,7 @@ window.DATA = {
       category: "物理",
       status: "active",
       teacher: "",
-      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）",
+      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）· 功与动能",
       notes: [
         { title: "物理复习笔记", file: "phy/物理复习笔记.html" }
       ],
@@ -335,7 +335,30 @@ window.DATA = {
       { en: "Inverse Matrix", zh: "逆矩阵" },
       { en: "Orthonormal Matrix", zh: "标准正交矩阵" },
       { en: "Positive Semi-definite (PSD)", zh: "半正定" },
-      { en: "Quadratic Form", zh: "二次型" }
+      { en: "Quadratic Form", zh: "二次型" },
+      { en: "Graphical Solution", zh: "图形解" },
+      { en: "Feasible Region", zh: "可行域" },
+      { en: "Optimal Corner", zh: "最优角点" },
+      { en: "Optimal Edge", zh: "最优边" },
+      { en: "Polyhedron", zh: "多面体" },
+      { en: "Convex Combination", zh: "凸组合" },
+      { en: "Extreme Point", zh: "极点" },
+      { en: "Vertex / Corner", zh: "顶点 / 角点" },
+      { en: "Midpoint", zh: "中点" },
+      { en: "Basic Solution", zh: "基本解" },
+      { en: "Basic Feasible Solution (BFS)", zh: "基本可行解" },
+      { en: "Basic Variable / Nonbasic Variable", zh: "基变量 / 非基变量" },
+      { en: "Basis Matrix", zh: "基矩阵" },
+      { en: "Full Row Rank", zh: "行满秩" },
+      { en: "Affine Subspace", zh: "仿射子空间" },
+      { en: "Nonnegative Orthant", zh: "非负象限" },
+      { en: "Degeneracy / Degenerate BFS", zh: "退化 / 退化基本可行解" },
+      { en: "Cycling", zh: "循环" },
+      { en: "Fundamental Theorem of LP", zh: "线性规划基本定理" },
+      { en: "Sparsity", zh: "稀疏性" },
+      { en: "Simplex Method", zh: "单纯形法" },
+      { en: "Pivot Rule", zh: "主元规则" },
+      { en: "Combinatorial Number C(n, m)", zh: "组合数 C(n, m)" }
     ]},
     { course: "datastructure", terms: [
       { en: "Data Structure", zh: "数据结构" },
@@ -629,7 +652,27 @@ window.DATA = {
       { en: "Centripetal Force", zh: "向心力" },
       { en: "Centripetal Acceleration", zh: "向心加速度" },
       { en: "Drag / Fluid Resistance", zh: "阻力 / 流体阻力" },
-      { en: "Terminal Speed", zh: "终端速度" }
+      { en: "Terminal Speed", zh: "终端速度" },
+      { en: "Energy", zh: "能量" },
+      { en: "Energy Conservation", zh: "能量守恒" },
+      { en: "Kinetic Energy", zh: "动能" },
+      { en: "Joule (J)", zh: "焦耳（能量单位）" },
+      { en: "Work", zh: "功" },
+      { en: "Positive / Negative / Zero Work", zh: "正功 / 负功 / 零功" },
+      { en: "Net Work", zh: "合力做的功" },
+      { en: "Gravitational Potential Energy", zh: "重力势能" },
+      { en: "Lift / Lower", zh: "抬升 / 放下" },
+      { en: "Varying Force", zh: "变力" },
+      { en: "Area under the Curve", zh: "曲线下面积" },
+      { en: "Spring Force", zh: "弹簧力" },
+      { en: "Restoring Force", zh: "恢复力" },
+      { en: "Hooke's Law", zh: "胡克定律" },
+      { en: "Spring Constant (k)", zh: "弹簧常数" },
+      { en: "Work–Kinetic Energy Theorem", zh: "功–动能定理" },
+      { en: "Power", zh: "功率" },
+      { en: "Watt (W)", zh: "瓦特（功率单位）" },
+      { en: "Average / Instantaneous Power", zh: "平均 / 瞬时功率" },
+      { en: "Kilowatt-hour (kWh)", zh: "千瓦时（功的单位）" }
     ]}
   ]
 };
