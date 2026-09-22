@@ -13,7 +13,7 @@ window.DATA = {
     title: "理科学习库",
     subtitle: "从大一到现在，每一门课的复习笔记，都收在这里。",
     author: "李思源",
-    lastUpdated: "2026-09-21"
+    lastUpdated: "2026-09-22"
   },
 
   // 学期顺序（用于首页分组；新课程会自动归入对应分组）
@@ -76,7 +76,7 @@ window.DATA = {
       category: "计算机",
       status: "active",
       teacher: "Jingbang Chen",
-      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器（重载/默认参数/const 引用/算法与区间/谓词比较器/Lambda）",
+      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）",
       notes: [
         { title: "数据结构复习笔记", file: "datastructure/数据结构复习笔记.html" }
       ],
@@ -461,7 +461,40 @@ window.DATA = {
       { en: "std::find / std::sort / std::reverse", zh: "查找 / 排序 / 逆序" },
       { en: "insert / erase", zh: "插入 / 删除" },
       { en: "Iterator Invalidation", zh: "迭代器失效" },
-      { en: "Contract", zh: "契约" }
+      { en: "Contract", zh: "契约" },
+      { en: "Element", zh: "元素" },
+      { en: "Index / Subscript", zh: "下标" },
+      { en: "Fixed-length Array", zh: "固定长度数组" },
+      { en: "Array Initialization", zh: "数组初始化" },
+      { en: "sizeof", zh: "取字节数运算符" },
+      { en: "Address", zh: "地址" },
+      { en: "Address-of Operator (&)", zh: "取地址运算符" },
+      { en: "nullptr / Null Pointer", zh: "空指针" },
+      { en: "Pointer Arithmetic", zh: "指针算术" },
+      { en: "One-past Position", zh: "越过末尾一格的位置" },
+      { en: "Half-open Range", zh: "半开区间" },
+      { en: "const Pointer", zh: "只读指针 / 常量指针" },
+      { en: "Pointer to Struct (->)", zh: "指向结构体的指针" },
+      { en: "Character Array", zh: "字符数组" },
+      { en: "String Literal", zh: "字符串字面量" },
+      { en: "Storage Duration", zh: "存储期" },
+      { en: "Lifetime", zh: "生命周期" },
+      { en: "Automatic / Static / Dynamic Storage", zh: "自动 / 静态 / 动态存储" },
+      { en: "Stack / Heap", zh: "栈 / 堆" },
+      { en: "new / delete", zh: "分配 / 释放" },
+      { en: "delete[]", zh: "数组释放" },
+      { en: "Dynamic Allocation", zh: "动态分配" },
+      { en: "Memory Leak", zh: "内存泄漏" },
+      { en: "Dangling Pointer", zh: "悬垂指针" },
+      { en: "Use-after-free", zh: "释放后使用" },
+      { en: "Double Delete", zh: "重复释放" },
+      { en: "Ownership", zh: "所有权" },
+      { en: "RAII", zh: "资源获取即初始化" },
+      { en: "vector::data()", zh: "取首元素指针" },
+      { en: "Multidimensional Array", zh: "多维数组" },
+      { en: "Row Pointer / Element Pointer", zh: "行指针 / 元素指针" },
+      { en: "Nested Vector", zh: "嵌套 vector" },
+      { en: "Linked Structure", zh: "链表结构" }
     ]},
     { course: "caculus", terms: [
       { en: "Sequence", zh: "数列" },
