@@ -61,7 +61,7 @@ window.DATA = {
       category: "数学",
       status: "active",
       teacher: "Nachuan Xiao",
-      desc: "凸优化基础 · 经典建模 · 基本术语 · 线性规划（实现/建模/变换/几何）",
+      desc: "凸优化基础 · 经典建模 · 基本术语 · 线性规划（实现/建模/变换/几何/单纯形法）",
       notes: [
         { title: "最优化复习笔记", file: "optimization/最优化复习笔记.html" }
       ],
@@ -358,7 +358,21 @@ window.DATA = {
       { en: "Sparsity", zh: "稀疏性" },
       { en: "Simplex Method", zh: "单纯形法" },
       { en: "Pivot Rule", zh: "主元规则" },
-      { en: "Combinatorial Number C(n, m)", zh: "组合数 C(n, m)" }
+      { en: "Combinatorial Number C(n, m)", zh: "组合数 C(n, m)" },
+      { en: "Polytope", zh: "多胞形（有界多面体）" },
+      { en: "Neighboring / Adjacent Basis", zh: "相邻基" },
+      { en: "Dictionary", zh: "字典" },
+      { en: "Entering Variable / Leaving Variable", zh: "入基变量 / 离基变量" },
+      { en: "Edge Direction", zh: "边方向" },
+      { en: "Ratio Test", zh: "比值检验" },
+      { en: "Reduced Cost", zh: "缩减成本" },
+      { en: "Stopping Criterion", zh: "停止准则" },
+      { en: "Optimality Certificate", zh: "最优性证书" },
+      { en: "Unbounded Below", zh: "下无界" },
+      { en: "Feasible Ray", zh: "可行射线" },
+      { en: "Pivot", zh: "主元（换基）" },
+      { en: "Edge", zh: "边" },
+      { en: "Objective Value", zh: "目标值" }
     ]},
     { course: "datastructure", terms: [
       { en: "Data Structure", zh: "数据结构" },

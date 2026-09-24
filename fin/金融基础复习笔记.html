@@ -25,6 +25,8 @@
     --ex-bg: #f0fdf4;   --ex-bd: #22c55e;   --ex-tx: #15803d;
     --warn-bg: #fffbeb; --warn-bd: #f59e0b; --warn-tx: #b45309;
     --vocab-bg: #fdf2f8;--vocab-bd: #ec4899; --vocab-tx: #be185d;
+    --fig-bg: #ffffff;  --fig-bd: #e5e7eb;
+    --sv-pos: #2563eb;  --sv-neg: #dc2626;  --sv-hl: #16a34a;
   }
   [data-theme="dark"] {
     color-scheme: dark;
@@ -46,6 +48,8 @@
     --ex-bg: #14372a;   --ex-bd: #22c55e;   --ex-tx: #86efac;
     --warn-bg: #3d2e12; --warn-bd: #f59e0b; --warn-tx: #fcd34d;
     --vocab-bg: #4a1f3d;--vocab-bd: #ec4899; --vocab-tx: #f9a8d4;
+    --fig-bg: #0f172a;  --fig-bd: #334155;
+    --sv-pos: #60a5fa;  --sv-neg: #f87171;  --sv-hl: #4ade80;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -247,6 +251,26 @@
 
   /* 公式块 */
   .formula { text-align: center; margin: 16px 0; overflow-x: auto; padding: 4px 0; }
+
+  /* ===== 可视化图（内联 SVG，跟随主题）===== */
+  .figure {
+    margin: 22px auto;
+    padding: 16px 16px 8px;
+    background: var(--fig-bg);
+    border: 1px solid var(--fig-bd);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .figure svg { max-width: 100%; height: auto; display: inline-block; }
+  .figcap {
+    margin: 10px 0 4px;
+    font-size: 13.5px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .svg-text { fill: var(--text); font-size: 14px; font-family: inherit; }
+  .svg-muted { fill: var(--muted); font-size: 12px; font-family: inherit; }
 
   .toc {
     background: var(--card-bg);
@@ -1515,6 +1539,32 @@ window.MathJax = {
   <p class="formula">复利：\(FV = PV(1+r)^t\)　　（单利：\(FV = PV(1 + r \times t)\)）</p>
   <p>其中 \(FV\) = 终值，\(PV\) = 现值，\(r\) = 每期利率，\(t\) = 期数。</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 720 250" width="720">
+    <!-- 时间轴 -->
+    <line x1="50" y1="120" x2="690" y2="120" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="690,120 678,116 678,124" style="fill: var(--muted)"/>
+    <!-- 刻度 -->
+    <line x1="140" y1="120" x2="140" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="580" y1="120" x2="580" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <text x="360" y="132" class="svg-muted" text-anchor="middle">…</text>
+    <!-- 流出：t=0 向下红箭头 -->
+    <line x1="140" y1="122" x2="140" y2="185" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="140,191 134,180 146,180" style="fill: var(--sv-neg)"/>
+    <text x="140" y="209" class="svg-text" text-anchor="middle" style="fill: var(--sv-neg)">存入 $1,000（现值 PV）</text>
+    <!-- 流入：t=5 向上绿箭头 -->
+    <line x1="580" y1="118" x2="580" y2="55" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="580,49 574,60 586,60" style="fill: var(--sv-hl)"/>
+    <text x="580" y="41" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">收回 $1,079.94（终值 FV）</text>
+    <!-- 复利增长曲线 -->
+    <path d="M160,75 Q360,14 560,75" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="360" y="24" class="svg-muted" text-anchor="middle" style="fill: var(--accent)">FV = PV × (1 + r)ᵗ = 1000 × 1.0155⁵</text>
+    <!-- 时间标签 -->
+    <text x="140" y="230" class="svg-muted" text-anchor="middle">t = 0（今天）</text>
+    <text x="580" y="230" class="svg-muted" text-anchor="middle">t = 5</text>
+  </svg>
+  <div class="figcap">图：单一现金流的货币时间价值——t=0 存入现值 PV（向下 = 付出），按复利滚 t 期后，在 t=5 收回终值 FV（向上 = 收回）。</div>
+</div>
 <p><b>例题</b>：今天存 $1,000 五年，银行年复利 1.55%，五年后有多少？</p>
 <ul>
   <li>\(FV = 1000(1+1.55\%)^5 = 1079.94\)；</li>
@@ -1711,6 +1761,38 @@ window.MathJax = {
   <b>时间线（timeline）</b>是把「文字」转成「数值」的有用工具——线性表示每笔现金流的时间与金额。<br>
   例：今天借出 $1,000，之后三期分别收回 $200、$300、$600。</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 720 250" width="720">
+    <!-- 时间轴 -->
+    <line x1="50" y1="120" x2="690" y2="120" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="690,120 678,116 678,124" style="fill: var(--muted)"/>
+    <!-- 刻度 -->
+    <line x1="120" y1="120" x2="120" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="270" y1="120" x2="270" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="420" y1="120" x2="420" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="570" y1="120" x2="570" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <!-- 流出：t=0 借出 -->
+    <line x1="120" y1="122" x2="120" y2="185" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="120,191 114,180 126,180" style="fill: var(--sv-neg)"/>
+    <text x="120" y="209" class="svg-text" text-anchor="middle" style="fill: var(--sv-neg)">借出 -$1,000</text>
+    <!-- 流入：t=1,2,3 -->
+    <line x1="270" y1="118" x2="270" y2="60" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="270,54 264,65 276,65" style="fill: var(--sv-hl)"/>
+    <text x="270" y="46" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">+$200</text>
+    <line x1="420" y1="118" x2="420" y2="60" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="420,54 414,65 426,65" style="fill: var(--sv-hl)"/>
+    <text x="420" y="46" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">+$300</text>
+    <line x1="570" y1="118" x2="570" y2="60" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="570,54 564,65 576,65" style="fill: var(--sv-hl)"/>
+    <text x="570" y="46" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">+$600</text>
+    <!-- 时间标签 -->
+    <text x="120" y="230" class="svg-muted" text-anchor="middle">t = 0</text>
+    <text x="270" y="230" class="svg-muted" text-anchor="middle">t = 1</text>
+    <text x="420" y="230" class="svg-muted" text-anchor="middle">t = 2</text>
+    <text x="570" y="230" class="svg-muted" text-anchor="middle">t = 3</text>
+  </svg>
+  <div class="figcap">图：现金流串流的时间线——t=0 借出 $1,000（向下 = 付出），之后三期分别收回 $200、$300、$600（向上 = 收回）。整串的 PV/FV 等于各笔现金流 PV/FV 之和。</div>
+</div>
 
 <h3 id="fin5-p1-2">1.2 例题：终值 FV <span class="zh">FV Example</span></h3>
 <div class="ex box">
@@ -1772,6 +1854,53 @@ window.MathJax = {
   <p class="formula">\(FV_{AD}=FV_{OA}\times(1+r)\)</p>
   <p class="formula">\(PV_{AD}=PV_{OA}\times(1+r)\)</p>
   <p>（AD = annuity due；OA = 同 PMT、同 r、同 t 的普通年金。）</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 720 280" width="720">
+    <!-- ① 普通年金（期末付） -->
+    <text x="50" y="28" class="svg-text">① 普通年金 Ordinary Annuity（每期「期末」付 PMT）</text>
+    <line x1="50" y1="90" x2="690" y2="90" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="690,90 678,86 678,94" style="fill: var(--muted)"/>
+    <line x1="120" y1="90" x2="120" y2="100" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="270" y1="90" x2="270" y2="100" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="420" y1="90" x2="420" y2="100" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="570" y1="90" x2="570" y2="100" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="270" y1="88" x2="270" y2="52" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="270,46 264,57 276,57" style="fill: var(--sv-hl)"/>
+    <text x="270" y="40" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">PMT</text>
+    <line x1="420" y1="88" x2="420" y2="52" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="420,46 414,57 426,57" style="fill: var(--sv-hl)"/>
+    <text x="420" y="40" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">PMT</text>
+    <line x1="570" y1="88" x2="570" y2="52" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="570,46 564,57 576,57" style="fill: var(--sv-hl)"/>
+    <text x="570" y="40" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">PMT</text>
+    <text x="120" y="116" class="svg-muted" text-anchor="middle">t = 0</text>
+    <text x="270" y="116" class="svg-muted" text-anchor="middle">t = 1</text>
+    <text x="420" y="116" class="svg-muted" text-anchor="middle">t = 2</text>
+    <text x="570" y="116" class="svg-muted" text-anchor="middle">t = 3</text>
+    <!-- ② 期初年金（期初付） -->
+    <text x="50" y="168" class="svg-text">② 期初年金 Annuity Due（每期「期初」付 PMT）</text>
+    <line x1="50" y1="230" x2="690" y2="230" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="690,230 678,226 678,234" style="fill: var(--muted)"/>
+    <line x1="120" y1="230" x2="120" y2="240" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="270" y1="230" x2="270" y2="240" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="420" y1="230" x2="420" y2="240" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="570" y1="230" x2="570" y2="240" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="120" y1="228" x2="120" y2="192" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="120,186 114,197 126,197" style="fill: var(--sv-hl)"/>
+    <text x="120" y="180" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">PMT</text>
+    <line x1="270" y1="228" x2="270" y2="192" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="270,186 264,197 276,197" style="fill: var(--sv-hl)"/>
+    <text x="270" y="180" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">PMT</text>
+    <line x1="420" y1="228" x2="420" y2="192" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="420,186 414,197 426,197" style="fill: var(--sv-hl)"/>
+    <text x="420" y="180" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">PMT</text>
+    <text x="120" y="256" class="svg-muted" text-anchor="middle">t = 0</text>
+    <text x="270" y="256" class="svg-muted" text-anchor="middle">t = 1</text>
+    <text x="420" y="256" class="svg-muted" text-anchor="middle">t = 2</text>
+    <text x="570" y="256" class="svg-muted" text-anchor="middle">t = 3</text>
+  </svg>
+  <div class="figcap">图：普通年金（每期期末付 PMT）与期初年金（每期期初付 PMT）的对比——期初年金每笔支付都比普通年金早一期发生，故其现值/终值都多乘一个 (1+r)。</div>
 </div>
 
 <h3 id="fin5-p2-4">2.4 永续年金 Perpetuity <span class="zh">（无限期）</span></h3>
@@ -1928,6 +2057,44 @@ window.MathJax = {
   \[4{,}080{,}000=\frac{x}{1+r}+\frac{x}{(1+r)^2}+\cdots+\frac{x}{(1+r)^{360}}=x\cdot\frac{1-(1+r)^{-360}}{r}\]
   解得 \(x=17{,}533.26\)（每月）。</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 720 250" width="720">
+    <!-- 时间轴 -->
+    <line x1="50" y1="120" x2="690" y2="120" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="690,120 678,116 678,124" style="fill: var(--muted)"/>
+    <!-- 刻度 -->
+    <line x1="120" y1="120" x2="120" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="270" y1="120" x2="270" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="370" y1="120" x2="370" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="470" y1="120" x2="470" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="600" y1="120" x2="600" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <!-- 流入：t=0 银行放贷 -->
+    <line x1="120" y1="118" x2="120" y2="55" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="120,49 114,60 126,60" style="fill: var(--sv-hl)"/>
+    <text x="120" y="41" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">借入本金 $4,080,000</text>
+    <!-- 流出：月供（每月末） -->
+    <line x1="270" y1="122" x2="270" y2="180" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="270,186 264,175 276,175" style="fill: var(--sv-neg)"/>
+    <text x="270" y="204" class="svg-text" text-anchor="middle" style="fill: var(--sv-neg)">月供 $17,533.26</text>
+    <line x1="370" y1="122" x2="370" y2="180" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="370,186 364,175 376,175" style="fill: var(--sv-neg)"/>
+    <text x="370" y="204" class="svg-muted" text-anchor="middle">月供</text>
+    <line x1="470" y1="122" x2="470" y2="180" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="470,186 464,175 476,175" style="fill: var(--sv-neg)"/>
+    <text x="470" y="204" class="svg-muted" text-anchor="middle">月供</text>
+    <line x1="600" y1="122" x2="600" y2="180" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="600,186 594,175 606,175" style="fill: var(--sv-neg)"/>
+    <text x="600" y="204" class="svg-muted" text-anchor="middle">… 第 360 期</text>
+    <text x="535" y="132" class="svg-muted" text-anchor="middle">…</text>
+    <!-- 时间标签 -->
+    <text x="120" y="230" class="svg-muted" text-anchor="middle">t = 0</text>
+    <text x="270" y="230" class="svg-muted" text-anchor="middle">t = 1</text>
+    <text x="370" y="230" class="svg-muted" text-anchor="middle">t = 2</text>
+    <text x="470" y="230" class="svg-muted" text-anchor="middle">t = 3</text>
+    <text x="600" y="230" class="svg-muted" text-anchor="middle">t = 360</text>
+  </svg>
+  <div class="figcap">图：摊销贷款的时间线——t=0 银行放贷本金（向上 = 收到），之后每月末等额还款月供（向下 = 付出），共 360 期。每期月供拆成「利息支付 + 本金偿还」。</div>
+</div>
 
 <h3 id="fin6-p1-3">1.3 摊销表 Amortization Schedule</h3>
 <div class="def box">
@@ -1957,6 +2124,38 @@ window.MathJax = {
   <span class="box-title">📌 NPV</span>
   <p>典型投资：钱现在出去、以后进来。<b>净现值 NPV = PV（现金流入 − 流出）= 收益 − 成本</b>。<br>
   决策规则：若 \(NPV\ge0\)（收益 ≥ 成本）则<b>接受</b>投资；若 \(NPV&lt;0\) 则<b>拒绝</b>。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 720 250" width="720">
+    <!-- 时间轴 -->
+    <line x1="50" y1="120" x2="690" y2="120" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="690,120 678,116 678,124" style="fill: var(--muted)"/>
+    <!-- 刻度 -->
+    <line x1="120" y1="120" x2="120" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="270" y1="120" x2="270" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="420" y1="120" x2="420" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <line x1="570" y1="120" x2="570" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+    <!-- 流出：t=0 投资成本 -->
+    <line x1="120" y1="122" x2="120" y2="185" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="120,191 114,180 126,180" style="fill: var(--sv-neg)"/>
+    <text x="120" y="209" class="svg-text" text-anchor="middle" style="fill: var(--sv-neg)">投入 -$6,000（成本）</text>
+    <!-- 流入：t=1,2,3 收益 -->
+    <line x1="270" y1="118" x2="270" y2="60" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="270,54 264,65 276,65" style="fill: var(--sv-hl)"/>
+    <text x="270" y="46" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">+$3,000</text>
+    <line x1="420" y1="118" x2="420" y2="60" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="420,54 414,65 426,65" style="fill: var(--sv-hl)"/>
+    <text x="420" y="46" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">+$2,000</text>
+    <line x1="570" y1="118" x2="570" y2="60" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <polygon points="570,54 564,65 576,65" style="fill: var(--sv-hl)"/>
+    <text x="570" y="46" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">+$2,000</text>
+    <!-- 时间标签 -->
+    <text x="120" y="230" class="svg-muted" text-anchor="middle">t = 0</text>
+    <text x="270" y="230" class="svg-muted" text-anchor="middle">t = 1</text>
+    <text x="420" y="230" class="svg-muted" text-anchor="middle">t = 2</text>
+    <text x="570" y="230" class="svg-muted" text-anchor="middle">t = 3</text>
+  </svg>
+  <div class="figcap">图：典型投资项目的现金流时间线——t=0 先投入成本（向下 = 付出），之后逐年收到收益（向上 = 收回）。NPV = 收益现值 − 成本现值（例：贴现率 7% 时 NPV = $6,183.21 − $6,000 = +$183.21，接受）。</div>
 </div>
 
 <h3 id="fin6-p2-2">2.2 例题 <span class="zh">Examples</span></h3>

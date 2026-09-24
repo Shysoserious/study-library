@@ -1548,6 +1548,34 @@ window.MathJax = {
   </ul>
   <p>\(\mu_s/\mu_k\)：无量纲，需实验测定；\(\mu_k\) 常假设不随滑动速度变化。例：鸡蛋在特氟龙锅上 \(\mu_s=0.04\)，攀岩鞋与岩石高达 1.2。</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 400 250" width="420" role="img" aria-label="摩擦力受力分析">
+    <defs>
+      <marker id="fr-w" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+      <marker id="fr-n" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-hl)"/></marker>
+      <marker id="fr-f" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+      <marker id="fr-k" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--muted)"/></marker>
+    </defs>
+    <!-- 地面 -->
+    <line x1="30" y1="170" x2="370" y2="170" style="stroke: var(--muted); stroke-width: 2"/>
+    <!-- 物块 -->
+    <rect x="150" y="120" width="100" height="50" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="200" y="150" class="svg-muted" text-anchor="middle">m</text>
+    <!-- 重力 mg（向下） -->
+    <line x1="200" y1="170" x2="200" y2="215" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#fr-w)"/>
+    <text x="208" y="230" class="svg-muted" style="fill: var(--sv-neg)">mg</text>
+    <!-- 支持力 N（向上） -->
+    <line x1="200" y1="120" x2="200" y2="75" style="stroke: var(--sv-hl); stroke-width: 2" marker-end="url(#fr-n)"/>
+    <text x="208" y="70" class="svg-muted" style="fill: var(--sv-hl)">N</text>
+    <!-- 外力 F（向右） -->
+    <line x1="250" y1="145" x2="315" y2="145" style="stroke: var(--sv-pos); stroke-width: 2" marker-end="url(#fr-f)"/>
+    <text x="320" y="140" class="svg-muted" style="fill: var(--sv-pos)">F</text>
+    <!-- 摩擦力 f（向左，虚线） -->
+    <line x1="150" y1="145" x2="85" y2="145" style="stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 4" marker-end="url(#fr-k)"/>
+    <text x="60" y="140" class="svg-muted">f</text>
+  </svg>
+  <div class="figcap">图：受摩擦力物体的自由体图（free-body diagram）——重力 mg（↓）、支持力 N（↑）、外力 F（→）与摩擦力 f（←，沿表面且与运动趋势相反）。</div>
+</div>
 <div class="ex box">
   <span class="box-title">✏️ 摩擦的利与弊</span>
   <p><b>弊</b>：不可避免，汽车约 20% 的汽油用于克服发动机与传动系统的摩擦。<br>
@@ -1623,6 +1651,34 @@ window.MathJax = {
   \[v_t=\sqrt{\frac{F_g}{D}}=\sqrt{\frac{2F_g}{C\rho A}}\]
   改变 \(A\) 即可改变速度：增大 \(A\) 上升、减小 \(A\) 下降（如跳伞、羽毛 vs 棒球）。重物体（\(F_g\) 大、\(A\) 小）在空气中更快落地。</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 480 250" width="470" role="img" aria-label="终极速度">
+    <defs>
+      <marker id="tv-mg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+      <marker id="tv-f" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+    </defs>
+    <!-- 左：下落物体受力 -->
+    <circle cx="110" cy="80" r="18" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+    <text x="110" y="86" class="svg-muted" text-anchor="middle">m</text>
+    <!-- 重力（向下，恒定） -->
+    <line x1="110" y1="98" x2="110" y2="150" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#tv-mg)"/>
+    <text x="118" y="168" class="svg-muted" style="fill: var(--sv-neg)">mg（恒定）</text>
+    <!-- 阻力（向上，随 v 增大） -->
+    <line x1="110" y1="62" x2="110" y2="30" style="stroke: var(--sv-pos); stroke-width: 2" marker-end="url(#tv-f)"/>
+    <text x="118" y="26" class="svg-muted" style="fill: var(--sv-pos)">f（随 v 增大）</text>
+    <!-- 右：v–t 图 -->
+    <line x1="260" y1="200" x2="470" y2="200" style="stroke: var(--muted); stroke-width: 2"/>
+    <line x1="260" y1="200" x2="260" y2="40" style="stroke: var(--muted); stroke-width: 2"/>
+    <text x="252" y="44" class="svg-muted" text-anchor="end">v</text>
+    <text x="466" y="218" class="svg-muted" text-anchor="end">t</text>
+    <!-- v_t 渐近线 -->
+    <line x1="260" y1="70" x2="470" y2="70" style="stroke: var(--sv-hl); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="470" y="62" class="svg-muted" text-anchor="end" style="fill: var(--sv-hl)">v_t</text>
+    <!-- v(t) 曲线 -->
+    <path d="M260,200 C 300,200 320,120 360,84 C 400,72 470,70 470,70" fill="none" style="stroke: var(--accent); stroke-width: 2"/>
+  </svg>
+  <div class="figcap">图：物体在流体中下落——重力 mg 恒定向下，阻力 f 随速度增大而向上增大；当 f = mg 时合力为零，速度渐近地趋于终极速度 v_t。</div>
+</div>
 
 <h3 id="lec5-p4-3">4.3 例题：雨滴 Raindrop</h3>
 <div class="ex box">
@@ -1660,6 +1716,32 @@ window.MathJax = {
   <b>某角度 \(\theta\)</b>（重力分解为径向 \(mg\sin\theta\) 与切向 \(mg\cos\theta\)）：
   \[\frac{mv^2}{R}=N+mg\sin\theta\Rightarrow N=m\left(\frac{v^2}{R}-g\sin\theta\right)\]</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 420 340" width="430" role="img" aria-label="环道顶点与底点受力">
+    <defs>
+      <marker id="lp-mg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+      <marker id="lp-n" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-hl)"/></marker>
+    </defs>
+    <!-- 圆环 -->
+    <circle cx="210" cy="170" r="100" style="fill: none; stroke: var(--muted); stroke-width: 2"/>
+    <text x="210" y="178" class="svg-muted" text-anchor="middle">R</text>
+    <!-- 顶部 -->
+    <circle cx="210" cy="70" r="10" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+    <line x1="204" y1="82" x2="204" y2="122" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#lp-mg)"/>
+    <text x="196" y="138" class="svg-muted" style="fill: var(--sv-neg)">mg</text>
+    <line x1="218" y1="82" x2="218" y2="122" style="stroke: var(--sv-hl); stroke-width: 2" marker-end="url(#lp-n)"/>
+    <text x="226" y="138" class="svg-muted" style="fill: var(--sv-hl)">N_t</text>
+    <text x="210" y="48" class="svg-muted" text-anchor="middle">顶部：N_t + mg = mv²/R</text>
+    <!-- 底部 -->
+    <circle cx="210" cy="270" r="10" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+    <line x1="204" y1="258" x2="204" y2="298" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#lp-mg)"/>
+    <text x="196" y="314" class="svg-muted" style="fill: var(--sv-neg)">mg</text>
+    <line x1="218" y1="258" x2="218" y2="218" style="stroke: var(--sv-hl); stroke-width: 2" marker-end="url(#lp-n)"/>
+    <text x="226" y="216" class="svg-muted" style="fill: var(--sv-hl)">N_b</text>
+    <text x="210" y="332" class="svg-muted" text-anchor="middle">底部：N_b − mg = mv²/R</text>
+  </svg>
+  <div class="figcap">图：竖直环道顶点与底点的受力——顶点 N_t 与 mg 同向（都指向圆心），N_t = mv²/R − mg（v &lt; √gR 时失接触）；底点 N_b 与 mg 反向，N_b = mg + mv²/R（最大）。</div>
+</div>
 
 <h3 id="lec5-p5-4">5.4 例题：水平转弯 Circular Turn</h3>
 <div class="ex box">
@@ -1678,6 +1760,39 @@ window.MathJax = {
   y 轴：\(F_N\cos\theta-mg=0\Rightarrow F_N\cos\theta=mg\)。<br>
   两式相除：
   \[\tan\theta=\frac{v^2}{Rg}=\frac{20^2}{190\times9.8}=0.215\Rightarrow\theta=12.1^\circ\]</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 420 290" width="440" role="img" aria-label="倾斜赛道受力">
+    <defs>
+      <marker id="bk-mg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+      <marker id="bk-n" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" style="fill: var(--sv-hl)"/></marker>
+    </defs>
+    <!-- 地面参考线 -->
+    <line x1="40" y1="240" x2="380" y2="240" style="stroke: var(--border); stroke-width: 1.5" stroke-dasharray="4 4"/>
+    <!-- 赛道（斜面，路堤截面） -->
+    <polygon points="90,90 350,210 350,240 90,240" style="fill: var(--fig-bg); stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="90" y1="90" x2="350" y2="210" style="stroke: var(--muted); stroke-width: 2"/>
+    <text x="96" y="84" class="svg-muted">θ</text>
+    <!-- 车（沿斜面旋转） -->
+    <g transform="rotate(24.8 205 143)">
+      <rect x="193" y="131" width="24" height="24" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+    </g>
+    <!-- 重力 mg（竖直向下） -->
+    <line x1="205" y1="143" x2="205" y2="205" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#bk-mg)"/>
+    <text x="213" y="220" class="svg-muted" style="fill: var(--sv-neg)">mg</text>
+    <!-- 支持力 N（垂直斜面，指向左上） -->
+    <line x1="205" y1="143" x2="169" y2="66" style="stroke: var(--sv-hl); stroke-width: 2" marker-end="url(#bk-n)"/>
+    <text x="166" y="60" class="svg-muted" style="fill: var(--sv-hl)">N</text>
+    <!-- N 的分解（虚线） -->
+    <line x1="205" y1="143" x2="205" y2="66" style="stroke: var(--sv-hl); stroke-width: 1.2" stroke-dasharray="4 4"/>
+    <line x1="205" y1="66" x2="169" y2="66" style="stroke: var(--sv-hl); stroke-width: 1.2" stroke-dasharray="4 4"/>
+    <text x="213" y="74" class="svg-muted" style="fill: var(--sv-hl)">N cosθ</text>
+    <text x="150" y="62" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">N sinθ</text>
+    <!-- 说明 -->
+    <text x="120" y="270" class="svg-muted">N sinθ = mv²/R（向心，指向圆心）</text>
+    <text x="300" y="270" class="svg-muted">N cosθ = mg</text>
+  </svg>
+  <div class="figcap">图：倾斜赛道（banked track）受力——支持力 N 垂直斜面，水平分量 N sinθ 提供向心力 mv²/R，竖直分量 N cosθ 平衡重力 mg，故 tanθ = v²/(Rg)。</div>
 </div>
 
 <div class="vocab">
