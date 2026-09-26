@@ -76,7 +76,7 @@ window.DATA = {
       category: "计算机",
       status: "active",
       teacher: "Jingbang Chen",
-      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）",
+      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）· 链表（单链表/双向/循环/反转/约瑟夫环/快慢指针）",
       notes: [
         { title: "数据结构复习笔记", file: "datastructure/数据结构复习笔记.html" }
       ],
@@ -508,7 +508,26 @@ window.DATA = {
       { en: "Multidimensional Array", zh: "多维数组" },
       { en: "Row Pointer / Element Pointer", zh: "行指针 / 元素指针" },
       { en: "Nested Vector", zh: "嵌套 vector" },
-      { en: "Linked Structure", zh: "链表结构" }
+      { en: "Linked Structure", zh: "链表结构" },
+      { en: "Node", zh: "节点" },
+      { en: "Link", zh: "链接" },
+      { en: "Head / Tail", zh: "头 / 尾" },
+      { en: "Singly Linked List", zh: "单链表" },
+      { en: "Doubly Linked List", zh: "双向链表" },
+      { en: "Circular Linked List", zh: "循环链表" },
+      { en: "Predecessor / Successor", zh: "前驱 / 后继" },
+      { en: "prev / next", zh: "前驱指针 / 后继指针" },
+      { en: "Traverse", zh: "遍历" },
+      { en: "pushFront / popFront", zh: "头插 / 删除头" },
+      { en: "append", zh: "追加到末尾" },
+      { en: "Reverse", zh: "反转" },
+      { en: "Dummy Head", zh: "哑结点 / 哨兵头结点" },
+      { en: "Sentinel", zh: "哨兵节点" },
+      { en: "Cycle", zh: "环 / 循环" },
+      { en: "Slow and Fast Pointers", zh: "快慢指针" },
+      { en: "Josephus Problem", zh: "约瑟夫问题" },
+      { en: "LRU Cache", zh: "最近最少使用缓存" },
+      { en: "Round-robin", zh: "轮转调度" }
     ]},
     { course: "caculus", terms: [
       { en: "Sequence", zh: "数列" },

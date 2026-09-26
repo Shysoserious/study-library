@@ -532,22 +532,7 @@ window.MathJax = {
       <button class="lecture-toggle" type="button">第6课 · Basic Feasible Solution &amp; The Simplex Method <span class="lt-arrow">▼</span></button>
       <div class="lecture-body">
         <a href="#lec6-overview">📖 本讲概览</a>
-        <a class="lv1" href="#lec6-p1">Part 1 · 回顾：多面体、基本解、BFS</a>
-        <a class="lv2" href="#lec6-p1-1">1.1 多面体与多胞形</a>
-        <a class="lv2" href="#lec6-p1-2">1.2 基本解回顾</a>
-        <a class="lv2" href="#lec6-p1-3">1.3 基本可行解（BFS）回顾</a>
-        <a class="lv1" href="#lec6-p2">Part 2 · 极点 ⇔ BFS</a>
-        <a class="lv2" href="#lec6-p2-1">2.1 定理</a>
-        <a class="lv2" href="#lec6-p2-2">2.2 BFS ⇒ 极点（证明）</a>
-        <a class="lv2" href="#lec6-p2-3">2.3 极点 ⇒ BFS（证明）</a>
-        <a class="lv1" href="#lec6-p3">Part 3 · 退化 Degeneracy</a>
-        <a class="lv2" href="#lec6-p3-1">3.1 退化定义</a>
-        <a class="lv2" href="#lec6-p3-2">3.2 为什么退化要紧</a>
-        <a class="lv1" href="#lec6-p4">Part 4 · 线性规划基本定理</a>
-        <a class="lv2" href="#lec6-p4-1">4.1 基本定理</a>
-        <a class="lv2" href="#lec6-p4-2">4.2 稀疏性推论</a>
-        <a class="lv2" href="#lec6-p4-3">4.3 证明概要（i）到达 BFS</a>
-        <a class="lv2" href="#lec6-p4-4">4.4 证明概要（ii）最优 BFS 存在</a>
+        <a class="lv1" href="#lec6-p1">Part 1 · 回顾上一讲</a>
         <a class="lv1" href="#lec6-p5">Part 5 · 单纯形法入门</a>
         <a class="lv2" href="#lec6-p5-1">5.1 为什么不能枚举</a>
         <a class="lv2" href="#lec6-p5-2">5.2 几何直觉与三要素</a>
@@ -2195,6 +2180,7 @@ window.MathJax = {
   <p><b>标准形 LP 的可行集是多面体吗？是。</b>标准形有 \(Ax=b,\ x\ge 0\)。关键技巧：<b>一个等式 = 两个不等式</b></p>
   <p class="formula">\(Ax=b \ \Leftrightarrow\ Ax\ge b \ \text{且}\ Ax\le b\)</p>
   <p>又有 \(x\ge 0 \Leftrightarrow Ix\ge 0\)（\(I\) 是单位阵）。所以标准形可行集是<b>有限多个半空间的交集</b>，从而是多面体。</p>
+  <p><b>多胞形（polytope）= 有界的多面体。</b>标准形可行集不必有界；而生产区域（\(x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\)）有界，所以是多胞形。</p>
 </div>
 
 <h3 id="lec5-p3-2">3.2 凸集 Convex Set</h3>
@@ -2385,6 +2371,26 @@ window.MathJax = {
   <p class="formula">\(x=(100,100,0,0,0)^\top\)</p>
   <p>有 \(m=3\) 个基变量，但只有 <b>2 个正分量</b>。几何上三条边界线交于同一个角点。</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 420 380" width="440" role="img" aria-label="退化角点">
+    <line x1="40" y1="320" x2="400" y2="320" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="396" y="340" class="svg-muted" text-anchor="end">x₁</text>
+    <line x1="40" y1="320" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
+    <polygon points="40,320 240,320 240,120 40,120" style="fill: var(--accent); opacity: 0.15; stroke: var(--accent); stroke-width: 2"/>
+    <line x1="240" y1="320" x2="240" y2="20" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
+    <line x1="40" y1="120" x2="400" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="332" y="112" class="svg-muted">x₂ = 100</text>
+    <line x1="140" y1="220" x2="340" y2="20" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="150" y="196" class="svg-muted">x₁ + x₂ = 200</text>
+    <circle cx="240" cy="120" r="7" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="254" y="104" class="svg-muted" style="fill: var(--sv-hl)">(100,100)</text>
+    <text x="24" y="342" class="svg-muted">(0,0)</text>
+    <text x="60" y="362" class="svg-muted" style="fill: var(--sv-neg)">三条边界交于同一点 → 退化（正分量 &lt; m）</text>
+  </svg>
+  <div class="figcap">图：退化（degeneracy）——把约束 x₁+x₂≤150 改成 x₁+x₂≤200 后，在角点 (100,100) 处三条边界 x₁=100、x₂=100、x₁+x₂=200 同时经过：m=3 个基变量却只有 2 个正分量。</div>
+</div>
 <div class="warn box">
   <span class="box-title">⚠️ 为什么退化重要</span>
   <ul>
@@ -2432,6 +2438,38 @@ window.MathJax = {
     <li>至少一个正分量变成 0，正分量个数减少。</li>
   </ul>
   <p>每步减少一个正分量，有限步后剩余列独立，最终点是 BFS。∎</p>
+</div>
+<p>标准形下 \(x=(x_1,x_2,s_1,s_2,s_3)\)，一个「收缩正分量」的具体走法（数字示意）：</p>
+<table class="truth">
+  <tr><th>点</th><th>标准形解</th><th>正分量数</th></tr>
+  <tr><td>P</td><td>\((40,40,60,120,70)\)</td><td>5</td></tr>
+  <tr><td>Q</td><td>\((75,75,25,50,0)\)</td><td>4</td></tr>
+  <tr><td>V</td><td>\((50,100,50,0,0)\)</td><td>3</td></tr>
+</table>
+<p>这里 \(m=3\)；在 V 处三个正分量对应的列已线性无关。</p>
+<div class="figure">
+  <svg viewBox="0 0 420 380" width="440" role="img" aria-label="撞零走到 BFS 的路径 P Q V">
+    <line x1="40" y1="320" x2="400" y2="320" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="396" y="340" class="svg-muted" text-anchor="end">x₁</text>
+    <line x1="40" y1="320" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
+    <polygon points="40,320 240,320 240,220 140,120 40,120" style="fill: var(--accent); opacity: 0.15; stroke: var(--accent); stroke-width: 2"/>
+    <line x1="240" y1="320" x2="240" y2="40" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
+    <line x1="40" y1="120" x2="400" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="332" y="112" class="svg-muted">x₂ = 100</text>
+    <line x1="40" y1="20" x2="340" y2="320" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="120" y="82" class="svg-muted">x₁ + x₂ = 150</text>
+    <path d="M 120 240 L 190 170 L 140 120" fill="none" stroke="var(--sv-hl)" stroke-width="3"/>
+    <circle cx="120" cy="240" r="6" style="fill: var(--muted)"/>
+    <text x="120" y="262" class="svg-muted" text-anchor="middle">P(40,40) · 5 个正分量</text>
+    <circle cx="190" cy="170" r="6" style="fill: var(--muted)"/>
+    <text x="198" y="166" class="svg-muted">Q(75,75) · 4 个</text>
+    <circle cx="140" cy="120" r="8" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="146" y="110" class="svg-muted" style="fill: var(--sv-hl)">V(50,100) · 3 个 = BFS</text>
+    <text x="24" y="342" class="svg-muted">(0,0)</text>
+  </svg>
+  <div class="figcap">图：「撞零」走法——从内部点 P（5 个正分量）走到边界点 Q（4 个），再走到角点 V（3 个正分量，m=3 处列已线性无关，即 BFS）。每走一步消掉一个正分量。</div>
 </div>
 <div class="ex box">
   <span class="box-title">✏️ (ii) 最优 BFS 存在</span>
@@ -2496,10 +2534,7 @@ window.MathJax = {
   <div class="toc">
     <span class="toc-title">📑 目录（Table of Contents）</span>
     <ol>
-      <li><a href="#lec6-p1">回顾：多面体、基本解、BFS</a> —— 上一讲的三块地基</li>
-      <li><a href="#lec6-p2">极点 ⇔ BFS</a> —— 几何与代数的双向证明</li>
-      <li><a href="#lec6-p3">退化 Degeneracy</a> —— 「零太多」的 BFS</li>
-      <li><a href="#lec6-p4">线性规划基本定理</a> —— 最优解总出现在 BFS + 稀疏性</li>
+      <li><a href="#lec6-p1">回顾上一讲</a> —— 多面体、基本解/BFS、极点⇔BFS、退化、基本定理（详见第5课）</li>
       <li><a href="#lec6-p5">单纯形法入门</a> —— 为什么不能枚举、相邻基、三要素</li>
       <li><a href="#lec6-p6">单纯形的代数机制</a> —— 字典、边方向、比值检验、缩减成本、停止准则</li>
       <li><a href="#lec6-p7">完整例子：生产规划 LP</a> —— 从原点一步步走到最优角点</li>
@@ -2513,223 +2548,22 @@ window.MathJax = {
 </section>
 
 <section id="lec6-p1">
-<h2>Part 1 · 回顾：多面体、基本解、BFS <span class="zh">Recall: Polyhedron, Basic Solution, BFS</span></h2>
-
-<h3 id="lec6-p1-1">1.1 多面体与多胞形 <span class="zh">Polyhedron and Polytope</span></h3>
-<div class="def box">
-  <span class="box-title">📌 定义</span>
-  <p><b>多面体（polyhedron）</b>是有限个半空间的交：\(P=\{x\in\mathbb{R}^n: Ax\ge b\}\)；<b>多胞形（polytope）</b>是有界的多面体。</p>
-</div>
-<p>标准形式的可行集 \(\{x: Ax=b,\ x\ge 0\}\) 是一个多面体（等号约束等于两个不等号，\(x\ge 0\) 本身就是 \(n\) 个半空间），但它<b>不必有界</b>。上一讲的生产区域 \(x_1\le 100,\ 2x_2\le 200,\ x_1+x_2\le 150,\ x_1,x_2\ge 0\) 是有界的，所以是<b>多胞形</b>；着色区域就是所有可行生产方案。</p>
-
-<h3 id="lec6-p1-2">1.2 基本解回顾 <span class="zh">Recall: Basic Solution</span></h3>
-<p>设 \(A\in\mathbb{R}^{m\times n}\) 行满秩。求基本解三步：</p>
-<ol>
-  <li>选 \(m\) 个线性无关的列，下标记为 \(B\)；</li>
-  <li>把非基变量全设为 0；</li>
-  <li>解 \(A_B x_B = b\)，得 \(x_B = A_B^{-1}b\)。</li>
-</ol>
-<p>以生产问题为例：\(x=(x_1,x_2,s_1,s_2,s_3)^\top\)，\(m=3,\ n=5\)，约束是</p>
-<p class="formula">\(x_1+s_1=100,\quad 2x_2+s_2=200,\quad x_1+x_2+s_3=150.\)</p>
-<p>取 \(B=\{1,2,3\}\)（基变量 \(x_1,x_2,s_1\)，非基变量 \(s_2,s_3\)）：令 \(s_2=s_3=0\)，解得 \(x_2=100,\ x_1=50,\ s_1=50\)，于是 \(x=(50,100,50,0,0)^\top\) 是一个基本解。</p>
-<div class="warn box">
-  <span class="box-title">⚠️ 一个容易忽略的点</span>
-  <p>「basic（基）」只代表「<b>被选中用来解方程的变量</b>」，<b>不要求它为正</b>。基本解可能含有负分量——负分量只说明它不是「可行」的（见下）。</p>
-</div>
-
-<h3 id="lec6-p1-3">1.3 基本可行解（BFS）回顾 <span class="zh">Recall: Basic Feasible Solution</span></h3>
-<div class="def box">
-  <span class="box-title">📌 定义</span>
-  <p><b>基本可行解（BFS）</b>是满足 \(x\ge 0\) 的基本解。</p>
-</div>
-<p>同一个生产区域里，按顺序 \((x_1,x_2,s_1,s_2,s_3)\)，三个点演示了三种情况：</p>
-<table class="truth">
-  <tr><th>点</th><th>解</th><th>基</th><th>归类</th><th>原因</th></tr>
-  <tr><td>A</td><td>\((50,100,50,0,0)\)</td><td>\(B=\{1,2,3\}\)</td><td><b>基本且可行</b></td><td>所有分量非负 → BFS</td></tr>
-  <tr><td>B</td><td>\((100,100,0,0,-50)\)</td><td>\(B=\{1,2,5\}\)</td><td><b>基本但不可行</b></td><td>负的松弛 \(s_3=-50\) 违反 \(s_3\ge 0\)</td></tr>
-  <tr><td>C</td><td>\((50,50,50,100,50)\)</td><td>—</td><td><b>可行但不基本</b></td><td>基本解最多 \(m=3\) 个非零，这里五个全为正</td></tr>
-</table>
-<p>图里画的是 \((x_1,x_2)\)，松弛变量由它们唯一决定。下一问：为什么 BFS 恰好对应极点？</p>
-</section>
-
-<section id="lec6-p2">
-<h2>Part 2 · 极点 ⇔ BFS <span class="zh">Extreme Points and BFS</span></h2>
-
-<h3 id="lec6-p2-1">2.1 定理</h3>
-<div class="thm box">
-  <span class="box-title">🎯 定理：极点与 BFS</span>
-  <p>对 \(P=\{x\in\mathbb{R}^n: Ax=b,\ x\ge 0\}\)（\(A\) 行满秩），\(x\) 是 \(P\) 的极点 ⟺ \(x\) 是 BFS。</p>
+<h2>Part 1 · 回顾上一讲 <span class="zh">Recall: The Foundations from Lecture 5</span></h2>
+<p>本讲直接建立在第5课的结论之上，这里只做索引（定义、证明、图都在第5课）：</p>
+<div class="toc">
+  <span class="toc-title">📑 快速回顾（详见第5课）</span>
+  <ul>
+    <li><b>多面体 / 多胞形</b>：标准形可行集 \(\{Ax=b,\ x\ge 0\}\) 是多面体；有界的多面体叫多胞形 → <a href="#lec5-p3">第5课 Part 3</a></li>
+    <li><b>基本解与 BFS</b>：选 \(m\) 个独立列、其余变量置 0、解 \(A_B x_B=b\)；非负即 BFS → <a href="#lec5-p5">第5课 Part 5</a></li>
+    <li><b>极点 ⇔ BFS</b>：\(x\) 是极点 ⟺ \(x\) 是 BFS（几何的「角」= 代数的「基本可行」）→ <a href="#lec5-p6">第5课 Part 6</a></li>
+    <li><b>退化</b>：正分量少于 \(m\) 的 BFS（多个基描述同一个点）→ <a href="#lec5-p7">第5课 Part 7</a></li>
+    <li><b>线性规划基本定理</b>：有最优 ⇒ 存在最优 BFS；稀疏性推论（最多 \(m\) 个正分量）→ <a href="#lec5-p8">第5课 Part 8</a></li>
+  </ul>
 </div>
 <div class="warn box">
-  <span class="box-title">💡 怎么理解这个定理</span>
-  <p>几何上，「极点」是不能被夹在两个不同可行点之间的点；代数上，「BFS」是「<b>让尽可能多的变量为 0</b>」的解（\(n\) 个变量、\(m\) 个等式，所以至少 \(n-m\) 个变量为 0，最多 \(m\) 个非零）。两者说的是同一件事：<b>角点 = 卡住尽可能多约束的点</b>。把变量压到 0，就是让点「贴到」尽量多的边界面上。</p>
+  <span class="box-title">💡 一句话承接</span>
+  <p>上一讲已把问题收窄为「<b>只需在 BFS（角点）中搜索</b>」。本讲要解决的是：角点最多有 \(C(n,m)\) 个、列不完，如何「沿边聪明地走」到最优——这就是<b>单纯形法</b>（从 Part 5 开始）。</p>
 </div>
-
-<h3 id="lec6-p2-2">2.2 BFS ⇒ 极点（证明）</h3>
-<p>设 \(x\) 是 BFS，假设 \(x=\lambda y+(1-\lambda)z\)，其中 \(y,z\in P\)、\(0&lt;\lambda&lt;1\)。我们要证 \(y=z=x\)。</p>
-<ul>
-  <li>\(x\) 的每个<b>非基</b>分量都是 0。因为 \(y,z\ge 0\)，它们的这些分量也必须是 0（非负的数加权平均为 0，只能各自为 0）。</li>
-  <li>剩下的<b>基</b>分量满足 \(A_B y_B = b = A_B z_B\)。因为 \(A_B\) 可逆，所以 \(y_B=z_B=x_B\)。</li>
-</ul>
-<p>于是 \(y=z=x\)：BFS 不可能夹在两个不同的可行点之间，故是极点。</p>
-
-<h3 id="lec6-p2-3">2.3 极点 ⇒ BFS（证明）</h3>
-<p>设 \(x\) 是极点，则 \(x\in P\)，即 \(Ax=b,\ x\ge 0\)。记 \(S=\{i: x_i&gt;0\}\) 为正分量下标集。</p>
-<p><b>若列 \(\{A_i: i\in S\}\) 线性无关</b>：把它们扩充成 \(m\) 列的基 \(B\)；新增的基变量都是 0，非基变量也都是 0，所以 \(x\) 是一个 BFS。</p>
-<p><b>若它们线性相关</b>：存在不全为零的系数 \((\alpha_i)_{i\in S}\) 使 \(\sum_{i\in S}\alpha_i A_i=0\)。把 \(i\notin S\) 的 \(\alpha_i\) 设为 0，则</p>
-<p class="formula">\(A\alpha=\sum_{i\in S}\alpha_i A_i=0 \implies A(x\pm \epsilon\alpha)=Ax\pm\epsilon A\alpha=b.\)</p>
-<p>因为 \(i\in S\) 时 \(x_i&gt;0\)，取 \(\epsilon&gt;0\) 足够小可使 \(x\pm\epsilon\alpha\ge 0\)，即两个点都可行。于是</p>
-<p class="formula">\(x=\tfrac12(x+\epsilon\alpha)+\tfrac12(x-\epsilon\alpha)\)</p>
-<p>是<b>两个不同可行点的凸组合</b>，与「极点」矛盾。所以正分量对应的列必然线性无关，\(x\) 必为 BFS。 \(\square\)</p>
-<div class="warn box">
-  <span class="box-title">💡 证明的灵魂</span>
-  <p>反向（极点 ⇒ BFS）的证法特别值得记住：<b>如果正分量对应的列相关，就能构造出一个「来回动」的方向 \(\alpha\)</b>（沿它 \(Ax=b\) 不变，只动正分量），把 \(x\) 写成两个可行点的中点——这正是「不是极点」的定义。反证法把「列相关」和「可分解」死死绑在一起。</p>
-</div>
-</section>
-
-<section id="lec6-p3">
-<h2>Part 3 · 退化 Degeneracy <span class="zh">Degeneracy</span></h2>
-
-<h3 id="lec6-p3-1">3.1 退化定义</h3>
-<div class="def box">
-  <span class="box-title">📌 定义</span>
-  <p>一个 BFS 若<b>严格正的分量少于 \(m\) 个</b>，就称为<b>退化的（degenerate）</b>；等价地，至少有一个基变量为 0。</p>
-</div>
-<p>把生产问题里唯一的 \(x_1+x_2\le 150\) 改成 \(x_1+x_2\le 200\)。在角点 \((x_1,x_2)=(100,100)\) 处，三条边界同时经过：\(s_1=s_2=s_3=0\)。于是按顺序</p>
-<p class="formula">\(x=(100,100,0,0,0)^\top\)</p>
-<p>有 \(m=3\) 个基变量，却只有 2 个正分量——这就是退化：<b>三个边界线交在同一个角点</b>。</p>
-<div class="figure">
-  <svg viewBox="0 0 420 380" width="440" role="img" aria-label="退化角点">
-    <line x1="40" y1="320" x2="400" y2="320" style="stroke: var(--muted); stroke-width: 1.5"/>
-    <text x="396" y="340" class="svg-muted" text-anchor="end">x₁</text>
-    <line x1="40" y1="320" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
-    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
-    <!-- 可行域（正方形） -->
-    <polygon points="40,320 240,320 240,120 40,120" style="fill: var(--accent); opacity: 0.15; stroke: var(--accent); stroke-width: 2"/>
-    <!-- 三条边界线 -->
-    <line x1="240" y1="320" x2="240" y2="20" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
-    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
-    <line x1="40" y1="120" x2="400" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
-    <text x="332" y="112" class="svg-muted">x₂ = 100</text>
-    <line x1="140" y1="220" x2="340" y2="20" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
-    <text x="150" y="196" class="svg-muted">x₁ + x₂ = 200</text>
-    <!-- 退化角点 -->
-    <circle cx="240" cy="120" r="7" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
-    <text x="254" y="104" class="svg-muted" style="fill: var(--sv-hl)">(100,100)</text>
-    <text x="24" y="342" class="svg-muted">(0,0)</text>
-    <text x="60" y="362" class="svg-muted" style="fill: var(--sv-neg)">三条边界交于同一点 → 退化（正分量 &lt; m）</text>
-  </svg>
-  <div class="figcap">图：退化（degeneracy）——把约束 x₁+x₂≤150 改成 x₁+x₂≤200 后，在角点 (100,100) 处三条边界 x₁=100、x₂=100、x₁+x₂=200 同时经过：m=3 个基变量却只有 2 个正分量。</div>
-</div>
-
-<h3 id="lec6-p3-2">3.2 为什么退化要紧</h3>
-<p>同一个退化角点，可以用<b>不同的基</b>来描述：</p>
-<table class="truth">
-  <tr><th>基</th><th>基变量</th><th>求解（令其余为 0）</th><th>结果</th></tr>
-  <tr><td>\(B=\{1,2,3\}\)</td><td>\(x_1,x_2,s_1\)</td><td>令 \(s_2=s_3=0\)</td><td>\((100,100,0)\)</td></tr>
-  <tr><td>\(B'=\{1,2,4\}\)</td><td>\(x_1,x_2,s_2\)</td><td>令 \(s_1=s_3=0\)</td><td>\((100,100,0)\)</td></tr>
-</table>
-<p>两者得到<b>同一个 BFS</b> \(x=(100,100,0,0,0)^\top\)。</p>
-<ul>
-  <li>基记录的是「<b>我们解哪几个变量</b>」，BFS 是解出来的<b>点</b>。</li>
-  <li>一次退化的单纯形步可能<b>换了基、点却没动</b>，目标值也不变。</li>
-  <li>退化不是错误：这个 BFS 仍是合法角点。用<b>特殊的主元规则</b>可以防止陷入循环（cycling）。</li>
-</ul>
-</section>
-
-<section id="lec6-p4">
-<h2>Part 4 · 线性规划基本定理 <span class="zh">Fundamental Theorem of LP</span></h2>
-
-<h3 id="lec6-p4-1">4.1 基本定理</h3>
-<div class="thm box">
-  <span class="box-title">🎯 线性规划基本定理</span>
-  <p>设标准形可行集 \(P=\{x\in\mathbb{R}^n: Ax=b,\ x\ge 0\}\)，\(A\) 行满秩（秩 \(m\)）：</p>
-  <ol>
-    <li>若 \(P\ne\emptyset\)，则 \(P\) 有 BFS；</li>
-    <li>若存在最优解，则存在一个<b>最优 BFS</b>。</li>
-  </ol>
-</div>
-<div class="warn box">
-  <span class="box-title">💡 关键 takeaways</span>
-  <p>第 2 条是说：<b>只要有最优解，某个 BFS 就是最优的</b>——所以我们永远可以只在角点里找最优。注意它不排除「整条边都最优」的情形（第 1 讲就见过）；那条边的两个端点都是最优 BFS。</p>
-</div>
-
-<h3 id="lec6-p4-2">4.2 稀疏性推论 <span class="zh">Corollary: Sparsity</span></h3>
-<div class="thm box">
-  <span class="box-title">🎯 推论（稀疏性）</span>
-  <p>若标准形 LP 有最优解且 \(A\) 行满秩（秩 \(m\)），则存在一个<b>最多只有 \(m\) 个正分量</b>的最优解。</p>
-</div>
-<p>为什么直觉上成立：一个基有 \(m\) 个基变量（有的可能是 0），非基变量都设为 0；既然最优 BFS 存在，我们就能选到一个「非零分量很少」的最优解。这在实际里很有用——很多大型 LP 的最优解天生就是稀疏的。</p>
-
-<h3 id="lec6-p4-3">4.3 证明概要（i）：到达一个 BFS</h3>
-<p>目标：从任意可行点出发，一路走到一个 BFS。想法：</p>
-<ul>
-  <li>若当前点不是 BFS，则它正分量对应的列<b>线性相关</b>；</li>
-  <li>利用这个相关性，构造一个方向 \(\alpha\ne 0\) 满足 \(A\alpha=0\)、且 \(\alpha_i=0\ (i\notin S)\)，沿它移动保持 \(Ax=b\) 不变；</li>
-  <li>把某个正分量「撞到 0」后停下；原有为 0 的分量始终为 0；</li>
-  <li>重复，直到这些列线性无关——此时就是 BFS。</li>
-</ul>
-<p>标准形下 \(x=(x_1,x_2,s_1,s_2,s_3)\)，一个「收缩正分量」的走法（数字是示意）：</p>
-<table class="truth">
-  <tr><th>点</th><th>标准形解</th><th>正分量数</th></tr>
-  <tr><td>P</td><td>\((40,40,60,120,70)\)</td><td>5</td></tr>
-  <tr><td>Q</td><td>\((75,75,25,50,0)\)</td><td>4</td></tr>
-  <tr><td>V</td><td>\((50,100,50,0,0)\)</td><td>3</td></tr>
-</table>
-<p>这里 \(m=3\)；在 V 处三个正分量对应的列已线性无关。</p>
-<p><b>关键计算</b>：取可行点 \(x\)（非 BFS），\(S=\{i:x_i&gt;0\}\)，其列相关，故存在 \(\alpha\ne 0\) 使 \(A\alpha=0\)、\(\alpha_i=0\ (i\notin S)\)。等式仍满足 \(A(x-\epsilon\alpha)=b\)。必要时把 \(\alpha\) 换成 \(-\alpha\)，使某个 \(\alpha_i&gt;0\)，然后取</p>
-<p class="formula">\(\epsilon^\star=\min_{i\in S,\ \alpha_i&gt;0}\ \frac{x_i}{\alpha_i},\qquad x'=x-\epsilon^\star\alpha.\)</p>
-<ul>
-  <li>没有分量变负，所有原有的 0 保持为 0；</li>
-  <li>至少一个正分量变成 0，正分量数减少。</li>
-</ul>
-<p>每步消掉一个正分量，有限步后剩余列线性无关，最终点就是 BFS。</p>
-<div class="figure">
-  <svg viewBox="0 0 420 380" width="440" role="img" aria-label="撞零走到 BFS 的路径 P Q V">
-    <line x1="40" y1="320" x2="400" y2="320" style="stroke: var(--muted); stroke-width: 1.5"/>
-    <text x="396" y="340" class="svg-muted" text-anchor="end">x₁</text>
-    <line x1="40" y1="320" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
-    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
-    <!-- 可行域五边形 -->
-    <polygon points="40,320 240,320 240,220 140,120 40,120" style="fill: var(--accent); opacity: 0.15; stroke: var(--accent); stroke-width: 2"/>
-    <line x1="240" y1="320" x2="240" y2="40" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
-    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
-    <line x1="40" y1="120" x2="400" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
-    <text x="332" y="112" class="svg-muted">x₂ = 100</text>
-    <line x1="40" y1="20" x2="340" y2="320" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
-    <text x="120" y="82" class="svg-muted">x₁ + x₂ = 150</text>
-    <!-- 路径 P→Q→V -->
-    <path d="M 120 240 L 190 170 L 140 120" fill="none" stroke="var(--sv-hl)" stroke-width="3"/>
-    <circle cx="120" cy="240" r="6" style="fill: var(--muted)"/>
-    <text x="120" y="262" class="svg-muted" text-anchor="middle">P(40,40) · 5 个正分量</text>
-    <circle cx="190" cy="170" r="6" style="fill: var(--muted)"/>
-    <text x="198" y="166" class="svg-muted">Q(75,75) · 4 个</text>
-    <circle cx="140" cy="120" r="8" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
-    <text x="146" y="110" class="svg-muted" style="fill: var(--sv-hl)">V(50,100) · 3 个 = BFS</text>
-    <text x="24" y="342" class="svg-muted">(0,0)</text>
-  </svg>
-  <div class="figcap">图：「撞零」走法——从内部点 P（5 个正分量）走到边界点 Q（4 个），再走到角点 V（3 个正分量，m=3 处列已线性无关，即 BFS）。每走一步消掉一个正分量。</div>
-</div>
-
-<h3 id="lec6-p4-4">4.4 证明概要（ii）：存在最优 BFS</h3>
-<p>目标：从最优可行点出发，走到最优 BFS。想法：</p>
-<ul>
-  <li>从最优可行解 \(x\) 出发；</li>
-  <li>若不是 BFS，存在方向 \(\alpha\ne 0\)，使 \(x\pm\epsilon\alpha\) 对小 \(\epsilon&gt;0\) 都可行；</li>
-  <li>若目标沿此方向变化，则两个方向之一会<b>改进</b>目标，与最优性矛盾；</li>
-  <li>所以沿该方向的移动<b>必须保持目标不变</b>；</li>
-  <li>于是可以用 (i) 的「撞零」技巧继续，而不丢最优性。</li>
-</ul>
-<div class="warn box">
-  <span class="box-title">💡 记住一句话</span>
-  <p>在<b>最优点</b>，任何「来回都能走」的可行移动，其目标变化必须为 0——否则往某个方向走一步就能改进。这正是后面「停止准则」的雏形。</p>
-</div>
-<p><b>为什么 \(c^\top\alpha=0\)</b>：设最优可行解 \(x\) 非基本，存在 \(\alpha\ne 0\)（支撑在正分量上）使 \(A\alpha=0\)。对小 \(\epsilon&gt;0\)，\(x\pm\epsilon\alpha\) 都可行。关键断言 \(c^\top\alpha=0\)，否则：</p>
-<ul>
-  <li>若 \(c^\top\alpha&lt;0\)，则 \(x+\epsilon\alpha\) 目标更小；</li>
-  <li>若 \(c^\top\alpha&gt;0\)，则 \(x-\epsilon\alpha\) 目标更小。</li>
-</ul>
-<p>两种情况都与 \(x\) 最优矛盾。所以沿 \(\pm\alpha\) 移动目标不变，可重复 (i) 到达最优 BFS。 \(\square\)</p>
 </section>
 
 <section id="lec6-p5">
