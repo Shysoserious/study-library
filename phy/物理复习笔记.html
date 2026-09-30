@@ -426,6 +426,40 @@ window.MathJax = {
         <a class="lv2" href="#lec6-p7-2">7.2 例题：恒力作用在盒子上</a>
       </div>
     </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第7课 · Potential Energy and Energy Conservation <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec7-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec7-p1">Part 1 · 势能与重力势能</a>
+        <a class="lv2" href="#lec7-p1-1">1.1 什么是势能</a>
+        <a class="lv2" href="#lec7-p1-2">1.2 重力势能 U = mgy</a>
+        <a class="lv2" href="#lec7-p1-3">1.3 曲线路径</a>
+        <a class="lv1" href="#lec7-p2">Part 2 · 弹性势能</a>
+        <a class="lv2" href="#lec7-p2-1">2.1 弹簧力做功</a>
+        <a class="lv2" href="#lec7-p2-2">2.2 U = ½kx²（抛物线）</a>
+        <a class="lv1" href="#lec7-p3">Part 3 · 保守力与非保守力</a>
+        <a class="lv2" href="#lec7-p3-1">3.1 定义</a>
+        <a class="lv2" href="#lec7-p3-2">3.2 保守力的三个等价判据</a>
+        <a class="lv1" href="#lec7-p4">Part 4 · 机械能守恒</a>
+        <a class="lv2" href="#lec7-p4-1">4.1 只有重力</a>
+        <a class="lv2" href="#lec7-p4-2">4.2 只有弹力</a>
+        <a class="lv2" href="#lec7-p4-3">4.3 例题：蹦极</a>
+        <a class="lv1" href="#lec7-p5">Part 5 · 其他力做功与能量守恒</a>
+        <a class="lv2" href="#lec7-p5-1">5.1 其他力做的功 W = ΔE</a>
+        <a class="lv2" href="#lec7-p5-2">5.2 能量守恒（含内能）</a>
+        <a class="lv2" href="#lec7-p5-3">5.3 例题：马戏团小猎犬</a>
+        <a class="lv2" href="#lec7-p5-4">5.4 功率（能量视角）</a>
+        <a class="lv1" href="#lec7-p6">Part 6 · 力与势能的关系</a>
+        <a class="lv2" href="#lec7-p6-1">6.1 一维：F = −dU/dx</a>
+        <a class="lv2" href="#lec7-p6-2">6.2 三维：梯度 F = −∇U</a>
+        <a class="lv2" href="#lec7-p6-3">6.3 例题：U = C/x</a>
+        <a class="lv1" href="#lec7-p7">Part 7 · 能量图 Energy Diagrams</a>
+        <a class="lv2" href="#lec7-p7-1">7.1 弹簧-物块能量图与转折点</a>
+        <a class="lv2" href="#lec7-p7-2">7.2 稳定 / 不稳定 / 中性平衡</a>
+        <a class="lv1" href="#lec7-p8">Part 8 · 总结</a>
+      </div>
+    </div>
+
   </nav>
 </aside>
 
@@ -434,7 +468,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">物理 · 复习笔记</h1>
-<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–6</p>
+<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–7</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -2217,6 +2251,398 @@ window.MathJax = {
 </div>
 
 </div><!-- /第6课 -->
+
+<!-- ============ 第7课 ============ -->
+<div class="lecture" id="lec7">
+<div class="lecture-banner">第7课 · Potential Energy and Energy Conservation <span class="zh">（势能与能量守恒）</span></div>
+
+<section id="lec7-overview">
+  <h2>本讲概览 Overview</h2>
+  <div class="def box">
+    <span class="box-title">📌 本讲内容</span>
+    <p>上一讲建立了「<b>功</b>把能量从一个物体传给另一个物体」的图景（功–动能定理 \(W=\Delta K\)）。本讲引入第二种机械能——<b>势能（potential energy）</b>：与系统<b>位置/构型</b>相关的能量。核心主线：势能变化 \(\Delta U = -W\)（保守力做的功）；当系统只受保守力时，<b>机械能守恒</b> \(E_{mech}=K+U=\text{常数}\)；有非保守力时，机械能损失转化为<b>内能</b>（能量总量仍守恒）。</p>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲主线</span>
+    <p>势能概念 → 重力势能 \(U_g=mgy\) → 弹性势能 \(U_{el}=\tfrac12 kx^2\) → 保守力判据 → 机械能守恒（蹦极例题）→ 其他力做功 \(W_{other}=\Delta E_{mech}\) 与能量守恒（内能）→ 力与势能 \(F=-\dfrac{dU}{dx}\)、\(F=-\nabla U\) → 能量图（转折点、稳定/不稳定平衡）。</p>
+  </div>
+  <p>开讲前复习上一章：动能 \(K=\tfrac12 mv^2\)、恒力做功 \(W=\vec{F}\cdot\vec{d}=Fd\cos\phi\)、弹簧力 \(F_x=-kx\) 与弹簧力做功 \(W_s=\tfrac12 kx_i^2-\tfrac12 kx_f^2\)、三维功 \(W=\int F_x\,dx+\int F_y\,dy+\int F_z\,dz\)、功–动能定理 \(\Delta K=W\)、功率 \(P=\vec{F}\cdot\vec{v}\)。</p>
+</section>
+
+<section id="lec7-p1">
+<h2>Part 1 · 势能与重力势能 <span class="zh">Potential Energy &amp; Gravitational PE</span></h2>
+
+<h3 id="lec7-p1-1">1.1 什么是势能 What is Potential Energy?</h3>
+<div class="def box">
+  <span class="box-title">📌 势能 Potential Energy (PE)</span>
+  <p>受重力或弹簧力等作用的物体，<b>随位置不同而具有不同的势能</b>。例：蹦极从<b>高</b>到<b>低</b>，<b>重力势能减少</b>；弹簧从<b>拉伸</b>到<b>松弛</b>，<b>弹性势能减少</b>。</p>
+  <ul>
+    <li><b>势能</b>：与<b>系统内物体的位置</b>相关的能量；</li>
+    <li>是「<b>做功的潜力 / 可能性</b>」的一种度量（a measure of the potential or possibility for work to be done）。</li>
+  </ul>
+</div>
+
+<h3 id="lec7-p1-2">1.2 重力势能 U = mgy <span class="zh">Gravitational Potential Energy</span></h3>
+<p>重力势能是与物体<b>重量和高度</b>相关的势能。取<b>向上为正</b>，物体从高度 \(y_1\) 下落到 \(y_2\)，重力做的功：</p>
+<p class="formula">\[W_g = mg\,d\cos\phi = mg(y_1 - y_2)\]</p>
+<p>定义初、末位置的重力势能为 \(U_{g,1}\)、\(U_{g,2}\)，则重力势能的变化：</p>
+<p class="formula">\[U_{g,2} - U_{g,1} = -W_g = mg(y_2 - y_1)\]</p>
+<p>选<b>参考点</b> \(y_1 = 0\)、令 \(U_{g,1}=0\)，得重力势能函数：</p>
+<div class="def box">
+  <span class="box-title">📌 重力势能</span>
+  <p class="formula">\[U_g(y) = mgy\]</p>
+  <p><b>粒子–地球系统的重力势能只取决于粒子相对参考位置 \(y=0\) 的竖直位置（高度）</b>。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 720 260" width="720">
+    <!-- 参考面 y=0 -->
+    <line x1="60" y1="210" x2="680" y2="210" stroke="var(--muted)" stroke-width="1.5"/>
+    <text x="670" y="230" class="svg-muted" text-anchor="end">参考面 y = 0</text>
+    <!-- 高度 y1 和 y2 两条水平虚线 -->
+    <line x1="140" y1="70" x2="640" y2="70" stroke="var(--muted)" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="660" y="74" class="svg-muted" text-anchor="end">y₁（高）</text>
+    <line x1="140" y1="170" x2="640" y2="170" stroke="var(--muted)" stroke-width="1" stroke-dasharray="5 4"/>
+    <text x="660" y="174" class="svg-muted" text-anchor="end">y₂（低）</text>
+    <!-- 物体（圆）在 y1 -->
+    <circle cx="230" cy="70" r="16" style="fill: var(--accent)"/>
+    <text x="230" y="75" class="svg-text" text-anchor="middle" style="fill: #fff">m</text>
+    <!-- 重力箭头向下 -->
+    <line x1="230" y1="90" x2="230" y2="160" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <polygon points="230,166 224,155 236,155" style="fill: var(--sv-neg)"/>
+    <text x="246" y="130" class="svg-muted" style="fill: var(--sv-neg)">mg</text>
+    <!-- 下落后的物体（虚线）在 y2 -->
+    <circle cx="230" cy="170" r="16" style="fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 3"/>
+    <!-- 势能标注 -->
+    <text x="430" y="95" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">U_g(y₁) = mgy₁</text>
+    <text x="430" y="195" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">U_g(y₂) = mgy₂</text>
+    <text x="430" y="140" class="svg-muted" text-anchor="middle">ΔU_g = mg(y₂ − y₁)（下落时为负）</text>
+  </svg>
+  <div class="figcap">图：重力势能——物体从高处 y₁ 下落到 y₂，重力做正功 \(W_g=mg(y_1-y_2)\)，势能减少 \(\Delta U_g=-W_g=mg(y_2-y_1)\)。</div>
+</div>
+
+<h3 id="lec7-p1-3">1.3 曲线路径 <span class="zh">Motion Along a Curved Path</span></h3>
+<p>物体沿<b>任意曲线路径</b>下落时，重力势能的变化仍只取决于<b>初末高度差</b>：</p>
+<p class="formula">\[U_{g,2} - U_{g,1} = -W_g = mg(y_2 - y_1)\]</p>
+<p>与<b>纯竖直路径的结果完全相同</b>——这正是「重力是保守力」的体现（见 Part 3）。</p>
+</section>
+
+<section id="lec7-p2">
+<h2>Part 2 · 弹性势能 <span class="zh">Elastic Potential Energy</span></h2>
+
+<h3 id="lec7-p2-1">2.1 弹簧力做功 <span class="zh">Work Done by Spring Force</span></h3>
+<p>弹簧力做的功（复习）：</p>
+<p class="formula">\[W_s = \tfrac12 kx_i^2 - \tfrac12 kx_f^2\]</p>
+<p>设初、末位置的弹性势能为 \(U_{el,1}\)、\(U_{el,2}\)，则弹性势能的变化：</p>
+<p class="formula">\[U_{el,2} - U_{el,1} = -W_s = \tfrac12 kx_f^2 - \tfrac12 kx_i^2\]</p>
+<p>选<b>松弛位置</b>为参考点 \(x_i=0\)、令 \(U_{el,1}=0\)，得：</p>
+<div class="def box">
+  <span class="box-title">📌 弹性势能</span>
+  <p class="formula">\[U_{el}(x) = \tfrac12 kx^2\]</p>
+</div>
+
+<h3 id="lec7-p2-2">2.2 U = ½kx²（抛物线） <span class="zh">The Parabola</span></h3>
+<p>理想弹簧的弹性势能是<b>抛物线</b>：</p>
+<ul>
+  <li>\(x\) 是弹簧的<b>伸长量或压缩量</b>（相对松弛位置）；</li>
+  <li>\(U_{el}\) <b>永不为负</b>（因为 \(x^2\ge 0\)）；</li>
+  <li>在 \(x=0\)（松弛位置）势能最小。</li>
+</ul>
+<div class="figure">
+  <svg viewBox="0 0 720 260" width="720">
+    <!-- 坐标轴 -->
+    <line x1="360" y1="30" x2="360" y2="225" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="360,30 356,42 364,42" style="fill: var(--muted)"/>
+    <line x1="40" y1="205" x2="680" y2="205" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="680,205 668,201 668,209" style="fill: var(--muted)"/>
+    <text x="692" y="209" class="svg-muted" text-anchor="end">x</text>
+    <text x="375" y="30" class="svg-muted">U_el</text>
+    <!-- 抛物线 U = 1/2 k x^2 -->
+    <path d="M80,205 Q200,205 360,40 Q520,205 640,205" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <!-- 顶点（松弛位置） -->
+    <circle cx="360" cy="40" r="5" style="fill: var(--sv-hl)"/>
+    <text x="360" y="18" class="svg-muted" text-anchor="middle">松弛位置 x = 0（U 最小）</text>
+    <!-- 压缩与拉伸标注 -->
+    <text x="180" y="196" class="svg-muted" text-anchor="middle">压缩</text>
+    <text x="540" y="196" class="svg-muted" text-anchor="middle">拉伸</text>
+    <text x="120" y="150" class="svg-text" text-anchor="middle" style="fill: var(--accent)">U = ½kx²</text>
+  </svg>
+  <div class="figcap">图：弹性势能 \(U_{el}=\tfrac12 kx^2\) 是一条开口向上的抛物线，在松弛位置 x=0 处取最小值 0，向两侧（压缩/拉伸）对称增大，且永不为负。</div>
+</div>
+</section>
+
+<section id="lec7-p3">
+<h2>Part 3 · 保守力与非保守力 <span class="zh">Conservative vs Nonconservative Forces</span></h2>
+
+<h3 id="lec7-p3-1">3.1 定义 <span class="zh">Definition</span></h3>
+<div class="def box">
+  <span class="box-title">📌 保守力 Conservative Forces</span>
+  <p><b>提供动能 ↔ 势能双向转换机会</b>的力：<b>重力、弹簧力</b>。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 非保守力 Non-conservative Forces</span>
+  <p><b>动摩擦力、阻力（drag force）</b>：它们做的功<b>依赖路径</b>，<b>不可逆</b>，总是造成机械能损失——把动能转化为接触体的<b>内能</b>（internal energy），使接触面温度升高。</p>
+</div>
+
+<h3 id="lec7-p3-2">3.2 保守力的三个等价判据 <span class="zh">Mathematical Criteria</span></h3>
+<div class="thm box">
+  <span class="box-title">📐 保守力的判据（三个等价条件，满足其一即可）</span>
+  <ol>
+    <li>保守力对粒子沿<b>任意闭合路径</b>做的<b>净功为零</b>；</li>
+    <li>保守力对粒子做的功<b>不依赖路径</b>，只取决于<b>初、末位置</b>；</li>
+    <li>（第三个等价数学条件见 Part 6：\(\vec{F}=-\nabla U\)，势能可定义）。</li>
+  </ol>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 怎么理解「做功依赖路径」</span>
+  <p>把箱子沿两条不同路径（直线 vs 绕远路）在同一粗糙地面推回原点：<b>摩擦力做的功不同</b>（路径越长、摩擦功越多），且<strong>来回一圈净功不为零</strong>、而是始终为负（一直耗散能量）。而重力把箱子提上又放回原位，<b>净功为零</b>——路径无关。</p>
+</div>
+</section>
+
+<section id="lec7-p4">
+<h2>Part 4 · 机械能守恒 <span class="zh">Conservation of Mechanical Energy</span></h2>
+
+<h3 id="lec7-p4-1">4.1 只有重力 <span class="zh">Only Gravitational Force</span></h3>
+<p>考虑<b>孤立系统</b>（无外力造成系统内能量变化），如「粒子–地球」系统，假设只有重力 \(F_g\) 作用：</p>
+<p class="formula">\[\Delta U = -W_g,\qquad \Delta K = W_g\ \text{（功–动能定理）}\]</p>
+<p>两式联立：\(\Delta K = -\Delta U\)，即</p>
+<p class="formula">\[K_2 - K_1 = -(U_2 - U_1)\ \Rightarrow\ K_2 + U_2 = K_1 + U_1\]</p>
+<div class="def box">
+  <span class="box-title">📌 机械能 Mechanical Energy</span>
+  <p class="formula">\[E_{mech} = K + U\]</p>
+  <p><b>机械能守恒</b>：\(\Delta E_{mech} = 0\)——系统任意两个状态，\(K+U\) 之和相等。</p>
+</div>
+
+<h3 id="lec7-p4-2">4.2 只有弹力 <span class="zh">Only Elastic Force</span></h3>
+<p>同理，若只有弹簧力做功：\(\Delta U = -W_s\)，\(\Delta K = W_s\)，故 \(\Delta K = -\Delta U\)，即</p>
+<p class="formula">\[K_2 + U_2 = K_1 + U_1 \quad(\Delta E_{mech} = 0)\]</p>
+<div class="thm box">
+  <span class="box-title">📐 机械能守恒定律</span>
+  <p><b>在只受保守力作用的孤立系统里，总机械能保持不变</b>，尽管动能和势能可以互相转化。</p>
+  <p class="formula">\[\Delta E_{mech} = \Delta K + \Delta U = 0\]</p>
+</div>
+
+<h3 id="lec7-p4-3">4.3 例题：蹦极 <span class="zh">Sample Problem: Bungee Jumper</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 蹦极者的最低点</span>
+  <p>质量 61.0 kg 的蹦极者站在距河面 45.0 m 的桥上。弹性绳原长 \(L=25.0\) m，服从胡克定律、劲度系数 \(k=160\) N/m。若她在<b>碰到水面之前停下</b>，求她<b>最低点时脚距水面</b>的高度 \(h\)。</p>
+  <p>设绳子额外伸长量为 \(d\)（最低点比原长多伸出的长度）。全过程 \(\Delta K = 0\)（起、止都静止），机械能守恒：</p>
+  <p class="formula">\[\Delta K + \Delta U_e + \Delta U_g = 0\]</p>
+  <p>重力势能变化（下降 \(L+d\)）：\(\Delta U_g = mg\,\Delta y = -mg(L+d)\)；<br>
+  弹性势能变化（从松弛伸长到 \(d\)）：\(\Delta U_e = \tfrac12 kd^2\)。</p>
+  <p class="formula">\[0 + \tfrac12 kd^2 - mg(L+d) = 0\]</p>
+  <p class="formula">\[\tfrac12(160)\,d^2 - (61.0)(9.8)(25.0) - (61.0)(9.8)\,d = 0 \ \Rightarrow\ d = 17.9\ \text{m}\]</p>
+  <p>最低点距桥 \(L+d = 25.0 + 17.9 = 42.9\) m，故<b>脚距水面</b> \(h = 45.0 - 42.9 = 2.1\) m。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 720 320" width="720">
+    <!-- 桥面 -->
+    <rect x="120" y="40" width="480" height="18" rx="4" style="fill: var(--muted)"/>
+    <text x="600" y="58" class="svg-muted" text-anchor="end">桥面（距水面 45.0 m）</text>
+    <!-- 绳子原长 L -->
+    <line x1="360" y1="58" x2="360" y2="150" stroke="var(--accent)" stroke-width="3"/>
+    <text x="330" y="105" class="svg-muted" text-anchor="end">L = 25.0 m</text>
+    <!-- 绳子伸长 d（虚线表示继续下伸） -->
+    <line x1="360" y1="150" x2="360" y2="250" stroke="var(--accent)" stroke-width="3" stroke-dasharray="6 4"/>
+    <text x="390" y="205" class="svg-muted">d = 17.9 m</text>
+    <!-- 蹦极者（最低点） -->
+    <circle cx="360" cy="255" r="15" style="fill: var(--sv-neg)"/>
+    <text x="360" y="260" class="svg-text" text-anchor="middle" style="fill: #fff">人</text>
+    <!-- 水面 -->
+    <line x1="120" y1="300" x2="620" y2="300" stroke="var(--sv-hl)" stroke-width="2.5"/>
+    <text x="640" y="304" class="svg-muted" text-anchor="end">水面</text>
+    <!-- 高度 h -->
+    <line x1="440" y1="255" x2="440" y2="300" stroke="var(--sv-neg)" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <line x1="432" y1="255" x2="448" y2="255" stroke="var(--sv-neg)" stroke-width="1.5"/>
+    <line x1="432" y1="300" x2="448" y2="300" stroke="var(--sv-neg)" stroke-width="1.5"/>
+    <text x="455" y="280" class="svg-text" style="fill: var(--sv-neg)">h = 2.1 m</text>
+  </svg>
+  <div class="figcap">图：蹦极——绳子先自然下垂原长 L，随后额外伸长 d 把人拉住；最低点距水面仅 h = 2.1 m。整个过程重力势能转化为弹性势能，动能起止皆为零。</div>
+</div>
+</section>
+
+<section id="lec7-p5">
+<h2>Part 5 · 其他力做功与能量守恒 <span class="zh">Other Forces &amp; Conservation of Energy</span></h2>
+
+<h3 id="lec7-p5-1">5.1 其他力做的功 W = ΔE <span class="zh">When Other Forces Act</span></h3>
+<p>系统里除了保守力 \(F_g\)、\(F_s\)，还有<b>其他力</b> \(F_{other}\) 做功。由功–动能定理：</p>
+<p class="formula">\[W_{tot} = W_g + W_s + W_{other} = \Delta K\]</p>
+<p>代入 \(W_g = -\Delta U_g\)、\(W_s = -\Delta U_s\)：</p>
+<div class="thm box">
+  <span class="box-title">📐 最一般的能量关系</span>
+  <p class="formula">\[W_{other} = \Delta K + \Delta U_g + \Delta U_s = \Delta E_{mech}\]</p>
+  <p><b>除重力与弹性力之外的所有力做的功，等于系统总机械能的变化</b>（这里势能 = 重力势能 + 弹性势能）。这是动能、势能、其他力做功三者之间最一般的表述。</p>
+</div>
+
+<h3 id="lec7-p5-2">5.2 能量守恒（含内能） <span class="zh">Conservation of Energy</span></h3>
+<p>其他力（如<b>摩擦</b>）做的功<b>无法用势能表示</b>，它转化为<b>内能（internal energy）</b> \(E_{int}\)。例：滑块在粗糙水平面滑动，摩擦做<b>负功</b> → 动能减少 → 表面变热 → <b>热能（内能的一部分）增加</b>。</p>
+<p class="formula">\[W_{other} = \Delta K + \Delta U_g + \Delta U_s = \Delta E_{mech} = -\Delta E_{int}\]</p>
+<p class="formula">\[\Delta E_{mech} + \Delta E_{int} = 0\]</p>
+<div class="def box">
+  <span class="box-title">📌 能量守恒原理（推广）</span>
+  <p><b>能量既不会凭空产生，也不会凭空消失；它只会改变形式。</b></p>
+  <p>对<b>孤立系统</b>：\(E_{mech,1} + E_{int,1} = E_{mech,2} + E_{int,2}\)——<b>只需比较两个瞬间的总能量，不必考虑中间时刻的能量</b>。</p>
+</div>
+
+<h3 id="lec7-p5-3">5.3 例题：马戏团小猎犬 <span class="zh">Problem: Circus Beagle</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 斜面滑行的热能增加</span>
+  <p>质量 \(m=6.0\) kg 的马戏团小猎犬以 \(v_0=7.8\) m/s 冲上弯曲坡道左端（高 \(y_0=8.5\) m），滑到右侧、到达高度 \(y=11.1\) m 时<b>瞬时停下</b>。坡道<b>有摩擦</b>。求小猎犬与坡道因滑动产生的<b>热能增量</b> \(\Delta E_{th}\)。</p>
+  <p class="formula">\[W_{other} = \Delta K + \Delta U_g + \Delta U_s = \Delta E_{mech} = -\Delta E_{th}\]</p>
+  <p class="formula">\[\Delta E_{th} = \tfrac12 m v_0^2 - mg(y - y_0)\]</p>
+  <p class="formula">\[= \tfrac12(6.0)(7.8)^2 - (6.0)(9.8)(11.1 - 8.5) \approx 30\ \text{J}\]</p>
+  <p>初始动能 182.5 J 中，只有约 152.9 J 转化为重力势能，剩下的约 <b>30 J</b> 因摩擦变成了热能。</p>
+</div>
+
+<h3 id="lec7-p5-4">5.4 功率（能量视角） <span class="zh">Power</span></h3>
+<p>对系统做的功改变系统能量：\(W = \Delta E = \Delta E_{mech} + \Delta E_{int}\)。<b>功率 = 力把能量从一种形式转移到另一种形式的速率</b>：</p>
+<p class="formula">\[P_{avg} = \frac{W}{\Delta t} = \frac{\Delta E}{\Delta t},\qquad P = \frac{dW}{dt} = \frac{dE}{dt}\]</p>
+</section>
+
+<section id="lec7-p6">
+<h2>Part 6 · 力与势能的关系 <span class="zh">Force and Potential Energy</span></h2>
+
+<h3 id="lec7-p6-1">6.1 一维：F = −dU/dx <span class="zh">1D</span></h3>
+<p>对保守力 \(F_g\)、\(F_s\)，恒有 \(\Delta U = -W\)。在一维情形，保守力写作 \(F_x(x)\)：</p>
+<p class="formula">\[\Delta U = -W = -\int_{x_1}^{x_2} F_x(x)\,dx\]</p>
+<p class="formula">\[F_x(x) = -\frac{dU(x)}{dx}\]</p>
+<div class="thm box">
+  <span class="box-title">📐 关键理解</span>
+  <p><b>保守力总是推动系统朝更低势能的方向运动</b>（负号）。例：弹簧力 \(F_x = -\dfrac{d}{dx}\left(\tfrac12 kx^2\right) = -kx\)——把系统推回松弛状态。重力同理：\(U=mgy\) ⇒ \(F_y = -\dfrac{dU}{dy} = -mg\)（向下）。</p>
+</div>
+
+<h3 id="lec7-p6-2">6.2 三维：梯度 F = −∇U <span class="zh">3D: Gradient</span></h3>
+<p>粒子在保守力作用下可沿 x、y、z 任意方向（或同时）运动。势能变化：</p>
+<p class="formula">\[\Delta U = -W = -\left(\int F_x\,dx + \int F_y\,dy + \int F_z\,dz\right)\]</p>
+<p>取微小位移，仍得 \(F_x = -\dfrac{\partial U}{\partial x}\)，\(F_y = -\dfrac{\partial U}{\partial y}\)，\(F_z = -\dfrac{\partial U}{\partial z}\)（<b>偏导数</b>：符号 \(\partial\) 是修改过的 \(d\)）。</p>
+<div class="def box">
+  <span class="box-title">📌 梯度 Gradient</span>
+  <p class="formula">\[\vec{F} = -\nabla U = -\left(\frac{\partial U}{\partial x}\hat{i} + \frac{\partial U}{\partial y}\hat{j} + \frac{\partial U}{\partial z}\hat{k}\right)\]</p>
+  <p>运算 \(\nabla\)（对 U 求梯度）给出势能下降最快的方向，力即其负方向。</p>
+</div>
+
+<h3 id="lec7-p6-3">6.3 例题 <span class="zh">Sample Problems</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例题一：U = C/x</span>
+  <p>带电粒子静止在 x=0 处，第二个同号电荷可沿正 x 轴自由移动，系统势能 \(U(x) = C/x\)（C 为正常数）。求作用在可动粒子上的力的 x 分量：</p>
+  <p class="formula">\[F_x(x) = -\frac{dU(x)}{dx} = -C\left(-\frac{1}{x^2}\right) = \frac{C}{x^2}\]</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例题二：1D 与 2D 力</span>
+  <p>① 重力势能 \(U=mgy\)，求重力：</p>
+  <p class="formula">\[\vec{F} = -\nabla U = -\left(\frac{\partial mgy}{\partial x}\hat{i} + \frac{\partial mgy}{\partial y}\hat{j} + \frac{\partial mgy}{\partial z}\hat{k}\right) = -mg\,\hat{j}\]</p>
+  <p>② 空气曲棍球桌上粒子受保守力，势能 \(U(x,y)=\tfrac12 k(x^2+y^2)\)，求力及其大小：</p>
+  <p class="formula">\[\vec{F} = -\nabla U = -(kx\,\hat{i} + ky\,\hat{j}) = -kx\,\hat{i} - ky\,\hat{j}\]</p>
+  <p class="formula">\[F = k\sqrt{x^2+y^2} = kr,\qquad \vec{F} = -k\vec{r}\]</p>
+  <p>（\(\vec{r}\) 为粒子的位置矢量；力总指向原点，是「二维弹簧」的中心力。）</p>
+</div>
+</section>
+
+<section id="lec7-p7">
+<h2>Part 7 · 能量图 Energy Diagrams <span class="zh">Energy Diagrams</span></h2>
+
+<h3 id="lec7-p7-1">7.1 弹簧-物块能量图与转折点 <span class="zh">Turning Points</span></h3>
+<p>理想「弹簧–物块」系统（弹簧力是唯一水平力）：</p>
+<p class="formula">\[E_{mech} = K(x) + U(x) = \text{常数}\]</p>
+<p>其中 \(U(x)=\tfrac12 kx^2\)，机械能 \(E_{mech}\) 是一条<b>水平线</b>，动能 \(K(x) = E_{mech} - U(x)\)。</p>
+<div class="figure">
+  <svg viewBox="0 0 720 300" width="720">
+    <!-- 坐标轴 -->
+    <line x1="360" y1="30" x2="360" y2="260" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="360,30 356,42 364,42" style="fill: var(--muted)"/>
+    <line x1="40" y1="240" x2="680" y2="240" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="680,240 668,236 668,244" style="fill: var(--muted)"/>
+    <text x="692" y="244" class="svg-muted" text-anchor="end">x</text>
+    <text x="375" y="34" class="svg-muted">能量</text>
+    <!-- 抛物线 U(x)=1/2 kx^2 -->
+    <path d="M110,240 Q300,240 360,60 Q420,240 610,240" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <text x="470" y="200" class="svg-muted" style="fill: var(--accent)">U(x) = ½kx²</text>
+    <!-- 机械能水平线 -->
+    <line x1="120" y1="150" x2="600" y2="150" stroke="var(--sv-neg)" stroke-width="2.5"/>
+    <text x="600" y="142" class="svg-muted" text-anchor="end" style="fill: var(--sv-neg)">E_mech</text>
+    <!-- 转折点 ±A（抛物线与 E_mech 的交点） -->
+    <circle cx="218" cy="150" r="5" style="fill: var(--sv-hl)"/>
+    <circle cx="502" cy="150" r="5" style="fill: var(--sv-hl)"/>
+    <text x="218" y="265" class="svg-muted" text-anchor="middle">−A（转折点）</text>
+    <text x="502" y="265" class="svg-muted" text-anchor="middle">+A（转折点）</text>
+    <!-- 动能 K = E_mech - U 的竖直箭头 -->
+    <line x1="280" y1="150" x2="280" y2="196" stroke="var(--sv-hl)" stroke-width="3"/>
+    <polygon points="280,150 274,162 286,162" style="fill: var(--sv-hl)"/>
+    <text x="296" y="178" class="svg-muted" style="fill: var(--sv-hl)">K</text>
+    <line x1="280" y1="196" x2="280" y2="240" stroke="var(--accent)" stroke-width="3"/>
+    <polygon points="280,196 274,208 286,208" style="fill: var(--accent)"/>
+    <text x="296" y="222" class="svg-muted" style="fill: var(--accent)">U</text>
+  </svg>
+  <div class="figcap">图：弹簧–物块的能量图——抛物线是势能 \(U(x)\)，水平红线是机械能 \(E_{mech}\)。二者竖直距离即动能 \(K=E_{mech}-U\)。在 \(K=0\) 处（抛物线与红线交点）为<b>转折点 \(x=\pm A\)</b>，是给定机械能下最大位移，物块在 ±A 间来回振荡。</div>
+</div>
+
+<h3 id="lec7-p7-2">7.2 稳定 / 不稳定 / 中性平衡 <span class="zh">Stable / Unstable / Neutral Equilibrium</span></h3>
+<p>由 \(F_x(x) = -\dfrac{dU}{dx}\)（负斜率）：</p>
+<ul>
+  <li><b>恢复力（restoring force）</b>：当 \(F_x<0\)（即 \(dU/dx>0\)），力把系统「<b>推回</b>」x=0；</li>
+  <li><b>平衡位置</b>：\(F_x=0\) ⇒ \(x=0\)（\(dU/dx=0\)）。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">📐 三种平衡</span>
+  <ul>
+    <li><b>稳定平衡（stable equilibrium）</b>：势能曲线的<b>极小值</b>处——粒子向任一侧偏离，力都会把它推回平衡点；</li>
+    <li><b>不稳定平衡（unstable equilibrium）</b>：势能曲线的<b>极大值</b>处——粒子向任一侧偏离，力都会把它推离平衡点；</li>
+    <li><b>中性平衡（neutral equilibrium）</b>：势能曲线一段<b>平坦</b>（如水平）区域。</li>
+  </ul>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 720 260" width="720">
+    <line x1="40" y1="220" x2="680" y2="220" stroke="var(--muted)" stroke-width="2"/>
+    <polygon points="680,220 668,216 668,224" style="fill: var(--muted)"/>
+    <text x="692" y="224" class="svg-muted" text-anchor="end">x</text>
+    <!-- 势能曲线：谷（稳定）、峰（不稳定）、平台（中性） -->
+    <path d="M70,90 Q130,90 160,140 Q185,186 220,186 Q255,186 280,140 Q310,90 370,90 L470,90 Q500,90 520,60 Q540,30 560,30 Q580,30 600,60 Q620,90 650,90" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <!-- 稳定平衡（谷底） -->
+    <circle cx="220" cy="186" r="6" style="fill: var(--sv-hl)"/>
+    <text x="220" y="210" class="svg-muted" text-anchor="middle">稳定（极小值）</text>
+    <!-- 不稳定平衡（峰顶） -->
+    <circle cx="560" cy="30" r="6" style="fill: var(--sv-neg)"/>
+    <text x="560" y="60" class="svg-muted" text-anchor="middle">不稳定（极大值）</text>
+    <!-- 中性平衡（平台） -->
+    <circle cx="370" cy="90" r="6" style="fill: var(--sv-hl)"/>
+    <text x="370" y="115" class="svg-muted" text-anchor="middle">中性（平坦）</text>
+  </svg>
+  <div class="figcap">图：势能曲线与平衡——极小值处（谷底）为稳定平衡，极大值处（峰顶）为不稳定平衡，平坦区为中性平衡。力 \(F_x=-dU/dx\) 即曲线斜率取负。</div>
+</div>
+</section>
+
+<section id="lec7-p8">
+<h2>Part 8 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">📌 本讲小结（Summary）</span>
+  <ul>
+    <li><b>势能</b>：与系统内物体<b>位置</b>相关的能量，衡量「做功的潜力」。</li>
+    <li><b>重力势能</b>：\(U_g(y) = mgy\)（向上为正）。</li>
+    <li><b>弹性势能</b>：\(U_{el}(x) = \tfrac12 kx^2\)。</li>
+    <li><b>保守力</b>：提供动能 ↔ 势能双向转换的力，恒有 \(\Delta U = -W_{conservative}\)。</li>
+    <li><b>机械能守恒</b>：只受保守力时，\(E_{mech} = K + U = \text{常数}\)。</li>
+    <li><b>外力做功</b>：\(W = \Delta E_{mech} + \Delta E_{int}\)。</li>
+    <li><b>力与势能（3D）</b>：\(\vec{F} = -\nabla U = -\left(\dfrac{\partial U}{\partial x}\hat{i} + \dfrac{\partial U}{\partial y}\hat{j} + \dfrac{\partial U}{\partial z}\hat{k}\right)\)。</li>
+    <li><b>能量图</b>：转折点（\(K=0\)）；稳定（极小值）/不稳定（极大值）/中性（平坦）平衡。</li>
+  </ul>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>potential energy (PE)</b> — 势能；<b>gravitational potential energy</b> — 重力势能；<b>elastic potential energy</b> — 弹性势能</li>
+    <li><b>reference point / reference configuration</b> — 参考点 / 参考构型；<b>relaxed position</b> — 松弛位置</li>
+    <li><b>conservative force</b> — 保守力；<b>non-conservative force</b> — 非保守力；<b>closed path</b> — 闭合路径</li>
+    <li><b>mechanical energy</b> — 机械能；<b>conservation of mechanical energy</b> — 机械能守恒</li>
+    <li><b>isolated system</b> — 孤立系统；<b>internal energy</b> — 内能；<b>thermal energy</b> — 热能</li>
+    <li><b>energy conservation</b> — 能量守恒；<b>friction</b> — 摩擦</li>
+    <li><b>bungee jumping</b> — 蹦极；<b>Hooke's law</b> — 胡克定律</li>
+    <li><b>gradient (∇)</b> — 梯度；<b>partial derivative</b> — 偏导数；<b>potential-energy function</b> — 势能函数</li>
+    <li><b>energy diagram</b> — 能量图；<b>turning point</b> — 转折点</li>
+    <li><b>stable / unstable / neutral equilibrium</b> — 稳定 / 不稳定 / 中性平衡；<b>restoring force</b> — 恢复力</li>
+  </ul>
+</div>
+</section>
+</div><!-- /第7课 -->
+
 
 </div>
 </main>

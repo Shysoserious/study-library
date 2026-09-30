@@ -365,6 +365,8 @@ window.MathJax = {
   <div class="sub">CUHK-Shenzhen · 2026 秋季<br>复习笔记（中英对照）</div>
   <button id="themeToggle" class="theme-toggle" type="button">切换到夜间模式</button>
   <nav>
+    <a href="#exam-focus" style="font-weight:700;color:var(--accent)">🎯 考试重点（样卷知识点）</a>
+
     <div class="lecture-group open">
       <button class="lecture-toggle" type="button">第1课 · Introduction to Optimization <span class="lt-arrow">▼</span></button>
       <div class="lecture-body">
@@ -559,6 +561,42 @@ window.MathJax = {
         <a class="lv2" href="#lec6-p8-2">8.2 词汇表</a>
       </div>
     </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第7课 · The Simplex Method: More Discussions <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec7-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec7-p1">Part 1 · 回顾：单纯形一步的机制</a>
+        <a class="lv2" href="#lec7-p1-1">1.1 三要素与邻居数</a>
+        <a class="lv2" href="#lec7-p1-2">1.2 「列相关」的非基</a>
+        <a class="lv1" href="#lec7-p2">Part 2 · 两条可行路径</a>
+        <a class="lv2" href="#lec7-p2-1">2.1 从同一原点出发的两条路</a>
+        <a class="lv2" href="#lec7-p2-2">2.2 换入 x₁ 的替代路径</a>
+        <a class="lv1" href="#lec7-p3">Part 3 · 主元为何合法</a>
+        <a class="lv2" href="#lec7-p3-1">3.1 新基矩阵可逆</a>
+        <a class="lv2" href="#lec7-p3-2">3.2 新点仍是 BFS</a>
+        <a class="lv1" href="#lec7-p4">Part 4 · 停止准则的证明与无界证书</a>
+        <a class="lv2" href="#lec7-p4-1">4.1 停止准则的代数证明</a>
+        <a class="lv2" href="#lec7-p4-2">4.2 无界可行射线证书</a>
+        <a class="lv1" href="#lec7-p5">Part 5 · 一次迭代的完整清单</a>
+        <a class="lv1" href="#lec7-p6">Part 6 · 退化：太多个零的 BFS</a>
+        <a class="lv2" href="#lec7-p6-1">6.1 退化 BFS 的定义</a>
+        <a class="lv2" href="#lec7-p6-2">6.2 三条紧线、一个点、几个基</a>
+        <a class="lv2" href="#lec7-p6-3">6.3 被立刻挡住的基方向（θ* = 0）</a>
+        <a class="lv2" href="#lec7-p6-4">6.4 比值检验平局</a>
+        <a class="lv1" href="#lec7-p7">Part 7 · 最优解 ≠ 最优性证书</a>
+        <a class="lv2" href="#lec7-p7-1">7.1 退化时反向结论失效</a>
+        <a class="lv2" href="#lec7-p7-2">7.2 例子：最优点处有负缩减成本</a>
+        <a class="lv2" href="#lec7-p7-3">7.3 零步主元揭示证书</a>
+        <a class="lv1" href="#lec7-p8">Part 8 · 循环与主元规则</a>
+        <a class="lv2" href="#lec7-p8-1">8.1 为什么循环需要退化步</a>
+        <a class="lv2" href="#lec7-p8-2">8.2 两种主元规则</a>
+        <a class="lv2" href="#lec7-p8-3">8.3 Bland 规则防循环</a>
+        <a class="lv1" href="#lec7-p9">Part 9 · 总结与词汇表</a>
+        <a class="lv2" href="#lec7-p9-1">9.1 本讲总结</a>
+        <a class="lv2" href="#lec7-p9-2">9.2 词汇表</a>
+      </div>
+    </div>
+
   </nav>
 </aside>
 
@@ -567,7 +605,169 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">最优化 · 复习笔记</h1>
-<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–6</p>
+<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–7</p>
+
+<!-- ============ 考试重点（样卷知识点） ============ -->
+<div class="lecture" id="exam-focus">
+<div class="lecture-banner">🎯 考试重点 · 样卷知识点速览 <span class="zh">Sample Midterm — Mastery Points</span></div>
+
+<section id="exam-focus-intro">
+  <div class="warn box">
+    <span class="box-title">📌 这份速览是什么、不是什么</span>
+    <p>根据文件夹里的往年样卷（Sample Midterm 26 Spring）提炼的<b>「必须完全掌握的知识点」</b>——不是题目本身，而是题目背后反复考察的概念、判据与套路。目的：复习时知道<b>哪里是得分点、哪些是经典易错点</b>。题目你之后自己动手做，这里只把「要掌握到什么程度」讲清楚。样卷结构：2 小时、除第 1 题外都要写出理由（justify）、不会整题时写会的部分有过程分。</p>
+  </div>
+  <div class="toc">
+    <span class="toc-title">📑 六个考察区（共 100 分）</span>
+    <ol>
+      <li><a href="#exam-focus-tf">True/False（15 分）</a> —— 5 个易错概念</li>
+      <li><a href="#exam-focus-simplex">单纯形法 The Simplex Method（20 分）</a> —— 表格计算</li>
+      <li><a href="#exam-focus-duality">对偶 Duality（21 分）</a> —— 尚未正式讲，重点</li>
+      <li><a href="#exam-focus-sens">敏感性分析 Sensitivity（18 分）</a> —— 尚未正式讲，重点</li>
+      <li><a href="#exam-focus-model">建模 Modeling（12 分）</a> —— 绝对值线性化</li>
+      <li><a href="#exam-focus-vc">顶点覆盖的 LP 近似（14 分）</a> —— 半整性 + 舍入</li>
+    </ol>
+  </div>
+</section>
+
+<section id="exam-focus-tf">
+<h2>① True/False（15 分）—— 5 个易错概念 <span class="zh">Five Tricky Concepts</span></h2>
+<p>这题不给理由，只判对错——所以必须把概念抠到「一句话就能判断」的精度。历次最容易被挖坑的是下面这几个：</p>
+
+<h3>1. 基本解 vs 极点</h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 必掌握</span>
+  <p>基本解（basic solution）<b>不一定是</b>极点。基本解是极点 ⟺ 它<b>可行</b>（即 BFS）。「基本解」只是「非基变量置 0、解出来的那个点」，它可能某个分量为负、落在可行域外。→ 详见 <a href="#lec5-p5">第5课 5.5</a>、<a href="#lec5-p6">第5课 5.6</a>。</p>
+</div>
+
+<h3>2. 多最优解 ⇒ 两个不同最优极点？</h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 必掌握</span>
+  <p>不一定。反例：\(\min_{x\in\mathbb{R}^2}\ x_1\) s.t. \(x_1=1,\ x\ge 0\)——所有可行点都最优（有无穷多个最优解），但只有一个极点 \((1,0)^\top\)。要记住的正面结论是：<b>若最优解存在，则至少有一个最优解在极点上</b>；当整条边都最优时，边两端点是极点。但「多最优 ⟹ 两个不同最优极点」是<b>假</b>的。→ 详见 <a href="#lec5-p8">第5课 5.8（基本定理）</a>。</p>
+</div>
+
+<h3>3. 缩减成本的最优判据（两条都要）</h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 必掌握</span>
+  <p>标准形 \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\) 中，基 \(B\) 对应的基本解<b>最优 ⟺</b> 同时满足：<b>① 可行性</b> \(A_B^{-1}b\ge 0\)（即它是 BFS）；<b>② 缩减成本非负</b> \(c^\top-c_B^\top A_B^{-1}A\ge 0\)。两半缺一不可。→ 详见 <a href="#lec6-p6-9">第6课 6.9</a>、<a href="#lec7-p4-1">第7课 4.1</a>。</p>
+</div>
+
+<h3>4. 两阶段法判不可行</h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 必掌握</span>
+  <p>两阶段单纯形法中，<b>原问题不可行 ⟺ 阶段 I 辅助问题的最优值严格大于 0</b>（辅助目标 = 人工变量之和，最优值为 0 ⟺ 存在无人工变量的可行点）。→ 将在第 8 课「初始 BFS / 两阶段法」正式展开。</p>
+</div>
+
+<h3>5. 最优性条件（互补松弛）的「漏掉原始可行」陷阱</h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 必掌握</span>
+  <p>若存在 \((y^\star,s^\star)\) 满足 \(A^\top y^\star+s^\star=c\)、\(s^\star\ge 0\)、且 \(x_i^\star s_i^\star=0\)（互补），<b>还不足以</b>推出 \(x^\star\) 最优——因为没保证 \(x^\star\) 原始可行（\(Ax^\star=b,\ x^\star\ge 0\)）。<b>最优性 = 原始可行 + 对偶可行 + 互补</b>，三条齐了才行。→ 见下方对偶部分。</p>
+</div>
+</section>
+
+<section id="exam-focus-simplex">
+<h2>② 单纯形法（20 分）—— 表格计算 <span class="zh">Tableau Computation</span></h2>
+<p>这是「动手算」的题，要求从给定基出发算基本解、列单纯形表格、判最优、换目标后重新迭代。必须熟练到能机械执行：</p>
+<ul>
+  <li><b>算基本解</b>：非基变量置 0，解 \(A_B x_B=b\)（等价 \(x_B=A_B^{-1}b\)），看 \(x_B\ge 0\) 是否成立。→ <a href="#lec6-p6-1">第6课 6.1</a></li>
+  <li><b>列表格</b>：核心是 \(A_B^{-1}A\)（每列 = 该变量用基变量表示）、\(A_B^{-1}b\)（右端）、以及目标行的<b>缩减成本</b> \(c^\top-c_B^\top A_B^{-1}A\)。表格形式将在第 8 课「The Simplex Tableau」细化。</li>
+  <li><b>判最优</b>：所有缩减成本 \(\ge 0\)。→ <a href="#lec6-p6-9">第6课 6.9</a></li>
+  <li><b>换目标</b>：新缩减成本按定义重算（若 \(c\) 整体取反，则缩减成本也整体取反）；入基选负缩减成本、比值检验选离基、行变换主元。→ <a href="#lec6-p7">第6课 Part 7</a>、<a href="#lec7-p5">第7课 Part 5</a></li>
+  <li><b>过程书写</b>：每一步标清「当前基 \(B\)、当前 BFS、目标值、入基下标、离基下标」——这是踩分点。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">💡 易丢分点</span>
+  <p>表格的<b>符号约定</b>（目标值写在右上还是右下、缩减成本行带不带负号）不同教材写法不同，务必按你老师第 8 课的表格格式来，考试按那个给分。</p>
+</div>
+</section>
+
+<section id="exam-focus-duality">
+<h2>③ 对偶 Duality（21 分）—— 尚未正式讲，先掌握 <span class="zh">Duality — Mastery Points</span></h2>
+<p>这是样卷单题分值最高的一块（21 分），且当前讲义还没讲到，这里把「必须掌握的点」提前讲清，后续课讲对偶时再对照深化。</p>
+
+<h3>对偶的写法（符号规则）</h3>
+<p>原问题 \(\min c^\top x\) s.t. \(Ax\ (\le,\ge,=)\ b,\ x\ge 0\)，对偶是 \(\max b^\top y\) s.t. \(A^\top y\ (\le,\ge,=)\ c\)。对应规则一张表记牢：</p>
+<table class="truth">
+  <tr><th>原问题（min）</th><th>对偶问题（max）</th></tr>
+  <tr><td>约束 \(i\) 是 \(\le\)</td><td>对偶变量 \(y_i\le 0\)</td></tr>
+  <tr><td>约束 \(i\) 是 \(\ge\)</td><td>对偶变量 \(y_i\ge 0\)</td></tr>
+  <tr><td>约束 \(i\) 是 \(=\)</td><td>对偶变量 \(y_i\) 自由（free）</td></tr>
+  <tr><td>变量 \(x_j\ge 0\)</td><td>对偶约束 \(j\) 是 \(\le c_j\)</td></tr>
+  <tr><td>变量 \(x_j\le 0\)</td><td>对偶约束 \(j\) 是 \(\ge c_j\)</td></tr>
+  <tr><td>变量 \(x_j\) 自由</td><td>对偶约束 \(j\) 是 \(=c_j\)</td></tr>
+</table>
+<div class="warn box">
+  <span class="box-title">💡 记忆诀窍</span>
+  <p>min 的对偶是 max；系数矩阵<b>转置</b> \(A\mapsto A^\top\)；原<b>目标系数</b> \(c\) 变成对偶<b>右端</b>，原<b>右端</b> \(b\) 变成对偶<b>目标系数</b>。符号方向「倒过来」：原约束 \(\le\)（min 里通常对应「资源上限」）→ 对偶变量 \(\le 0\)。</p>
+</div>
+
+<h3>弱对偶与强对偶</h3>
+<div class="thm box">
+  <span class="box-title">🎯 弱对偶</span>
+  <p>若 \(x\) 原可行、\(y\) 对偶可行，则 \(c^\top x\ge b^\top y\)（min 型的原目标总不低于对偶目标）。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 强对偶</span>
+  <p>若原问题和对偶问题都有最优解，则最优值<b>相等</b>。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 用对偶证「原问题无界」的标准套路</span>
+  <p>这是高频考题：<b>① 证明对偶不可行</b>（用对偶约束推矛盾）；<b>② 证明原问题可行</b>（给出一个显式可行点）；<b>③ 由弱/强对偶</b>——对偶不可行时原问题只能是「无界或不可行」，既然已证原可行，那就只能是无界。三步缺一不可（漏了「原可行」会丢分）。</p>
+</div>
+
+<h3>互补松弛条件（证最优的利器）</h3>
+<p>最优解 \(x^\star\) 与对偶最优 \(y^\star\)（及松弛 \(s^\star=c-A^\top y^\star\ge 0\)）满足<b>互补</b>：对每个变量 \(j\)，\(x_j^\star s_j^\star=0\)（即 \(x_j^\star&gt;0\Rightarrow s_j^\star=0\)，对偶约束 \(j\) 取等号）；对每个约束 \(i\)，原松弛与 \(y_i^\star\) 互补。</p>
+<div class="warn box">
+  <span class="box-title">💡 怎么用来「证 \(x^\star\) 最优」</span>
+  <p>给一个候选 \(x^\star\)，先看它哪些分量 &gt;0、哪些原约束「松」（不等式严格不取等）。据此把互补条件里的 \(s_j=0\) 或 \(y_i=0\) 代入对偶方程组，<b>解出 \(y^\star\)</b>，再验证这个 \(y^\star\) 对偶可行。一旦「\(x^\star\) 原可行 + \(y^\star\) 对偶可行 + 互补成立」三条齐了，就证出最优。注意：改原目标系数时，对偶<b>对应约束</b>的右端也要跟着改。</p>
+</div>
+</section>
+
+<section id="exam-focus-sens">
+<h2>④ 敏感性分析 Sensitivity（18 分）—— 尚未正式讲，先掌握 <span class="zh">Sensitivity — Mastery Points</span></h2>
+<p>核心是：<b>扰动之后，当前最优基还优不优？</b>记住两条主线——<b>改右端 \(b\) → 看可行性；改目标系数 \(c\) → 看最优性（缩减成本）</b>。</p>
+<ul>
+  <li><b>读最终表格</b>：表格里藏着三样东西——最优基 \(B\)、原最优解 \(x^\star\)、以及 \(A_B^{-1}\)（表格靠左的「单位阵位置」就是 \(A_B^{-1}\)）。</li>
+  <li><b>求对偶最优解</b>：\(y^\star=A_B^{-\top}c_B\)（从表格读 \(A_B^{-1}\)，转置再乘 \(c_B\)）。注意这个 \(y^\star\) 是针对<b>当前最优基</b>的那个（对偶解可能不唯一）。</li>
+  <li><b>改 \(b\to b+\Delta b\)</b>：基 \(B\) 不含 \(b\)，所以只需新基本解 \(x_B=A_B^{-1}(b+\Delta b)\) 仍 \(\ge 0\)，则 \(B\) 仍最优、\(y^\star\) 不变；否则 \(B\) 不再是可行基、\(y^\star\) 不再最优。</li>
+  <li><b>改 \(c_j\)（\(j\) 非基）</b>：最优基保持最优 ⟺ 新缩减成本 \(r_N+\lambda e_j\ge 0\)（\(r_N\) 是原非基缩减成本），解出 \(\lambda\) 的范围即 \(c_j\) 的允许区间。</li>
+  <li><b>加新变量 \(x_{\text{new}}\)</b>：只算它的缩减成本 \(\bar c_{\text{new}}=c_{\text{new}}-c_B^\top A_B^{-1}A_{\text{new}}\)；若 \(\ge 0\)，原解仍最优（新变量取 0）；若 &lt;0，新变量入基继续迭代。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">💡 一条直觉串起全部</span>
+  <p>\(b\) 只出现在「右端」→ 影响<b>可行性</b>（\(x_B=A_B^{-1}b\ge 0\)）；\(c\) 只出现在「目标」→ 影响<b>最优性</b>（缩减成本符号）。所以「最优基会不会变」的判据，就按扰动动的是哪边来选。</p>
+</div>
+</section>
+
+<section id="exam-focus-model">
+<h2>⑤ 建模 Modeling（12 分）—— 绝对值线性化 <span class="zh">Modeling — Linearizing Absolute Values</span></h2>
+<ul>
+  <li><b>三要素</b>：决策变量、线性目标、线性约束。写清每个变量的含义。</li>
+  <li><b>绝对值约束必须线性化</b>：要求「任意两种食物的份数差不超过 3」，写成 \(|x_i-x_j|\le 3\) 是<b>非线性</b>的（会扣分），要拆成两排线性不等式：\(x_i-x_j\le 3\) 且 \(x_j-x_i\le 3\)（对任意 \(i,j\)）。→ 参考 <a href="#lec4-p4">第4课</a> 的绝对值重构。</li>
+  <li><b>论证可行性</b>：常问「这个问题会不会不可行」。套路是找一个显式可行解——比如所有变量取同一个足够大的 \(\rho\)，配一个「\(\rho\ge\max\{50/\sum p_i,\ 12/\sum u_i,\ 200/\sum v_i\}\)」就能满足所有下限。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 必掌握</span>
+  <p>「差不超过 3」这类<b>成对差异</b>约束 = 每一对 \((i,j)\) 都写 \(x_i-x_j\le 3\)（共 \(m^2\) 条）；千万别只写一侧，也千万别留着绝对值符号。</p>
+</div>
+</section>
+
+<section id="exam-focus-vc">
+<h2>⑥ 顶点覆盖的 LP 近似（14 分）—— 半整性 + 舍入 <span class="zh">LP Approximation for Vertex Cover</span></h2>
+<p>这题把「整数规划 → LP 松弛 → 松弛界 → 半整性 → 舍入成近似解」整条链路考一遍，是算法近似思想的入门样板。→ 顶点覆盖建模见 <a href="#lec2-p3">第2课</a>。</p>
+<ul>
+  <li><b>IP 与 LP 松弛</b>：顶点覆盖 IP 是 \(\min\sum_i x_i\) s.t. \(x_i+x_j\ge 1\ (\forall\{i,j\}\in E),\ x_i\in\{0,1\}\)。把 \(x_i\in\{0,1\}\) 放宽成 \(0\le x_i\le 1\) 即得 LP 松弛。</li>
+  <li><b>松弛界</b>：\(v_r^\star\le v^\star\)——因为<b>可行域扩大了</b>（最小值只能变小或不变）。</li>
+  <li><b>半整性（关键定理）</b>：LP 松弛的<b>每个极点</b> \(x\) 满足 \(x_i\in\{0,\tfrac12,1\}\)。证明套路：假设存在分量落在 \((0,\tfrac12)\) 或 \((\tfrac12,1)\)，把这两类下标分成 \(I_-,\,I_+\)，用 \(\pm\epsilon\) 扰动构造两个可行点 \(y,z\)（\(I_+\) 上 \(y_i=x_i+\epsilon,\,z_i=x_i-\epsilon\)；\(I_-\) 上反过来；其余不动），则有 \(x=(y+z)/2\)，与 \(x\) 是极点矛盾。</li>
+  <li><b>舍入成 2-近似</b>：取最优 LP 解 \(x'\)（半整），把 \(x'_i=\tfrac12\) 的改成 1（0 和 1 不动）得到整数解 \(\hat x\)。它 IP 可行，且 \(\sum_i\hat x_i\le 2\sum_i x'_i=2v_r^\star\le 2v^\star\)，故是 2-近似。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">💡 记住三个「为什么」</span>
+  <p>① 为什么松弛界成立——可行域变大；② 为什么极点半整——扰动取中点会矛盾；③ 为什么是 2-近似——\(\tfrac12\) 最多翻倍成 1，比例恰好是 2。这三个「为什么」就是踩分点。</p>
+</div>
+</section>
+
+</div><!-- /考试重点 -->
+
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -2900,6 +3100,457 @@ window.MathJax = {
 </section>
 
 </div><!-- /第6课 -->
+
+<div class="lecture" id="lec7">
+<div class="lecture-banner">第7课 · The Simplex Method: More Discussions <span class="zh">（单纯形法：深入讨论）</span></div>
+
+<section id="lec7-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec7-p1">回顾：单纯形一步的机制</a> —— 三要素、邻居数 m(n−m)、「列相关」的非基</li>
+      <li><a href="#lec7-p2">两条可行路径</a> —— 从原点出发的两条路，换入 x₁ 的替代路径</li>
+      <li><a href="#lec7-p3">主元为何合法</a> —— 新基矩阵可逆 + 新点仍是 BFS（两个证明）</li>
+      <li><a href="#lec7-p4">停止准则的证明与无界证书</a> —— 代数证明 + 可行射线</li>
+      <li><a href="#lec7-p5">一次迭代的完整清单</a> —— 5 步</li>
+      <li><a href="#lec7-p6">退化：太多个零的 BFS</a> —— 三条紧线、被挡住的 θ*=0、比值平局</li>
+      <li><a href="#lec7-p7">最优解 ≠ 最优性证书</a> —— 退化时反向结论失效</li>
+      <li><a href="#lec7-p8">循环与主元规则</a> —— Bland 规则防循环</li>
+      <li><a href="#lec7-p9">总结与词汇表</a></li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>上一讲已经走通了单纯形法的完整流程（字典 → 方向 → 比值检验 → 缩减成本 → 停止）。本讲做两件事：<b>上半场把「主元」背后的代数合法性补扎实</b>——为什么换基后新矩阵仍可逆、新点仍是 BFS、停止准则为什么严谨、无界时怎么给出证书；<b>下半场专门讲退化（degeneracy）</b>——当 BFS 里有「多余的零」时会发生什么：被立刻挡住的步、比值平局、最优解与最优性证书脱钩，以及它如何导致循环、Bland 规则又怎么防循环。</p>
+  </div>
+</section>
+
+<section id="lec7-p1">
+<h2>Part 1 · 回顾：单纯形一步的机制 <span class="zh">Review: One Simplex Step</span></h2>
+
+<h3 id="lec7-p1-1">1.1 三要素与邻居数 <span class="zh">Three Ingredients &amp; Neighbor Count</span></h3>
+<p>单纯形法要解 \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\)。核心机制上一讲已完整讲透，这里只做索引：</p>
+<div class="toc">
+  <span class="toc-title">📑 快速回顾（详见第6课）</span>
+  <ul>
+    <li><b>字典 Dictionary</b>：基 \(B\)、基变量 \(x_B=A_B^{-1}b\)、非基变量 \(x_N=0\) → <a href="#lec6-p6-1">第6课 6.1</a></li>
+    <li><b>边方向</b>：\(d_B=-A_B^{-1}A_j\)、\(d_j=1\) → <a href="#lec6-p6-3">第6课 6.3</a></li>
+    <li><b>比值检验</b>：\(\theta^\star=\min_{d_i&lt;0} x_i/(-d_i)\) → <a href="#lec6-p6-4">第6课 6.4</a></li>
+    <li><b>缩减成本</b>：\(\bar c_j=c_j-c_B^\top A_B^{-1}A_j\) → <a href="#lec6-p6-5">第6课 6.5</a></li>
+    <li><b>停止准则</b>：\(\bar c\ge 0\Rightarrow\) 最优 → <a href="#lec6-p6-9">第6课 6.9</a></li>
+    <li><b>完整走一遍</b>：生产规划 LP 从原点到最优 → <a href="#lec6-p7">第6课 Part 7</a></li>
+  </ul>
+</div>
+<p>本讲补充一个「数邻居」的视角：一个基有 \(m\) 个基下标、\(n-m\) 个非基下标。相邻基由「<b>选 1 个基下标离开（\(m\) 种）× 选 1 个非基下标进入（\(n-m\) 种）</b>」构成，所以朴素地看有</p>
+<p class="formula">\(m(n-m)\ \text{个候选邻居}.\)</p>
+<p>朴素做法是逐个候选解一次线性方程组、看可行性与目标变化——这正是单纯形法要避免的。单纯形法的策略是「分两步省力」：先用<b>缩减成本</b>定方向（该试谁），再用<b>比值检验</b>定步长（能走多远），一次只算一个方向。</p>
+
+<h3 id="lec7-p1-2">1.2 「列相关」的非基 <span class="zh">Dependent Columns Are Not Bases</span></h3>
+<p>每个 BFS 来自「从 \(n\) 列中选 \(m\) 列」，数量最多 \(C(n,m)\)。但<b>不是每个 \(m\) 元子集都是基</b>——选出的 \(m\) 列必须线性无关。生产规划 LP 里 \(C(5,3)=10\) 种选法，其中两个不是基：</p>
+<ul>
+  <li>\(\{1,3,5\}\) 不是基：因为 \(A_1=A_3+A_5\)（第 1 列 = 第 3 列 + 第 5 列，三列线性相关）；</li>
+  <li>\(\{2,4,5\}\) 不是基：因为 \(A_2=2A_4+A_5\)。</li>
+</ul>
+<p>其余 8 种选法正好给出上一讲表格里的 8 个基。这个细节解释了「为什么第6课表格里是 8 个基而不是 10 个」。</p>
+</section>
+
+<section id="lec7-p2">
+<h2>Part 2 · 两条可行路径 <span class="zh">Two Valid Paths</span></h2>
+
+<h3 id="lec7-p2-1">2.1 从同一原点出发的两条路 <span class="zh">Two Paths from the Origin</span></h3>
+<p>从 \(\{3,4,5\}\)（原点）出发，只允许走到相邻 BFS、且只在目标下降时走。因为 \(\bar c_1=-1\) 和 \(\bar c_2=-2\) 都是负的，<b>先让谁进入都可以</b>，于是有两条路：</p>
+<ul>
+  <li><b>路径 A（上一讲走的路）</b>：先让 \(x_2\) 进入 → \(\{3,4,5\}\to\{2,3,5\}\to\{1,2,3\}\)；</li>
+  <li><b>路径 B（本讲补的路）</b>：先让 \(x_1\) 进入 → \(\{3,4,5\}\to\{1,4,5\}\to\{1,2,4\}\to\{1,2,3\}\)。</li>
+</ul>
+<p>两条路都在有限步到达最优 \(\{1,2,3\}\)。这说明<b>单纯形法不保证「最短路径」</b>——它只保证「每步都下降、最终到最优」（在 Bland 规则下保证有限终止，见 Part 8）。</p>
+<div class="figure">
+  <svg viewBox="0 0 460 380" width="500" role="img" aria-label="单纯形法的两条可行路径">
+    <line x1="40" y1="330" x2="430" y2="330" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="426" y="350" class="svg-muted" text-anchor="end">x₁</text>
+    <line x1="40" y1="330" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="30" y="30" class="svg-muted" text-anchor="end">x₂</text>
+    <polygon points="40,330 240,330 240,220 140,120 40,120" style="fill: var(--accent); opacity: 0.14; stroke: var(--accent); stroke-width: 2"/>
+    <line x1="240" y1="330" x2="240" y2="40" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="244" y="60" class="svg-muted">x₁ = 100</text>
+    <line x1="40" y1="120" x2="430" y2="120" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="362" y="112" class="svg-muted">x₂ = 100</text>
+    <line x1="40" y1="20" x2="350" y2="330" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="150" y="88" class="svg-muted">x₁ + x₂ = 150</text>
+    <line x1="40" y1="76" x2="350" y2="232" style="stroke: var(--sv-hl); stroke-width: 1.5" stroke-dasharray="6 4"/>
+    <text x="296" y="196" class="svg-muted" style="fill: var(--sv-hl)">x₁+2x₂ = 250</text>
+    <!-- 路径 A（绿）：A→(0,100)→C -->
+    <path d="M 40 330 L 40 120 L 140 120" fill="none" stroke="var(--sv-hl)" stroke-width="3"/>
+    <!-- 路径 B（蓝）：A→(100,0)→(100,50)→C -->
+    <path d="M 40 330 L 240 330 L 240 220 L 140 120" fill="none" stroke="var(--sv-pos)" stroke-width="3" stroke-dasharray="7 5"/>
+    <!-- 顶点 -->
+    <circle cx="40" cy="330" r="6" style="fill: var(--muted)"/>
+    <text x="26" y="348" class="svg-muted" text-anchor="end">A {3,4,5} z=0</text>
+    <circle cx="40" cy="120" r="6" style="fill: var(--muted)"/>
+    <text x="26" y="122" class="svg-muted" text-anchor="end">{2,3,5} z=−200</text>
+    <circle cx="240" cy="330" r="6" style="fill: var(--muted)"/>
+    <text x="240" y="352" class="svg-muted" text-anchor="middle">{1,4,5} z=−100</text>
+    <circle cx="240" cy="220" r="6" style="fill: var(--muted)"/>
+    <text x="252" y="222" class="svg-muted">{1,2,4} z=−200</text>
+    <circle cx="140" cy="120" r="8" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="152" y="112" class="svg-muted" style="fill: var(--sv-hl)">C {1,2,3} z=−250</text>
+  </svg>
+  <div class="figcap">图：从原点 A 出发的两条单纯形路径。绿（实线）是上一讲的路 A→(0,100)→C；蓝（虚线）是本讲的替代路 A→(100,0)→(100,50)→C。两者终点都是最优 C=(50,100)。</div>
+</div>
+
+<h3 id="lec7-p2-2">2.2 换入 \(x_1\) 的替代路径 <span class="zh">What If We Enter \(x_1\) First?</span></h3>
+<p>在原点，\(\bar c_1=-1\)、\(\bar c_2=-2\) 都为负，选 \(x_1\) 先进入也合法。走一遍：</p>
+<div class="ex box">
+  <span class="box-title">🧮 例题（附答案）：先进入 \(x_1\)</span>
+  <p><b>① 进入 \(x_1\)</b>：\(x_1(\theta)=\theta\)，保持 \(x_2=0\)。由 \(x_1+s_1=100\Rightarrow s_1=100-\theta\)，\(x_1+x_2+s_3=150\Rightarrow s_3=150-\theta\)，\(s_2=200\) 不变。比值检验：\(100-\theta\ge 0\Rightarrow\theta\le 100\)，\(150-\theta\ge 0\Rightarrow\theta\le 150\)，故 \(\theta^\star=100\)，\(s_1\) 离基。</p>
+  <p class="formula">\(B=\{1,4,5\},\quad x=(100,0,0,200,50)^\top,\quad z=-100.\)</p>
+  <p><b>② 求 \(y\) 与缩减成本</b>：\(c_B=(-1,0,0)^\top\)，解 \(A_B^\top y=c_B\)：</p>
+  <p class="formula">\(y_1+y_3=-1,\ y_2=0,\ y_3=0\ \Rightarrow\ y=(-1,0,0)^\top.\)</p>
+  <p class="formula">\(\bar c_2=c_2-y^\top A_2=-2-0=-2,\qquad \bar c_3=c_3-y^\top A_3=0-(-1)=1.\)</p>
+  <p><b>③ 进入 \(x_2\)</b>：保持 \(s_1=0\)，故 \(x_1=100\)。则 \(s_2=200-2\theta\)，\(s_3=50-\theta\)，比值检验 \(\theta^\star=\min\{100,50\}=50\)，\(s_3\) 离基。</p>
+  <p class="formula">\(\text{到达 } x=(100,50,0,100,0)^\top,\ \text{基 }\{1,2,4\},\ z=-200.\)</p>
+  <p><b>答案</b>：路径 \(\{3,4,5\}\to\{1,4,5\}\to\{1,2,4\}\)，再走一步到 \(\{1,2,3\}\) 即最优。和上一讲的路径殊途同归。</p>
+</div>
+</section>
+
+<section id="lec7-p3">
+<h2>Part 3 · 主元为何合法 <span class="zh">Why the Pivot Is Valid</span></h2>
+<p>上一讲说「主元 = 换一个下标」，但没证明<b>换完之后的 \(B^+\) 真的是一个合法的基</b>（列仍独立）、以及<b>新点真的是一个 BFS</b>。本讲补上这两个证明。</p>
+
+<h3 id="lec7-p3-1">3.1 新基矩阵可逆 <span class="zh">The New Basis Matrix Is Invertible</span></h3>
+<p>把旧基按选定顺序写成 \(B=(B(1),\dots,B(m))\)。若 \(\ell=B(r)\) 离开，就用 \(A_j\) 替换第 \(r\) 列。由方向方程</p>
+<p class="formula">\(A_j=A_B q,\qquad q=-d_B,\qquad q_r=-d_\ell&gt;0.\)</p>
+<p>（\(q_r&gt;0\) 是因为 \(d_\ell&lt;0\)——离基变量在减小。）于是替换后的矩阵可写成</p>
+<p class="formula">\(\tilde A_{B^+}=A_B E,\qquad E=[e_1\ \cdots\ e_{r-1}\ \ q\ \ e_{r+1}\ \cdots\ e_m].\)</p>
+<p>\(E\) 是单位阵把第 \(r\) 列换成 \(q\)。沿这一列展开行列式得</p>
+<p class="formula">\(\det E=q_r=-d_\ell&gt;0,\qquad \det\tilde A_{B^+}=\det(A_B)(-d_\ell)\ne 0.\)</p>
+<div class="thm box">
+  <span class="box-title">🎯 结论</span>
+  <p>\(\tilde A_{B^+}\) 可逆。重排它的列（如果需要）仍可逆，所以 \(B^+\) 是一个基——<b>即便 \(\theta^\star=0\)（退化步）也成立</b>。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 怎么理解</span>
+  <p>直观上：离基变量之所以「离」，是因为它正沿方向 \(d_\ell&lt;0\) 减到 0；这个负变化率 \(q_r=-d_\ell&gt;0\) 恰好是「新列 \(A_j\) 在旧列 \(A_\ell\) 方向上的分量」非零，于是新列替换旧列后不会让矩阵降秩。行列式严格为正就是「换基不破坏可逆性」的代数保证。</p>
+</div>
+
+<h3 id="lec7-p3-2">3.2 新点仍是 BFS <span class="zh">The New Point Is Again a BFS</span></h3>
+<p>要验证 \(x^+=x+\theta^\star d\) 满足 BFS 的全部定义，四条逐一检查：</p>
+<ol>
+  <li><b>新基矩阵可逆</b>——上一小节刚证；</li>
+  <li><b>新非基变量为 0</b>——\(N^+=(N\setminus\{j\})\cup\{\ell\}\)，所以 \(x_k^+=0\)（\(k\in N\setminus\{j\}\)）且 \(x_\ell^+=0\)；</li>
+  <li><b>等式成立</b>——\(Ax^+=Ax+\theta^\star Ad=b\)，故 \(A_{B^+}x_{B^+}^+=b\)；</li>
+  <li><b>所有变量非负</b>——这正是比值检验保证的。</li>
+</ol>
+<div class="thm box">
+  <span class="box-title">🎯 结论</span>
+  <p>因此 \(x_N^+=0,\ x_{B^+}^+=A_{B^+}^{-1}b\ge 0\)：\(x^+\) 是 BFS。</p>
+</div>
+<p><b>几何与退化</b>：正步长沿所选边走到下一个顶点；零步长在同一个顶点换个基；平局时可能让多个基变量同时为 0——只选其中一个离开。</p>
+</section>
+
+<section id="lec7-p4">
+<h2>Part 4 · 停止准则的证明与无界证书 <span class="zh">Proof of Stopping &amp; Unboundedness</span></h2>
+
+<h3 id="lec7-p4-1">4.1 停止准则的代数证明 <span class="zh">Algebraic Proof of the Stopping Criterion</span></h3>
+<p>上一讲给了停止准则的几何直觉和「最优性证书」的不等式，但没写完整证明。这里补上。假设对每个 \(j\in N\) 都有 \(\bar c_j\ge 0\)，取任意可行点 \(z\)，令 \(u=z-x\)。因为 \(Az=Ax=b\)：</p>
+<p class="formula">\(Au=0\ \Rightarrow\ A_B u_B+A_N u_N=0.\)</p>
+<p>因 \(A_B\) 可逆且 \(x_N=0\)：</p>
+<p class="formula">\(u_B=-A_B^{-1}A_N u_N,\qquad u_N=z_N\ge 0.\)</p>
+<p>于是目标差可以拆成：</p>
+<p class="formula">\(c^\top z-c^\top x=c_B^\top u_B+c_N^\top u_N=\left(c_N^\top-c_B^\top A_B^{-1}A_N\right)u_N=\sum_{j\in N}\bar c_j z_j\ge 0.\)</p>
+<div class="warn box">
+  <span class="box-title">💡 为什么最后一步 \(\ge 0\)</span>
+  <p>每一项都是「<b>缩减成本 \(\bar c_j\ge 0\)</b>」×「<b>非基变量取值 \(z_j\ge 0\)</b>」，乘积非负，求和自然非负。所以对任意可行 \(z\) 都有 \(c^\top z\ge c^\top x\)，即 \(x\) 最优。<b>退化时这个恒等式依然成立</b>——它是纯代数恒等式，个别方向不能走正步并不影响它。</p>
+</div>
+
+<h3 id="lec7-p4-2">4.2 无界可行射线证书 <span class="zh">No Limiting Ratio: An Improving Ray</span></h3>
+<p>设想进入变量 \(\bar c_j&lt;0\)（有前途），但方向向量 \(d\) 里<b>没有任何基分量为负</b>。由于 \(d_j=1\)、其余非基分量为 0，这意味着 \(d\ge 0\)。于是对所有 \(\theta\ge 0\) 都可行：</p>
+<p class="formula">\(x+\theta d\ge x\ge 0,\qquad A(x+\theta d)=b+\theta\,0=b.\)</p>
+<p>而目标一直下降：</p>
+<p class="formula">\(c^\top(x+\theta d)=c^\top x+\theta\bar c_j\to-\infty\quad(\theta\to\infty).\)</p>
+<div class="def box">
+  <span class="box-title">📌 无界证书</span>
+  <p>可行射线 \(\{x+\theta d:\theta\ge 0\}\) 的目标严格递减，因此 LP <b>下无界（unbounded below）</b>。这条射线本身就是一份「无界证书」——给任何一个下界，都能沿它走得更低。</p>
+</div>
+</section>
+
+<section id="lec7-p5">
+<h2>Part 5 · 一次迭代的完整清单 <span class="zh">One Iteration: Checklist</span></h2>
+<p>给定当前 BFS（基 \(B\)），一次单纯形迭代的五个标准步骤：</p>
+<ol>
+  <li><b>算缩减成本</b>：解 \(A_B^\top y=c_B\)，再对 \(j\in N\) 算 \(\bar c_j=c_j-y^\top A_j\)；</li>
+  <li><b>选入基变量</b>：对最小化，挑一个 \(\bar c_j&lt;0\) 的非基下标 \(j\)（常用规则：最负）；若不存在，<b>停</b>——当前 BFS 最优；</li>
+  <li><b>算边方向</b>：\(d_B=-A_B^{-1}A_j\)，\(d_j=1\)，\(d_{N\setminus\{j\}}=0\)；</li>
+  <li><b>比值检验选离基变量</b>：\(\theta^\star=\min_{i\in B,\,d_i&lt;0} x_i/(-d_i)\)；若没有 \(d_i&lt;0\)，该方向<b>无界</b>；</li>
+  <li><b>主元</b>：\(B^+=(B\setminus\{\ell\})\cup\{j\}\)，更新 \(x^+=x+\theta^\star d\)，回到第 1 步。</li>
+</ol>
+<p>上一讲 Part 7 的完整例子（A→B→C）就是这套清单连做两遍的结果，可对照 <a href="#lec6-p7">第6课 Part 7</a> 复习每一步的代数细节。</p>
+</section>
+
+<section id="lec7-p6">
+<h2>Part 6 · 退化：太多个零的 BFS <span class="zh">Degeneracy: A BFS with "Too Many" Zeroes</span></h2>
+
+<h3 id="lec7-p6-1">6.1 退化 BFS 的定义 <span class="zh">Definition</span></h3>
+<div class="def box">
+  <span class="box-title">📌 退化 BFS</span>
+  <p>一个 BFS 若<b>严格正分量的个数少于 \(m\)</b>（等价地：至少有一个基变量为 0，即存在 \(i\in B\) 使 \(x_i=0\)），就称为<b>退化（degenerate）</b>。否则称<b>非退化</b>（\(x_B&gt;0\)）。</p>
+</div>
+<p>要点：</p>
+<ul>
+  <li>「基」只代表「我们选它来解方程」，<b>基变量不一定是正的</b>；</li>
+  <li>退化 BFS 有超过 \(n-m\) 个零坐标（比非退化的「正常零」更多）；</li>
+  <li>在<b>非退化</b> BFS 处，每个基方向都能走一小步正步；</li>
+  <li>一个退化步可以<b>换基却不换点、也不改目标</b>：\(\theta^\star=0\) 且 \(x^+=x\)；</li>
+  <li>退化<b>可能</b>造成零步，但<b>不强迫</b>每一步都是零步。</li>
+</ul>
+
+<h3 id="lec7-p6-2">6.2 三条紧线、一个点、几个基 <span class="zh">Three Tight Lines, One Point, Several Bases</span></h3>
+<p>约束<b>紧（tight / active）</b>意味着等号成立。变量顺序 \((x,y,s_1,s_2)\)：</p>
+<p class="formula">\(x+y+s_1=4,\qquad x+2y+s_2=8,\qquad x,y,s_1,s_2\ge 0.\)</p>
+<p>在 \(P=(0,4)\) 处，有三条约束同时紧：\(x=0\)、\(x+y=4\)、\(x+2y=8\)。两条独立的线已经能确定 \(P\)；完整解是 \(x=(0,4,0,0)\)。</p>
+<table class="truth">
+  <tr><th>基 \(B\)</th><th>基变量取值</th></tr>
+  <tr><td>\(\{1,2\}\)</td><td>\((0,4)\)</td></tr>
+  <tr><td>\(\{2,3\}\)</td><td>\((4,0)\)</td></tr>
+  <tr><td>\(\{2,4\}\)</td><td>\((4,0)\)</td></tr>
+</table>
+<p>这里 \(m=2\)，但每个基都只有一个分量是正的——三个不同的基描述了<b>同一个点</b> \(P\)。</p>
+<div class="warn box">
+  <span class="box-title">💡 怎么理解</span>
+  <p>两条独立的线就够定一个点了，第三条紧线（\(x+2y=8\)）在 \(P\) 处「碰巧也穿过」，于是多了个零。这多出来的零让同一个点可以被多个基表示。关键：<b>退化依赖约束的「表示」</b>，包括那些在单点处紧的冗余约束。多余的那条紧线<b>不会创造第三条边</b>。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 380 340" width="420" role="img" aria-label="三条紧线交于一点 P">
+    <line x1="40" y1="300" x2="360" y2="300" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="356" y="318" class="svg-muted" text-anchor="end">x</text>
+    <line x1="40" y1="300" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="32" y="30" class="svg-muted" text-anchor="end">y</text>
+    <!-- 可行域：x≥0, y≥0, x+y≤4 三角形 -->
+    <polygon points="40,300 240,300 40,100" style="fill: var(--accent); opacity: 0.14; stroke: var(--accent); stroke-width: 2"/>
+    <!-- x+y=4 -->
+    <line x1="240" y1="300" x2="40" y2="100" style="stroke: var(--sv-pos); stroke-width: 2"/>
+    <text x="196" y="222" class="svg-muted" style="fill: var(--sv-pos)">x + y = 4</text>
+    <!-- x+2y=8 经过 P，延伸到 (0,4) 之外 -->
+    <line x1="360" y1="60" x2="40" y2="100" style="stroke: var(--sv-neg); stroke-width: 2" stroke-dasharray="6 4"/>
+    <text x="250" y="92" class="svg-muted" style="fill: var(--sv-neg)">x + 2y = 8</text>
+    <!-- P=(0,4) -->
+    <circle cx="40" cy="100" r="8" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="56" y="96" class="svg-muted" style="fill: var(--sv-hl)">P = (0,4)</text>
+    <text x="56" y="112" class="svg-muted">x=0 也紧：三条线同交 P</text>
+  </svg>
+  <div class="figcap">图：三条线 \(x=0\)、\(x+y=4\)、\(x+2y=8\) 在 \(P=(0,4)\) 同时相交。可行域（蓝边三角形）只用两条线就确定了 \(P\)，第三条线（红虚线）在 \(P\) 处「碰巧」也穿过，造成退化。</div>
+</div>
+
+<h3 id="lec7-p6-3">6.3 被立刻挡住的基方向（\(\theta^\star=0\)） <span class="zh">A Basic Direction Blocked Immediately</span></h3>
+<p>沿用同一约束，取 \(B=\{2,3\}\)（基变量 \(y,s_1\)），让 \(x\) 进入（保持 \(s_2=0\)）：</p>
+<p class="formula">\(x(\theta)=\theta,\qquad y(\theta)=4-\tfrac12\theta,\qquad s_1(\theta)=-\tfrac12\theta.\)</p>
+<p>于是 \(d=(1,-\tfrac12,-\tfrac12,0)\)，比值检验：</p>
+<p class="formula">\(\theta^\star=\min\left\{\dfrac{4}{1/2},\ \dfrac{0}{1/2}\right\}=\min\{8,\ 0\}=0.\)</p>
+<p>\(s_1\) 离基，\(B^+=\{1,2\}\)，但 \(x^+=x\)——点没动。</p>
+<div class="warn box">
+  <span class="box-title">💡 为什么是 0</span>
+  <p>若 \(x_i=0\) 且 \(d_i&lt;0\)，则对任意 \(\theta&gt;0\) 都有 \(x_i+\theta d_i&lt;0\)。方程满足，但<b>非负约束立刻挡住</b>了这个方向。代数上「有方向、有负斜率」不代表「能走正步」。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 380 320" width="420" role="img" aria-label="被立刻挡住的基方向">
+    <line x1="40" y1="280" x2="360" y2="280" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="356" y="298" class="svg-muted" text-anchor="end">x</text>
+    <line x1="40" y1="280" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="32" y="30" class="svg-muted" text-anchor="end">y</text>
+    <polygon points="40,280 240,280 40,80" style="fill: var(--accent); opacity: 0.14; stroke: var(--accent); stroke-width: 2"/>
+    <line x1="240" y1="280" x2="40" y2="80" style="stroke: var(--sv-pos); stroke-width: 2"/>
+    <text x="196" y="200" class="svg-muted" style="fill: var(--sv-pos)">x + y = 4</text>
+    <circle cx="40" cy="80" r="8" style="fill: var(--sv-hl); stroke: var(--fig-bg); stroke-width: 2"/>
+    <text x="56" y="76" class="svg-muted" style="fill: var(--sv-hl)">P = (0,4)</text>
+    <!-- 尝试方向 (1,-1/2)，立刻离开可行域 -->
+    <line x1="40" y1="80" x2="130" y2="35" style="stroke: var(--sv-neg); stroke-width: 3"/>
+    <polygon points="130,35 118,37 124,46" style="fill: var(--sv-neg)"/>
+    <text x="100" y="30" class="svg-muted" style="fill: var(--sv-neg)">d=(1,−½)：θ*=0 被墙挡</text>
+  </svg>
+  <div class="figcap">图：在 P 处尝试沿 \(d=(1,-\tfrac12)\) 走（红箭头），它立刻越出可行域（三角形上方），所以 \(\theta^\star=0\)——换基但点不动。</div>
+</div>
+
+<h3 id="lec7-p6-4">6.4 比值检验平局 <span class="zh">A Ratio Test Tie</span></h3>
+<p>设 \(x_{B(1)}=2,\ x_{B(2)}=4\)，方向 \(d_{B(1)}=-1,\ d_{B(2)}=-2\)：</p>
+<p class="formula">\(x_{B(1)}(\theta)=2-\theta,\qquad x_{B(2)}(\theta)=4-2\theta.\)</p>
+<p>两个比值给出同一个极限 \(\tfrac21=\tfrac42=2\)——<b>两堵墙同时撞上</b>。此时只有一个变量离基，另一个保持基变量身份、取值为 0，于是新 BFS 退化。</p>
+<div class="warn box">
+  <span class="box-title">💡 关键区别</span>
+  <p>可行步长仍然是唯一确定的（\(\theta^\star=2\)）；平局纠结的是「<b>谁</b>离基」，不是「走多远」。选谁离基只决定下一个基，不改变哪些墙是紧的。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 380 300" width="420" role="img" aria-label="比值检验平局">
+    <line x1="40" y1="250" x2="360" y2="250" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="356" y="268" class="svg-muted" text-anchor="end">θ</text>
+    <line x1="40" y1="250" x2="40" y2="20" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="26" y="26" class="svg-muted" text-anchor="end">值</text>
+    <!-- 2-θ: 从 (0,2) 到 (2,0) -->
+    <line x1="40" y1="110" x2="240" y2="250" style="stroke: var(--sv-pos); stroke-width: 2.5"/>
+    <text x="60" y="120" class="svg-muted" style="fill: var(--sv-pos)">x_B(1) = 2 − θ</text>
+    <!-- 4-2θ: 从 (0,4) 到 (2,0) -->
+    <line x1="40" y1="10" x2="240" y2="250" style="stroke: var(--sv-neg); stroke-width: 2.5"/>
+    <text x="60" y="44" class="svg-muted" style="fill: var(--sv-neg)">x_B(2) = 4 − 2θ</text>
+    <!-- θ=2 的竖线 -->
+    <line x1="240" y1="250" x2="240" y2="20" style="stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <text x="244" y="60" class="svg-muted">θ* = 2</text>
+    <circle cx="240" cy="250" r="6" style="fill: var(--sv-hl)"/>
+    <text x="240" y="240" class="svg-muted" text-anchor="middle" style="fill: var(--sv-hl)">两线同撞 0</text>
+    <text x="40" y="296" class="svg-muted" text-anchor="middle">两条线在 θ=2 同时降为 0 —— 比值平局</text>
+  </svg>
+  <div class="figcap">图：两条基变量轨迹 \(2-\theta\) 与 \(4-2\theta\) 都在 \(\theta=2\) 处撞到 0，比值 \(2/1=4/2=2\) 平局。只有一条离基，另一条以 0 值留在基里，新 BFS 退化。</div>
+</div>
+</section>
+
+<section id="lec7-p7">
+<h2>Part 7 · 最优解 ≠ 最优性证书 <span class="zh">Optimal Point vs Certificate</span></h2>
+
+<h3 id="lec7-p7-1">7.1 退化时反向结论失效 <span class="zh">The Converse Fails</span></h3>
+<p>停止规则本身始终有效：对任意 BFS 及其基，\(\bar c_j\ge 0\ \forall j\in N\Rightarrow x\) 最优，退化 BFS 也不例外。但<b>反方向</b>呢？</p>
+<ul>
+  <li>若最优 BFS <b>非退化</b>，则它的所有缩减成本都非负（否则一小步正步就能改善目标）；</li>
+  <li>若最优 BFS <b>退化</b>，某个基可以有 \(\bar c_j&lt;0\)，但可行条件逼着 \(\theta^\star=0\)。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">💡 为什么可能</span>
+  <p>目标值属于「点」；缩减成本是「基」算出来的。换基可以改变缩减成本，即使点原地不动。所以<b>「点是最优的」和「当前基给出一份非负缩减成本证书」是两码事</b>——退化时可能出现前者成立、后者尚未成立。</p>
+</div>
+
+<h3 id="lec7-p7-2">7.2 例子：最优点处有负缩减成本 <span class="zh">A Negative Reduced Cost at an Optimal BFS</span></h3>
+<div class="ex box">
+  <span class="box-title">🧮 例题</span>
+  <p class="formula">\(\min -x_3 \quad\text{s.t.}\quad x_1+x_3=0,\quad x_2-x_3+x_4=1,\quad x_1,x_2,x_3,x_4\ge 0.\)</p>
+  <p>第一个等式逼着 \(x_1=x_3=0\) 对所有可行点成立，因此<b>每个可行点的目标都是 0</b>，每个可行点都是最优的。</p>
+  <p>从 \(B=\{1,2\}\)、\(x=(0,1,0,0)\) 出发。此时 \(A_B=I\)、\(c_B=0\)，故 \(\bar c_3=-1,\ \bar c_4=0\)。</p>
+  <p>让 \(x_3\) 进入：\(d=(-1,1,1,0)\)，\(x(\theta)=(-\theta,1+\theta,\theta,0)\)。</p>
+  <p><b>负斜率还不够</b>：约束 \(x_1\ge 0\) 逼着 \(\theta^\star=0\)。目标斜率是负的，但没有正步可行。</p>
+</div>
+
+<h3 id="lec7-p7-3">7.3 零步主元揭示证书 <span class="zh">A Zero-step Pivot Reveals the Certificate</span></h3>
+<p>继续上面的例子，让 \(x_3\) 进入、\(x_1\) 离开：</p>
+<p class="formula">\(B=\{1,2\}\to B^+=\{2,3\},\qquad x^+=x=(0,1,0,0).\)</p>
+<p>对新基算乘子：</p>
+<p class="formula">\(A_{B^+}=\begin{pmatrix}0&amp;1\\1&amp;-1\end{pmatrix},\quad c_{B^+}=\begin{pmatrix}0\\-1\end{pmatrix},\quad A_{B^+}^\top y=c_{B^+}\Rightarrow y=(-1,0)^\top.\)</p>
+<p>新的非基下标是 1 和 4：</p>
+<p class="formula">\(\bar c_1=0-(-1,0)\cdot(1,0)=1,\qquad \bar c_4=0-(-1,0)\cdot(0,1)=0.\)</p>
+<p>基变量的缩减成本为 0，所以 \(\bar c=(1,0,0,0)\ge 0\)。<b>同一个点、不同的基</b>：主元之前 \(\bar c_3=-1\)、比值检验挡住；主元之后所有缩减成本非负，单纯形法现在能证明最优了。</p>
+<div class="warn box">
+  <span class="box-title">💡 关键洞见</span>
+  <p>退化时「走到最优」和「拿到证书」可能差一次<b>零步主元</b>。这解释了为什么退化不致命、却让算法更微妙——你需要可能在原地「换基」直到缩减成本全部非负。</p>
+</div>
+</section>
+
+<section id="lec7-p8">
+<h2>Part 8 · 循环与主元规则 <span class="zh">Cycling &amp; Pivot Rules</span></h2>
+
+<h3 id="lec7-p8-1">8.1 为什么循环需要退化步 <span class="zh">Why Cycling Requires Degenerate Steps</span></h3>
+<p>单纯形法只选 \(\bar c_j&lt;0\) 的方向，所以目标变化是</p>
+<p class="formula">\(c^\top x^+-c^\top x=\theta^\star\bar c_j.\)</p>
+<ul>
+  <li>若 \(\theta^\star&gt;0\)：目标严格下降，<b>不可能回到早先的基</b>；</li>
+  <li>若 \(\theta^\star=0\)：基改变，点和目标都原地不动。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 结论</span>
+  <p>循环只能由<b>零步主元</b>构成。退化让循环<b>可能</b>发生，但不意味着它必然发生。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 400 220" width="440" role="img" aria-label="循环示意图">
+    <defs>
+      <marker id="arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--sv-neg)"/>
+      </marker>
+    </defs>
+    <circle cx="90" cy="70" r="26" style="fill: var(--fig-bg); stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="90" y="75" class="svg-muted" text-anchor="middle">B⁽¹⁾</text>
+    <circle cx="200" cy="45" r="26" style="fill: var(--fig-bg); stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="200" y="50" class="svg-muted" text-anchor="middle">B⁽²⁾</text>
+    <circle cx="310" cy="70" r="26" style="fill: var(--fig-bg); stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="310" y="75" class="svg-muted" text-anchor="middle">B⁽³⁾</text>
+    <circle cx="200" cy="150" r="26" style="fill: var(--fig-bg); stroke: var(--sv-neg); stroke-width: 2"/>
+    <text x="200" y="155" class="svg-muted" text-anchor="middle">…</text>
+    <line x1="116" y1="66" x2="174" y2="50" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#arr7)"/>
+    <line x1="226" y1="50" x2="284" y2="66" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#arr7)"/>
+    <line x1="310" y1="96" x2="226" y2="146" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#arr7)"/>
+    <line x1="174" y1="146" x2="96" y2="94" style="stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#arr7)"/>
+    <text x="150" y="28" class="svg-muted" style="fill: var(--sv-neg)">θ* = 0</text>
+    <text x="262" y="28" class="svg-muted" style="fill: var(--sv-neg)">θ* = 0</text>
+    <text x="348" y="140" class="svg-muted" style="fill: var(--sv-neg)">θ* = 0</text>
+    <text x="60" y="140" class="svg-muted" style="fill: var(--sv-neg)">θ* = 0</text>
+    <text x="200" y="200" class="svg-muted" text-anchor="middle">回到早先的基（同一个点）——机制示意，非数值循环实例</text>
+  </svg>
+  <div class="figcap">图：循环的机制示意。每一步都是零步主元（\(\theta^\star=0\)），基在变、点不动，最终回到早先的基，形成闭环。这不是某个具体数值例子的循环。</div>
+</div>
+
+<h3 id="lec7-p8-2">8.2 两种主元规则 <span class="zh">Two Kinds of Pivot Rules</span></h3>
+<p><b>① 谁进入？</b> 可能有多个非基变量 \(\bar c_j&lt;0\)：</p>
+<ul>
+  <li><b>最小下标规则</b>：选满足条件的最小下标；</li>
+  <li><b>最负缩减成本规则</b>：选 \(\bar c_j\) 最负的（常用实用启发式）。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">💡 最负 ≠ 下降最多</span>
+  <p>最负缩减成本<b>不保证</b>目标下降最多：实际下降是 \(\theta^\star\bar c_j\)，还要乘步长。一个略小的 \(|\bar c_j|\) 配上大得多的步长，可能下降更多。</p>
+</div>
+<p><b>② 谁离开？</b> 比值检验定出 \(\theta^\star\)。若多个基变量同时达到这个最小值，选其一离开（一条规则：选最小下标）。所有被同时撞到的墙都是紧的；选谁离开只决定下一个基，不改变哪些墙是紧的。</p>
+
+<h3 id="lec7-p8-3">8.3 Bland 规则防循环 <span class="zh">Bland's Rule Prevents Cycling</span></h3>
+<div class="def box">
+  <span class="box-title">📌 Bland 规则（两部分都用）</span>
+  <ol>
+    <li><b>进入</b>：选 \(j=\min\{k\in N:\ \bar c_k&lt;0\}\)（最小下标）；</li>
+    <li><b>离开</b>：在达到最小比值的下标里，选<b>原始变量下标最小</b>的那个。</li>
+  </ol>
+</div>
+<p>例如 \(x_4\) 和 \(x_9\) 在比值检验中平局，就让 \(x_4\) 离开（与它们在当前有序基中的位置无关）。</p>
+<div class="thm box">
+  <span class="box-title">🎯 有限终止</span>
+  <p>从任一 BFS 出发，Bland 规则能阻止基重复出现。由于基只有有限多个，单纯形法必然终止——要么给出最优解，要么检测到下无界。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 注意</span>
+  <p>这个保证依赖<b>这两条特定的下标规则</b>；任意一个「一致的」平局规则未必能防循环。证明见标准 LP 教材（如 Bertsimas–Tsitsiklis）。Bland 规则理论上优雅、实践上常偏慢，所以工程里常用「最负缩减成本 + 一定平局规则」，再靠扰动/防循环策略兜底。</p>
+</div>
+</section>
+
+<section id="lec7-p9">
+<h2>Part 9 · 总结与词汇表 <span class="zh">Summary &amp; Vocabulary</span></h2>
+
+<h3 id="lec7-p9-1">9.1 本讲总结</h3>
+<ul>
+  <li><b>回顾机制</b>：字典、方向、比值检验、缩减成本、停止准则——上一讲已讲透，本讲补「邻居数 \(m(n-m)\)」和「列相关子集不是基」两个细节。</li>
+  <li><b>两条路径</b>：从原点先进入 \(x_1\) 或先进入 \(x_2\) 都能到最优，单纯形法不保证最短路径。</li>
+  <li><b>主元合法性</b>：新基矩阵可逆（\(\det E=-d_\ell&gt;0\)）；新点仍是 BFS（四条定义逐一成立）。</li>
+  <li><b>停止与无界</b>：停止准则的代数证明 \(c^\top z-c^\top x=\sum\bar c_j z_j\ge 0\)；无界时给出可行射线证书。</li>
+  <li><b>退化</b>：正分量少于 \(m\) 的 BFS；多余紧线产生多基一点；可能 \(\theta^\star=0\) 换基不换点；比值平局让新 BFS 退化。</li>
+  <li><b>最优解 vs 证书</b>：退化时最优点的某个基可能有负缩减成本，需零步主元换基才能拿到非负证书。</li>
+  <li><b>循环与 Bland 规则</b>：循环只能由零步主元构成；Bland 规则（最小下标进入 + 最小下标离开）保证有限终止。</li>
+</ul>
+
+<h3 id="lec7-p9-2">9.2 词汇表 <span class="zh">Vocabulary</span></h3>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>neighboring / adjacent basis</b> — 相邻基；<b>column dependence</b> — 列相关</li>
+    <li><b>dependent columns</b> — 相关列；<b>linear dependence</b> — 线性相关</li>
+    <li><b>pivot / pivoting</b> — 主元 / 换基；<b>pivot rule</b> — 主元规则</li>
+    <li><b>invertible / nonsingular</b> — 可逆 / 非奇异；<b>determinant</b> — 行列式</li>
+    <li><b>standard unit vector</b> — 标准单位向量；<b>matrix inverse</b> — 逆矩阵</li>
+    <li><b>improving direction</b> — 改善方向；<b>feasible ray</b> — 可行射线</li>
+    <li><b>unbounded below</b> — 下无界；<b>unboundedness certificate</b> — 无界证书</li>
+    <li><b>degenerate / degeneracy</b> — 退化的 / 退化；<b>degenerate BFS</b> — 退化基本可行解</li>
+    <li><b>tight / active constraint</b> — 紧约束 / 起作用约束</li>
+    <li><b>redundant constraint</b> — 冗余约束</li>
+    <li><b>blocked direction</b> — 被挡住的（基）方向；<b>zero-step pivot</b> — 零步主元</li>
+    <li><b>ratio test tie</b> — 比值检验平局；<b>tie-breaking</b> — 平局裁决</li>
+    <li><b>optimality certificate</b> — 最优性证书；<b>optimal point</b> — 最优点</li>
+    <li><b>cycling</b> — 循环；<b>Bland's rule</b> — Bland 规则</li>
+    <li><b>smallest-index rule</b> — 最小下标规则；<b>most-negative reduced cost</b> — 最负缩减成本规则</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第7课 -->
+
 
 </div>
 </main>
