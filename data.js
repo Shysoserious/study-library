@@ -61,7 +61,7 @@ window.DATA = {
       category: "数学",
       status: "active",
       teacher: "Nachuan Xiao",
-      desc: "凸优化基础 · 经典建模 · 基本术语 · 线性规划（实现/建模/变换/几何/单纯形法）· 单纯形法深入（退化/循环/Bland规则）",
+      desc: "凸优化基础 · 经典建模 · 基本术语 · 线性规划（实现/建模/变换/几何/单纯形法）· 单纯形法深入（退化/循环/Bland规则/初始BFS/两阶段法/大M法/单纯形表）",
       notes: [
         { title: "最优化复习笔记", file: "optimization/最优化复习笔记.html" }
       ],
@@ -183,7 +183,7 @@ window.DATA = {
       category: "物理",
       status: "active",
       teacher: "",
-      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）· 功与动能 · 势能与能量守恒",
+      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）· 功与动能 · 势能与能量守恒 · 动量、冲量与碰撞（动量守恒/碰撞/质心/火箭）",
       notes: [
         { title: "物理复习笔记", file: "phy/物理复习笔记.html" }
       ],
@@ -388,7 +388,19 @@ window.DATA = {
       { en: "Optimal Point", zh: "最优点" },
       { en: "Bland's Rule", zh: "Bland 规则" },
       { en: "Smallest-index Rule", zh: "最小下标规则" },
-      { en: "Most-negative Reduced Cost", zh: "最负缩减成本规则" }
+      { en: "Most-negative Reduced Cost", zh: "最负缩减成本规则" },
+      { en: "Initial Basic Feasible Solution", zh: "初始基本可行解" },
+      { en: "Two-phase Method", zh: "两阶段法" },
+      { en: "Phase I / Phase II", zh: "第一阶段 / 第二阶段" },
+      { en: "Auxiliary LP", zh: "辅助线性规划" },
+      { en: "Artificial Variable", zh: "人工变量" },
+      { en: "Big-M Method", zh: "大 M 法" },
+      { en: "Simplex Tableau", zh: "单纯形表" },
+      { en: "Pivot Column / Pivot Row", zh: "主元列 / 主元行" },
+      { en: "Pivot Element", zh: "主元元素" },
+      { en: "Gauss–Jordan Elimination", zh: "高斯-约当消元" },
+      { en: "Canonical Form", zh: "规范形" },
+      { en: "Phase I Infeasibility", zh: "第一阶段判定不可行" }
     ]},
     { course: "datastructure", terms: [
       { en: "Data Structure", zh: "数据结构" },
@@ -835,7 +847,21 @@ window.DATA = {
       { en: "Potential-energy Function", zh: "势能函数" },
       { en: "Energy Diagram", zh: "能量图" },
       { en: "Turning Point", zh: "转折点" },
-      { en: "Stable / Unstable / Neutral Equilibrium", zh: "稳定 / 不稳定 / 中性平衡" }
+      { en: "Stable / Unstable / Neutral Equilibrium", zh: "稳定 / 不稳定 / 中性平衡" },
+      { en: "Linear Momentum", zh: "线动量" },
+      { en: "Impulse", zh: "冲量" },
+      { en: "Impulse–Momentum Theorem", zh: "冲量-动量定理" },
+      { en: "Conservation of Momentum", zh: "动量守恒" },
+      { en: "Collision", zh: "碰撞" },
+      { en: "Elastic Collision", zh: "弹性碰撞" },
+      { en: "Inelastic Collision", zh: "非弹性碰撞" },
+      { en: "Completely Inelastic Collision", zh: "完全非弹性碰撞" },
+      { en: "Relative Velocity", zh: "相对速度" },
+      { en: "Center of Mass", zh: "质心" },
+      { en: "Internal / External Force", zh: "内力 / 外力" },
+      { en: "Variable-mass System", zh: "变质量系统" },
+      { en: "Rocket Equation", zh: "火箭方程" },
+      { en: "Thrust", zh: "推力" }
     ]}
   ]
 };
