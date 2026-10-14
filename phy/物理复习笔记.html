@@ -509,6 +509,43 @@ window.MathJax = {
         <a class="lv1" href="#lec8-p12">Part 12 · 总结</a>
       </div>
     </div>
+
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第9课 · Rotation of Rigid Bodies <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec9-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec9-p1">Part 1 · 转动运动学</a>
+        <a class="lv2" href="#lec9-p1-1">1.1 平动与转动</a>
+        <a class="lv2" href="#lec9-p1-2">1.2 刚体与定轴转动</a>
+        <a class="lv2" href="#lec9-p1-3">1.3 角位置 θ = s/r</a>
+        <a class="lv2" href="#lec9-p1-4">1.4 角位移（不是矢量）</a>
+        <a class="lv2" href="#lec9-p1-5">1.5 角速度（右手定则）</a>
+        <a class="lv2" href="#lec9-p1-6">1.6 角加速度</a>
+        <a class="lv2" href="#lec9-p1-7">1.7 例题：ω–t 图判加速/减速</a>
+        <a class="lv2" href="#lec9-p1-8">1.8 线量 vs 角量对比表</a>
+        <a class="lv2" href="#lec9-p1-9">1.9 匀角加速度转动</a>
+        <a class="lv1" href="#lec9-p2">Part 2 · 线量与角量的关系</a>
+        <a class="lv2" href="#lec9-p2-1">2.1 弧长 s = θr</a>
+        <a class="lv2" href="#lec9-p2-2">2.2 切向速度 v = ωr</a>
+        <a class="lv2" href="#lec9-p2-3">2.3 加速度分解：切向 + 径向</a>
+        <a class="lv2" href="#lec9-p2-4">2.4 向心加速度 a_rad = ω²r</a>
+        <a class="lv2" href="#lec9-p2-5">2.5 极坐标描述</a>
+        <a class="lv1" href="#lec9-p3">Part 3 · 转动动能与转动惯量</a>
+        <a class="lv2" href="#lec9-p3-1">3.1 转动动能 K = ½Iω²</a>
+        <a class="lv2" href="#lec9-p3-2">3.2 转动惯量定义 I = ∫r²dm</a>
+        <a class="lv2" href="#lec9-p3-3">3.3 转动惯量的物理意义</a>
+        <a class="lv1" href="#lec9-p4">Part 4 · 转动惯量的计算</a>
+        <a class="lv2" href="#lec9-p4-1">4.1 常见形状速查表</a>
+        <a class="lv2" href="#lec9-p4-2">4.2 推导：圆环/圆盘/细杆</a>
+        <a class="lv2" href="#lec9-p4-3">4.3 球壳/实心球/薄盘</a>
+        <a class="lv2" href="#lec9-p4-4">4.4 例题：转盘+物块（能量守恒）</a>
+        <a class="lv1" href="#lec9-p5">Part 5 · 平行轴定理</a>
+        <a class="lv2" href="#lec9-p5-1">5.1 定理 I = I_cm + Mh²</a>
+        <a class="lv2" href="#lec9-p5-2">5.2 推导</a>
+        <a class="lv2" href="#lec9-p5-3">5.3 例题：两粒子杆</a>
+        <a class="lv1" href="#lec9-p6">Part 6 · 总结</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -517,7 +554,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">物理 · 复习笔记</h1>
-<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–8</p>
+<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–9</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -3123,6 +3160,428 @@ window.MathJax = {
 </section>
 
 </div><!-- /第8课 -->
+
+<!-- ============ 第9课 ============ -->
+<div class="lecture-banner">第9课 · Rotation of Rigid Bodies <span class="zh">（刚体转动）</span></div>
+
+<div class="lecture" id="lec9">
+<section id="lec9-overview">
+  <h2>本讲概览 Overview</h2>
+  <p>前面几课处理的都是<b>平动（translation）</b>——物体整体沿直线或曲线移动而不自转；本课转入<b>转动（rotation）</b>：物体绕一根<b>固定轴（fixed axis）</b>旋转。核心是建立一套与线运动完全平行的「<b>角量（angular quantities）</b>」语言：<b>角位置 \(\theta\)、角位移 \(\Delta\theta\)、角速度 \(\omega\)、角加速度 \(\alpha\)</b>，再引入转动版的「质量」——<b>转动惯量（moment of inertia）\(I\)</b>，最终得到<b>转动动能 \(K=\tfrac{1}{2}I\omega^2\)</b> 和<b>平行轴定理 \(I=I_{cm}+Mh^2\)</b>。</p>
+  <p>一条主线：<b>每个线量都有一个角量对应</b>，只要把「质量 \(m\) → 转动惯量 \(I\)」「速度 \(v\) → 角速度 \(\omega\)」「力 → 力矩（下一课讲）」替换即可，很多公式结构不变。</p>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec9-p1">转动运动学（角位置 / 角位移 / 角速度 / 角加速度）</a></li>
+      <li><a href="#lec9-p2">线量与角量的关系（\(s=\theta r\)、\(v=\omega r\)、切向与径向加速度）</a></li>
+      <li><a href="#lec9-p3">转动动能与转动惯量</a></li>
+      <li><a href="#lec9-p4">转动惯量的计算（常见形状）</a></li>
+      <li><a href="#lec9-p5">平行轴定理</a></li>
+      <li><a href="#lec9-p6">总结</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec9-p1">
+<h2>Part 1 · 转动运动学 <span class="zh">Rotational Kinematics</span></h2>
+
+<h3 id="lec9-p1-1">1.1 平动与转动 Translation vs Rotation</h3>
+<p>物体的运动大体分两种：</p>
+<ul>
+  <li><b>平动（motion of translation）</b>：物体只移动<b>不自旋</b>，沿直线或曲线前进。例如抽屉被拉出、电梯升降。平动时物体上每一点的位移都相同。</li>
+  <li><b>转动（motion of rotation）</b>：物体绕某根<b>轴（axis）</b>旋转，例如轮子滚动、门绕铰链开合。</li>
+</ul>
+<p>真实运动往往是两者的<b>组合（complicated motion）</b>：例如在地面滚动的轮子，既绕轴自转，其轴又向前平动（「滚动 = 平动 + 转动」）。本课先单独研究<b>纯转动（pure rotation）</b>。</p>
+
+<h3 id="lec9-p1-2">1.2 刚体与定轴转动 Rigid Body &amp; Fixed Axis</h3>
+<div class="def box">
+  <span class="box-title">📌 刚体 Rigid Body</span>
+  <p><b>刚体（rigid body）</b>：具有<b>完全确定、永不改变</b>的形状与大小的物体（各部分被「锁死」在一起，不发生任何形变）。现实中不存在理想刚体，但很多固体在近似下可当刚体处理。</p>
+</div>
+<ul>
+  <li><b>固定轴（fixed axis）</b>：转动绕一根<b>不动</b>的轴进行，这根轴叫<b>转轴（axis of rotation / rotation axis）</b>。</li>
+  <li><b>纯转动（pure rotation）</b>：刚体上<b>每一个点</b>都在以转轴上的某点为圆心的<b>圆周</b>上运动，且在<b>相同时间间隔内转过相同的角度</b>。</li>
+</ul>
+<p>由于刚体不形变、各点「同步」转，<b>一个角量就能描述整个刚体的转动状态</b>——这正是角量描述比线量简洁的原因。</p>
+
+<h3 id="lec9-p1-3">1.3 角位置 Angular Position</h3>
+<p>在垂直于转轴的平面上取一条<b>参考线（reference line）</b>（从转轴出发、随刚体一起转）。</p>
+<div class="def box">
+  <span class="box-title">📌 角位置 \(\theta\)（Angular Position）</span>
+  <p>参考线相对<b>正 x 轴</b>转过的角度，记为 \(\theta\)。</p>
+  <p class="formula">\(\theta = \dfrac{s}{r}\)　（\(s\) 为弧长，\(r\) 为半径）</p>
+  <p>SI 单位：<b>弧度（radian）</b>，量纲为 1（纯数）。</p>
+</div>
+<p>弧度是「弧长 / 半径」之比。对整圆：</p>
+<p class="formula">\(1\ \text{rev} = 360^\circ = \dfrac{2\pi r}{r} = 2\pi\ \text{rad}\)</p>
+<p class="formula">\(1\ \text{rad} = 57.3^\circ = 0.159\ \text{rev}\)</p>
+<div class="figure">
+  <svg viewBox="0 0 320 240" width="360" role="img" aria-label="角位置 theta 等于弧长除以半径">
+    <defs>
+      <marker id="ap-arc" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+    </defs>
+    <line x1="160" y1="190" x2="160" y2="10" style="stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4"/>
+    <line x1="160" y1="190" x2="280" y2="190" style="stroke: var(--muted); stroke-width: 1"/>
+    <circle cx="160" cy="190" r="110" style="fill: none; stroke: var(--text); stroke-width: 1.5"/>
+    <line x1="160" y1="190" x2="160" y2="80" style="stroke: var(--sv-pos); stroke-width: 2.5" marker-end="url(#ap-arc)"/>
+    <text x="168" y="130" class="svg-muted" style="fill: var(--sv-pos)">r</text>
+    <line x1="160" y1="190" x2="260" y2="100" style="stroke: var(--sv-neg); stroke-width: 2.5"/>
+    <path d="M 160 190 A 110 110 0 0 0 260 100" style="fill: none; stroke: var(--sv-hl); stroke-width: 2.5"/>
+    <text x="240" y="170" class="svg-muted" style="fill: var(--sv-hl)">弧长 s</text>
+    <path d="M 216 190 A 56 56 0 0 0 196 156" style="fill: none; stroke: var(--muted); stroke-width: 1.5"/>
+    <text x="196" y="168" class="svg-muted">θ</text>
+    <text x="80" y="16" class="svg-muted">参考线（正 x 轴）</text>
+    <text x="250" y="205" class="svg-muted">x</text>
+  </svg>
+  <div class="figcap">图：角位置 \(\theta = s/r\) 是参考线相对正 x 轴转过的角，等于弧长 \(s\) 与半径 \(r\) 之比。</div>
+</div>
+
+<h3 id="lec9-p1-4">1.4 角位移 Angular Displacement</h3>
+<p>物体绕轴转动，参考线从 \(\theta_1\) 变到 \(\theta_2\)，其<b>角位移（angular displacement）</b>：</p>
+<p class="formula">\(\Delta\theta = \theta_2 - \theta_1\)　（对刚体成立，各点相同）</p>
+<p>约定：<b>逆时针（counterclockwise）为正，顺时针（clockwise）为负</b>。刚体上<b>每个点</b>的 \(\Delta\theta\) 都相同。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 角位移是矢量吗？——不是</span>
+  <p>角位移 <b>不是矢量</b>（有限角位移不满足交换律，不能按矢量相加）。<b>仅对绕固定轴的小转动</b>，才有 \(\theta_1+\theta_2=\theta_2+\theta_1\)（此时可用 +/− 号表示方向，即逆时针为正、顺时针为负）。真正是矢量的是<b>角速度 \(\vec{\omega}\)</b> 和<b>角加速度 \(\vec{\alpha}\)</b>。</p>
+</div>
+
+<h3 id="lec9-p1-5">1.5 角速度 Angular Velocity</h3>
+<div class="def box">
+  <span class="box-title">📌 角速度 \(\omega\)（Angular Velocity）</span>
+  <p><b>平均角速度（average angular velocity）</b>：</p>
+  <p class="formula">\(\omega_{\text{avg}} = \dfrac{\theta_2-\theta_1}{t_2-t_1} = \dfrac{\Delta\theta}{\Delta t}\)</p>
+  <p><b>瞬时角速度（instantaneous angular velocity）</b>：</p>
+  <p class="formula">\(\omega = \lim_{\Delta t\to 0}\dfrac{\Delta\theta}{\Delta t} = \dfrac{d\theta}{dt}\)</p>
+  <p><b>角速率（angular speed）</b> = 角速度的<b>大小</b>。SI 单位：<b>rad/s</b>。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 角速度作为矢量</span>
+  <p>\(\omega\) 可视为<b>沿转轴方向</b>的矢量 \(\vec{\omega}\)（正如 \(v_x\) 是速度的 x 分量，\(\omega_z\) 是 \(\vec{\omega}\) 的 z 分量）。方向由<b>右手定则（right-hand rule）</b>确定：右手四指沿<b>旋转方向</b>弯曲，拇指即指向 \(\vec{\omega}\)。</p>
+  <p>对固定 z 轴，只有两种旋转：<b>逆时针（+，沿 +z）</b>与<b>顺时针（−，沿 −z）</b>，因此常直接用带符号的标量 \(\omega\) 表示 \(\omega_z\)。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 300 240" width="340" role="img" aria-label="角速度右手定则">
+    <defs>
+      <marker id="av-w" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+    </defs>
+    <circle cx="150" cy="140" r="70" style="fill: none; stroke: var(--text); stroke-width: 1.5"/>
+    <path d="M 190 110 A 65 65 0 0 1 90 140" style="fill: none; stroke: var(--sv-neg); stroke-width: 2" marker-end="url(#av-w)"/>
+    <text x="150" y="120" class="svg-muted" style="fill: var(--sv-neg)">旋转方向</text>
+    <line x1="150" y1="140" x2="150" y2="30" style="stroke: var(--sv-pos); stroke-width: 2.5" marker-end="url(#av-w)"/>
+    <text x="158" y="80" class="svg-muted" style="fill: var(--sv-pos)">ω（沿轴）</text>
+    <text x="150" y="228" class="svg-muted">右手四指沿旋转方向弯曲，拇指指向 ω</text>
+  </svg>
+  <div class="figcap">图：角速度矢量 \(\vec{\omega}\) 沿转轴，方向由右手定则确定（逆时针 → 沿 +z 轴）。</div>
+</div>
+
+<h3 id="lec9-p1-6">1.6 角加速度 Angular Acceleration</h3>
+<div class="def box">
+  <span class="box-title">📌 角加速度 \(\alpha\)（Angular Acceleration）</span>
+  <p><b>平均角加速度</b>：</p>
+  <p class="formula">\(\alpha_{\text{avg}} = \dfrac{\omega_2-\omega_1}{t_2-t_1} = \dfrac{\Delta\omega}{\Delta t}\)</p>
+  <p><b>瞬时角加速度</b>：</p>
+  <p class="formula">\(\alpha = \lim_{\Delta t\to 0}\dfrac{\Delta\omega}{\Delta t} = \dfrac{d\omega}{dt} = \dfrac{d^2\theta}{dt^2}\)</p>
+  <p>SI 单位：<b>rad/s²</b>。对刚体<b>每个粒子</b>都相同。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 角加速度作为矢量</span>
+  <p>角加速度矢量 \(\vec{\alpha}\)：绕固定 z 轴时只有 z 分量，常用标量 \(\alpha\) 表示 \(\alpha_z\)。</p>
+  <ul>
+    <li>\(\vec{\alpha}\) 与 \(\vec{\omega}\) <b>同向</b> → 转速<b>加快</b>（speeding up）。</li>
+    <li>\(\vec{\alpha}\) 与 \(\vec{\omega}\) <b>反向</b> → 转速<b>减慢</b>（slowing down）。</li>
+  </ul>
+</div>
+
+<h3 id="lec9-p1-7">1.7 例题：由 \(\omega\)–\(t\) 图判断加速 / 减速</h3>
+<p>已知某旋转体的 \(\omega\) 与 \(\alpha\) 随时间 \(t\) 的变化，判断各时间段是「加快」还是「减慢」。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 判定法则</span>
+  <p><b>\(\omega\) 与 \(\alpha\) 同号（同向）→ 加速；异号（反向）→ 减速</b>。与 \(\omega\) 的正负（转向）无关。</p>
+  <p>例如 \(\omega&gt;0,\alpha&lt;0\)：物体逆时针转但转速下降（减速）；\(\omega&lt;0,\alpha&lt;0\)：物体顺时针转且转速增大（加速，因为同号）。</p>
+</div>
+
+<h3 id="lec9-p1-8">1.8 线运动 vs 转动对比表</h3>
+<p>绕固定轴的转动可视为<b>一维</b>运动，与直线运动<b>逐项对应</b>：</p>
+<table class="truth">
+  <tr><th>直线运动（Linear）</th><th>转动（Rotational）</th></tr>
+  <tr><td>位置 \(x\)</td><td>角位置 \(\theta\)</td></tr>
+  <tr><td>位移 \(\Delta x\)</td><td>角位移 \(\Delta\theta\)</td></tr>
+  <tr><td>速度 \(v\)</td><td>角速度 \(\omega\)</td></tr>
+  <tr><td>加速度 \(a\)</td><td>角加速度 \(\alpha\)</td></tr>
+</table>
+
+<h3 id="lec9-p1-9">1.9 匀角加速度转动 Constant Angular Acceleration</h3>
+<p>当 \(\alpha\) 为常数时，与匀加速直线运动公式<b>逐字对应</b>（把 \(x\to\theta,\ v\to\omega,\ a\to\alpha\)）：</p>
+<p class="formula">\(\omega = \omega_0 + \alpha t\)</p>
+<p class="formula">\(\theta = \theta_0 + \omega_0 t + \dfrac{1}{2}\alpha t^2\)</p>
+<p class="formula">\(\omega^2 = \omega_0^2 + 2\alpha(\theta-\theta_0)\)</p>
+<p class="formula">\(\theta - \theta_0 = \dfrac{1}{2}(\omega_0+\omega)\,t\)</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 弧度制的必要性</span>
+  <p>以上所有线量–角量关系（\(s=\theta r,\ v=\omega r,\ a_t=\alpha r\)）<b>只有当 \(\theta\) 用弧度（radian）度量时才成立</b>。若用角度（度）必须先换算成弧度。</p>
+</div>
+</section>
+
+<section id="lec9-p2">
+<h2>Part 2 · 线量与角量的关系 <span class="zh">Relating Linear and Angular Kinematics</span></h2>
+
+<h3 id="lec9-p2-1">2.1 弧长关系 \(s = \theta r\)</h3>
+<p>取刚体上距转轴垂直距离为 \(r\) 的一点。该点沿弧线走过的长度 \(s\)：</p>
+<p class="formula">\(s = \theta r\)　（radian measure）</p>
+<p>其中 \(r\) 是点到转轴的<b>垂直距离</b>。所有线量–角量的换算都要求 \(\theta\) 用<b>弧度</b>。</p>
+
+<h3 id="lec9-p2-2">2.2 切向速度 \(v = \omega r\)</h3>
+<p>\(r\) 为常数，对 \(s=\theta r\) 求导：</p>
+<p class="formula">\(\dfrac{ds}{dt} = \dfrac{d\theta}{dt}\,r \;\Rightarrow\; v = \omega r\)　（radian measure）</p>
+<p>矢量形式（\(\vec{v}\) 是速度、\(\vec{\omega}\) 是角速度）：</p>
+<p class="formula">\(\vec{v} = \vec{\omega} \times \vec{r}\)</p>
+<p>方向：\(\vec{v}\) 垂直于 \(\vec{\omega}\) 与 \(\vec{r}\) 所在平面，沿圆周<b>切向</b>。</p>
+
+<h3 id="lec9-p2-3">2.3 加速度分解：切向 + 径向</h3>
+<p>对 \(\vec{v}=\vec{\omega}\times\vec{r}\) 求导（\(\vec{\omega}\) 与 \(\vec{r}\) 都可变）：</p>
+<p class="formula">\(\vec{a} = \dfrac{d\vec{v}}{dt} = \dfrac{d(\vec{\omega}\times\vec{r})}{dt} = \dfrac{d\vec{\omega}}{dt}\times\vec{r} + \vec{\omega}\times\dfrac{d\vec{r}}{dt} = \vec{\alpha}\times\vec{r} + \vec{\omega}\times\vec{v}\)</p>
+<p>第二项用三重矢量积化简（\(\vec{\omega}\perp\vec{r}\)，故 \(\vec{\omega}\cdot\vec{r}=0\)）：</p>
+<p class="formula">\(\vec{\omega}\times\vec{v} = \vec{\omega}\times(\vec{\omega}\times\vec{r}) = \vec{\omega}(\vec{\omega}\cdot\vec{r}) - \vec{r}(\vec{\omega}\cdot\vec{\omega}) = 0 - \omega^2\vec{r}\)</p>
+<p>于是总加速度分解为两项：</p>
+<p class="formula">\(\vec{a} = \underbrace{\vec{\alpha}\times\vec{r}}_{\vec{a}_t} \;+\; \underbrace{(-\omega^2\vec{r})}_{\vec{a}_{rad}} = \vec{a}_t + \vec{a}_{rad}\)</p>
+<ul>
+  <li><b>切向分量（tangential）</b> \(a_t = \alpha r\)：沿圆周切线方向，<b>改变速率</b>。仅当有角加速度 \(\alpha\ne 0\) 时才存在。</li>
+  <li><b>径向分量（radial）</b> \(a_{rad} = \omega^2 r\)：指向圆心（\(-\vec{r}\) 方向），<b>改变速度方向</b>。</li>
+</ul>
+
+<h3 id="lec9-p2-4">2.4 径向（向心）加速度 \(a_{rad} = \omega^2 r\)</h3>
+<p>径向加速度又叫<b>向心加速度（centripetal acceleration）</b>，方向恒指向圆心：</p>
+<p class="formula">\(a_{rad} = \omega^2 r = \dfrac{v^2}{r}\)</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 关键点</span>
+  <p><b>只要物体在转动，\(a_{rad}\ne 0\)</b>——即使角加速度为零（匀速圆周运动，\(\alpha=0,\ a_t=0\)）也有向心加速度。匀速圆周运动时<b>只有径向加速度</b> \(a=a_{rad}=v^2/r\)。</p>
+</div>
+<p>总加速度大小（两者互相垂直）：</p>
+<p class="formula">\(a = \sqrt{a_t^2 + a_{rad}^2} = \sqrt{(\alpha r)^2 + (\omega^2 r)^2}\)</p>
+<div class="figure">
+  <svg viewBox="0 0 340 260" width="380" role="img" aria-label="切向加速度与径向加速度分解">
+    <defs>
+      <marker id="ta-at" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+      <marker id="ta-ar" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+    </defs>
+    <circle cx="150" cy="150" r="90" style="fill: none; stroke: var(--muted); stroke-width: 1.5"/>
+    <circle cx="150" cy="150" r="4" style="fill: var(--text)"/>
+    <circle cx="90" cy="150" r="5" style="fill: var(--sv-hl)"/>
+    <text x="70" y="170" class="svg-muted" style="fill: var(--sv-hl)">点 P</text>
+    <line x1="150" y1="150" x2="90" y2="150" style="stroke: var(--muted); stroke-width: 1.5"/>
+    <line x1="90" y1="150" x2="60" y2="150" style="stroke: var(--sv-pos); stroke-width: 2.5" marker-end="url(#ta-ar)"/>
+    <text x="52" y="138" class="svg-muted" style="fill: var(--sv-pos)">a_rad（指向圆心）</text>
+    <line x1="90" y1="150" x2="90" y2="96" style="stroke: var(--sv-neg); stroke-width: 2.5" marker-end="url(#ta-at)"/>
+    <text x="96" y="116" class="svg-muted" style="fill: var(--sv-neg)">a_t（切向）</text>
+  </svg>
+  <div class="figcap">图：转动中某点的加速度分解为<b>切向分量</b> \(a_t=\alpha r\)（改速率）与<b>径向分量</b> \(a_{rad}=\omega^2 r\)（改方向，恒指圆心）。</div>
+</div>
+
+<h3 id="lec9-p2-5">2.5 极坐标描述 Polar Coordinates</h3>
+<p>单个粒子做圆周运动也可用<b>极坐标（polar coordinates）</b>描述：粒子在 \(x\)–\(y\) 平面内沿半径 \(r\) 固定的圆运动，其直角坐标分量随时间变化。极坐标把「绕中心」的几何对称性显式化，便于写圆周运动的位置、速度、加速度。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例题：宇航员离心机</span>
+  <p>一宇航员在半径固定的离心机中做圆周运动，角速度恒定。因 \(\omega\) 恒定，\(\alpha=0\)，<b>只有径向加速度</b> \(a_{rad}=\omega^2 r\) 存在。若离心机从静止在 \(120\ \text{s}\) 内匀加速到上述 \(\omega\)，则还存在切向加速度 \(a_t=\alpha r = \dfrac{\omega-0}{120}\,r\)。</p>
+</div>
+</section>
+
+<section id="lec9-p3">
+<h2>Part 3 · 转动动能与转动惯量 <span class="zh">Rotational Kinetic Energy &amp; Moment of Inertia</span></h2>
+
+<h3 id="lec9-p3-1">3.1 转动动能 Rotational Kinetic Energy</h3>
+<p>把刚体看作<b>一群粒子</b>的集合：各粒子以<b>相同的 \(\omega\)</b> 转动，但线速度 \(v_i\) 不同（离轴越远越快，\(v_i=\omega r_i\)）。总动能：</p>
+<p class="formula">\(K = \dfrac{1}{2}m_1v_1^2 + \dfrac{1}{2}m_2v_2^2 + \dfrac{1}{2}m_3v_3^2 + \cdots = \dfrac{1}{2}\sum_i m_i v_i^2\)</p>
+<p>代入 \(v_i=\omega r_i\)：</p>
+<p class="formula">\(K = \dfrac{1}{2}\sum_i m_i v_i^2 = \dfrac{1}{2}\Big(\sum_i m_i r_i^2\Big)\omega^2 = \dfrac{1}{2}I\omega^2\)</p>
+<p class="formula">\(K = \dfrac{1}{2}I\omega^2\)</p>
+
+<h3 id="lec9-p3-2">3.2 转动惯量 Moment of Inertia</h3>
+<div class="def box">
+  <span class="box-title">📌 转动惯量 \(I\)（Rotational Inertia / Moment of Inertia）</span>
+  <p>刚体绕某转轴的转动惯量：</p>
+  <p class="formula">\(I = \sum_i m_i r_i^2\)</p>
+  <p>对<b>连续</b>刚体：</p>
+  <p class="formula">\(I = \displaystyle\int r^2\,dm\)</p>
+  <p>其中 \(r\) 是每个质量元到<b>转轴</b>的垂直距离。SI 单位：<b>kg·m²</b>。</p>
+</div>
+
+<h3 id="lec9-p3-3">3.3 转动惯量的物理意义</h3>
+<ul>
+  <li>\(I\) 同时取决于<b>质量</b>与<b>质量分布</b>（质量离轴越远，\(I\) 越大），是转动中对应线运动中「质量 \(m\)」的角色。</li>
+  <li>\(I\) 衡量<b>改变转动状态的难易</b>（加速、减速、改变转轴的难易）。</li>
+  <li><b>转动惯量取决于转轴！</b>同一物体绕不同轴，\(I\) 不同。质量越靠近转轴，\(I\) 越小、越容易转。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 例子：两个转轴</span>
+  <p>同一根杆，绕「过质心且垂直杆」的轴转，与绕「过端点」的轴转，\(I\) 不同（后者更大）。质量分布离轴近的（图 a）比离轴远的（图 b）转动惯量小。</p>
+</div>
+</section>
+
+<section id="lec9-p4">
+<h2>Part 4 · 转动惯量的计算 <span class="zh">Calculating the Rotational Inertia</span></h2>
+
+<h3 id="lec9-p4-1">4.1 常见形状转动惯量速查</h3>
+<p>以下是对「质心轴 / 对称轴」已算好的常见结果（\(M\) 为总质量，\(R\) 为半径，\(L\) 为长度）：</p>
+<table class="truth">
+  <tr><th>形状（转轴）</th><th>转动惯量 \(I\)</th></tr>
+  <tr><td>薄圆环 / 圆环，绕中心轴</td><td>\(MR^2\)</td></tr>
+  <tr><td>空心圆环（环状圆柱），绕中心轴</td><td>\(\tfrac{1}{2}M(R_1^2+R_2^2)\)</td></tr>
+  <tr><td>实心圆柱 / 圆盘，绕中心轴</td><td>\(\tfrac{1}{2}MR^2\)</td></tr>
+  <tr><td>实心圆柱 / 圆盘，绕任意直径（长 \(L\)）</td><td>\(\tfrac{1}{4}MR^2+\tfrac{1}{12}ML^2\)</td></tr>
+  <tr><td>细杆，绕过中心且垂直于杆</td><td>\(\tfrac{1}{12}ML^2\)</td></tr>
+  <tr><td>圆环，绕任意直径</td><td>\(\tfrac{1}{2}MR^2\)</td></tr>
+  <tr><td>薄圆盘，绕任意直径</td><td>\(\tfrac{1}{4}MR^2\)</td></tr>
+  <tr><td>薄球壳（空心），绕任意直径</td><td>\(\tfrac{2}{3}MR^2\)</td></tr>
+  <tr><td>实心球，绕任意直径</td><td>\(\tfrac{2}{5}MR^2\)</td></tr>
+  <tr><td>薄板（矩形 \(a\times b\)），绕过中心且垂直于板</td><td>\(\tfrac{1}{12}M(a^2+b^2)\)</td></tr>
+</table>
+<div class="figure">
+  <svg viewBox="0 0 560 260" width="600" role="img" aria-label="常见形状转动惯量">
+    <defs>
+      <marker id="mi-axis" markerWidth="8" markerHeight="8" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" style="fill: var(--muted)"/></marker>
+    </defs>
+    <!-- 圆环绕中心轴 -->
+    <circle cx="70" cy="80" r="34" style="fill: none; stroke: var(--sv-pos); stroke-width: 3"/>
+    <line x1="70" y1="80" x2="70" y2="20" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#mi-axis)"/>
+    <text x="70" y="130" class="svg-muted">圆环 MR²</text>
+    <!-- 圆盘绕中心轴 -->
+    <circle cx="210" cy="80" r="34" style="fill: var(--sv-pos); fill-opacity: 0.18; stroke: var(--sv-pos); stroke-width: 2"/>
+    <line x1="210" y1="80" x2="210" y2="20" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#mi-axis)"/>
+    <text x="210" y="130" class="svg-muted">圆盘 ½MR²</text>
+    <!-- 细杆绕过中心 -->
+    <rect x="330" y="70" width="120" height="8" style="fill: var(--sv-neg); fill-opacity: 0.3; stroke: var(--sv-neg); stroke-width: 1.5"/>
+    <line x1="390" y1="110" x2="390" y2="40" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#mi-axis)"/>
+    <text x="390" y="130" class="svg-muted">细杆 (1/12)ML²</text>
+    <!-- 实心球绕直径 -->
+    <circle cx="80" cy="215" r="30" style="fill: var(--sv-hl); fill-opacity: 0.2; stroke: var(--sv-hl); stroke-width: 2"/>
+    <line x1="30" y1="215" x2="130" y2="215" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#mi-axis)"/>
+    <text x="80" y="260" class="svg-muted">实心球 (2/5)MR²</text>
+    <!-- 球壳 -->
+    <circle cx="230" cy="215" r="30" style="fill: none; stroke: var(--sv-hl); stroke-width: 3"/>
+    <line x1="180" y1="215" x2="280" y2="215" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#mi-axis)"/>
+    <text x="230" y="260" class="svg-muted">球壳 (2/3)MR²</text>
+    <!-- 矩形板 -->
+    <rect x="340" y="180" width="90" height="60" style="fill: var(--sv-neg); fill-opacity: 0.15; stroke: var(--sv-neg); stroke-width: 1.5"/>
+    <line x1="385" y1="240" x2="385" y2="150" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#mi-axis)"/>
+    <text x="385" y="260" class="svg-muted">板 (1/12)M(a²+b²)</text>
+  </svg>
+  <div class="figcap">图：常见形状绕对称轴 / 质心轴的转动惯量速查。</div>
+</div>
+
+<h3 id="lec9-p4-2">4.2 推导示例：圆环 / 圆盘 / 细杆</h3>
+<div class="ex box">
+  <span class="box-title">✏️ (a) 薄圆环绕中心轴</span>
+  <p>每个质量元 \(dm\) 到轴的距离都是 \(R\)，故</p>
+  <p class="formula">\(I = \displaystyle\int R^2\,dm = R^2\int dm = MR^2\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ (c) 实心圆盘（滑轮）绕中心轴</span>
+  <p>取半径 \(r\)、厚 \(dr\) 的薄环，\(dm = \rho\cdot 2\pi r\,dr\,L\)，总质量 \(M=\pi\rho L R^2\)：</p>
+  <p class="formula">\(I = \displaystyle\int_0^R r^2\,dm = \int_0^R r^2\cdot 2\pi\rho L\,r\,dr = 2\pi\rho L\cdot\dfrac{R^4}{4} = \dfrac{1}{2}MR^2\)</p>
+  <p>（等价于空心圆环 \(R_1=0,\ R_2=R\) 的特例。）</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ (e) 细杆绕过中心且垂直于杆</span>
+  <p>线密度 \(\mu=M/L\)，取长 \(dx\) 的质量元 \(dm=\mu\,dx\)，到轴距离 \(x\)（范围 \(-L/2\) 到 \(L/2\)）：</p>
+  <p class="formula">\(I = \displaystyle\int_{-L/2}^{L/2} x^2\,\mu\,dx = \mu\cdot\dfrac{1}{3}x^3\Big|_{-L/2}^{L/2} = \dfrac{1}{12}ML^2\)</p>
+</div>
+
+<h3 id="lec9-p4-3">4.3 薄球壳 / 实心球 / 薄盘绕直径</h3>
+<div class="ex box">
+  <span class="box-title">✏️ (g) 薄球壳（空心）绕任意直径</span>
+  <p>面密度 \(\sigma\)，取半径 \(r=R\sin\theta\)、宽 \(R\,d\theta\) 的圆环，\(dm=2\sigma\pi R^2\sin\theta\,d\theta\)，总质量 \(M=4\pi R^2\sigma\)：</p>
+  <p class="formula">\(I = \displaystyle\int_0^{\pi} r^2\,dm = \int_0^{\pi}(R\sin\theta)^2\cdot 2\sigma\pi R^2\sin\theta\,d\theta = 2\sigma\pi R^4\cdot\dfrac{4}{3} = \dfrac{2}{3}MR^2\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ (f) 实心球绕任意直径</span>
+  <p>把实心球切成同心薄球壳：每个壳 \(dI=\tfrac{2}{3}dm\,r^2\)，其中 \(dm=\rho\cdot 4\pi r^2\,dr\)：</p>
+  <p class="formula">\(I = \displaystyle\int_0^R \dfrac{2}{3}r^2\,dm = \dfrac{2}{3}\int_0^R r^2\cdot\rho\,4\pi r^2\,dr = \dfrac{8\pi\rho}{15}R^5 = \dfrac{2}{5}MR^2\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ (f′) 薄圆盘绕任意直径</span>
+  <p>把圆盘切成同心圆环，每个环绕自身直径 \(dI=\tfrac{1}{2}dm\,r^2\)（圆环绕直径的结果），\(dm=\sigma\cdot 2\pi r\,dr\)：</p>
+  <p class="formula">\(I = \displaystyle\int_0^R \dfrac{1}{2}r^2\,dm = \int_0^R \dfrac{1}{2}r^2\cdot\sigma\,2\pi r\,dr = \dfrac{\pi\sigma R^4}{4} = \dfrac{1}{4}MR^2\)</p>
+</div>
+
+<h3 id="lec9-p4-4">4.4 例题：转盘 + 悬挂物块（能量守恒）</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：质量为 \(M\) 的匀质圆盘绕固定水平轴，质量 \(m\) 的物块经无质量绳绕盘缘悬挂</span>
+  <p>物块下落距离 \(S\) 后，求 \(M\) 与 \(m\) 各自的动能。</p>
+  <p><b>机械能守恒</b>（无摩擦、无滑动）：\(\Delta E_{mech} = \Delta K + \Delta U = 0\)</p>
+  <p class="formula">\((K_M-0) + (K_m-0) + (-mgS) = 0\)</p>
+  <p>物块平动动能 + 圆盘转动动能（圆盘 \(I=\tfrac{1}{2}MR^2\)，绳不打滑 \(v=\omega R\)）：</p>
+  <p class="formula">\(mgS = K_M + K_m = \dfrac{1}{2}mv^2 + \dfrac{1}{2}\Big(\dfrac{1}{2}MR^2\Big)\omega^2\)</p>
+  <p>解得：</p>
+  <p class="formula">\(K_m = \dfrac{m}{m+M/2}\,mgS,\qquad K_M = \dfrac{M/2}{m+M/2}\,mgS\)</p>
+  <p>要点：<b>重力势能按转动惯量（等效质量）分配给平动与转动</b>。</p>
+</div>
+</section>
+
+<section id="lec9-p5">
+<h2>Part 5 · 平行轴定理 <span class="zh">The Parallel-Axis Theorem</span></h2>
+
+<h3 id="lec9-p5-1">5.1 定理表述</h3>
+<div class="thm box">
+  <span class="box-title">🎯 平行轴定理 Parallel-Axis Theorem</span>
+  <p>若已知刚体绕<b>过质心</b>轴的转动惯量 \(I_{cm}\)，则绕任意与之<b>平行</b>、垂直距离为 \(h\) 的轴的转动惯量：</p>
+  <p class="formula">\(I = I_{cm} + Mh^2\)</p>
+  <p>其中 \(M\) 为刚体总质量。注意：<b>两根轴必须平行</b>，且其中一根必须过质心；对任意两根轴（不过质心）不成立。</p>
+</div>
+
+<h3 id="lec9-p5-2">5.2 推导</h3>
+<p>取质心为原点，则 \(\sum m_i x_i = 0,\ \sum m_i y_i = 0\)（质心定义，\(\int x\,dm=\int y\,dm=0\)）。设新轴过点 \((a,b)\)，某质量元在 \((x,y)\)：</p>
+<p class="formula">\(I = \displaystyle\int r^2\,dm = \int\Big[(x-a)^2+(y-b)^2\Big]dm\)</p>
+<p>展开：</p>
+<p class="formula">\(I = \displaystyle\int(x^2+y^2)\,dm - 2a\int x\,dm - 2b\int y\,dm + (a^2+b^2)\int dm\)</p>
+<p>其中 \(\int(x^2+y^2)dm = I_{cm}\)（到质心轴的距离平方），两个交叉项因质心在原点为 0，\((a^2+b^2)\int dm = Mh^2\)：</p>
+<p class="formula">\(I = I_{cm} + Mh^2\)　（Parallel-axis Theorem）</p>
+
+<h3 id="lec9-p5-3">5.3 例题：两粒子杆</h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：质量 \(m\) 的两粒子由长 \(L\) 的无质量杆相连</span>
+  <p>(a) 绕过<b>质心</b>（杆中点）且垂直杆的轴：每个粒子到轴距离 \(L/2\)，故</p>
+  <p class="formula">\(I_{cm} = m\Big(\dfrac{L}{2}\Big)^2 + m\Big(\dfrac{L}{2}\Big)^2 = \dfrac{mL^2}{2}\)</p>
+  <p>(b) 绕过<b>左端点</b>且平行于第一根的轴：左端粒子在轴上（距离 0），右端粒子距离 \(L\)：</p>
+  <p class="formula">\(I = m\cdot 0^2 + m\cdot L^2 = mL^2\)</p>
+  <p>或用平行轴定理（\(h=L/2,\ M=2m\)）：\(I = I_{cm}+Mh^2 = \dfrac{mL^2}{2} + 2m\Big(\dfrac{L}{2}\Big)^2 = mL^2\)，一致。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：等腰三角形板 / 圆锥 / 非均匀板</span>
+  <p><b>等腰三角形板</b>绕过质心、平行于底边的轴；<b>匀质圆锥</b>绕过顶点且沿高的轴（把圆锥切成薄圆盘积分）；<b>非均匀三角形板</b>（密度 \(\sigma(r)=\alpha r\) 随到轴距离线性增长）。这类问题统一思路：<b>选对质量元 → 写 \(dI\) → 用平行轴定理 / 直接积分 → 归一化到总质量 \(M\)</b>。</p>
+</div>
+</section>
+
+<section id="lec9-p6">
+<h2>Part 6 · 总结 <span class="zh">Summary</span></h2>
+<div class="thm box">
+  <span class="box-title">🎯 本章公式速查（全部用弧度制）</span>
+  <p><b>角量定义</b>：</p>
+  <p class="formula">\(\theta=\dfrac{s}{r},\quad \omega=\dfrac{d\theta}{dt},\quad \alpha=\dfrac{d\omega}{dt}=\dfrac{d^2\theta}{dt^2}\)</p>
+  <p><b>匀角加速度</b>：\(\omega=\omega_0+\alpha t,\quad \theta=\theta_0+\omega_0t+\tfrac{1}{2}\alpha t^2,\quad \omega^2=\omega_0^2+2\alpha(\theta-\theta_0)\)</p>
+  <p><b>线量–角量关系</b>：</p>
+  <p class="formula">\(s=\theta r,\quad v=\omega r,\quad \vec{v}=\vec{\omega}\times\vec{r},\quad a_t=\alpha r,\quad a_{rad}=\omega^2 r=\dfrac{v^2}{r}\)</p>
+  <p><b>转动动能与转动惯量</b>：</p>
+  <p class="formula">\(K=\dfrac{1}{2}I\omega^2,\qquad I=\sum_i m_i r_i^2=\displaystyle\int r^2\,dm\)</p>
+  <p><b>平行轴定理</b>：</p>
+  <p class="formula">\(I = I_{cm} + Mh^2\)</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>rigid body</b> — 刚体；<b>fixed axis</b> — 固定轴；<b>axis of rotation</b> — 转轴</li>
+    <li><b>translation</b> — 平动；<b>rotation</b> — 转动；<b>pure rotation</b> — 纯转动</li>
+    <li><b>angular position</b> — 角位置；<b>angular displacement</b> — 角位移</li>
+    <li><b>angular velocity</b> — 角速度；<b>angular speed</b> — 角速率；<b>angular acceleration</b> — 角加速度</li>
+    <li><b>radian</b> — 弧度；<b>revolution (rev)</b> — 转（圈）</li>
+    <li><b>right-hand rule</b> — 右手定则；<b>counterclockwise / clockwise</b> — 逆时针 / 顺时针</li>
+    <li><b>tangential / radial (centripetal)</b> — 切向的 / 径向的（向心的）</li>
+    <li><b>rotational inertia / moment of inertia</b> — 转动惯量</li>
+    <li><b>parallel-axis theorem</b> — 平行轴定理</li>
+    <li><b>kinetic energy of rotation</b> — 转动动能</li>
+  </ul>
+</div>
+</section>
+</div><!-- /第9课 -->
 
 </div>
 </main>

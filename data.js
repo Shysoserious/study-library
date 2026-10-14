@@ -13,7 +13,7 @@ window.DATA = {
     title: "理科学习库",
     subtitle: "从大一到现在，每一门课的复习笔记，都收在这里。",
     author: "李思源",
-    lastUpdated: "2026-09-22"
+    lastUpdated: "2026-10-14"
   },
 
   // 学期顺序（用于首页分组；新课程会自动归入对应分组）
@@ -46,7 +46,7 @@ window.DATA = {
       category: "数学",
       status: "active",           // active = 进行中 | done = 已完成 | self = 自学
       teacher: "",
-      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法",
+      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法 · 递归（递推/汉诺塔/卡特兰数/生成函数）",
       notes: [
         { title: "离散数学复习笔记", file: "discretemath/离散数学复习笔记.html" }
       ],
@@ -91,7 +91,7 @@ window.DATA = {
       category: "金融",
       status: "active",
       teacher: "",
-      desc: "金融是什么 · 公司形式 · 融资 · 货币时间价值 · 年金与永续 · 摊销贷款/NPV/IRR · 债券定价 · 股票定价",
+      desc: "金融是什么 · 公司形式 · 融资 · 货币时间价值 · 年金与永续 · 摊销贷款/NPV/IRR · 债券定价 · 股票定价 · 收益与风险 · 分散化与CAPM",
       notes: [
         { title: "金融基础复习笔记", file: "fin/金融基础复习笔记.html" }
       ],
@@ -183,7 +183,7 @@ window.DATA = {
       category: "物理",
       status: "active",
       teacher: "",
-      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）· 功与动能 · 势能与能量守恒 · 动量、冲量与碰撞（动量守恒/碰撞/质心/火箭）",
+      desc: "运动学（直线/二维三维）· 牛顿定律（力·摩擦力·圆周运动）· 功与动能 · 势能与能量守恒 · 动量、冲量与碰撞（动量守恒/碰撞/质心/火箭）· 刚体转动（转动运动学/转动动能/转动惯量/平行轴定理）",
       notes: [
         { title: "物理复习笔记", file: "phy/物理复习笔记.html" }
       ],
@@ -287,7 +287,22 @@ window.DATA = {
       { en: "Set Difference", zh: "差集" },
       { en: "Distributive Law", zh: "分配律" },
       { en: "Set Identity", zh: "集合恒等式" },
-      { en: "Venn Diagram", zh: "韦恩图" }
+      { en: "Venn Diagram", zh: "韦恩图" },
+      { en: "Recursion / Recurrence", zh: "递归 / 递推" },
+      { en: "Recursively Defined Sequence", zh: "递归定义的序列" },
+      { en: "Fibonacci Sequence", zh: "斐波那契数列" },
+      { en: "Bit String", zh: "位串" },
+      { en: "Domino / Tiling", zh: "多米诺骨牌 / 铺法" },
+      { en: "Tower of Hanoi", zh: "汉诺塔" },
+      { en: "Merge Sort / Bubble Sort", zh: "归并排序 / 冒泡排序" },
+      { en: "Divide and Conquer", zh: "分治" },
+      { en: "Catalan Number", zh: "卡特兰数" },
+      { en: "Generating Function", zh: "生成函数" },
+      { en: "Second-order Linear Recurrence", zh: "二阶线性递推" },
+      { en: "Characteristic Equation", zh: "特征方程" },
+      { en: "Distinct Roots", zh: "相异根" },
+      { en: "Closed-form", zh: "闭式解" },
+      { en: "Binet's Formula", zh: "Binet 公式" }
     ]},
     { course: "optimization", terms: [
       { en: "Optimization", zh: "最优化" },
@@ -831,7 +846,32 @@ window.DATA = {
       { en: "Discounted Cash Flow (DCF)", zh: "现金流贴现模型" },
       { en: "Free Cash Flow", zh: "自由现金流" },
       { en: "Growth Rate", zh: "增长率" },
-      { en: "Forward-looking", zh: "前瞻的" }
+      { en: "Forward-looking", zh: "前瞻的" },
+      { en: "Return", zh: "收益" },
+      { en: "Expected Return", zh: "期望收益" },
+      { en: "Risk", zh: "风险（收益的不确定性）" },
+      { en: "Standard Deviation", zh: "标准差" },
+      { en: "Variance", zh: "方差" },
+      { en: "Arithmetic Average Return", zh: "算术平均收益" },
+      { en: "Geometric Average Return / CAGR", zh: "几何平均收益 / 复合年增长率" },
+      { en: "Volatility Drag", zh: "波动拖累" },
+      { en: "Risk Premium", zh: "风险溢价" },
+      { en: "Equity Risk Premium", zh: "股权风险溢价" },
+      { en: "Risk-Free Rate", zh: "无风险利率" },
+      { en: "Sharpe Ratio", zh: "Sharpe 比率（报酬-风险比）" },
+      { en: "Ponzi Scheme", zh: "庞氏骗局" },
+      { en: "Diversification", zh: "分散化" },
+      { en: "Portfolio", zh: "投资组合" },
+      { en: "Correlation", zh: "相关系数" },
+      { en: "Covariance", zh: "协方差" },
+      { en: "Idiosyncratic Risk", zh: "特质风险" },
+      { en: "Systematic Risk", zh: "系统性风险" },
+      { en: "Efficient Frontier", zh: "有效前沿" },
+      { en: "Capital Asset Pricing Model (CAPM)", zh: "资本资产定价模型" },
+      { en: "Beta", zh: "贝塔（系统性风险度量）" },
+      { en: "Security Market Line (SML)", zh: "证券市场线" },
+      { en: "Market Portfolio", zh: "市场组合" },
+      { en: "Market Risk Premium", zh: "市场风险溢价" }
     ]},
     { course: "phy", terms: [
       { en: "Position / Displacement", zh: "位置 / 位移" },
@@ -910,7 +950,20 @@ window.DATA = {
       { en: "Internal / External Force", zh: "内力 / 外力" },
       { en: "Variable-mass System", zh: "变质量系统" },
       { en: "Rocket Equation", zh: "火箭方程" },
-      { en: "Thrust", zh: "推力" }
+      { en: "Thrust", zh: "推力" },
+      { en: "Rigid Body", zh: "刚体" },
+      { en: "Fixed Axis / Axis of Rotation", zh: "固定轴 / 转轴" },
+      { en: "Translation / Rotation", zh: "平动 / 转动" },
+      { en: "Angular Position", zh: "角位置" },
+      { en: "Angular Displacement", zh: "角位移" },
+      { en: "Angular Velocity", zh: "角速度" },
+      { en: "Angular Acceleration", zh: "角加速度" },
+      { en: "Radian", zh: "弧度" },
+      { en: "Right-hand Rule", zh: "右手定则" },
+      { en: "Tangential Acceleration", zh: "切向加速度" },
+      { en: "Rotational Kinetic Energy", zh: "转动动能" },
+      { en: "Moment of Inertia / Rotational Inertia", zh: "转动惯量" },
+      { en: "Parallel-axis Theorem", zh: "平行轴定理" }
     ]}
   ]
 };

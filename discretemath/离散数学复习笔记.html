@@ -338,6 +338,21 @@ window.MathJax = {
     <a class="lv2" href="#ln4-6">4.6 强归纳法</a>
     <a class="lv2" href="#ln4-7">4.7 良序原理</a>
     <a class="lv2" href="#ln4-8">4.8 不变量方法</a>
+
+    <a class="lv1" href="#ln5">LN5 · 递归 Recursion</a>
+    <a class="lv2" href="#ln5-1">5.1 递归定义序列</a>
+    <a class="lv2" href="#ln5-2">5.2 热身：幂集大小</a>
+    <a class="lv2" href="#ln5-3">5.3 斐波那契递推（兔子）</a>
+    <a class="lv2" href="#ln5-4">5.4 不含 11 的位串</a>
+    <a class="lv2" href="#ln5-5">5.5 多米诺铺法</a>
+    <a class="lv2" href="#ln5-6">5.6 汉诺塔</a>
+    <a class="lv2" href="#ln5-7">5.7 归并排序</a>
+    <a class="lv2" href="#ln5-8">5.8 括号与卡特兰数</a>
+    <a class="lv2" href="#ln5-9">5.9 求解递推：迭代与猜证</a>
+    <a class="lv2" href="#ln5-10">5.10 生成函数</a>
+    <a class="lv2" href="#ln5-11">5.11 二阶线性递推与特征根</a>
+    <a class="lv2" href="#ln5-12">5.12 斐波那契闭式解（Binet）</a>
+    <a class="lv2" href="#ln5-13">5.13 总结</a>
   </nav>
 </aside>
 
@@ -1596,6 +1611,300 @@ window.MathJax = {
     <li><b>orthogonal</b> — 正交的；<b>inner product</b> — 内积</li>
     <li><b>Cauchy-Schwarz inequality</b> — 柯西-施瓦茨不等式</li>
     <li><b>prime product / prime factorization</b> — 素分解；<b>postage</b> — 邮资</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN5 递归 ============ -->
+<!-- ================================================= -->
+<section id="ln5">
+<h2>LN5 · 递归 <span class="zh">Recursion</span></h2>
+<p>递归是计算机科学中<b>最重要</b>的技术之一，核心思想是<b>抓住重复动作中的不变量（invariant）</b>：把大问题<b>归约（reduce）</b>成更小的同类问题。本讲分两大块：<b>建立递推关系（setting up recurrences）</b>——斐波那契、汉诺塔、卡特兰数等；<b>求解递推（solving recurrences）</b>——迭代猜证、生成函数、特征根法。</p>
+
+<h3 id="ln5-1">5.1 递归定义序列 <span class="zh">Recursively Defined Sequences</span></h3>
+<p>一个序列可以用「<b>当前项与前几项的关系</b>」来定义，而不必写出通项：</p>
+<div class="def box">
+  <span class="box-title">📌 三种基本递推序列</span>
+  <ul>
+    <li><b>等差序列（arithmetic sequence）</b>：\((a,\ a+d,\ a+2d,\ a+3d,\dots)\)，递推定义 \(a_0=a,\ a_{i+1}=a_i+d\)。</li>
+    <li><b>等比序列（geometric sequence）</b>：\((a,\ ra,\ r^2a,\ r^3a,\dots)\)，递推定义 \(a_0=a,\ a_{i+1}=ra_i\)。</li>
+    <li><b>调和序列（harmonic sequence）</b>：\((1,\ \tfrac12,\ \tfrac13,\ \tfrac14,\dots)\)，递推定义 \(a_0=1,\ a_{i+1}=\dfrac{i}{i+1}a_i\)。</li>
+  </ul>
+</div>
+<p>递推定义的价值：很多计数问题<b>难以直接写出通项</b>，但「当前情形与更小情形的关系」往往一目了然——这正是递归的威力。</p>
+
+<h3 id="ln5-2">5.2 热身：幂集大小 <span class="zh">Warm Up: |pow(Sₙ)|</span></h3>
+<p>用递归数一个<b>已知答案</b>的东西来熟悉思路：\(S_n=\{a_1,a_2,\dots,a_n\}\) 的幂集大小 \(r_n=|\mathrm{pow}(S_n)|\)。</p>
+<p>基准：\(r_1=2\)（\(\mathrm{pow}(S_1)=\{\varnothing,\{a_1\}\}\)），\(r_2=4\)。</p>
+<p>关键观察：把 \(S_n\) 的子集分成两类——<b>不含</b> \(a_n\) 的子集（就是 \(\mathrm{pow}(S_{n-1})\)），与<b>含</b> \(a_n\) 的子集（每个都是「不含 \(a_n\) 的某个子集」加上 \(a_n\)）：</p>
+<p class="formula">\(\mathrm{pow}(S_n) = \mathrm{pow}(S_{n-1}) \;\cup\; \big\{\,B\cup\{a_n\} : B\in\mathrm{pow}(S_{n-1})\,\big\}\)</p>
+<p>两部分<b>无交且等大</b>（一一对应），每个子集被<b>恰好计数一次</b>，故：</p>
+<p class="formula">\(r_n = 2r_{n-1}\)</p>
+<p>解此递推（等比序列）得 \(r_n = 2^n\)。</p>
+
+<h3 id="ln5-3">5.3 斐波那契递推 <span class="zh">Fibonacci (Rabbit Populations)</span></h3>
+<p>兔子模型：一对<b>成熟</b>的雌雄兔每月繁殖一对；兔子出生后<b>一个月</b>成熟。记 \(w_n\) 为第 \(n\) 月新生兔对数，\(r_n\) 为第 \(n\) 月总对数，初始 \(w_0=1,\ r_0=0\)。</p>
+<p class="formula">\(r_n = r_{n-1} + w_{n-1}\)　（上月已有 + 上月新生）</p>
+<p>而「第 \(n-1\) 月的新生对」到第 \(n\) 月已成熟，故 \(w_n = r_{n-1}\)：</p>
+<p class="formula">\(r_n = r_{n-1} + r_{n-2}\)</p>
+<p>这正是<b>斐波那契数列（Fibonacci sequence）</b>。历史上是斐波那契研究兔子数量增长提出的。我们后面会求它的<b>闭式解（closed-form）</b>——一个「计算步数 ≤ 常数」的公式。</p>
+
+<h3 id="ln5-4">5.4 不含 11 的位串 <span class="zh">Bit Strings without 11</span></h3>
+<p>问题：有多少个<b>不含</b>位模式 \(11\) 的 \(n\) 位串？记 \(r_n\) 为个数。</p>
+<p>基准：\(r_1=|\{0,1\}|=2\)，\(r_2=|\{00,01,10\}|=3\)，\(r_3=5\)，\(r_4=8\)——已经看出斐波那契的味道。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 按首位分类</span>
+  <p><b>Case 1：首位是 0</b>。剩下的 \(n-1\) 位可以是<b>任意</b>不含 11 的 \((n-1)\) 位串，故有 \(r_{n-1}\) 个。</p>
+  <p><b>Case 2：首位是 1</b>。则第二位<b>必须是 0</b>（否则出现 11），剩下 \(n-2\) 位是任意不含 11 的 \((n-2)\) 位串，故有 \(r_{n-2}\) 个。</p>
+  <p>两类<b>互不相交</b>（首位 0 vs 1），且每个合法串<b>恰好落入一类</b>，由加法法则：</p>
+  <p class="formula">\(r_n = r_{n-1} + r_{n-2}\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 练习：不含 111 的位串</span>
+  <p>有多少个不含位模式 \(111\) 的 \(n\) 位串？提示：按「首个 0 出现的位置」或「末尾连续 1 的个数」分类。</p>
+</div>
+
+<h3 id="ln5-5">5.5 多米诺铺法 <span class="zh">Domino Tiling</span></h3>
+<p>问题：用 \(2\times 1\) 的多米诺骨牌铺满 \(2\times n\) 的棋盘，有多少种铺法？记 \(r_n\) 为铺法数。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 按第一列的铺法分类</span>
+  <p><b>Case 1：第一块竖直放</b>。盖住第 1 列，剩下 \(2\times(n-1)\) 棋盘，有 \(r_{n-1}\) 种铺法。</p>
+  <p><b>Case 2：前两块水平叠放</b>。盖住前两列，剩下 \(2\times(n-2)\) 棋盘，有 \(r_{n-2}\) 种铺法。</p>
+  <p class="formula">\(r_n = r_{n-1} + r_{n-2}\)</p>
+  <p>基准 \(r_1=1,\ r_2=2\)，同样是斐波那契数列。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 460 190" width="500" role="img" aria-label="2乘3棋盘的多米诺铺法">
+    <g style="stroke: var(--text); stroke-width: 1.5; fill: none;">
+      <rect x="30" y="40" width="80" height="120"/>
+      <line x1="30" y1="80" x2="110" y2="80"/>
+      <line x1="56" y1="40" x2="56" y2="160"/>
+      <line x1="83" y1="40" x2="83" y2="160"/>
+    </g>
+    <text x="70" y="176" class="svg-muted">(a) 全竖直</text>
+    <g style="stroke: var(--text); stroke-width: 1.5; fill: none;">
+      <rect x="160" y="40" width="80" height="120"/>
+      <line x1="160" y1="80" x2="240" y2="80"/>
+      <line x1="186" y1="40" x2="186" y2="160"/>
+      <line x1="213" y1="40" x2="213" y2="160"/>
+    </g>
+    <rect x="160" y="40" width="26" height="40" style="fill: var(--sv-pos); fill-opacity:0.25; stroke: var(--sv-pos); stroke-width:1.5"/>
+    <rect x="160" y="80" width="26" height="40" style="fill: var(--sv-pos); fill-opacity:0.25; stroke: var(--sv-pos); stroke-width:1.5"/>
+    <text x="200" y="176" class="svg-muted">(b) 左竖+右横</text>
+    <g style="stroke: var(--text); stroke-width: 1.5; fill: none;">
+      <rect x="290" y="40" width="80" height="120"/>
+      <line x1="290" y1="80" x2="370" y2="80"/>
+      <line x1="316" y1="40" x2="316" y2="160"/>
+      <line x1="343" y1="40" x2="343" y2="160"/>
+    </g>
+    <rect x="316" y="40" width="27" height="40" style="fill: var(--sv-neg); fill-opacity:0.25; stroke: var(--sv-neg); stroke-width:1.5"/>
+    <rect x="316" y="80" width="27" height="40" style="fill: var(--sv-neg); fill-opacity:0.25; stroke: var(--sv-neg); stroke-width:1.5"/>
+    <text x="330" y="176" class="svg-muted">(c) 左横+右竖</text>
+  </svg>
+  <div class="figcap">图：\(2\times 3\) 棋盘的 3 种多米诺铺法，对应 \(r_3=r_2+r_1=3\)。</div>
+</div>
+
+<h3 id="ln5-6">5.6 汉诺塔 <span class="zh">Tower of Hanoi</span></h3>
+<p>问题：把柱子 1 上的所有圆盘移到柱子 3，规则是<b>大盘不能放在小盘上</b>。记 \(r_n\) 为移动 \(n\) 个盘所需步数。</p>
+<p>递归思路：假设已有「移 \(n-1\) 个盘」的程序，用它解 \(n\) 个盘：</p>
+<ol>
+  <li>把上面 \(n-1\) 个盘从柱 1 移到柱 2（用 \(n-1\) 的程序）→ \(r_{n-1}\) 步；</li>
+  <li>把最大的盘从柱 1 移到柱 3 → 1 步；</li>
+  <li>再把那 \(n-1\) 个盘从柱 2 移到柱 3 → \(r_{n-1}\) 步。</li>
+</ol>
+<p class="formula">\(r_n = 2r_{n-1} + 1\)　（基准 \(r_1=1\)）</p>
+<div class="figure">
+  <svg viewBox="0 0 420 200" width="460" role="img" aria-label="汉诺塔三柱">
+    <g style="stroke: var(--text); stroke-width: 2;">
+      <line x1="80" y1="30" x2="80" y2="160"/>
+      <line x1="210" y1="30" x2="210" y2="160"/>
+      <line x1="340" y1="30" x2="340" y2="160"/>
+      <line x1="20" y1="160" x2="400" y2="160"/>
+    </g>
+    <g style="fill: var(--sv-pos); fill-opacity:0.35; stroke: var(--sv-pos); stroke-width:1.5;">
+      <rect x="42" y="142" width="76" height="14"/>
+      <rect x="50" y="124" width="60" height="14"/>
+      <rect x="58" y="106" width="44" height="14"/>
+      <rect x="66" y="88" width="28" height="14"/>
+    </g>
+    <text x="80" y="178" class="svg-muted">柱 1</text>
+    <text x="210" y="178" class="svg-muted">柱 2（临时）</text>
+    <text x="340" y="178" class="svg-muted">柱 3（目标）</text>
+  </svg>
+  <div class="figcap">图：汉诺塔。先把 \(n-1\) 个盘移到中间柱，移动最大盘，再移回——\(r_n=2r_{n-1}+1\)。</div>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 最优性：Frame–Stewart 猜想</span>
+  <p>经典 3 柱汉诺塔的递推 \(r_n=2r_{n-1}+1\) 给出<b>最优</b>步数。推广到 <b>4 柱</b>：<b>Frame–Stewart 算法</b>最优（2014 年才被证明）；<b>5 柱及以上</b>仍未知，是<b>开放问题（open problem）</b>。另一个推广（把给定初态移到给定终态）则等价于一般的最短路问题，一般情形难以高效计算。</p>
+</div>
+
+<h3 id="ln5-7">5.7 归并排序 <span class="zh">Merge Sort</span></h3>
+<p>问题：把 \(n\) 个数排成非降序需要多少步？<b>冒泡排序（bubble sort）</b>每步比较相邻两数、乱序则交换，最坏约 \(n^2/2\) 步（如逆序输入 \(n,n-1,\dots,1\) 要 \((n-1)+(n-2)+\cdots+1=\tfrac{n(n-1)}{2}\) 步）。</p>
+<p>递归思路（<b>分治 divide-and-conquer</b>）：</p>
+<ol>
+  <li>把序列<b>分成两半</b>；</li>
+  <li>用「排 \(n/2\) 个数」的程序分别排两半；</li>
+  <li>把两个<b>已排序</b>序列<b>合并（merge）</b>成一个有序序列。</li>
+</ol>
+<div class="def box">
+  <span class="box-title">📌 合并两个长为 \(k\) 的有序序列</span>
+  <p>两个已排序的 \(k\) 长序列可在 <b>\(2k\) 步</b>内合并成一个 \(2k\) 长的有序序列：每步只看两个序列的<b>队首（head）</b>，取较小者放入结果——每步扩展一个数，共 \(2k\) 步。</p>
+</div>
+<p>若排 \(k\) 个数需 \(T_k\) 步，则排 \(2k\) 个数需 \(2T_k + 2k\) 步：</p>
+<p class="formula">\(T_{2k} = 2T_k + 2k\)</p>
+<p>解此递推（后见）得 \(T_{2n}\le n\log_2 n\)，<b>显著快于冒泡排序</b>。</p>
+<div class="figure">
+  <svg viewBox="0 0 440 220" width="470" role="img" aria-label="归并排序递归树">
+    <defs>
+      <marker id="ms-a" markerWidth="8" markerHeight="8" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" style="fill: var(--muted)"/></marker>
+    </defs>
+    <text x="30" y="36" class="svg-muted">Level 0</text>
+    <circle cx="180" cy="40" r="16" style="fill: var(--sv-pos); fill-opacity:0.2; stroke: var(--sv-pos); stroke-width:1.5"/>
+    <text x="180" y="45" class="svg-muted">Tₖ</text>
+    <line x1="180" y1="56" x2="110" y2="96" style="stroke: var(--muted); stroke-width:1.2" marker-end="url(#ms-a)"/>
+    <line x1="180" y1="56" x2="250" y2="96" style="stroke: var(--muted); stroke-width:1.2" marker-end="url(#ms-a)"/>
+    <text x="30" y="104" class="svg-muted">Level 1</text>
+    <circle cx="110" cy="100" r="16" style="fill: var(--sv-pos); fill-opacity:0.2; stroke: var(--sv-pos); stroke-width:1.5"/>
+    <text x="110" y="105" class="svg-muted">Tₖ/₂</text>
+    <circle cx="250" cy="100" r="16" style="fill: var(--sv-pos); fill-opacity:0.2; stroke: var(--sv-pos); stroke-width:1.5"/>
+    <text x="250" y="105" class="svg-muted">Tₖ/₂</text>
+    <line x1="110" y1="116" x2="90" y2="150" style="stroke: var(--muted); stroke-width:1.2"/>
+    <line x1="110" y1="116" x2="130" y2="150" style="stroke: var(--muted); stroke-width:1.2"/>
+    <line x1="250" y1="116" x2="230" y2="150" style="stroke: var(--muted); stroke-width:1.2"/>
+    <line x1="250" y1="116" x2="270" y2="150" style="stroke: var(--muted); stroke-width:1.2"/>
+    <text x="30" y="158" class="svg-muted">Level 2</text>
+    <circle cx="90" cy="162" r="12" style="fill: none; stroke: var(--sv-neg); stroke-width:1.5"/>
+    <circle cx="130" cy="162" r="12" style="fill: none; stroke: var(--sv-neg); stroke-width:1.5"/>
+    <circle cx="230" cy="162" r="12" style="fill: none; stroke: var(--sv-neg); stroke-width:1.5"/>
+    <circle cx="270" cy="162" r="12" style="fill: none; stroke: var(--sv-neg); stroke-width:1.5"/>
+    <text x="300" y="50" class="svg-muted">每层比较数 = k</text>
+    <text x="300" y="70" class="svg-muted">层数 = log₂k</text>
+    <text x="300" y="90" class="svg-muted">总 = k·log₂k</text>
+  </svg>
+  <div class="figcap">图：归并排序的递归树。每层总比较数约 \(k\)，共 \(\log_2 k\) 层，故 \(T_k\le k\log_2 k\)。</div>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 注记：分治的威力</span>
+  <p>这是<b>分治（divide-and-conquer）</b>算法的例子，思想非常强大，可用于设计更快的<b>整数乘法、矩阵乘法</b>等基础算法。</p>
+</div>
+
+<h3 id="ln5-8">5.8 括号与卡特兰数 <span class="zh">Parentheses &amp; Catalan Numbers</span></h3>
+<p>问题：\(n\) 对括号有多少种<b>合法</b>的添加方式？记 \(r_n\) 为方式数，基准 \(r_0=r_1=1\)。例：3 对括号有 5 种：\(((())),\ (()()),\ (())(),\ ()(()),\ ()()()\)。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 按首个左括号的配对位置分类</span>
+  <p>看第一个 <b>(</b> 与它配对的那个 <b>)</b> 的位置，设它包住了 \(k-1\) 对括号：</p>
+  <ul>
+    <li>Case 1：<code>()······</code>，包 0 对 → \(r_0\,r_{n-1}\) 种；</li>
+    <li>Case 2：<code>(--)······</code>，包 1 对 → \(r_1\,r_{n-2}\) 种；</li>
+    <li>一般 Case k：<code>(····)····</code> 包 \(k-1\) 对、外面 \(n-k\) 对 → 由乘法法则 \(r_{k-1}r_{n-k}\) 种。</li>
+  </ul>
+  <p>各情形按「首个左括号对应的右括号位置」<b>互不相交</b>，由加法法则：</p>
+  <p class="formula">\(r_n = \displaystyle\sum_{k=1}^{n} r_{k-1}\,r_{n-k} = r_0r_{n-1}+r_1r_{n-2}+\cdots+r_{n-1}r_0\)</p>
+</div>
+<p><b>阶梯（stairs）问题</b>给出<b>完全相同</b>的递推：\(n\)-阶梯（由 x 轴、\(y=x\)、\(x=n+1\) 围成的单位方格区域）用恰好 \(n\) 个矩形填满的方式数。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 阶梯问题的递归</span>
+  <p>关键观察：阶梯的<b>对角线上 \(n\) 个格子</b>必须被 \(n\) 个不同的矩形覆盖（只有 \(n\) 个矩形、每个矩形至多盖一个对角格），故每个矩形<b>恰好盖住一个对角格</b>。设盖住右下角（○）的矩形 \(R\) 盖住第 \(i\) 个对角格，则 \(R\) 把 \(n\)-阶梯「劈」成一个 \((i-1)\)-阶梯与一个 \((n-i)\)-阶梯，故有 \(r_{i-1}r_{n-i}\) 种（定义 \(r_0=1\)）。求和即得与括号问题相同的递推。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 卡特兰数 Catalan Number</span>
+  <p>上述递推的闭式解是著名的<b>第 \(n\) 个卡特兰数</b>：</p>
+  <p class="formula">\(r_n = C_n = \dfrac{1}{n+1}\dbinom{2n}{n}\)</p>
+  <p>卡特兰数出现在大量组合问题中：合法括号、阶梯填充、二叉搜索树个数、三角剖分、Dyck 路径等。</p>
+</div>
+
+<h3 id="ln5-9">5.9 求解递推：迭代与猜证 <span class="zh">Solving Recurrences</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 热身：\(a_0=1,\ a_k=a_{k-1}+2\)</span>
+  <p>\(a_1=a_0+2,\ a_2=a_1+2=a_0+4,\ a_3=a_0+6,\ a_4=a_0+8\)，看出规律 \(a_k=a_0+2k=2k+1\)，可用<b>归纳法</b>验证。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 汉诺塔序列：\(a_1=1,\ a_k=2a_{k-1}+1\)</span>
+  <p>\(a_2=3,\ a_3=7,\ a_4=15,\ a_5=31,\ a_6=63\)，猜 \(a_k=2^k-1\)，归纳验证。</p>
+  <p class="formula">\(a_k = 2a_{k-1}+1 = 2(2^{k-1}-1)+1 = 2^k-1\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 归并排序：\(T_{2k}=2T_k+2k\)</span>
+  <p>猜 \(T_k=k\log_2 k\)，验证：</p>
+  <p class="formula">\(T_{2k}=2T_k+2k = 2k\log_2 k+2k = 2k(\log_2 k+1) = 2k\log_2(2k)\)</p>
+  <p>但「怎么猜到 \(T_k=k\log_2 k\)」？看递归树：每层 \(k\) 次比较、共 \(\log_2 k\) 层，故 \(T_k\le k\log_2 k\)（\(k\) 为 2 的幂时取等号）。</p>
+</div>
+
+<h3 id="ln5-10">5.10 生成函数 <span class="zh">Generating Functions</span></h3>
+<div class="def box">
+  <span class="box-title">📌 普通生成函数 Ordinary Generating Function</span>
+  <p>序列 \(\{a_n\}\) 的普通生成函数是把各项当作幂级数系数的形式幂级数：</p>
+  <p class="formula">\(F(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots\)</p>
+  <p>序列的<b>代数运算</b>对应生成函数的简单变换，从而把「解递推」变成「解代数方程」。</p>
+</div>
+<ul>
+  <li><b>缩放（scaling）</b>：\(\langle a_0, c a_1, c^2 a_2,\dots\rangle \leftrightarrow F(cx)\)。</li>
+  <li><b>加法（addition）</b>：序列逐项相加 ↔ 生成函数相加。</li>
+  <li><b>右移（right shift）</b>：\(\langle 0, a_0, a_1, a_2,\dots\rangle \leftrightarrow xF(x)\)。</li>
+  <li><b>求导（differentiation）</b>：\(\langle a_1, 2a_2, 3a_3,\dots\rangle \leftrightarrow F'(x)\)。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(\langle 0,1,4,9,\dots\rangle\) 的生成函数</span>
+  <p>由 \(\dfrac{1}{1-x}=1+x+x^2+\cdots\)，求导得 \(\dfrac{1}{(1-x)^2}=1+2x+3x^2+\cdots\)，再乘 \(x\) 并求导可得到 \(1,4,9,\dots\)（平方数）的生成函数。</p>
+</div>
+
+<h3 id="ln5-11">5.11 二阶线性递推与特征根 <span class="zh">Second-order Linear Recurrence</span></h3>
+<div class="def box">
+  <span class="box-title">📌 二阶线性齐次递推（常系数）</span>
+  <p>一般形式：</p>
+  <p class="formula">\(a_k = A\,a_{k-1} + B\,a_{k-2}\)　（\(A,B\) 为实数，\(B\ne 0\)）</p>
+  <p>斐波那契是 \(A=B=1\) 的特例。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 相异根定理 Distinct-Roots Theorem</span>
+  <p>若序列满足 \(a_k = A a_{k-1} + B a_{k-2}\)，且方程 \(t^2 - At - B = 0\) 有<b>两个相异实根</b> \(r\) 与 \(s\)，则：</p>
+  <p class="formula">\(a_n = C\,r^n + D\,s^n\)　（对某常数 \(C,D\)）</p>
+  <p>即<b>任何解</b>都是两个等比序列 \((1,r,r^2,\dots)\) 与 \((1,s,s^2,\dots)\) 的<b>线性组合</b>。给定初值 \(a_0,a_1\) 可唯一确定 \(C,D\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(a_n = a_{n-1} + 2a_{n-2}\)</span>
+  <p>特征方程 \(t^2 - t - 2 = 0\) 的根为 \(r=2,\ s=-1\)。故解形如 \(a_n = C\,2^n + D\,(-1)^n\)。若不指定 \(a_0,a_1\)，有无数解：如 \(a_n=2^n\)、\(a_n=(-1)^n\)、\(a_n=2^n+(-1)^n\) 等。</p>
+</div>
+
+<h3 id="ln5-12">5.12 再访斐波那契：闭式解 <span class="zh">Binet's Formula</span></h3>
+<p><b>生成函数法</b>：斐波那契 \(f_0=0,\ f_1=1,\ f_n=f_{n-1}+f_{n-2}\)。设生成函数 \(F(x)=f_0+f_1x+f_2x^2+\cdots\)：</p>
+<p class="formula">\(F(x) = 0 + x + (f_1+f_0)x^2 + (f_2+f_1)x^3 + \cdots = x + xF(x) + x^2F(x)\)</p>
+<p>解得：</p>
+<p class="formula">\(F(x) = \dfrac{x}{1-x-x^2}\)</p>
+<p>部分分式展开后按泰勒级数展开系数，即得闭式解。</p>
+<p><b>特征根法</b>：特征方程 \(t^2-t-1=0\)，两相异根：</p>
+<p class="formula">\(\phi = \dfrac{1+\sqrt{5}}{2},\qquad \psi = \dfrac{1-\sqrt{5}}{2}\)</p>
+<p>由相异根定理 \(f_n = C\phi^n + D\psi^n\)，代入 \(f_0=0,\ f_1=1\) 解出 \(C=\tfrac{1}{\sqrt5},\ D=-\tfrac{1}{\sqrt5}\)，得<b>Binet 公式</b>：</p>
+<p class="formula">\(f_n = \dfrac{\phi^n - \psi^n}{\sqrt{5}} = \dfrac{1}{\sqrt5}\left[\left(\dfrac{1+\sqrt5}{2}\right)^n - \left(\dfrac{1-\sqrt5}{2}\right)^n\right]\)</p>
+
+<h3 id="ln5-13">5.13 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心公式速查</span>
+  <p><b>三类基本递推</b>：等差 \(a_{i+1}=a_i+d\)、等比 \(a_{i+1}=ra_i\)、调和 \(a_{i+1}=\tfrac{i}{i+1}a_i\)。</p>
+  <p><b>斐波那契型</b>（兔子 / 不含 11 位串 / 多米诺）：\(r_n = r_{n-1}+r_{n-2}\)。</p>
+  <p><b>汉诺塔</b>：\(r_n = 2r_{n-1}+1 = 2^n-1\)。</p>
+  <p><b>归并排序</b>：\(T_{2k}=2T_k+2k \Rightarrow T_{2n}\le n\log_2 n\)。</p>
+  <p><b>卡特兰数</b>：\(r_n=\sum_{k=1}^{n}r_{k-1}r_{n-k},\quad C_n=\dfrac{1}{n+1}\dbinom{2n}{n}\)。</p>
+  <p><b>二阶线性递推</b> \(a_k=A a_{k-1}+B a_{k-2}\)：特征方程 \(t^2-At-B=0\) 两相异根 \(r,s\) ⇒ \(a_n=Cr^n+Ds^n\)。</p>
+  <p><b>斐波那契闭式（Binet）</b>：\(f_n=\dfrac{1}{\sqrt5}\big(\phi^n-\psi^n\big)\)。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>recursion / recurrence (relation)</b> — 递归 / 递推（关系）</li>
+    <li><b>recursively defined sequence</b> — 递归定义的序列</li>
+    <li><b>arithmetic / geometric / harmonic sequence</b> — 等差 / 等比 / 调和序列</li>
+    <li><b>Fibonacci sequence</b> — 斐波那契数列</li>
+    <li><b>bit string</b> — 位串；<b>pattern</b> — 模式</li>
+    <li><b>domino</b> — 多米诺骨牌；<b>tiling</b> — 铺法</li>
+    <li><b>Tower of Hanoi</b> — 汉诺塔；<b>Frame–Stewart conjecture</b> — Frame–Stewart 猜想</li>
+    <li><b>merge sort / bubble sort</b> — 归并排序 / 冒泡排序；<b>divide and conquer</b> — 分治</li>
+    <li><b>parentheses</b> — 括号；<b>stair</b> — 阶梯；<b>Catalan number</b> — 卡特兰数</li>
+    <li><b>generating function</b> — 生成函数；<b>Taylor series</b> — 泰勒级数</li>
+    <li><b>second-order linear homogeneous recurrence</b> — 二阶线性齐次递推</li>
+    <li><b>characteristic equation / distinct roots</b> — 特征方程 / 相异根</li>
+    <li><b>closed-form</b> — 闭式解；<b>Binet's formula</b> — Binet 公式</li>
   </ul>
 </div>
 </section>
