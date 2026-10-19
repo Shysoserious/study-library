@@ -679,8 +679,48 @@ window.MathJax = {
         <a class="lv2" href="#lec9-p8-1">8.1 本讲总结</a>
         <a class="lv2" href="#lec9-p8-2">8.2 词汇表</a>
       </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第10课 · Complexity of the Simplex Method &amp; Duality Theory <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec10-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec10-p1">Part 1 · 回顾：表格与两阶段法</a>
+        <a class="lv1" href="#lec10-p2">Part 2 · 两阶段法完整例题</a>
+        <a class="lv2" href="#lec10-p2-1">2.1 模型与人造基</a>
+        <a class="lv2" href="#lec10-p2-2">2.2 Phase I：三次主元到 w=0</a>
+        <a class="lv2" href="#lec10-p2-3">2.3 Phase II：恢复目标并到达最优</a>
+        <a class="lv1" href="#lec10-p3">Part 3 · 为什么数工作量</a>
+        <a class="lv2" href="#lec10-p3-1">3.1 基本操作与三个例子</a>
+        <a class="lv2" href="#lec10-p3-2">3.2 增长有多快</a>
+        <a class="lv1" href="#lec10-p4">Part 4 · 复杂度理论：大O 与 P/NP</a>
+        <a class="lv2" href="#lec10-p4-1">4.1 大 O：渐进上界</a>
+        <a class="lv2" href="#lec10-p4-2">4.2 多项式时间</a>
+        <a class="lv2" href="#lec10-p4-3">4.3 P 与 NP</a>
+        <a class="lv2" href="#lec10-p4-4">4.4 NP-complete 与 NP-hard</a>
+        <a class="lv1" href="#lec10-p5">Part 5 · 单纯形法的复杂度</a>
+        <a class="lv2" href="#lec10-p5-1">5.1 每次主元的成本与 Klee–Minty</a>
+        <a class="lv2" href="#lec10-p5-2">5.2 实践与平滑分析</a>
+        <a class="lv2" href="#lec10-p5-3">5.3 LP 有多项式算法</a>
+        <a class="lv1" href="#lec10-p6">Part 6 · 对偶的推导：Lagrangian</a>
+        <a class="lv2" href="#lec10-p6-1">6.1 乘子与精确重构</a>
+        <a class="lv2" href="#lec10-p6-2">6.2 下界 q(y) 与弱对偶</a>
+        <a class="lv1" href="#lec10-p7">Part 7 · 对偶的各种形式</a>
+        <a class="lv2" href="#lec10-p7-1">7.1 标准形（Ax=b, x≥0）</a>
+        <a class="lv2" href="#lec10-p7-2">7.2 Ax≥b（自由 x）</a>
+        <a class="lv2" href="#lec10-p7-3">7.3 自由变量要求等式</a>
+        <a class="lv1" href="#lec10-p8">Part 8 · 一般对偶表与四步构造</a>
+        <a class="lv2" href="#lec10-p8-1">8.1 一般形式（行/列划分）</a>
+        <a class="lv2" href="#lec10-p8-2">8.2 记忆表与四步</a>
+        <a class="lv2" href="#lec10-p8-3">8.3 例题一（2 变量 2 约束）</a>
+        <a class="lv2" href="#lec10-p8-4">8.4 例题二（3 约束 4 变量）</a>
+        <a class="lv2" href="#lec10-p8-5">8.5 例题三（极大化：先取负）</a>
+        <a class="lv1" href="#lec10-p9">Part 9 · 应用：软间隔分类的对偶</a>
+        <a class="lv1" href="#lec10-p10">Part 10 · 总结与词汇表</a>
+        <a class="lv2" href="#lec10-p10-1">10.1 本讲总结</a>
+        <a class="lv2" href="#lec10-p10-2">10.2 词汇表</a>
+      </div>
     </div>
   </nav>
+
 </aside>
 
 <!-- ============ 主内容 ============ -->
@@ -688,7 +728,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">最优化 · 复习笔记</h1>
-<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–9</p>
+<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–10</p>
 
 <!-- ============ 考试重点（样卷知识点） ============ -->
 <div class="lecture" id="exam-focus">
@@ -704,7 +744,7 @@ window.MathJax = {
     <ol>
       <li><a href="#exam-focus-tf">True/False（15 分）</a> —— 5 个易错概念</li>
       <li><a href="#exam-focus-simplex">单纯形法 The Simplex Method（20 分）</a> —— 表格计算</li>
-      <li><a href="#exam-focus-duality">对偶 Duality（21 分）</a> —— 尚未正式讲，重点</li>
+      <li><a href="#exam-focus-duality">对偶 Duality（21 分）</a> —— 重点，正式讲法见 <a href="#lec10-p6">第10课 Part 6–9</a></li>
       <li><a href="#exam-focus-sens">敏感性分析 Sensitivity（18 分）</a> —— 尚未正式讲，重点</li>
       <li><a href="#exam-focus-model">建模 Modeling（12 分）</a> —— 绝对值线性化</li>
       <li><a href="#exam-focus-vc">顶点覆盖的 LP 近似（14 分）</a> —— 半整性 + 舍入</li>
@@ -731,7 +771,7 @@ window.MathJax = {
 <h3>3. 缩减成本的最优判据（两条都要）</h3>
 <div class="warn box">
   <span class="box-title">⚠️ 必掌握</span>
-  <p>标准形 \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\) 中，基 \(B\) 对应的基本解<b>最优 ⟺</b> 同时满足：<b>① 可行性</b> \(A_B^{-1}b\ge 0\)（即它是 BFS）；<b>② 缩减成本非负</b> \(c^\top-c_B^\top A_B^{-1}A\ge 0\)。两半缺一不可。→ 详见 <a href="#lec6-p6-9">第6课 6.9</a>、<a href="#lec7-p4-1">第7课 4.1</a>。</p>
+  <p>标准形 \(\min c^\top x\) s.t. \(Ax=b,\ x\ge 0\) 中，基 \(B\) 对应的基本解是<b>最优解</b>，需要同时满足：<b>① 可行性</b> \(A_B^{-1}b\ge 0\)（即它是 BFS）；<b>② 缩减成本非负</b> \(\bar c^\top=c^\top-c_B^\top A_B^{-1}A\ge 0\)。方向要分清：<b>①+② ⟹ 最优</b>（充分条件，永远成立）；但<b>最优 ⟹ ②</b> 只在 BFS <b>非退化</b>时才保证——退化最优 BFS 上仍可能出现负缩减成本（见第7课 7.1）。→ 详见 <a href="#lec6-p6-9">第6课 6.9</a>、<a href="#lec7-p4-1">第7课 4.1</a>。</p>
 </div>
 
 <h3>4. 两阶段法判不可行</h3>
@@ -764,8 +804,8 @@ window.MathJax = {
 </section>
 
 <section id="exam-focus-duality">
-<h2>③ 对偶 Duality（21 分）—— 尚未正式讲，先掌握 <span class="zh">Duality — Mastery Points</span></h2>
-<p>这是样卷单题分值最高的一块（21 分），且当前讲义还没讲到，这里把「必须掌握的点」提前讲清，后续课讲对偶时再对照深化。</p>
+<h2>③ 对偶 Duality（21 分）—— 重点 <span class="zh">Duality — Mastery Points</span></h2>
+<p>这是样卷单题分值最高的一块（21 分）。本节是「考试速查版」：把必须掌握的点提前讲清。<b>正式讲法（Lagrangian 推导、一般对偶表、四步构造、软间隔对偶）已在本笔记 <a href="#lec10-p6">第10课 Part 6–9</a></b>，复习时以那里为准、以这里为速查。</p>
 
 <h3>对偶的写法（符号规则）</h3>
 <p>原问题 \(\min c^\top x\) s.t. \(Ax\ (\le,\ge,=)\ b,\ x\ge 0\)，对偶是 \(\max b^\top y\) s.t. \(A^\top y\ (\le,\ge,=)\ c\)。对应规则一张表记牢：</p>
@@ -781,6 +821,14 @@ window.MathJax = {
 <div class="warn box">
   <span class="box-title">💡 记忆诀窍</span>
   <p>min 的对偶是 max；系数矩阵<b>转置</b> \(A\mapsto A^\top\)；原<b>目标系数</b> \(c\) 变成对偶<b>右端</b>，原<b>右端</b> \(b\) 变成对偶<b>目标系数</b>。符号方向「倒过来」：原约束 \(\le\)（min 里通常对应「资源上限」）→ 对偶变量 \(\le 0\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 写对偶的完整实例（三种符号一次看全）</span>
+  <p>原问题（min）：</p>
+  <p class="formula">\(\min\ 3x_1+2x_2 \quad \text{s.t. } x_1+x_2\ge 4,\quad 2x_1-x_2\le 5,\quad x_1,x_2\ge 0\)</p>
+  <p>对偶（max）——系数矩阵转置、目标/右端互换、符号倒过来：</p>
+  <p class="formula">\(\max\ 4y_1+5y_2 \quad \text{s.t. } y_1+2y_2\le 3,\quad y_1-y_2\le 2,\quad y_1\ge 0,\ y_2\le 0\)</p>
+  <p>核对：\(A=\begin{pmatrix}1&1\\2&-1\end{pmatrix}\to A^\top=\begin{pmatrix}1&2\\1&-1\end{pmatrix}\)；原目标 \((3,2)\) 变对偶右端，原右端 \((4,5)\) 变对偶目标；原约束 1 是 \(\ge\) → 对偶变量 \(y_1\ge 0\)，原约束 2 是 \(\le\) → \(y_2\le 0\)；原变量 \(x_1,x_2\ge 0\) → 两条对偶约束都是 \(\le c_j\)。</p>
 </div>
 
 <h3>弱对偶与强对偶</h3>
@@ -798,7 +846,7 @@ window.MathJax = {
 </div>
 
 <h3>互补松弛条件（证最优的利器）</h3>
-<p>最优解 \(x^\star\) 与对偶最优 \(y^\star\)（及松弛 \(s^\star=c-A^\top y^\star\ge 0\)）满足<b>互补</b>：对每个变量 \(j\)，\(x_j^\star s_j^\star=0\)（即 \(x_j^\star&gt;0\Rightarrow s_j^\star=0\)，对偶约束 \(j\) 取等号）；对每个约束 \(i\)，原松弛与 \(y_i^\star\) 互补。</p>
+<p>最优解 \(x^\star\) 与对偶最优 \(y^\star\)（及松弛 \(s^\star=c-A^\top y^\star\ge 0\)）满足<b>互补</b>：对每个变量 \(j\)，\(x_j^\star s_j^\star=0\)（即 \(x_j^\star&gt;0\Rightarrow s_j^\star=0\)，对偶约束 \(j\) 取等号）；对每个约束 \(i\)，原松弛 \(b_i-a_i^\top x^\star\) 与 \(y_i^\star\) 互补，即 \(y_i^\star\,(b_i-a_i^\top x^\star)=0\)（\(y_i^\star&gt;0\Rightarrow\) 原约束 \(i\) 取等号）。</p>
 <div class="warn box">
   <span class="box-title">💡 怎么用来「证 \(x^\star\) 最优」</span>
   <p>给一个候选 \(x^\star\)，先看它哪些分量 &gt;0、哪些原约束「松」（不等式严格不取等）。据此把互补条件里的 \(s_j=0\) 或 \(y_i=0\) 代入对偶方程组，<b>解出 \(y^\star\)</b>，再验证这个 \(y^\star\) 对偶可行。一旦「\(x^\star\) 原可行 + \(y^\star\) 对偶可行 + 互补成立」三条齐了，就证出最优。注意：改原目标系数时，对偶<b>对应约束</b>的右端也要跟着改。</p>
@@ -819,6 +867,16 @@ window.MathJax = {
   <span class="box-title">💡 一条直觉串起全部</span>
   <p>\(b\) 只出现在「右端」→ 影响<b>可行性</b>（\(x_B=A_B^{-1}b\ge 0\)）；\(c\) 只出现在「目标」→ 影响<b>最优性</b>（缩减成本符号）。所以「最优基会不会变」的判据，就按扰动动的是哪边来选。</p>
 </div>
+<div class="ex box">
+  <span class="box-title">✏️ 敏感性实例（Wyndor 玻璃厂）</span>
+  <p>\(\max z=3x_1+5x_2\) s.t. \(x_1\le 4,\quad 2x_2\le 12,\quad 3x_1+2x_2\le 18,\quad x\ge 0\)。最优解 \(x_1^\star=2,\ x_2^\star=6,\ z^\star=36\)；紧约束是第 2、3 条，第 1 条（\(x_1\le 4\)）是<b>松</b>的（\(2&lt;4\)）。</p>
+  <ul>
+    <li><b>改 \(b_1\)（第 1 条右端）</b>：约束松 → 影子价格 \(y_1=0\)。\(b_1\) 在 \([2,\infty)\) 内怎么变，最优基与最优值都不动；直到 \(b_1&lt;2\) 时约束变紧，最优基才换。</li>
+    <li><b>改 \(b_2\)（第 2 条右端 \(2x_2\le b_2\)）</b>：影子价格 \(y_2=\tfrac32\)——每多 1 单位资源 2，利润多 1.5；允许区间 \(b_2\in[12,24]\)（超出后基变）。</li>
+    <li><b>改 \(b_3\)（第 3 条右端）</b>：影子价格 \(y_3=1\)，允许区间 \(b_3\in[12,24]\)。</li>
+  </ul>
+  <p>一句话：<b>影子价格 \(y_i\) = 该资源右端每增加 1 单位、目标的最优增量</b>，它在「允许区间」内保持不变；松约束的影子价格恒为 0。</p>
+</div>
 </section>
 
 <section id="exam-focus-model">
@@ -826,7 +884,7 @@ window.MathJax = {
 <ul>
   <li><b>三要素</b>：决策变量、线性目标、线性约束。写清每个变量的含义。</li>
   <li><b>绝对值约束必须线性化</b>：要求「任意两种食物的份数差不超过 3」，写成 \(|x_i-x_j|\le 3\) 是<b>非线性</b>的（会扣分），要拆成两排线性不等式：\(x_i-x_j\le 3\) 且 \(x_j-x_i\le 3\)（对任意 \(i,j\)）。→ 参考 <a href="#lec4-p4">第4课</a> 的绝对值重构。</li>
-  <li><b>论证可行性</b>：常问「这个问题会不会不可行」。套路是找一个显式可行解——比如所有变量取同一个足够大的 \(\rho\)，配一个「\(\rho\ge\max\{50/\sum p_i,\ 12/\sum u_i,\ 200/\sum v_i\}\)」就能满足所有下限。</li>
+  <li><b>论证可行性</b>：常问「这个问题会不会不可行」。套路是找一个显式可行解——比如所有变量取同一个足够大的 \(\rho\)。设第 \(i\) 种食物某种营养素的含量为 \(n_i\)、该营养素的需求总量为 \(N\)，则只要 \(\rho\ge N/\sum_i n_i\) 就能满足这条下限；把每条营养下限的 \(N/\sum_i n_i\) 取最大值，即得一个可行 \(\rho\)（所有下限同时满足）。</li>
 </ul>
 <div class="warn box">
   <span class="box-title">⚠️ 必掌握</span>
@@ -1789,7 +1847,7 @@ window.MathJax = {
 <p>平方范数光滑；\(\|w\|\) 在 0 处不可微。这是<b>非线性（二次目标）、有约束、连续</b>的问题。</p>
 
 <h3 id="lec3-p1-12">1.12 为什么软间隔 Why Soft Margin?</h3>
-<p>硬间隔要求每个 \(i\) 都 \(y_i(w^\top x_i+b)\ge 1\)，当数据不可分（如一个紫点落在负类点三角内）时<b>不可行</b>。软间隔：允许点落在自己间隔内或错误一侧，但对这些违反<b>按大小惩罚</b>。软间隔也可用于可分数据。</p>
+<p>硬间隔要求每个 \(i\) 都 \(y_i(w^\top x_i+b)\ge 1\)，当数据<b>线性不可分</b>（例如一个 \(+1\) 类点混进了 \(-1\) 类点堆里，两条间隔边界无论怎么放都无法把两类完全分开）时，硬间隔问题<b>无可行解</b>。软间隔：允许点落在自己间隔内或错误一侧，但对这些违反<b>按大小惩罚</b>。软间隔也可用于可分数据。</p>
 
 <h3 id="lec3-p1-13">1.13 Hinge 损失 Hinge Loss</h3>
 <p>间隔分数 = 线性分数 × 真实标签：\(s_i = y_i u(x_i) = y_i(w^\top x_i+b)\)，目标是 \(s_i\ge 1\)。用 <b>hinge 损失</b>惩罚其缺口：</p>
@@ -1808,7 +1866,7 @@ window.MathJax = {
 <p class="formula">\(\min_{w,b} \dfrac{\lambda}{2}\|w\|^2 + \sum_{i=1}^{m}\max\{0,\ 1-y_i(w^\top x_i+b)\}\)</p>
 <ul>
   <li>范数项偏爱更宽的间隔，\(\lambda\) 越大权重越高；</li>
-  <li>损失项惩罚间隔违反（不止错误预测）：例子中损失增大，但两个模型都正确分类 6 个点、错分 2 个。</li>
+  <li>损失项惩罚间隔违反（不止错误预测）：<b>同一个 8 个点的数据集</b>，可能有多个模型都「正确分类 6 个、错分 2 个」，但它们的 hinge 总损失不同——间隔惩罚项就是用来在这几个「错得一样多」的模型里，选出「间隔更宽」的那个。</li>
 </ul>
 
 <h3 id="lec3-p1-15">1.15 松弛变量的等价形式（QP）Slack Variables → QP</h3>
@@ -2014,7 +2072,7 @@ window.MathJax = {
   <span class="box-title">✏️ 下界：减剩余（subtract surplus）</span>
   <p>\(x_1+x_2\ge 10\)。为什么是减号？</p>
   <p class="formula">\(x_1+x_2\ge 10 \ \Leftrightarrow\ x_1+x_2 = 10+s,\ s\ge 0 \ \Leftrightarrow\ x_1+x_2 - s = 10,\ s\ge 0\)</p>
-  <p>这里 \(s\) 衡量超出最低要求的量。几何上每个不等式描述半平面，其边界垂距是 \(s/\sqrt{2}\)；\(s\) 本身是约束缺口。</p>
+  <p>这里 \(s\) 衡量超出最低要求的量，本身是约束缺口。几何上每个不等式描述一个半平面；点 \((x_1,x_2)\) 到边界直线 \(x_1+x_2=10\) 的<b>垂距</b>是 \(\tfrac{|x_1+x_2-10|}{\sqrt{2}}=\tfrac{s}{\sqrt{2}}\)（法向量 \((1,1)\) 的长度是 \(\sqrt{2}\)）。</p>
 </div>
 
 <h3 id="lec4-p2-4">2.4 变换 3：变量符号限制 Sign Restrictions</h3>
@@ -2083,6 +2141,10 @@ window.MathJax = {
   <li>sum(X(i,:)) − sum(X(:,i)) == 0，\(i\ne 1,n\)。</li>
 </ul>
 <p><b>整数约束的松弛：</b>把 \(x_{ij}\in\{0,1\}\) 放松为 \(0\le x_{ij}\le 1\)。对这个问题，最优值不变，且存在整数最优解（细节后讲）。</p>
+<div class="warn box">
+  <span class="box-title">💡 为什么网络流的 LP 松弛仍是整数最优？——全幺模</span>
+  <p>因为<b>流量守恒约束的系数矩阵是全幺模的（totally unimodular, TU）</b>：它的<b>每一个子方阵的行列式都是 \(0\) 或 \(\pm 1\)</b>。全幺模矩阵有一个关键性质——其 LP 的<b>每个极点都是整数向量</b>（右端 \(b\) 为整数时）。于是「连续松弛」的最优解天然取整数，松弛<b>不改变最优值</b>。最短路、网络流、二分匹配等问题的约束矩阵都是 TU，所以都能放心松弛。对比：<b>顶点覆盖</b>（第2课 5.4）的关联矩阵<b>不是</b>全幺模（一般图上），它的 LP 松弛只保证「半整」（\(0,\tfrac12,1\)），所以需要额外舍入。</p>
+</div>
 </section>
 
 <section id="lec4-p4">
@@ -2223,6 +2285,10 @@ window.MathJax = {
 <p>可写为：</p>
 <p class="formula">\(\min_{y,z} c^\top y + dz \quad \text{s.t. } Ay-bz\le 0,\ e^\top y+az=1,\ z\ge 0\)</p>
 <p>这是一个 LP。等价性：若原问题可行，则下确界一致；\(z&gt;0\) 时恢复 \(x=y/z\)，\(z=0\) 表示极限行为。详见 Boyd &amp; Vandenberghe（补充阅读 p.151）。</p>
+<div class="warn box">
+  <span class="box-title">💡 为什么这样换（Charnes–Cooper 变换）</span>
+  <p>目标 \(\dfrac{c^\top x+d}{e^\top x+a}\) 是<b>分式</b>，分子分母都含 \(x\)，所以非线性。核心想法：令 \(z=\dfrac{1}{e^\top x+a}\) 把分母「归一成 1」，再令 \(y=zx=\dfrac{x}{e^\top x+a}\)。于是：<b>① 目标</b> \(\dfrac{c^\top x+d}{e^\top x+a}=c^\top y+dz\)（分子整体除以分母）变成线性；<b>② 约束</b> \(Ax\le b\) 两边同乘正数 \(z\) 得 \(Ay\le bz\)；<b>③ 归一化</b> \(e^\top y+az=\dfrac{e^\top x}{e^\top x+a}+\dfrac{a}{e^\top x+a}=1\)。解出 \((y,z)\) 后，由 \(x=y/z\)（\(z&gt;0\)）还原原变量。这就是把「非线性分式」变成 LP 的关键一步。</p>
+</div>
 </section>
 
 <section id="lec4-p5">
@@ -4330,6 +4396,370 @@ window.MathJax = {
 </section>
 
 </div><!-- /第9课 -->
+
+<!-- ============ 第10课 ============ -->
+<div class="lecture" id="lec10">
+<div class="lecture-banner">第10课 · Complexity of the Simplex Method &amp; Duality Theory <span class="zh">（单纯形法的复杂度与对偶理论）</span></div>
+
+<section id="lec10-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec10-p1">回顾：表格与两阶段法</a> —— 压缩回顾 + 交叉引用</li>
+      <li><a href="#lec10-p2">两阶段法完整例题</a> —— 3 次 Phase I 主元 + 1 次 Phase II 主元</li>
+      <li><a href="#lec10-p3">为什么数工作量</a> —— 基本操作、三种增长</li>
+      <li><a href="#lec10-p4">复杂度理论：大O 与 P/NP</a> —— 上界、多项式时间、复杂度类</li>
+      <li><a href="#lec10-p5">单纯形法的复杂度</a> —— O(Kmn)、Klee–Minty、实践与 LP 的多项式算法</li>
+      <li><a href="#lec10-p6">对偶的推导：Lagrangian</a> —— 乘子、精确重构、弱对偶</li>
+      <li><a href="#lec10-p7">对偶的各种形式</a> —— 标准形、Ax≥b、自由变量要求等式</li>
+      <li><a href="#lec10-p8">一般对偶表与四步构造</a> —— 记忆表 + 三个例题</li>
+      <li><a href="#lec10-p9">应用：软间隔分类的对偶</a> —— SVM 的对偶形式</li>
+      <li><a href="#lec10-p10">总结与词汇表</a></li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>本讲讲两个相对独立的大话题。<b>① 复杂度</b>：单纯形法在表格上一次主元是 \(O(mn)\)，但某些主元规则在「扭曲的立方体」上会走 \(2^d-1\) 步——也就是说单纯形法<b>没有多项式时间的最坏情况保证</b>；然而 LP 本身有 Khachiyan 椭球法、内点法等多<b>多项式时间算法</b>，所以「某个算法慢」不等于「这个问题难」。<b>② 对偶</b>：给每个等式（或不等式）配一个乘子 \(y\)，构造 Lagrangian，把「约束」变成「目标里的惩罚项」，取 inf/sup 就自然导出对偶问题。对偶给出原问题目标值的<b>下界</b>（弱对偶），而 LP 的强对偶保证两个最优值相等。构造对偶只需记一张表：<b>行决定乘子的符号，列决定系数约束的方向</b>。这部分正是样卷「对偶 Duality」大题（21 分）的正式讲法。</p>
+  </div>
+</section>
+
+<section id="lec10-p1">
+<h2>Part 1 · 回顾：单纯形表格与两阶段法 <span class="zh">Recap: Tableau &amp; Two-Phase</span></h2>
+<p>本讲开头的两页是纯回顾，这里只列结论、不重复讲（细节见<a href="#lec8-p9">第 8 课 Part 9（表格入门）</a>与<a href="#lec9-p1">第 9 课 Part 1（初始化与两阶段）</a>）。</p>
+
+<h3 id="lec10-p1-1">1.1 规范表格的形态 <span class="zh">Canonical Tableau</span></h3>
+<p>在可行基 \(B\) 处，表格把「约束左乘 \(A_B^{-1}\)」与「用非基变量表达的目标」拼在一起：</p>
+<p class="formula">\(\begin{array}{c|cc} &amp; \text{基列} &amp; \text{非基列}\\ \hline R_0 &amp; 0^\top &amp; c_N^\top - c_B^\top A_B^{-1}A_N \quad(\text{缩减成本}),\quad -c_B^\top \bar b\ (\text{即 }-z)\\ R_1,\dots,R_m &amp; I_m &amp; A_B^{-1}A_N,\quad \bar b = A_B^{-1}b \end{array}\)</p>
+<p>算法四步（每一步都要连 RHS 一起做行变换）：① 检查最优性（缩减成本全非负则当前 BFS 最优）；② 选进入变量（挑 \(c_j&lt;0\)，Bland 规则选最小下标）；③ 选离开变量（在 \(a_{ij}&gt;0\) 中最小化 \(\bar b_i/a_{ij}\)，平局按基变量下标比较而非行号；没有正项则 LP 下无界）；④ 主元（主元行除以主元，其余行含 \(R_0\) 消去进入列，更新基标签）。</p>
+
+<h3 id="lec10-p1-2">1.2 两阶段法要点 <span class="zh">Two-Phase Method</span></h3>
+<ul>
+  <li>先反转负 RHS 的行使 \(b\ge 0\)。</li>
+  <li><b>Phase I</b>：加人造变量，解 \(\min w=1^\top y\) s.t. \(Ax+y=b,\ x,y\ge 0\)，起点 \(x=0,\ y=b\)，清掉 \(R_0\) 里的人造成本。</li>
+  <li>\(w^\star&gt;0\) ⟹ 原 LP 不可行；\(w^\star=0\) ⟹ 原 LP 可行。</li>
+  <li><b>进 Phase II</b> 的顺序：① 若人造变量仍留在基里，用非基原变量的非零系数做主元把它换出（找不到就删掉冗余行）；② 删人造列、恢复 \([c\mid 0]\)、清基成本 \(R_0\leftarrow R_0-\sum_i c_{B(i)}R_i\)；③ 继续单纯形解原目标。</li>
+  <li><b>退化</b>：零步主元只换基、不换点；Bland 规则防循环；人造基清理允许主元取任意非零符号，且不需要目标函数或比值检验。</li>
+</ul>
+</section>
+
+<section id="lec10-p2">
+<h2>Part 2 · 两阶段法完整例题 <span class="zh">Two-Phase: Full Worked Example</span></h2>
+<p>上一讲给了两阶段的「机制」，这一讲把一个例子从 Phase I 一路做到 Phase II 的最优，完整演示「人造变量进、原变量换入、恢复目标、比值平局」全套流程。问题：</p>
+<p class="formula">\(\min\ z = 2x_1 + x_2 \quad\text{s.t.}\quad x_2+x_3=1,\quad -x_2+x_4=4,\quad x_1+2x_2=2,\quad x\ge 0.\)</p>
+
+<h3 id="lec10-p2-1">2.1 模型与人造基 <span class="zh">Model &amp; Artificial Basis</span></h3>
+<p>每个方程加一个人造变量 \(y_i\)：\(Ax+y=b,\ x,y\ge 0\)，目标 \(\min w=y_1+y_2+y_3\)。变量顺序 \(x_1,x_2,x_3,x_4,y_1,y_2,y_3\)。人造基起点 \(B=(5,6,7)\)，即 \(x=0,\ y=(1,4,2)^\top,\ w=7\)。清掉 \(R_0\) 里的基系数（\(R_0=R_0^{\text{raw}}-R_1-R_2-R_3\)）：</p>
+<p class="formula">\(\begin{array}{l|rrrrrrr|r} B &amp; x_1 &amp; x_2 &amp; x_3 &amp; x_4 &amp; y_1 &amp; y_2 &amp; y_3 &amp; \text{RHS}\\ \hline \text{Obj} &amp; -1 &amp; -2 &amp; -1 &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; -7\\ y_1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\ y_2 &amp; 0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 4\\ y_3 &amp; 1 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\)</p>
+<p>顶行 RHS 是 \(-w=-7\)（目标行 RHS 恒存 \(-z\)，Phase I 里就是 \(-w\)）。Bland 选第一个负缩减成本列 \(x_1\)（系数 \(-1\)）。比值：\(y_1,y_2\) 行 \(x_1\) 系数为 0 跳过，\(y_3\) 行 \(2/1=2\)，故 \(y_3\) 离开、\(\theta^\star=2\)、主元为 1。</p>
+
+<h3 id="lec10-p2-2">2.2 Phase I：三次主元到 \(w=0\) <span class="zh">Three Pivots</span></h3>
+<p><b>主元 1</b>（\(y_3\) 换出、\(x_1\) 换入，主元已是 1，只需消 \(R_0\) 里的 \(-1\)）：</p>
+<p class="formula">\(\begin{array}{l|rrrrrrr|r} B &amp; x_1 &amp; x_2 &amp; x_3 &amp; x_4 &amp; y_1 &amp; y_2 &amp; y_3 &amp; \text{RHS}\\ \hline \text{Obj} &amp; 0 &amp; 0 &amp; -1 &amp; -1 &amp; 0 &amp; 0 &amp; 1 &amp; -5\\ y_1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\ y_2 &amp; 0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 4\\ x_1 &amp; 1 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\)</p>
+<p>此时 \(B=(5,6,1)\)，\(x=(2,0,0,0)^\top\)，\(y=(1,4,0)^\top\)，\(w=5\)。\(x_3,x_4\) 缩减成本都是 \(-1\)，Bland 选 \(x_3\)；只有 \(y_1\) 行的 \(x_3\) 系数为正（1），所以 \(y_1\) 离开、\(\theta^\star=1\)。</p>
+<p><b>主元 2</b>（\(y_1\) 换出、\(x_3\) 换入）：</p>
+<p class="formula">\(\begin{array}{l|rrrrrrr|r} B &amp; x_1 &amp; x_2 &amp; x_3 &amp; x_4 &amp; y_1 &amp; y_2 &amp; y_3 &amp; \text{RHS}\\ \hline \text{Obj} &amp; 0 &amp; 1 &amp; 0 &amp; -1 &amp; 1 &amp; 0 &amp; 1 &amp; -4\\ x_3 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\ y_2 &amp; 0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 4\\ x_1 &amp; 1 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\)</p>
+<p>\(B=(3,6,1)\)，\(x=(2,0,1,0)^\top\)，\(y=(0,4,0)^\top\)，\(w=4\)。只剩 \(x_4\) 有负缩减成本（\(-1\)），只有 \(y_2\) 行系数为正，\(4/1=4\)，\(y_2\) 离开、\(\theta^\star=4\)。</p>
+<p><b>主元 3</b>（\(y_2\) 换出、\(x_4\) 换入）：</p>
+<p class="formula">\(\begin{array}{l|rrrrrrr|r} B &amp; x_1 &amp; x_2 &amp; x_3 &amp; x_4 &amp; y_1 &amp; y_2 &amp; y_3 &amp; \text{RHS}\\ \hline \text{Obj} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 0\\ x_3 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1\\ x_4 &amp; 0 &amp; -1 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 4\\ x_1 &amp; 1 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 2 \end{array}\)</p>
+<p>\(B=(3,4,1)\)，\(x=(2,0,1,4)^\top\)，\(y=0\)，\(w=0\)。Phase I 完成：因为 \(w\ge 0\) 恒成立、而我们已经做到 0，所以原 LP 可行。此时<b>没有人造变量留在基里</b>，无需清理，直接删人造列、恢复原目标。</p>
+
+<h3 id="lec10-p2-3">2.3 Phase II：恢复目标并到达最优 <span class="zh">Restore &amp; Optimize</span></h3>
+<p>基 \(B=(3,4,1)\) 的原成本 \(c_B=(0,0,2)^\top\)。恢复 \(z=2x_1+x_2\) 并清 \(x_1\) 系数：\(R_0=[2,1,0,0\mid0]-2\,[1,2,0,0\mid2]=[0,-3,0,0\mid-4]\)。</p>
+<p class="formula">\(\begin{array}{l|rrrr|r} B &amp; x_1 &amp; x_2 &amp; x_3 &amp; x_4 &amp; \text{RHS}\\ \hline \text{Obj} &amp; 0 &amp; -3 &amp; 0 &amp; 0 &amp; -4\\ x_3 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1\\ x_4 &amp; 0 &amp; -1 &amp; 0 &amp; 1 &amp; 4\\ x_1 &amp; 1 &amp; 2 &amp; 0 &amp; 0 &amp; 2 \end{array}\)</p>
+<p>进入 \(x_2\)（缩减成本 \(-3\)），当前 \(z=4\)。比值：\(x_3\) 行 \(1/1=1\)，\(x_4\) 行 \(-1\) 忽略，\(x_1\) 行 \(2/2=1\)。<b>平局</b>——Bland 比较变量下标 \(1&lt;3\)，所以 \(x_1\)（第 3 行）离开。主元为 2、\(\theta^\star=1\)。第 3 行除以 2，再消 \(x_2\) 列：</p>
+<p class="formula">\(\begin{array}{l|rrrr|r} B &amp; x_1 &amp; x_2 &amp; x_3 &amp; x_4 &amp; \text{RHS}\\ \hline \text{Obj} &amp; \tfrac32 &amp; 0 &amp; 0 &amp; 0 &amp; -1\\ x_3 &amp; -\tfrac12 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\ x_4 &amp; \tfrac12 &amp; 0 &amp; 0 &amp; 1 &amp; 5\\ x_2 &amp; \tfrac12 &amp; 1 &amp; 0 &amp; 0 &amp; 1 \end{array}\)</p>
+<p>缩减成本全非负，停止。置非基 \(x_1=0\) 读 RHS：\(B=(3,4,2)\)，\(x^\star=(0,1,0,5)^\top\)，\(z^\star=1\)。目标行给出证书 \(z=1+\tfrac32 x_1\ge 1\)（因 \(x_1\ge 0\)）。注意：\(x_3=0\) 仍在基里，所以这个最优 BFS 是<b>退化</b>的；而最后一步 \(\theta^\star=1&gt;0\) 是正步长。</p>
+</section>
+
+<section id="lec10-p3">
+<h2>Part 3 · 为什么数工作量 <span class="zh">Why Count the Work?</span></h2>
+<p>复杂度描述<b>算法所需工作量随输入规模增长</b>的方式——它不关心具体机器，只关心「规模翻倍时工作量大致翻几倍」。建模约定：<b>基本操作</b>是一次比较或一次算术运算（如两个数相加），计为 1 单位工作量。实际时间还取决于操作种类、硬件、实现，所以「单位成本」只是个假设。</p>
+
+<h3 id="lec10-p3-1">3.1 三个例子 <span class="zh">Three Examples</span></h3>
+<p>设 \(n\) 为输入项数，前两个例子数比较、第三个例子数候选：</p>
+<ul>
+  <li><b>找最大</b>：保留「目前看到的最大值」，逐个比较 → \(n-1\) 次比较。</li>
+  <li><b>检查每对是否重复</b>：全不同时要比所有无序对 → \(n(n-1)/2\) 次。</li>
+  <li><b>枚举所有子集</b>：每项「要/不要」两种选择 → \(2^n\) 个候选子集。</li>
+</ul>
+
+<h3 id="lec10-p3-2">3.2 增长有多快 <span class="zh">How Fast Does It Grow?</span></h3>
+<table class="truth">
+  <thead>
+    <tr><th>\(n\)</th><th>找最大 \(n-1\)</th><th>所有对 \(n(n-1)/2\)</th><th>所有子集 \(2^n\)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>10</td><td>9</td><td>45</td><td>1,024</td></tr>
+    <tr><td>20</td><td>19</td><td>190</td><td>1,048,576</td></tr>
+    <tr><td>40</td><td>39</td><td>780</td><td>1,099,511,627,776</td></tr>
+  </tbody>
+</table>
+<p><b>线性/二次增长</b>：\(n\) 翻倍，\(n-1\) 大致翻倍、\(n(n-1)/2\) 大致变 4 倍。<b>指数增长</b>：\(n\) 翻倍把 \(2^n\) 变成 \(2^{2n}=(2^n)^2\)——指数函数「平方」自己。检查一个候选可能又要多次基本操作：若每个子集最多 \(n\) 次就能检查，检查全部候选最多 \(n2^n\) 次（这还没算「生成并存储候选」的开销）。</p>
+<div class="figure">
+  <svg viewBox="0 0 460 300" width="460" role="img" aria-label="线性、二次、指数增长的对比示意">
+    <line x1="40" y1="250" x2="430" y2="250" style="stroke: var(--fig-bd); stroke-width: 1.5"/>
+    <line x1="40" y1="250" x2="40" y2="30" style="stroke: var(--fig-bd); stroke-width: 1.5"/>
+    <text x="48" y="42" class="svg-muted">工作量（示意，非按比例）</text>
+    <path d="M 40 250 L 340 120" style="fill: none; stroke: var(--sv-pos); stroke-width: 2.5"/>
+    <text x="250" y="112" class="svg-text" style="fill: var(--sv-pos)">线性 n−1</text>
+    <path d="M 40 250 Q 220 250 360 60" style="fill: none; stroke: var(--sv-hl); stroke-width: 2.5"/>
+    <text x="330" y="62" class="svg-text" style="fill: var(--sv-hl)">二次 n(n−1)/2</text>
+    <path d="M 40 250 L 120 250 Q 170 250 195 40" style="fill: none; stroke: var(--sv-neg); stroke-width: 2.5"/>
+    <text x="150" y="52" class="svg-text" style="fill: var(--sv-neg)">指数 2^n</text>
+    <text x="430" y="266" class="svg-muted" text-anchor="end">n</text>
+  </svg>
+  <div class="figcap">图：三种增长的对比。指数曲线在 \(n\) 稍大时「冲上天」，远快于多项式。</div>
+</div>
+</section>
+
+<section id="lec10-p4">
+<h2>Part 4 · 复杂度理论：大O 与 P/NP <span class="zh">Complexity Theory</span></h2>
+
+<h3 id="lec10-p4-1">4.1 大 O：渐进上界 <span class="zh">Big-O</span></h3>
+<p>固定算法与所数的基本操作，记 \(T(n)\) 为<b>最坏情况</b>操作数（该规模下所有输入里的最大值）。取参考增长函数 \(f(n)\ge 0\)（如 \(n\) 或 \(n^2\)）。</p>
+<div class="def box">
+  <span class="box-title">📘 大 O 定义</span>
+  <p>称 \(T(n)=O(f(n))\)，若存在常数 \(C&gt;0\) 与阈值 \(n_0\)，使 \(0\le T(n)\le C f(n)\) 对<b>所有</b> \(n\ge n_0\) 成立。\(C\) 和 \(n_0\) 固定、不随 \(n\) 变。</p>
+</div>
+<p>找最大与查对分别为 \(n-1=O(n)\)、\(n(n-1)/2=O(n^2)\)。大 O 是<b>渐进上界</b>，不是精确计数。</p>
+
+<h3 id="lec10-p4-2">4.2 多项式时间 <span class="zh">Polynomial Time</span></h3>
+<p>线性搜索未排序表：目标在首位需 1 次（最好）、在末位或不存在需 \(n\) 次（最坏），最坏 \(T(n)=n=O(n)\)。但从「项数」到「编码长度」有一步：设 \(L\) 为编码输入所需的总比特数（对 LP 包括 \(A,b,c\) 里的数）。一次基本<b>比特</b>操作只作用于固定个比特；任意长数的算术可能需要许多次这样的操作——正式的比特复杂度要计入数字的编码与精度。<b>多项式时间</b>：最坏情况基本比特操作数 ≤ \(C L^k\)（对所有足够大的 \(L\)，常数 \(C&gt;0,k\ge 0\) 固定）。</p>
+
+<h3 id="lec10-p4-3">4.3 P 与 NP <span class="zh">P vs NP</span></h3>
+<p>这两个类描述<b>判定问题</b>（yes/no 答案）：</p>
+<ul>
+  <li><b>P</b>（多项式可解）：算法能在多项式时间内求出 yes/no 答案。</li>
+  <li><b>NP</b>（多项式可验证）：每个 yes 答案都有一个<b>多项式长度的证书</b>，其正确性可在多项式时间内检查。</li>
+</ul>
+<p>例：旅行商判定问题（TSP decision）——「是否存在一条遍历每城恰一次、总长 ≤ \(K\) 的路线？」给一条候选路线，验证「访问了每城一次 + 把边长加起来」即可，故属于 NP。关系：\(P\subseteq NP\)；「\(P=NP\) 是否成立」至今是开放问题。注意 <b>NP 不是 non-polynomial（非多项式）</b>的缩写。</p>
+
+<h3 id="lec10-p4-4">4.4 NP-complete 与 NP-hard <span class="zh">NP-Complete &amp; NP-Hard</span></h3>
+<p><b>多项式归约</b>：把一个问题变换成另一个，使「后者的求解器」能解前者。</p>
+<ul>
+  <li><b>NP-hard</b>：NP 里每个问题都能多项式归约到它。它本身<b>不必</b>是 NP 里的判定问题。</li>
+  <li><b>NP-complete</b>：既在 NP 中、又是 NP-hard 的问题。</li>
+</ul>
+<p>TSP 判定（是否存在 ≤ K 的路线）是 NP-complete；TSP 优化（找最短路线）是 NP-hard。任一个 NP-complete 问题若有多项式算法，就推出 \(P=NP\)；至今无人找到这样的算法。</p>
+<div class="figure">
+  <svg viewBox="0 0 460 320" width="460" role="img" aria-label="P、NP、NP-hard、NP-complete 关系图">
+    <circle cx="185" cy="165" r="92" style="fill: none; stroke: var(--fig-bd); stroke-width: 2"/>
+    <circle cx="300" cy="165" r="92" style="fill: none; stroke: var(--sv-neg); stroke-width: 2"/>
+    <circle cx="120" cy="165" r="46" style="fill: var(--sv-pos); opacity: .14; stroke: var(--sv-pos); stroke-width: 2"/>
+    <text x="120" y="171" class="svg-text" text-anchor="middle" style="fill: var(--sv-pos)">P</text>
+    <text x="185" y="86" class="svg-text" text-anchor="middle">NP</text>
+    <text x="352" y="245" class="svg-text" text-anchor="middle" style="fill: var(--sv-neg)">NP-hard</text>
+    <text x="243" y="171" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">NP-</text>
+    <text x="243" y="188" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">complete</text>
+  </svg>
+  <div class="figcap">图：P ⊆ NP；NP-complete = NP ∩ NP-hard（两圆相交的透镜区）；NP-hard 延伸到 NP 之外。</div>
+</div>
+</section>
+
+<section id="lec10-p5">
+<h2>Part 5 · 单纯形法的复杂度 <span class="zh">Complexity of the Simplex Method</span></h2>
+
+<h3 id="lec10-p5-1">5.1 每次主元的成本与 Klee–Minty <span class="zh">Per-Pivot Cost &amp; Klee–Minty</span></h3>
+<p>稠密表格有 \(m\) 个约束行、\(n\) 个变量列，一次主元要 \(O(mn)\) 次算术操作。做 \(K\) 次主元，则<b>表格更新成本 \(O(Kmn)\)</b>（不含初始化）。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 指数最坏情况</span>
+  <p>在 \(d\) 维的 <b>Klee–Minty 扭曲立方体</b>上，经典 Dantzig 主元规则从一个合适起点出发，会访问 <b>\(2^d\) 个顶点、走 \(2^d-1\) 次主元</b>——是指数级。注意：这是<b>特定主元规则</b>的指数界（我们的表格用 Bland 规则是为了防循环，不是为防指数）。退化主元可以只换基、不换顶点、不改进目标。</p>
+</div>
+
+<h3 id="lec10-p5-2">5.2 实践与平滑分析 <span class="zh">Practice &amp; Smoothed Analysis</span></h3>
+<p>尽管有指数最坏情况，单纯形实现通常能高效解大规模 LP：</p>
+<ul>
+  <li>性能取决于问题结构、主元选择、数值线性代数与实现；</li>
+  <li>实现不必枚举所有可能的基；</li>
+  <li>最坏情况分析考虑的是<b>所有</b>输入，而计算实验只度量被测输入上的表现。</li>
+</ul>
+<p><b>平滑分析（smoothed analysis）</b>：某些单纯形变体在指定的随机扰动模型下有<b>多项式期望界</b>（界也依赖扰动幅度）。它试图解释「为什么现实里单纯形很快、理论上却指数慢」。</p>
+
+<h3 id="lec10-p5-3">5.3 LP 有多项式算法 <span class="zh">LP Is in P</span></h3>
+<p><b>算法的复杂度 ≠ 问题的复杂度</b>：一个慢方法不排除存在更快的方法。线性规划有<b>多项式时间算法</b>：</p>
+<ul>
+  <li><b>Khachiyan 椭球法</b>（1979 年）首次确立；</li>
+  <li><b>内点法（interior-point methods）</b>也给出多项式时间算法，且在实践中广泛使用。</li>
+</ul>
+<p>对有理数 LP 数据，这些保证以二进制输入长度 \(L\) 为多项式的量级（计入编码 \(A,b,c\) 的比特）。结论：<b>LP 判定问题在 P 中</b>，尽管特定单纯形规则有指数最坏情况。</p>
+</section>
+
+<section id="lec10-p6">
+<h2>Part 6 · 对偶的推导：Lagrangian <span class="zh">Deriving the Dual</span></h2>
+<p>这就是样卷「对偶 Duality」大题（21 分）的正式讲法。核心思想：给每个约束配一个<b>乘子</b>，把「必须满足的约束」改写成「目标里的一项惩罚」，再取 inf/sup 把「约束」消掉。</p>
+
+<h3 id="lec10-p6-1">6.1 乘子与精确重构 <span class="zh">Multipliers &amp; Exact Reformulation</span></h3>
+<p>考虑标准形原问题 \(p^\star=\inf\{c^\top x : Ax=b,\ x\ge 0\}\)。给每个等式配一个<b>自由乘子</b> \(y\in\mathbb R^m\)，定义 Lagrangian：</p>
+<p class="formula">\(L(x,y)=c^\top x + y^\top(b-Ax).\)</p>
+<p>对固定 \(x\)，关于 \(y\) 取上确界：</p>
+<p class="formula">\(\sup_{y\in\mathbb R^m} y^\top(b-Ax)=\begin{cases} 0, &amp; Ax=b,\\ +\infty, &amp; Ax\ne b. \end{cases}\)</p>
+<p>一个被违反的等式可以被「任意强地惩罚」（\(y\) 自由，两个方向都能推）。因此原问题可精确重构为：</p>
+<p class="formula">\(p^\star = \inf_{x\ge 0}\ \sup_{y\in\mathbb R^m} L(x,y).\)</p>
+<p>用 \(\inf,\sup\) 是为了容纳无界值；在取到有限最优处，它们就是 \(\min,\max\)。</p>
+
+<h3 id="lec10-p6-2">6.2 下界 \(q(y)\) 与弱对偶 <span class="zh">Lower Bound &amp; Weak Duality</span></h3>
+<p>固定 \(y\)、对 \(x\ge 0\) 最小化 Lagrangian：</p>
+<p class="formula">\(q(y):=\inf_{x\ge 0} L(x,y) = b^\top y + \inf_{x\ge 0} x^\top(c-A^\top y).\)</p>
+<p class="formula">\(q(y)=\begin{cases} b^\top y, &amp; A^\top y\le c,\\ -\infty, &amp; \text{否则}. \end{cases}\)</p>
+<p>理由：若某个系数为负（\(c_j-A_j^\top y&lt;0\)），让对应 \(x_j\to+\infty\) 就把下确界拉到 \(-\infty\)；若所有系数非负，\(x=0\) 使变量项最小，只剩常数 \(b^\top y\)。对任意原可行 \(x\)，乘子项消失，故 \(q(y)\le L(x,y)=c^\top x\)。于是对偶问题选 \(y\) 让这个下界<b>尽量大</b>：</p>
+<div class="thm box">
+  <span class="box-title">📗 原问题与对偶问题（标准形）</span>
+  <p>原：\(\min\ c^\top x\) s.t. \(Ax=b,\ x\ge 0\)。对偶：\(\max\ b^\top y\) s.t. \(A^\top y\le c\)。</p>
+</div>
+<p><b>弱对偶（weak duality）</b>：对任意可行对，\(b^\top y=(Ax)^\top y=x^\top A^\top y\le c^\top x\)——对偶目标 ≤ 原目标。<b>强对偶（strong duality，下一讲证明）</b>：若原问题有有限最优，则对偶有最优解且 \(d^\star=p^\star\)。这个等号是<b>定理</b>，不是 inf/sup 的机械交换。</p>
+<div class="figure">
+  <svg viewBox="0 0 460 220" width="460" role="img" aria-label="弱对偶：对偶目标值提供原问题目标的下界">
+    <line x1="40" y1="120" x2="420" y2="120" style="stroke: var(--fig-bd); stroke-width: 1.5"/>
+    <line x1="160" y1="108" x2="160" y2="132" style="stroke: var(--sv-hl); stroke-width: 3"/>
+    <text x="160" y="150" class="svg-text" text-anchor="middle" style="fill: var(--sv-hl)">d* = p*</text>
+    <text x="160" y="95" class="svg-text" text-anchor="middle">强对偶（LP）</text>
+    <line x1="90" y1="112" x2="90" y2="128" style="stroke: var(--sv-pos); stroke-width: 2.5"/>
+    <text x="90" y="150" class="svg-text" text-anchor="middle" style="fill: var(--sv-pos)">b^T y（对偶值）</text>
+    <line x1="250" y1="112" x2="250" y2="128" style="stroke: var(--sv-neg); stroke-width: 2.5"/>
+    <text x="250" y="150" class="svg-text" text-anchor="middle" style="fill: var(--sv-neg)">c^T x（原值）</text>
+    <text x="40" y="185" class="svg-muted">弱对偶：任意可行对都有 b^T y ≤ c^T x；强对偶把它们的最优值压到同一点。</text>
+  </svg>
+  <div class="figcap">图：弱对偶保证对偶值 ≤ 原值；LP 的强对偶保证最优处二者相等。</div>
+</div>
+</section>
+
+<section id="lec10-p7">
+<h2>Part 7 · 对偶的各种形式 <span class="zh">Duality Forms</span></h2>
+
+<h3 id="lec10-p7-1">7.1 标准形（\(Ax=b,\ x\ge 0\)） <span class="zh">Standard Form</span></h3>
+<p>已在 Part 6 导出：原 \(\min c^\top x\) s.t. \(Ax=b,x\ge 0\) ⟺ 对偶 \(\max b^\top y\) s.t. \(A^\top y\le c\)。</p>
+
+<h3 id="lec10-p7-2">7.2 \(Ax\ge b\)（自由 \(x\)） <span class="zh">Ax≥b, Free x</span></h3>
+<p>换一种原问题形式：\(\min c^\top x\) s.t. \(Ax\ge b\)（\(x\) 自由）。仍用 \(L(x,y)=c^\top x+y^\top(b-Ax)\)，但这次要求 \(y\ge 0\)：</p>
+<p class="formula">\(\sup_{y\ge 0} y^\top(b-Ax)=\begin{cases} 0, &amp; Ax\ge b,\\ +\infty, &amp; \text{否则}. \end{cases}\)</p>
+<ul>
+  <li>可行点处所有残差 \(b_i-a_i^\top x\le 0\)，取 \(y=0\) 给出上确界 0；</li>
+  <li>被违反的约束有正残差，其非负乘子可无限增大。</li>
+</ul>
+<p>于是原问题恰为 \(\inf_{x}\sup_{y\ge 0}L(x,y)\)。<b>约束的方向决定乘子的符号</b>。</p>
+
+<h3 id="lec10-p7-3">7.3 自由变量要求等式 <span class="zh">Free Variables Require Equality</span></h3>
+<p>对 \(y\ge 0\)，同样的下界构造：\(q(y)=b^\top y+\inf_x x^\top(c-A^\top y)\)。若某系数非零，自由变量可朝 \(+\infty\) 或 \(-\infty\) 移动，把式子推到 \(-\infty\)。故：</p>
+<p class="formula">\(q(y)=\begin{cases} b^\top y, &amp; A^\top y=c,\\ -\infty, &amp; \text{否则}. \end{cases}\)</p>
+<p>所得对偶：\(\max b^\top y\) s.t. \(A^\top y=c,\ y\ge 0\)。<b>记住原因</b>：非负的原变量允许「系数不等式」（\(A_j^\top y\le c_j\)）；自由的原变量则要求「系数恰为等式」（\(A_j^\top y=c_j\)）。</p>
+</section>
+
+<section id="lec10-p8">
+<h2>Part 8 · 一般对偶表与四步构造 <span class="zh">General Dual: Table &amp; Signs</span></h2>
+
+<h3 id="lec10-p8-1">8.1 一般形式（行/列划分） <span class="zh">The Full Form</span></h3>
+<p>设 \(A\in\mathbb R^{m\times n}\)，行 \(i\) 记 \(a_i^\top\)、列 \(j\) 记 \(A_j\)。把 \(m\) 个行指标分成 \(M_1,M_2,M_3\)（≥/≤/=），把 \(n\) 个列指标分成 \(N_1,N_2,N_3\)（≥0/≤0/free），各组可为空。Lagrangian 展开：</p>
+<p class="formula">\(L(x,y)=c^\top x+\sum_{i=1}^{m}y_i(b_i-a_i^\top x)=b^\top y+\sum_{j=1}^{n}\underbrace{(c_j-A_j^\top y)}_{\text{剩余系数}}x_j.\)</p>
+<p>两条读法：<b>① 读行</b>——每行配一个乘子 \(y_i\)，其符号要保证可行时 \(y_i(b_i-a_i^\top x)\le 0\)；<b>② 读列</b>——每个按符号允许的 \(x_j\) 都要满足 \((c_j-A_j^\top y)x_j\ge 0\)，否则 \(x_j\) 能把 Lagrangian 推到 \(-\infty\)。\(m\) 行给 \(m\) 个对偶变量、\(n\) 列给 \(n\) 个系数约束；变量符号单独处理。</p>
+<p>一般形式（原 \(\min\)，对偶 \(\max\)）：</p>
+<p class="formula">\(\begin{aligned} \text{原：}\ \min c^\top x\quad\text{s.t.}\quad &amp;a_i^\top x\ge b_i\ (i\in M_1),\ a_i^\top x\le b_i\ (i\in M_2),\ a_i^\top x=b_i\ (i\in M_3),\\ &amp;x_j\ge 0\ (j\in N_1),\ x_j\le 0\ (j\in N_2),\ x_j\ \text{free}\ (j\in N_3).\\[4pt] \text{对偶：}\ \max b^\top y\quad\text{s.t.}\quad &amp;A_j^\top y\le c_j\ (j\in N_1),\ A_j^\top y\ge c_j\ (j\in N_2),\ A_j^\top y=c_j\ (j\in N_3),\\ &amp;y_i\ge 0\ (i\in M_1),\ y_i\le 0\ (i\in M_2),\ y_i\ \text{free}\ (i\in M_3). \end{aligned}\)</p>
+
+<h3 id="lec10-p8-2">8.2 记忆表与四步 <span class="zh">To Memorize: Table &amp; Four Steps</span></h3>
+<p>约定：<b>原问题极小化 \(c^\top x\)，对偶极大化 \(b^\top y\)</b>。这张表是构造对偶的全部记忆量：</p>
+<table class="truth">
+  <thead>
+    <tr><th>原约束（第 \(i\) 行）</th><th>对偶变量</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>\(a_i^\top x\ge b_i\)</td><td>\(y_i\ge 0\)</td></tr>
+    <tr><td>\(a_i^\top x\le b_i\)</td><td>\(y_i\le 0\)</td></tr>
+    <tr><td>\(a_i^\top x=b_i\)</td><td>\(y_i\) free</td></tr>
+  </tbody>
+</table>
+<table class="truth">
+  <thead>
+    <tr><th>原变量（第 \(j\) 列）</th><th>对偶约束</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>\(x_j\ge 0\)</td><td>\(A_j^\top y\le c_j\)</td></tr>
+    <tr><td>\(x_j\le 0\)</td><td>\(A_j^\top y\ge c_j\)</td></tr>
+    <tr><td>\(x_j\) free</td><td>\(A_j^\top y=c_j\)</td></tr>
+  </tbody>
+</table>
+<p><b>四步构造对偶</b>：① 引入 \(y_1,\dots,y_m\)，每个结构约束一个；② 目标写 \(\max b^\top y\)（用原问题右端项）；③ 读每个原行，定 \(y_i\) 的符号；④ 读每列与 \(x_j\) 的符号，把 \(A_j^\top y\) 与 \(c_j\) 比较。若原问题是极大化，先把目标取负（见例题三）。</p>
+
+<h3 id="lec10-p8-3">8.3 例题一（2 变量 2 约束） <span class="zh">Example 1</span></h3>
+<p class="formula">\(\min\ x_1+2x_2\ \ \text{s.t.}\ \ x_1+x_2\ge 5,\ \ x_1-x_2\le 3,\ \ x_1\ge 0,\ x_2\ \text{free}.\)</p>
+<p>用<b>约束方向</b>（不是系数符号）：行 1 \(x_1+x_2\ge 5\) ⟹ \(y_1\ge 0\)；行 2 \(x_1-x_2\le 3\) ⟹ \(y_2\le 0\)。右端 \(b=(5,3)^\top\)，故对偶目标 \(\max 5y_1+3y_2\)。再读列：\(c_1=1\)（列 \((1,1)^\top\)、\(x_1\ge 0\)）⟹ \(y_1+y_2\le 1\)；\(c_2=2\)（列 \((1,-1)^\top\)、\(x_2\) free）⟹ \(y_1-y_2=2\)。完整对偶：</p>
+<p class="formula">\(\max\ 5y_1+3y_2\ \ \text{s.t.}\ \ y_1+y_2\le 1,\ \ y_1-y_2=2,\ \ y_1\ge 0,\ y_2\le 0.\)</p>
+<p>自由变量 \(x_2\) 要求「系数恰匹配」（等式），其列里的负号也留在对偶表达式里。</p>
+
+<h3 id="lec10-p8-4">8.4 例题二（3 约束 4 变量） <span class="zh">Example 2</span></h3>
+<p class="formula">\(\min\ x_1+2x_2+3x_3+4x_4\ \ \text{s.t.}\ \ -x_1+3x_2+x_4=-5,\ \ 2x_1-x_2+3x_3+2x_4\ge 6,\ \ x_3-x_4\le 4,\ \ x_1,x_4\ge 0,\ x_2\le 0,\ x_3\ \text{free}.\)</p>
+<p>读三行：等式 ⟹ \(y_1\) free；≥ ⟹ \(y_2\ge 0\)；≤ ⟹ \(y_3\le 0\)。目标 \(\max -5y_1+6y_2+4y_3\)。四列检查：</p>
+<table class="truth">
+  <thead><tr><th>列 \(A_j\)</th><th>符号</th><th>对偶条件</th></tr></thead>
+  <tbody>
+    <tr><td>\((-1,2,0)^\top\)</td><td>\(x_1\ge 0\)</td><td>\(-y_1+2y_2\le 1\)</td></tr>
+    <tr><td>\((3,-1,0)^\top\)</td><td>\(x_2\le 0\)</td><td>\(3y_1-y_2\ge 2\)</td></tr>
+    <tr><td>\((0,3,1)^\top\)</td><td>\(x_3\) free</td><td>\(3y_2+y_3=3\)</td></tr>
+    <tr><td>\((1,2,-1)^\top\)</td><td>\(x_4\ge 0\)</td><td>\(y_1+2y_2-y_3\le 4\)</td></tr>
+  </tbody>
+</table>
+<p class="formula">\(\max\ -5y_1+6y_2+4y_3\ \ \text{s.t.}\ \ -y_1+2y_2\le 1,\ 3y_1-y_2\ge 2,\ 3y_2+y_3=3,\ y_1+2y_2-y_3\le 4,\ y_1\ \text{free},\ y_2\ge 0,\ y_3\le 0.\)</p>
+
+<h3 id="lec10-p8-5">8.5 例题三（极大化：先取负） <span class="zh">Example 3: From a Max Problem</span></h3>
+<p class="formula">\(\max\ 4x_1+x_2+8x_3\ \ \text{s.t.}\ \ x_1-x_2+x_3\le 4,\ \ -2x_1-x_2+x_3\ge -4,\ \ x_1+x_2+2x_3=3,\ \ -x_1+2x_2+x_3\le -3,\ \ x_1\ge 0,\ x_2\le 0,\ x_3\ \text{free}.\)</p>
+<p>要用极小化表，先把<b>目标取负</b>（约束与符号不变）：\(\min -4x_1-x_2-8x_3\)。读四行分别得 \(y_1\le 0,\ y_2\ge 0,\ y_3\) free, \(y_4\le 0\)。<b>负的右端项不决定乘子符号</b>。对取负后的目标应用表格（新成本 \((-4,-1,-8)\)），得「辅助极小化问题」的对偶：</p>
+<p class="formula">\(\max\ 4y_1-4y_2+3y_3-3y_4\ \ \text{s.t.}\ \ y_1-2y_2+y_3-y_4\le -4,\ \ -y_1-y_2+y_3+2y_4\ge -1,\ \ y_1+y_2+2y_3+y_4=-8,\ \ y_1,y_4\le 0,\ y_2\ge 0,\ y_3\ \text{free}.\)</p>
+<p>再代换 \(u=-y\)（极大化 \(b^\top y=-b^\top u\) 等价于极小化 \(b^\top u\)），每个不等式乘 \(-1\) 反转方向，得原极大化问题的对偶：</p>
+<p class="formula">\(\min\ 4u_1-4u_2+3u_3-3u_4\ \ \text{s.t.}\ \ u_1-2u_2+u_3-u_4\ge 4,\ \ -u_1-u_2+u_3+2u_4\le 1,\ \ u_1+u_2+2u_3+u_4=8,\ \ u_1,u_4\ge 0,\ u_2\le 0,\ u_3\ \text{free}.\)</p>
+<p>代换同时反转乘子符号（自由乘子仍自由）。这个极小化对偶给出原极大化问题的<b>上界</b>。</p>
+</section>
+
+<section id="lec10-p9">
+<h2>Part 9 · 应用：软间隔分类的对偶 <span class="zh">Application: Soft-Margin Dual</span></h2>
+<p>回顾 \(\lambda=0\) 的 SVM 模型（<a href="#lec3-p1">第 3 课 Part 1</a>）。有 \(m\) 个观测 \(x_i\in\mathbb R^n\)、标签 \(y_i\in\{-1,1\}\)，原问题：</p>
+<p class="formula">\(\min_{w,b,t}\ \sum_{i=1}^{m} t_i \quad\text{s.t.}\quad y_i(x_i^\top w+b)+t_i\ge 1,\ \ t_i\ge 0,\quad i=1,\dots,m.\)</p>
+<p>这里 \(w\in\mathbb R^n\)、\(b\in\mathbb R\) 自由，\(t\in\mathbb R^m\) 非负。给每个间隔约束配乘子 \(u_i\ge 0\)。\(n+m+1\) 个原变量产生 \(n+m+1\) 个对偶系数条件（外加 \(u\ge 0\)）。定义 \(X=[x_1\cdots x_m]\in\mathbb R^{n\times m}\)，间隔约束写成 \(\operatorname{diag}(y)X^\top w+by+t\ge 1\)（这里的 \(y\) 是给定标签，\(u\) 是对偶变量）。读每种原变量的系数条件：</p>
+<table class="truth">
+  <thead><tr><th>原变量</th><th>对偶条件</th></tr></thead>
+  <tbody>
+    <tr><td>\(w\in\mathbb R^n\) free，成本 0</td><td>\(X\operatorname{diag}(y)u=0\)</td></tr>
+    <tr><td>\(b\in\mathbb R\) free，成本 0</td><td>\(y^\top u=0\)</td></tr>
+    <tr><td>\(t_i\ge 0\)，成本 1</td><td>\(u_i\le 1\)</td></tr>
+  </tbody>
+</table>
+<p>连同 \(u\ge 0\)，得到分类对偶：</p>
+<p class="formula">\(\max_{u\in\mathbb R^m}\ \sum_{i=1}^{m} u_i \quad\text{s.t.}\quad X\operatorname{diag}(y)u=0,\ \ y^\top u=0,\ \ 0\le u_i\le 1,\ i=1,\dots,m.\)</p>
+<p><b>同一套规则、更大的模型</b>：自由原变量给出等式，非负原变量给出系数不等式。</p>
+</section>
+
+<section id="lec10-p10">
+<h2>Part 10 · 总结与词汇表 <span class="zh">Summary &amp; Vocabulary</span></h2>
+
+<h3 id="lec10-p10-1">10.1 本讲总结 <span class="zh">Summary</span></h3>
+<ul>
+  <li><b>复杂度</b>：把工作量写成输入规模的函数；区分「最坏情况保证」与「实际表现」。</li>
+  <li><b>对偶</b>：对偶优化一个「由原约束保证成立的下界」。LP 的最优值相等就是强对偶。</li>
+  <li><b>构造对偶</b>：行决定乘子符号，列决定系数条件。结构约束与变量符号分开数。</li>
+  <li><b>用表</b>：先固定极小化约定。遇极大化问题，先把目标取负、套表、再变换回去。</li>
+  <li><b>下一讲</b>：弱/强对偶、对偶与单纯形法的联系、互补松弛（complementary slackness）。</li>
+</ul>
+
+<h3 id="lec10-p10-2">10.2 词汇表 <span class="zh">Vocabulary</span></h3>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>computational complexity</b> — 计算复杂度；<b>basic operation</b> — 基本操作</li>
+    <li><b>worst case</b> — 最坏情况；<b>input size</b> — 输入规模</li>
+    <li><b>polynomial time</b> — 多项式时间；<b>encoded input size</b> — 编码后的输入长度</li>
+    <li><b>Big-O</b> — 大 O 记号；<b>asymptotic upper bound</b> — 渐进上界</li>
+    <li><b>decision problem</b> — 判定问题；<b>certificate</b> — 证书</li>
+    <li><b>P / NP</b> — 多项式可解 / 多项式可验证；<b>NP-hard / NP-complete</b> — NP 难 / NP 完全</li>
+    <li><b>polynomial-time reduction</b> — 多项式归约</li>
+    <li><b>Klee–Minty cube</b> — Klee–Minty 立方体；<b>smoothed analysis</b> — 平滑分析</li>
+    <li><b>ellipsoid method</b> — 椭球法；<b>interior-point method</b> — 内点法</li>
+    <li><b>dual / primal</b> — 对偶 / 原问题；<b>duality</b> — 对偶性</li>
+    <li><b>Lagrangian</b> — 拉格朗日函数；<b>multiplier</b> — 乘子</li>
+    <li><b>weak / strong duality</b> — 弱 / 强对偶；<b>free variable</b> — 自由变量</li>
+    <li><b>lower bound</b> — 下界；<b>infimum / supremum (inf / sup)</b> — 下确界 / 上确界</li>
+    <li><b>structural constraint</b> — 结构约束；<b>soft margin</b> — 软间隔</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第10课 -->
 
 </div>
 </main>

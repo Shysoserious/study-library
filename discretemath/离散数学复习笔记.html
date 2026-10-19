@@ -353,6 +353,59 @@ window.MathJax = {
     <a class="lv2" href="#ln5-11">5.11 二阶线性递推与特征根</a>
     <a class="lv2" href="#ln5-12">5.12 斐波那契闭式解（Binet）</a>
     <a class="lv2" href="#ln5-13">5.13 总结</a>
+
+    <a class="lv1" href="#ln6">LN6 · 最大公约数 Greatest Common Divisors</a>
+    <a class="lv2" href="#ln6-1">6.1 倍数与约数</a>
+    <a class="lv2" href="#ln6-2">6.2 公约数与最大公约数</a>
+    <a class="lv2" href="#ln6-3">6.3 商-余数定理</a>
+    <a class="lv2" href="#ln6-4">6.4 朴素算法</a>
+    <a class="lv2" href="#ln6-5">6.5 欧几里得算法</a>
+    <a class="lv2" href="#ln6-6">6.6 欧几里得算法的正确性</a>
+    <a class="lv2" href="#ln6-7">6.7 算法有多快</a>
+    <a class="lv2" href="#ln6-8">6.8 线性组合与 gcd</a>
+    <a class="lv2" href="#ln6-9">6.9 定理证明（gcd = spc）</a>
+    <a class="lv2" href="#ln6-10">6.10 定理的应用</a>
+    <a class="lv2" href="#ln6-11">6.11 素数的整除性</a>
+    <a class="lv2" href="#ln6-12">6.12 算术基本定理</a>
+    <a class="lv2" href="#ln6-13">6.13 扩展欧几里得算法</a>
+    <a class="lv2" href="#ln6-14">6.14 Die Hard 水壶问题</a>
+    <a class="lv2" href="#ln6-15">6.15 总结</a>
+
+    <a class="lv1" href="#ln7">LN7 · 模算术与中国剩余定理 Modular Arithmetic &amp; CRT</a>
+    <a class="lv2" href="#ln7-1">7.1 模算术与同余</a>
+    <a class="lv2" href="#ln7-2">7.2 模加法</a>
+    <a class="lv2" href="#ln7-3">7.3 模乘法</a>
+    <a class="lv2" href="#ln7-4">7.4 快速模幂</a>
+    <a class="lv2" href="#ln7-5">7.5 应用：被 9 整除</a>
+    <a class="lv2" href="#ln7-6">7.6 应用：十五谜题</a>
+    <a class="lv2" href="#ln7-7">7.7 乘法逆元</a>
+    <a class="lv2" href="#ln7-8">7.8 逆元的唯一性</a>
+    <a class="lv2" href="#ln7-9">7.9 消去律</a>
+    <a class="lv2" href="#ln7-10">7.10 费马小定理</a>
+    <a class="lv2" href="#ln7-11">7.11 威尔逊定理</a>
+    <a class="lv2" href="#ln7-12">7.12 中国剩余定理</a>
+    <a class="lv2" href="#ln7-13">7.13 CRT 的证明与唯一性</a>
+    <a class="lv2" href="#ln7-14">7.14 一般系统与免分解法</a>
+    <a class="lv2" href="#ln7-15">7.15 总结</a>
+
+    <a class="lv1" href="#ln8">LN8 · 图论导论 Introduction to Graphs</a>
+    <a class="lv2" href="#ln8-1">8.1 柯尼斯堡七桥</a>
+    <a class="lv2" href="#ln8-2">8.2 简单图</a>
+    <a class="lv2" href="#ln8-3">8.3 图的类型</a>
+    <a class="lv2" href="#ln8-4">8.4 子图</a>
+    <a class="lv2" href="#ln8-5">8.5 顶点的度</a>
+    <a class="lv2" href="#ln8-6">8.6 度序列与握手引理</a>
+    <a class="lv2" href="#ln8-7">8.7 图同构</a>
+    <a class="lv2" href="#ln8-8">8.8 如何判定同构</a>
+    <a class="lv2" href="#ln8-9">8.9 路径</a>
+    <a class="lv2" href="#ln8-10">8.10 连通性</a>
+    <a class="lv2" href="#ln8-11">8.11 环</a>
+    <a class="lv2" href="#ln8-12">8.12 最短路径</a>
+    <a class="lv2" href="#ln8-13">8.13 树</a>
+    <a class="lv2" href="#ln8-14">8.14 树的刻画</a>
+    <a class="lv2" href="#ln8-15">8.15 欧拉环与欧拉路径</a>
+    <a class="lv2" href="#ln8-16">8.16 有向图</a>
+    <a class="lv2" href="#ln8-17">8.17 总结</a>
   </nav>
 </aside>
 
@@ -390,7 +443,7 @@ window.MathJax = {
 </p>
 <div class="warn box">
   <span class="box-title">⚠️ 注意「坏证明」Bad Proof</span>
-  <p>类似的重排技巧「证明」了 \(65=63\)。问题在于拼接的图形并非真正的三角形——<b>斜率不匹配</b>（\(2:5 \neq 3:8\)）。这告诉我们：<b>直觉和图形是可能骗人的</b>，所以需要严格的形式化证明系统。</p>
+  <p>类似的重排技巧「证明」了 \(65=63\)。问题在于拼接的图形并非真正的三角形——<b>斜率不匹配</b>（\(2:5 \neq 3:8\)）：看似严丝合缝的「斜边」其实藏着一条极窄的缝隙（或重叠），面积差就藏在这里。这告诉我们：<b>直觉和图形是可能骗人的</b>，所以需要严格的形式化证明系统。</p>
 </div>
 <p>
   标准做法由 <b>欧几里得（Euclid）</b> 于公元前 300 年提出：先设定若干条<b>公理（axioms）</b>——这些陈述的真假被视为理所当然（taken for granted）——再用逻辑推出其他陈述的真假。欧几里得的五条公理包括：任意两点可连直线、线段可无限延伸、以任意圆心和半径作圆、所有直角相等、以及<b>平行公设（Parallel postulate）</b>。
@@ -492,7 +545,9 @@ window.MathJax = {
   <p class="formula">\(p \oplus q \;\equiv\; \neg\big((p \land q) \lor (\neg p \land \neg q)\big)\)　（方法二：非第一行且非第四行）</p>
 </div>
 
-<p>同理，<b>多数函数</b> \(M(P,Q,R)\) 为真的行是 (T,T,T)、(T,T,F)、(T,F,T)、(F,T,T)，因此：</p>
+<p>同理，<b>多数函数</b> \(M(P,Q,R)\) 为真的行是 (T,T,T)、(T,T,F)、(T,F,T)、(F,T,T)。先把每个真行写成一个<b>极小项（minterm）</b>——T 取变量本身、F 取它的否定——再取或，得规范的<b>析取范式（DNF）</b>：</p>
+<p class="formula">\(M = (P\land Q\land R) \lor (P\land Q\land \neg R) \lor (P\land\neg Q\land R) \lor (\neg P\land Q\land R)\)</p>
+<p>再<b>吸收化简</b>：第一、二项合并为 \(P\land Q\land(R\lor\neg R)=P\land Q\)；第一、三项合并为 \(P\land R\)；第一、四项合并为 \(Q\land R\)（首项 \((P\land Q\land R)\) 被复用了三次）。因此：</p>
 <p class="formula">\(M(P,Q,R) = (P \land Q) \lor (P \land R) \lor (Q \land R)\)</p>
 
 <div class="warn box">
@@ -695,8 +750,9 @@ window.MathJax = {
     <li>\(\neg S\)　　（由 ②③，MT）</li>
     <li>\(\neg(S\land R) \rightarrow \neg(\neg P\lor\neg Q)\)　　（由 ①，逆否）</li>
     <li>\(\neg S\lor\neg R \rightarrow P\land Q\)　　（由 2，德摩根律）</li>
-    <li>\(P\land Q\)　　（由 1,3，MP）</li>
-    <li>\(P\)　　（由 4，特化律）</li>
+    <li>\(\neg S\lor\neg R\)　　（由 1，概括律/附加律：\(p\Rightarrow p\lor q\)）</li>
+    <li>\(P\land Q\)　　（由 3,4，MP）</li>
+    <li>\(P\)　　（由 5，特化律）</li>
   </ol>
 </div>
 
@@ -762,6 +818,12 @@ window.MathJax = {
 <div class="def box">
   <span class="box-title">📌 集合 Set</span>
   <p><b>集合（set）</b>是一组<b>互不相同</b>的对象的<b>无序</b>集合（an <b>unordered</b> collection of <b>distinct</b> objects）。集合中的对象称为<b>元素（elements）</b>或<b>成员（members）</b>，记 \(S\) 包含其元素。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 子集 · 空集 · 幂集</span>
+  <p><b>子集（subset）</b>：若 \(A\) 的每个元素都是 \(B\) 的元素，则 \(A\) 是 \(B\) 的子集，记 \(A\subseteq B\)。例如 \(\{1,2\}\subseteq\{1,2,3\}\)。</p>
+  <p><b>空集（empty set）</b> \(\varnothing\)：不含任何元素的集合，\(|\varnothing|=0\)；空集是任何集合的子集。</p>
+  <p><b>幂集（power set）</b> \(\mathrm{pow}(S)\)：\(S\) 的<b>所有子集</b>组成的集合，即 \(\mathrm{pow}(S)=\{A\mid A\subseteq S\}\)。例如 \(\mathrm{pow}(\{a,b\})=\{\varnothing,\{a\},\{b\},\{a,b\}\}\)，共 \(2^2=4\) 个（一般地 \(|\mathrm{pow}(S)|=2^{|S|}\)）。</p>
 </div>
 <div class="ex box">
   <span class="box-title">✏️ 例子</span>
@@ -947,7 +1009,7 @@ window.MathJax = {
 
 <div class="ex box">
   <span class="box-title">✏️ 反例法示例</span>
-  <p>要说明 \(A\cup(B\cap C) \neq (A\cup B)\cap C\) 不一定成立，可令 \(A=\{1,2,4,5\}\)，\(B=\{2,3,5,6\}\)，\(C=\{4,5,6,7\}\)，代入两边计算得 LHS \(=\{1,2,3,4\}\ne\) RHS \(=\{1,2\}\)。</p>
+  <p>要说明 \(A\cup(B\cap C) \neq (A\cup B)\cap C\) 不一定成立，可令 \(A=\{1,2,4,5\}\)，\(B=\{2,3,5,6\}\)，\(C=\{4,5,6,7\}\)。计算：\(B\cap C=\{5,6\}\)，故 LHS \(=A\cup(B\cap C)=\{1,2,4,5,6\}\)；而 \(A\cup B=\{1,2,3,4,5,6\}\)，故 RHS \(=(A\cup B)\cap C=\{4,5,6\}\)。LHS \(\ne\) RHS，反例成立。</p>
 </div>
 
 <div class="ex box">
@@ -1227,14 +1289,14 @@ window.MathJax = {
 <div class="ex box">
   <span class="box-title">✏️ 例 1：两偶数之和是偶数</span>
   <p>设 \(x=2m\)，\(y=2n\)（\(m,n\) 为整数），则
-  \[x+y=2m+2n=2(m+n)\]
+  \(x+y=2m+2n=2(m+n)\)
   是偶数。∎</p>
 </div>
 
 <div class="ex box">
   <span class="box-title">✏️ 例 2：两奇数之积是奇数</span>
   <p>设 \(x=2m+1\)，\(y=2n+1\)，则
-  \[xy=(2m+1)(2n+1)=4mn+2m+2n+1=2(2mn+m+n)+1\]
+  \(xy=(2m+1)(2n+1)=4mn+2m+2n+1=2(2mn+m+n)+1\)
   是奇数。∎</p>
 </div>
 
@@ -1242,7 +1304,7 @@ window.MathJax = {
   <span class="box-title">✏️ 例 3：完全平方数之和</span>
   <p>若 \(m,n\) 都是完全平方数，则 \(m+n+2\sqrt{mn}\) 也是完全平方数。<br>
   证：设 \(m=a^2\)，\(n=b^2\)，则
-  \[m+n+2\sqrt{mn}=a^2+b^2+2ab=(a+b)^2\]
+  \(m+n+2\sqrt{mn}=a^2+b^2+2ab=(a+b)^2\)
   是完全平方数。∎</p>
 </div>
 
@@ -1284,7 +1346,7 @@ window.MathJax = {
   <span class="box-title">✏️ 例：\(n\) 为偶数当且仅当 \(n^2\) 为偶数</span>
   <p><b>方向一</b>（直接，\(n\) 偶 ⇒ \(n^2\) 偶）：设 \(n=2k\)，则 \(n^2=4k^2=2(2k^2)\)，偶。<br>
   <b>方向二</b>（逆否，\(n^2\) 偶 ⇒ \(n\) 偶）：证逆否「\(n\) 奇 ⇒ \(n^2\) 奇」。设 \(n=2k+1\)，则
-  \[n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\]
+  \(n^2=(2k+1)^2=4k^2+4k+1=2(2k^2+2k)+1\)
   奇。∎（本方向直接证 \(n^2=2k\Rightarrow n=\sqrt{2k}\) 会卡住——这正是要换逆否的原因。）</p>
 </div>
 
@@ -1320,9 +1382,9 @@ window.MathJax = {
 <div class="ex box">
   <span class="box-title">✏️ 例 1：奇数的平方 ≡ 1 (mod 8)</span>
   <p>设奇数为 \(2k+1\)，则
-  \[(2k+1)^2=4k^2+4k+1=4k(k+1)+1\]
+  \((2k+1)^2=4k^2+4k+1=4k(k+1)+1\)
   因 \(k(k+1)\) 必为偶数（相邻两数之积），故 \(4k(k+1)\) 被 8 整除，于是平方 \(\equiv 1 \pmod 8\)。<br>
-  （另一思路：分别讨论 \(k\) 为偶/奇，二者都使 \(k^2+k\) 为偶。）</p>
+  （另一思路：分别讨论 \(k\) 为偶/奇，二者都使 \(k^2+k\) 为偶。此处 \(a\equiv b\pmod 8\) 表示 \(a,b\) 除以 8 余数相同，正式定义见 LN7 同余。）</p>
 </div>
 
 <div class="ex box">
@@ -1330,7 +1392,7 @@ window.MathJax = {
   <p>考虑 \(\sqrt{2}^{\sqrt{2}}\)：<br>
   <b>情形 1</b>：若 \(\sqrt{2}^{\sqrt{2}}\) 有理，则取 \(a=b=\sqrt{2}\) 即可。<br>
   <b>情形 2</b>：若 \(\sqrt{2}^{\sqrt{2}}\) 无理，则取 \(a=\sqrt{2}^{\sqrt{2}}\)，\(b=\sqrt{2}\)，得
-  \[a^b=\left(\sqrt{2}^{\sqrt{2}}\right)^{\sqrt{2}}=\sqrt{2}^{2}=2\]
+  \(a^b=\left(\sqrt{2}^{\sqrt{2}}\right)^{\sqrt{2}}=\sqrt{2}^{2}=2\)
   有理。<br>
   <b>无论哪种情形都成立</b>——而且我们<b>无需知道</b>到底哪种情形为真！这是分类讨论的精妙之处。</p>
 </div>
@@ -1368,7 +1430,7 @@ window.MathJax = {
 
 <div class="thm box">
   <span class="box-title">🎯 归纳法规则（公理）The Induction Rule (an axiom)</span>
-  <p class="formula">\[\frac{P(0),\quad \forall n\in\mathbb{N}\; [P(n)\rightarrow P(n+1)]}{\forall m\in\mathbb{N}\; P(m)}\]</p>
+  <p class="formula">\(\frac{P(0),\quad \forall n\in\mathbb{N}\; [P(n)\rightarrow P(n+1)]}{\forall m\in\mathbb{N}\; P(m)}\)</p>
   <p>\(P(0)\)「非常好证」；第二项「<b>以 \(P(n)\) 为假设</b>来证 \(P(n+1)\) 就容易得多」。<br>
   <b>核心</b>：用<b>小问题的已知结论</b>（可假设 \(P(n)\)）去解<b>大问题</b>（证 \(P(n+1)\)）。对比全称推广规则（universal generalization）。</p>
 </div>
@@ -1393,8 +1455,8 @@ window.MathJax = {
   <span class="box-title">✏️ 等式：\(1^3+2^3+\cdots+n^3=\left(\tfrac{n(n+1)}{2}\right)^2\)（\(\forall n\ge 1\)）</span>
   <p><b>基础步</b> \(P(1)\)：左 \(=1\)，右 \(=(1\cdot 2/2)^2=1\)，成立。<br>
   <b>归纳步</b>：假设 \(P(n)\)，证 \(P(n+1)\)：
-  \[1^3+\cdots+n^3+(n+1)^3=\left(\tfrac{n(n+1)}{2}\right)^2+(n+1)^3\]
-  \[=(n+1)^2\left(\tfrac{n^2}{4}+n+1\right)=(n+1)^2\cdot\tfrac{n^2+4n+4}{4}=\left(\tfrac{(n+1)(n+2)}{2}\right)^2\]
+  \(1^3+\cdots+n^3+(n+1)^3=\left(\tfrac{n(n+1)}{2}\right)^2+(n+1)^3\)
+  \(=(n+1)^2\left(\tfrac{n^2}{4}+n+1\right)=(n+1)^2\cdot\tfrac{n^2+4n+4}{4}=\left(\tfrac{(n+1)(n+2)}{2}\right)^2\)
   即 \(P(n+1)\) 成立。∎</p>
 </div>
 
@@ -1402,7 +1464,7 @@ window.MathJax = {
   <span class="box-title">✏️ 性质：\(2^{2n}-1\) 被 3 整除（\(\forall n\ge 1\)）</span>
   <p><b>基础步</b> \(n=1\)：\(2^{2}-1=3\)，被 3 整除。<br>
   <b>归纳步</b>：假设 \(2^{2i}-1\) 被 3 整除，证 \(2^{2(i+1)}-1\)：
-  \[2^{2(i+1)}-1=2^{2i+2}-1=4\cdot 2^{2i}-1=3\cdot 2^{2i}+(2^{2i}-1)\]
+  \(2^{2(i+1)}-1=2^{2i+2}-1=4\cdot 2^{2i}-1=3\cdot 2^{2i}+(2^{2i}-1)\)
   第一项显然被 3 整除，第二项由归纳假设被 3 整除。∎</p>
 </div>
 
@@ -1410,10 +1472,10 @@ window.MathJax = {
   <span class="box-title">✏️ 不等式：\(\tfrac{1}{\sqrt1}+\tfrac{1}{\sqrt2}+\cdots+\tfrac{1}{\sqrt n}>\sqrt n\)（\(\forall n\ge 2\)）</span>
   <p><b>基础步</b> \(n=2\)：\(1+\tfrac{1}{\sqrt2}>\sqrt2\)，成立。<br>
   <b>归纳步</b>：假设对 \(i\ge 2\) 成立，证 \(i+1\)：
-  \[\tfrac{1}{\sqrt1}+\cdots+\tfrac{1}{\sqrt n}+\tfrac{1}{\sqrt{n+1}}
+  \(\tfrac{1}{\sqrt1}+\cdots+\tfrac{1}{\sqrt n}+\tfrac{1}{\sqrt{n+1}}
   >\sqrt n+\tfrac{1}{\sqrt{n+1}}
   =\frac{\sqrt{n(n+1)}+1}{\sqrt{n+1}}
-  >\frac{n+1}{\sqrt{n+1}}=\sqrt{n+1}\]
+  >\frac{n+1}{\sqrt{n+1}}=\sqrt{n+1}\)
   （关键一步：\(\sqrt{n(n+1)}>n\)，故 \(\sqrt{n(n+1)}+1>n+1\)。）
   （关键一步用了 \(\sqrt{n(n+1)}>n\)。）∎</p>
 </div>
@@ -1423,18 +1485,18 @@ window.MathJax = {
 <div class="thm box">
   <span class="box-title">🎯 Cauchy-Schwarz 不等式</span>
   <p>对任意 \(a_1,\dots,a_n\) 与 \(b_1,\dots,b_n\)：
-  \[a_1b_1+\cdots+a_nb_n \le \sqrt{a_1^2+\cdots+a_n^2}\cdot\sqrt{b_1^2+\cdots+b_n^2}\]</p>
+  \(a_1b_1+\cdots+a_nb_n \le \sqrt{a_1^2+\cdots+a_n^2}\cdot\sqrt{b_1^2+\cdots+b_n^2}\)</p>
 </div>
 <p><b>对 \(n\) 归纳</b>：</p>
 <ul>
   <li><b>基础 \(n=1\)</b>：\(a_1b_1\le |a_1||b_1|\)，成立。</li>
   <li><b>基础 \(n=2\)</b>：要证 \(a_1b_1+a_2b_2\le\sqrt{a_1^2+a_2^2}\sqrt{b_1^2+b_2^2}\)。等价于
-  \[(a_1^2+a_2^2)(b_1^2+b_2^2)-(a_1b_1+a_2b_2)^2=(a_1b_2-a_2b_1)^2\ge 0\]
+  \((a_1^2+a_2^2)(b_1^2+b_2^2)-(a_1b_1+a_2b_2)^2=(a_1b_2-a_2b_1)^2\ge 0\)
   成立（平方差恒等式）。</li>
   <li><b>归纳步</b>：假设对 \(n\) 成立，令 \(c=\sqrt{a_1^2+\cdots+a_n^2}\)，\(d=\sqrt{b_1^2+\cdots+b_n^2}\)，则
-  \[a_1b_1+\cdots+a_nb_n+a_{n+1}b_{n+1}\le cd+a_{n+1}b_{n+1}\]
-  \[\le\sqrt{c^2+a_{n+1}^2}\cdot\sqrt{d^2+b_{n+1}^2}\quad(\text{这正是 } P(2)!)\]
-  \[=\sqrt{a_1^2+\cdots+a_n^2+a_{n+1}^2}\cdot\sqrt{b_1^2+\cdots+b_n^2+b_{n+1}^2}\]
+  \(a_1b_1+\cdots+a_nb_n+a_{n+1}b_{n+1}\le cd+a_{n+1}b_{n+1}\)
+  \(\le\sqrt{c^2+a_{n+1}^2}\cdot\sqrt{d^2+b_{n+1}^2}\quad(\text{这正是 } P(2)!)\)
+  \(=\sqrt{a_1^2+\cdots+a_n^2+a_{n+1}^2}\cdot\sqrt{b_1^2+\cdots+b_n^2+b_{n+1}^2}\)
   即对 \(n+1\) 成立。∎</li>
 </ul>
 <div class="warn box">
@@ -1470,6 +1532,30 @@ window.MathJax = {
   <p><b>基础 \(n=0\)</b>：\(1\times 1\) 棋盘无需铺。<br>
   <b>归纳步</b>：假设 \(2^n\times 2^n\) 能把 Bill 放任意位置，证 \(2^{n+1}\times 2^{n+1}\)。把大棋盘分成四个 \(2^n\times 2^n\) 象限；Bill 在某象限，在中心放一块 L 形骨牌盖住其余三个象限「靠近中心」的各一格；再对四个象限分别用归纳假设（Bill 在各自缺的那格）铺满。∎</p>
 </div>
+<div class="figure">
+  <svg viewBox="0 0 190 190" width="200" role="img" aria-label="tromino 归纳步示意">
+    <g style="fill: var(--sv-hl)">
+      <rect x="80" y="40" width="40" height="40"/>
+      <rect x="40" y="80" width="40" height="40"/>
+      <rect x="80" y="80" width="40" height="40"/>
+    </g>
+    <g style="fill: var(--sv-pos)">
+      <circle cx="60" cy="60" r="6"/>
+    </g>
+    <g style="fill:none; stroke: var(--muted); stroke-width:1.2;">
+      <line x1="40" y1="0" x2="40" y2="160"/>
+      <line x1="80" y1="0" x2="80" y2="160"/>
+      <line x1="120" y1="0" x2="120" y2="160"/>
+      <line x1="0" y1="40" x2="160" y2="40"/>
+      <line x1="0" y1="80" x2="160" y2="80"/>
+      <line x1="0" y1="120" x2="160" y2="120"/>
+      <rect x="0" y="0" width="160" height="160"/>
+    </g>
+    <text x="60" y="74" class="svg-muted" text-anchor="middle">Bill</text>
+    <text x="80" y="182" class="svg-muted" text-anchor="middle">中央 L 骨牌（绿）</text>
+  </svg>
+  <div class="figcap">图：\(4\times4\) 棋盘（归纳步）。Bill 在左上象限内角；中心一块 L 形骨牌盖住其余三象限各一格，四个 \(2\times2\) 象限便各自缺一格，可分别递归铺满。</div>
+</div>
 <div class="warn box">
   <span class="box-title">💡 两条重要注记</span>
   <p><b>注 1</b>：有时选一个<b>更强的命题</b>（如「Bill 任意位置」）反而更好证——更强的假设让归纳步更好做。<br>
@@ -1484,8 +1570,8 @@ window.MathJax = {
 <div class="thm box">
   <span class="box-title">🎯 归纳构造</span>
   <p>由 \(n\times n\) 哈达玛矩阵 \(H_n\) 构造 \(2n\times 2n\) 矩阵：
-  \[H_{2n}=\begin{pmatrix}H_n & H_n\\ H_n & -H_n\end{pmatrix}\]
-  可验证 \(H_{2n}\) 仍是哈达玛矩阵（分「前 \(n\) 行内部、后 \(n\) 行内部、跨前后」三种情况检验内积为 0）。<br>
+  \(H_{2n}=\begin{pmatrix}H_n & H_n\\ H_n & -H_n\end{pmatrix}\)
+  验证 \(H_{2n}\) 仍是哈达玛矩阵：任取两行——<b>都在前 \(n\) 行</b>（或都在后 \(n\) 行）时，内积 = \(H_n\) 两行内积 \(+\)（或 \(-\)）同一个内积 = 0；<b>一行在前、一行在后</b>时，内积 = \(H_n\) 某行与同行的内积 − 同一内积 = 0。三种情况都正交。<br>
   基础 \(H_1=[1]\)，故对任意 \(k\) 存在 \(2^k\times 2^k\) 哈达玛矩阵。∎</p>
 </div>
 <p>对<b>奇数 \(n\)</b> 不存在哈达玛矩阵（NO）；对<b>偶数 \(n\)</b> 是否存在尚不明确——这就是长期未解决的<b>哈达玛猜想（Hadamard conjecture）</b>。</p>
@@ -1523,7 +1609,7 @@ window.MathJax = {
   <span class="box-title">🎯 定理：\(n\) 摞的总分恒为 \(\tfrac{n(n-1)}{2}\)</span>
   <p><b>基础 \(n=1\)</b>：得分 0，\(1\cdot 0/2=0\)。<br>
   <b>归纳步</b>：假设 \(C(n)\) 对 \(n\) 成立，证 \(C(n+1)\)。把 \((n+1)\) 摞拆成 \(a\) 摞与 \(b\) 摞（\(a+b=n+1\)）：
-  \[\text{总分}=ab+\tfrac{a(a-1)}{2}+\tfrac{b(b-1)}{2}=\tfrac{2ab+a^2-a+b^2-b}{2}=\tfrac{(a+b)(a+b-1)}{2}=\tfrac{(n+1)n}{2}\]
+  \(\text{总分}=ab+\tfrac{a(a-1)}{2}+\tfrac{b(b-1)}{2}=\tfrac{2ab+a^2-a+b^2-b}{2}=\tfrac{(a+b)(a+b-1)}{2}=\tfrac{(n+1)n}{2}\)
   ∎</p>
 </div>
 <div class="warn box">
@@ -1629,7 +1715,7 @@ window.MathJax = {
   <ul>
     <li><b>等差序列（arithmetic sequence）</b>：\((a,\ a+d,\ a+2d,\ a+3d,\dots)\)，递推定义 \(a_0=a,\ a_{i+1}=a_i+d\)。</li>
     <li><b>等比序列（geometric sequence）</b>：\((a,\ ra,\ r^2a,\ r^3a,\dots)\)，递推定义 \(a_0=a,\ a_{i+1}=ra_i\)。</li>
-    <li><b>调和序列（harmonic sequence）</b>：\((1,\ \tfrac12,\ \tfrac13,\ \tfrac14,\dots)\)，递推定义 \(a_0=1,\ a_{i+1}=\dfrac{i}{i+1}a_i\)。</li>
+    <li><b>调和序列（harmonic sequence）</b>：\((1,\ \tfrac12,\ \tfrac13,\ \tfrac14,\dots)\)，递推定义 \(a_0=1,\ a_{i+1}=\dfrac{i+1}{i+2}\,a_i\)（验证：\(a_1=\tfrac12\cdot 1=\tfrac12\)，\(a_2=\tfrac23\cdot\tfrac12=\tfrac13\)，\(a_3=\tfrac34\cdot\tfrac13=\tfrac14\)）。</li>
   </ul>
 </div>
 <p>递推定义的价值：很多计数问题<b>难以直接写出通项</b>，但「当前情形与更小情形的关系」往往一目了然——这正是递归的威力。</p>
@@ -1644,11 +1730,12 @@ window.MathJax = {
 <p>解此递推（等比序列）得 \(r_n = 2^n\)。</p>
 
 <h3 id="ln5-3">5.3 斐波那契递推 <span class="zh">Fibonacci (Rabbit Populations)</span></h3>
-<p>兔子模型：一对<b>成熟</b>的雌雄兔每月繁殖一对；兔子出生后<b>一个月</b>成熟。记 \(w_n\) 为第 \(n\) 月新生兔对数，\(r_n\) 为第 \(n\) 月总对数，初始 \(w_0=1,\ r_0=0\)。</p>
-<p class="formula">\(r_n = r_{n-1} + w_{n-1}\)　（上月已有 + 上月新生）</p>
-<p>而「第 \(n-1\) 月的新生对」到第 \(n\) 月已成熟，故 \(w_n = r_{n-1}\)：</p>
-<p class="formula">\(r_n = r_{n-1} + r_{n-2}\)</p>
-<p>这正是<b>斐波那契数列（Fibonacci sequence）</b>。历史上是斐波那契研究兔子数量增长提出的。我们后面会求它的<b>闭式解（closed-form）</b>——一个「计算步数 ≤ 常数」的公式。</p>
+<p>兔子模型：兔子出生后<b>一个月</b>成熟，成熟后<b>每月</b>产一对。记 \(r_n\) 为第 \(n\) 个月<b>总对数</b>，\(w_n\) 为第 \(n\) 个月<b>新生</b>对数。初始第 0 个月只有一对刚出生的兔子：\(r_0=1,\ w_0=1\)。</p>
+<p>第 \(n\) 个月的新生对，来自第 \(n-1\) 个月时<b>已成熟</b>的兔子——即第 \(n-2\) 个月时<b>已有的全部</b>兔子（它们到第 \(n-1\) 月都已成熟，\(n\ge 2\)）：</p>
+<p class="formula">\(w_n = r_{n-2}\)</p>
+<p>而总对数 = 上月已有的 + 本月新生：</p>
+<p class="formula">\(r_n = r_{n-1} + w_n = r_{n-1} + r_{n-2}\)</p>
+<p>这正是<b>斐波那契数列（Fibonacci sequence）</b>：\(r_0=1,\ r_1=1,\ r_2=2,\ r_3=3,\ r_4=5,\dots\)。历史上是斐波那契研究兔子数量增长提出的。我们后面会求它的<b>闭式解（closed-form）</b>——一个「计算步数 ≤ 常数」的公式。</p>
 
 <h3 id="ln5-4">5.4 不含 11 的位串 <span class="zh">Bit Strings without 11</span></h3>
 <p>问题：有多少个<b>不含</b>位模式 \(11\) 的 \(n\) 位串？记 \(r_n\) 为个数。</p>
@@ -1803,6 +1890,26 @@ window.MathJax = {
   <p class="formula">\(r_n = \displaystyle\sum_{k=1}^{n} r_{k-1}\,r_{n-k} = r_0r_{n-1}+r_1r_{n-2}+\cdots+r_{n-1}r_0\)</p>
 </div>
 <p><b>阶梯（stairs）问题</b>给出<b>完全相同</b>的递推：\(n\)-阶梯（由 x 轴、\(y=x\)、\(x=n+1\) 围成的单位方格区域）用恰好 \(n\) 个矩形填满的方式数。</p>
+<div class="figure">
+  <svg viewBox="0 0 150 150" width="150" role="img" aria-label="n 阶梯示意">
+    <g style="fill: var(--sv-hl)">
+      <rect x="0" y="80" width="40" height="40"/>
+      <rect x="40" y="40" width="40" height="40"/>
+      <rect x="80" y="0" width="40" height="40"/>
+    </g>
+    <g style="fill:none; stroke: var(--muted); stroke-width:1.2;">
+      <line x1="40" y1="0" x2="40" y2="80"/>
+      <line x1="80" y1="0" x2="80" y2="40"/>
+      <line x1="120" y1="0" x2="120" y2="40"/>
+      <line x1="0" y1="40" x2="120" y2="40"/>
+      <line x1="0" y1="80" x2="80" y2="80"/>
+      <line x1="0" y1="120" x2="40" y2="120"/>
+      <polyline points="0,0 120,0 120,40 80,40 80,80 40,80 40,120 0,120 0,0"/>
+    </g>
+    <text x="60" y="140" class="svg-muted" text-anchor="middle">n=3 阶梯（绿=对角线格）</text>
+  </svg>
+  <div class="figcap">图：\(n\)-阶梯 = 由 x 轴、\(y=x\)、\(x=n+1\) 围成的单位方格区域（这里 \(n=3\)，共 \(\tfrac{3\cdot4}{2}=6\) 格）。对角线上的 \(n\) 个格子（绿色）每个都必须被不同的矩形覆盖。</div>
+</div>
 <div class="ex box">
   <span class="box-title">✏️ 阶梯问题的递归</span>
   <p>关键观察：阶梯的<b>对角线上 \(n\) 个格子</b>必须被 \(n\) 个不同的矩形覆盖（只有 \(n\) 个矩形、每个矩形至多盖一个对角格），故每个矩形<b>恰好盖住一个对角格</b>。设盖住右下角（○）的矩形 \(R\) 盖住第 \(i\) 个对角格，则 \(R\) 把 \(n\)-阶梯「劈」成一个 \((i-1)\)-阶梯与一个 \((n-i)\)-阶梯，故有 \(r_{i-1}r_{n-i}\) 种（定义 \(r_0=1\)）。求和即得与括号问题相同的递推。</p>
@@ -1846,7 +1953,9 @@ window.MathJax = {
 </ul>
 <div class="ex box">
   <span class="box-title">✏️ 例：\(\langle 0,1,4,9,\dots\rangle\) 的生成函数</span>
-  <p>由 \(\dfrac{1}{1-x}=1+x+x^2+\cdots\)，求导得 \(\dfrac{1}{(1-x)^2}=1+2x+3x^2+\cdots\)，再乘 \(x\) 并求导可得到 \(1,4,9,\dots\)（平方数）的生成函数。</p>
+  <p>由 \(\dfrac{1}{1-x}=1+x+x^2+\cdots\) 求导得 \(\dfrac{1}{(1-x)^2}=1+2x+3x^2+\cdots\)，对应 \(\langle 1,2,3,\dots\rangle\)。乘 \(x\) 得 \(\dfrac{x}{(1-x)^2}\)，对应 \(\langle 0,1,2,3,\dots\rangle\)；再求导：</p>
+  <p class="formula">\(\left(\dfrac{x}{(1-x)^2}\right)'=\dfrac{1+x}{(1-x)^3}=1+4x+9x^2+16x^3+\cdots\)</p>
+  <p>即平方数序列的生成函数：\(\langle 1,4,9,16,\dots\rangle \leftrightarrow \dfrac{1+x}{(1-x)^3}\)，而 \(\langle 0,1,4,9,\dots\rangle \leftrightarrow \dfrac{x(1+x)}{(1-x)^3}\)。</p>
 </div>
 
 <h3 id="ln5-11">5.11 二阶线性递推与特征根 <span class="zh">Second-order Linear Recurrence</span></h3>
@@ -1856,6 +1965,7 @@ window.MathJax = {
   <p class="formula">\(a_k = A\,a_{k-1} + B\,a_{k-2}\)　（\(A,B\) 为实数，\(B\ne 0\)）</p>
   <p>斐波那契是 \(A=B=1\) 的特例。</p>
 </div>
+<p><b>特征方程从哪来</b>：猜想解形如等比序列 \(a_n=r^n\)。代入递推 \(a_k=A a_{k-1}+B a_{k-2}\)，得 \(r^k=A r^{k-1}+B r^{k-2}\)，两边同除以 \(r^{k-2}\)（\(r\ne 0\)）即得 <b>特征方程</b> \(r^2=Ar+B\)，等价于 \(r^2-Ar-B=0\)。所以只要 \(r\) 是这个二次方程的根，\(r^n\) 就是递推的一个解；又因为递推是<b>线性</b>的（解的线性组合仍是解），通解就是 \(a_n=Cr^n+Ds^n\)。</p>
 <div class="thm box">
   <span class="box-title">🎯 相异根定理 Distinct-Roots Theorem</span>
   <p>若序列满足 \(a_k = A a_{k-1} + B a_{k-2}\)，且方程 \(t^2 - At - B = 0\) 有<b>两个相异实根</b> \(r\) 与 \(s\)，则：</p>
@@ -1872,7 +1982,7 @@ window.MathJax = {
 <p class="formula">\(F(x) = 0 + x + (f_1+f_0)x^2 + (f_2+f_1)x^3 + \cdots = x + xF(x) + x^2F(x)\)</p>
 <p>解得：</p>
 <p class="formula">\(F(x) = \dfrac{x}{1-x-x^2}\)</p>
-<p>部分分式展开后按泰勒级数展开系数，即得闭式解。</p>
+<p>把 \(F(x)\) 分解成部分分式 \(F(x)=\dfrac{A}{1-\phi x}+\dfrac{B}{1-\psi x}\)（待定系数可解出 \(A,B\)），再利用 \(\dfrac{1}{1-cx}=1+cx+c^2x^2+\cdots\) 逐项展开、比较 \(x^n\) 的系数，即得闭式解。</p>
 <p><b>特征根法</b>：特征方程 \(t^2-t-1=0\)，两相异根：</p>
 <p class="formula">\(\phi = \dfrac{1+\sqrt{5}}{2},\qquad \psi = \dfrac{1-\sqrt{5}}{2}\)</p>
 <p>由相异根定理 \(f_n = C\phi^n + D\psi^n\)，代入 \(f_0=0,\ f_1=1\) 解出 \(C=\tfrac{1}{\sqrt5},\ D=-\tfrac{1}{\sqrt5}\)，得<b>Binet 公式</b>：</p>
@@ -1905,6 +2015,1009 @@ window.MathJax = {
     <li><b>second-order linear homogeneous recurrence</b> — 二阶线性齐次递推</li>
     <li><b>characteristic equation / distinct roots</b> — 特征方程 / 相异根</li>
     <li><b>closed-form</b> — 闭式解；<b>Binet's formula</b> — Binet 公式</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN6 最大公约数 ============ -->
+<!-- ================================================= -->
+<section id="ln6">
+<h2>LN6 · 最大公约数 <span class="zh">Greatest Common Divisors</span></h2>
+<p>本讲进入<b>数论（number theory）</b>的核心工具：<b>最大公约数（gcd）</b>。主线是一条漂亮的理论链：先用<b>欧几里得算法（Euclid's algorithm）</b>高效计算 gcd，再证明「<b>gcd = 最小正线性组合</b>」这一关键定理，由此推出<b>素数整除性</b>与<b>算术基本定理（唯一分解）</b>，最后用<b>扩展欧几里得算法</b>把 gcd 写成线性组合，并用它解《虎胆龙威（Die Hard）》的水壶问题。</p>
+
+<h3 id="ln6-1">6.1 倍数与约数 <span class="zh">Multiples and Divisors</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 约数与倍数</span>
+  <p>对<b>非零</b>整数 \(b\)，称 \(b\) <b>整除（divides）</b> \(a\)，记作 \(b\mid a\)，当且仅当存在整数 \(k\) 使得：</p>
+  <p class="formula">\(a = kb\)</p>
+  <p>此时也说 \(b\) 是 \(a\) 的<b>约数（divisor）</b>、\(a\) 是 \(b\) 的<b>倍数（multiple）</b>、或 \(a\) 被 \(b\) 整除。</p>
+  <p>不整除记作 \(b\nmid a\)。</p>
+</div>
+<p>「\(b\) 是 \(a\) 的约数」与「\(a\) 是 \(b\) 的倍数」是<b>同一件事</b>的两种说法。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <ul>
+    <li>\(a=5,\ b=10\)：\(5\mid 10\)（因为 \(10=2\cdot 5\)）。</li>
+    <li>\(a=0,\ b=30\)：\(30\mid 0\)（因为 \(0=0\cdot 30\)）——<b>0 是任何非零整数的倍数</b>。</li>
+    <li>\(a=-3,\ b=11\)：\(-3\nmid 11\)（11 不能被 −3 整除）。</li>
+  </ul>
+</div>
+
+<h3 id="ln6-2">6.2 公约数与最大公约数 <span class="zh">Common Divisors and GCD</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 公约数与 gcd</span>
+  <p>若 \(c\mid a\) 且 \(c\mid b\)，则称 \(c\) 是 \(a\) 与 \(b\) 的<b>公约数（common divisor）</b>。</p>
+  <p>\(a\) 与 \(b\) 的<b>最大公约数（greatest common divisor）</b>记作 \(\gcd(a,b)\)，是 \(a,b\) 所有公约数中<b>最大</b>的那个。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <ul>
+    <li>\(\gcd(8,10)=2\)：公约数是 1, 2，最大为 2。</li>
+    <li>\(\gcd(10,30)=10\)：公约数是 1, 2, 5, 10，最大为 10。</li>
+    <li>\(\gcd(3,11)=1\)：唯一公约数是 1。</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 素数性质 · 预备结论</span>
+  <p><b>若 \(p\) 是素数且 \(p\nmid a\)，则 \(\gcd(p,a)=1\)。</b></p>
+  <p>理由：素数的约数只有 1 和它自己；既然 \(p\nmid a\)，那么 \(p\) 与 \(a\) 的公共约数里不可能有 \(p\)，只能是 1。</p>
+</div>
+
+<h3 id="ln6-3">6.3 商-余数定理 <span class="zh">The Quotient-Remainder Theorem</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 商-余数定理（又称带余除法 / Division Theorem）</span>
+  <p>对任意整数 \(a\) 与<b>正</b>整数 \(b>0\)，存在<b>唯一</b>的一对整数 \(q\)（商 quotient）与 \(r\)（余数 remainder），满足：</p>
+  <p class="formula">\(a = qb + r,\qquad 0 \le r \lt b\)</p>
+  <p>记作 \(q = a\operatorname{div} b\)，\(r = a\bmod b\)。</p>
+</div>
+<p>直观理解：给定 \(b\)，可以把<b>所有整数分成若干个「长度为 \(b\) 的块」</b>（…, \([-b,0)\), \([0,b)\), \([b,2b)\), …）。任意 \(a\) 都落在<b>唯一一个块</b>里：\(q\) 是「\(a\) 落在第几块」（即块的下标），\(r\) 是「\(a\) 在这个块里的偏移量」。</p>
+<div class="figure">
+  <svg viewBox="0 0 520 120" width="540" role="img" aria-label="整数按 b 分块">
+    <line x1="20" y1="60" x2="500" y2="60" style="stroke: var(--text); stroke-width:1.5"/>
+    <g style="stroke: var(--muted); stroke-width:1">
+      <line x1="80" y1="52" x2="80" y2="68"/><line x1="200" y1="52" x2="200" y2="68"/><line x1="320" y1="52" x2="320" y2="68"/><line x1="440" y1="52" x2="440" y2="68"/>
+    </g>
+    <text x="80" y="82" class="svg-muted" text-anchor="middle">−b</text>
+    <text x="200" y="82" class="svg-muted" text-anchor="middle">0</text>
+    <text x="320" y="82" class="svg-muted" text-anchor="middle">b</text>
+    <text x="440" y="82" class="svg-muted" text-anchor="middle">2b</text>
+    <rect x="200" y="36" width="120" height="24" style="fill: var(--sv-pos); fill-opacity:0.2; stroke: var(--sv-pos); stroke-width:1.2"/>
+    <text x="260" y="53" class="svg-text" text-anchor="middle">块 q：qb ≤ a &lt; (q+1)b</text>
+    <text x="260" y="24" class="svg-muted" text-anchor="middle">偏移量 r = a − qb</text>
+  </svg>
+  <div class="figcap">图：整数被分成长度为 \(b\) 的块，\(a\) 的位置唯一确定商 \(q\) 与余数 \(r\)。</div>
+</div>
+<p>特例：\(b=2\) 时，任何整数要么是 \(2q\)（偶数），要么是 \(2q+1\)（奇数）；\(b=3\) 时，任何整数必为 \(3q\)、\(3q+1\)、\(3q+2\) 之一。</p>
+
+<h3 id="ln6-4">6.4 如何计算 gcd：朴素算法 <span class="zh">A Naive Algorithm</span></h3>
+<p>给定 \(a\ge b>0\)，最直接的想法是<b>试遍每个数</b>：</p>
+<div class="ex box">
+  <span class="box-title">✏️ 朴素算法</span>
+  <p>设 \(d=1\)，依次检查 \(d=1,2,\dots,b\)：若 \(d\mid a\) 且 \(d\mid b\) 就记下 \(d\)。最后取所有记下的 \(d\) 中最大者。</p>
+  <p>运行时间约为 \(b\) 次循环——当 \(a,b\) 很大（如几十位、几百位的大数）时，这太慢了。数论在密码学中要处理几百位的大整数，<b>必须更高效</b>。</p>
+</div>
+
+<h3 id="ln6-5">6.5 欧几里得算法 <span class="zh">Euclid's GCD Algorithm</span></h3>
+<p>关键观察（<b>欧几里得引理</b>）：若 \(a=qb+r\)（带余除法），则：</p>
+<p class="formula">\(\gcd(a,b) = \gcd(b,r)\)</p>
+<p>这意味着把「求 \((a,b)\) 的 gcd」<b>降级</b>为「求更小的一对 \((b,r)\) 的 gcd」。反复降级，直到余数为 0：</p>
+<div class="def box">
+  <span class="box-title">📌 欧几里得算法（递归描述）</span>
+  <p>输入 \(a>b\ge 0\)：</p>
+  <ol>
+    <li>若 \(b=0\)，答案是 \(a\)（因为 \(\gcd(a,0)=a\)）；</li>
+    <li>否则，写 \(a=qb+r\)（带余除法），返回 \(\gcd(b,r)\)。</li>
+  </ol>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例 1：\(\gcd(102,70)\)</span>
+  <p class="formula">\(102=70+32 \Rightarrow \gcd(102,70)=\gcd(70,32)\)</p>
+  <p class="formula">\(70=2\cdot32+6 \Rightarrow =\gcd(32,6)\)</p>
+  <p class="formula">\(32=5\cdot6+2 \Rightarrow =\gcd(6,2)\)</p>
+  <p class="formula">\(6=3\cdot2+0 \Rightarrow =\gcd(2,0)=2\)</p>
+  <p>答案：<b>2</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例 2：\(\gcd(252,189)\)</span>
+  <p class="formula">\(252=1\cdot189+63,\quad 189=3\cdot63+0 \;\Rightarrow\; \gcd=63\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例 3：\(\gcd(662,414)\)</span>
+  <p class="formula">\(662=1\cdot414+248,\ 414=1\cdot248+166,\ 248=1\cdot166+82,\ 166=2\cdot82+2,\ 82=41\cdot2+0\)</p>
+  <p>答案：<b>2</b>。</p>
+</div>
+
+<h3 id="ln6-6">6.6 欧几里得算法的正确性 <span class="zh">Correctness</span></h3>
+<p>只需证明 \(\gcd(a,b)=\gcd(b,r)\)。分两种情形：</p>
+<div class="thm box">
+  <span class="box-title">🎯 情形 1：\(r=0\)</span>
+  <p>此时 \(a=qb\)，所以 \(b\mid a\)，故 \(\gcd(a,b)=b\)；又 \(\gcd(b,0)=b\)。两侧相等。✓</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 情形 2：\(r>0\)</span>
+  <p>证明「\(a,b\) 的公共因子集合」与「\(b,r\) 的公共因子集合」<b>完全相等</b>，则最大者自然也相等。</p>
+  <ul>
+    <li><b>正向</b>：设 \(d\) 是 \(b,r\) 的公因子，即 \(b=k_1d,\ r=k_2d\)。则 \(a=qb+r=qk_1d+k_2d=(qk_1+k_2)d\)，故 \(d\mid a\)，即 \(d\) 也是 \(a,b\) 的公因子。</li>
+    <li><b>反向</b>：设 \(d\) 是 \(a,b\) 的公因子，即 \(a=k_3d,\ b=k_1d\)。则 \(r=a-qb=k_3d-qk_1d=(k_3-qk_1)d\)，故 \(d\mid r\)，即 \(d\) 也是 \(b,r\) 的公因子。</li>
+  </ul>
+  <p>所以 \(\{a,b\text{ 的公因子}\}=\{b,r\text{ 的公因子}\}\)，从而 \(\gcd(a,b)=\gcd(b,r)\)。✓</p>
+</div>
+
+<h3 id="ln6-7">6.7 欧几里得算法有多快 <span class="zh">Is Euclid's Algorithm Fast?</span></h3>
+<p>朴素算法约需 \(b\) 次循环；欧几里得算法<b>指数级更快</b>。关键观察：</p>
+<div class="thm box">
+  <span class="box-title">🎯 每两步，两个数都减半</span>
+  <p>由 \(a=bq+r\) 且 \(r<b\)（严格小于），有 \(b+r>2r\)（因为 \(b>r\)），故：</p>
+  <p class="formula">\(a = bq + r \ge b + r \gt 2r\)</p>
+  <p>即 \(r \lt a/2\)。同理下一步的余数 \(r' \lt b/2\)。所以<b>每做两步，参与运算的两个数都至少减半</b>。</p>
+</div>
+<p>若 \(2^d\le b\lt 2^{d+1}\)（即 \(b\) 的二进制位数约为 \(d+1\)），算法在约 \(2d\) 次迭代内结束，即：</p>
+<p class="formula">\(\text{运行时间} \approx 2\log_2 b \ \text{次迭代}\quad\text{（对比朴素算法的 } b \text{ 次）}\)</p>
+<p>对几百位的大整数，\(b\) 是天文数字，而 \(\log_2 b\) 只有几百——<b>指数级的加速</b>。</p>
+
+<h3 id="ln6-8">6.8 线性组合与 gcd 的关系 <span class="zh">Linear Combination vs Common Divisor</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 整数线性组合</span>
+  <p>\(d\) 是 \(a,b\) 的<b>整数线性组合（integer linear combination）</b>，指存在整数 \(s,t\) 使得：</p>
+  <p class="formula">\(d = sa + tb\)</p>
+  <p>记 \(\operatorname{spc}(a,b)\) 为 \(a,b\) 的<b>最小正线性组合（smallest positive integer linear combination）</b>。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 核心定理：\(\gcd(a,b)=\operatorname{spc}(a,b)\)</span>
+  <p>最大公约数恰好等于最小正线性组合。这是一个极其有用的定理——它把「整除性质」和「加减组合」联系起来。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p>\(\gcd(52,44)=4\)，而 4 确实是 52 与 44 的线性组合：</p>
+  <p class="formula">\(6\cdot 52 + (-7)\cdot 44 = 4\)</p>
+  <p>并且<b>不存在</b>比 4 更小的正线性组合。</p>
+</div>
+<p>证明思路：分别证 \(\gcd\le\operatorname{spc}\) 与 \(\gcd\ge\operatorname{spc}\) 两个方向。</p>
+
+<h3 id="ln6-9">6.9 定理的证明 <span class="zh">Proof of gcd = spc</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 方向 1：\(\gcd(a,b)\le\operatorname{spc}(a,b)\)</span>
+  <p>先证引理：<b>若 \(d\mid a\) 且 \(d\mid b\)，则对任意 \(s,t\) 都有 \(d\mid sa+tb\)</b>。</p>
+  <p>证：\(a=dk_1,\ b=dk_2\)，故 \(sa+tb=sdk_1+tdk_2=d(sk_1+tk_2)\)，可见 \(d\mid(sa+tb)\)。✓</p>
+  <p>令 \(d=\gcd(a,b)\)，则 \(d\mid a,\ d\mid b\)；令 \(f=\operatorname{spc}(a,b)=sa+tb\)。由引理，\(d\mid f\)，故 \(\gcd(a,b)\le\operatorname{spc}(a,b)\)。✓</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 方向 2：\(\gcd(a,b)\ge\operatorname{spc}(a,b)\)</span>
+  <p>要证 \(\operatorname{spc}(a,b)\) 其实是 \(a,b\) 的<b>公约数</b>（于是它 ≤ gcd）。先证 \(\operatorname{spc}(a,b)\mid a\)：</p>
+  <ol>
+    <li>由带余除法，\(a = q\cdot\operatorname{spc}(a,b) + r\)，其中 \(0\le r\lt \operatorname{spc}(a,b)\)；</li>
+    <li>设 \(\operatorname{spc}(a,b)=sa+tb\)；</li>
+    <li>则 \(r = a - q(sa+tb) = (1-qs)a + (-qt)b\)，即 \(r\) 也是 \(a,b\) 的线性组合；</li>
+    <li>但 \(r\lt\operatorname{spc}(a,b)\)，而 spc 是<b>最小正</b>线性组合，所以 \(r\) 只能是 0（不能是更小的正线性组合）；</li>
+    <li>故 \(\operatorname{spc}(a,b)\mid a\)。</li>
+  </ol>
+  <p>同理可证 \(\operatorname{spc}(a,b)\mid b\)。于是 spc 是公约数，故 \(\operatorname{spc}(a,b)\le\gcd(a,b)\)。✓</p>
+</div>
+
+<h3 id="ln6-10">6.10 定理的应用 <span class="zh">Application</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 引理：互素的可乘性</span>
+  <p><b>若 \(\gcd(a,b)=1\) 且 \(\gcd(a,c)=1\)，则 \(\gcd(a,bc)=1\)。</b></p>
+  <p>证：由定理，存在 \(s,t,u,v\) 使 \(sa+tb=1\)、\(ua+vc=1\)。相乘：</p>
+  <p class="formula">\((sa+tb)(ua+vc)=1\)</p>
+  <p>展开得 \((sau+svc+tbu)a+(tv)bc=1\)，即 1 是 \(a\) 与 \(bc\) 的线性组合，故 \(\operatorname{spc}(a,bc)=1\)，由定理 \(\gcd(a,bc)=1\)。✓</p>
+</div>
+
+<h3 id="ln6-11">6.11 素数的整除性 <span class="zh">Prime Divisibility</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 引理：素数整除乘积</span>
+  <p><b>若 \(p\) 是素数且 \(p\mid ab\)，则 \(p\mid a\) 或 \(p\mid b\)。</b></p>
+  <p>证：不妨设 \(p\nmid a\)（否则已证）。由 6.2 的结论，\(\gcd(p,a)=1\)。由定理，存在 \(s,t\) 使 \(sa+tp=1\)。两边乘 \(b\)：</p>
+  <p class="formula">\((sa)b + (tp)b = b\)</p>
+  <p>左边两项都被 \(p\) 整除（第一项含 \(ab\)，第二项含 \(p\)），故 \(p\mid b\)。✓</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 推论：素数整除多项乘积</span>
+  <p><b>若 \(p\) 是素数且 \(p\mid a_1a_2\cdots a_m\)，则对某个 \(i\) 有 \(p\mid a_i\)。</b>（反复应用上面引理即可。）</p>
+</div>
+
+<h3 id="ln6-12">6.12 算术基本定理 <span class="zh">Fundamental Theorem of Arithmetic</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 算术基本定理（唯一分解定理）</span>
+  <p>每个整数 \(n>1\) 都可<b>唯一</b>分解为素数的乘积（允许重复，重排后唯一）：</p>
+  <p class="formula">\(n = p_1\,p_2\cdots p_k,\qquad p_1\le p_2\le\cdots\le p_k\ \text{均为素数}\)</p>
+  <p>素数 \(p_i\) 可以重复出现。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <p class="formula">\(61394323221 = 3\cdot 3\cdot 3\cdot 7\cdot 11\cdot 11\cdot 37\cdot 37\cdot 37\cdot 53\)</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 唯一性的证明（良序原理 + 最小反例）</span>
+  <p>假设存在一个数有两种不同分解，取其中<b>最小</b>者 \(n>1\)（良序原理保证存在最小）：</p>
+  <p class="formula">\(n = p_1p_2\cdots p_k = q_1q_2\cdots q_m\)</p>
+  <p>由最小性，必有 \(p_i\ne q_j\)（对一切 \(i,j\)），否则两边同除这个公共素数就得到一个<b>更小</b>的反例，矛盾。</p>
+  <p>但 \(p_1\mid n = q_1q_2\cdots q_m\)，由 6.11 的推论，\(p_1\) 必整除某个 \(q_i\)；两者都是素数，故 \(p_1=q_i\)，与「\(p_i\ne q_j\)」矛盾。✓</p>
+</div>
+
+<h3 id="ln6-13">6.13 扩展欧几里得算法 <span class="zh">Extended GCD Algorithm</span></h3>
+<p>如何把 \(\gcd(a,b)\) 实际写成 \(a,b\) 的线性组合？把欧几里得算法的每一步<b>倒推</b>即可。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(a=259,\ b=70\)</span>
+  <p>正向做带余除法，同时把每个余数用 \(a,b\) 表示：</p>
+  <p class="formula">\(259 = 3\cdot70 + 49 \;\Rightarrow\; 49 = a - 3b\)</p>
+  <p class="formula">\(70 = 1\cdot49 + 21 \;\Rightarrow\; 21 = 70 - 49 = b-(a-3b) = -a + 4b\)</p>
+  <p class="formula">\(49 = 2\cdot21 + 7 \;\Rightarrow\; 7 = 49 - 2\cdot21 = (a-3b)-2(-a+4b) = 3a - 11b\)</p>
+  <p class="formula">\(21 = 7\cdot3 + 0\)　（结束，\(\gcd=7\)）</p>
+  <p>结论：\(\gcd(259,70)=7 = 3\cdot259 - 11\cdot70\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(a=899,\ b=493\)</span>
+  <p class="formula">\(899=1\cdot493+406 \Rightarrow 406=a-b\)</p>
+  <p class="formula">\(493=1\cdot406+87 \Rightarrow 87=b-(a-b)=-a+2b\)</p>
+  <p class="formula">\(406=4\cdot87+58 \Rightarrow 58=(a-b)-4(-a+2b)=5a-9b\)</p>
+  <p class="formula">\(87=1\cdot58+29 \Rightarrow 29=(-a+2b)-(5a-9b)=-6a+11b\)</p>
+  <p class="formula">\(58=2\cdot29+0\)　（结束）</p>
+  <p>结论：\(\gcd(899,493)=29=-6\cdot899+11\cdot493\)。</p>
+</div>
+
+<h3 id="ln6-14">6.14 应用：Die Hard 水壶问题 <span class="zh">The Water Jug Problem</span></h3>
+<p>《虎胆龙威 3》里的经典谜题：喷泉边有一个<b> 5 加仑</b>壶和一个<b> 3 加仑</b>壶，要<b>精确量出 4 加仑</b>水放到秤上（多一点少一点都会爆炸）。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 解法：从 (0,0) 到 (3,4)</span>
+  <p>记 (小壶水量, 大壶水量)：</p>
+  <ol>
+    <li>灌满大壶：\((0,5)\)；</li>
+    <li>从大壶倒满小壶：\((3,2)\)；</li>
+    <li>倒空小壶：\((0,2)\)；</li>
+    <li>把大壶剩余倒进小壶：\((2,0)\)；</li>
+    <li>再灌满大壶：\((2,5)\)；</li>
+    <li>从大壶倒满小壶（小壶差 1 加仑满）：\((3,4)\)。<b>完成！</b></li>
+  </ol>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 520 150" width="540" role="img" aria-label="3加仑与5加仑水壶">
+    <g style="stroke: var(--text); stroke-width:1.5; fill:none;">
+      <rect x="40" y="30" width="120" height="110"/>
+      <rect x="340" y="30" width="150" height="110"/>
+    </g>
+    <rect x="42" y="60" width="116" height="80" style="fill: var(--sv-pos); fill-opacity:0.3"/>
+    <rect x="342" y="44" width="146" height="96" style="fill: var(--sv-pos); fill-opacity:0.3"/>
+    <text x="100" y="150" class="svg-muted" text-anchor="middle">3 加仑（满 3）</text>
+    <text x="415" y="150" class="svg-muted" text-anchor="middle">5 加仑（装 4）</text>
+    <text x="100" y="42" class="svg-text" text-anchor="middle">3</text>
+    <text x="415" y="52" class="svg-text" text-anchor="middle">4</text>
+  </svg>
+  <div class="figcap">图：最终态 (3,4)，小壶装满 3 加仑、大壶恰装 4 加仑。</div>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 换成 9 加仑壶会怎样？</span>
+  <p>若只有 3 加仑和 9 加仑的壶，能否量出 4 加仑？<b>不能</b>。观察<b>不变量（invariant）</b>：<b>每个壶里的水量永远是 3 的倍数</b>（初始都是 0；每次操作——灌满、倒空、互倒——都保持这一性质）。而 4 不是 3 的倍数，故不可能。Bruce 死了。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 一般解法</span>
+  <p>设两个壶容量为 \(a\le b\)。因为每次操作只是对两个水量做线性组合，所以<b>任一壶里的水量永远是 \(\gcd(a,b)\) 的倍数</b>（由「gcd 整除任何线性组合」的引理）。</p>
+  <p><b>定理</b>：用容量 \(a,b\) 的水壶能精确量出 \(k\ (\le b)\) 加仑，<b>当且仅当 \(k\) 是 \(\gcd(a,b)\) 的倍数</b>。</p>
+  <ul>
+    <li>3 和 9：\(\gcd(3,9)=3\)，4 不是 3 的倍数 → <b>不可能</b>。</li>
+    <li>21 和 26：\(\gcd(21,26)=1\)，3 是 1 的倍数 → <b>可能</b>。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 21 加仑与 26 加仑量出 3 加仑</span>
+  <p>由扩展欧几里得，\(\gcd(21,26)=1\) 且 \(5\cdot21-4\cdot26=1\)，故 \(15\cdot21-12\cdot26=3\)。</p>
+  <p>操作：重复 15 次「灌满 21 加仑壶，全倒入 26 加仑壶；26 壶一满就倒空」。共倒入 \(15\times21\) 加仑，倒空 26 壶恰好 12 次（因为 26 壶容量 0~26，只有 t=12 满足），最后 26 壶里恰好剩 3 加仑。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 一句话总结</span>
+  <p>一般算法：若 \(\gcd(a,b)\nmid C\) 则不可能；否则把 \(C\) 写成 \(C=sA+tB\)（总可让 \(s>0\)），重复 \(s\) 次「灌满 A 壶→倒入 B 壶→B 满则倒空」，B 壶恰好被倒空 \(t\) 次，最后 B 壶中恰有 \(C\) 加仑。</p>
+</div>
+
+<h3 id="ln6-15">6.15 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>带余除法</b>：\(a=qb+r,\ 0\le r<b\)，\(q=a\operatorname{div}b,\ r=a\bmod b\)。</p>
+  <p><b>欧几里得算法</b>：\(\gcd(a,b)=\gcd(b,r)\)，递归至 \(b=0\)；复杂度 \(O(\log b)\)。</p>
+  <p><b>核心定理</b>：\(\gcd(a,b)=\operatorname{spc}(a,b)\)（最大公约数 = 最小正线性组合）。</p>
+  <p><b>推论链</b>：\(\gcd(a,b)=\gcd(a,c)=1\Rightarrow\gcd(a,bc)=1\)；素数 \(p\mid ab\Rightarrow p\mid a\) 或 \(p\mid b\)；进而唯一分解定理。</p>
+  <p><b>扩展欧几里得</b>：把 \(\gcd(a,b)\) 写成 \(sa+tb\)。</p>
+  <p><b>水壶问题</b>：能量出 \(k\) 加仑 \(\iff k\) 是 \(\gcd(a,b)\) 的倍数。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>divisor / multiple</b> — 约数 / 倍数；<b>divides</b>（\(b\mid a\)）— 整除</li>
+    <li><b>common divisor / greatest common divisor (gcd)</b> — 公约数 / 最大公约数</li>
+    <li><b>quotient / remainder</b> — 商 / 余数；<b>div / mod</b> — 整除商 / 取模</li>
+    <li><b>Euclid's algorithm</b> — 欧几里得算法；<b>extended GCD</b> — 扩展欧几里得算法</li>
+    <li><b>integer linear combination</b> — 整数线性组合</li>
+    <li><b>spc (smallest positive combination)</b> — 最小正线性组合</li>
+    <li><b>prime / composite</b> — 素数 / 合数；<b>prime divisibility</b> — 素数整除性</li>
+    <li><b>fundamental theorem of arithmetic</b> — 算术基本定理；<b>unique factorization</b> — 唯一分解</li>
+    <li><b>well ordering principle</b> — 良序原理</li>
+    <li><b>invariant method</b> — 不变量方法；<b>water jug problem</b> — 水壶问题</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN7 模算术与中国剩余定理 ============ -->
+<!-- ================================================= -->
+<section id="ln7">
+<h2>LN7 · 模算术与中国剩余定理 <span class="zh">Modular Arithmetic &amp; CRT</span></h2>
+<p>本讲继续数论，引入<b>模算术（modular arithmetic）</b>——计算机科学中最强大的数论工具之一。从「12 小时制时钟」的直观出发，建立<b>同余（congruence）</b>、模加减乘的运算法则，接着用两个精彩应用（<b>被 9 整除的判定</b>、<b>十五谜题的不变量</b>）展示威力，然后研究<b>乘法逆元</b>（引出<b>费马小定理</b>、<b>威尔逊定理</b>），最后以<b>中国剩余定理（CRT）</b>收尾，并用「韩信点兵」的古老故事贯穿始终。</p>
+
+<h3 id="ln7-1">7.1 模算术与同余 <span class="zh">Congruence</span></h3>
+<p>12 小时制时钟上，6 点和 18 点指向同一个位置——我们「把相差 12 的数视为同一个」。这就是模算术的思想。</p>
+<div class="figure">
+  <svg viewBox="0 0 220 190" width="230" role="img" aria-label="12小时制时钟">
+    <circle cx="110" cy="100" r="78" style="fill: none; stroke: var(--text); stroke-width:1.5"/>
+    <line x1="110" y1="100" x2="110" y2="40" style="stroke: var(--sv-pos); stroke-width:2"/>
+    <line x1="110" y1="100" x2="110" y2="40" style="stroke: var(--sv-pos); stroke-width:2"/>
+    <text x="110" y="30" class="svg-muted" text-anchor="middle">12 / 0</text>
+    <text x="176" y="104" class="svg-muted">3</text>
+    <text x="110" y="176" class="svg-muted" text-anchor="middle">6 / 18</text>
+    <text x="40" y="104" class="svg-muted">9</text>
+  </svg>
+  <div class="figcap">图：6 点与 18 点在 12 小时制时钟上是同一个位置。</div>
+</div>
+<div class="def box">
+  <span class="box-title">📌 定义 · 同余</span>
+  <p>对正整数 \(n\)，称 \(a\) 与 \(b\) <b>模 \(n\) 同余</b>，记作 \(a\equiv b\pmod n\)，当且仅当：</p>
+  <p class="formula">\(a\equiv b\pmod n \iff n\mid (a-b)\)</p>
+  <p>即 \(a\) 与 \(b\) 除以 \(n\) 的余数相同。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <ul>
+    <li>\(12\equiv 2\pmod{10}\)，\(107\equiv 207\pmod{10}\)（相差 100）；</li>
+    <li>\(7\equiv 1\pmod 2\)，\(1\equiv -1\pmod 2\)（相差 2）；</li>
+    <li>\(13\equiv -1\pmod 7\)，\(-15\equiv 0\pmod 5\)。</li>
+  </ul>
+</div>
+<div class="def box">
+  <span class="box-title">📌 定义 · 同余类（congruence class）</span>
+  <p>\(a\) 模 \(b\) 的<b>同余类</b>是把「落在每个 \(b\)-块的同一位置」的整数归为一组：</p>
+  <p class="formula">\([a]_b = \{\,a + kb : k\in\mathbb Z\,\}\)</p>
+  <p>所有同余类构成整数的一个<b>划分（partition）</b>。例如模 3 只有 3 个类：\(\mathbb Z_3=\{[0]_3,[1]_3,[2]_3\}\)。</p>
+</div>
+
+<h3 id="ln7-2">7.2 模加法 <span class="zh">Modular Addition</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 引理：同余可相加</span>
+  <p>若 \(a\equiv c\pmod n\) 且 \(b\equiv d\pmod n\)，则 \(a+b\equiv c+d\pmod n\)。</p>
+  <p><b>证明</b>：\(a=c+nx,\ b=d+ny\)，故</p>
+  <p class="formula">\(a+b-c-d=(c+nx)+(d+ny)-c-d=n(x+y)\)</p>
+  <p>所以 \(n\mid(a+b-c-d)\)，即 \(a+b\equiv c+d\pmod n\)。✓</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <ul>
+    <li>\(12\equiv2,\ 25\equiv5\pmod{10}\Rightarrow 12+25\equiv 2+5\equiv 7\pmod{10}\)；</li>
+    <li>\(87\equiv2,\ 222\equiv1\pmod{17}\Rightarrow 87+222\equiv 3\pmod{17}\)；</li>
+    <li>\(101\equiv2,\ 141\equiv-2\pmod{11}\Rightarrow 101+141\equiv 0\pmod{11}\)。</li>
+  </ul>
+</div>
+
+<h3 id="ln7-3">7.3 模乘法 <span class="zh">Modular Multiplication</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 引理：同余可相乘</span>
+  <p>若 \(a\equiv c\pmod n\) 且 \(b\equiv d\pmod n\)，则 \(ab\equiv cd\pmod n\)。</p>
+  <p><b>证明</b>：\(a=c+nx,\ b=d+ny\)，故</p>
+  <p class="formula">\(ab-cd=(c+nx)(d+ny)-cd=dnx+cny+n^2xy=n(dx+cy+nxy)\)</p>
+  <p>所以 \(n\mid(ab-cd)\)，即 \(ab\equiv cd\pmod n\)。✓</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <ul>
+    <li>\(9876\equiv6,\ 17642\equiv2\pmod{10}\Rightarrow 9876\cdot17642\equiv 6\cdot2\equiv 2\pmod{10}\)；</li>
+    <li>\(999\equiv5,\ 674\equiv2\pmod 7\Rightarrow 999\cdot674\equiv 5\cdot2\equiv 3\pmod 7\)。</li>
+  </ul>
+</div>
+
+<h3 id="ln7-4">7.4 快速模幂 <span class="zh">Fast Modular Exponentiation</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 计算 \(144^4\pmod{713}\)</span>
+  <p>直接算 \(144^4=429,981,696\) 再取模很麻烦；用「边乘边取模」就轻松得多：</p>
+  <p class="formula">\(144^2=20736\equiv 59\pmod{713}\)　（\(20736=29\cdot713+59\)）</p>
+  <p class="formula">\(144^4=(144^2)^2\equiv 59^2=3481\equiv 629\pmod{713}\)　（\(3481=4\cdot713+629\)）</p>
+  <p>答案：<b>629</b>。<b>巧妙地利用模算术能大幅降低计算量</b>——这是密码学（如 RSA）的基础技巧。</p>
+</div>
+<p><b>通用方法（二进制快速幂 square-and-multiply）</b>：要算 \(a^e\pmod m\)，把指数 \(e\) 写成二进制，从高位到低位逐位处理——<b>遇 0 就平方、遇 1 就「平方再乘 \(a\)」</b>，全程每步取模。例如 \(e=13=(1101)_2\)：</p>
+<p class="formula">\(a^{13}=\big((a^2)^2\cdot a\big)^2\cdot a\)　（对应二进制位 1→1→0→1：平方、平方乘 a、平方、平方乘 a）</p>
+<p>这样只需 \(O(\log e)\) 次乘法，而不是 \(e\) 次。上面 \(144^4\) 即指数 \(4=(100)_2\) 的特例：只做两次平方。</p>
+
+<h3 id="ln7-5">7.5 应用：被 9 整除的判定 <span class="zh">Divisibility by 9</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 定理：9 的整除判定</span>
+  <p><b>一个数能被 9 整除，当且仅当它的各位数字之和能被 9 整除。</b></p>
+  <p>关键：\(10\equiv 1\pmod 9\)。设 \(n=d_k10^k+d_{k-1}10^{k-1}+\cdots+d_1 10+d_0\)。因为 \(d_i10^i\equiv d_i\cdot1^i\equiv d_i\pmod 9\)，所以：</p>
+  <p class="formula">\(n \equiv d_k+d_{k-1}+\cdots+d_1+d_0 \pmod 9\)</p>
+  <p>即 \(n\) 模 9 等于其各位数字之和模 9。✓</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子</span>
+  <ul>
+    <li>\(9333234513171\)：数字和 \(=45\)，能被 9 整除 → 原数能被 9 整除。</li>
+    <li>\(128573649683\)：数字和 \(=62\)，不能被 9 整除 → 原数不能被 9 整除。</li>
+  </ul>
+</div>
+
+<h3 id="ln7-6">7.6 应用：十五谜题 <span class="zh">The Fifteen Puzzle</span></h3>
+<p><b>十五谜题</b>：一个 \(4\times4\) 的格子，放 1~15 共 15 个方块，剩一个空位。规则：<b>只能把与空位相邻的方块移入空位</b>。</p>
+<div class="figure">
+  <svg viewBox="0 0 360 170" width="380" role="img" aria-label="十五谜题初始与目标">
+    <g style="fill: var(--fig-bg); stroke: var(--fig-bd); stroke-width:1.2">
+      <rect x="20" y="20" width="150" height="150"/>
+      <line x1="57.5" y1="20" x2="57.5" y2="170"/><line x1="95" y1="20" x2="95" y2="170"/><line x1="132.5" y1="20" x2="132.5" y2="170"/>
+      <line x1="20" y1="57.5" x2="170" y2="57.5"/><line x1="20" y1="95" x2="170" y2="95"/><line x1="20" y1="132.5" x2="170" y2="132.5"/>
+    </g>
+    <g class="svg-text" style="font-size:11px">
+      <text x="39" y="42">1</text><text x="76" y="42">2</text><text x="114" y="42">3</text><text x="151" y="42">4</text>
+      <text x="39" y="80">5</text><text x="76" y="80">6</text><text x="114" y="80">7</text><text x="151" y="80">8</text>
+      <text x="39" y="118">9</text><text x="76" y="118">10</text><text x="114" y="118">11</text><text x="151" y="118">12</text>
+      <text x="39" y="155">13</text><text x="76" y="155">14</text><text x="114" y="155">15</text>
+    </g>
+    <g style="fill: var(--fig-bg); stroke: var(--fig-bd); stroke-width:1.2">
+      <rect x="200" y="20" width="150" height="150"/>
+      <line x1="237.5" y1="20" x2="237.5" y2="170"/><line x1="275" y1="20" x2="275" y2="170"/><line x1="312.5" y1="20" x2="312.5" y2="170"/>
+      <line x1="200" y1="57.5" x2="350" y2="57.5"/><line x1="200" y1="95" x2="350" y2="95"/><line x1="200" y1="132.5" x2="350" y2="132.5"/>
+    </g>
+    <g class="svg-text" style="font-size:11px">
+      <text x="219" y="42">1</text><text x="256" y="42">2</text><text x="294" y="42">3</text><text x="331" y="42">4</text>
+      <text x="219" y="80">5</text><text x="256" y="80">6</text><text x="294" y="80">7</text><text x="331" y="80">8</text>
+      <text x="219" y="118">9</text><text x="256" y="118">10</text><text x="294" y="118">11</text><text x="331" y="118">12</text>
+      <text x="219" y="155">13</text><text x="256" y="155" style="fill: var(--sv-neg)">15</text><text x="294" y="155" style="fill: var(--sv-neg)">14</text>
+    </g>
+    <text x="95" y="186" class="svg-muted" text-anchor="middle">初始（空位在 (4,4)）</text>
+    <text x="275" y="186" class="svg-muted" text-anchor="middle">目标（14、15 对调）</text>
+  </svg>
+  <div class="figcap">图：初始已排好序；目标把 14、15 对调。能否通过合法移动从初始到目标？</div>
+</div>
+<p>问题：能否通过一系列合法移动，把<b>初始</b>局面变成<b>目标</b>局面？答案用<b>不变量方法（invariant method）</b>：找一个移动过程中<b>始终不变</b>的性质，若目标不满足该性质，则不可达。</p>
+<div class="def box">
+  <span class="box-title">📌 定义 · 状态的奇偶性（parity）</span>
+  <p>把一个状态写成一串数（按行读）加空位坐标：\(S=\big((a_1,a_2,\dots,a_{15}),\ (i,j)\big)\)。</p>
+  <p>称一对 \((i,j)\) 为<b>逆序对（disordered pair）</b>，若 \(i<j\) 但 \(a_i>a_j\)（前面的数更大）。</p>
+  <p class="formula">\(\operatorname{Parity}(S)=(\text{逆序对个数}+i)\bmod 2\)</p>
+  <p>其中 \(i\) 是空位所在<b>行号</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 计算两个状态的奇偶性</span>
+  <ul>
+    <li><b>初始</b> \(((1,2,\dots,15),(4,4))\)：逆序对 = 0，空位行 = 4 → 奇偶 = \((0+4)\bmod 2 = 0\)（偶）。</li>
+    <li><b>目标</b> \(((1,2,\dots,13,15,14),(4,4))\)：只有一对逆序 (15,14)，逆序对 = 1，空位行 = 4 → 奇偶 = \((1+4)\bmod 2 = 1\)（奇）。</li>
+  </ul>
+  <p>两个状态奇偶<b>不同</b>！</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 引理：任何一步移动都保持奇偶性</span>
+  <p><b>水平移动</b>（左右移入空位）：数字串的顺序<b>完全不变</b>，逆序对数不变，行号也不变 → 奇偶不变。</p>
+  <p><b>竖直移动</b>（上下移入空位）：把某个数字 \(a\) 跨过它下面/上面的<b>三个</b>数 \(b_1,b_2,b_3\)。设移动前 \(a\) 与这三个数的相对顺序有 \(k\) 个逆序，移动后变为 \(3-k\) 个逆序（相对顺序完全颠倒）。所以逆序对数的改变量为 \(|3-2k|\)，即 <b>1 或 3（都是奇数）</b>；而行号同时<b>改变 1</b>。两者之和的改变量为「奇数 + 1」= 偶数，故奇偶性（mod 2）不变。✓</p>
+</div>
+<p>既然每一步都保持奇偶性，而初始与目标的奇偶性不同，<b>从初始不可能到达目标</b>。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 更难的例子：能否把整个棋盘上下颠倒？</span>
+  <p>目标 = 完全倒序的排列 \(15,14,\dots,1\)（空位仍在 (4,4)）：逆序对 = \(14+13+\cdots+1=\tfrac{14\cdot15}{2}=105\)，空位行 = 4 → 奇偶 = \((105+4)\bmod 2 = 1\)（奇），与初始的偶性不同 → <b>不可能</b>。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 奇偶性相同的局面就一定可达吗？</span>
+  <p><b>是的</b>（两个状态奇偶相同 ⟺ 可互相到达），但证明需要更高级的数学，超出本课范围。这里只用到「不变量」这个方向。</p>
+</div>
+
+<h3 id="ln7-7">7.7 乘法逆元 <span class="zh">Multiplicative Inverse</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 乘法逆元</span>
+  <p>\(a\not\equiv0\pmod n\) 的<b>乘法逆元（multiplicative inverse）</b>是一个整数 \(a'\)，满足：</p>
+  <p class="formula">\(a\cdot a'\equiv 1\pmod n\)</p>
+  <p>例：\(2\cdot 5\equiv1\pmod 3\)，所以 5 是 2 模 3 的逆元（反之亦然）。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 不是每个数都有逆元</span>
+  <p>2 模 6 就没有逆元：若 \(2y\equiv1\pmod 6\)，则 \(2y=1+6x\)，即 \(2y-6x=1\)，但左边是<b>偶数</b>、右边是<b>奇数</b>，矛盾。</p>
+  <p>更一般：若 \(k,n\) 不互素（\(\gcd(k,n)\ge2\)），则 \(k\) 模 \(n\) 无逆元（证明同上，留作练习）。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 定理：逆元的存在性</span>
+  <p><b>\(k\) 模 \(n\) 有乘法逆元 \(\iff \gcd(k,n)=1\)</b>。</p>
+  <p><b>证明</b>（用上一讲的核心定理 \(\gcd=\operatorname{spc}\)）：若 \(\gcd(k,n)=1\)，则存在 \(s,t\) 使 \(sk+tn=1\)，故 \(1-sk=tn\) 被 \(n\) 整除，即 \(1\equiv sk\pmod n\)，所以 \(s\) 就是逆元。✓</p>
+</div>
+
+<h3 id="ln7-8">7.8 逆元的唯一性 <span class="zh">Uniqueness of the Inverse</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 定理：逆元模 \(n\) 唯一</span>
+  <p>若 \(k_1,k_2\) 都是 \(k\) 模 \(n\) 的逆元，则 \(k_1\equiv k_2\pmod n\)。</p>
+  <p><b>证明</b>：\(kk_1\equiv kk_2\equiv1\pmod n\)，故 \(k(k_1-k_2)\equiv0\pmod n\)。两边乘 \(k_1\)：\(k_1k(k_1-k_2)\equiv k_1\cdot0\equiv0\pmod n\)，而 \(k_1k\equiv1\)，故 \(k_1-k_2\equiv0\pmod n\)，即 \(k_1\equiv k_2\)。✓</p>
+</div>
+
+<h3 id="ln7-9">7.9 消去律 <span class="zh">Cancellation</span></h3>
+<p>同余在很多方面「像等号」：\(a\equiv b\Rightarrow a+c\equiv b+c\)，\(a\equiv b\Rightarrow ac\equiv bc\)。但<b>消去律不总是成立</b>：</p>
+<div class="ex box">
+  <span class="box-title">✏️ 反例</span>
+  <p>\(4\cdot2\equiv1\cdot2\pmod 6\)，但 \(4\not\equiv1\pmod 6\)。<b>不能随便约掉 2</b>。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 什么情况下可以消去？</span>
+  <p>设 \(0\le a,b,k&lt;n\)。若 \(ak\equiv bk\pmod n\)，则 \(n\mid(a-b)k\)。因为 \(0&lt;|a-b|&lt;n\)，这只有当 \(\gcd(n,k)\ge2\)（\(n\) 和 \(k\) 有公共因子）时才可能。</p>
+  <p><b>因此：若 \(\gcd(k,n)=1\)，则 \(ik\equiv jk\pmod n\Rightarrow i\equiv j\pmod n\)</b>（两边乘 \(k\) 的逆元即可）。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 模素数时，消去律总是成立</span>
+  <p>当 \(n\) 是素数时，任何非零的 \(k\) 都与 \(n\) 互素，故<b>永远可消去</b>。这使得「模素数的算术」成为一个<b>域（field）</b>——一种「表现得像实数」的结构，在编码理论（coding theory）中非常强大。</p>
+</div>
+
+<h3 id="ln7-10">7.10 费马小定理 <span class="zh">Fermat's Little Theorem</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 费马小定理</span>
+  <p><b>若 \(p\) 是素数且 \(\gcd(k,p)=1\)，则 \(k^{p-1}\equiv1\pmod p\)。</b></p>
+  <p><b>证明</b>：考虑 \(p-1\) 个数 \(k,2k,\dots,(p-1)k\pmod p\)。</p>
+  <ul>
+    <li><b>两两不同</b>：若 \(ik\equiv jk\pmod p\)，因 \(\gcd(k,p)=1\) 可消去，得 \(i\equiv j\pmod p\)，与 \(1\le i&lt;j&lt;p\) 矛盾。</li>
+    <li>故这 \(p-1\) 个数是 \(\{1,2,\dots,p-1\}\) 的一个<b>排列</b>。</li>
+  </ul>
+  <p>把它们相乘：</p>
+  <p class="formula">\(1\cdot2\cdots(p-1)\equiv (k)(2k)\cdots((p-1)k)\equiv k^{p-1}\cdot1\cdot2\cdots(p-1)\pmod p\)</p>
+  <p>因为 \(1,2,\dots,p-1\) 都与 \(p\) 互素，可全部消去，得 \(1\equiv k^{p-1}\pmod p\)。✓</p>
+</div>
+
+<h3 id="ln7-11">7.11 威尔逊定理 <span class="zh">Wilson's Theorem</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 威尔逊定理</span>
+  <p><b>\(p\) 是素数 \(\iff (p-1)!\equiv-1\pmod p\)。</b></p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 反向（合数 ⇒ 不成立）：</span>
+  <p>设 \(p\) 是合数且 \(p\ge6\)（\(p&lt;6\) 的情形留作练习）。则 \(p=qr\)，其中 \(2\le q,r&lt;p\)。</p>
+  <ul>
+    <li>若 \(q\ne r\)：\(q,r\) 都出现在 \((p-1)!\) 中，故 \((p-1)!\equiv0\pmod p\not\equiv-1\)。</li>
+    <li>若 \(q=r\)：则 \(p=q^2&gt;2q\)（因 \(p\ge6\)），故 \(q\) 和 \(2q\) 都出现在 \((p-1)!\) 中，同样 \((p-1)!\equiv0\pmod p\)。</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 正向（素数 ⇒ 成立）：</span>
+  <p>先证引理：\(p\) 素数时，\(x^2\equiv1\pmod p\iff x\equiv\pm1\pmod p\)。</p>
+  <p>证：\(x^2\equiv1\Rightarrow p\mid x^2-1=(x-1)(x+1)\Rightarrow p\mid(x-1)\) 或 \(p\mid(x+1)\)（素数整除乘积），即 \(x\equiv\pm1\pmod p\)。</p>
+  <p>于是对每个 \(k\in\{2,\dots,p-2\}\)，它的逆元 \(k'\ne k\) 且也在 \(\{2,\dots,p-2\}\) 中，这些数可以<b>两两配对</b>成逆元对（每对乘积 ≡ 1）。所以：</p>
+  <p class="formula">\((p-1)!\equiv 1\cdot(p-1)\cdot(a_1b_1)(a_2b_2)\cdots\equiv 1\cdot(-1)\cdot1\cdot1\cdots\equiv-1\pmod p\) ✓</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 具体例子：\(10!\pmod{11}\)</span>
+  <p class="formula">\(10!=1\cdot2\cdot3\cdot4\cdot5\cdot6\cdot7\cdot8\cdot9\cdot10\equiv 1\cdot10\cdot(2\cdot6)\cdot(3\cdot4)\cdot(5\cdot9)\cdot(7\cdot8)\equiv1\cdot(-1)\cdot1\cdot1\cdot1\cdot1\equiv-1\pmod{11}\)</p>
+  <p>除了 1 和 10，其余的数都两两配对成了乘法逆元！</p>
+</div>
+
+<h3 id="ln7-12">7.12 中国剩余定理 <span class="zh">Chinese Remainder Theorem</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 韩信点兵（Ancient Application）</span>
+  <p>韩信带 1500 士兵作战，估计阵亡 400–500 人。剩下的士兵：3 人一排剩 2 人，5 人一排剩 4 人，7 人一排剩 6 人。韩信立刻说：「<b>还有 1049 人</b>。」</p>
+  <p>翻译成数学：求 \(1000\le x\le1100\)，使得</p>
+  <p class="formula">\(x\equiv2\pmod3,\qquad x\equiv4\pmod5,\qquad x\equiv6\pmod7\)</p>
+  <p>这就是一个<b>同余方程组</b>。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 先解决一个方程：\(ax\equiv b\pmod n\)</span>
+  <p><b>定理</b>：\(ax\equiv b\pmod n\) 有解 \(\iff \gcd(a,n)\mid b\)，且解形如 \(x\equiv y\pmod{\tfrac{n}{\gcd(a,n)}}\)。</p>
+  <ul>
+    <li><b>Case 1</b> \(\gcd(a,n)=1\)：乘 \(a\) 的逆元 \(a'\)，得 \(x\equiv a'b\pmod n\)。</li>
+    <li><b>Case 2a</b> \(\gcd(a,n)=c&gt;1\) 且 \(c\mid b\)：把 \(a,n,b\) 都除以 \(c\)，化为 Case 1。</li>
+    <li><b>Case 2b</b> \(c\nmid b\)：无解（因为左边被 \(c\) 整除、右边不被 \(c\) 整除）。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 单个方程的例子</span>
+  <ul>
+    <li>\(2x\equiv3\pmod7\Rightarrow x=5+7v\)；</li>
+    <li>\(5x\equiv6\pmod9\Rightarrow x=3+9v\)；</li>
+    <li>\(3x\equiv1\pmod6\)：无解（\(\gcd(3,6)=3\nmid1\)）。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 两个方程（模互素）</span>
+  <p>解 \(x\equiv2\pmod3,\ x\equiv4\pmod7\)。设 \(x=2+3u\) 且 \(x=4+7v\)，则 \(3u\equiv2\pmod7\)。3 模 7 的逆元是 5（\(3\cdot5=15\equiv1\)），故 \(u\equiv5\cdot2\equiv3\pmod7\)，即 \(u=3+7w\)。于是 \(x=2+3(3+7w)=11+21w\)，即 \(x\equiv11\pmod{21}\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 三个方程（韩信点兵）</span>
+  <p>解 \(x\equiv2\pmod3,\ x\equiv4\pmod5,\ x\equiv6\pmod7\)。<b>构造法</b>：设</p>
+  <p class="formula">\(x = 5\cdot7\cdot a + 3\cdot7\cdot b + 3\cdot5\cdot c\)</p>
+  <p>这样第一项由「mod 3」的方程决定（另两项都是 3 的倍数）、第二项由 mod 5 决定、第三项由 mod 7 决定。分别解：</p>
+  <p class="formula">\(35a\equiv2\pmod3\Rightarrow 2a\equiv2\Rightarrow a\equiv1\pmod3\)</p>
+  <p class="formula">\(21b\equiv4\pmod5\Rightarrow b\equiv4\pmod5\)</p>
+  <p class="formula">\(15c\equiv6\pmod7\Rightarrow c\equiv6\pmod7\)</p>
+  <p class="formula">\(x\equiv35\cdot1+21\cdot4+15\cdot6=35+84+90=209\pmod{3\cdot5\cdot7}\)</p>
+  <p>即 \(x\equiv209\pmod{105}\)。又 \(1000\le x\le1100\)，唯一解是 \(209+105\cdot8=1049\)。✓</p>
+</div>
+
+<h3 id="ln7-13">7.13 CRT 的证明与唯一性 <span class="zh">Proof &amp; Uniqueness</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 中国剩余定理（正式陈述）</span>
+  <p>设 \(n_1,n_2,\dots,n_k\) <b>两两互素</b>。则同余方程组</p>
+  <p class="formula">\(x\equiv a_1\pmod{n_1},\quad x\equiv a_2\pmod{n_2},\quad\dots,\quad x\equiv a_k\pmod{n_k}\)</p>
+  <p>有<b>唯一</b>的解（模 \(n=n_1n_2\cdots n_k\)）。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 存在性证明（以 \(k=3\) 为例）</span>
+  <p>令 \(N_1=n_2n_3,\ N_2=n_1n_3,\ N_3=n_1n_2\)。因 \(\gcd(N_i,n_i)=1\)，存在 \(x_i\) 使 \(N_ix_i\equiv1\pmod{n_i}\)，从而 \(N_ix_ia_i\equiv a_i\pmod{n_i}\)。取</p>
+  <p class="formula">\(x = N_1x_1a_1 + N_2x_2a_2 + N_3x_3a_3\)</p>
+  <p>注意 \(n_1\mid N_2,N_3\)，故 \(x\equiv N_1x_1a_1\equiv a_1\pmod{n_1}\)；同理 \(x\equiv a_2\pmod{n_2}\)、\(x\equiv a_3\pmod{n_3}\)。✓</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 唯一性证明</span>
+  <p>设 \(x,y\) 都是解，则 \(x-y\equiv0\pmod{n_i}\)（每个 \(i\)），故 \(n_i\mid(x-y)\)。因诸 \(n_i\) 两两互素，得 \(n_1n_2\cdots n_k\mid(x-y)\)，即 \(x\equiv y\pmod{n_1n_2\cdots n_k}\)。✓</p>
+</div>
+
+<h3 id="ln7-14">7.14 一般系统与免分解法 <span class="zh">General Systems</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 模不互素怎么办？</span>
+  <p>若 \(n_i\) 不两两互素，先把每个方程<b>拆成更小的模</b>（利用 \(x\equiv a\pmod{mn}\Rightarrow x\equiv a\pmod m\) 和 \(\pmod n\)），消去重复/矛盾的部分，化为互素情形。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：\(x\equiv3\pmod{10},\ x\equiv8\pmod{15},\ x\equiv5\pmod{84}\)</span>
+  <p>拆解：</p>
+  <p class="formula">\(x\equiv3\pmod{10}\Rightarrow x\equiv1\pmod2,\ x\equiv3\pmod5\)</p>
+  <p class="formula">\(x\equiv8\pmod{15}\Rightarrow x\equiv2\pmod3,\ x\equiv3\pmod5\)</p>
+  <p class="formula">\(x\equiv5\pmod{84}\Rightarrow x\equiv1\pmod4,\ x\equiv2\pmod3,\ x\equiv5\pmod7\)</p>
+  <p>合并相同模（不矛盾），最终答案：<b>\(x\equiv173\pmod{420}\)</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 免分解法（Factorization-free）</span>
+  <p>不必分解，直接从第三个方程 \(x=5+84u\) 代入第二个：\(5+84u\equiv8\pmod{15}\Rightarrow9u\equiv3\pmod{15}\Rightarrow u\equiv2\pmod5\Rightarrow u=2+5v\)。故 \(x=5+84(2+5v)=173+420v\)。再代第一个 \(173+420v\equiv3\pmod{10}\Rightarrow420v\equiv-170\pmod{10}\)，恒成立。故 \(x\equiv173\pmod{420}\)。</p>
+  <p>这种方法（<b>逐一代入</b>）比分解更快，也常用于证明 CRT。</p>
+</div>
+
+<h3 id="ln7-15">7.15 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>同余</b>：\(a\equiv b\pmod n\iff n\mid(a-b)\)；同余可加、可乘。</p>
+  <p><b>9 的整除判定</b>：\(10\equiv1\pmod9\Rightarrow n\equiv\) 各位数字和 \(\pmod9\)。</p>
+  <p><b>十五谜题</b>：奇偶性 = (逆序对数 + 空位行) mod 2 是不变量。</p>
+  <p><b>逆元</b>：\(k\) 模 \(n\) 有逆元 \(\iff\gcd(k,n)=1\)；逆元模 \(n\) 唯一；\(\gcd(k,n)=1\) 时可消去。</p>
+  <p><b>费马小定理</b>：\(p\) 素数、\(\gcd(k,p)=1\Rightarrow k^{p-1}\equiv1\pmod p\)。</p>
+  <p><b>威尔逊定理</b>：\(p\) 素数 \(\iff(p-1)!\equiv-1\pmod p\)。</p>
+  <p><b>中国剩余定理</b>：\(n_i\) 两两互素时，\(x\equiv a_i\pmod{n_i}\) 有唯一解（模 \(\prod n_i\)）。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>modular arithmetic</b> — 模算术；<b>congruence</b>（\(a\equiv b\pmod n\)）— 同余</li>
+    <li><b>congruence class</b> — 同余类；<b>partition</b> — 划分</li>
+    <li><b>modular addition / multiplication</b> — 模加法 / 模乘法</li>
+    <li><b>multiplicative inverse</b> — 乘法逆元；<b>cancellation</b> — 消去律</li>
+    <li><b>field</b> — 域；<b>coding theory</b> — 编码理论</li>
+    <li><b>Fermat's little theorem</b> — 费马小定理；<b>Wilson's theorem</b> — 威尔逊定理</li>
+    <li><b>fifteen puzzle</b> — 十五谜题；<b>parity</b> — 奇偶性；<b>disordered pair</b> — 逆序对</li>
+    <li><b>Chinese remainder theorem (CRT)</b> — 中国剩余定理</li>
+    <li><b>mutually coprime</b> — 两两互素；<b>unique solution</b> — 唯一解</li>
+    <li><b>divisibility test</b> — 整除判定</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN8 图论导论 ============ -->
+<!-- ================================================= -->
+<section id="ln8">
+<h2>LN8 · 图论导论 <span class="zh">Introduction to Graphs</span></h2>
+<p>本讲进入<b>图论（graph theory）</b>。图是计算机科学中建模<b>连接关系</b>的通用语言——社交网络、地图导航、电路、网页链接都可以画成图。主线从<b>柯尼斯堡七桥问题</b>（图论的起源）出发，依次建立<b>图、度、握手引理</b>，讨论<b>同构</b>、<b>路径与连通性</b>、<b>树</b>，最后严格证明<b>欧拉环/欧拉路径定理</b>，并简介<b>有向图</b>。</p>
+
+<h3 id="ln8-1">8.1 柯尼斯堡七桥 <span class="zh">Seven Bridges of Königsberg</span></h3>
+<p>1736 年的经典问题：柯尼斯堡城有两条河交汇，形成四块陆地，由<b>七座桥</b>相连。问：能否设计一条路线，<b>恰好经过每座桥一次</b>，并回到起点？</p>
+<div class="figure">
+  <svg viewBox="0 0 360 230" width="380" role="img" aria-label="柯尼斯堡七桥图">
+    <g style="stroke: var(--text); stroke-width:1.6; fill:none;">
+      <path d="M180 40 C150 90 150 130 180 180"/>
+      <path d="M180 40 C210 90 210 130 180 180"/>
+      <path d="M80 40 C110 90 110 130 80 180"/>
+      <path d="M80 40 C50 90 50 130 80 180"/>
+      <path d="M180 110 C150 110 130 110 80 110"/>
+    </g>
+    <g style="stroke: var(--sv-pos); stroke-width:1.8; fill:none;">
+      <path d="M180 60 C160 100 160 120 180 160"/>
+      <path d="M180 60 C200 100 200 120 180 160"/>
+    </g>
+    <g style="fill: var(--sv-neg)">
+      <circle cx="180" cy="30" r="7"/>
+      <circle cx="180" cy="190" r="7"/>
+      <circle cx="80" cy="30" r="7"/>
+      <circle cx="80" cy="190" r="7"/>
+    </g>
+    <text x="180" y="20" class="svg-muted" text-anchor="middle">A（北岸）</text>
+    <text x="180" y="212" class="svg-muted" text-anchor="middle">B（南岸）</text>
+    <text x="52" y="24" class="svg-muted">C</text>
+    <text x="52" y="206" class="svg-muted">D</text>
+    <text x="130" y="120" class="svg-muted">7 条边</text>
+  </svg>
+  <div class="figcap">图：把四块陆地抽象成 4 个顶点、七座桥抽象成 7 条边。问题变成「是否存在一条遍历每条边恰好一次的路径」。</div>
+</div>
+<p>欧拉（Euler，读作 "oiler"）的解法：若存在这样的路线，则除<b>起点和终点</b>外，每个「中间」顶点进出次数必须相等，即<b>每个中间顶点的边数为偶数</b>。所以最多只能有<b>两个顶点的边数为奇数</b>。</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 七桥问题不可解</span>
+  <p>在这个图中，<b>每个顶点的边数都是奇数</b>（A、B、D 各 3 条，C 有 5 条），远超「最多两个」，所以不存在恰好经过每座桥一次的路线。<b>欧拉由此证明了七桥问题无解</b>，这一成果被公认为图论的起点。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 欧拉定理（1736）</span>
+  <p>一个图存在<b>欧拉路径（Eulerian path，遍历每条边恰好一次）</b>，当且仅当它是「连通」的，且<b>奇度顶点至多两个</b>。后文将严格证明。</p>
+</div>
+
+<h3 id="ln8-2">8.2 简单图 <span class="zh">Simple Graphs</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 图</span>
+  <p>一个<b>（简单）图</b> \(G=(V,E)\) 由两部分组成：</p>
+  <ul>
+    <li><b>顶点集</b> \(V\)（vertex，又称 node / point）；</li>
+    <li><b>边集</b> \(E\)，其中每条边是 \(V\) 中两个<b>不同</b>顶点的<b>无序对</b> \(\{a,b\}\)（\(a\ne b\)）。</li>
+  </ul>
+  <p>若边 \(ab\) 存在，则称顶点 \(a,b\) <b>相邻（adjacent，互为邻居 neighbour）</b>。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 320 210" width="330" role="img" aria-label="简单图示例">
+    <g style="stroke: var(--text); stroke-width:1.5;">
+      <line x1="160" y1="30" x2="70" y2="110"/><line x1="160" y1="30" x2="250" y2="110"/>
+      <line x1="70" y1="110" x2="160" y2="110"/><line x1="70" y1="110" x2="120" y2="180"/>
+      <line x1="160" y1="110" x2="120" y2="180"/><line x1="160" y1="110" x2="250" y2="110"/>
+      <line x1="160" y1="110" x2="210" y2="180"/><line x1="250" y1="110" x2="210" y2="180"/>
+    </g>
+    <g style="fill: var(--sv-pos)">
+      <circle cx="160" cy="30" r="6"/><circle cx="70" cy="110" r="6"/><circle cx="160" cy="110" r="6"/>
+      <circle cx="250" cy="110" r="6"/><circle cx="120" cy="180" r="6"/><circle cx="210" cy="180" r="6"/>
+    </g>
+    <text x="160" y="20" class="svg-muted" text-anchor="middle">a</text>
+    <text x="55" y="115" class="svg-muted">b</text>
+    <text x="170" y="115" class="svg-muted">c</text>
+    <text x="265" y="115" class="svg-muted">f</text>
+    <text x="105" y="198" class="svg-muted">d</text>
+    <text x="225" y="198" class="svg-muted">e</text>
+  </svg>
+  <div class="figcap">图：\(V=\{a,b,c,d,e,f\}\)，\(E=\{ab,af,bc,bd,cd,ce,cf,ef\}\)。</div>
+</div>
+
+<h3 id="ln8-3">8.3 图的类型 <span class="zh">Types of Graphs</span></h3>
+<div class="def box">
+  <span class="box-title">📌 三种图</span>
+  <ul>
+    <li><b>简单图（simple graph）</b>：无重边（multiedge）、无自环（loop）、无有向边。</li>
+    <li><b>多重图（multigraph）</b>：允许重边与自环——七桥问题就是多重图。</li>
+    <li><b>有向图（directed graph / digraph）</b>：边有方向（见 8.16）。</li>
+  </ul>
+  <p>除非特别说明，本课所有图都是<b>简单图</b>。</p>
+</div>
+
+<h3 id="ln8-4">8.4 子图 <span class="zh">Subgraphs</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 子图</span>
+  <p>若 \(V'\subseteq V\) 且 \(E'\subseteq E\)，则 \(G'=(V',E')\) 是 \(G=(V,E)\) 的<b>子图（subgraph）</b>。</p>
+  <ul>
+    <li>例：\(G'=(\{a,b\},\{ab\})\) 是上图中 \(G\) 的子图；</li>
+    <li>空图 \(\varnothing\) 也是 \(G\) 的子图。</li>
+  </ul>
+  <p>注意：\(G'\) 自身必须是一个合法的图（边的端点都在 \(V'\) 中）。</p>
+</div>
+
+<h3 id="ln8-5">8.5 顶点的度 <span class="zh">Vertex Degrees</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 度与邻居</span>
+  <ul>
+    <li>边 \(uv\) <b>关联（incident with）</b>顶点 \(u\) 和 \(v\)。</li>
+    <li>顶点 \(v\) 的<b>邻居集</b> \(N(v)\) 是与 \(v\) 相邻的所有顶点。</li>
+    <li>顶点 \(v\) 的<b>度（degree）</b> \(\deg(v)\) 是它关联的边数（自环算两次）。</li>
+  </ul>
+  <p>在<b>简单图</b>中，\(\deg(v)=|N(v)|\)（邻居个数）。在<b>多重图</b>中二者不相等（重边会多算）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子（8.2 的图）</span>
+  <p>\(N(a)=\{b,f\},\ N(b)=\{a,c,d\},\ N(c)=\{b,d,e,f\}\)；\(\deg(a)=\deg(d)=\deg(e)=2,\ \deg(b)=\deg(f)=3,\ \deg(c)=4\)。</p>
+</div>
+
+<h3 id="ln8-6">8.6 度序列与握手引理 <span class="zh">Degree Sequence &amp; Handshaking Lemma</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 握手引理（Handshaking Lemma）</span>
+  <p>对任何图，<b>所有顶点度数之和 = 边数的两倍</b>：</p>
+  <p class="formula">\(2|E|=\sum_{v\in V}\deg(v)\)</p>
+  <p><b>直觉</b>：每条边有两个端点，在求和时恰好贡献 2。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 两个推论</span>
+  <ol>
+    <li>所有顶点度数之和是<b>偶数</b>；</li>
+    <li><b>奇度顶点的个数是偶数</b>。</li>
+  </ol>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 度序列判定</span>
+  <ul>
+    <li>度序列 \((2,2,1)\)：和 = 5 为奇数 → <b>不可能</b>。</li>
+    <li>度序列 \((2,2,2,2,1)\)：和 = 9 为奇数 → <b>不可能</b>。</li>
+    <li>度序列 \((2,2,2)\)、\((3,3,3,3)\)：和分别为 6、12（偶数）→ 可能（三角形、\(K_4\)）。</li>
+  </ul>
+  <p>注意：和为偶数<b>不保证</b>简单图一定存在——如 \((3,1)\) 和为偶数但不存在简单图（两个顶点最多一条边，度不可能一个 3 一个 1）。</p>
+</div>
+
+<h3 id="ln8-7">8.7 图同构 <span class="zh">Graph Isomorphism</span></h3>
+<p>同一个图可以有<b>不同画法</b>（顶点位置、标签不同）。<b>只要连接关系相同，就视为同一个图</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 定义 · 同构</span>
+  <p>称 \(G_1\) 与 \(G_2\) <b>同构（isomorphic）</b>，若存在一个<b>保持边的双射</b> \(f:V_1\to V_2\)（称为<b>同构映射</b>），使得：</p>
+  <p class="formula">\(uv\in E_1 \iff f(u)f(v)\in E_2\)</p>
+  <p>即：原图有边 ⟺ 映射后的顶点之间也有边（边和非边都被保持）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例子：动物与食物</span>
+  <p>左图顶点 = {Dog, Cat, Cow, Pig}，右图顶点 = {Beef, Tuna, Hay, Corn}。映射 \(f(\text{Dog})=\text{Beef},\ f(\text{Cat})=\text{Tuna},\ f(\text{Cow})=\text{Hay},\ f(\text{Pig})=\text{Corn}\) 保持所有边与非边 → 两图同构。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 同构的必要条件</span>
+  <p>同构的图一定有：相同的<b>顶点数</b>、相同的<b>边数</b>、相同的<b>度序列</b>。但这些条件<b>不充分</b>：度序列相同未必同构。</p>
+</div>
+
+<h3 id="ln8-8">8.8 如何判定同构 <span class="zh">Checking Isomorphism</span></h3>
+<div class="def box">
+  <span class="box-title">📌 两个方向</span>
+  <ul>
+    <li><b>证明同构</b>：找出一个映射 \(f\)，并验证它保持边。</li>
+    <li><b>证明不同构</b>：找一个<b>同构不变量（isomorphism-preserving / topological property）</b>——某个性质在一个图成立、另一个图不成立（如「是否全为度 2」「最大度」「含不含三角形」等）。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 图同构问题的难度</span>
+  <p>判定两个图是否同构<b>不容易</b>：目前既不知道它能否在多项式时间内解决，也不知道它是否 NP-完全——属于所谓的 <b>NP-中间（NP-intermediate）</b> 问题。</p>
+</div>
+
+<h3 id="ln8-9">8.9 路径 <span class="zh">Paths</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 路径</span>
+  <ul>
+    <li><b>路径（path）</b>：一串<b>相邻</b>顶点的序列（允许重复）。</li>
+    <li><b>简单路径（simple path）</b>：所有顶点<b>互不相同</b>的路径。</li>
+  </ul>
+</div>
+
+<h3 id="ln8-10">8.10 连通性 <span class="zh">Connectedness</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 连通</span>
+  <ul>
+    <li>顶点 \(v,w\) <b>连通（connected）</b>，若存在从 \(v\) 到 \(w\) 的路径。</li>
+    <li>图 <b>连通</b>，若<b>任意两顶点</b>都连通。</li>
+    <li>每个图都由若干<b>互不相交的连通块（connected component）</b>组成；连通分量是「再加任何其他顶点就不再连通」的极大连通子图。</li>
+  </ul>
+  <p>所以「图连通 ⟺ 只有一个连通分量」。</p>
+</div>
+
+<h3 id="ln8-11">8.11 环 <span class="zh">Simple Cycles</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 环</span>
+  <p>一个<b>（简单）环（cycle）</b>是一个<b>连通</b>且<b>所有顶点度都为 2</b>的图。图中的一个环就是一个这样的连通子图。</p>
+  <p>（术语含义随上下文略有差异；多重图中，自环也算一个环。）</p>
+</div>
+
+<h3 id="ln8-12">8.12 最短路径 <span class="zh">Shortest Paths</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 最短路径</span>
+  <p>\(u\) 到 \(v\) 的<b>最短路径</b>是所有 \(u\)-\(v\) 路径中<b>边数最少</b>的那条。</p>
+  <p><b>最短路径一定是简单路径</b>：若路径上有环，去掉这个环反而更短。</p>
+</div>
+
+<h3 id="ln8-13">8.13 树 <span class="zh">Tree</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 森林与树</span>
+  <ul>
+    <li><b>森林（forest）</b>：没有环的图（可以不连通）。</li>
+    <li><b>树（tree）</b>：<b>连通</b>且没有环的图。</li>
+    <li><b>叶（leaf）</b>：度为 1 的顶点。</li>
+  </ul>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 340 180" width="360" role="img" aria-label="树与森林">
+    <g style="stroke: var(--text); stroke-width:1.5;">
+      <line x1="90" y1="40" x2="50" y2="90"/><line x1="90" y1="40" x2="130" y2="90"/><line x1="90" y1="40" x2="90" y2="110"/>
+      <line x1="50" y1="90" x2="30" y2="140"/><line x1="50" y1="90" x2="70" y2="140"/>
+      <line x1="230" y1="60" x2="260" y2="110"/><line x1="230" y1="60" x2="200" y2="110"/><line x1="230" y1="60" x2="230" y2="130"/>
+    </g>
+    <g style="fill: var(--sv-pos)">
+      <circle cx="90" cy="40" r="5"/><circle cx="50" cy="90" r="5"/><circle cx="130" cy="90" r="5"/><circle cx="90" cy="110" r="5"/>
+      <circle cx="30" cy="140" r="5"/><circle cx="70" cy="140" r="5"/>
+      <circle cx="230" cy="60" r="5"/><circle cx="260" cy="110" r="5"/><circle cx="200" cy="110" r="5"/><circle cx="230" cy="130" r="5"/>
+    </g>
+    <text x="90" y="170" class="svg-muted" text-anchor="middle">（左）一棵树</text>
+    <text x="230" y="170" class="svg-muted" text-anchor="middle">（右）另一棵树</text>
+    <text x="160" y="24" class="svg-muted" text-anchor="middle">两棵树合起来是一个森林</text>
+  </svg>
+  <div class="figcap">图：树 = 连通无环；多棵（不相交的）树合起来就是森林。</div>
+</div>
+
+<h3 id="ln8-14">8.14 树的刻画 <span class="zh">Characterizations of Trees</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 刻画 1：用路径</span>
+  <p><b>一个图是树 ⟺ 任意两顶点之间存在唯一的简单路径。</b></p>
+  <p>理由：连通 ⟺ 至少一条路径；无环 ⟺ 至多一条简单路径（若有两条不同简单路径，就会围成一个环）。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 刻画 2：用边数</span>
+  <p><b>一个图是树 ⟺ 它连通且有 \(n-1\) 条边</b>（\(n\) 为顶点数）。</p>
+  <p><b>证明（⇒，对顶点数 \(n\) 归纳）</b>：<b>基础 \(n=1\)</b>：单点树有 \(0=1-1\) 条边，成立。<b>归纳步</b>：树必有叶（否则每个顶点度 ≥2，沿「未访问顶点」一直走，有限顶点必回访形成环，矛盾）。取一个叶 \(v\)，删掉它得到 \(T-v\)：仍连通、仍无环，是 \(n-1\) 个顶点的树。由归纳假设 \(T-v\) 有 \((n-1)-1=n-2\) 条边，故 \(T\) 有 \(n-1\) 条边。✓</p>
+  <p><b>证明（⇐）</b>：连通且有 \(n-1\) 条边 ⇒ 无环。若存在环，则反复删去环上的边直到无环，得到一个树（仍有 \(n\) 个顶点），它有 \(n-1\) 条边——说明原图其实没有删掉任何边，即原图本就无环，是树。✓</p>
+</div>
+
+<h3 id="ln8-15">8.15 欧拉环与欧拉路径 <span class="zh">Eulerian Cycle &amp; Path</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 欧拉环定理</span>
+  <p><b>一个连通图有欧拉环（Eulerian cycle，遍历每条边恰好一次并回到起点的环）⟺ 每个顶点的度都是偶数。</b></p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 欧拉路径定理</span>
+  <p><b>一个连通图有欧拉路径 ⟺ 它有 0 个或 2 个奇度顶点。</b></p>
+</div>
+<p>证明分三步：</p>
+<div class="thm box">
+  <span class="box-title">🎯 预备引理 1（奇度顶点个数为偶）</span>
+  <p>由握手引理，奇度顶点个数是偶数，所以不可能只有 <b>1 个</b>奇度顶点——故「0 或 2 个奇度顶点」涵盖了所有可能。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 引理 2：边能拆成环，就能拼出欧拉环</span>
+  <p><b>若一个连通图的边可以划分（partition）成若干简单环，则能构造出欧拉环。</b></p>
+  <p>想法：先走第一个环；当走到与另一个环相交的顶点时，<b>「绕道（detour）」</b>先把那个环走完再继续。一个一个环加进去，最终覆盖所有边。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 引理 3：全偶度 ⟹ 边可拆成简单环</span>
+  <p><b>若每个顶点度都是偶数，则边可划分成若干简单环。</b></p>
+  <p>归纳证明：先找一个环 \(C\)（从任意顶点出发，沿「未走过的边」一直走，有限顶点必回访形成环——这里用到全偶度：走到一个顶点总能「进得出」）。删掉 \(C\) 的边得 \(G'\)：每个顶点要么度不变、要么减 2，<b>仍全偶</b>，且边更少。由归纳，\(G'\) 可拆成环 \(C_1,\dots,C_k\)，于是 \(G\) 拆成 \(C,C_1,\dots,C_k\)。✓</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 引理 4：两个奇度顶点 ⇒ 有欧拉路径</span>
+  <p>设 \(u,v\) 是两个奇度顶点。在 \(u,v\) 之间<b>补一条新边</b>（若它们原本已相邻，就补一条<b>平行的重边</b>，暂时把图看作多重图），则 \(u,v\) 的度各 \(+1\) 变偶、其余顶点不变，全图变偶度。由欧拉环定理（对多重图同样成立）存在一个欧拉环；从环中<b>去掉这条补边</b>，剩下的就是一个「遍历每条边恰好一次、从 \(u\) 到 \(v\)」的欧拉路径。✓</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 注意</span>
+  <p>欧拉路径/环必须<b>连通</b>：不连通的图即使度数条件满足也没有欧拉路径。前面「绕道」构造法只在连通图中成立。</p>
+</div>
+
+<h3 id="ln8-16">8.16 有向图 <span class="zh">Directed Graphs</span></h3>
+<div class="def box">
+  <span class="box-title">📌 定义 · 有向图</span>
+  <p>一个有向图 \(G=(V,A)\) 由顶点集 \(V\) 与<b>有向边（弧 arc）</b>集 \(A\) 组成。对弧 \(uv\)：</p>
+  <ul>
+    <li>\(u\) 是弧的<b>尾（tail）</b>，\(v\) 是弧的<b>头（head）</b>；</li>
+    <li>\(v\) 是 \(u\) 的<b>出邻居（out-neighbor）</b>，\(u\) 是 \(v\) 的<b>入邻居（in-neighbor）</b>。</li>
+  </ul>
+  <p>顶点 \(v\) 的<b>出度（out-degree）</b> = 出邻居数；<b>入度（in-degree）</b> = 入邻居数。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 定义 · 有向路径与有向环</span>
+  <ul>
+    <li><b>有向路径（directed path）</b>：顶点序列 \(v_1,\dots,v_k\)，每个 \(v_i\to v_{i+1}\) 都是弧（顺着箭头走）。<b>简单有向路径</b>：无重复顶点。</li>
+    <li><b>有向环（directed cycle）</b>：连通的有向图，且每个顶点的<b>入度 = 出度 = 1</b>。</li>
+  </ul>
+</div>
+<div class="def box">
+  <span class="box-title">📌 定义 · 弱连通与强连通</span>
+  <ul>
+    <li><b>弱连通（weakly connected）</b>：把所有弧换成无向边后，得到的是连通简单图。</li>
+    <li><b>强连通（strongly connected）</b>：任意<b>有序</b>顶点对 \((u,v)\) 之间都有从 \(u\) 到 \(v\) 的有向路径。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 有向图的欧拉问题</span>
+  <p>有向图何时存在「遍历每条弧恰好一次」的有向环？条件与无向图类似（每个顶点入度 = 出度，且强连通）。留作练习。</p>
+</div>
+
+<h3 id="ln8-17">8.17 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>图</b> \(G=(V,E)\)；<b>度</b> \(\deg(v)\)；<b>握手引理</b> \(\sum_v\deg(v)=2|E|\)，奇度顶点个数为偶。</p>
+  <p><b>同构</b>：存在保边的双射 \(f\)；同构 ⟹ 同顶点数/边数/度序列（不充分）。</p>
+  <p><b>路径/环/连通</b>：简单路径无重复顶点；连通分量是极大连通子图。</p>
+  <p><b>树</b>：连通无环 ⟺ 任意两顶点间唯一简单路径 ⟺ 连通且有 \(n-1\) 条边。</p>
+  <p><b>欧拉环</b>：连通 + 全偶度；<b>欧拉路径</b>：连通 + 0 或 2 个奇度顶点。</p>
+  <p><b>有向图</b>：入度/出度；弱连通/强连通；有向环 = 每个顶点入度 = 出度 = 1。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>graph / vertex (node) / edge</b> — 图 / 顶点（节点）/ 边</li>
+    <li><b>simple graph / multigraph / digraph (directed graph)</b> — 简单图 / 多重图 / 有向图</li>
+    <li><b>adjacent / neighbour</b> — 相邻 / 邻居；<b>subgraph</b> — 子图</li>
+    <li><b>degree / degree sequence</b> — 度 / 度序列；<b>handshaking lemma</b> — 握手引理</li>
+    <li><b>isomorphism / isomorphic</b> — 同构映射 / 同构的；<b>edge-preserving</b> — 保边</li>
+    <li><b>path / simple path / shortest path</b> — 路径 / 简单路径 / 最短路径</li>
+    <li><b>cycle</b> — 环；<b>connected / connected component</b> — 连通 / 连通分量</li>
+    <li><b>tree / forest / leaf</b> — 树 / 森林 / 叶</li>
+    <li><b>Eulerian path / Eulerian cycle</b> — 欧拉路径 / 欧拉环</li>
+    <li><b>arc / tail / head</b> — 弧 / 尾 / 头；<b>in-degree / out-degree</b> — 入度 / 出度</li>
+    <li><b>weakly / strongly connected</b> — 弱连通 / 强连通；<b>directed cycle</b> — 有向环</li>
   </ul>
 </div>
 </section>

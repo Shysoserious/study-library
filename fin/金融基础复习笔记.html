@@ -293,7 +293,7 @@
 </style>
 <script>
 window.MathJax = {
-  tex: { inlineMath: [['\\(', '\\)']] },
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
   svg: { fontCache: 'global' },
   options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
 };
@@ -1093,7 +1093,7 @@ window.MathJax = {
 <h2>Part 1 · 企业的组织形式 <span class="zh">Organizational Forms of a Firm</span></h2>
 
 <h3 id="fin2-p1-1">1.1 组织形式概览 <span class="zh">Forms of Business Organization</span></h3>
-<p>企业有四种基本形式：<b>个体户（sole proprietorship）、合伙（partnership）、有限责任公司（LLC）、股份有限公司（corporation）</b>。</p>
+<p>企业有五种基本形式：<b>个体户（sole proprietorship）、合伙（partnership）、有限合伙（LP，limited partnership）、有限责任公司（LLC）、股份有限公司（corporation）</b>。</p>
 <p>它们在许多方面不同：</p>
 <ul>
   <li>注册所需的<b>初始资本</b>；</li>
@@ -1209,6 +1209,10 @@ window.MathJax = {
 
 <h3 id="fin2-p2-2">2.2 京东股权结构示例 <span class="zh">Ownership structure of JD.com, Inc.</span></h3>
 <p>京东（JD）是「所有者 Owners」与「管理者 Managers」分离的典型示例（数据源：Yahoo Finance）。</p>
+<div class="warn box">
+  <span class="box-title">💡 京东的「所有权 ≠ 控制权」</span>
+  <p>京东采用<b>双重股权结构（dual-class shares）</b>：A 类股每股 1 票，创始人持有的 B 类股每股约 20 票。结果创始人刘强东（Richard Liu）虽只持有约 15% 的股份，却掌握约 80% 的投票权。于是「<b>所有者 Owners</b>」（众多中小股东）与「<b>管理者 Managers</b>」（创始人及管理层）是两拨人，但投票权高度集中在管理者手里——这正是本页要展示的「所有权与管理权分离」的极端形态：出资比例小的创始人仍能牢牢掌控公司。</p>
+</div>
 
 <h3 id="fin2-p2-3">2.3 财务管理的目标 <span class="zh">Financial Management Goals</span></h3>
 <ul>
@@ -1233,8 +1237,8 @@ window.MathJax = {
   <p>企业在追求经济目标的同时，应当<b>道德地经营、积极地为社会做贡献</b>。本质上，经理在试图最大化企业价值时，应当有一个<b>边界</b>——法律可能无法覆盖所有方面。</p>
 </div>
 <div class="ex box">
-  <span class="box-title">✏️ 例子：坏行为会受到惩罚</span>
-  <p>2016 年 5 月 2 日，百度股价下跌 <b>7.92%</b>（市值蒸发 ¥349 亿）。<b>公司社会责任很重要！</b></p>
+  <span class="box-title">✏️ 例子：坏行为会受到惩罚（百度「魏则西事件」）</span>
+  <p>2016 年，大学生魏则西因相信百度<b>竞价排名</b>（付费医疗广告）推荐的医院、接受无效治疗而去世，事件发酵后舆论哗然——百度被指为牟利而误导患者。2016 年 5 月 2 日，百度股价下跌 <b>7.92%</b>（市值蒸发 ¥349 亿，约 $34.9B）。教训：<b>公司社会责任很重要！</b>只顾短期利润、伤害利益相关者，市场会用股价「投票」惩罚你。</p>
 </div>
 </section>
 
@@ -1423,7 +1427,7 @@ window.MathJax = {
   <li>总股数 = 12 股，企业总价值 = $12M。</li>
   <li>股权变为：A 42%、B 42%、C 16%。<b>发生了所有权变化。</b></li>
 </ul>
-<p class="formula">企业成长：A 50% / B 50%（总值 $1M）→ A 50% / B 50%（总值 $10M）→ A 42% / B 42% / C 16%（总值 $12M）</p>
+<p class="formula">企业成长：A 50% / B 50%（总值 $2M，各投 $1M）→ A 50% / B 50%（总值 $10M）→ A 41.7% / B 41.7% / C 16.7%（总值 $12M）</p>
 
 <h3 id="fin3-p2-2">2.2 稀释 <span class="zh">Dilution</span></h3>
 <p>如果 C 只愿为 2 股付 $1.5M（而不是 $2M）会怎样？</p>
@@ -1995,6 +1999,14 @@ window.MathJax = {
   <p class="formula">\(FV_{OA}=PMT\left[\dfrac{(1+r)^t-1}{r}\right]\)</p>
   <p class="formula">\(PV_{OA}=PMT\left[\dfrac{1-\dfrac{1}{(1+r)^t}}{r}\right]\)</p>
 </div>
+<div class="warn box">
+  <span class="box-title">💡 公式怎么来的（等比数列求和）</span>
+  <p>普通年金每期<b>期末</b>付 PMT、共 t 期。PV 是 t 笔现金流的现值之和：</p>
+  <p class="formula">\(PV=PMT\left[\dfrac{1}{1+r}+\dfrac{1}{(1+r)^2}+\cdots+\dfrac{1}{(1+r)^t}\right]\)</p>
+  <p>括号里是首项 \(a=\tfrac{1}{1+r}\)、公比 \(q=\tfrac{1}{1+r}\) 的<b>等比数列</b>（t 项）。用等比求和 \(\dfrac{a(1-q^t)}{1-q}\) 代入：</p>
+  <p class="formula">\(PV=PMT\cdot\dfrac{\tfrac{1}{1+r}\left(1-\tfrac{1}{(1+r)^t}\right)}{1-\tfrac{1}{1+r}}=PMT\cdot\dfrac{1-\tfrac{1}{(1+r)^t}}{r}\)</p>
+  <p>终值 \(FV\) 是 PV 再往后滚 t 期：\(FV=PV(1+r)^t=PMT\dfrac{(1+r)^t-1}{r}\)。期初年金（annuity due）每笔都早一期到账，故整体再乘 \((1+r)\)。</p>
+</div>
 
 <h3 id="fin5-p2-3">2.3 期初年金 Annuity Due <span class="zh">（期初支付）</span></h3>
 <div class="thm box">
@@ -2328,7 +2340,11 @@ window.MathJax = {
 <div class="def box">
   <span class="box-title">📌 IRR</span>
   <p><b>内部收益率 IRR = 使 NPV=0 的贴现率</b>——即让「收益=成本」的回报率。计算等同于在 TVM 题里解 \(r\)。<br>
-  决策规则：若你认为 IRR 足够高就<b>接受</b>该项目。</p>
+  决策规则：<b>IRR &gt; 要求回报率（hurdle rate，即资金机会成本）就接受；IRR &lt; 要求回报率就拒绝</b>。因为（现金流正常、先付后收时）IRR &gt; 要求回报率 ⟺ NPV &gt; 0。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ IRR 的坑</span>
+  <p>① IRR 隐含假设「期间现金流以 IRR 本身再投资」，这不一定现实；② 若现金流方向不止一次改变（先付、再收、又付），可能<b>有多个 IRR</b>甚至无 IRR，此时 NPV 法更可靠。</p>
 </div>
 
 <h3 id="fin6-p3-2">3.2 例题：现金流 <span class="zh">Example</span></h3>
@@ -2649,9 +2665,30 @@ window.MathJax = {
   <p><b>违约风险（default risk）</b>：发行人违约利息或本金支付的概率。<b>评级越低 → 违约风险越高 → 收益率越高、价格越低</b>。<br>
   <b>信用利差（credit spread / default spread）</b>：公司债收益率与<b>同期限</b>国债收益率之差。评级越低，利差越大。</p>
 </div>
-<div class="ex box">
-  <span class="box-title">✏️ 信用利差图</span>
-  <p>课件用一张「收益率—剩余期限」图展示：BBB 公司债收益率曲线最高，其次 A、AAA，最低的是政府债。相邻两条曲线之间的<b>竖直距离</b>就是对应评级的<b>信用利差</b>（如「国债 vs BBB 公司债」的利差 = BBB 公司债的信用利差）。</p>
+<div class="figure">
+  <svg viewBox="0 0 680 320" width="680">
+    <text x="340" y="24" class="svg-text" text-anchor="middle" style="fill: var(--accent)">信用利差：评级越低，收益率曲线越高</text>
+    <line x1="60" y1="240" x2="640" y2="240" stroke="var(--muted)" stroke-width="2"/>
+    <line x1="60" y1="240" x2="60" y2="50" stroke="var(--muted)" stroke-width="2"/>
+    <text x="628" y="258" class="svg-muted" text-anchor="end">剩余期限 →</text>
+    <text x="46" y="46" class="svg-muted" text-anchor="end">收益率 ↑</text>
+    <path d="M60,215 Q150,178 300,150 Q480,122 640,100" fill="none" stroke="var(--sv-neg)" stroke-width="3"/>
+    <path d="M60,192 Q150,160 300,136 Q480,112 640,92" fill="none" stroke="var(--sv-pos)" stroke-width="3"/>
+    <path d="M60,168 Q150,142 300,122 Q480,102 640,84" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <path d="M60,142 Q150,122 300,106 Q480,92 640,76" fill="none" stroke="var(--sv-hl)" stroke-width="3"/>
+    <line x1="430" y1="132" x2="430" y2="98" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/>
+    <polygon points="430,92 424,102 436,102" style="fill: var(--muted)"/>
+    <line x1="90" y1="278" x2="120" y2="278" stroke="var(--sv-neg)" stroke-width="3"/>
+    <text x="128" y="283" class="svg-muted">BBB 公司债</text>
+    <line x1="240" y1="278" x2="270" y2="278" stroke="var(--sv-pos)" stroke-width="3"/>
+    <text x="278" y="283" class="svg-muted">A 公司债</text>
+    <line x1="390" y1="278" x2="420" y2="278" stroke="var(--accent)" stroke-width="3"/>
+    <text x="428" y="283" class="svg-muted">AAA 公司债</text>
+    <line x1="540" y1="278" x2="570" y2="278" stroke="var(--sv-hl)" stroke-width="3"/>
+    <text x="578" y="283" class="svg-muted">政府债（国债）</text>
+    <text x="340" y="308" class="svg-muted" text-anchor="middle">同一期限下，公司债收益率 − 国债收益率 = 该评级的信用利差（竖直虚线）</text>
+  </svg>
+  <div class="figcap">图：信用利差——不同评级的公司债收益率曲线叠在一起，评级越低、曲线越高（BBB 最高，其次 A、AAA，最低是政府债）。同一剩余期限下「公司债收益率 − 国债收益率」的竖直距离就是该评级的信用利差（违约风险溢价）。</div>
 </div>
 
 <h3 id="fin7-p2-12">2.12 债券发行例题 <span class="zh">Example: Bond Issuance</span></h3>
@@ -2849,6 +2886,10 @@ window.MathJax = {
 <p>持有两年：\[P_0 = \frac{Div_1}{1+r_E} + \frac{Div_2 + P_2}{(1+r_E)^2}\]</p>
 <p>持有 N 年：\[P_0 = \frac{Div_1}{1+r_E} + \frac{Div_2}{(1+r_E)^2} + \cdots + \frac{Div_N + P_N}{(1+r_E)^N}\]</p>
 <p>永久持有（令 N → ∞）：\[P_0 = \sum_{n=1}^{\infty}\frac{Div_n}{(1+r_E)^n}\]</p>
+<div class="warn box">
+  <span class="box-title">💡 为什么末尾价格项会消失</span>
+  <p>持有 N 年的式子里，末尾还有一项 \(\dfrac{P_N}{(1+r_E)^N}\)。当 \(N\to\infty\) 时这项<b>趋于 0</b>，前提是价格 \(P_N\) 的增长<b>慢于</b> \((1+r_E)^N\)（股票价格不会长期以超过贴现率的速度无限膨胀，这叫「横截性条件 transversality condition」）。于是价格只由无穷多笔红利决定：\(P_0=\sum_{n=1}^{\infty}\dfrac{Div_n}{(1+r_E)^n}\)。</p>
+</div>
 <div class="def box">
   <span class="box-title">📌 DDM 核心思想与 r<sub>E</sub></span>
   <p><b>任何股票的价格 = 其预期未来红利的现值</b>。其中 \(r_E\) 是<b>股权贴现率</b>（股票估值里也叫<b>股权成本 cost of equity</b>），如何设定将在「风险与收益」一讲讨论。</p>
@@ -3059,6 +3100,10 @@ window.MathJax = {
   <tr><td>EBIT</td><td>38,984</td><td>74,081</td><td>86,668</td><td>138,175</td></tr>
   <tr><td>净利润 Net Income</td><td>29,251</td><td>55,274</td><td>65,001</td><td>103,631</td></tr>
 </table>
+<div class="def box">
+  <span class="box-title">📌 EBIT（息税前利润）</span>
+  <p><b>EBIT = Earnings Before Interest and Taxes</b>——<b>息税前利润</b>，即「营业收入 − 各项经营成本（不含利息与所得税）」。它衡量<b>主营业务本身的盈利能力</b>，排除了「资本结构（利息）」和「税率」的差异，方便跨公司比较。</p>
+</div>
 <p>DCF 就是从「营收 → 扣各项成本 → EBIT → 扣税 → 净利润 → 自由现金流 → 贴现」逐层算下来。课件还提到对隆基的估值、以及 Aswath Damodaran 对特斯拉的估值作为例子。</p>
 </section>
 
@@ -3252,6 +3297,14 @@ window.MathJax = {
     </tbody>
   </table>
   <p>长期看收益：<b>股票 &gt; 长期债 &gt; 短期债</b>；风险（σ）也是<b>股票 &gt; 长期债 &gt; 短期债</b>——风险收益正相关。</p>
+<div class="def box">
+  <span class="box-title">📌 T-Bill / T-Note / T-Bond（美国政府债三类）</span>
+  <p><b>T-Bill（Treasury Bill，短期国库券）</b>：期限 ≤ 1 年，<b>不付息</b>、折价发行（按面值折扣买入，到期按面值偿还）；<b>T-Note（Treasury Note，中期国债）</b>：期限 2–10 年，按期付息；<b>T-Bond（Treasury Bond，长期国债）</b>：期限 20–30 年，按期付息。三者几乎无违约风险，常被当作「无风险利率 \(R_f\)」的基准。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 「总收益 Total Ret」是什么意思</span>
+  <p>表中「总收益 9828.60」表示：<b>1928 年初投 $1，把股息/票息全部再投资，到 2024 年底会变成 $9828.60</b>（累计约翻 9828 倍）。它对应几何平均（CAGR）9.94%，而不是算术平均 11.79%——两者差异正是「波动拖累」（见 2.5）。</p>
+</div>
 
   <h3 id="fin9-p3-2">3.2 A股历史收益 <span class="zh">Historical Return of Chinese Stocks</span></h3>
   <table>
@@ -3318,7 +3371,7 @@ window.MathJax = {
   </table>
   <p>关键结论：</p>
   <ul>
-    <li>算术平均收益相同时，<b>Sharpe 越高越受偏好</b>（股票 9.27% vs 对冲基金 9.17%，但对冲基金 σ 更低 → Sharpe 0.6002 &gt; 0.3895）；</li>
+    <li>算术平均收益相同时，<b>Sharpe 越高越受偏好</b>。课件另举「股票指数 vs 对冲基金」的例子：两者算术平均收益几乎相同（9.27% vs 9.17%），但对冲基金波动率更低，故 Sharpe 更高（0.6002 &gt; 0.3895）——同样的收益、更小的风险，自然更受欢迎；</li>
     <li>平均收益相同时，Sharpe 越高通常<b>复利收益也越高</b>；</li>
     <li>年化 Sharpe 的典型区间是 <b>0.2–0.5</b>，只有极优秀的基金经理能做到 &gt; 1；</li>
     <li>但别过度迷信 Sharpe：某些固定收益资产因低风险 Sharpe 很高，长期却跑不赢股票（股票收益高得多）。</li>
@@ -3371,10 +3424,20 @@ window.MathJax = {
   <p>分散化<b>（几乎总是）降低风险</b>，这个好处来自一个简单的统计性质（见 1.6）。</p>
 
   <h3 id="fin10-p1-4">1.4 理想例子：太阳镜 + 雨伞 <span class="zh">An Ideal Example</span></h3>
-  <p>在加勒比小岛开店，一半卖太阳镜、一半卖雨伞（各 50% 权重）。假设天气两种状态等概率：晴天太阳镜赚 12%、雨伞亏 8%；雨天相反。</p>
+  <p>在加勒比小岛开店，一半卖太阳镜、一半卖雨伞（各 50% 权重）。天气有两种状态（晴天 / 雨天）且等概率。先看两门生意<b>各自的期望收益</b>——注意下面两个数字<b>已经是概率加权后的期望值</b>，不是某一天的具体收益：</p>
+  <ul>
+    <li><b>雨伞生意</b>的期望收益 \(\mathrm{E}[R_{\text{雨伞}}]=8\%\)（晴天亏、雨天赚，平均下来 8%）；</li>
+    <li><b>太阳镜生意</b>的期望收益 \(\mathrm{E}[R_{\text{太阳镜}}]=12\%\)（晴天赚、雨天亏，平均下来 12%）。</li>
+  </ul>
+  <p>组合的期望收益就是两门生意期望收益的加权平均：</p>
   <p class="formula">\(\mathrm{E}[R_p]=0.5\times8\%+0.5\times12\%=10\%\)</p>
+  <p>关键在风险：<b>雨伞和太阳镜的收益方向恰好相反</b>（完全负相关，\(\rho=-1\)）。晴天太阳镜好、雨伞差；雨天太阳镜差、雨伞好——一个差的时候另一个正好好，两者<b>互相抵消</b>。因此 50/50 的组合<b>无论晴天还是雨天都稳赚 10%</b>：</p>
   <p class="formula">\(\sigma(R_p)=0\quad\text{（无论天气如何都稳赚 10%）}\)</p>
-  <p>标准差是 0%：<b>在这个例子中，分散化消除了全部风险</b>。直觉：一个资产的坏收益被另一个资产的好收益<b>对冲</b>了。</p>
+  <div class="warn box">
+    <div class="box-title">为什么是 10% 而不是 2%？</div>
+    <p>如果把「太阳镜 12%、雨伞 −8%」当成<b>同一个晴天</b>两门生意各自的具体收益，那么组合在晴天确实是 \(0.5\times12\%+0.5\times(-8\%)=2\%\)——但这只是<b>单个天气状态下的组合收益</b>，不是期望收益。期望收益要把<b>所有天气状态都算进去再平均</b>：雨伞在晴天亏、雨天赚，其<b>期望</b>收益本来就是 8%（而非 −8%）；太阳镜的期望收益是 12%。所以组合期望收益 = \(0.5\times8\%+0.5\times12\%=10\%\)。而「无论天气如何都 10%、标准差为 0」来自两门生意收益<b>完全负相关</b>的对冲，跟单个状态下的 2% 是两回事。</p>
+  </div>
+  <p>结论：标准差是 0%——<b>在这个理想例子中，分散化消除了全部风险</b>。直觉：一个资产的坏收益被另一个资产的好收益<b>对冲</b>了。</p>
 
   <h3 id="fin10-p1-5">1.5 相关性 ρ 与协方差 <span class="zh">Correlation</span></h3>
   <div class="def box">
@@ -3388,6 +3451,12 @@ window.MathJax = {
     <div class="box-title">两资产组合风险</div>
     <p class="formula">\(\sigma_P=\sqrt{w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\rho\,\sigma_1\sigma_2}\)</p>
     <p>定理：\(\sigma_P\le w_1\sigma_1+w_2\sigma_2\)（因为 \(-1\le\rho\le1\)），<b>等号仅当 \(\rho=1\)</b>；若 \(\rho=-1\)，存在权重使 \(\sigma_P=0\)（可消除全部风险）。</p>
+  </div>
+  <div class="warn box">
+    <div class="box-title">💡 公式从哪来</div>
+    <p>组合收益 \(R_p=w_1R_1+w_2R_2\)。对方差用「线性组合方差公式」\(\mathrm{Var}(aX+bY)=a^2\mathrm{Var}(X)+b^2\mathrm{Var}(Y)+2ab\,\mathrm{Cov}(X,Y)\)：</p>
+    <p class="formula">\(\sigma_P^2=\mathrm{Var}(w_1R_1+w_2R_2)=w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\,\mathrm{Cov}(R_1,R_2)\)</p>
+    <p>再代入 \(\mathrm{Cov}(R_1,R_2)=\rho\,\sigma_1\sigma_2\)（由 \(\rho=\mathrm{Cov}/(\sigma_1\sigma_2)\) 反解），就得到 \(\sigma_P^2=w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\rho\sigma_1\sigma_2\)，开方即公式。这就是 \(\rho\) 会出现在交叉项里的原因。</p>
   </div>
   <p>解读：组合风险不高于各资产风险的加权平均，所以持有组合有<b>分散化收益</b>。\(\rho\) 越小，风险降得越多、分散化收益越大（两资产走势越不同，越能对冲）。</p>
   <div class="warn box">
@@ -3531,7 +3600,7 @@ window.MathJax = {
   <p>CAPM 算的是<b>期望</b>收益，实际收益可能差很远。2023 年实际：AAPL 期望 8.24% 但实际 49.01%；KO 期望 5.96% 实际 −4.43%；KHC 期望 4.64% 实际 −5.04%。</p>
 
   <h3 id="fin10-p3-7">3.7 CAPM 实证表现与为何还用 <span class="zh">Does It Work</span></h3>
-  <p>实证上 CAPM <b>表现不佳</b>，预测收益不准（Fama &amp; French 2004）。原因是它依赖许多强假设，而真实的人未必如此行事：投资者理性且有均值–方差偏好、市场无摩擦、投资者之间无分歧。</p>
+  <p>实证上 CAPM <b>表现不佳</b>，预测收益不准（Fama &amp; French 2004）。原因是它依赖许多强假设，而真实的人未必如此行事：投资者理性且有<b>均值–方差偏好（mean–variance preference：做决策时只关心收益的期望值（均值）与方差（风险），即「收益越高越好、风险越小越好」）</b>、市场无摩擦、投资者之间无分歧。</p>
   <div class="warn box">
     <div class="box-title">为何还要学 CAPM</div>
     <p>① 它是许多解释风险–收益关系模型的<b>起点</b>；② 许多公司仍用 CAPM 估算<b>权益资本成本</b>。</p>

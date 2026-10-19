@@ -291,11 +291,10 @@ window.MathJax = {
       <div class="lecture-body">
         <a href="#lec2-overview">📖 本讲概览</a>
         <a class="lv1" href="#lec2-p1">Part 1 · 位置、位移与速度</a>
-        <a class="lv2" href="#lec2-p1-1">1.1 一维运动与理想化模型</a>
-        <a class="lv2" href="#lec2-p1-2">1.2 位置与位移</a>
-        <a class="lv2" href="#lec2-p1-3">1.3 平均速度</a>
-        <a class="lv2" href="#lec2-p1-4">1.4 平均速率</a>
-        <a class="lv2" href="#lec2-p1-5">1.5 瞬时速度与速率</a>
+        <a class="lv2" href="#lec2-p1-1">1.1 位置与位移</a>
+        <a class="lv2" href="#lec2-p1-2">1.2 平均速度</a>
+        <a class="lv2" href="#lec2-p1-3">1.3 平均速率</a>
+        <a class="lv2" href="#lec2-p1-4">1.4 瞬时速度与速率</a>
         <a class="lv1" href="#lec2-p2">Part 2 · 加速度</a>
         <a class="lv1" href="#lec2-p3">Part 3 · 匀加速直线运动</a>
         <a class="lv2" href="#lec2-p3-1">3.1 六个运动学方程</a>
@@ -792,7 +791,7 @@ window.MathJax = {
 
 <h3 id="lec1-p2-11">2.11 矢量积（叉积）Vector / Cross Product</h3>
 <p class="formula">\(\vec{c} = \vec{a}\times\vec{b},\qquad c = ab\sin\phi\)</p>
-<p>\(\phi\) 取两矢量间<b>较小的夹角</b>（\(\sin\phi \neq \sin(360^\circ-\phi)\)）。\(\phi=90^\circ\) 时 c 最大；\(\phi=0^\circ\) 或 \(180^\circ\)（平行/反平行）时 \(\vec{c}=0\)。方向由<b>右手定则（right-hand rule）</b>确定，且 \(\vec{a}\times\vec{b} = -(\vec{b}\times\vec{a})\)。</p>
+<p>\(\phi\) 取两矢量间<b>较小的夹角</b>（\(\sin\phi \neq \sin(360^\circ-\phi)\)）。\(\phi=90^\circ\) 时 c 最大；\(\phi=0^\circ\) 或 \(180^\circ\)（平行/反平行）时 \(\vec{c}=0\)。方向由<b>右手定则（right-hand rule）</b>确定：<b>四指从 \(\vec a\) 沿小于 \(180^\circ\) 的角转向 \(\vec b\)，拇指所指即 \(\vec c=\vec a\times\vec b\) 的方向</b>；且 \(\vec{a}\times\vec{b} = -(\vec{b}\times\vec{a})\)。</p>
 <p class="formula">\(\vec{a}\times\vec{b} = (a_y b_z - a_z b_y)\hat{i} + (a_z b_x - a_x b_z)\hat{j} + (a_x b_y - a_y b_x)\hat{k}\)</p>
 <p class="formula">\(\vec{a}\times\vec{b} = \begin{vmatrix}\hat{i} & \hat{j} & \hat{k}\\ a_x & a_y & a_z\\ b_x & b_y & b_z\end{vmatrix}\)</p>
 <div class="def box">
@@ -825,7 +824,7 @@ window.MathJax = {
 
 <h3 id="lec1-p2-12">2.12 三重积 Triple Products</h3>
 <ul>
-  <li><b>三重标量积（triple scalar product）</b>：\(\vec{A}\cdot(\vec{B}\times\vec{C})\) 的绝对值等于三矢量张成的<b>平行六面体体积</b>：\(V = |\vec{A}\cdot(\vec{B}\times\vec{C})| = |\vec{B}\cdot(\vec{C}\times\vec{A})| = |\vec{C}\cdot(\vec{A}\times\vec{B})|\)。</li>
+  <li><b>三重标量积（triple scalar product）</b>：\(\vec{A}\cdot(\vec{B}\times\vec{C})\) 的绝对值等于三矢量张成的<b>平行六面体体积</b>：\(V = |\vec{A}\cdot(\vec{B}\times\vec{C})| = |\vec{B}\cdot(\vec{C}\times\vec{A})| = |\vec{C}\cdot(\vec{A}\times\vec{B})|\)。（因为 \(|\vec B\times\vec C|\) 是底面面积、\(\vec B\times\vec C\) 垂直于底面，再点乘 \(\vec A\) 就取到「高」，底×高 = 体积。）</li>
   <li><b>三重矢量积（triple vector product）</b>：\(\vec{A}\times(\vec{B}\times\vec{C}) = (\vec{A}\cdot\vec{C})\vec{B} - (\vec{A}\cdot\vec{B})\vec{C}\)；一般 \(\vec{A}\times(\vec{B}\times\vec{C}) \neq (\vec{A}\times\vec{B})\times\vec{C}\)。</li>
 </ul>
 
@@ -835,6 +834,7 @@ window.MathJax = {
 <p>对<b>矢量场</b> \(\vec{F} = F_x\hat{i} + F_y\hat{j} + F_z\hat{k}\)：</p>
 <p class="formula">\(\operatorname{div}\vec{F} = \nabla\cdot\vec{F} = \dfrac{\partial F_x}{\partial x} + \dfrac{\partial F_y}{\partial y} + \dfrac{\partial F_z}{\partial z}\)</p>
 <p class="formula">\(\operatorname{curl}\vec{F} = \nabla\times\vec{F} = \left(\dfrac{\partial F_z}{\partial y}-\dfrac{\partial F_y}{\partial z}\right)\hat{i} - \left(\dfrac{\partial F_z}{\partial x}-\dfrac{\partial F_x}{\partial z}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x}-\dfrac{\partial F_x}{\partial y}\right)\hat{k}\)</p>
+<p><b>几何/物理直觉</b>：<b>梯度</b> \(\nabla f\) 指向 \(f\) 增长最快的方向、大小为该方向上的增长率（后面势能 \(\vec F=-\nabla U\) 就用它）；<b>散度</b> \(\nabla\cdot\vec F\) 度量某点处「源的净流出」（为正表示有源，如正电荷处电场散度为正）；<b>旋度</b> \(\nabla\times\vec F\) 度量矢量场绕某点的「环流/旋转」程度（无旋场旋度为 0）。</p>
 </section>
 
 <div class="vocab">
@@ -906,7 +906,7 @@ window.MathJax = {
 <p>当质点速度变化时就经历<b>加速度</b>。平均加速度与瞬时加速度：</p>
 <p class="formula">\(a_{avg} = \dfrac{v_2 - v_1}{t_2 - t_1} = \dfrac{\Delta v}{\Delta t}\)</p>
 <p class="formula">\(a = \dfrac{dv}{dt} = \dfrac{d}{dt}\left(\dfrac{dx}{dt}\right) = \dfrac{d^2x}{dt^2}\)</p>
-<p>瞬时加速度是位置 \(x(t)\) 对时间的<b>二阶导数</b>；单位 \(\text{m/s}^2\)。加速度是矢量，方向由 \(\Delta v\) 决定；正号表示加速（+ve）、负号表示减速（-ve）。</p>
+<p>瞬时加速度是位置 \(x(t)\) 对时间的<b>二阶导数</b>；单位 \(\text{m/s}^2\)。加速度是矢量，方向由 \(\Delta v\) 决定。<b>加速还是减速，取决于 \(a\) 与 \(v\) 是否同号</b>：同号则<b>加速</b>（速率增大），异号则<b>减速</b>（速率减小）。注意「正号=加速、负号=减速」只在 \(v>0\) 时成立——若 \(v<0\) 且 \(a<0\)（同号），速率反而<b>增大</b>（向负方向越跑越快）。</p>
 </section>
 
 <section id="lec2-p3">
@@ -923,6 +923,7 @@ window.MathJax = {
   <p class="formula">⑤ \(v^2 = v_0^2 + 2a(x-x_0)\)　<span class="zh">(x−x₀, v₀, a, v)</span></p>
   <p class="formula">⑥ \(x - x_0 = vt - \tfrac12 a t^2\)　<span class="zh">(x−x₀, v, a, t)</span></p>
 </div>
+<p><b>这些方程从哪来</b>：① \(v=v_0+at\) 就是「加速度恒定」的定义（由 \(a=\dfrac{v-v_0}{t}\) 解出 \(v\)）。④ 由 ① 对时间积分：\(x-x_0=\int_0^t(v_0+at)\,dt=v_0t+\tfrac12 at^2\)。⑤ 由 ①④ 联立消去 \(t\) 得到。② \(v_{avg}=\tfrac12(v_0+v)\) <b>只对匀加速成立</b>（因 \(v(t)=v_0+at\) 是线性函数，其平均值恰为两端点平均）。③ 是平均速度的定义 \(x-x_0=v_{avg}t\)，代入 ② 即得。⑥ 是 ④ 的变体（用末速 \(v\) 换掉初速 \(v_0\)）。</p>
 
 <h3 id="lec2-p3-2">3.2 自由落体 Free-Fall Acceleration</h3>
 <p>直线运动（匀加速）最重要的例子之一：物体在地表附近自由上升或下落。取 +y 竖直向上，自由落体加速度大小 \(g = 9.8\ \text{m/s}^2\)：</p>
@@ -1099,7 +1100,7 @@ window.MathJax = {
 <p>分解成两个独立的一维问题（取 \(x_0=y_0=0\)，\(\theta_0\) 为 \(\vec{v}_0\) 与 +x 轴夹角）：</p>
 <p class="formula">竖直：\(y = (v_0\sin\theta_0)\,t - \tfrac12 g t^2\)，\(v_y = v_0\sin\theta_0 - gt\)，\(v_y^2 = (v_0\sin\theta_0)^2 - 2g\,y\)</p>
 <p class="formula">水平：\(x = (v_0\cos\theta_0)\,t\)</p>
-<p>消去 t 得 x–y 关系（轨迹方程）：</p>
+<p>消去 \(t\) 得 \(x\)–\(y\) 关系（轨迹方程）：由水平式解出 \(t=\dfrac{x}{v_0\cos\theta_0}\)，代入竖直式 \(y=(v_0\sin\theta_0)\,t-\tfrac12 g t^2\)：</p>
 <p class="formula">\(y = (\tan\theta_0)\,x - \dfrac{g\,x^2}{2\,(v_0\cos\theta_0)^2}\)</p>
 
 <h3 id="lec3-p3-3">3.3 射程与最大高度 Range &amp; Max Height</h3>
@@ -1387,7 +1388,7 @@ window.MathJax = {
   <span class="box-title">📌 惯性参考系</span>
   <p><b>惯性参考系（inertial reference frame）</b>：牛顿第一定律在其中成立的参考系。静止或匀速运动的参考系是惯性系（<b>不存在绝对惯性系</b>）。</p>
 </div>
-<p>滑冰者例子：相对地面（A）静止 → \(\vec{F}_{net}=0\) 成立；相对加速的公交车（B）向后加速运动（\(\vec{a}\neq0\) 但 \(\vec{F}_{net}=0\)）→ <b>第一定律失效</b>。若 A 是惯性系且 \(\vec{a}_{BA}\neq0\)，则 B 不是惯性系；若 A、B 相对速度恒定（\(\vec{a}_{BA}=0\)），则 B 也是惯性系。</p>
+<p>滑冰者例子：相对地面（A）静止 → \(\vec{F}_{net}=0\) 成立；相对加速的公交车（B）向后加速运动（\(\vec{a}\neq0\) 但 \(\vec{F}_{net}=0\)）→ <b>第一定律失效</b>。若 A 是惯性系且 \(\vec{a}_{BA}\neq0\)，则 B 不是惯性系；若 A、B 相对速度恒定（\(\vec{a}_{BA}=0\)），则 B 也是惯性系。在<b>非惯性系</b>中牛顿定律失效，要强行继续用 \(F=ma\)，就需额外引入<b>假想力（fictitious force，如惯性力、离心力）</b>。</p>
 </section>
 
 <section id="lec4-p3">
@@ -1578,7 +1579,7 @@ window.MathJax = {
   </div>
 </section>
 
-<h2>Part 1 · 平衡与动力学 <span class="zh">Equilibrium &amp; Dynamics</span></h2>
+<h2 id="lec5-p1">Part 1 · 平衡与动力学 <span class="zh">Equilibrium &amp; Dynamics</span></h2>
 
 <h3 id="lec5-p1-1">1.1 平衡（牛顿第一定律）Equilibrium</h3>
 <div class="def box">
@@ -1630,7 +1631,7 @@ window.MathJax = {
   (b) 绕地卫星是否在自由落体？<b>是</b>——无空气阻力，唯一作用力就是（提供向心力的）重力。</p>
 </div>
 
-<h2>Part 2 · 常见力 <span class="zh">Some Particular Forces</span></h2>
+<h2 id="lec5-p2">Part 2 · 常见力 <span class="zh">Some Particular Forces</span></h2>
 
 <h3 id="lec5-p2-1">2.1 重力 Gravity</h3>
 <div class="def box">
@@ -1656,7 +1657,7 @@ window.MathJax = {
   支持力<b>自动调节</b>到等于把物体压向表面的力（self-adjusts）。</p>
 </div>
 
-<h2>Part 3 · 摩擦力 <span class="zh">Friction</span></h2>
+<h2 id="lec5-p3">Part 3 · 摩擦力 <span class="zh">Friction</span></h2>
 
 <h3 id="lec5-p3-1">3.1 静摩擦与动摩擦 Static &amp; Kinetic Friction</h3>
 <div class="def box">
@@ -1743,7 +1744,7 @@ window.MathJax = {
   结论：\(\mu_s\) 越大，能保持静止的倾角 \(\theta\) 越大。</p>
 </div>
 
-<h2>Part 4 · 流体阻力与终极速度 <span class="zh">Fluid Resistance &amp; Terminal Speed</span></h2>
+<h2 id="lec5-p4">Part 4 · 流体阻力与终极速度 <span class="zh">Fluid Resistance &amp; Terminal Speed</span></h2>
 
 <h3 id="lec5-p4-1">4.1 低速阻力 \(f=kv\)</h3>
 <div class="def box">
@@ -1753,12 +1754,14 @@ window.MathJax = {
 </div>
 <div class="thm box">
   <span class="box-title">🎯 终极速度与速度随时间变化</span>
-  <p>下落达到平衡 \(f-F_g=0\) 时，速度为<b>终极速度</b>
-  \[v_t=\frac{F_g}{k}\]
-  速度随时间变化（由 \(ma_y=mg-kv_y\) 解微分方程）：
+  <p>下落达到平衡（重力 = 阻力，\(f=F_g=mg\)）时，速度为<b>终极速度</b>
+  \[v_t=\frac{F_g}{k}=\frac{mg}{k}\]
+  <b>推导 \(v_y(t)\)</b>：牛顿第二定律 \(m\dfrac{dv_y}{dt}=mg-kv_y=k(v_t-v_y)\)。这是可分离变量的微分方程——含 \(v_y\) 的项移到一边、\(dt\) 移到另一边：</p>
+  \[\frac{dv_y}{v_t-v_y}=\frac{k}{m}\,dt\]
+  <p>两边积分 \(\displaystyle\int_0^{v_y}\frac{dv}{v_t-v}=\int_0^t\frac{k}{m}\,dt\)，得 \(\ln\dfrac{v_t}{v_t-v_y}=\dfrac{k}{m}t\)，即 \(v_t-v_y=v_t\,e^{-(k/m)t}\)，解得：</p>
   \[v_y=v_t\left[1-e^{-(k/m)t}\right]\]
-  \[a_y=g\,e^{-(k/m)t}\]
-  \[y=v_t\left[t-\frac{m}{k}\left(1-e^{-(k/m)t}\right)\right]\]</p>
+  <p>再求导得加速度 \(a_y=\dfrac{dv_y}{dt}=g\,e^{-(k/m)t}\)（随时间指数衰减到 0）；再积分得位移：</p>
+  \[y=v_t\left[t-\frac{m}{k}\left(1-e^{-(k/m)t}\right)\right]\]
 </div>
 
 <h3 id="lec5-p4-2">4.2 高速阻力 \(f=Dv^2\)</h3>
@@ -1809,7 +1812,7 @@ window.MathJax = {
   (b) 若无阻力，则 \(v=\sqrt{2gh}=\sqrt{2\times9.8\times1200}=153\ \text{m/s}\approx550\ \text{km/h}\)——接近大口径手枪子弹的速度！（正因有空气阻力，才「润物细无声」。）</p>
 </div>
 
-<h2>Part 5 · 匀速圆周运动 <span class="zh">Uniform Circular Motion</span></h2>
+<h2 id="lec5-p5">Part 5 · 匀速圆周运动 <span class="zh">Uniform Circular Motion</span></h2>
 
 <h3 id="lec5-p5-1">5.1 向心力 Centripetal Force</h3>
 <div class="def box">
@@ -2908,6 +2911,9 @@ window.MathJax = {
   <li><b>重靶 \(m_B\gg m_A\)</b>：第一个物体<b>反弹</b>，速率几乎不变（\(v_{A2}\approx -v_{A1}\)，\(v_{B2}\approx 0\)）。</li>
   <li><b>重抛射体 \(m_A\gg m_B\)</b>：第一个物体继续前进，靶以约<b>两倍</b>抛射体速度飞出（\(v_{A2}\approx v_{A1}\)，\(v_{B2}\approx 2v_{A1}\)）。</li>
 </ul>
+<p><b>一般解</b>：联立动量守恒与动能守恒两式，消元可得</p>
+<p class="formula">\(v_{A2}=\dfrac{m_A-m_B}{m_A+m_B}v_{A1},\qquad v_{B2}=\dfrac{2m_A}{m_A+m_B}v_{A1}.\)</p>
+<p>三个特例都是把它代入取极限：\(m_A=m_B\) 得 \(v_{A2}=0,\ v_{B2}=v_{A1}\)；\(m_B\gg m_A\) 得 \(v_{A2}\approx -v_{A1},\ v_{B2}\approx 0\)；\(m_A\gg m_B\) 得 \(v_{A2}\approx v_{A1},\ v_{B2}\approx 2v_{A1}\)。</p>
 <div class="figure">
   <svg viewBox="0 0 500 260" role="img" aria-label="一维弹性碰撞前后示意图">
     <defs>
@@ -2936,7 +2942,7 @@ window.MathJax = {
 </div>
 
 <h3 id="lec8-p6-3">6.3 相对速度关系 Relative Velocity</h3>
-<p>运动靶情形（\(v_{B1}\neq0\)）：由两式联立可得</p>
+<p>运动靶情形（\(v_{B1}\neq0\)）：把动能守恒改写为 \(m_A(v_{A1}^2-v_{A2}^2)=m_B(v_{B2}^2-v_{B1}^2)\)，因式分解得 \(m_A(v_{A1}-v_{A2})(v_{A1}+v_{A2})=m_B(v_{B2}-v_{B1})(v_{B2}+v_{B1})\)；而动量守恒给 \(m_A(v_{A1}-v_{A2})=m_B(v_{B2}-v_{B1})\)。两式相除（约去公共因子）即得：</p>
 <p class="formula">\(v_{B2}-v_{A2}=-(v_{B1}-v_{A1}).\)</p>
 <p>即一维弹性碰撞中，两物体<b>碰前与碰后的相对速度大小相等、方向相反</b>。推广到 2D/3D 的弹性碰撞：相对速度的<b>大小</b>在碰前碰后相同（矢量关系）。</p>
 </section>
@@ -3379,6 +3385,11 @@ window.MathJax = {
 
 <h3 id="lec9-p2-5">2.5 极坐标描述 Polar Coordinates</h3>
 <p>单个粒子做圆周运动也可用<b>极坐标（polar coordinates）</b>描述：粒子在 \(x\)–\(y\) 平面内沿半径 \(r\) 固定的圆运动，其直角坐标分量随时间变化。极坐标把「绕中心」的几何对称性显式化，便于写圆周运动的位置、速度、加速度。</p>
+<p>极坐标用两个互相垂直的<b>基矢</b>表示：<b>径向单位矢</b> \(\hat r\)（从圆心指向粒子）与<b>切向单位矢</b> \(\hat\theta\)（垂直于 \(\hat r\)，指向 \(\theta\) 增大的方向）。位置、速度、加速度为：</p>
+<p class="formula">\(\vec r = r\,\hat r\)</p>
+<p class="formula">\(\vec v = \dot r\,\hat r + r\dot\theta\,\hat\theta\)</p>
+<p class="formula">\(\vec a = (\ddot r - r\dot\theta^2)\,\hat r + (r\ddot\theta + 2\dot r\dot\theta)\,\hat\theta\)</p>
+<p>做<b>圆周运动</b>时半径固定，\(\dot r=\ddot r=0\)，于是 \(\vec v = r\dot\theta\,\hat\theta = r\omega\,\hat\theta\)（纯切向）；\(\vec a = -r\omega^2\,\hat r + r\dot\omega\,\hat\theta = -r\omega^2\,\hat r + r\alpha\,\hat\theta\)：径向分量 \(-r\omega^2\) 指向圆心（大小 \(\omega^2 r\)，即向心加速度 \(a_{rad}\)），切向分量 \(r\alpha\) 即切向加速度 \(a_t\)。</p>
 <div class="ex box">
   <span class="box-title">✏️ 例题：宇航员离心机</span>
   <p>一宇航员在半径固定的离心机中做圆周运动，角速度恒定。因 \(\omega\) 恒定，\(\alpha=0\)，<b>只有径向加速度</b> \(a_{rad}=\omega^2 r\) 存在。若离心机从静止在 \(120\ \text{s}\) 内匀加速到上述 \(\omega\)，则还存在切向加速度 \(a_t=\alpha r = \dfrac{\omega-0}{120}\,r\)。</p>
