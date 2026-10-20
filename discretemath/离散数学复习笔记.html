@@ -1838,6 +1838,15 @@ window.MathJax = {
   <span class="box-title">📌 合并两个长为 \(k\) 的有序序列</span>
   <p>两个已排序的 \(k\) 长序列可在 <b>\(2k\) 步</b>内合并成一个 \(2k\) 长的有序序列：每步只看两个序列的<b>队首（head）</b>，取较小者放入结果——每步扩展一个数，共 \(2k\) 步。</p>
 </div>
+<div class="ex box">
+  <span class="box-title">✏️ 走查：合并 \(3,5,7,8,9,10\) 与 \(1,2,4,6,11,12\)</span>
+  <p>两个序列都已排好序。每步比较两个队首，把较小者「吐」进结果：</p>
+  <p class="formula">\(\underbrace{3,5,7,8,9,10}_{A}\qquad\underbrace{1,2,4,6,11,12}_{B}\quad\longrightarrow\quad\) 比较 3 与 1 → 取 1</p>
+  <p class="formula">\(\underbrace{3,5,7,8,9,10}_{A}\qquad\underbrace{2,4,6,11,12}_{B}\quad\longrightarrow\quad\) 比较 3 与 2 → 取 2</p>
+  <p class="formula">\(\underbrace{3,5,7,8,9,10}_{A}\qquad\underbrace{4,6,11,12}_{B}\quad\longrightarrow\quad\) 比较 3 与 4 → 取 3</p>
+  <p class="formula">\(\underbrace{5,7,8,9,10}_{A}\qquad\underbrace{4,6,11,12}_{B}\quad\longrightarrow\quad\) 比较 5 与 4 → 取 4，⋯ 依次取 5, 6, 7, 8, 9, 10, 11, 12</p>
+  <p>结果：\(1,2,3,4,5,6,7,8,9,10,11,12\)。两个 \(k\) 长序列恰好用 \(2k\) 步（每步比较一次、放一个数）合并完成。</p>
+</div>
 <p>若排 \(k\) 个数需 \(T_k\) 步，则排 \(2k\) 个数需 \(2T_k + 2k\) 步：</p>
 <p class="formula">\(T_{2k} = 2T_k + 2k\)</p>
 <p>解此递推（后见）得 \(T_{2n}\le n\log_2 n\)，<b>显著快于冒泡排序</b>。</p>
@@ -1982,7 +1991,13 @@ window.MathJax = {
 <p class="formula">\(F(x) = 0 + x + (f_1+f_0)x^2 + (f_2+f_1)x^3 + \cdots = x + xF(x) + x^2F(x)\)</p>
 <p>解得：</p>
 <p class="formula">\(F(x) = \dfrac{x}{1-x-x^2}\)</p>
-<p>把 \(F(x)\) 分解成部分分式 \(F(x)=\dfrac{A}{1-\phi x}+\dfrac{B}{1-\psi x}\)（待定系数可解出 \(A,B\)），再利用 \(\dfrac{1}{1-cx}=1+cx+c^2x^2+\cdots\) 逐项展开、比较 \(x^n\) 的系数，即得闭式解。</p>
+<p>把分母因式分解：\(1-x-x^2=(1-\phi x)(1-\psi x)\)（因 \(\phi+\psi=1,\ \phi\psi=-1\)）。作<b>部分分式分解</b>：</p>
+<p class="formula">\(F(x)=\dfrac{x}{1-x-x^2}=\dfrac{A}{1-\phi x}+\dfrac{B}{1-\psi x}\)</p>
+<p>通分比较分子：\(x = A(1-\psi x) + B(1-\phi x)\)。令 \(x=0\) 得 \(A+B=0\)，即 \(B=-A\)；再比较 \(x\) 的系数得 \(1=-A\psi-B\phi=A(\phi-\psi)=A\sqrt{5}\)，故：</p>
+<p class="formula">\(A=\dfrac{1}{\sqrt5},\qquad B=-\dfrac{1}{\sqrt5}\)</p>
+<p>于是 \(F(x)=\dfrac{1}{\sqrt5}\left[\dfrac{1}{1-\phi x}-\dfrac{1}{1-\psi x}\right]\)。利用几何级数 \(\dfrac{1}{1-cx}=\sum_{n\ge0}c^n x^n\) 展开：</p>
+<p class="formula">\(F(x)=\dfrac{1}{\sqrt5}\sum_{n\ge0}(\phi^n-\psi^n)\,x^n\)</p>
+<p>比较 \(x^n\) 的系数，即得 \(f_n=\dfrac{\phi^n-\psi^n}{\sqrt5}\)——与特征根法结果一致。</p>
 <p><b>特征根法</b>：特征方程 \(t^2-t-1=0\)，两相异根：</p>
 <p class="formula">\(\phi = \dfrac{1+\sqrt{5}}{2},\qquad \psi = \dfrac{1-\sqrt{5}}{2}\)</p>
 <p>由相异根定理 \(f_n = C\phi^n + D\psi^n\)，代入 \(f_0=0,\ f_1=1\) 解出 \(C=\tfrac{1}{\sqrt5},\ D=-\tfrac{1}{\sqrt5}\)，得<b>Binet 公式</b>：</p>
@@ -1991,7 +2006,7 @@ window.MathJax = {
 <h3 id="ln5-13">5.13 总结 <span class="zh">Summary</span></h3>
 <div class="thm box">
   <span class="box-title">🎯 本讲核心公式速查</span>
-  <p><b>三类基本递推</b>：等差 \(a_{i+1}=a_i+d\)、等比 \(a_{i+1}=ra_i\)、调和 \(a_{i+1}=\tfrac{i}{i+1}a_i\)。</p>
+  <p><b>三类基本递推</b>：等差 \(a_{i+1}=a_i+d\)、等比 \(a_{i+1}=ra_i\)、调和 \(a_{i+1}=\tfrac{i+1}{i+2}a_i\)（以 \(a_0=1\) 为基准）。</p>
   <p><b>斐波那契型</b>（兔子 / 不含 11 位串 / 多米诺）：\(r_n = r_{n-1}+r_{n-2}\)。</p>
   <p><b>汉诺塔</b>：\(r_n = 2r_{n-1}+1 = 2^n-1\)。</p>
   <p><b>归并排序</b>：\(T_{2k}=2T_k+2k \Rightarrow T_{2n}\le n\log_2 n\)。</p>
@@ -2407,6 +2422,7 @@ window.MathJax = {
   <span class="box-title">✏️ 例子</span>
   <ul>
     <li>\(9876\equiv6,\ 17642\equiv2\pmod{10}\Rightarrow 9876\cdot17642\equiv 6\cdot2\equiv 2\pmod{10}\)；</li>
+    <li>\(10987\equiv1,\ 28663\equiv1\pmod 2\Rightarrow 10987\cdot28663\equiv 1\cdot1\equiv 1\pmod 2\)（模 2 就是奇偶性：<b>奇 × 奇 = 奇</b>）；</li>
     <li>\(999\equiv5,\ 674\equiv2\pmod 7\Rightarrow 999\cdot674\equiv 5\cdot2\equiv 3\pmod 7\)。</li>
   </ul>
 </div>
@@ -2602,10 +2618,19 @@ window.MathJax = {
 <div class="ex box">
   <span class="box-title">✏️ 单个方程的例子</span>
   <ul>
-    <li>\(2x\equiv3\pmod7\Rightarrow x=5+7v\)；</li>
-    <li>\(5x\equiv6\pmod9\Rightarrow x=3+9v\)；</li>
-    <li>\(3x\equiv1\pmod6\)：无解（\(\gcd(3,6)=3\nmid1\)）。</li>
+    <li>\(2x\equiv3\pmod7\Rightarrow x=5+7v\)（乘 2 的逆元 4：\(x\equiv12\equiv5\)）；</li>
+    <li>\(5x\equiv6\pmod9\Rightarrow x=3+9v\)（乘 5 的逆元 2：\(x\equiv12\equiv3\)）；</li>
+    <li>\(4x\equiv-1\pmod5\Rightarrow x=1+5v\)（\(4\equiv-1\)，故 \(-x\equiv-1\Rightarrow x\equiv1\)）；</li>
+    <li>\(4x\equiv2\pmod6\Rightarrow x=2+3v\)（\(\gcd(4,6)=2\mid2\)，两边除以 2 得 \(2x\equiv1\pmod3\)）；</li>
+    <li>\(10x\equiv2\pmod7\Rightarrow x=3+7v\)（\(10\equiv3\)，乘 3 的逆元 5：\(x\equiv10\equiv3\)）；</li>
+    <li>\(3x\equiv1\pmod6\)：<b>无解</b>（\(\gcd(3,6)=3\nmid1\)，左边永远是 3 的倍数、右边不是）。</li>
   </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 化简技巧：先约掉系数再解</span>
+  <p>解方程前可先把系数<b>模 \(n\) 化简</b>（因 \(a\) 可替换为 \(a\bmod n\)）：如</p>
+  <p class="formula">\(103x\equiv6\pmod9 \iff 4x\equiv6\pmod9\)（因 \(103\equiv4\pmod9\)）</p>
+  <p>这样把大系数化成小系数，再按上面的方法处理。</p>
 </div>
 <div class="ex box">
   <span class="box-title">✏️ 两个方程（模互素）</span>
@@ -2733,6 +2758,10 @@ window.MathJax = {
   <span class="box-title">🎯 欧拉定理（1736）</span>
   <p>一个图存在<b>欧拉路径（Eulerian path，遍历每条边恰好一次）</b>，当且仅当它是「连通」的，且<b>奇度顶点至多两个</b>。后文将严格证明。</p>
 </div>
+<div class="warn box">
+  <span class="box-title">⚠️ 「连通」这个条件不能少</span>
+  <p>欧拉最初就问：<b>「奇度顶点至多两个」就一定够了吗？</b>不够。反例：<b>两个互不相连的三角形</b>——每个顶点度都是 2（全偶度，奇度顶点 0 个），但根本没有一条路径能同时走进两个互不相连的分量，所以<b>不存在</b>遍历每条边的路径。加上「连通」后，条件才充分。</p>
+</div>
 
 <h3 id="ln8-2">8.2 简单图 <span class="zh">Simple Graphs</span></h3>
 <div class="def box">
@@ -2828,12 +2857,16 @@ window.MathJax = {
 </div>
 
 <h3 id="ln8-7">8.7 图同构 <span class="zh">Graph Isomorphism</span></h3>
-<p>同一个图可以有<b>不同画法</b>（顶点位置、标签不同）。<b>只要连接关系相同，就视为同一个图</b>。</p>
+<p>同一个图可以有<b>不同画法</b>（顶点位置不同、标签不同）。例如同样是 6 个顶点、7 条边，画成两副完全不同的样子，或者把顶点名字换成 Albert、Sharat、Grant、Sonya、Jessica、Christos——<b>只要连接关系相同，就视为同一个图</b>。图同构的本质就是「<b>改名（renaming）</b>」：两个图同构，当且仅当把其中一个图的顶点全部换一套名字后，就变成另一个图。</p>
 <div class="def box">
   <span class="box-title">📌 定义 · 同构</span>
   <p>称 \(G_1\) 与 \(G_2\) <b>同构（isomorphic）</b>，若存在一个<b>保持边的双射</b> \(f:V_1\to V_2\)（称为<b>同构映射</b>），使得：</p>
   <p class="formula">\(uv\in E_1 \iff f(u)f(v)\in E_2\)</p>
-  <p>即：原图有边 ⟺ 映射后的顶点之间也有边（边和非边都被保持）。</p>
+  <p>即：原图有边 ⟺ 映射后的顶点之间也有边（<b>边和非边都被保持</b>，不只是边）。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">💡 图同构有什么用？</span>
+  <p>图同构在实际中应用广泛：<b>指纹识别（fingerprint checking）</b>（把指纹的纹路细节抽象成图，判断两枚指纹是否同一人）、<b>分子结构比对（molecules testing）</b>（判断两个分子的原子连接方式是否相同）、电路图等价性验证等。核心都在判断「连接关系是否本质相同」。</p>
 </div>
 <div class="ex box">
   <span class="box-title">✏️ 例子：动物与食物</span>
