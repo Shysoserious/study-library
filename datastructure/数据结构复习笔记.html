@@ -1139,6 +1139,52 @@ window.MathJax = {
         <a class="lv2" href="#lec11-p13-2">13.2 词汇表</a>
       </div>
     </div>
+<div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第12课 · Trees and Graph Traversal</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec12-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec12-p1">Part 1 · 快速回顾：图的存储与二叉树</a>
+        <a class="lv2" href="#lec12-p1-1">1.1 邻接矩阵 vs 邻接表</a>
+        <a class="lv2" href="#lec12-p1-2">1.2 树、森林与二叉树</a>
+        <a class="lv1" href="#lec12-p2">Part 2 · 由遍历序列重建二叉树</a>
+        <a class="lv2" href="#lec12-p2-1">2.1 三种遍历顺序（回顾）</a>
+        <a class="lv2" href="#lec12-p2-2">2.2 前序 + 中序（LC 105）</a>
+        <a class="lv2" href="#lec12-p2-3">2.3 中序 + 后序（LC 106）</a>
+        <a class="lv2" href="#lec12-p2-4">2.4 前序 + 后序（LC 889）：不唯一</a>
+        <a class="lv2" href="#lec12-p2-5">2.5 哪种组合能唯一确定树</a>
+        <a class="lv1" href="#lec12-p3">Part 3 · 深度优先搜索 DFS</a>
+        <a class="lv2" href="#lec12-p3-1">3.1 为什么要记「已发现」</a>
+        <a class="lv2" href="#lec12-p3-2">3.2 DFS 的状态与代码</a>
+        <a class="lv2" href="#lec12-p3-3">3.3 DFS 走查</a>
+        <a class="lv2" href="#lec12-p3-4">3.4 连通分量</a>
+        <a class="lv2" href="#lec12-p3-5">3.5 岛屿数量（LC 200）</a>
+        <a class="lv2" href="#lec12-p3-6">3.6 为什么能到所有可达点</a>
+        <a class="lv2" href="#lec12-p3-7">3.7 DFS 复杂度</a>
+        <a class="lv2" href="#lec12-p3-8">3.8 无向图环检测</a>
+        <a class="lv1" href="#lec12-p4">Part 4 · 广度优先搜索 BFS</a>
+        <a class="lv2" href="#lec12-p4-1">4.1 BFS 的状态与规则</a>
+        <a class="lv2" href="#lec12-p4-2">4.2 BFS 代码与走查</a>
+        <a class="lv2" href="#lec12-p4-3">4.3 用 parent 重建路径</a>
+        <a class="lv2" href="#lec12-p4-4">4.4 为什么 BFS 找最短路径</a>
+        <a class="lv2" href="#lec12-p4-5">4.5 BFS 复杂度</a>
+        <a class="lv2" href="#lec12-p4-6">4.6 DFS vs BFS</a>
+        <a class="lv1" href="#lec12-p5">Part 5 · 状态图与拓扑排序</a>
+        <a class="lv2" href="#lec12-p5-1">5.1 状态作为顶点</a>
+        <a class="lv2" href="#lec12-p5-2">5.2 骑士最少步数（LC 1197）</a>
+        <a class="lv2" href="#lec12-p5-3">5.3 有向依赖与 DAG</a>
+        <a class="lv2" href="#lec12-p5-4">5.4 拓扑序</a>
+        <a class="lv2" href="#lec12-p5-5">5.5 Kahn 算法</a>
+        <a class="lv2" href="#lec12-p5-6">5.6 检测有向环</a>
+        <a class="lv2" href="#lec12-p5-7">5.7 为什么 Kahn 算法对</a>
+        <a class="lv1" href="#lec12-p6">Part 6 · 总结与词汇表</a>
+        <a class="lv2" href="#lec12-p6-1">6.1 一句话总结</a>
+        <a class="lv2" href="#lec12-p6-2">6.2 词汇表</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -1147,7 +1193,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–11</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–12</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -9200,6 +9246,488 @@ for (int v = 0; v &lt; 7; ++v) {
     </div>
   </section>
 </div><!-- /第11课 -->
+
+<!-- ============ 第12课 ============ -->
+<div class="lecture" id="lec12">
+  <div class="lecture-banner">第12课 · Trees and Graph Traversal <span class="zh">（树与图的遍历：由遍历重建二叉树 / DFS / BFS / 拓扑排序）</span></div>
+
+  <section id="lec12-overview">
+    <div class="toc">
+      <div class="toc-title">本讲导览</div>
+      <ol>
+        <li>快速回顾：图的两种存储、树与二叉树的三种形状（衔接第 11 课）</li>
+        <li>由遍历序列重建二叉树：前序+中序、中序+后序、前序+后序（哪些组合唯一）</li>
+        <li>深度优先搜索 DFS：发现状态、连通分量、环检测、为什么能到所有可达点</li>
+        <li>广度优先搜索 BFS：逐层扩展、无权最短路、重建路径、DFS vs BFS</li>
+        <li>状态图与拓扑排序：状态作顶点（骑士最少步数）、DAG 与 Kahn 算法</li>
+      </ol>
+    </div>
+
+    <div class="warn box">
+      <div class="box-title">本讲主线</div>
+      <p>第 11 课讲了<b>怎么存图 / 树</b>（邻接表、二叉树、BST）。这一讲转向<b>怎么在图上走</b>——这是图算法的基础，核心只有两个动作：<b>深度优先 DFS</b>（沿一条没走过的邻居立刻钻进去，钻到尽头再退回）和<b>广度优先 BFS</b>（先处理源点，再一层一层往外扩）。两者都靠一个 <code>seen</code> / <code>dist</code> 数组记住「哪些点已经发现」，防止环让遍历陷入死循环。DFS 天然对应「连通分量、找环」；BFS 因为<b>按层</b>往外走，天然对应「无权最短路」。把这两个遍历吃透，后面最短路（Dijkstra）、拓扑排序、网络流都能接得上。另一块新内容是把「树」倒过来看——<b>给定遍历序列能否把树重建出来</b>（LeetCode 105 / 106 / 889），关键就一句话：<b>前序第一个（或后序最后一个）是根，中序把左右子树分开</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec12-p1">
+    <h2>Part 1 · 快速回顾：图的存储与二叉树 <span class="en">Recap: Storage &amp; Binary Trees</span></h2>
+
+    <h3 id="lec12-p1-1">1.1 邻接矩阵 vs 邻接表 <span class="en">Adjacency Matrix vs List</span></h3>
+    <p>承接第 11 课 <a href="#lec11-p3">Part 3</a>，两种存法对应两套代码：</p>
+<pre><code>// 邻接矩阵                                    // 邻接表
+const int n = 7, m = 7;                         vector&lt;int&gt; adj[7];
+int matrix[n][n] = {};                          for (int i = 0; i &lt; 7; ++i) {
+for (int i = 0; i &lt; m; ++i) {                       int u, v;
+    int u, v;                                       cin &gt;&gt; u &gt;&gt; v;
+    cin &gt;&gt; u &gt;&gt; v;                                   adj[u].push_back(v);
+    matrix[u][v] = 1;                               adj[v].push_back(u);
+    matrix[v][u] = 1;                           }
+}</code></pre>
+    <div class="def box">
+      <div class="box-title">📌 操作成本对照表</div>
+      <table>
+        <tr><th>操作</th><th>邻接矩阵</th><th>邻接表</th></tr>
+        <tr><td>存储空间</td><td>\(\Theta(n^2)\)</td><td>\(\Theta(n+m)\)</td></tr>
+        <tr><td>判断 u、v 是否相邻</td><td>\(\Theta(1)\)</td><td>\(O(\deg(u))\)</td></tr>
+        <tr><td>列出 u 的所有邻居</td><td>\(\Theta(n)\)</td><td>\(\Theta(\deg(u)+1)\)</td></tr>
+      </table>
+      <p>图<b>稀疏</b>（边少）用邻接表省空间；要<b>频繁查「是否相邻」</b>用邻接矩阵。本讲的 DFS / BFS 都用邻接表。</p>
+    </div>
+
+    <h3 id="lec12-p1-2">1.2 树、森林与二叉树 <span class="en">Trees, Forests &amp; Binary Trees</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 三个定义</div>
+      <ul>
+        <li><b>树 tree</b>：连通且无环（acyclic）的无向图。边数 \(m = n-1\)。</li>
+        <li><b>森林 forest</b>：无环的无向图，每个连通分量是一棵树；\(k\) 个分量的森林有 \(m = n-k\) 条边。</li>
+        <li><b>二叉树 binary tree</b>：空，或「一个根 + 左右两棵二叉树子树」。左右是<b>不同位置</b>，缺失的孩子是 <code>nullptr</code>。</li>
+      </ul>
+    </div>
+<pre><code>struct Node {
+    int key;
+    Node* left;
+    Node* right;
+
+    Node(int value) {
+        key = value;
+        left = nullptr;
+        right = nullptr;
+    }
+};</code></pre>
+    <div class="def box">
+      <div class="box-title">📌 满 / 严格 / 完全（对应第 11 课 Part 7）</div>
+      <ul>
+        <li><b>满二叉树 perfect</b>：<b>每一层都满</b>。</li>
+        <li><b>严格二叉树 full / strict</b>：每个结点<b>要么 0 个孩子、要么 2 个孩子</b>。</li>
+        <li><b>完全二叉树 complete</b>：<b>前面每一层都满，最后一层从左往右填</b>。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="lec12-p2">
+    <h2>Part 2 · 由遍历序列重建二叉树 <span class="en">Reconstructing a Binary Tree</span></h2>
+
+    <h3 id="lec12-p2-1">2.1 三种遍历顺序（回顾）<span class="en">Traversal Orders</span></h3>
+    <p>前序 / 中序 / 后序的定义与走查见第 11 课 <a href="#lec11-p8">Part 8</a>，这里只给结果（同一棵树，值互不相同）：</p>
+    <p class="formula">preorder（根左右）：\(8\ 3\ 1\ 6\ 4\ 10\ 14\)；&nbsp;&nbsp;inorder（左根右）：\(1\ 3\ 4\ 6\ 8\ 10\ 14\)；&nbsp;&nbsp;postorder（左右根）：\(1\ 4\ 6\ 3\ 14\ 10\ 8\)</p>
+    <p>现在反过来问：<b>给定两个序列，能唯一恢复出整棵树的左右指针吗？</b>（假设所有结点值互不相同。）</p>
+
+    <h3 id="lec12-p2-2">2.2 前序 + 中序（LeetCode 105）<span class="en">Preorder + Inorder</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 核心观察</div>
+      <p><b>前序的第一个值是根</b>；在<b>中序</b>里，根左边的全是左子树、右边的全是右子树。于是问题被切成「根 + 左子树 + 右子树」三个子问题。</p>
+    </div>
+<pre><code>TreeNode* build(const vector&lt;int&gt;&amp; pre, const vector&lt;int&gt;&amp; in,
+                int p, int l, int n) {
+    if (n == 0) return nullptr;
+    auto u = new TreeNode(pre[p]);
+    int k = 0;
+    while (in[l + k] != pre[p]) ++k;   // 在中序里定位根
+    u-&gt;left  = build(pre, in, p + 1,     l,         k);
+    u-&gt;right = build(pre, in, p + 1 + k, l + k + 1, n - k - 1);
+    return u;
+}</code></pre>
+    <p><code>p</code>、<code>l</code> 分别是两个数组里当前子树的起点，<code>n</code> 是子树规模，<code>k</code> 是根在左子树里的偏移量。左子树占前序的 <code>[p+1, p+k]</code>、中序的 <code>[l, l+k-1]</code>；右子树占前序的 <code>[p+1+k, p+n-1]</code>、中序的 <code>[l+k+1, l+n-1]</code>。初始调用 <code>build(pre, in, 0, 0, n)</code>。</p>
+    <div class="ex box">
+      <div class="box-title">✏️ 走查（n=7）</div>
+      <p>前序首值 <code>8</code> 是根；中序里 <code>8</code> 左边 <code>1 3 4 6</code> 是左子树（<code>k=4</code>）、右边 <code>10 14</code> 是右子树。递归下去：左子树根 <code>3</code>（前序第二个），它的左子树 <code>1</code>、右子树 <code>6 4</code>（其中 <code>6</code> 的左孩子是 <code>4</code>）；右子树根 <code>10</code>，右孩子 <code>14</code>。</p>
+      <p><b>复杂度</b>：每个结点都要在剩余中序里线性扫描一次定位，最坏（树退化成链）是 \(O(n^2)\)。</p>
+    </div>
+
+    <h3 id="lec12-p2-3">2.3 中序 + 后序（LeetCode 106）<span class="en">Inorder + Postorder</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 核心观察</div>
+      <p>对称地，<b>后序的最后一个值是根</b>，中序依旧把左右子树分开。</p>
+    </div>
+<pre><code>TreeNode* build(const vector&lt;int&gt;&amp; post, const vector&lt;int&gt;&amp; in,
+                int p, int l, int n) {
+    if (n == 0) return nullptr;
+    int value = post[p + n - 1];          // 后序最后一个
+    auto u = new TreeNode(value);
+    int k = 0;
+    while (in[l + k] != value) ++k;
+    u-&gt;left  = build(post, in, p,     l,         k);
+    u-&gt;right = build(post, in, p + k, l + k + 1, n - k - 1);
+    return u;
+}</code></pre>
+    <p>左子树占后序的 <code>[p, p+k-1]</code>，右子树占后序的 <code>[p+k, p+n-2]</code>（<code>p+n-1</code> 是根）。初始调用 <code>build(post, in, 0, 0, n)</code>，最坏 \(O(n^2)\)。</p>
+
+    <h3 id="lec12-p2-4">2.4 前序 + 后序（LeetCode 889）：不唯一 <span class="en">Preorder + Postorder</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 关键差异</div>
+      <p>只有一个孩子的结点，前序和后序<b>分不清这个孩子是左还是右</b>：</p>
+      <p class="formula">左孩子：preorder \(1\ 2\)、postorder \(2\ 1\)；&nbsp;&nbsp;&nbsp;&nbsp;右孩子：preorder \(1\ 2\)、postorder \(2\ 1\) —— 完全一样。</p>
+      <p>所以「前序 + 后序」<b>不一定唯一</b>。题目（LC 889）只要求返回<b>任意一棵</b>满足两个序列的树。</p>
+    </div>
+    <div class="def box">
+      <div class="box-title">📌 如何切分（第一个孩子子树）</div>
+      <p>根是前序第一个、后序最后一个。去掉根后，<b>前序下一个值 = 第一个非空孩子子树的根</b>；在后序里定位它，就得到第一个孩子子树的大小 \(k\)：</p>
+      <ul>
+        <li>若 \(k &lt; n-1\)：说明<b>有两个孩子</b>，第一个当左、剩下当右；</li>
+        <li>若 \(k = n-1\)：说明<b>只有一个孩子</b>，放左或放右都行（实现里选左）。</li>
+      </ul>
+    </div>
+<pre><code>TreeNode* build(const vector&lt;int&gt;&amp; pre, const vector&lt;int&gt;&amp; post,
+                int p, int l, int n) {
+    if (n == 0) return nullptr;
+    auto u = new TreeNode(pre[p]);
+    if (n == 1) return u;
+    int k = 1;
+    while (post[l + k - 1] != pre[p + 1]) ++k;   // 找第一个孩子子树
+    u-&gt;left  = build(pre, post, p + 1,     l,     k);
+    u-&gt;right = build(pre, post, p + 1 + k, l + k, n - k - 1);
+    return u;
+}</code></pre>
+    <p>例（<code>pre 1 2 3 4 5</code> / <code>post 3 2 5 4 1</code>）：根 <code>1</code>，第一个孩子子树根 <code>2</code>，其后序段 <code>[3,2]</code>，<code>k=2</code>；剩下的 <code>[4,5]/[5,4]</code> 是右子树。结点 <code>2</code>、<code>4</code> 又各只有一个孩子（<code>k=n-1</code>），左右任选，因此共有 \(2\times2=4\) 棵合法树。</p>
+
+    <h3 id="lec12-p2-5">2.5 哪种组合能唯一确定树？<span class="en">Which Pairs Are Unique?</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 唯一性汇总表</div>
+      <table>
+        <tr><th>给定序列</th><th>唯一？</th><th>谁负责切分</th></tr>
+        <tr><td>前序 + 中序</td><td>✅ 唯一</td><td>根在前序<b>最前</b>，中序分左右</td></tr>
+        <tr><td>中序 + 后序</td><td>✅ 唯一</td><td>根在后序<b>最后</b>，中序分左右</td></tr>
+        <tr><td>前序 + 后序</td><td>❌ 不一定</td><td>独生子可分不出左右</td></tr>
+      </table>
+      <p>附加「<b>严格二叉树（full）</b>」约束后，前序 + 后序也能唯一：因为每个非叶结点都有两个非空孩子，不会出现「独生子分不清左右」。</p>
+    </div>
+  </section>
+
+  <section id="lec12-p3">
+    <h2>Part 3 · 深度优先搜索 DFS <span class="en">Depth-First Search</span></h2>
+
+    <h3 id="lec12-p3-1">3.1 图遍历为什么要记「已发现」<span class="en">Why Record Discovery</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 图 vs 树的遍历差异</div>
+      <ul>
+        <li><b>有根二叉树</b>：left / right 指针都指向<b>离开根</b>的孩子，不同子树<b>不重叠</b>，一路往下不会绕回来。</li>
+        <li><b>无向图的邻接表</b>：<code>g[u]</code> 里存的是 u 的<b>所有邻居</b>，邻居可能是「刚访问过的顶点」，环还会让同一点被多条路到达。</li>
+      </ul>
+      <p>所以图遍历必须用 <code>seen[v]</code> 记录「v 是否已被发现」，保证<b>每个顶点最多启动一次探索</b>。从源点 0 出发也到不了孤立的顶点 6——这正是「可达性」的体现。</p>
+    </div>
+
+    <h3 id="lec12-p3-2">3.2 DFS 的状态与代码 <span class="en">State &amp; Code</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 三个状态量</div>
+      <ul>
+        <li><code>seen[v]</code>：v 是否已被发现。</li>
+        <li><code>parent[v]</code>：是哪个顶点的递归调用<b>第一次</b>到达 v。</li>
+        <li><b>活跃调用 active calls</b>：还没返回的调用栈，最右边是当前调用。</li>
+      </ul>
+      <p>初始化：所有 <code>seen</code> 为 <code>false</code>、所有 <code>parent</code> 为 <code>-1</code>。</p>
+    </div>
+<pre><code>void dfs(int u) {
+    seen[u] = true;
+    cout &lt;&lt; u &lt;&lt; ' ';
+    for (int v : g[u]) {
+        if (seen[v]) continue;
+        parent[v] = u;
+        dfs(v);
+    }
+}</code></pre>
+    <p>「<b>沿一个没见过的邻居立刻钻进去</b>，钻到尽头（没有没见过的邻居）再返回。」u 的调用要等它的所有递归调用都结束才结束。</p>
+
+    <h3 id="lec12-p3-3">3.3 DFS 走查 <span class="en">Code Trace</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 从源点 0 出发</div>
+      <p>邻接表（升序扫描邻居）：<code>0: 1 2</code>、<code>1: 0 3 4</code>、<code>2: 0 4</code>、<code>3: 1 5</code>、<code>4: 1 2 5</code>、<code>5: 3 4</code>、<code>6: (空)</code>。</p>
+      <p>输出 <code>0 1 3 5 4 2</code>。路线：0 → 1 → 3 → 5 →（5 看到 4）→ 4 →（4 看到 2）→ 2 → 退回。最终 <code>parent = [−, 0, 4, 1, 5, 3, −]</code>，<code>seen = [T,T,T,T,T,T,F]</code>——顶点 6 孤立即不被访问。</p>
+    </div>
+
+    <h3 id="lec12-p3-4">3.4 连通分量 <span class="en">Connected Components</span></h3>
+    <p>一次 <code>dfs(s)</code> 只到达 s 所在的连通分量。外层循环扫遍所有源点，就能数出分量个数：</p>
+<pre><code>fill(seen, seen + 7, false);
+fill(parent, parent + 7, -1);
+int components = 0;
+for (int s = 0; s &lt; 7; ++s) {
+    if (seen[s]) continue;
+    ++components;
+    dfs(s);
+}</code></pre>
+    <p>例中输出 <code>0 1 3 5 4 2 6</code>，<code>components = 2</code>。parent 链接形成<b>两棵 DFS 树</b>，根分别是 0 和 6。</p>
+
+    <h3 id="lec12-p3-5">3.5 岛屿数量（LeetCode 200）<span class="en">Number of Islands</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 把网格看成图</div>
+      <p>每个陆地块（<code>1</code>）是一个顶点，上下左右相邻的陆地块之间有边（<b>斜对角不算相连</b>）。于是每个「岛」就是一个连通分量。水（<code>0</code>）和边界包住整张网格。</p>
+      <p>伪代码：</p>
+<pre><code>islands = 0
+for each cell (r, c):
+    if land and unseen:
+        ++islands
+        dfs(r, c)      // 标记整座岛</code></pre>
+      <p>课件例子输出 <code>3</code>（左上 2×2 一座、中间孤块一座、右下两块一座）。</p>
+    </div>
+
+    <h3 id="lec12-p3-6">3.6 为什么 DFS 能到达所有可达顶点 <span class="en">Why DFS Reaches Everything</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 证明（反证）</div>
+      <p>① 每个调用在<b>再走边之前</b>先标记自己的顶点，所以环不会造成无限调用链。</p>
+      <p>② 假设 <code>dfs(s)</code> 返回后，仍有一个可达顶点没被标记。取从 s 到它的路径上<b>第一个</b>未标记顶点 v，v 的前驱 u 一定已标记。</p>
+      <p>③ u 的调用在返回前一定会检查边 <code>(u, v)</code>，从而对 v 发起 DFS——与「v 未标记」矛盾。</p>
+    </div>
+
+    <h3 id="lec12-p3-7">3.7 DFS 复杂度 <span class="en">Complexity</span></h3>
+    <p>每个顶点最多启动一次递归调用，每条邻接表条目最多被检查一次：</p>
+    <p class="formula">邻接表：\(O(n+m)\)；&nbsp;&nbsp;&nbsp;&nbsp;邻接矩阵（每个顶点扫 n 个候选）：\(O(n^2)\)。</p>
+
+    <h3 id="lec12-p3-8">3.8 无向图环检测 <span class="en">Undirected Cycle Detection</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 一个关键观察</div>
+      <p>在无向简单图里，DFS 时如果遇到一个<b>已经 seen、又不是自己 parent</b> 的邻居，就说明绕了一圈回到了祖先，即<b>发现了一个环</b>。所以检测就是：<b>跳过 parent，其余「已 seen」的邻居都触发环</b>。</p>
+    </div>
+<pre><code>bool hasCycle = false;
+
+void dfs(int u) {
+    seen[u] = true;
+    cout &lt;&lt; u &lt;&lt; ' ';
+    for (int v : g[u]) {
+        if (v == parent[u]) continue;   // 跳过父边
+        if (seen[v]) hasCycle = true;   // 撞上祖先 → 有环
+        if (seen[v]) continue;
+        parent[v] = u;
+        dfs(v);
+    }
+}</code></pre>
+    <p>例中 <code>1–3–5–4–1</code> 是环：当 <code>u=4, parent[4]=5</code> 时，邻居 <code>1</code> 已被 seen 且不是 parent，于是 <code>hasCycle = true</code>。</p>
+  </section>
+
+  <section id="lec12-p4">
+    <h2>Part 4 · 广度优先搜索 BFS <span class="en">Breadth-First Search</span></h2>
+
+    <h3 id="lec12-p4-1">4.1 BFS 的状态与规则 <span class="en">State &amp; Rule</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 三个状态量</div>
+      <ul>
+        <li><code>q</code>：一个队列，装「已发现但还没处理邻居」的顶点。</li>
+        <li><code>dist[v]</code>：v 到源点的<b>边数</b>，<code>-1</code> 表示未发现。</li>
+        <li><code>parent[v]</code>：第一个发现 v 的顶点，<code>-1</code> 表示无父。</li>
+      </ul>
+      <p>BFS 先访问源点，再访问「一步到达」的点，再「两步到达」……逐层往外扩。初始 <code>dist[s]=0</code>，把 s 入队。</p>
+      <p><b>发现新邻居 v 时</b>（从 u 出发）：<code>dist[v] = dist[u] + 1; parent[v] = u; q.push(v);</code>。<b>入队时就标记</b>，别让两条路把同一个点塞进队两次。</p>
+    </div>
+
+    <h3 id="lec12-p4-2">4.2 BFS 代码与走查 <span class="en">Code &amp; Trace</span></h3>
+<pre><code>void bfs(int s) {
+    queue&lt;int&gt; q;
+    dist[s] = 0;
+    q.push(s);
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        for (int v : g[u]) {
+            if (dist[v] != -1) continue;
+            dist[v] = dist[u] + 1;
+            parent[v] = u;
+            q.push(v);
+        }
+    }
+}</code></pre>
+    <div class="ex box">
+      <div class="box-title">✏️ 从源点 0 出发</div>
+      <p>出队顺序 <code>0 1 2 3 4 5</code>；<code>dist = [0, 1, 1, 2, 2, 3, −]</code>；<code>parent = [−, 0, 0, 1, 1, 3, −]</code>。parent 链接形成一棵<b>以 0 为根的树</b>，顶点 6 保持 <code>dist=-1</code>（从 0 到不了它）。</p>
+    </div>
+
+    <h3 id="lec12-p4-3">4.3 用 parent 重建路径 <span class="en">Reconstructing a Path</span></h3>
+    <p>parent 链从目标一路指回源点，逆序即可得到「源 → 目标」的路径：</p>
+<pre><code>vector&lt;int&gt; pathTo(int t) {
+    vector&lt;int&gt; path;
+    if (dist[t] == -1) return path;
+    for (int v = t; v != -1; v = parent[v])
+        path.push_back(v);
+    reverse(path.begin(), path.end());
+    return path;
+}</code></pre>
+    <p>例：<code>pathTo(5)</code> 得到 <code>[0, 1, 3, 5]</code>。</p>
+
+    <h3 id="lec12-p4-4">4.4 为什么 BFS 找最短路径 <span class="en">Why BFS Finds Shortest Paths</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 归纳论证</div>
+      <p>队列<b>按距离不减</b>的顺序出队。假设所有「距离 &lt; k」的顶点都已得到正确值。若 v 的最短路有 k 条边，它的前驱距离为 k−1；BFS 会在任何距离为 k 的顶点之前处理完这个前驱。因此<b>第一次发现 v 就给出 dist[v]=k</b>，后面的路无法再改进它。</p>
+    </div>
+
+    <h3 id="lec12-p4-5">4.5 BFS 复杂度 <span class="en">Complexity</span></h3>
+    <p>每个顶点至多入队一次，每条邻接表条目至多检查一次：</p>
+    <p class="formula">\(\deg(0)+\deg(1)+\cdots+\deg(n-1)=2m\)，邻接表 \(O(n+m)\)；邻接矩阵 \(O(n^2)\)。</p>
+
+    <h3 id="lec12-p4-6">4.6 DFS vs BFS <span class="en">DFS vs BFS</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 重要反例：DFS 的第一条路未必最短</div>
+      <p>同图从 0 到 2：DFS 的 parent 路径是 <code>0 → 1 → 3 → 5 → 4 → 2</code>（<b>5 条边</b>），而 BFS 的路径是 <code>0 → 2</code>（<b>1 条边</b>）。<b>DFS 能到达，但不保证最短；BFS 保证无权最短路。</b></p>
+    </div>
+    <div class="def box">
+      <div class="box-title">📌 对比表</div>
+      <table>
+        <tr><th>性质</th><th>BFS</th><th>递归 DFS</th></tr>
+        <tr><td>活跃结构</td><td>队列 queue</td><td>活跃调用栈</td></tr>
+        <tr><td>探索顺序</td><td>距离递增（一层一层）</td><td>一条路走到底再返回</td></tr>
+        <tr><td>无权最短路</td><td>✅ 保证</td><td>❌ 不保证</td></tr>
+        <tr><td>可达性 / 连通分量</td><td>✅</td><td>✅</td></tr>
+        <tr><td>邻接表时间</td><td>\(O(n+m)\)</td><td>\(O(n+m)\)</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="lec12-p5">
+    <h2>Part 5 · 状态图与拓扑排序 <span class="en">State Graphs &amp; Topological Sort</span></h2>
+
+    <h3 id="lec12-p5-1">5.1 状态作为顶点 <span class="en">States as Vertices</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 一个建模视角</div>
+      <p>图不一定描述物理网络，也可以描述<b>可能的情形（状态）</b>：顶点 = 一个完整状态，边 = 一次合法操作。如果每次操作<b>代价相同</b>，BFS 给出的就是「到达目标所需的<b>最少操作次数</b>」。</p>
+    </div>
+
+    <h3 id="lec12-p5-2">5.2 骑士最少步数（LeetCode 1197）<span class="en">Minimum Knight Moves</span></h3>
+    <p>骑士从 <code>(0,0)</code> 出发，每次一步「横二竖一」或「横一竖二」，问最少几步到 <code>(x,y)</code>（无限棋盘，坐标可负）。</p>
+<pre><code>int dx[8] = {2, 1, -1, -2, -2, -1, 1, 2};
+int dy[8] = {1, 2, 2, 1, -1, -2, -2, -1};</code></pre>
+    <div class="ex box">
+      <div class="box-title">✏️ 建图方式</div>
+      <p>每个格子 <code>(x,y)</code> 是一个顶点，一次合法跳是一条边。棋盘无限大，<b>不能</b>建邻接表，而是「用的时候现场生成 8 个邻居」。用 <code>map&lt;pair&lt;int,int&gt;, int&gt;</code> 存已发现格子的步数，<code>queue&lt;pair&lt;int,int&gt;&gt;</code> 做 BFS：</p>
+<pre><code>map&lt;pair&lt;int,int&gt;, int&gt; dist;
+queue&lt;pair&lt;int,int&gt;&gt; q;
+
+void expand(int x, int y) {
+    for (int k = 0; k &lt; 8; ++k) {
+        int nx = x + dx[k], ny = y + dy[k];
+        if (dist.count({nx, ny})) continue;      // 已发现就跳过
+        dist[{nx, ny}] = dist[{x, y}] + 1;
+        q.push({nx, ny});
+    }
+}
+
+int minKnightMoves(int tx, int ty) {
+    dist.clear();
+    q = queue&lt;pair&lt;int,int&gt;&gt;();
+    dist[{0, 0}] = 0;
+    q.push({0, 0});
+    while (!q.empty()) {
+        auto u = q.front(); q.pop();
+        int x = u.first, y = u.second;
+        if (x == tx &amp;&amp; y == ty) return dist[u];
+        expand(x, y);
+    }
+    return -1;
+}</code></pre>
+      <p>例：<code>minKnightMoves(2,1)=1</code>（一步 <code>(0,0)→(2,1)</code>）；<code>minKnightMoves(5,5)=4</code>，一条最短路 <code>(0,0)→(2,1)→(4,2)→(6,3)→(5,5)</code>。</p>
+      <p><b>复杂度</b>：每次跳代价相同，BFS 按距离不减处理格子，第一次发现某格子即得最少步数。设返回前发现了 V 个格子，每格查 8 步、map 操作 \(O(\log V)\)：时间 \(O(V\log V)\)、空间 \(O(V)\)。</p>
+    </div>
+
+    <h3 id="lec12-p5-3">5.3 有向依赖与 DAG <span class="en">Directed Dependencies &amp; DAGs</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 先修关系</div>
+      <p>有向边 \(u\to v\) 表示「课程 u 是课程 v 的先修课」。<b>有向无环图 DAG</b>（directed acyclic graph）= 没有有向环的有向图。例中课程 2、4、5 没有先修，可以先上。</p>
+    </div>
+
+    <h3 id="lec12-p5-4">5.4 拓扑序 <span class="en">Topological Order</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 定义</div>
+      <p>拓扑序把每个顶点列出<b>恰好一次</b>，且对每条边 \(u\to v\)，u 都出现在 v <b>之前</b>：</p>
+      <p class="formula">\(\text{rank}(u) &lt; \text{rank}(v)\) 对每条边 \(u\to v\) 成立</p>
+      <p>一个 DAG 可以有多个合法拓扑序。例中 <code>2 4 5 0 3 1</code> 和 <code>4 2 3 0 1 5</code> 都对；<code>0 2 4 3 1 5</code> 错（把 0 排在了先修 2 之前）。</p>
+    </div>
+
+    <h3 id="lec12-p5-5">5.5 Kahn 算法 <span class="en">Kahn's Algorithm</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 思想</div>
+      <p><code>indegree[v]</code> 记录「仍存在的入边数」。反复<b>输出一个入度为 0 的顶点，再删掉它的所有出边</b>（让后继的入度 −1），直到队列为空。</p>
+    </div>
+<pre><code>void prepareTopological() {
+    fill(indegree, indegree + n, 0);
+    q = queue&lt;int&gt;();
+    order.clear();
+    for (int u = 0; u &lt; n; ++u)
+        for (int v : g[u]) ++indegree[v];        // 数入度
+    for (int v = 0; v &lt; n; ++v)
+        if (indegree[v] == 0) q.push(v);         // 入度为 0 的先入队
+}
+
+vector&lt;int&gt; topologicalOrder() {
+    prepareTopological();
+    while (!q.empty()) {
+        int u = q.front(); q.pop();
+        order.push_back(u);
+        for (int v : g[u]) {
+            --indegree[v];
+            if (indegree[v] == 0) q.push(v);
+        }
+    }
+    if ((int)order.size() != n) return {};       // 输出不满 n 个 → 有环
+    return order;
+}</code></pre>
+    <p>例中返回 <code>[2, 4, 5, 0, 3, 1]</code>。</p>
+
+    <h3 id="lec12-p5-6">5.6 检测有向环 <span class="en">Detecting a Directed Cycle</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 队列提前空 → 有环</div>
+      <p>若给例图加一条边 <code>1 → 2</code>，则 <code>2 → 0 → 1 → 2</code> 成环。算法只能输出 <code>4 5</code> 两个点就停了（剩下 <code>0 1 2 3</code> 入度都为正，互相等待）。<b>输出长度 &lt; n ⟹ 存在有向环</b>，于是 <code>topologicalOrder()</code> 返回空向量。</p>
+    </div>
+
+    <h3 id="lec12-p5-7">5.7 为什么 Kahn 算法对 <span class="en">Why Kahn's Algorithm Works</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 三个论证 + 复杂度</div>
+      <ul>
+        <li><b>安全</b>：入度为 0 意味着没有剩余顶点必须排在它前面，把它接到末尾不破坏任何依赖。</li>
+        <li><b>能推进</b>：任何非空 DAG 都有入度为 0 的顶点——否则沿入边一直回溯必然重复某顶点、成环。</li>
+        <li><b>判环</b>：队列提前空时，剩余顶点入度全为正，同上论证能找出一个有向环。</li>
+      </ul>
+      <p class="formula">每条边数一次、再减一次，每个顶点至多入队一次：\(O(n+m)\)。</p>
+    </div>
+  </section>
+
+  <section id="lec12-p6">
+    <h2>Part 6 · 总结与词汇表 <span class="en">Summary &amp; Vocabulary</span></h2>
+
+    <h3 id="lec12-p6-1">6.1 一句话总结 <span class="en">Summary</span></h3>
+    <div class="def box">
+      <div class="box-title">一句话总结</div>
+      <p>图的遍历就两个动作：<b>DFS</b>（钻到底再回退，管连通分量和找环）和 <b>BFS</b>（按层往外扩，管无权最短路），都靠 <code>seen</code> / <code>dist</code> 数组防止环上死循环。树的遍历反过来用——<b>前序 + 中序</b>或<b>中序 + 后序</b>能唯一重建二叉树（前序/后序定位根、中序分左右），而<b>前序 + 后序</b>因独生子不分左右而不唯一。把状态当成顶点时，BFS 就是「最少步数」的解；把先修关系看成有向边时，<b>Kahn 算法</b>按入度为零逐个输出、给出拓扑序，输出不满 n 个即检出有向环。</p>
+    </div>
+
+    <h3 id="lec12-p6-2">6.2 词汇表 <span class="en">Key Vocabulary</span></h3>
+    <div class="vocab">
+      <div class="vocab-title">词汇表 Key Vocabulary</div>
+      <ul>
+        <li><b>traversal</b> — 遍历；<b>reconstruction</b> — 重建</li>
+        <li><b>preorder / inorder / postorder</b> — 前序 / 中序 / 后序</li>
+        <li><b>depth-first search (DFS)</b> — 深度优先搜索</li>
+        <li><b>breadth-first search (BFS)</b> — 广度优先搜索</li>
+        <li><b>seen / discovered</b> — 已发现；<b>parent</b> — 遍历树中的父结点</li>
+        <li><b>active call</b> — 活跃调用（DFS 调用栈）</li>
+        <li><b>connected component</b> — 连通分量</li>
+        <li><b>reachability</b> — 可达性</li>
+        <li><b>cycle detection</b> — 环检测</li>
+        <li><b>unweighted shortest path</b> — 无权最短路</li>
+        <li><b>state graph</b> — 状态图；<b>minimum moves</b> — 最少步数</li>
+        <li><b>knight moves</b> — 骑士走法</li>
+        <li><b>directed acyclic graph (DAG)</b> — 有向无环图</li>
+        <li><b>prerequisite</b> — 先修课程；<b>dependency</b> — 依赖</li>
+        <li><b>topological order / sort</b> — 拓扑序 / 拓扑排序</li>
+        <li><b>indegree</b> — 入度；<b>Kahn's algorithm</b> — Kahn 算法</li>
+      </ul>
+    </div>
+  </section>
+</div><!-- /第12课 -->
+
 
 </div>
 </main>

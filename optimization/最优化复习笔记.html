@@ -679,6 +679,7 @@ window.MathJax = {
         <a class="lv2" href="#lec9-p8-1">8.1 本讲总结</a>
         <a class="lv2" href="#lec9-p8-2">8.2 词汇表</a>
       </div>
+    </div>
     <div class="lecture-group">
       <button class="lecture-toggle" type="button">第10课 · Complexity of the Simplex Method &amp; Duality Theory <span class="lt-arrow">▼</span></button>
       <div class="lecture-body">
@@ -777,6 +778,47 @@ window.MathJax = {
         <a class="lv2" href="#lec11-p12-3">12.3 词汇表</a>
       </div>
     </div>
+<div class="lecture-group">
+      <button class="lecture-toggle" type="button">第12课 · Interpreting the Dual &amp; Sensitivity Analysis <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec12-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec12-p1">Part 1 · 回顾与互补松弛解题</a>
+        <a class="lv2" href="#lec12-p1-1">1.1 回顾：对偶三件套</a>
+        <a class="lv2" href="#lec12-p1-2">1.2 最优性条件（两组）</a>
+        <a class="lv2" href="#lec12-p1-3">1.3 用互补松弛解题的四步</a>
+        <a class="lv2" href="#lec12-p1-4">1.4 例题：求对偶证书</a>
+        <a class="lv2" href="#lec12-p1-5">1.5 例题：从对偶恢复原解</a>
+        <a class="lv1" href="#lec12-p2">Part 2 · 解释对偶问题</a>
+        <a class="lv2" href="#lec12-p2-1">2.1 生产计划：买方情景与影子价格</a>
+        <a class="lv2" href="#lec12-p2-2">2.2 多企业联盟：核心分配</a>
+        <a class="lv2" href="#lec12-p2-3">2.3 择一定理</a>
+        <a class="lv1" href="#lec12-p3">Part 3 · 局部敏感性分析</a>
+        <a class="lv2" href="#lec12-p3-1">3.1 标准形与两个局部问题</a>
+        <a class="lv2" href="#lec12-p3-2">3.2 生产例题的标准形与对偶解</a>
+        <a class="lv2" href="#lec12-p3-3">3.3 RHS 的局部敏感性</a>
+        <a class="lv2" href="#lec12-p3-4">3.4 目标系数的局部敏感性</a>
+        <a class="lv2" href="#lec12-p3-5">3.5 局部导数</a>
+        <a class="lv1" href="#lec12-p4">Part 4 · 全局敏感性分析</a>
+        <a class="lv2" href="#lec12-p4-1">4.1 最优基与缩减成本</a>
+        <a class="lv2" href="#lec12-p4-2">4.2 标准形例题的基矩阵</a>
+        <a class="lv2" href="#lec12-p4-3">4.3 基值、对偶变量与缩减成本</a>
+        <a class="lv2" href="#lec12-p4-4">4.4 改变 RHS</a>
+        <a class="lv2" href="#lec12-p4-5">4.5 单个 RHS 分量：允许区间</a>
+        <a class="lv2" href="#lec12-p4-6">4.6 RHS 例题：铁、钢、铜</a>
+        <a class="lv2" href="#lec12-p4-7">4.7 改变目标系数</a>
+        <a class="lv2" href="#lec12-p4-8">4.8 单个目标系数：两种情形</a>
+        <a class="lv2" href="#lec12-p4-9">4.9 基系数例题：改 c1 与改 c2</a>
+        <a class="lv2" href="#lec12-p4-10">4.10 端点处公式仍成立</a>
+        <a class="lv2" href="#lec12-p4-11">4.11 超出范围：换一个最优基</a>
+        <a class="lv1" href="#lec12-p5">Part 5 · 更一般的变化与总结</a>
+        <a class="lv2" href="#lec12-p5-1">5.1 允许范围汇总表</a>
+        <a class="lv2" href="#lec12-p5-2">5.2 超出允许范围怎么办</a>
+        <a class="lv2" href="#lec12-p5-3">5.3 改变矩阵 A</a>
+        <a class="lv2" href="#lec12-p5-4">5.4 加一个变量或加一个约束</a>
+        <a class="lv2" href="#lec12-p5-5">5.5 三步流程与检查理解</a>
+        <a class="lv2" href="#lec12-p5-6">5.6 词汇表</a>
+      </div>
+    </div>
   </nav>
 
 </aside>
@@ -786,7 +828,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">最优化 · 复习笔记</h1>
-<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–11</p>
+<p class="course-meta">MAT3007 Optimization · 教师 Nachuan Xiao · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Lecture 1–12</p>
 
 <!-- ============ 考试重点（样卷知识点） ============ -->
 <div class="lecture" id="exam-focus">
@@ -5261,6 +5303,395 @@ window.MathJax = {
 </div>
 </section>
 </div><!-- /第11课 -->
+
+<!-- ============ 第12课 ============ -->
+<div class="lecture" id="lec12">
+<div class="lecture-banner">第12课 · Interpreting the Dual &amp; Sensitivity Analysis <span class="zh">（对偶的解释与敏感性分析）</span></div>
+
+<section id="lec12-overview">
+  <div class="toc">
+    <span class="toc-title">📑 目录（Table of Contents）</span>
+    <ol>
+      <li><a href="#lec12-p1">回顾与互补松弛解题</a> —— 对偶三件套 + 最优性条件 + 原 ↔ 对偶互相构造</li>
+      <li><a href="#lec12-p2">解释对偶问题</a> —— 影子价格、多企业联盟、择一定理</li>
+      <li><a href="#lec12-p3">局部敏感性分析</a> —— \(V(b+\Delta b)-V(b)=(y^*)^\top\Delta b\)、\(V(c+\Delta c)-V(c)=(x^*)^\top\Delta c\)</li>
+      <li><a href="#lec12-p4">全局敏感性分析</a> —— 最优基、允许区间、\(A_B^{-1}\) 与 \(H\)</li>
+      <li><a href="#lec12-p5">更一般的变化与总结</a> —— 改 A、加变量/约束、三步流程</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 本讲核心</span>
+    <p>上一讲回答了「对偶值好不好」（弱/强对偶）和「间隙在哪消失」（互补松弛）。这一讲回答两个更实用的问题：<b>① 对偶变量 \(y\) 到底是什么意思？</b>——它们是<b>影子价格 shadow price</b>：\(y_i\) 度量「第 \(i\) 个资源再松一点点，最优值会变多少」。<b>② 数据 \(b,c,A\) 变了，最优值怎么变、变到哪一步最优解会换？</b>——这就是<b>敏感性分析 sensitivity analysis</b>：局部看，\(\Delta V=(y^*)^\top\Delta b\)（改 RHS）或 \(\Delta V=(x^*)^\top\Delta c\)（改目标系数）；全局看，用一个<b>最优基</b>写出允许区间（\(x_B^*+A_B^{-1}\Delta b\ge0\) 或 \(r_N^\top+\Delta c_N^\top-\Delta c_B^\top H\ge0\)），出了区间就重优化。这正是样卷「敏感性分析（18 分）」的正式讲法，核心只有一句：<b>最优解 \(x^*\) 和影子价格 \(y^*\) 就是最优值对数据的「局部导数」</b>。</p>
+  </div>
+</section>
+
+<section id="lec12-p1">
+<h2>Part 1 · 回顾与互补松弛解题 <span class="zh">Recap &amp; Solving via Complementarity</span></h2>
+
+<h3 id="lec12-p1-1">1.1 回顾：对偶三件套 <span class="zh">Recap: the Duality Trio</span></h3>
+<div class="thm box">
+  <span class="box-title">📌 弱对偶 / 强对偶 / 互补松弛</span>
+  <ul>
+    <li><b>弱对偶</b>：对任意原可行 \(x\)、对偶可行 \(y\)，\(b^\top y\le c^\top x\)（min–max 对）。</li>
+    <li><b>强对偶</b>：LP 有有限最优解时，对偶也有，且 \(p^*=d^*\)（最优值相等）。</li>
+    <li><b>互补松弛</b>：\(x,y\) 可行且最优 \(\iff\) 对所有 \(i,j\)：\(y_i(a_i^\top x-b_i)=0\) 且 \(x_j(c_j-A_j^\top y)=0\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p1-2">1.2 最优性条件（两组）<span class="zh">Optimality Conditions</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 两组「充分必要」最优性条件</span>
+  <p><b>由弱/强对偶</b>（要检验目标值相等）：</p>
+  <p class="formula">① \(x\) 原可行；② \(y\) 对偶可行；③ \(c^\top x=b^\top y\)。</p>
+  <p><b>由互补松弛</b>（要检验乘积为零）：</p>
+  <p class="formula">① \(x\) 原可行；② \(y\) 对偶可行；③ 互补松弛条件成立。</p>
+</div>
+
+<h3 id="lec12-p1-3">1.3 用互补松弛解题的四步 <span class="zh">Steps via Complementarity</span></h3>
+<p>考虑 \(x\ge0\) 的 min LP，结构约束为 \(\ge,\le,=\) 混合。先拿到一个原可行候选 \(\hat x\)（比如来自单纯形）：</p>
+<div class="ex box">
+  <span class="box-title">📗 四步路线</span>
+  <ol>
+    <li><b>写对偶</b>：\(\max b^\top y\)，s.t. \(A^\top y\le c\)，且 \((\ge b_i)\Rightarrow y_i\ge0\)、\((\le b_i)\Rightarrow y_i\le0\)、\((=b_i)\Rightarrow y_i\) 自由。</li>
+    <li><b>用两条互补条件</b>：\(a_i^\top\hat x\ne b_i \Rightarrow y_i=0\)（原行有松弛→乘子为 0）；\(\hat x_j&gt;0 \Rightarrow A_j^\top y=c_j\)（正变量→对偶约束紧）。</li>
+    <li><b>解方程并检验</b>：解这些等式；再检查每条对偶不等式与乘子符号。</li>
+    <li><b>验证</b>：确认 \(c^\top\hat x=b^\top y\)，即可断言最优。</li>
+  </ol>
+</div>
+<p>若从对偶可行点出发则对称：<b>严格的对偶不等式</b>（\(A_j^\top y&lt;c_j\)）迫使 \(x_j=0\)；<b>非零乘子</b>（\(y_i\ne0\)）迫使原第 \(i\) 行紧；再配合原等式解出 \(x\)，最后验可行。</p>
+
+<h3 id="lec12-p1-4">1.4 例题：求对偶证书 <span class="zh">Example: Solve for the Dual Certificate</span></h3>
+<p>原问题（四变量、三混合约束）与其对偶：</p>
+<p class="formula">\(\begin{aligned} \min\ & x_1+3x_2+2x_3+6x_4\\ \text{s.t.}\ & x_1+x_2+x_3+2x_4\ge3\\ & x_1+2x_2+x_3+x_4\le5\\ & 2x_1+x_2+x_3+x_4=4\\ & x_1,x_2,x_3,x_4\ge0 \end{aligned}\qquad\qquad \begin{aligned} \max\ & 3y_1+5y_2+4y_3\\ \text{s.t.}\ & y_1+y_2+2y_3\le1\\ & y_1+2y_2+y_3\le3\\ & y_1+y_2+y_3\le2\\ & 2y_1+y_2+y_3\le6\\ & y_1\ge0,\ y_2\le0,\ y_3\text{ 自由} \end{aligned}\)</p>
+<p>候选 \(\hat x=(1,0,2,0)^\top\ge0\)。先验原可行（三行）：</p>
+<p class="formula">\(1+0+2+0=3\ge3\ (\text{紧}),\qquad 1+0+2+0=3&lt;5\ (\text{松弛 }2),\qquad 2+0+2+0=4\ (\text{等式})\)</p>
+<div class="ex box">
+  <span class="box-title">📗 解出对偶证书</span>
+  <ol>
+    <li><b>原行松弛</b>：第 2 行 \(3&lt;5\) → 互补松弛迫使 \(y_2=0\)。</li>
+    <li><b>正变量</b>：\(x_1=1,\,x_3=2\) 迫使第 1、3 个对偶约束紧（代入 \(y_2=0\)）：\(\begin{cases}y_1+2y_3=1\\ y_1+y_3=2\end{cases}\Rightarrow y_3=-1,\ y_1=3\)。</li>
+    <li><b>验其余对偶条件</b>：\(y_1+2y_2+y_3=2\le3\)、\(2y_1+y_2+y_3=5\le6\)；符号 \(y_1=3\ge0\)、\(y_2=0\le0\)、\(y_3=-1\) 自由——全通过。</li>
+    <li><b>比目标值</b>：\(c^\top\hat x=1+2(2)=5=3(3)+5(0)+4(-1)=b^\top y\)。</li>
+  </ol>
+</div>
+<p class="formula">\(x^*=(1,0,2,0)^\top,\quad y^*=(3,0,-1)^\top,\quad V^*=5\)</p>
+
+<h3 id="lec12-p1-5">1.5 例题：从对偶恢复原解 <span class="zh">Recover the Primal from the Dual</span></h3>
+<p>从对偶可行点 \(y^*=(3,0,-1)^\top\) 出发。先算「对偶松弛向量」：</p>
+<p class="formula">\(c-A^\top y^*=(1,3,2,6)^\top-(1,2,2,5)^\top=(0,1,0,1)^\top\)</p>
+<p>第 2、4 分量严格 &gt;0 → \(x_2=x_4=0\)（任何原最优解都如此）。非零乘子 \(y_1=3\ne0\) → 原第 1 行紧；第 3 行本就是等式：</p>
+<p class="formula">\(\begin{cases}x_1+x_3=3\\ 2x_1+x_3=4\end{cases}\Rightarrow x_1=1,\ x_3=2\)</p>
+<p>验剩余：第 2 行 \(1+2=3\le5\)，变量非负。原值 \(=5=b^\top y^*\)。故 \((1,0,2,0)^\top\) 是<b>唯一</b>原最优。<b>零乘子不要求对应原不等式紧</b>——这是易错点。</p>
+</section>
+
+<section id="lec12-p2">
+<h2>Part 2 · 解释对偶问题 <span class="zh">Interpreting the Dual Problem</span></h2>
+
+<h3 id="lec12-p2-1">2.1 生产计划：买方情景与影子价格 <span class="zh">Production Planning: the Buyer Scenario</span></h3>
+<p>回顾生产计划（max 利润）：</p>
+<p class="formula">\(\begin{aligned} \max\ & x_1+2x_2\\ \text{s.t.}\ & x_1\le100 &&(\text{钢 Steel})\\ & 2x_2\le200 &&(\text{铁 Iron})\\ & x_1+x_2\le150 &&(\text{铜 Copper})\\ & x_1,x_2\ge0 \end{aligned}\)</p>
+<p>设想一个<b>买方</b>要买走你全部原材料（钢/铁/铜），为每种资源报一个<b>非负单价</b> \(y_1,y_2,y_3\)。买方目标是<b>最小化买走你库存的总成本</b>：</p>
+<p class="formula">\(\min\ 100y_1+200y_2+150y_3\)</p>
+<p>买方必须让价格「<b>覆盖每种产品的利润</b>」，否则你宁可自己生产不卖给他：</p>
+<ul>
+  <li><b>合金 1</b>：做 1 单位要「1 钢 + 1 铜」，自己产赚 $1，卖原料得 \(y_1+y_3\) ⇒ 要求 \(y_1+y_3\ge1\)。</li>
+  <li><b>合金 2</b>：做 1 单位要「2 铁 + 1 铜」，自己产赚 $2，卖原料得 \(2y_2+y_3\) ⇒ 要求 \(2y_2+y_3\ge2\)。</li>
+</ul>
+<p class="formula">\(\begin{aligned} \min\ & 100y_1+200y_2+150y_3\\ \text{s.t.}\ & y_1+y_3\ge1,\quad 2y_2+y_3\ge2,\quad y_1,y_2,y_3\ge0 \end{aligned}\)</p>
+<div class="def box">
+  <span class="box-title">📌 影子价格（Shadow Price）</span>
+  <p>最优对偶变量就是这个生产模型隐含的<b>影子价格</b>，度量「额外一单位资源」的<b>局部价值</b>——这正是下一节敏感性分析要精确化的东西。</p>
+</div>
+
+<h3 id="lec12-p2-2">2.2 多企业联盟：核心分配 <span class="zh">Multi-Firm Alliance: the Core</span></h3>
+<p>\(m\) 家公司都会生产同样的产品（同一矩阵 \(A\)、同一利润 \(c\)），但各自的资源库存 \(b_i\) 不同：</p>
+<ul>
+  <li><b>各自单干</b>：公司 \(i\) 解 \(\max c^\top x\) s.t. \(Ax\le b_i,\ x\ge0\)，得利润 \(V^i\)。</li>
+  <li><b>组成联盟</b>：把资源汇总成 \(\sum_i b_i\)，大联盟利润 \(V^*\ge\sum_i V^i\)。</li>
+</ul>
+<p>联盟多赚的钱怎么分？设 \(z_i\) 是分给公司 \(i\) 的钱。一个<b>稳定</b>（stable）的分配要满足：</p>
+<div class="def box">
+  <span class="box-title">📌 核（Core）的两条条件</span>
+  <ol>
+    <li><b>效率 Efficiency（预算平衡）</b>：\(\sum_{i=1}^m z_i=V^*\)（把总利润正好分完）。</li>
+    <li><b>没有离队动机 No incentive to leave</b>：对任意子集 \(S\)，\(\sum_{i\in S}z_i\ge V^S\)（他们拿到的 ≥ 自己单干能赚的）。若某个小团体单干能赚更多，联盟就散伙。</li>
+  </ol>
+</div>
+<p>直接找这样的 \(z_i\) 要检查 \(2^m\) 个不等式。但对偶给出捷径：</p>
+<div class="thm box">
+  <span class="box-title">🎯 核分配定理</span>
+  <p>设 \(y^*\) 是大联盟生产问题的对偶最优解（\(\min(\sum b_i)^\top y\) s.t. \(A^\top y\ge c,\ y\ge0\)）。令</p>
+  <p class="formula">\(z_i=b_i^\top y^*\)</p>
+  <p>则 \((z_1,\dots,z_m)\) 属于核。<b>证明</b>：① 由强对偶，\(\sum z_i=\sum b_i^\top y^*=(\sum b_i)^\top y^*=V^*\)；② 对任意 \(S\)，\(y^*\) 也是子联盟 \(S\) 对偶问题（\(\min(\sum_{i\in S}b_i)^\top y\) s.t. \(A^\top y\ge c,\ y\ge0\)）的可行解，由弱对偶 \(\sum_{i\in S}z_i=(\sum_{i\in S}b_i)^\top y^*\ge V^S\)。</p>
+</div>
+<p>直觉：\(y^*\) 是一套<b>公共影子价格</b>，按各公司拥有的资源量 \(b_i\) 来分配利润。</p>
+
+<h3 id="lec12-p2-3">2.3 择一定理（Theorem of Alternatives）<span class="zh">Theorem of Alternatives</span></h3>
+<p>有时我们只想知道一个系统是否可行（如 \(A^\top y\le c\)）。一个可行 \(y\) 就证明它可行；<b>怎么证明它不可行</b>？</p>
+<div class="thm box">
+  <span class="box-title">🎯 择一定理</span>
+  <p>下面两个系统<b>恰好一个</b>有解：</p>
+  <p class="formula">(1) \(A^\top y\le c\)；&nbsp;&nbsp;&nbsp;&nbsp;(2) \(Ax=0,\ x\ge0,\ c^\top x&lt;0\)。</p>
+  <p>系统 (2) 的向量就是系统 (1) <b>不可行的证书 certificate</b>。若两者同时存在：\(0&gt;c^\top x\ge y^\top A x=0\)，矛盾（其中 \(c^\top x\ge y^\top Ax\) 因 \(A^\top y\le c\) 且 \(x\ge0\)）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">📗 为什么「恰好一个」必有解</span>
+  <p>考虑原–对偶对：\(\min c^\top x\) s.t. \(Ax=0,x\ge0\) ↔ \(\max 0\) s.t. \(A^\top y\le c\)。</p>
+  <ul>
+    <li>若有证书（系统 (2)），缩放成 \(Ax=0,x\ge0,c^\top x=-1\)。则任意 \(k\ge0\)，\(kx\) 可行且 \(c^\top(kx)=-k\to-\infty\)：原问题无下界 → 由弱对偶，对偶不可行，即无 \(y\) 满足 \(A^\top y\le c\)。</li>
+    <li>反之若无证书，则每个 \(Ax=0,x\ge0\) 都有 \(c^\top x\ge0\)；\(x=0\) 可行且值 0，原问题有有限最优 0 → 强对偶给出对偶最优解，即存在 \(y\) 使 \(A^\top y\le c\)。</li>
+  </ul>
+  <p>一句话：<b>证书排除可行性；没有证书，系统就可行的。</b></p>
+</div>
+</section>
+
+<section id="lec12-p3">
+<h2>Part 3 · 局部敏感性分析 <span class="zh">Local Sensitivity Analysis</span></h2>
+
+<h3 id="lec12-p3-1">3.1 标准形与两个局部问题 <span class="zh">Standard Form &amp; the Two Questions</span></h3>
+<p>本节用标准形（\(A\) 固定，只改 \(b\) 或 \(c\)，一次改一个）：</p>
+<p class="formula">\(V(b,c)=\min\{c^\top x:\ Ax=b,\ x\ge0\}\)，对偶 \(\max b^\top y\) s.t. \(A^\top y\le c,\ y\) 自由</p>
+<p>两个问题：① <b>最优解会不会变？</b>② <b>最优值局部怎么变？</b>局部敏感性用 \(x^*,y^*\) 描述这些变化；下一节的全局敏感性给出<b>允许范围</b>。</p>
+
+<h3 id="lec12-p3-2">3.2 生产例题的标准形与对偶解 <span class="zh">Standard Form &amp; Dual Solution</span></h3>
+<p>把生产问题写成标准 min（最小化利润的相反数，并加资源松弛）：</p>
+<p class="formula">\(\begin{aligned} \min\ & -x_1-2x_2\\ \text{s.t.}\ & x_1+s_1=100\\ & 2x_2+s_2=200\\ & x_1+x_2+s_3=150\\ & x_1,x_2,s_1,s_2,s_3\ge0 \end{aligned}\)</p>
+<p>\(x=(x_1,x_2,s_1,s_2,s_3)^\top,\ c=(-1,-2,0,0,0)^\top\)。一个最优解 \(x^*=(50,100,50,0,0)^\top\)，\(V=-250\)。其最优性直接可见：</p>
+<p class="formula">\(-x_1-2x_2=-(150-s_3)-(100-s_2/2)=-250+s_2/2+s_3\ge-250\)</p>
+<p>对偶为 \(\max100y_1+200y_2+150y_3\)，s.t. \(y_1+y_3\le-1,\ 2y_2+y_3\le-2,\ y_1,y_2,y_3\le0\)（等号行让 \(y\) 起初自由，三个松弛列再施加 \(y_i\le0\)）。用互补松弛 \(x_1^*,x_2^*,s_1^*&gt;0\)：</p>
+<p class="formula">\(\begin{cases}y_1+y_3=-1\\ 2y_2+y_3=-2\\ y_1=0\end{cases}\Rightarrow y^*=\left(0,-\tfrac12,-1\right)^\top\)</p>
+<p>对偶值 \(=100(0)+200(-\tfrac12)+150(-1)=-250=V\)。这里 \(y_i^*\) 度量最小目标值的变化；对<b>原利润</b>（=−目标）的边际增量是 \(-y_i^*\)。</p>
+
+<h3 id="lec12-p3-3">3.3 RHS 的局部敏感性 <span class="zh">Local Sensitivity to RHS</span></h3>
+<p>固定 \(A,c\)。若改 \(b\) 后<b>同一个对偶解 \(y^*\) 仍最优</b>，强对偶给：</p>
+<p class="formula">\(V(b+\Delta b)-V(b)=(b+\Delta b)^\top y^*-b^\top y^*=(y^*)^\top\Delta b\)</p>
+<div class="ex box">
+  <span class="box-title">📗 铁多 2 单位</span>
+  <p>\(\Delta b=(0,2,0)^\top\)：</p>
+  <p class="formula">\(\Delta V=y_2^*\,\Delta b_2=-\tfrac12(2)=-1\)</p>
+  <p>最优值 \(-250\to-251\)，解从 \((50,100)\) 移到 \((49,101)\)（多 1 单位合金 2，但铜逼着少 1 单位合金 1）。<b>同一个对偶解，不同的原解</b>。</p>
+</div>
+
+<h3 id="lec12-p3-4">3.4 目标系数的局部敏感性 <span class="zh">Local Sensitivity to Objective Coefficients</span></h3>
+<p>固定 \(A,b\)。若改 \(c\) 后<b>同一个原解 \(x^*\) 仍最优</b>：</p>
+<p class="formula">\(V(c+\Delta c)-V(c)=(c+\Delta c)^\top x^*-c^\top x^*=(x^*)^\top\Delta c\)</p>
+<div class="ex box">
+  <span class="box-title">📗 \(c_1\) 从 −1 降到 −1.02</span>
+  <p>\(\Delta c_1=-0.02,\ x_1^*=50\)：</p>
+  <p class="formula">\(\Delta V=50(-0.02)=-1,\qquad V_{new}=-1.02(50)-2(100)=-251\)</p>
+  <p>在同一个解处，50 单位 \(x_1\) 每单位让最小目标少 0.02。可行性不变，但最优性仍需检查（全局敏感性决定哪些 \(c\) 变化能保住 \(x^*\)）。</p>
+</div>
+
+<h3 id="lec12-p3-5">3.5 局部导数 <span class="zh">Local Derivatives</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 最优值对数据的梯度</span>
+  <p>固定 \(A\)，一次只动一个参数向量，且假设最优值在参数的一个开邻域上有限：</p>
+  <ul>
+    <li>若对偶有<b>唯一</b>最优解 \(y^*\)，则 \(\nabla_b V=y^*\)；</li>
+    <li>若原问题有<b>唯一</b>最优解 \(x^*\)，则 \(\nabla_c V=x^*\)。</li>
+  </ul>
+  <p>梯度给的是局部一阶预测；有限 RHS 变化下 \(\Delta V=(y^*)^\top\Delta b\) 精确当且仅当同一对偶解仍最优；有限目标变化下 \(\Delta V=(x^*)^\top\Delta c\) 精确当且仅当同一原解仍最优。在边界处即使梯度不存在，精确公式也可能仍成立（见 4.9）。</p>
+</div>
+</section>
+
+<section id="lec12-p4">
+<h2>Part 4 · 全局敏感性分析 <span class="zh">Global Sensitivity Analysis</span></h2>
+
+<h3 id="lec12-p4-1">4.1 最优基与缩减成本 <span class="zh">An Optimal Basis &amp; Reduced Costs</span></h3>
+<p>对 \(\min\{c^\top x:Ax=b,x\ge0\}\)，设 \(A\in\mathbb R^{m\times n}\) 行满秩、已知一个最优基。取有序基 \(B\)（\(A_B\) 可逆），\(N\) 为非基列指标集：</p>
+<p class="formula">\(x_B^*=A_B^{-1}b,\quad x_N^*=0,\quad (y^*)^\top=c_B^\top A_B^{-1}\)</p>
+<p>定义缩减成本（同单纯形表格）：</p>
+<p class="formula">\(r^\top=c^\top-c_B^\top A_B^{-1}A,\qquad r_B=0\)</p>
+<div class="thm box">
+  <span class="box-title">🎯 最优性两条件</span>
+  <p class="formula">原可行：\(x_B^*\ge0\)；&nbsp;&nbsp;&nbsp;&nbsp;对偶可行：\(r_N\ge0\)</p>
+  <p>两条件齐了即认证最优。敏感性分析 = <b>保持同一个基 \(B\)</b>，检查改数据后哪些条件还活着。</p>
+</div>
+
+<h3 id="lec12-p4-2">4.2 标准形例题的基矩阵 <span class="zh">The Standard-Form Basis Matrices</span></h3>
+<p>变量序 \(x=(x_1,x_2,s_1,s_2,s_3)^\top,\ c=(-1,-2,0,0,0)^\top\)：</p>
+<p class="formula">\(A=\begin{bmatrix}1&0&1&0&0\\0&2&0&1&0\\1&1&0&0&1\end{bmatrix},\qquad b=\begin{bmatrix}100\\200\\150\end{bmatrix}\)</p>
+<p>最优处取有序基 \(B=(1,2,3)\)（即 \(x_1,x_2,s_1\)），\(N=(4,5)\)（即 \(s_2,s_3\)）：</p>
+<p class="formula">\(A_B=\begin{bmatrix}1&0&1\\0&2&0\\1&1&0\end{bmatrix},\quad A_N=\begin{bmatrix}0&0\\1&0\\0&1\end{bmatrix},\quad x_B=(x_1,x_2,s_1)^\top,\ x_N=(s_2,s_3)^\top=0\)</p>
+<p><b>「保持这个基」指保持这些列（及顺序），不是保持它们的值。</b></p>
+
+<h3 id="lec12-p4-3">4.3 基值、对偶变量与缩减成本 <span class="zh">Basis Values, Dual &amp; Reduced Costs</span></h3>
+<p>令 \(H:=A_B^{-1}A_N\)。计算得：</p>
+<p class="formula">\(A_B^{-1}=\begin{bmatrix}0&-\tfrac12&1\\[2pt]0&\tfrac12&0\\[2pt]1&\tfrac12&-1\end{bmatrix},\qquad H=\begin{bmatrix}-\tfrac12&1\\[2pt]\tfrac12&0\\[2pt]\tfrac12&-1\end{bmatrix}\)</p>
+<p class="formula">\(x_B^*=A_B^{-1}b=(50,100,50)^\top,\qquad (y^*)^\top=(-1,-2,0)A_B^{-1}=\left(0,-\tfrac12,-1\right)\)</p>
+<p class="formula">\(r_N^\top=(0,0)-(-1,-2,0)H=\left(\tfrac12,\,1\right)\)</p>
+<p>故 \(x_B^*\ge0\) 且 \(r_N\ge0\)：基是最优的。\(V=c_B^\top x_B^*=-250=b^\top y^*\)。<b>关键复用</b>：\(A_B^{-1}\) 的列描述 RHS 变化，\(H\) 的行描述基目标系数的变化。</p>
+
+<h3 id="lec12-p4-4">4.4 改变 RHS <span class="zh">Changing the RHS</span></h3>
+<p>把 \(b\) 改成 \(\tilde b=b+\Delta b\)，保持 \(A,c\)。同一基下构造：</p>
+<p class="formula">\(\tilde x_B=A_B^{-1}\tilde b=x_B^*+A_B^{-1}\Delta b,\qquad \tilde x_N=0\)</p>
+<div class="ex box">
+  <span class="box-title">📗 可行性与最优性</span>
+  <p><b>可行性</b>：\(A\tilde x=A_B\tilde x_B=\tilde b\) 自动成立，唯一还要检查的是 \(\tilde x_B\ge0\)。<b>最优性</b>：\(y^*\) 与 \(r_N\ge0\) 只依赖 \(A,c,B\)，故不变。若 \(\tilde x_B\ge0\)，则 \(c^\top\tilde x=c_B^\top A_B^{-1}\tilde b=(y^*)^\top\tilde b\)，原对偶都可行且值相等 → 都最优。因此 \(\Delta V=(y^*)^\top\Delta b\)。同一个基可以给出不同的原解。</p>
+</div>
+
+<h3 id="lec12-p4-5">4.5 单个 RHS 分量：允许区间 <span class="zh">One RHS Component: Allowable Interval</span></h3>
+<p>只改第 \(i\) 个分量：\(\Delta b=t e_i\)。令 \(d=A_B^{-1}e_i=A_B^{-1}\) 的第 \(i\) 列，要求 \(x_B^*+td\ge0\)，每个基变量一条不等式：</p>
+<p class="formula">\(d_k&gt;0\Rightarrow t\ge-\frac{(x_B^*)_k}{d_k};\qquad d_k&lt;0\Rightarrow t\le-\frac{(x_B^*)_k}{d_k};\qquad d_k=0\Rightarrow\text{无限制}\)</p>
+<p class="formula">\(t_{\min}=\max\{\text{下界}\},\qquad t_{\max}=\min\{\text{上界}\}\)</p>
+<p>交所有限制得 \(t_{\min}\le t\le t_{\max}\)（无界用 \(-\infty\) 或 \(+\infty\)）。</p>
+
+<h3 id="lec12-p4-6">4.6 RHS 例题：铁、钢、铜 <span class="zh">RHS Examples</span></h3>
+<div class="ex box">
+  <span class="box-title">📗 铁 \(b_2=200+t\)</span>
+  <p>用 \(A_B^{-1}\) 第 2 列 \(d=\left(-\tfrac12,\tfrac12,\tfrac12\right)^\top\)：</p>
+  <p class="formula">\(\tilde x_B=(50,100,50)^\top+t\left(-\tfrac12,\tfrac12,\tfrac12\right)^\top=\left(50-\tfrac t2,\ 100+\tfrac t2,\ 50+\tfrac t2\right)^\top\ge0\)</p>
+  <p>\(x_1\ge0\Rightarrow t\le100\)；\(x_2\ge0\Rightarrow t\ge-200\)；\(s_1\ge0\Rightarrow t\ge-100\)。故</p>
+  <p class="formula">\(-100\le t\le100\quad\Longleftrightarrow\quad 100\le b_2\le300,\qquad V_{new}=-250-\tfrac t2\)</p>
+  <p>取 \(t=2\)：\((x_1,x_2,s_1)=(49,101,51)\)，\(V_{new}=-251\)（三条不等式验证了预测值可达）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">📗 钢 \(b_1=100+t\) 与 铜 \(b_3=150+t\)</span>
+  <p><b>钢</b>：\(d=(0,0,1)^\top\)，\(\tilde x_B=(50,100,50+t)^\top\ge0\iff t\ge-50\)。只有未用的钢在变，故 \(V_{new}=-250\)（少 1 单位钢仍剩 49 单位未用，目标不变）。</p>
+  <p><b>铜</b>：\(d=(1,0,-1)^\top\)，\(\tilde x_B=(50+t,100,50-t)^\top\ge0\iff -50\le t\le50\)，且 \(V_{new}=-250-t\)（因 \(y_3^*=-1\)）。</p>
+  <p><b>零影子价格意味着范围内最优值不变，不等于资源永远没用</b>——超出范围后可能变成紧约束。</p>
+</div>
+
+<h3 id="lec12-p4-7">4.7 改变目标系数 <span class="zh">Changing Objective Coefficients</span></h3>
+<p>改 \(c\to\tilde c=c+\Delta c\)，保持 \(A,b\)。同一基本解 \(x_B^*=A_B^{-1}b\) 仍可行；但 \(\tilde y^\top=\tilde c_B^\top A_B^{-1}\)，且：</p>
+<p class="formula">\(\tilde r_N^\top=(c_N+\Delta c_N)^\top-(c_B+\Delta c_B)^\top A_B^{-1}A_N=r_N^\top+\Delta c_N^\top-\Delta c_B^\top H\)</p>
+<div class="ex box">
+  <span class="box-title">📗 min 的最优性检查</span>
+  <p>若 \(\tilde r_N\ge0\)，新对偶点可行，同一基、同一原解仍最优。此时 \(\tilde c^\top x^*=b^\top\tilde y\)，精确变化 \(\Delta V=(x^*)^\top\Delta c\)。<b>原解不动，对偶解可能变。</b></p>
+</div>
+
+<h3 id="lec12-p4-8">4.8 单个目标系数：两种情形 <span class="zh">One Objective Coefficient: Two Cases</span></h3>
+<p>令 \(c_j\to c_j+t\)，其余不动：</p>
+<div class="thm box">
+  <span class="box-title">🎯 非基 vs 基</span>
+  <ul>
+    <li><b>非基变量</b> \(j\in N\)：\(\tilde r_j=r_j+t\ge0\iff t\ge-r_j\)，其余缩减成本不变。因 \(x_j^*=0\)，\(\Delta V=0\)。（如 \(s_2\)：\(c_4=0\to t\) 允许 \(t\ge-\tfrac12\)。）</li>
+    <li><b>基变量</b> \(j=B_k\)（\(B\) 的第 \(k\) 项）：\(\Delta c_B=te_k\)，\(\tilde r_N^\top=r_N^\top-te_k^\top H\ge0\)。用 \(H\) 的<b>第 \(k\) 行</b>（不是第 \(j\) 行），解全部缩减成本不等式并交区间。\(\Delta V=x_j^*t\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p4-9">4.9 基系数例题：改 \(c_1\) 与改 \(c_2\) <span class="zh">Basic-Coefficient Examples</span></h3>
+<div class="ex box">
+  <span class="box-title">📗 改 \(c_1=-1+t\)</span>
+  <p>\(x_1\) 是基变量（位置 1），\(\Delta c_B=(t,0,0)^\top\)，用 \(H\) 第 1 行 \(\left(-\tfrac12,1\right)\)：</p>
+  <p class="formula">\(\tilde r_N^\top=\left(\tfrac12,1\right)-t\left(-\tfrac12,1\right)=\left(\tfrac12+\tfrac t2,\ 1-t\right)\ge0\)</p>
+  <p>\(\tfrac12+\tfrac t2\ge0\Rightarrow t\ge-1\)；\(1-t\ge0\Rightarrow t\le1\)。故</p>
+  <p class="formula">\(-1\le t\le1\quad\Longleftrightarrow\quad -2\le c_1\le0,\qquad V_{new}=-250+50t\)</p>
+  <p>取 \(t=-0.02\)：检查通过，\(V_{new}=-251\)（利润升 0.02 对应 \(t=-0.02\)）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">📗 练习：改 \(c_2=-2+t\)</span>
+  <p>\(x_2\) 是基变量（位置 2），用 \(H\) 第 2 行 \(\left(\tfrac12,0\right)\)：</p>
+  <p class="formula">\(\tilde r_N^\top=\left(\tfrac12,1\right)-t\left(\tfrac12,0\right)=\left(\tfrac12-\tfrac t2,\ 1\right)\ge0\quad\Rightarrow\quad t\le1\iff c_2\le-1\)</p>
+  <p>\(t=0.03\)（\(c_2=-1.97\)）允许：\(\Delta V=100(0.03)=3\)，\(V_{new}=-247\)。直接验证：\(-1(50)-1.97(100)=-247\)。</p>
+</div>
+
+<h3 id="lec12-p4-10">4.10 端点处公式仍成立 <span class="zh">At an Endpoint</span></h3>
+<div class="ex box">
+  <span class="box-title">📗 \(c_1=-2\)（允许区间左端点）</span>
+  <p>新缩减成本 \(\tilde r_N=(0,2)^\top\ge0\)：旧计划仍最优，\(V=-250+50(-1)=-300\)。但此时<b>最优不再唯一</b>——阴影边上每个点都有 \(-2x_1-2x_2=-300\)（如 \((100,50)\)）。</p>
+  <p>刚越过 \(c_1=-2\)，最优移到 \((100,50)\)：故 \(V(c_1)\) 在 \(c_1=-2\) 处<b>左斜率 100、右斜率 50</b>（不可导但公式在端点仍精确）。RHS 的端点则可能让某个基变量变成 0。</p>
+</div>
+
+<h3 id="lec12-p4-11">4.11 超出范围：换一个最优基 <span class="zh">Beyond the Range</span></h3>
+<p>固定 \(b_2=200,b_3=150\)，变钢 \(b_1\)：</p>
+<p class="formula">\(V(b_1)=\begin{cases}-200-b_1,&0\le b_1\le50\\[2pt]-250,&b_1\ge50\end{cases}\)</p>
+<ul>
+  <li>对 \(0\le b_1\le50\)，\((x_1,x_2)=(b_1,100)\) 达到下界 \(-b_1-200\)。</li>
+  <li>在 \(b_1=100\)，\(y_1^*=0\)，旧基对 \(b_1\ge50\) 有效。</li>
+  <li>丢 60 单位（\(b_1=40\)）：旧基解有 \(s_1=50-60=-10&lt;0\) 不可行；新最优 \((x_1,x_2)=(40,100)\)，\(V=-240\)。<b>错误预测是 −250</b>。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 关键点</span>
+  <p>越过一个界只是让<b>旧基检查失效</b>，不代表整个 LP 无解或变无界——换基重优化即可。</p>
+</div>
+</section>
+
+<section id="lec12-p5">
+<h2>Part 5 · 更一般的变化与总结 <span class="zh">More General Changes &amp; Summary</span></h2>
+
+<h3 id="lec12-p5-1">5.1 允许范围汇总表 <span class="zh">Allowable Ranges (Standard MIN Form)</span></h3>
+<table class="truth">
+  <thead><tr><th>新参数</th><th>允许变化</th><th>新的最小目标 \(V\)</th></tr></thead>
+  <tbody>
+    <tr><td>钢 \(b_1=100+t\)</td><td>\(t\ge-50\)</td><td>\(-250\)</td></tr>
+    <tr><td>铁 \(b_2=200+t\)</td><td>\(-100\le t\le100\)</td><td>\(-250-\tfrac t2\)</td></tr>
+    <tr><td>铜 \(b_3=150+t\)</td><td>\(-50\le t\le50\)</td><td>\(-250-t\)</td></tr>
+    <tr><td>\(c_1=-1+t\)</td><td>\(-1\le t\le1\)</td><td>\(-250+50t\)</td></tr>
+    <tr><td>\(c_2=-2+t\)</td><td>\(t\le1\)</td><td>\(-250+100t\)</td></tr>
+  </tbody>
+</table>
+<div class="warn box">
+  <span class="box-title">⚠️ 两点提醒</span>
+  <p>① 端点包含在内；本例原利润 \(=-V\)。② <b>逐个区间不保证同时变化有效</b>：若几个参数一起变，要检查完整条件</p>
+  <p class="formula">\(x_B^*+A_B^{-1}\Delta b\ge0\qquad\text{或}\qquad r_N^\top+\Delta c_N^\top-\Delta c_B^\top H\ge0\)</p>
+</div>
+
+<h3 id="lec12-p5-2">5.2 超出允许范围怎么办 <span class="zh">Outside the Allowable Range</span></h3>
+<div class="def box">
+  <span class="box-title">📌 分两种失败</span>
+  <ul>
+    <li><b>改 \(c\) 且某个 \(\tilde r_j&lt;0\)</b>：旧基本解仍可行，重算目标行、继续<b>原单纯形</b>——要么找到新最优、要么检出无界。</li>
+    <li><b>改 \(b\) 且某个 \((\tilde x_B)_k&lt;0\)</b>：旧基原不可行、但缩减成本仍非负，用<b>对偶单纯形</b>恢复原可行、或检出不可行；重解修改后的 LP 也合法。</li>
+  </ul>
+  <p>退化时同一点可有多个基；「基的区间」只是对<b>那个基</b>的保证。</p>
+</div>
+
+<h3 id="lec12-p5-3">5.3 改变矩阵 A <span class="zh">Changing the Matrix A</span></h3>
+<p>固定 \(b,c\)，改某一列 \(A_j\to\tilde A_j\)：</p>
+<ul>
+  <li><b>非基列 \(j\in N\)</b>：\(x_j^*=0\) 故旧解仍可行，\(A_B,y^*\) 不变。只有 \(\tilde r_j=c_j-(y^*)^\top\tilde A_j\) 变。若 \(\tilde r_j\ge0\)，旧解对最优；否则更新该列并重优化。</li>
+  <li><b>基列 \(j\in B\)</b>：基矩阵变了。检查新矩阵可逆，重算 \(A_B^{-1}\tilde b\)、对偶解、全部缩减成本；可行性与最优性都要重查。</li>
+</ul>
+
+<h3 id="lec12-p5-4">5.4 加一个变量或加一个约束 <span class="zh">Adding a Variable or Constraint</span></h3>
+<div class="ex box">
+  <span class="box-title">📗 加变量 / 加约束</span>
+  <ul>
+    <li><b>加非负变量</b> \(z\)（列 \(a\)、成本 \(c_z\)）：\(\min c^\top x+c_z z\) s.t. \(Ax+az=b,\ x,z\ge0\)。旧解取 \(z=0\) 仍可行，查 \(r_z=c_z-(y^*)^\top a\)。若 \(r_z\ge0\)，旧原对偶解仍最优；若 \(r_z&lt;0\)，扩展表格重优化。</li>
+    <li><b>加约束</b>：缩小可行集。若旧最优满足新约束，它仍最优（没有剩余可行点能更低）；否则重优化。加一个约束 = 加一个对偶变量。应用标准形单纯形前，先把新增不等式写成带非负松弛（或剩余）变量的等式形式。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p5-5">5.5 三步流程与检查理解 <span class="zh">Local Predictions &amp; Global Checks</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 敏感性分析三步</span>
+  <ol>
+    <li><b>识别变化</b>：固定 \(A\)，改 \(b\) 或 \(c\)。</li>
+    <li><b>复用一个最优基</b>：记下 \(x_B^*,y^*,r_N,A_B^{-1},H\)。</li>
+    <li><b>查允许范围</b>：改 \(b\)：\(\tilde x_B=x_B^*+A_B^{-1}\Delta b\ge0\)；改 \(c\)：\(\tilde r_N^\top=r_N^\top+\Delta c_N^\top-\Delta c_B^\top H\ge0\)。</li>
+    <li><b>更新值</b>：检查通过后用 \((y^*)^\top\Delta b\) 或 \((x^*)^\top\Delta c\)。</li>
+  </ol>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 检查你的理解</span>
+  <ul>
+    <li><b>「同一个基 = 同一个解」？</b>错。RHS 变化会移动基本解。</li>
+    <li><b>「改 0.01 总允许」？</b>错。要检查不等式。</li>
+    <li><b>「超出范围 LP 就不可行」？</b>不一定。重优化并检查其状态。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p5-6">5.6 词汇表 <span class="zh">Vocabulary</span></h3>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>interpretation</b> — 解释；<b>shadow price</b> — 影子价格；<b>marginal value</b> — 边际价值</li>
+    <li><b>sensitivity analysis</b> — 敏感性分析；<b>local / global</b> — 局部 / 全局</li>
+    <li><b>production planning</b> — 生产计划；<b>alliance</b> — 联盟；<b>core</b> — 核</li>
+    <li><b>budget balance</b> — 预算平衡（效率）；<b>no incentive to leave</b> — 无离队动机</li>
+    <li><b>theorem of alternatives</b> — 择一定理；<b>certificate of infeasibility</b> — 不可行证书</li>
+    <li><b>right-hand side (RHS)</b> — 右端项；<b>objective coefficient</b> — 目标系数</li>
+    <li><b>optimal basis</b> — 最优基；<b>basis matrix \(A_B\)</b> — 基矩阵；<b>reduced cost</b> — 缩减成本</li>
+    <li><b>allowable range / interval</b> — 允许范围 / 区间；<b>endpoint</b> — 端点</li>
+    <li><b>gradient</b> — 梯度；<b>slope</b> — 斜率；<b>first-order</b> — 一阶</li>
+    <li><b>primal simplex</b> — 原单纯形；<b>dual simplex</b> — 对偶单纯形；<b>reoptimize</b> — 重优化</li>
+    <li><b>invertible</b> — 可逆；<b>degeneracy</b> — 退化</li>
+  </ul>
+</div>
+</section>
+</div><!-- /第12课 -->
+
 
 </div>
 </main>
