@@ -31,7 +31,7 @@ import html as html_lib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 INDEX_PATH = os.path.join(HERE, "search-index.js")
-MAX_CHARS = 4000  # 每份笔记索引文本的最大字符数
+MAX_CHARS = 400000  # 每份笔记索引文本的最大字符数（覆盖完整全文，笔记已增长到 200–600KB）
 
 ENTRY_RE = re.compile(
     r'\{\s*course\s*:\s*"([^"]+)"\s*,\s*title\s*:\s*"([^"]+)"\s*,\s*file\s*:\s*"([^"]+)"'
