@@ -1185,6 +1185,72 @@ window.MathJax = {
         <a class="lv2" href="#lec12-p6-2">6.2 词汇表</a>
       </div>
     </div>
+<div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第13课 · Tries and Hashing</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec13-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec13-p1">Part 1 · 字符串与字典 ADT</a>
+        <a class="lv2" href="#lec13-p1-1">1.1 字符串无处不在</a>
+        <a class="lv2" href="#lec13-p1-2">1.2 字符串字典 ADT</a>
+        <a class="lv2" href="#lec13-p1-3">1.3 一次字符串比较不是 O(1)</a>
+        <a class="lv1" href="#lec13-p2">Part 2 · 向量扫描的字典</a>
+        <a class="lv2" href="#lec13-p2-1">2.1 vector&lt;string&gt; 实现</a>
+        <a class="lv2" href="#lec13-p2-2">2.2 成本表</a>
+        <a class="lv1" href="#lec13-p3">Part 3 · Trie：合并公共前缀</a>
+        <a class="lv2" href="#lec13-p3-1">3.1 从公共前缀到树</a>
+        <a class="lv2" href="#lec13-p3-2">3.2 词边界：双圈</a>
+        <a class="lv2" href="#lec13-p3-3">3.3 插入走查</a>
+        <a class="lv2" href="#lec13-p3-4">3.4 前缀不一定是词</a>
+        <a class="lv2" href="#lec13-p3-5">3.5 跟随查询路径</a>
+        <a class="lv1" href="#lec13-p4">Part 4 · Trie 的表示与实现</a>
+        <a class="lv2" href="#lec13-p4-1">4.1 下标数组存节点</a>
+        <a class="lv2" href="#lec13-p4-2">4.2 TrieNode 结构</a>
+        <a class="lv2" href="#lec13-p4-3">4.3 节点池与根</a>
+        <a class="lv2" href="#lec13-p4-4">4.4 C++ 插入</a>
+        <a class="lv2" href="#lec13-p4-5">4.5 C++ walk</a>
+        <a class="lv2" href="#lec13-p4-6">4.6 search / startsWith</a>
+        <a class="lv2" href="#lec13-p4-7">4.7 同一对象上的操作序列</a>
+        <a class="lv1" href="#lec13-p5">Part 5 · wordsWithPrefix 与复杂度</a>
+        <a class="lv2" href="#lec13-p5-1">5.1 列出前缀匹配的词</a>
+        <a class="lv2" href="#lec13-p5-2">5.2 Trie 的时间与空间</a>
+        <a class="lv1" href="#lec13-p6">Part 6 · 哈希的动机：字符串指纹</a>
+        <a class="lv2" href="#lec13-p6-1">6.1 短指纹</a>
+        <a class="lv2" href="#lec13-p6-2">6.2 指纹相等 ≠ 字符串相等</a>
+        <a class="lv2" href="#lec13-p6-3">6.3 字母值相加</a>
+        <a class="lv2" href="#lec13-p6-4">6.4 哈希碰撞</a>
+        <a class="lv2" href="#lec13-p6-5">6.5 碰撞有多频繁</a>
+        <a class="lv1" href="#lec13-p7">Part 7 · 把词当作 26 进制数</a>
+        <a class="lv2" href="#lec13-p7-1">7.1 base-26 编码</a>
+        <a class="lv2" href="#lec13-p7-2">7.2 读取 base-26 数</a>
+        <a class="lv2" href="#lec13-p7-3">7.3 长度与整数范围</a>
+        <a class="lv2" href="#lec13-p7-4">7.4 取余数</a>
+        <a class="lv1" href="#lec13-p8">Part 8 · 哈希与碰撞</a>
+        <a class="lv2" href="#lec13-p8-1">8.1 增量取余</a>
+        <a class="lv2" href="#lec13-p8-2">8.2 一对碰撞概率</a>
+        <a class="lv2" href="#lec13-p8-3">8.3 多键多对</a>
+        <a class="lv2" href="#lec13-p8-4">8.4 大规模碰撞概率</a>
+        <a class="lv1" href="#lec13-p9">Part 9 · 哈希表实现字典</a>
+        <a class="lv2" href="#lec13-p9-1">9.1 哈希表 = 哈希函数 + 桶</a>
+        <a class="lv2" href="#lec13-p9-2">9.2 分离链接法查找</a>
+        <a class="lv2" href="#lec13-p9-3">9.3 桶长度与查找成本</a>
+        <a class="lv2" href="#lec13-p9-4">9.4 扩容重哈希</a>
+        <a class="lv2" href="#lec13-p9-5">9.5 哈希表操作成本</a>
+        <a class="lv2" href="#lec13-p9-6">9.6 C++ hashWord</a>
+        <a class="lv2" href="#lec13-p9-7">9.7 C++ locate</a>
+        <a class="lv2" href="#lec13-p9-8">9.8 C++ put</a>
+        <a class="lv2" href="#lec13-p9-9">9.9 unordered_map / unordered_set</a>
+        <a class="lv2" href="#lec13-p9-10">9.10 find 与 operator[]</a>
+        <a class="lv1" href="#lec13-p10">Part 10 · Trie vs 哈希表</a>
+        <a class="lv2" href="#lec13-p10-1">10.1 同一字典接口</a>
+        <a class="lv2" href="#lec13-p10-2">10.2 字典操作成本对比</a>
+        <a class="lv2" href="#lec13-p10-3">10.3 一句话总结</a>
+        <a class="lv2" href="#lec13-p10-4">10.4 词汇表</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -1193,7 +1259,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–12</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -9727,6 +9793,711 @@ vector&lt;int&gt; topologicalOrder() {
     </div>
   </section>
 </div><!-- /第12课 -->
+
+<!-- ============ 第13课 ============ -->
+<div class="lecture" id="lec13">
+  <div class="lecture-banner">第13课 · Tries and Hashing <span class="zh">（字典树与散列：前缀查询 / 哈希函数 / 哈希表）</span></div>
+
+  <section id="lec13-overview">
+    <div class="toc">
+      <div class="toc-title">本讲导览</div>
+      <ol>
+        <li>字符串与字典 ADT：为什么「一次字符串比较不是 O(1)」，字符串字典要支持哪些操作</li>
+        <li>向量扫描的字典：vector&lt;string&gt; 的 search / insert / startsWith 与成本表</li>
+        <li>Trie（字典树）：把公共前缀合并成共享路径，词边界用「双圈」标记</li>
+        <li>Trie 的表示与实现：下标数组存节点、walk / insert / search / startsWith 的 C++ 代码</li>
+        <li>wordsWithPrefix 与 Trie 复杂度：遍历前缀子树 + 时间空间成本</li>
+        <li>哈希的动机：字符串指纹——短数字能否省掉整串比较？碰撞从何而来</li>
+        <li>把词当作 26 进制数：base-26 编码、整数范围、取余数压缩</li>
+        <li>哈希与碰撞：增量取余、一对/多对碰撞概率、生日效应</li>
+        <li>哈希表实现字典：分离链接法、装载因子、扩容重哈希、unordered_map</li>
+        <li>Trie vs 哈希表：同一字典接口的两种实现对比与选型</li>
+      </ol>
+    </div>
+
+    <div class="warn box">
+      <div class="box-title">本讲主线</div>
+      <p>前面几讲我们一直在处理<b>整数</b>下标；这一讲换主角——<b>字符串（string）</b>，以及用字符串当 key 的<b>字典（dictionary / 映射 map）</b>。核心难点只有一个：<b>字符串不是 O(1) 可比的</b>，两个词要逐字符比，最长 L 个字符就是 O(L)。所以「搜一个词」不再是数组的 O(1) 下标访问，而是要和别的词<b>逐字符</b>碰。本讲给出两种专门为字符串设计的结构：<b>Trie（字典树 / 前缀树）</b>——把公共前缀合并成共享路径，让「查完整词」和「查前缀」都只沿一条路径走 O(L)；<b>哈希表（hash table）</b>——用一个哈希函数把词压成桶下标，理想情况 O(1) 定位，代价是要处理<b>碰撞（collision）</b>。一句话：<b>Trie 赢在「前缀查询」，哈希表赢在「常数期望的精确查找」</b>，选谁看你要支持哪些操作。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p1">
+    <h2>Part 1 · 字符串与字典 ADT <span class="en">Strings and the Dictionary ADT</span></h2>
+
+    <h3 id="lec13-p1-1">1.1 字符串无处不在 <span class="en">Strings Are Everywhere</span></h3>
+    <p>很多真实数据不是整数，而是字符串：统计一篇文章里每个<b>单词出现的频率（word frequencies）</b>、自动补全（输入 <code>app</code> 提示 <code>apple</code>）、拼写检查、路由器的最长前缀匹配……这些应用的共同需求是：<b>给定一个字符串前缀，快速找出所有以它为前缀的词</b>。</p>
+
+    <h3 id="lec13-p1-2">1.2 字符串字典 ADT <span class="en">The String Dictionary ADT</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 字符串字典要支持的操作</div>
+      <table>
+        <tr><th>操作</th><th>含义</th></tr>
+        <tr><td><code>search(word)</code></td><td>word 是否是一<b>个完整存进去的词</b>？</td></tr>
+        <tr><td><code>insert(word)</code></td><td>存进一个完整词（重复插入不算新词）</td></tr>
+        <tr><td><code>startsWith(prefix)</code></td><td>是否<b>存在某个存过的词</b>以 prefix 开头？</td></tr>
+        <tr><td><code>wordsWithPrefix(prefix)</code></td><td>列出<b>所有</b>以 prefix 开头的词</td></tr>
+      </table>
+      <p>注意 <code>search</code> 与 <code>startsWith</code> 的差别：前者要求<b>完整词</b>命中，后者只要求<b>前缀路径存在</b>。这套接口就是本讲要高效实现的「字符串字典」。</p>
+    </div>
+
+    <h3 id="lec13-p1-3">1.3 一次字符串比较不是 O(1) <span class="en">String Comparison Is Not O(1)</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 关键前提</div>
+      <p>整数比较是 O(1)；但<b>字符串比较要逐字符</b>：两个词最长 L 个字符，最坏要读 L 个字符才能判定，是 <b>O(L)</b>。这一条贯穿全讲——只要算法里还有「和某个词整串比较」，成本里就藏着 L。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p2">
+    <h2>Part 2 · 向量扫描的字典 <span class="en">A Vector-Based Dictionary</span></h2>
+
+    <h3 id="lec13-p2-1">2.1 vector&lt;string&gt; 实现 <span class="en">Implementation with a Vector</span></h3>
+    <p>最朴素的字典：把所有词塞进一个 <code>vector&lt;string&gt;</code>，操作都靠<b>线性扫描</b>。</p>
+<pre><code>vector&lt;string&gt; words;
+
+bool search(const string&amp; key) {
+    for (const string&amp; w : words)
+        if (w == key) return true;      // 一次整串比较 O(L)
+    return false;
+}
+
+void insert(const string&amp; key) {
+    if (!search(key)) words.push_back(key);   // 查重再插入
+}
+
+bool startsWith(const string&amp; prefix) {
+    for (const string&amp; w : words)
+        if (w.substr(0, prefix.size()) == prefix) return true;
+    return false;
+}</code></pre>
+    <p>这里 <code>insert</code> 先调 <code>search</code> 查重（避免同一个词存两份），<code>startsWith</code> 用 <code>substr</code> 取前 <code>prefix.size()</code> 个字符再比较。</p>
+
+    <h3 id="lec13-p2-2">2.2 成本表 <span class="en">Cost Table</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 向量扫描的成本（n 个词，最长 L 个字符，前缀长 P）</div>
+      <table>
+        <tr><th>操作</th><th>成本</th><th>原因</th></tr>
+        <tr><td>search</td><td>O(nL)</td><td>最坏扫 n 个词，每个整串比较 O(L)</td></tr>
+        <tr><td>insert</td><td>O(nL) 摊还</td><td>先 search 查重，再 push_back</td></tr>
+        <tr><td>startsWith</td><td>O(nP)</td><td>扫 n 个词，每个取 P 长前缀比较</td></tr>
+        <tr><td>wordsWithPrefix</td><td>O(nP + R)</td><td>扫 n 个词取前缀 + 输出 R 个结果</td></tr>
+      </table>
+      <p>瓶颈是<b>每个操作都要扫过所有 n 个词</b>。下面两种结构都是为了把这个 n 消掉。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p3">
+    <h2>Part 3 · Trie：合并公共前缀 <span class="en">Trie: Merging Common Prefixes</span></h2>
+
+    <h3 id="lec13-p3-1">3.1 从公共前缀到树 <span class="en">From Common Prefixes to a Tree</span></h3>
+    <p>观察：<code>app</code>、<code>apple</code>、<code>apt</code> 都共享前缀 <code>ap</code>。如果<b>让相同的前缀只存一份</b>，把它们拼成一条共享路径，就得到一棵树——这就是 <b>trie（字典树 / 前缀树）</b>。根是空串，每条边标一个字符，从根走到某个结点读出的字符就是一条前缀。</p>
+    <div class="figure">
+      <svg viewBox="0 0 560 260" width="560" role="img" aria-label="存储 app、apple、apt、bat 的字典树">
+        <defs>
+          <marker id="l13-ar" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+        </defs>
+        <!-- 边 -->
+        <path d="M 46 130 C 60 120 80 95 98 76" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 46 130 C 60 140 80 170 98 194" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 136 70 C 160 62 180 57 194 56" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 226 55 C 245 50 268 44 284 42" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 226 55 C 250 62 268 74 284 82" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 316 40 C 340 40 360 40 374 40" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 390 40 C 415 40 440 40 464 40" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 136 200 C 160 200 180 200 194 200" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 226 200 C 245 200 268 200 284 200" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <!-- 边标签 -->
+        <text x="66" y="92" class="svg-muted">a</text>
+        <text x="66" y="178" class="svg-muted">b</text>
+        <text x="162" y="48" class="svg-muted">p</text>
+        <text x="252" y="38" class="svg-muted">p</text>
+        <text x="252" y="86" class="svg-muted">t</text>
+        <text x="340" y="34" class="svg-muted">l</text>
+        <text x="424" y="34" class="svg-muted">e</text>
+        <text x="162" y="194" class="svg-muted">a</text>
+        <text x="252" y="194" class="svg-muted">t</text>
+        <!-- 结点 -->
+        <circle cx="30" cy="130" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="30" y="135" class="svg-text" text-anchor="middle">∅</text>
+        <circle cx="120" cy="70" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="120" y="75" class="svg-text" text-anchor="middle">a</text>
+        <circle cx="120" cy="200" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="120" y="205" class="svg-text" text-anchor="middle">b</text>
+        <circle cx="210" cy="55" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="210" y="60" class="svg-text" text-anchor="middle">p</text>
+        <!-- 终结点：双圈 -->
+        <circle cx="300" cy="40" r="21" style="fill: none; stroke: var(--sv-hl); stroke-width: 2"/>
+        <circle cx="300" cy="40" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="300" y="45" class="svg-text" text-anchor="middle">p</text>
+        <circle cx="300" cy="85" r="21" style="fill: none; stroke: var(--sv-hl); stroke-width: 2"/>
+        <circle cx="300" cy="85" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="300" y="90" class="svg-text" text-anchor="middle">t</text>
+        <circle cx="480" cy="40" r="21" style="fill: none; stroke: var(--sv-hl); stroke-width: 2"/>
+        <circle cx="480" cy="40" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="480" y="45" class="svg-text" text-anchor="middle">e</text>
+        <circle cx="210" cy="200" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="210" y="205" class="svg-text" text-anchor="middle">a</text>
+        <circle cx="300" cy="200" r="21" style="fill: none; stroke: var(--sv-hl); stroke-width: 2"/>
+        <circle cx="300" cy="200" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="300" y="205" class="svg-text" text-anchor="middle">t</text>
+        <!-- 标注 -->
+        <text x="330" y="40" class="svg-muted">app（双圈 = 完整词）</text>
+        <text x="330" y="85" class="svg-muted">apt</text>
+        <text x="505" y="40" class="svg-muted">apple</text>
+        <text x="330" y="200" class="svg-muted">bat</text>
+        <text x="150" y="240" class="svg-muted" text-anchor="middle">边上的字符从根往下读 = 前缀；双圈标记「词在此完整结束」</text>
+      </svg>
+      <div class="figcap">图：存了 app、apple、apt、bat 四个词的字典树。共享前缀 ap 只存一条路径，然后分叉出 p（→app）、t（→apt）和 l（→apple）；bat 走另一条 b→a→t。带绿双圈的结点表示「一个完整词在这里结束」，没有双圈的结点只是中间前缀。</div>
+    </div>
+
+    <h3 id="lec13-p3-2">3.2 词边界：双圈 <span class="en">Word Boundaries: the Double Circle</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 双圈 = 完整词（terminal）</div>
+      <ul>
+        <li><b>双圈（terminal = true）</b>标记「从根走到这里，读出的字符串是一个完整存进去的词」。</li>
+        <li>一个词可以<b>在叶子之前就结束</b>：例如 <code>app</code> 在 <code>apple</code> 路径的<b>中间结点</b>上就已经是完整词。</li>
+        <li>反过来，<b>叶子不一定都是词</b>：叶子只是「这条路径没法再往下走」，不代表它一定被存为完整词（本图里恰巧叶子都有双圈，但并非必然）。</li>
+      </ul>
+    </div>
+
+    <h3 id="lec13-p3-3">3.3 插入走查 <span class="en">Insertion Walkthrough</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 依次插入 app、apple、bat</div>
+      <ul>
+        <li>插入 <b>app</b>：从根建出 a → p → p，把最后一个 p 标成双圈。</li>
+        <li>插入 <b>apple</b>：a → p → p 已存在（<b>复用</b>），接着在最后一个 p 下新建 l → e，把 e 标成双圈。</li>
+        <li>插入 <b>bat</b>：从根新建 b → a → t，把 t 标成双圈。</li>
+      </ul>
+      <p>关键是「<b>已有就复用，没有才新建</b>」——公共前缀被共享，不会重复存。</p>
+    </div>
+
+    <h3 id="lec13-p3-4">3.4 前缀不一定是词 <span class="en">A Prefix Is Not Necessarily a Word</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ search 与 startsWith 的区别</div>
+      <ul>
+        <li><code>search("app")</code>：走到 app 结点，看它<b>是不是双圈（terminal）</b>。是 → true。</li>
+        <li><code>search("ap")</code>：走到 ap 结点，但它<b>不是双圈</b>（只是中间前缀）→ false。</li>
+        <li><code>startsWith("ap")</code>：只要能<b>沿 a → p 走通</b>就 true，<b>不管终端标记</b>。</li>
+      </ul>
+      <p>所以 <code>search</code> 需要「路径走通<b>且</b>终点是完整词」；<code>startsWith</code> 只要「路径走通」。</p>
+    </div>
+
+    <h3 id="lec13-p3-5">3.5 跟随查询路径 <span class="en">Following a Query Path</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ startsWith("cat") 的走查</div>
+      <p>从根找边 <code>c</code>——<b>根下没有 c 这条边</b>，说明没有任何存过的词以 c 开头，立刻返回 <b>false</b>。查询只需沿一条路径走，<b>走不通就停</b>，不必扫所有词。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p4">
+    <h2>Part 4 · Trie 的表示与实现 <span class="en">Representing and Implementing a Trie</span></h2>
+
+    <h3 id="lec13-p4-1">4.1 下标数组存节点 <span class="en">Nodes in an Indexed Array</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 用 vector 存所有结点</div>
+      <ul>
+        <li>用一个 <code>vector</code> 存下<b>每一个 trie 结点</b>，<b>根的下标是 0</b>。</li>
+        <li>每个结点有一个 <code>next[26]</code> 数组，<code>next[c]</code> 是「字符 c 对应的孩子结点下标」；<b>没有这个孩子就记 −1</b>。</li>
+        <li>字符 ch 用 <code>ch - 'a'</code> 转成 0–25 的下标（只处理小写字母 a–z）。</li>
+      </ul>
+      <p>例如 <code>nodes[2].next[15]</code>（15 对应字母 p）可能指向结点 3，表示「结点 2 沿着 p 走到结点 3」。</p>
+    </div>
+
+    <h3 id="lec13-p4-2">4.2 TrieNode 结构 <span class="en">The TrieNode Struct</span></h3>
+<pre><code>struct TrieNode {
+    int next[26];
+    bool terminal = false;
+
+    TrieNode() {
+        fill(next, next + 26, -1);   // 一开始没有任何孩子
+    }
+};</code></pre>
+    <p>每个 <code>next</code> 初值 −1；新结点默认<b>不是一个完整词</b>（terminal = false）。「进来的那个字符」由<b>父结点的孩子位置</b>隐式保存，结点本身不存字符。</p>
+
+    <h3 id="lec13-p4-3">4.3 节点池与根 <span class="en">The Node Pool and Root</span></h3>
+<pre><code>class Trie {
+private:
+    vector&lt;TrieNode&gt; nodes;
+
+public:
+    Trie() {
+        nodes.push_back(TrieNode());   // 结点 0 就是根
+    }
+    // insert、search、startsWith 跟在后面
+};</code></pre>
+    <p>每个 <code>Trie</code> 对象拥有自己的结点池；构造时先 <code>push_back</code> 出根（下标 0）。因为子结点存的是<b>下标</b>（不是指针），所以 <code>vector</code> 增长时这些下标依然有效。</p>
+
+    <h3 id="lec13-p4-4">4.4 C++ 插入 <span class="en">Trie Insertion in C++</span></h3>
+<pre><code>void insert(const string&amp; word) {
+    int u = 0;                              // 从根出发
+    for (char ch : word) {
+        int c = ch - 'a';
+        if (nodes[u].next[c] == -1) {       // 没有这条边，新建结点
+            int v = (int)nodes.size();
+            nodes.push_back(TrieNode());
+            nodes[u].next[c] = v;           // 记录孩子下标
+        }
+        u = nodes[u].next[c];               // 沿边往下走
+    }
+    nodes[u].terminal = true;               // 终点标记为完整词
+}</code></pre>
+    <p>孩子<b>已存在就复用</b>，<b>不存在才新建并记下下标</b>。走到最后把终点标成 terminal。</p>
+
+    <h3 id="lec13-p4-5">4.5 C++ walk <span class="en">Walking a String</span></h3>
+<pre><code>int walk(const string&amp; s) const {
+    int u = 0;
+    for (char ch : s) {
+        int c = ch - 'a';
+        int v = nodes[u].next[c];
+        if (v == -1) return -1;             // 走不通
+        u = v;
+    }
+    return u;                               // 走到达的结点下标
+}</code></pre>
+    <p><code>walk</code> 返回「走完 s 后到达的结点下标」，<b>任何一步缺边就返回 −1</b>。注意 walk <b>不判断</b>到达的前缀是不是完整词——那件事交给调用者。</p>
+
+    <h3 id="lec13-p4-6">4.6 search / startsWith <span class="en">Complete-Word and Prefix Queries</span></h3>
+<pre><code>bool search(const string&amp; word) const {
+    int u = walk(word);
+    return u != -1 &amp;&amp; nodes[u].terminal;   // 路径走通 且 终点是完整词
+}
+
+bool startsWith(const string&amp; prefix) const {
+    return walk(prefix) != -1;              // 只要路径走通
+}</code></pre>
+    <div class="ex box">
+      <div class="box-title">✏️ 查询示例</div>
+      <table>
+        <tr><th>查询</th><th>到达结点</th><th>答案</th></tr>
+        <tr><td>search("app")</td><td>3，terminal = true</td><td>true</td></tr>
+        <tr><td>search("ap")</td><td>2，terminal = false</td><td>false</td></tr>
+        <tr><td>startsWith("ap")</td><td>2</td><td>true</td></tr>
+        <tr><td>startsWith("cat")</td><td>−1（c 边不存在）</td><td>false</td></tr>
+      </table>
+    </div>
+
+    <h3 id="lec13-p4-7">4.7 同一对象上的操作序列 <span class="en">Operations on the Same Object</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 从一个空 Trie 开始，按顺序执行</div>
+      <table>
+        <tr><th>操作</th><th>结果</th><th>状态变化</th></tr>
+        <tr><td>insert("apple")</td><td>—</td><td>建出路径，标记 apple</td></tr>
+        <tr><td>search("apple")</td><td>true</td><td>无变化</td></tr>
+        <tr><td>search("app")</td><td>false</td><td>路径存在但非终端</td></tr>
+        <tr><td>startsWith("app")</td><td>true</td><td>无变化</td></tr>
+        <tr><td>startsWith("app")</td><td>true</td><td>无变化</td></tr>
+        <tr><td>insert("app")</td><td>—</td><td>复用路径，标记 app</td></tr>
+        <tr><td>search("app")</td><td>true</td><td>无变化</td></tr>
+      </table>
+      <p>插入 <code>apple</code> 后，<code>app</code> 的路径已经存在但还没被标记，所以 <code>search("app")</code> 是 false；直到再 <code>insert("app")</code> 把它标记，<code>search("app")</code> 才变 true。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p5">
+    <h2>Part 5 · wordsWithPrefix 与复杂度 <span class="en">Listing Words and Trie Cost</span></h2>
+
+    <h3 id="lec13-p5-1">5.1 列出前缀匹配的词 <span class="en">Listing Words with a Prefix</span></h3>
+    <p>要列出所有以 prefix 开头的词：先用 <code>walk(prefix)</code> 找到前缀对应的结点，然后<b>访问它的整棵后代子树</b>，<b>每遇到一个 terminal 结点就输出一个词</b>。孩子按 a–z 顺序扫描，输出自然有序。</p>
+    <div class="ex box">
+      <div class="box-title">✏️ wordsWithPrefix("ap")</div>
+      <p>找到 ap 结点后，遍历其后代子树，在 terminal 结点处报告：<b>app、apple、apt</b>（按 a–z 扫描顺序）。工作包括「访问子树」+「写出答案」两部分。</p>
+    </div>
+
+    <h3 id="lec13-p5-2">5.2 Trie 的时间与空间 <span class="en">Trie Time and Space</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 Trie 成本</div>
+      <table>
+        <tr><th>操作 / 量</th><th>成本</th></tr>
+        <tr><td>search / startsWith（查询长 L）</td><td>O(L) 最坏</td></tr>
+        <tr><td>insert（词长 L）</td><td>O(L) 摊还</td></tr>
+        <tr><td>M 个使用中的结点、字母表大小 26</td><td>Θ(26M) 结点存储</td></tr>
+        <tr><td>所有已插入词共 S 个字符</td><td>M ≤ S + 1</td></tr>
+      </table>
+      <ul>
+        <li><b>一次插入</b>在 <code>vector</code> 增长搬移已有结点时，可能单次花 O(M + L)，但摊还到多次插入仍是 O(L)。</li>
+        <li>字母表大小固定为 26，结点存储就是 O(M)；<code>vector</code> 可能预留了未用容量。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="lec13-p6">
+    <h2>Part 6 · 哈希的动机：字符串指纹 <span class="en">Motivation: A Fingerprint for Strings</span></h2>
+
+    <h3 id="lec13-p6-1">6.1 短指纹 <span class="en">A Short Fingerprint</span></h3>
+    <p>能不能用一个<b>短数字</b>代表一个长字符串，避免反复做整串比较？思路：给每个词算一个「指纹（fingerprint）」，两个词的指纹不同 → 词必不同；指纹相同 → 才需要进一步整串比较确认。</p>
+    <div class="figure">
+      <svg viewBox="0 0 560 130" width="560" role="img" aria-label="指纹：长串压缩成短数字">
+        <rect x="20" y="45" width="150" height="34" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="95" y="67" class="svg-text" text-anchor="middle">Word A</text>
+        <rect x="240" y="45" width="120" height="34" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="300" y="67" class="svg-text" text-anchor="middle">O(L) 算法</text>
+        <rect x="430" y="45" width="70" height="34" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="465" y="67" class="svg-text" text-anchor="middle">0</text>
+        <path d="M 170 62 C 200 62 210 62 240 62" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <path d="M 360 62 C 390 62 400 62 430 62" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar)"/>
+        <text x="30" y="112" class="svg-muted">每个不变的字符串只算一次指纹；之后 O(1) 比较两个数字是否相等</text>
+      </svg>
+      <div class="figcap">图：把长字符串用 O(L) 算成一个短指纹，之后用 O(1) 比较两个指纹是否相等。注意指纹相等只是「候选」，还需要整串比较确认。</div>
+    </div>
+
+    <h3 id="lec13-p6-2">6.2 指纹相等 ≠ 字符串相等 <span class="en">Equal Fingerprints ≠ Equal Strings</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 反例</div>
+      <p>同一个字符串永远得到同一个指纹；但反过来不成立——不同字符串<b>可能撞出相同指纹</b>。例如 <code>cat</code> 和 <code>god</code> 都能算出指纹 6，但它们是<b>不同的词</b>。所以<b>指纹相同只是候选</b>，精确相等仍要整串比较确认。</p>
+    </div>
+
+    <h3 id="lec13-p6-3">6.3 字母值相加 <span class="en">Adding the Letter Values</span></h3>
+    <p>一个朴素哈希：令 a = 0, b = 1, …, z = 25，把词的字母值<b>相加</b>，用和当指纹。</p>
+    <div class="def box">
+      <div class="box-title">📌 求和指纹示例</div>
+      <table>
+        <tr><th>词</th><th>字母值</th><th>和</th></tr>
+        <tr><td>cat</td><td>2 + 0 + 19</td><td>21</td></tr>
+        <tr><td>act</td><td>0 + 2 + 19</td><td>21</td></tr>
+        <tr><td>dog</td><td>3 + 14 + 6</td><td>23</td></tr>
+      </table>
+    </div>
+
+    <h3 id="lec13-p6-4">6.4 哈希碰撞 <span class="en">Hash Collisions</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 求和丢弃了顺序</div>
+      <p><code>sum("cat") = sum("act") = 21</code>——不同词得到相同哈希值就叫<b>碰撞（collision）</b>。<b>加法丢弃了字母顺序</b>：任何重排（cat / act / tac）的和都一样。dog / god 都是 23，ad / bc 都是 3。<b>把表做大也补不回已经丢失的信息</b>。</p>
+    </div>
+
+    <h3 id="lec13-p6-5">6.5 碰撞有多频繁 <span class="en">How Often Do Sums Collide?</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 求和哈希的碰撞率</div>
+      <p>所有 676 个双字母串只产生 <b>51 个不同的和（0 到 50）</b>。其中只有 "aa" 的和是 0，而<b>26 个串的和是 25</b>——分布极不均匀。随机取两个不同串，和相同的概率约 <b>2.42%</b>。</p>
+      <p>结论：<b>碰撞概率既取决于哈希函数，也取决于键的选择</b>。求和太容易撞，需要一个更好的哈希。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p7">
+    <h2>Part 7 · 把词当作 26 进制数 <span class="en">A Word as a Base-26 Number</span></h2>
+
+    <h3 id="lec13-p7-1">7.1 base-26 编码 <span class="en">Base-26 Encoding</span></h3>
+    <p>仍令 a = 0, …, z = 25，但<b>给每个位置不同的权重</b>（就像十进制里每个位权重不同），把词看成一个 26 进制数：</p>
+    <p class="formula">value("cat") = 2 × 26² + 0 × 26 + 19 = 1371</p>
+    <div class="def box">
+      <div class="box-title">📌 base-26 值示例</div>
+      <table>
+        <tr><th>词</th><th>base-26 各位</th><th>值</th></tr>
+        <tr><td>cat</td><td>2, 0, 19</td><td>1371</td></tr>
+        <tr><td>act</td><td>0, 2, 19</td><td>71</td></tr>
+        <tr><td>god</td><td>6, 14, 3</td><td>4423</td></tr>
+      </table>
+      <p>对<b>固定长度</b>的词，不同词得到<b>不同的值</b>（编码是唯一的）。</p>
+    </div>
+
+    <h3 id="lec13-p7-2">7.2 读取 base-26 数 <span class="en">Reading a Base-26 Number</span></h3>
+    <p>每读一个字符，就把它「接」到当前数后面：\(h = h \times 26 + \text{digit}\)。</p>
+    <p class="formula">读 c(2)：h = 2；读 a(0)：h = 2×26 + 0 = 52；读 t(19)：h = 52×26 + 19 = 1371</p>
+    <p>乘 26 相当于把之前所有位<b>左移一个位置</b>，再空出个位放新字符。</p>
+
+    <h3 id="lec13-p7-3">7.3 长度与整数范围 <span class="en">Length and Integer Range</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 两个问题</div>
+      <table>
+        <tr><th>问题</th><th>例子</th><th>后果</th></tr>
+        <tr><td>前导零</td><td>value("cat") = value("acat")</td><td>精确编码还要<b>记录长度</b></td></tr>
+        <tr><td>可能的词太多</td><td>26⁷ = 8,031,810,176</td><td>直接寻址需要<b>几十亿个位置</b></td></tr>
+        <tr><td>C++ 整数有限</td><td>26¹⁴ − 1 &gt; 2⁶³ − 1</td><td>long long 装不下更长的词</td></tr>
+      </table>
+      <p>若能精确存下值，则「(长度, 值)」这一对能唯一识别一个词。但我们<b>需要把结果压进一个固定范围</b>。</p>
+    </div>
+
+    <h3 id="lec13-p7-4">7.4 取余数 <span class="en">Taking a Remainder</span></h3>
+    <p>有 m 个桶的表需要 0 到 m−1 的下标，于是用<b>模 m</b>压缩：\(h(\text{word}) = \text{value}(\text{word}) \bmod m\)。以 m = 7 为例：</p>
+    <div class="def box">
+      <div class="box-title">📌 模 7 压缩</div>
+      <table>
+        <tr><th>词</th><th>base-26 值</th><th>值 % 7</th></tr>
+        <tr><td>cat</td><td>1371</td><td>6</td></tr>
+        <tr><td>act</td><td>71</td><td>1</td></tr>
+        <tr><td>god</td><td>4423</td><td>6</td></tr>
+        <tr><td>dog</td><td>2398</td><td>4</td></tr>
+      </table>
+      <p>现在 <code>cat</code> 和 <code>god</code> 撞在桶 6——<b>把大定义域压进小范围必然丢信息</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p8">
+    <h2>Part 8 · 哈希与碰撞 <span class="en">Hashing and Collisions</span></h2>
+
+    <h3 id="lec13-p8-1">8.1 增量取余 <span class="en">Computing the Remainder Incrementally</span></h3>
+    <p>不必先算完整 base-26 值再取余，可以<b>每读一个字符就取一次余</b>：\(h = (h \times 26 + \text{digit}) \bmod m\)。以 m = 7 读 cat：</p>
+    <p class="formula">读 c：h = 2；读 a：h = (2×26 + 0) % 7 = 52 % 7 = 3；读 t：h = (3×26 + 19) % 7 = 97 % 7 = 6</p>
+    <p>中间结果始终被压在 0–m−1 范围内，<b>不会溢出</b>。</p>
+
+    <h3 id="lec13-p8-2">8.2 一对碰撞概率 <span class="en">Collision Probability for One Pair</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 理想模型</div>
+      <p>理想模型假设：每个不同键独立、均匀地得到 0…m−1 中的一个结果。则两个不同键碰撞的概率是：</p>
+      <p class="formula">P(两个不同键碰撞) = 1 / m</p>
+      <table>
+        <tr><th>可能的哈希值 m</th><th>一对碰撞概率</th></tr>
+        <tr><td>1,000</td><td>0.1%</td></tr>
+        <tr><td>1,000,000</td><td>0.0001%</td></tr>
+        <tr><td>1,000,000,007</td><td>约 10⁻⁹</td></tr>
+      </table>
+      <p>注意「选了 m」不自动等于「理想模型」：<b>固定的键 + 固定的哈希函数产生确定的结果</b>，不是随机。</p>
+    </div>
+
+    <h3 id="lec13-p8-3">8.3 多键多对 <span class="en">Many Keys Create Many Pairs</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 n 个键的碰撞</div>
+      <p>n 个不同键组成 \(n(n-1)/2\) 对。期望的碰撞对数是：</p>
+      <p class="formula">期望碰撞对数 = n(n−1) / (2m)</p>
+      <p>注意这是<b>对数（可以超过 1）</b>，不是「发生任意一次碰撞的概率」。任意碰撞的概率是：</p>
+      <p class="formula">P(任意碰撞) = 1 − ∏<sub>i=0</sub><sup>n−1</sup> (1 − i/m)</p>
+      <p>该乘积假设 n ≤ m 且各键独立均匀；若 n &gt; m，碰撞必然发生。</p>
+    </div>
+
+    <h3 id="lec13-p8-4">8.4 大规模碰撞概率 <span class="en">Collision Probability at Scale</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 生日效应（m = 1,000,000）</div>
+      <table>
+        <tr><th>不同键 n</th><th>期望碰撞对数</th><th>P(任意碰撞)</th></tr>
+        <tr><td>100</td><td>0.0050</td><td>0.49%</td></tr>
+        <tr><td>1,000</td><td>0.4995</td><td>39.33%</td></tr>
+        <tr><td>1,200</td><td>0.7194</td><td>51.31%</td></tr>
+      </table>
+      <p>近似：\(P(\text{any collision}) \approx 1 - e^{-n(n-1)/(2m)}\)。大约 \(\sqrt{m}\) 个键就能让碰撞很可能发生——这就是<b>生日效应（birthday effect）</b>。所以<b>即使哈希函数把键摊得很均匀，哈希表也必须处理碰撞</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec13-p9">
+    <h2>Part 9 · 哈希表实现字典 <span class="en">A Hash Table Implements the Dictionary</span></h2>
+
+    <h3 id="lec13-p9-1">9.1 哈希表 = 哈希函数 + 桶 <span class="en">Hash Function + Buckets</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 两部分</div>
+      <ul>
+        <li><b>哈希函数</b>：从键算出<b>桶下标</b>。</li>
+        <li><b>哈希表</b>：存下记录，并在桶内<b>处理碰撞</b>。</li>
+      </ul>
+      <table>
+        <tr><th>需要的操作</th><th>哈希表里做的事</th></tr>
+        <tr><td>search(word)</td><td>算出桶，再在桶里<b>整键比较</b></td></tr>
+        <tr><td>insert(word)</td><td>仅当<b>完整键不存在</b>时才加</td></tr>
+        <tr><td>put(key, value)</td><td>更新匹配的键，或新增一条记录</td></tr>
+        <tr><td>get(key)</td><td>返回匹配键关联的值</td></tr>
+      </table>
+      <p>只有键 → 是<b>集合（set）</b>；键带关联值 → 扩展成<b>映射（map）</b>。</p>
+    </div>
+
+    <h3 id="lec13-p9-2">9.2 分离链接法查找 <span class="en">Lookup with Separate Chaining</span></h3>
+    <p><b>分离链接法（separate chaining）</b>让每个桶维护一条<b>链表</b>，选中同一个桶的所有记录都挂在同一条链上。</p>
+    <div class="figure">
+      <svg viewBox="0 0 440 280" width="440" role="img" aria-label="分离链接法哈希表，7 个桶">
+        <defs>
+          <marker id="l13-ar2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+        </defs>
+        <!-- 桶标签 -->
+        <rect x="10" y="20" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="40" class="svg-text" text-anchor="middle">0</text>
+        <rect x="10" y="56" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="76" class="svg-text" text-anchor="middle">1</text>
+        <rect x="10" y="92" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="112" class="svg-text" text-anchor="middle">2</text>
+        <rect x="10" y="128" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="148" class="svg-text" text-anchor="middle">3</text>
+        <rect x="10" y="164" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="184" class="svg-text" text-anchor="middle">4</text>
+        <rect x="10" y="200" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="220" class="svg-text" text-anchor="middle">5</text>
+        <rect x="10" y="236" width="44" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="32" y="256" class="svg-text" text-anchor="middle">6</text>
+        <!-- 链 -->
+        <text x="90" y="40" class="svg-muted">空 empty</text>
+        <rect x="130" y="56" width="76" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="168" y="76" class="svg-text" text-anchor="middle">act:75</text>
+        <path d="M 54 71 C 80 71 100 71 130 71" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar2)"/>
+        <rect x="130" y="92" width="76" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="168" y="112" class="svg-text" text-anchor="middle">bat:84</text>
+        <path d="M 54 107 C 80 107 100 107 130 107" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar2)"/>
+        <text x="90" y="148" class="svg-muted">空 empty</text>
+        <rect x="130" y="164" width="76" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="168" y="184" class="svg-text" text-anchor="middle">dog:88</text>
+        <path d="M 54 179 C 80 179 100 179 130 179" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar2)"/>
+        <text x="90" y="220" class="svg-muted">空 empty</text>
+        <rect x="130" y="236" width="76" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="168" y="256" class="svg-text" text-anchor="middle">cat:80</text>
+        <rect x="250" y="236" width="76" height="30" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="288" y="256" class="svg-text" text-anchor="middle">god:92</text>
+        <path d="M 54 251 C 80 251 100 251 130 251" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar2)"/>
+        <path d="M 206 251 C 220 251 232 251 250 251" fill="none" stroke="var(--sv-neg)" stroke-width="2" marker-end="url(#l13-ar2)"/>
+      </svg>
+      <div class="figcap">图：分离链接法哈希表（m = 7）。cat 和 god 都哈希到桶 6，于是 cat:80 → god:92 挂在同一条链上。查 god 时先算桶 6，再沿链比较 cat（不等）再 god（命中）。</div>
+    </div>
+
+    <h3 id="lec13-p9-3">9.3 桶长度与查找成本 <span class="en">Bucket Lengths and Lookup Cost</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 装载因子 α</div>
+      <p>设 n 是已存键数、m 是桶数，定义<b>装载因子（load factor）</b>：</p>
+      <p class="formula">α = n / m</p>
+      <p>在均匀哈希下，一个<b>不存在的键</b>的桶里平均有 α 个已存键。期望查找成本：</p>
+      <p class="formula">期望查找成本 = O(1 + α)</p>
+      <table>
+        <tr><th>桶分布</th><th>查找成本（定长键）</th></tr>
+        <tr><td>均匀哈希 + α 有界</td><td>期望 O(1)</td></tr>
+        <tr><td>所有 n 个键挤在一个桶</td><td>最坏 O(n)</td></tr>
+      </table>
+      <p>碰撞<b>可以补救</b>；但桶越长，工作量越大。</p>
+    </div>
+
+    <h3 id="lec13-p9-4">9.4 扩容重哈希 <span class="en">Resizing a Hash Table</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ m = 7 → m = 11</div>
+      <p>更多桶会改变每个键的余数（如 <code>hashWord("god", 11) = 1</code>），所以扩容时要<b>用完整键重新哈希（rehash）</b>，把每条记录搬到新桶。记录连同它的完整键和值一起搬过去。</p>
+    </div>
+
+    <h3 id="lec13-p9-5">9.5 哈希表操作成本 <span class="en">Hash-Table Operation Costs</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 期望成本（假设哈希分布良好、m 与 n 成比例）</div>
+      <table>
+        <tr><th>操作 / 情形</th><th>定长键</th><th>长度 ≤ L 的字符串</th></tr>
+        <tr><td>search / get</td><td>期望 O(1)</td><td>期望 O(L)</td></tr>
+        <tr><td>insert / put</td><td>期望摊还 O(1)</td><td>期望摊还 O(L)</td></tr>
+        <tr><td>最坏单次操作</td><td>O(n)</td><td>O(nL)</td></tr>
+        <tr><td>重建所有记录</td><td>O(n)</td><td>O(nL)</td></tr>
+      </table>
+      <p>一次插入可能触发线性重建；<b>按几何倍数扩容</b>能把这份代价摊到多次插入上。字符串的哈希和整串比较各要读 L 个字符。</p>
+    </div>
+
+    <h3 id="lec13-p9-6">9.6 C++ hashWord <span class="en">The C++ Hash Function</span></h3>
+<pre><code>int hashWord(const string&amp; s, int m) {
+    long long h = 0;
+    for (char c : s) {
+        int digit = c - 'a';
+        h = (h * 26 + digit) % m;
+    }
+    return (int)h;
+}</code></pre>
+    <p>只处理小写字母，要求 \(1 \le m \le 1{,}000{,}000{,}007\)。用 <code>long long</code> 存 <code>h × 26 + digit</code> 再对 m 取余，避免溢出。结果是桶下标，<b>完整键也要一并存下</b>。</p>
+
+    <h3 id="lec13-p9-7">9.7 C++ locate <span class="en">Lookup and Full-Key Comparison</span></h3>
+    <p>用全局 <code>vector&lt;pair&lt;string, int&gt;&gt; bucket[7];</code> 存记录（键 + 值）。定位某个键：</p>
+<pre><code>int locate(const string&amp; key) {
+    int h = hashWord(key, 7);
+    for (int i = 0; i &lt; (int)bucket[h].size(); ++i) {
+        if (bucket[h][i].first == key)   // 整键比较
+            return i;
+    }
+    return -1;                            // 桶里没有这个完整键
+}</code></pre>
+    <p>哈希值相同<b>不代表键存在</b>，必须在桶里<b>整键比较</b>确认。</p>
+
+    <h3 id="lec13-p9-8">9.8 C++ put <span class="en">Insertion and Update</span></h3>
+<pre><code>void put(const string&amp; key, int value) {
+    int h = hashWord(key, 7);
+    int i = locate(key);
+    if (i != -1) {                          // 键已存在 → 更新值
+        bucket[h][i].second = value;
+    } else {                                // 键不存在 → 新增
+        bucket[h].push_back({key, value});
+        ++n;                                // n 统计不同键数
+    }
+}</code></pre>
+    <p>新键只计一次；之后再对同一个键 put 就会走更新分支。例：把 god 更新到 99，再插入 app:70，<code>n</code> 变为 6。</p>
+
+    <h3 id="lec13-p9-9">9.9 unordered_map / unordered_set <span class="en">unordered_map and unordered_set</span></h3>
+<pre><code>#include &lt;unordered_map&gt;
+#include &lt;unordered_set&gt;
+using namespace std;
+
+unordered_map&lt;string, int&gt; score;
+score["cat"] = 80;
+score["god"] = 92;
+
+unordered_set&lt;string&gt; words;
+words.insert("cat");
+words.insert("cat");   // 重复插入不产生新元素</code></pre>
+    <p>标准库帮你管好哈希、相等比较、碰撞与扩容。定长键平均 O(1) 查找、最坏线性；<b>迭代顺序未指定</b>。</p>
+
+    <h3 id="lec13-p9-10">9.10 find 与 operator[] <span class="en">find and operator[]</span></h3>
+<pre><code>unordered_map&lt;string, int&gt; score;
+score["cat"] = 80;
+cout &lt;&lt; (score.find("app") == score.end()) &lt;&lt; " ";
+cout &lt;&lt; score.size() &lt;&lt; " ";
+cout &lt;&lt; score["app"] &lt;&lt; " ";
+cout &lt;&lt; score.size();
+
+// 输出：1 1 0 2</code></pre>
+    <div class="warn box">
+      <div class="box-title">⚠️ 两个关键区别</div>
+      <ul>
+        <li><code>find</code> <b>不插入</b>：找不到就返回 <code>end()</code>。</li>
+        <li><code>operator[]</code> 对<b>缺失的键会插入</b>一个默认初始化的值（int 是 0），所以 <code>size</code> 从 1 变 2。</li>
+        <li>一次可能 rehash 的插入之后，<b>要重新获取迭代器</b>再继续用。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="lec13-p10">
+    <h2>Part 10 · Trie vs 哈希表 <span class="en">Trie versus Hash Table</span></h2>
+
+    <h3 id="lec13-p10-1">10.1 同一字典接口 <span class="en">The Same Dictionary Interface</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 两种实现怎么完成每个操作</div>
+      <table>
+        <tr><th>需要的操作</th><th>Trie</th><th>哈希表</th></tr>
+        <tr><td>insert(word)</td><td>沿字符路径走 / 建</td><td>哈希后整键比较再插入</td></tr>
+        <tr><td>search(word)</td><td>沿路径走 + 查 terminal</td><td>桶内整键相等查找</td></tr>
+        <tr><td>startsWith(prefix)</td><td>沿前缀路径走</td><td>无前缀索引，得扫描</td></tr>
+        <tr><td>wordsWithPrefix(prefix)</td><td>访问前缀子树</td><td>扫描键收集匹配</td></tr>
+      </table>
+      <p>哈希函数算出一个位置，哈希表存并维护记录。若要 map，把关联值放进哈希表记录、或放进 trie 的终端结点。</p>
+    </div>
+
+    <h3 id="lec13-p10-2">10.2 字典操作成本对比 <span class="en">Costs of Dictionary Operations</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 三种实现对比（n 个词、最长 L 个字符、前缀长 P）</div>
+      <table>
+        <tr><th>操作</th><th>向量扫描</th><th>Trie</th><th>哈希表</th></tr>
+        <tr><td>精确搜索</td><td>O(nL)</td><td>O(L)</td><td>O(L) 期望</td></tr>
+        <tr><td>集合插入</td><td>O(nL)</td><td>O(L) 摊还</td><td>O(L) 期望摊还</td></tr>
+        <tr><td>前缀存在性</td><td>O(nP)</td><td>O(P)</td><td>O(nP)（需扫描）</td></tr>
+      </table>
+      <p>向量插入前要查重；哈希表的界假设<b>哈希分布良好且桶数与 n 成比例</b>，最坏单次查找可退到 O(nL)。列出匹配词还要额外付「遍历 + 输出」的成本。</p>
+    </div>
+
+    <h3 id="lec13-p10-3">10.3 一句话总结 <span class="en">Summary</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 ADT、表示与成本</div>
+      <ul>
+        <li><b>ADT</b>：字符串字典要支持哪些操作？（search / insert / startsWith / wordsWithPrefix）</li>
+        <li><b>Trie</b>：共享前缀变成共享路径，支持完整词查询和前缀查询，代价是 Θ(26M) 结点存储。</li>
+        <li><b>哈希表</b>：哈希函数选桶 + 完整键相等做精确查找和更新，代价是要处理碰撞。</li>
+        <li><b>选型</b>：把「需要的操作」对齐到「表示的时间与空间成本」——前缀查询多选 trie，精确查找要期望 O(1) 选哈希表。</li>
+      </ul>
+    </div>
+
+    <h3 id="lec13-p10-4">10.4 词汇表 <span class="en">Key Vocabulary</span></h3>
+    <div class="vocab">
+      <div class="vocab-title">词汇表 Key Vocabulary</div>
+      <ul>
+        <li><b>string</b> — 字符串；<b>word frequency</b> — 词频</li>
+        <li><b>dictionary</b> — 字典；<b>map</b> — 映射；<b>set</b> — 集合</li>
+        <li><b>prefix</b> — 前缀；<b>startsWith</b> — 以…开头</li>
+        <li><b>wordsWithPrefix</b> — 列出所有以某前缀开头的词</li>
+        <li><b>trie / prefix tree</b> — 字典树 / 前缀树</li>
+        <li><b>terminal / complete word</b> — 终端标记 / 完整词</li>
+        <li><b>node pool</b> — 结点池；<b>root</b> — 根（下标 0）</li>
+        <li><b>walk</b> — 沿路径走；<b>child index</b> — 孩子下标（缺孩子 = −1）</li>
+        <li><b>hash function</b> — 哈希函数；<b>hash table</b> — 哈希表</li>
+        <li><b>fingerprint</b> — 指纹；<b>collision</b> — 碰撞</li>
+        <li><b>base-26 number</b> — 26 进制数；<b>remainder / mod</b> — 余数 / 取模</li>
+        <li><b>ideal model</b> — 理想模型（独立均匀）；<b>birthday effect</b> — 生日效应</li>
+        <li><b>bucket</b> — 桶；<b>separate chaining</b> — 分离链接法</li>
+        <li><b>load factor</b> — 装载因子；<b>rehash / resize</b> — 重哈希 / 扩容</li>
+        <li><b>full-key comparison</b> — 完整键比较；<b>amortized</b> — 摊还</li>
+        <li><b>unordered_map / unordered_set</b> — 无序映射 / 无序集合</li>
+        <li><b>operator[]</b> — 下标运算符（缺失键会插入默认值）</li>
+      </ul>
+    </div>
+  </section>
+</div><!-- /第13课 -->
+
 
 
 </div>
