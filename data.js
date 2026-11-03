@@ -46,7 +46,7 @@ window.DATA = {
       category: "数学",
       status: "active",           // active = 进行中 | done = 已完成 | self = 自学
       teacher: "",
-      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法 · 递归（递推/汉诺塔/卡特兰数/生成函数）· 最大公约数（欧几里得算法/算术基本定理）· 模算术与中国剩余定理 · 图论导论（握手引理/同构/树/欧拉环）",
+      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法 · 递归（递推/汉诺塔/卡特兰数/生成函数/记忆化与动态规划/回文）· 最大公约数（欧几里得算法/算术基本定理）· 模算术与中国剩余定理 · 图论导论（握手引理/同构/树/欧拉环）",
       notes: [
         { title: "离散数学复习笔记", file: "discretemath/离散数学复习笔记.html" }
       ],
@@ -76,7 +76,7 @@ window.DATA = {
       category: "计算机",
       status: "active",
       teacher: "Jingbang Chen",
-      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）· 链表（单链表/双向/循环/反转/约瑟夫环/快慢指针）· 结构体、类与模板（struct/class/访问控制/封装/构造析构/资源与拷贝策略/组合继承/函数与类模板）· 栈、队列、集合与映射（ADT/栈LIFO/队列FIFO/括号匹配/后缀中缀求值/循环队列/deque/集合/映射）· 渐近分析与递归（基本操作计数/大O/小o/大Ω/小ω/大Θ/极限判别/常见增长阶/循环模式/Karatsuba乘法/快速幂/主定理/替换法） · 分治（Karatsuba 回顾 · 分治框架 · 归并排序 · 计数逆序对 · 最大子数组 · 快速排序 · 最近点对） · 图与树（图建模与连通分量 · 邻接矩阵/邻接表 · 树与森林 · parent数组/children列表 · 深度与高度 · 二叉树(满/严格/完全) · 前中后序遍历 · 最大深度/子树大小/翻转 · 二叉搜索树BST(查找/插入/验证) · Map与平衡BST · first child/next sibling） · 树与图的遍历（由遍历重建二叉树（前序+中序/中序+后序/前序+后序，LC 105·106·889） · 深度优先搜索DFS（发现状态/连通分量/岛屿LC200/环检测） · 广度优先搜索BFS（无权最短路/路径重建/DFS vs BFS） · 状态图与骑士最少步数（LC1197） · 拓扑排序与Kahn算法（DAG/入度/有向环检测）） · 字典树与哈希（字符串字典ADT search/insert/startsWith/wordsWithPrefix · 一次字符串比较 O(L) · 向量扫描 O(nL) · Trie 合并公共前缀与词边界双圈 · 下标数组存节点 next[26]/terminal · walk/insert/search/startsWith 代码 · wordsWithPrefix 前缀子树 · Trie 时间 O(L) 空间 Θ(26M) M≤S+1 · 字符串指纹与碰撞 · 字母值相加与 base-26 编码 · 整数范围 26⁷ 溢出 · 取余压缩 mod m · 增量取余 · 一对碰撞 1/m · 多对碰撞 n(n−1)/(2m) 与生日效应 √m · 哈希表分离链接 · 装载因子 α=n/m 与 O(1+α) · 扩容重哈希 · hashWord/locate/put 代码 · unordered_map/unordered_set 与 operator[] · Trie vs 哈希表成本对比）",
+      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）· 链表（单链表/双向/循环/反转/约瑟夫环/快慢指针）· 结构体、类与模板（struct/class/访问控制/封装/构造析构/资源与拷贝策略/组合继承/函数与类模板）· 栈、队列、集合与映射（ADT/栈LIFO/队列FIFO/括号匹配/后缀中缀求值/循环队列/deque/集合/映射）· 渐近分析与递归（基本操作计数/大O/小o/大Ω/小ω/大Θ/极限判别/常见增长阶/循环模式/Karatsuba乘法/快速幂/主定理/替换法） · 分治（Karatsuba 回顾 · 分治框架 · 归并排序 · 计数逆序对 · 最大子数组 · 快速排序 · 最近点对） · 图与树（图建模与连通分量 · 邻接矩阵/邻接表 · 树与森林 · parent数组/children列表 · 深度与高度 · 二叉树(满/严格/完全) · 前中后序遍历 · 最大深度/子树大小/翻转 · 二叉搜索树BST(查找/插入/验证) · Map与平衡BST · first child/next sibling） · 树与图的遍历（由遍历重建二叉树（前序+中序/中序+后序/前序+后序，LC 105·106·889） · 深度优先搜索DFS（发现状态/连通分量/岛屿LC200/环检测） · 广度优先搜索BFS（无权最短路/路径重建/DFS vs BFS） · 状态图与骑士最少步数（LC1197） · 拓扑排序与Kahn算法（DAG/入度/有向环检测）） · 字典树与哈希（字符串字典ADT search/insert/startsWith/wordsWithPrefix · 一次字符串比较 O(L) · 向量扫描 O(nL) · Trie 合并公共前缀与词边界双圈 · 下标数组存节点 next[26]/terminal · walk/insert/search/startsWith 代码 · wordsWithPrefix 前缀子树 · Trie 时间 O(L) 空间 Θ(26M) M≤S+1 · 字符串指纹与碰撞 · 字母值相加与 base-26 编码 · 整数范围 26⁷ 溢出 · 取余压缩 mod m · 增量取余 · 一对碰撞 1/m · 多对碰撞 n(n−1)/(2m) 与生日效应 √m · 哈希表分离链接 · 装载因子 α=n/m 与 O(1+α) · 扩容重哈希 · hashWord/locate/put 代码 · unordered_map/unordered_set 与 operator[] · Trie vs 哈希表成本对比） · 并查集 Union-Find（不相交集合 ADT MakeSet/Union/Find/Same 与代表元 · 链表表示 O(1) Find · 加权合并小的并入大的 O(n log n) 翻倍论证 · 父指针森林 find 沿父指针上溯 O(高度) · unitePlain 必须连根否则拆集合 · 长链退化 O(n²) · 按大小合并 sz[] 高度 O(log n) · 按秩合并 rank 秩=高度 秩 r 至少含 2^r 元素 · 路径压缩 parent[v]=find(parent[v]) 压平查找路径 · 摊还分析 · 逆阿克曼 α(n) 总代价 O(n+mα(n)) · 离线删边 时间倒流把删边变加边）",
       notes: [
         { title: "数据结构复习笔记", file: "datastructure/数据结构复习笔记.html" }
       ],
@@ -305,6 +305,10 @@ window.DATA = {
       { en: "Distinct Roots", zh: "相异根" },
       { en: "Closed-form", zh: "闭式解" },
       { en: "Binet's Formula", zh: "Binet 公式" },
+      { en: "Memoization", zh: "记忆化" },
+      { en: "Dynamic Programming (DP)", zh: "动态规划" },
+      { en: "Overlapping Subproblems", zh: "重叠子问题" },
+      { en: "Palindrome", zh: "回文" },
       { en: "Divisor / Multiple", zh: "约数 / 倍数" },
       { en: "Greatest Common Divisor (gcd)", zh: "最大公约数" },
       { en: "Quotient-Remainder Theorem", zh: "商-余数定理（带余除法）" },
@@ -842,7 +846,25 @@ window.DATA = {
       { en: "Rehash / Resize", zh: "重哈希 / 扩容" },
       { en: "Full-Key Comparison", zh: "完整键比较" },
       { en: "unordered_map / unordered_set", zh: "无序映射 / 无序集合" },
-      { en: "operator[]", zh: "下标运算符（缺失键插入默认值）" }
+      { en: "operator[]", zh: "下标运算符（缺失键插入默认值）" },
+      { en: "Union-Find / Disjoint-Set", zh: "并查集 / 不相交集合" },
+      { en: "Connected Component", zh: "连通分量" },
+      { en: "Connectivity Query", zh: "连通性查询" },
+      { en: "Partition", zh: "划分" },
+      { en: "Representative", zh: "代表元" },
+      { en: "MakeSet / Union / Find / Same", zh: "建集合 / 合并 / 查找 / 判同组" },
+      { en: "Linked-List Representation", zh: "链表表示" },
+      { en: "Weighted Union", zh: "加权合并（小的并入大的）" },
+      { en: "Doubling Argument", zh: "翻倍论证" },
+      { en: "Parent Forest", zh: "父指针森林" },
+      { en: "Root", zh: "根（parent[r] = r）" },
+      { en: "Union by Size", zh: "按大小合并" },
+      { en: "Union by Rank", zh: "按秩合并" },
+      { en: "Rank", zh: "秩" },
+      { en: "Path Compression", zh: "路径压缩" },
+      { en: "Amortized Analysis", zh: "摊还分析" },
+      { en: "Inverse Ackermann Function α(n)", zh: "逆阿克曼函数" },
+      { en: "Offline Deletion / Reverse Processing", zh: "离线删边 / 反向处理" }
     ]},
     { course: "caculus", terms: [
       { en: "Sequence", zh: "数列" },

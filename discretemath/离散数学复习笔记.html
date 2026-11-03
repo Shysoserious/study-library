@@ -352,7 +352,10 @@ window.MathJax = {
     <a class="lv2" href="#ln5-10">5.10 生成函数</a>
     <a class="lv2" href="#ln5-11">5.11 二阶线性递推与特征根</a>
     <a class="lv2" href="#ln5-12">5.12 斐波那契闭式解（Binet）</a>
-    <a class="lv2" href="#ln5-13">5.13 总结</a>
+    <a class="lv2" href="#ln5-13">5.13 递归的代价（O(2ⁿ)）</a>
+    <a class="lv2" href="#ln5-14">5.14 记忆化与动态规划</a>
+    <a class="lv2" href="#ln5-15">5.15 回文判定</a>
+    <a class="lv2" href="#ln5-16">5.16 总结</a>
 
     <a class="lv1" href="#ln6">LN6 · 最大公约数 Greatest Common Divisors</a>
     <a class="lv2" href="#ln6-1">6.1 倍数与约数</a>
@@ -1449,6 +1452,13 @@ window.MathJax = {
   ③ 证<b>归纳步</b> \(P(n)\Rightarrow P(n+1)\)（<b>务必用到假设 \(P(n)\)</b>）。</p>
 </div>
 
+<div class="warn box">
+  <span class="box-title">⚠️ 起点不是 0：平移技巧 Base \(n_0\)</span>
+  <p>若要证 \(\forall n\ge n_0,\ P(n)\)（起点为任意整数 \(n_0\)，如例 3 中 \(n\ge 2\)），只需<b>换元平移</b>：令</p>
+  <p class="formula">\(q(m) = P(m + n_0 - 1),\qquad m\ge 1\)</p>
+  <p>则 \(q(1)=P(n_0)\)、\(q(2)=P(n_0+1)\)、……于是对 \(q\) 套用「从 1 开始」的标准归纳，就等价于证明 \(\forall n\ge n_0,\ P(n)\)。起点不同只是把坐标轴平移了一下。</p>
+</div>
+
 <h3 id="ln4-2">4.2 基本归纳证明 <span class="zh">Basic Induction Proofs</span></h3>
 
 <div class="ex box">
@@ -2003,7 +2013,54 @@ window.MathJax = {
 <p>由相异根定理 \(f_n = C\phi^n + D\psi^n\)，代入 \(f_0=0,\ f_1=1\) 解出 \(C=\tfrac{1}{\sqrt5},\ D=-\tfrac{1}{\sqrt5}\)，得<b>Binet 公式</b>：</p>
 <p class="formula">\(f_n = \dfrac{\phi^n - \psi^n}{\sqrt{5}} = \dfrac{1}{\sqrt5}\left[\left(\dfrac{1+\sqrt5}{2}\right)^n - \left(\dfrac{1-\sqrt5}{2}\right)^n\right]\)</p>
 
-<h3 id="ln5-13">5.13 总结 <span class="zh">Summary</span></h3>
+<h3 id="ln5-13">5.13 递归的代价：指数爆炸 <span class="zh">The Cost of Recursion: O(2ⁿ)</span></h3>
+<p>递归定义虽然简洁，但<b>直接照搬递推式写程序</b>可能极其低效。以斐波那契为例，朴素递归：</p>
+<div class="ex box">
+  <span class="box-title">✏️ 朴素递归（naive recursion）</span>
+  <p><code>def f(n):</code><br>
+  <code>    if n == 0: return 0</code><br>
+  <code>    if n == 1: return 1</code><br>
+  <code>    return f(n-1) + f(n-2)</code></p>
+  <p>正确性没问题，但复杂度是 <b>\(O(2^n)\)</b>——<b>指数爆炸</b>。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 为什么会爆炸？重叠子问题</span>
+  <p>计算 \(f(5)\) 时，递归树自上而下展开：根 \(f(5)\) 分叉出 \(f(4),f(3)\)；\(f(4)\) 再分叉出 \(f(3),f(2)\)……每个节点分成两个子节点，直到叶子 \(f(1),f(0)\)。树高约 \(n\)，节点总数约 \(2^n\)。</p>
+  <p class="formula">\(f(5)\to f(4),f(3)\ ;\quad f(4)\to f(3),f(2)\ ;\quad f(3)\to f(2),f(1)\ ;\quad f(2)\to f(1),f(0)\ ;\cdots\)</p>
+  <p>关键问题：<b>\(f(3)\) 被算了两次、\(f(2)\) 被算了三次</b>……大量<b>重复子问题（overlapping subproblems）</b>被反复重算。若一直按递推式下探，还会递归到 \(f(0),f(-1)\) 等负下标——示意它「没有底」。</p>
+</div>
+
+<h3 id="ln5-14">5.14 记忆化与动态规划 <span class="zh">Memoization &amp; Dynamic Programming</span></h3>
+<p>解决办法：把<b>已经算过的值缓存起来</b>，下次直接取，避免重复计算。用一个数组 <code>cache</code>，<code>cache[i]</code> 存 \(f(i)\)：</p>
+<div class="ex box">
+  <span class="box-title">✏️ 记忆化递归（memoization）</span>
+  <p><code>def f_cache(n):</code><br>
+  <code>    if n in cache: return cache[n]</code><br>
+  <code>    if n &lt;= 1: cache[n] = n</code><br>
+  <code>    else: cache[n] = f_cache(n-1) + f_cache(n-2)</code><br>
+  <code>    return cache[n]</code></p>
+  <p>每个 \(f(i)\) 只算<b>一次</b>，之后从缓存直接返回，总复杂度降为 <b>\(O(n)\)</b>。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 动态规划 Dynamic Programming（DP）</span>
+  <p><b>动态规划</b> = 把问题拆成<b>重叠子问题</b>，每个子问题只算<b>一次</b>、结果<b>存表</b>，再组合起来。这正是记忆化背后的思想：<b>用空间换时间</b>，把指数级降成多项式级。</p>
+  <p>另一种等价写法是<b>自底向上（bottom-up）</b>：先填 \(f(0),f(1)\)，再由 \(f(i)=f(i-1)+f(i-2)\) 逐项填到 \(f(n)\)，同样 \(O(n)\)。</p>
+</div>
+
+<h3 id="ln5-15">5.15 递归练习：回文判定 <span class="zh">Exercise: Palindrome</span></h3>
+<div class="def box">
+  <span class="box-title">📌 回文 palindrome</span>
+  <p>一个字符串<b>正读反读都一样</b>，如 <code>racecar</code>。约定<b>空串是回文</b>（递归的基例）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 递归判定</span>
+  <p><code>def is_palindrome(s):</code><br>
+  <code>    if len(s) &lt;= 1: return True</code><br>
+  <code>    return s[0] == s[-1] and is_palindrome(s[1:-1])</code></p>
+  <p>思路：一个串是回文 ⟺ <b>首尾字符相同</b> 且<b>去掉首尾后仍是回文</b>。每次把问题缩小到更短的子串，直到长度 \(\le 1\) 命中基例。</p>
+</div>
+
+<h3 id="ln5-16">5.16 总结 <span class="zh">Summary</span></h3>
 <div class="thm box">
   <span class="box-title">🎯 本讲核心公式速查</span>
   <p><b>三类基本递推</b>：等差 \(a_{i+1}=a_i+d\)、等比 \(a_{i+1}=ra_i\)、调和 \(a_{i+1}=\tfrac{i+1}{i+2}a_i\)（以 \(a_0=1\) 为基准）。</p>
@@ -2030,6 +2087,8 @@ window.MathJax = {
     <li><b>second-order linear homogeneous recurrence</b> — 二阶线性齐次递推</li>
     <li><b>characteristic equation / distinct roots</b> — 特征方程 / 相异根</li>
     <li><b>closed-form</b> — 闭式解；<b>Binet's formula</b> — Binet 公式</li>
+    <li><b>overlapping subproblems</b> — 重叠子问题；<b>memoization</b> — 记忆化；<b>dynamic programming (DP)</b> — 动态规划</li>
+    <li><b>palindrome</b> — 回文；<b>base case</b> — 基例 / 基础情形</li>
   </ul>
 </div>
 </section>

@@ -1251,7 +1251,60 @@ window.MathJax = {
         <a class="lv2" href="#lec13-p10-4">10.4 词汇表</a>
       </div>
     </div>
-  </nav>
+  <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第15课 · Union-Find</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec15-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec15-p1">Part 1 · 不相交集合 ADT</a>
+        <a class="lv2" href="#lec15-p1-1">1.1 增长的通信网络</a>
+        <a class="lv2" href="#lec15-p1-2">1.2 需要的操作</a>
+        <a class="lv2" href="#lec15-p1-3">1.3 不相交集合 ADT</a>
+        <a class="lv1" href="#lec15-p2">Part 2 · 链表表示</a>
+        <a class="lv2" href="#lec15-p2-1">2.1 一个集合 = 一条链表</a>
+        <a class="lv2" href="#lec15-p2-2">2.2 初始化与 Find 都是 O(1)</a>
+        <a class="lv2" href="#lec15-p2-3">2.3 任意合并（代价 O(n)）</a>
+        <a class="lv2" href="#lec15-p2-4">2.4 加权合并：小的并入大的</a>
+        <a class="lv2" href="#lec15-p2-5">2.5 翻倍论证</a>
+        <a class="lv1" href="#lec15-p3">Part 3 · 父指针森林</a>
+        <a class="lv2" href="#lec15-p3-1">3.1 每个集合 = 一棵有根树</a>
+        <a class="lv2" href="#lec15-p3-2">3.2 find：沿父指针上溯</a>
+        <a class="lv2" href="#lec15-p3-3">3.3 朴素合并 unitePlain</a>
+        <a class="lv2" href="#lec15-p3-4">3.4 为什么必须连根</a>
+        <a class="lv2" href="#lec15-p3-5">3.5 长链退化</a>
+        <a class="lv1" href="#lec15-p4">Part 4 · 按大小合并</a>
+        <a class="lv2" href="#lec15-p4-1">4.1 规则</a>
+        <a class="lv2" href="#lec15-p4-2">4.2 C++ 代码</a>
+        <a class="lv2" href="#lec15-p4-3">4.3 为什么高度是 O(log n)</a>
+        <a class="lv1" href="#lec15-p5">Part 5 · 按秩合并</a>
+        <a class="lv2" href="#lec15-p5-1">5.1 秩 vs 大小</a>
+        <a class="lv2" href="#lec15-p5-2">5.2 规则与代码</a>
+        <a class="lv2" href="#lec15-p5-3">5.3 秩下界：2^r 个元素</a>
+        <a class="lv1" href="#lec15-p6">Part 6 · 路径压缩</a>
+        <a class="lv2" href="#lec15-p6-1">6.1 把查过的路压到根</a>
+        <a class="lv2" href="#lec15-p6-2">6.2 递归实现</a>
+        <a class="lv2" href="#lec15-p6-3">6.3 压缩不改变集合</a>
+        <a class="lv2" href="#lec15-p6-4">6.4 摊还直觉</a>
+        <a class="lv1" href="#lec15-p7">Part 7 · 逆阿克曼与总代价</a>
+        <a class="lv2" href="#lec15-p7-1">7.1 秩仍是高度上界</a>
+        <a class="lv2" href="#lec15-p7-2">7.2 逆阿克曼函数 α(n)</a>
+        <a class="lv2" href="#lec15-p7-3">7.3 一序列操作的总代价</a>
+        <a class="lv2" href="#lec15-p7-4">7.4 使用接口</a>
+        <a class="lv1" href="#lec15-p8">Part 8 · 离线删边</a>
+        <a class="lv2" href="#lec15-p8-1">8.1 删边会分裂集合</a>
+        <a class="lv2" href="#lec15-p8-2">8.2 反向处理：删边变加边</a>
+        <a class="lv2" href="#lec15-p8-3">8.3 代码与走查</a>
+        <a class="lv2" href="#lec15-p8-4">8.4 代价与边界情况</a>
+        <a class="lv1" href="#lec15-p9">Part 9 · 总结与词汇表</a>
+        <a class="lv2" href="#lec15-p9-1">9.1 一句话总结</a>
+        <a class="lv2" href="#lec15-p9-2">9.2 词汇表</a>
+      </div>
+    </div>
+
+</nav>
 </aside>
 
 <!-- ============ 主内容 ============ -->
@@ -1259,7 +1312,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -10498,6 +10551,522 @@ cout &lt;&lt; score.size();
   </section>
 </div><!-- /第13课 -->
 
+
+
+<!-- ============ 第15课 ============ -->
+<div class="lecture" id="lec15">
+  <div class="lecture-banner">第15课 · Union-Find Data Structure <span class="zh">（并查集：不相交集合 / 按大小与按秩合并 / 路径压缩 / 离线删边）</span></div>
+
+  <section id="lec15-overview">
+    <div class="toc">
+      <div class="toc-title">本讲导览</div>
+      <ol>
+        <li>动机与不相交集合 ADT：连通分量、MakeSet / Union / Find / Same、代表元</li>
+        <li>链表表示：O(1) 查找、任意合并 O(n)、加权合并 O(n log n)</li>
+        <li>父指针森林：每集合一棵树、find 沿父指针上溯、为什么必须连根</li>
+        <li>按大小合并（union by size）：翻倍论证给 O(log n) 高度</li>
+        <li>按秩合并（union by rank）：秩 vs 大小、2^r 下界</li>
+        <li>路径压缩（path compression）：把查过的路径直接压到根</li>
+        <li>逆阿克曼函数 α(n) 与一序列操作的总代价</li>
+        <li>应用：离线删边（把删边倒过来变成加边）</li>
+      </ol>
+    </div>
+
+    <div class="warn box">
+      <div class="box-title">本讲主线</div>
+      <p>前几讲我们关心「<b>如何存数据</b>」；这一讲换一个视角——关心「<b>元素之间是不是在同一组</b>」，即<b>连通分量（connected component）</b>。核心数据结构叫<b>不相交集合 / 并查集（disjoint-set / union–find）</b>，它只回答三件事：<b>建集合 MakeSet、合并 Union、查询同组 Same</b>。整条主线是一步步把「合并」的成本降下来：链表直接改所有代表元是 O(n)，改成「<b>小的并入大的</b>」就摊还到 O(log n)；换成<b>父指针森林</b>后合并只动一条边，但高度可能退化成长链；于是加<b>按大小 / 按秩</b>约束高度到 O(log n)；最后用<b>路径压缩</b>把查过的路压短，得到近乎 O(1) 的<b>逆阿克曼 α(n)</b>。一句话：<b>并查集用一棵「谁代表谁」的森林，把「查连通」做到几乎常数时间</b>，代价是它<b>只能合并、不能拆分</b>——最后我们用「把删边倒过来」的技巧绕过这个限制。</p>
+    </div>
+  </section>
+
+  <section id="lec15-p1">
+    <h2>Part 1 · 动机与不相交集合 ADT <span class="en">Motivation and the Disjoint-Set ADT</span></h2>
+
+    <h3 id="lec15-p1-1">1.1 增长的通信网络 <span class="en">A Growing Communication Network</span></h3>
+    <p>想象一个<b>不断长边</b>的通信网络：节点是计算机（编号 <code>0, 1, 2, …</code>），边是「两台机器之间可以通信」的连接。连接<b>一条一条地加进来</b>，我们随时要回答：<b>节点 a 能不能到达节点 b？</b></p>
+    <div class="ex box">
+      <div class="box-title">✏️ 例子</div>
+      <p>当前网络里 0–1–2–3 连成一片，4–5–6 连成另一片。问「0 能不能和 3 通信？」——<b>能</b>，它们在同一个连通分量里；问「0 能不能和 4 通信？」——<b>不能</b>，它们属于不同分量。</p>
+    </div>
+    <p>关键点：问的是<b>连通性（connectivity）</b>，不是「有没有直接连的那条边」。只要存在一条路径（path）就算能通信。</p>
+
+    <h3 id="lec15-p1-2">1.2 需要的操作 <span class="en">The Required Operations</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 两种操作</div>
+      <table>
+        <tr><th>操作</th><th>行为</th></tr>
+        <tr><td>加一条连接</td><td>让 a 与 b 能通信</td></tr>
+        <tr><td>查询连通性</td><td>a 能否通过已有连接到达 b？</td></tr>
+      </table>
+      <p>初始状态是 <b>n 个孤立的计算机</b>（编号 0 … n−1）。连接<b>只加不删</b>。</p>
+    </div>
+    <div class="warn box">
+      <div class="box-title">⚠️ 为什么不能用「每次查询都遍历」</div>
+      <p>一个朴素想法：把所有连接存进邻接表，每次查询从 a 出发做一次 DFS / BFS。单次查询最坏 <b>O(n + e)</b>，q 次查询就是 <b>O(q(n + e<sub>max</sub>))</b>——而且<b>同一个分量会被反复探索</b>，白白浪费。我们想要一种<b>只要 O(1) 或近 O(1)</b> 就能答「是否同组」的结构。</p>
+    </div>
+
+    <h3 id="lec15-p1-3">1.3 不相交集合 ADT <span class="en">The Disjoint-Set ADT</span></h3>
+    <p>把每个<b>连通分量看成一个集合</b>。所有集合<b>两两不相交</b>，且把所有元素<b>划分（partition）</b>干净。于是「a 能到 b」⟺「a 和 b 在同一个集合」。</p>
+    <div class="def box">
+      <div class="box-title">📌 操作定义</div>
+      <table>
+        <tr><th>操作</th><th>含义</th></tr>
+        <tr><td><code>MakeSet(v)</code></td><td>创建单元素集合 {v}</td></tr>
+        <tr><td><code>Union(a, b)</code></td><td>把含 a 的集合与含 b 的集合<b>合并</b>成一个</td></tr>
+        <tr><td><code>Same(a, b)</code></td><td>报告 a 和 b 是否在同一集合</td></tr>
+      </table>
+      <p>注意顺序：<b>先定义「需要什么」（ADT），再决定「怎么存」（数据结构）</b>——这正是抽象数据类型的意义。</p>
+    </div>
+    <div class="thm box">
+      <div class="box-title">🎯 代表元 Representative</div>
+      <p>每个集合里<b>选一个成员当代表（representative）</b>。两个元素同组 ⟺ 它们的代表元相同。于是引入一个返回代表元的操作：</p>
+      <p><code>Find(v)</code> — 返回 v 所在集合的代表元。</p>
+      <p>并且 <b>Same(a, b) ⟺ Find(a) == Find(b)</b>。这一条是并查集的灵魂：<b>「同组」化成了「代表元相等」</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec15-p2">
+    <h2>Part 2 · 链表表示 <span class="en">A Linked-List Representation</span></h2>
+
+    <h3 id="lec15-p2-1">2.1 一个集合 = 一条链表 <span class="en">One List per Set</span></h3>
+    <p>第一个朴素实现：<b>每个集合用一条链表</b>。链表头（head）就是<b>代表元</b>；每个节点除 <code>next</code> 外，再存一条<b>直接指向代表元的虚线指针</b> <code>rep</code>，这样「查代表元」就不用沿链表走。</p>
+    <pre><code>const int N = 100005;
+int rep[N], nxt[N], tail[N], len[N];
+
+void makeSet(int v) {
+    rep[v] = tail[v] = v;   // 单元素：自己既是头又是尾
+    nxt[v] = -1;            // -1 标记链表末尾
+    len[v] = 1;
+}</code></pre>
+    <p>每个元素 <code>MakeSet</code> 一次。链表头尾都在首节点处维护 <code>tail</code> 和 <code>len</code>（长度），方便快速拼接。</p>
+
+    <h3 id="lec15-p2-2">2.2 初始化与 Find 都是 O(1) <span class="en">Initialization and Find Are O(1)</span></h3>
+    <pre><code>int findList(int v) {
+    return rep[v];          // 直接读虚线指针，O(1)
+}</code></pre>
+    <p><b>MakeSet：O(1)，Find：O(1)</b>。这就是链表表示的优点——查代表元极快，因为每个元素都存了「谁代表我」。</p>
+
+    <h3 id="lec15-p2-3">2.3 任意合并（代价 O(n)） <span class="en">Arbitrary Union</span></h3>
+    <pre><code>bool uniteList(int a, int b) {
+    a = findList(a);
+    b = findList(b);
+    if (a == b) return false;   // 已同组，无事可做
+    appendList(a, b);           // 把 a 的链表接到 b 的链表后面
+    return true;
+}
+
+void appendList(int a, int b) {
+    nxt[tail[b]] = a;           // b 链尾接上 a 链头
+    tail[b] = tail[a];          // 新的尾
+    len[b] += len[a];
+    int v = a;
+    while (v != -1) {           // 把 a 链上每个元素的 rep 改写成 b
+        rep[v] = b;
+        v = nxt[v];
+    }
+}</code></pre>
+    <p>合并的关键代价在 <code>appendList</code> 的最后：<b>被移动那条链表上的每个元素，其 <code>rep</code> 都要改写成新的代表元</b>。若被移动的链表长 k，就要改写 k 个指针。</p>
+    <div class="warn box">
+      <div class="box-title">⚠️ 任意合并会退化成 Θ(n²)</div>
+      <p>如果<b>每次都把「已经长大的那条链」接到一个新的单元素集合上</b>，代价会累计成：</p>
+      <p class="formula">1 + 2 + ⋯ + (n − 1) = Θ(n²)</p>
+      <p>例如一直把增长中的列表（5 个元素）接到单元素 5 上，这次合并就要改写 5 个代表元，累计 15 次……一路累到 n 就是 n² 量级。</p>
+    </div>
+
+    <h3 id="lec15-p2-4">2.4 加权合并：小的并入大的 <span class="en">Weighted Union</span></h3>
+    <p>只需改一个决定：<b>总是把较短的链表接到较长的链表后面</b>。这样被改写代表元的永远是「小」的那条。</p>
+    <pre><code>bool uniteList(int a, int b) {
+    a = findList(a);
+    b = findList(b);
+    if (a == b) return false;
+    if (len[a] &gt; len[b]) swap(a, b);   // 保证 a 是较短的那条
+    appendList(a, b);
+    return true;
+}</code></pre>
+
+    <h3 id="lec15-p2-5">2.5 为什么能省：翻倍论证 <span class="en">The Doubling Argument</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 翻倍论证</div>
+      <p>固定看一个元素 x，数它的代表元<b>变了几次</b>。x 的代表元只有在「x 所在链表是<b>较短</b>的那条」时才会变。而一旦 x 被并入一个大集合，它的<b>集合大小至少翻倍</b>：</p>
+      <p class="formula">旧大小 = s　⇒　新大小 ≥ s + s = 2s</p>
+      <p>于是 x 的代表元每变一次，所在集合大小至少 ×2。集合大小最多到 n，所以：</p>
+      <p class="formula">2<sup>k</sup> ≤ n　⇒　k ≤ ⌊log₂ n⌋</p>
+      <p><b>每个元素最多改 ⌊log₂ n⌋ 次</b>。全部 n 个元素加起来：<b>最多 n ⌊log₂ n⌋ 次代表元改写</b>。</p>
+    </div>
+    <div class="ex box">
+      <div class="box-title">✏️ 例子：n = 1024 与 n = 1000</div>
+      <p>n = 1024 = 2<sup>10</sup>：最多 10 次；n = 1000（介于 2<sup>9</sup>=512 和 2<sup>10</sup>=1024 之间）：最多 9 次。<code>log₂ n</code> 数的是「在到达 n 之前能翻多少次倍」。</p>
+    </div>
+    <div class="def box">
+      <div class="box-title">📌 链表表示的成本</div>
+      <table>
+        <tr><th>表示</th><th>Find</th><th>一次 Union（最坏）</th><th>所有合并的总改写</th></tr>
+        <tr><td>任意合并</td><td>O(1)</td><td>O(n)</td><td>Θ(n²)</td></tr>
+        <tr><td>短的并入长的</td><td>O(1)</td><td>O(n)</td><td>O(n log n)</td></tr>
+      </table>
+      <p>注意加权合并<b>单次</b>合并最坏仍是 O(n)（可能两条都长约 n/2），但<b>所有合并加起来</b>被压到了 O(n log n)。总时间：<b>O(n + m + n log n)</b>。</p>
+      <p>遗留的问题：能不能<b>合并时根本不用改写被移动元素的代表元</b>？这就引出下一节的父指针森林。</p>
+    </div>
+  </section>
+
+  <section id="lec15-p3">
+    <h2>Part 3 · 父指针森林 <span class="en">Parent Forests</span></h2>
+
+    <h3 id="lec15-p3-1">3.1 每个集合 = 一棵有根树 <span class="en">One Rooted Tree per Set</span></h3>
+    <p>新想法：<b>每个集合用一棵有根树表示</b>。每个元素存一个 <code>parent</code> 指针，箭头从 v 指向 <code>parent[v]</code>；<b>根指向自己</b>（<code>parent[r] = r</code>），根就是这个集合的代表元。</p>
+    <div class="figure">
+      <svg viewBox="0 0 360 300" width="360" role="img" aria-label="父指针森林：两棵链式树">
+        <defs>
+          <marker id="uf-ar1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+        </defs>
+        <text x="90" y="30" class="svg-muted" text-anchor="middle">根 0（代表元）</text>
+        <circle cx="90" cy="60" r="16" style="fill: var(--fig-bg); stroke: var(--sv-hl); stroke-width: 2"/>
+        <text x="90" y="65" class="svg-text" text-anchor="middle">0</text>
+        <circle cx="90" cy="130" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="90" y="135" class="svg-text" text-anchor="middle">1</text>
+        <circle cx="90" cy="200" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="90" y="205" class="svg-text" text-anchor="middle">2</text>
+        <circle cx="90" cy="270" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="90" y="275" class="svg-text" text-anchor="middle">3</text>
+        <line x1="90" y1="113" x2="90" y2="77" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar1)"/>
+        <line x1="90" y1="183" x2="90" y2="147" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar1)"/>
+        <line x1="90" y1="253" x2="90" y2="217" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar1)"/>
+        <text x="250" y="30" class="svg-muted" text-anchor="middle">根 4（代表元）</text>
+        <circle cx="250" cy="60" r="16" style="fill: var(--fig-bg); stroke: var(--sv-hl); stroke-width: 2"/>
+        <text x="250" y="65" class="svg-text" text-anchor="middle">4</text>
+        <circle cx="250" cy="130" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="250" y="135" class="svg-text" text-anchor="middle">5</text>
+        <circle cx="250" cy="200" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="250" y="205" class="svg-text" text-anchor="middle">6</text>
+        <circle cx="250" cy="270" r="16" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="250" y="275" class="svg-text" text-anchor="middle">7</text>
+        <line x1="250" y1="113" x2="250" y2="77" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar1)"/>
+        <line x1="250" y1="183" x2="250" y2="147" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar1)"/>
+        <line x1="250" y1="253" x2="250" y2="217" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar1)"/>
+      </svg>
+      <div class="figcap">图：父指针森林。v 的箭头指向 parent[v]；根 0、4 指向自己。parent 数组 = [0, 0, 1, 2, 4, 4, 5, 6]：从 2 或 3 沿父指针上溯都到根 0，从 6 或 7 上溯到根 4。</div>
+    </div>
+    <p>注意：<b>父指针只是一棵「谁代表谁」的树，未必是原图的边</b>。它照样精确记录「哪些元素共享同一个代表元」。</p>
+
+    <h3 id="lec15-p3-2">3.2 find：沿父指针上溯 <span class="en">Finding a Representative</span></h3>
+    <pre><code>int find(int v) {
+    while (parent[v] != v)   // 当前不是根，就往上走
+        v = parent[v];
+    return v;
+}</code></pre>
+    <p>从 v 一路沿 <code>parent</code> 爬到根，返回根。代价 = <b>树的高度</b>，即 <b>O(height)</b>。这个 <code>find</code> 不改动森林。</p>
+
+    <h3 id="lec15-p3-3">3.3 朴素合并 unitePlain <span class="en">Plain Union</span></h3>
+    <pre><code>bool unitePlain(int a, int b) {
+    a = find(a);
+    b = find(b);
+    if (a == b) return false;   // 同根，无需合并
+    parent[a] = b;              // 把 a 的根挂到 b 的根下面
+    return true;
+}</code></pre>
+    <p>先找到两个根，再把一个根挂到另一个根下面——<b>合并只动一条 parent 边</b>，这就是比链表表示强的地方。</p>
+    <div class="ex box">
+      <div class="box-title">✏️ 一次合并的成本</div>
+      <p>两个元素深度分别为 d₁、d₂，较大高度为 h：找第一个根 O(d₁+1)、找第二个根 O(d₂+1)、连边 O(1)，合计 <b>O(d₁ + d₂ + 1) = O(h + 1)</b>。所以<b>「连边只要 O(1)」不等于「整个合并 O(1)」</b>——两次 find 已经花了 O(h)。</p>
+    </div>
+
+    <h3 id="lec15-p3-4">3.4 为什么必须连根 <span class="en">Why We Must Link Roots</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 连非根会把集合拆开</div>
+      <p>如果写 <code>parent[1] = 7</code>（1 不是根），那么<b>只有 1 的子树被搬走，元素 0 被丢在原地</b>——原本一个集合被拆成两半，而不是把两个完整集合合并。所以合并<b>必须先 find 出两个根，再连根</b>。</p>
+    </div>
+
+    <h3 id="lec15-p3-5">3.5 长链退化：O(n) 的 find <span class="en">A Long Chain Degenerates</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 任意连根会退化成长链</div>
+      <p>如果每次都把新根挂到已有的链尾，n 个元素的树高度可达 <b>n − 1</b>。此时一次 find 是 <b>O(n)</b>，n 次从最深元素出发的查询就是 <b>Θ(n²)</b>。所以<b>不能随便连根，得控制树的高度</b>——下一节的按大小 / 按秩就是干这件事的。</p>
+    </div>
+  </section>
+
+  <section id="lec15-p4">
+    <h2>Part 4 · 按大小合并 <span class="en">Union by Size</span></h2>
+
+    <h3 id="lec15-p4-1">4.1 规则 <span class="en">The Rule</span></h3>
+    <p><b>把较小集合的根挂到较大集合的根下面</b>。每个根处存集合元素数 <code>sz[root]</code>。</p>
+
+    <h3 id="lec15-p4-2">4.2 C++ 代码 <span class="en">C++ Code</span></h3>
+    <pre><code>bool unite(int a, int b) {
+    a = find(a);
+    b = find(b);
+    if (a == b) return false;
+    if (sz[a] &lt; sz[b]) swap(a, b);   // 让 a 成为较大的根
+    parent[b] = a;                  // 小根 b 挂到大根 a 下
+    sz[a] += sz[b];                 // 大小合并到 a
+    return true;
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">⚠️ 只有根处的大小才有意义</div>
+      <p><code>sz[4]</code> 在 4 不再是根之后就成了<b>过期数据</b>，只有 <code>sz[root]</code> 是有效的分量大小。查询分量大小要 <code>find</code> 到根再读：<code>sz[find(v)]</code>。另外<b>合并失败的</b>（a、b 已同根）<b>不能再加一次大小</b>。</p>
+    </div>
+
+    <h3 id="lec15-p4-3">4.3 为什么高度是 O(log n) <span class="en">Why the Height Is Logarithmic</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 高度界：d ≤ ⌊log₂ n⌋</div>
+      <p>固定看一个元素，它的<b>深度只在「它所在的整棵树被挂到另一棵根下面」时增加</b>。而目标树<b>至少和它一样大</b>，所以深度每 +1，它所在集合大小至少翻倍：</p>
+      <p class="formula">1 → 2 → 4 → 8 → ⋯</p>
+      <p>深度为 d 的元素，其分量至少有 2<sup>d</sup> 个元素。故 2<sup>d</sup> ≤ n，即 <b>d ≤ ⌊log₂ n⌋</b>。</p>
+      <table>
+        <tr><th>操作</th><th>按大小合并（无路径压缩）</th></tr>
+        <tr><td>find(v)</td><td>O(log n) 最坏</td></tr>
+        <tr><td>unite(a, b)</td><td>O(log n) 最坏（含两次 find）</td></tr>
+      </table>
+      <p>这个界<b>与连接的到达顺序无关</b>，是一个最坏情况保证。</p>
+    </div>
+  </section>
+
+  <section id="lec15-p5">
+    <h2>Part 5 · 按秩合并 <span class="en">Union by Rank</span></h2>
+
+    <h3 id="lec15-p5-1">5.1 秩 vs 大小 <span class="en">Rank versus Size</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 两个不同的量</div>
+      <p><b>大小（size）数元素个数</b>；<b>秩（rank）量高度</b>——在路径压缩之前，根处的秩就等于树的高度，单元素集合的秩为 0。同样大小的两棵树，秩可以不同：</p>
+      <ul>
+        <li>大小 4、高度 1 → 秩 1（根下直接挂 3 个孩子）；</li>
+        <li>大小 4、高度 2 → 秩 2（根下挂 1 个孩子，孩子再挂 2 个）。</li>
+      </ul>
+      <p>两者不相等：size 关心「有多少个」，rank 关心「有多高」。</p>
+    </div>
+
+    <h3 id="lec15-p5-2">5.2 规则与代码 <span class="en">Rule and Code</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 按秩合并规则</div>
+      <table>
+        <tr><th>两个根的秩</th><th>怎么连</th><th>新根的秩</th></tr>
+        <tr><td>不同</td><td>低秩根挂到高秩根下</td><td>不变</td></tr>
+        <tr><td>都是 r</td><td>任选一个挂到另一个下</td><td>r + 1</td></tr>
+      </table>
+      <p>秩不同：矮树塞到高树下面，高树高度不变。秩相同：其中一棵多长一层，秩 +1。</p>
+    </div>
+    <pre><code>int parent[N], rnk[N];
+// 每个单元素 v：parent[v] = v; rnk[v] = 0;
+
+bool uniteByRank(int a, int b) {
+    a = find(a);
+    b = find(b);
+    if (a == b) return false;
+    if (rnk[a] &lt; rnk[b]) swap(a, b);   // 让 a 成为秩较高的根
+    parent[b] = a;                    // 低秩根挂到高秩根下
+    if (rnk[a] == rnk[b]) rnk[a]++;   // 秩相同才 +1
+    return true;
+}</code></pre>
+    <p>这里 <code>find</code> 仍沿父指针上溯，<b>不带路径压缩</b>。</p>
+
+    <h3 id="lec15-p5-3">5.3 秩下界：2^r 个元素 <span class="en">Rank Requires Many Elements</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 秩为 r 的根至少含 2<sup>r</sup> 个元素</div>
+      <p>秩只在「两个秩相等的根合并」时增加。若秩 r 的树都至少含 2<sup>r</sup> 个元素，合并两个秩 r 的树后：</p>
+      <p class="formula">2<sup>r</sup> + 2<sup>r</sup> = 2<sup>r+1</sup></p>
+      <p>新树秩 r+1，仍满足「至少 2<sup>r+1</sup>」——归纳成立。秩不相等的合并不破坏这个界。反过来：</p>
+      <p class="formula">2<sup>r</sup> ≤ n　⇒　r ≤ ⌊log₂ n⌋</p>
+      <p>例如要造出秩 3，必须合并两个秩 2 的树，至少需要 4 + 4 = 8 个元素。于是<b>压缩之前秩 = 高度，每次沿父指针查找都是 O(log n)</b>。</p>
+      <table>
+        <tr><th>操作</th><th>按秩合并（无路径压缩）</th></tr>
+        <tr><td>find(v)</td><td>O(log n) 最坏</td></tr>
+        <tr><td>uniteByRank(a, b)</td><td>O(log n)（含两次 find）</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="lec15-p6">
+    <h2>Part 6 · 路径压缩 <span class="en">Path Compression</span></h2>
+
+    <h3 id="lec15-p6-1">6.1 思想：把查过的路压到根 <span class="en">The Idea</span></h3>
+    <p>每次 <code>find(v)</code> 都要从 v 一路爬到根。既然都已经爬过了，<b>顺手把沿途每个节点直接指向根</b>——这样下次再查，一步就到。</p>
+    <div class="figure">
+      <svg viewBox="0 0 360 240" width="360" role="img" aria-label="路径压缩前后对比">
+        <defs>
+          <marker id="uf-ar2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+        </defs>
+        <text x="90" y="24" class="svg-muted" text-anchor="middle">find(7) 之前</text>
+        <circle cx="90" cy="50" r="15" style="fill: var(--fig-bg); stroke: var(--sv-hl); stroke-width: 2"/>
+        <text x="90" y="55" class="svg-text" text-anchor="middle">0</text>
+        <circle cx="90" cy="115" r="15" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="90" y="120" class="svg-text" text-anchor="middle">4</text>
+        <circle cx="90" cy="180" r="15" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="90" y="185" class="svg-text" text-anchor="middle">6</text>
+        <circle cx="90" cy="230" r="15" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="90" y="235" class="svg-text" text-anchor="middle">7</text>
+        <line x1="90" y1="99" x2="90" y2="66" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar2)"/>
+        <line x1="90" y1="164" x2="90" y2="131" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar2)"/>
+        <line x1="90" y1="214" x2="90" y2="197" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar2)"/>
+        <text x="270" y="24" class="svg-muted" text-anchor="middle">find(7) 之后</text>
+        <circle cx="270" cy="50" r="15" style="fill: var(--fig-bg); stroke: var(--sv-hl); stroke-width: 2"/>
+        <text x="270" y="55" class="svg-text" text-anchor="middle">0</text>
+        <circle cx="230" cy="140" r="15" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="230" y="145" class="svg-text" text-anchor="middle">4</text>
+        <circle cx="270" cy="140" r="15" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="270" y="145" class="svg-text" text-anchor="middle">6</text>
+        <circle cx="310" cy="140" r="15" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="310" y="145" class="svg-text" text-anchor="middle">7</text>
+        <line x1="236" y1="124" x2="264" y2="66" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar2)"/>
+        <line x1="270" y1="124" x2="270" y2="66" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar2)"/>
+        <line x1="302" y1="124" x2="272" y2="66" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#uf-ar2)"/>
+      </svg>
+      <div class="figcap">图：路径压缩。find(7) 沿 7 → 6 → 4 → 0 爬到根后，把 7、6、4 全部直接指向根 0。下次再查 7 只需沿一条边。</div>
+    </div>
+
+    <h3 id="lec15-p6-2">6.2 递归实现 <span class="en">Recursive Implementation</span></h3>
+    <pre><code>int find(int v) {
+    if (parent[v] == v) return v;      // 到根了
+    parent[v] = find(parent[v]);       // 把 v 的父指针压到根
+    return parent[v];
+}</code></pre>
+    <p>递归调用返回「父节点所在树的根」，然后 <code>parent[v] = …</code> 把它存成 v 的新父节点——<b>v 被直接挂到根上</b>。原来的 <code>unite</code> / <code>uniteByRank</code> 不用改，它们会自动用上这个改进后的 <code>find</code>。</p>
+
+    <h3 id="lec15-p6-3">6.3 压缩不改变集合 <span class="en">Compression Preserves the Sets</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 正确性：find 前后代表元不变</div>
+      <p>每个被改的 <code>parent</code>，都被替换成「它本来就能到达的根」。所以 <b>find(v) 之前 = find(v) 之后</b>——没有任何元素换到别的分量，只是「到达代表元的路」变短了。不在查找路径上的节点保持原样（比如分支 3 → 2 → 0 不动）。未来的 find 可以跳过中间节点，而不丢失连通信息。</p>
+    </div>
+
+    <h3 id="lec15-p6-4">6.4 摊还直觉 <span class="en">Amortized Intuition</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 反复查询同一元素</div>
+      <p>深度 h 的链上，对同一元素做 q ≥ 1 次 find（两次之间不合并）：</p>
+      <table>
+        <tr><th>方法</th><th>总父指针访问</th></tr>
+        <tr><td>不压缩</td><td>q·h</td></tr>
+        <tr><td>压缩</td><td>h + (q − 1)</td></tr>
+      </table>
+      <p>第一次花 h 步把路压短，之后每次只要 1 步。例如深度 3、查 6 次：不压缩 6×3 = 18 步；压缩 3 + 5 = 8 步。<b>一次昂贵的操作，让后面的操作变便宜</b>——这正是<b>摊还分析（amortized analysis）</b>：把一整个序列的总代价算出来，再除以序列长度。</p>
+    </div>
+  </section>
+
+  <section id="lec15-p7">
+    <h2>Part 7 · 逆阿克曼与总代价 <span class="en">Inverse Ackermann and Total Cost</span></h2>
+
+    <h3 id="lec15-p7-1">7.1 压缩之后秩仍是高度上界 <span class="en">Rank Is Still an Upper Bound</span></h3>
+    <p>路径压缩会把树压扁（高度变小），但<b>已存的秩不改变</b>。所以压缩之后，秩不再是「当前高度」，而是<b>高度的上界（upper bound）</b>。</p>
+    <p>另一个关键性质：<b>沿父路径秩严格递增</b>（例：7 秩 0 → 6 秩 1 → 4 秩 2 → 0 秩 3）。压缩改父指针时，新父节点的秩总比旧父节点高。分析序列总代价时，就数这些「秩的改进」，而不是把每次查询都当作一条全新的长路。</p>
+
+    <h3 id="lec15-p7-2">7.2 逆阿克曼函数 α(n) <span class="en">The Inverse Ackermann Function</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 长得极慢的函数</div>
+      <p>对数反转「反复翻倍」：2<sup>k</sup> ≈ n ⇒ k ≈ log₂ n。<b>阿克曼函数（Ackermann function）比指数长得快得多</b>；它的逆 α(n) 问的是「沿这个增长阶梯要爬多远才到 n」。对任何现实规模的 n，<b>α(n) 不超过一个小常数，通常说 &lt; 5</b>。所以按大小/按秩 + 路径压缩，单次操作虽然<b>不是严格 O(1)</b>，但<b>摊还下来几乎就是 O(1)</b>。</p>
+    </div>
+
+    <h3 id="lec15-p7-3">7.3 一序列操作的总代价 <span class="en">Cost over a Sequence</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 总代价对照表</div>
+      <p>初始化 n 个单元素集合，再做 m 次 find / unite：</p>
+      <table>
+        <tr><th>父森林实现</th><th>总代价（含初始化）</th></tr>
+        <tr><td>任意连根</td><td>O(n + m·n)</td></tr>
+        <tr><td>按大小 或 按秩</td><td>O(n + m log n)</td></tr>
+        <tr><td>任一规则 + 路径压缩</td><td>O(n + m·α(n))</td></tr>
+      </table>
+      <p>最后一行是一个<b>定理</b>。α(n) 是逆阿克曼函数，增长极慢。<b>摊还 O(α(n)) ≠ 每次查询都是 O(1)</b>——个别查询仍可能走长路，但一整序列加起来被这个极慢的函数压住。</p>
+    </div>
+
+    <h3 id="lec15-p7-4">7.4 使用接口 <span class="en">The Interface</span></h3>
+    <pre><code>bool same(int a, int b) {
+    return find(a) == find(b);
+}
+
+init(n);
+bool merged = unite(a, b);
+bool connected = same(a, b);</code></pre>
+    <p>数组里存的是「代表元的森林」，<b>不是原图的边</b>。合并只把集合拼起来；这个实现<b>没有任何「拆分集合」的操作</b>——这是并查集的一个根本限制，下一节用它引出「离线删边」的经典技巧。</p>
+  </section>
+
+  <section id="lec15-p8">
+    <h2>Part 8 · 应用：离线删边 <span class="en">Application: Offline Edge Deletion</span></h2>
+
+    <h3 id="lec15-p8-1">8.1 删边会分裂集合 <span class="en">Deletion Splits Sets</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 问题</div>
+      <p>一个无向图有 n 个顶点、m 条边。每次删一条边，删完 q 次，<b>每次删后报告连通分量个数</b>。但并查集<b>只能合并、不能拆分</b>——删一条边恰恰是把一个集合拆开。怎么用只能合并的 DSU 处理「删边」？</p>
+    </div>
+
+    <h3 id="lec15-p8-2">8.2 反向处理：删边变加边 <span class="en">Processing Deletions in Reverse</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 核心技巧：时间倒流</div>
+      <p>因为<b>所有删除事先已知</b>，我们<b>从「最后一次删除之后的图」出发，把删除按相反顺序执行</b>：</p>
+      <p class="formula">正向删：3 → 0 → 1 → 2 → 4　⟺　反向加：4 → 2 → 1 → 0 → 3</p>
+      <p>时间倒流时，<b>一次删除变成一次插入</b>。现在 DSU 只需合并，<b>不需要任何拆分操作</b>。在恢复第 i 条删除边<b>之前</b>，把当前分量数存进 <code>ans[i]</code>。</p>
+    </div>
+
+    <h3 id="lec15-p8-3">8.3 代码与走查 <span class="en">Code and Trace</span></h3>
+    <pre><code>for (int i = 0; i &lt; q; ++i)
+    removed[del[i]] = true;     // 标记被删的边
+init(n);
+int components = n;            // 初始：n 个孤立分量
+for (int e = 0; e &lt; m; ++e)
+    if (!removed[e] &amp;&amp; unite(u[e], v[e]))
+        --components;          // 建「最终图」：未被删的边逐一合并
+
+for (int i = q - 1; i &gt;= 0; --i) {
+    ans[i] = components;       // 恢复这条边「之前」的分量数
+    int e = del[i];
+    if (unite(u[e], v[e])) --components;   // 反向加回一条边
+}</code></pre>
+    <div class="ex box">
+      <div class="box-title">✏️ 走查（n = 5，边 0–1 / 1–2 / 2–0 / 2–3 / 3–4，删除顺序 3, 0, 1, 2, 4）</div>
+      <p>删掉边 3(2–3)、0(0–1)、1(1–2)、2(2–0)、4(3–4) 后，最终图只剩下……其实删到最后所有边都没了，是 5 个孤立点。倒着加回来：</p>
+      <table>
+        <tr><th>反向步骤</th><th>加回的边</th><th>合并？</th><th>当前分量数</th><th>ans</th></tr>
+        <tr><td>（最终图）</td><td>—</td><td>—</td><td>5</td><td>—</td></tr>
+        <tr><td>恢复 4</td><td>3–4</td><td>是</td><td>4</td><td>ans[4]=5</td></tr>
+        <tr><td>恢复 2</td><td>2–0</td><td>是</td><td>3</td><td>ans[2]=4</td></tr>
+        <tr><td>恢复 1</td><td>1–2</td><td>是</td><td>2</td><td>ans[1]=3</td></tr>
+        <tr><td>恢复 0</td><td>0–1</td><td>是</td><td>2</td><td>ans[0]=2</td></tr>
+        <tr><td>恢复 3</td><td>2–3</td><td>是</td><td>1</td><td>ans[3]=2</td></tr>
+      </table>
+      <p>最终 <b>ans = [2, 2, 3, 4, 5]</b>，正是每次正向删除后连通分量的个数（正向删边 3 之后是 2 个分量，删 0 之后仍是 2，……删到最后 5 个分量）。</p>
+    </div>
+
+    <h3 id="lec15-p8-4">8.4 代价与边界情况 <span class="en">Cost and Boundary Cases</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 复杂度与边界</div>
+      <p>建最终图时每条输入边各看一次，反向恢复时每条被删边各恢复一次，所以总时间 <b>O(n + (m + q)·α(n))</b>。</p>
+      <ul>
+        <li><b>初始就不连通？</b>把计数从 n 开始，<b>只在合并成功时才减</b>。</li>
+        <li><b>最终图一条边都不剩？</b>最终就是 n 个单元素分量。</li>
+        <li><b>恢复的边是一条环边？</b>（两端已在同一分量）合并失败，计数不变。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="lec15-p9">
+    <h2>Part 9 · 总结与词汇表 <span class="en">Summary and Vocabulary</span></h2>
+
+    <h3 id="lec15-p9-1">9.1 一句话总结 <span class="en">Summary</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 并查集要点</div>
+      <ul>
+        <li><b>四个操作</b>：MakeSet（建单元素集合）、Find（取代表元）、Union（合并两个集合）、Same（判同组）。<b>Same ⟺ Find(a) == Find(b)</b>。</li>
+        <li><b>表示的本质</b>：父指针记录「谁代表谁」的<b>划分</b>，而不是原图结构。</li>
+        <li><b>三档代价</b>：链表「小的并入大的」→ O(n log n) 次代表元改写；父森林 + 大小/秩 → O(log n) 每次；大小/秩 + 路径压缩 → O(n + m·α(n)) 整序列。</li>
+        <li><b>log 从哪来</b>：翻倍——每多一次移动 / 多一个祖先，至少要两倍的元素。</li>
+        <li><b>根本限制</b>：只能合并不能拆分，删边场景用「<b>时间倒流</b>」把删变成加。</li>
+      </ul>
+    </div>
+
+    <h3 id="lec15-p9-2">9.2 词汇表 <span class="en">Key Vocabulary</span></h3>
+    <div class="vocab">
+      <div class="vocab-title">词汇表 Key Vocabulary</div>
+      <ul>
+        <li><b>union–find / disjoint-set</b> — 并查集 / 不相交集合</li>
+        <li><b>connected component</b> — 连通分量；<b>connectivity query</b> — 连通性查询</li>
+        <li><b>partition</b> — 划分；<b>representative</b> — 代表元</li>
+        <li><b>MakeSet / Union / Find / Same</b> — 建集合 / 合并 / 查找 / 判同组</li>
+        <li><b>linked-list representation</b> — 链表表示；<b>weighted union</b> — 加权合并（小的并入大的）</li>
+        <li><b>doubling argument</b> — 翻倍论证</li>
+        <li><b>parent forest</b> — 父指针森林；<b>root</b> — 根（parent[r] = r）</li>
+        <li><b>union by size</b> — 按大小合并；<b>union by rank</b> — 按秩合并；<b>rank</b> — 秩</li>
+        <li><b>path compression</b> — 路径压缩</li>
+        <li><b>amortized analysis</b> — 摊还分析</li>
+        <li><b>inverse Ackermann function α(n)</b> — 逆阿克曼函数</li>
+        <li><b>offline deletion / reverse processing</b> — 离线删边 / 反向处理</li>
+      </ul>
+    </div>
+  </section>
+</div><!-- /第15课 -->
 
 
 </div>
