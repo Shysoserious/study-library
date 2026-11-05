@@ -1304,6 +1304,63 @@ window.MathJax = {
       </div>
     </div>
 
+<div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第16课 · Binary Indexed Trees</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec16-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec16-p1">Part 1 · 动机：静态前缀和到点更新</a>
+        <a class="lv2" href="#lec16-p1-1">1.1 静态区间和</a>
+        <a class="lv2" href="#lec16-p1-2">1.2 前缀和 O(1) 查询</a>
+        <a class="lv2" href="#lec16-p1-3">1.3 点更新打破前缀和</a>
+        <a class="lv1" href="#lec16-p2">Part 2 · 操作与分块思路</a>
+        <a class="lv2" href="#lec16-p2-1">2.1 两个基本操作</a>
+        <a class="lv2" href="#lec16-p2-2">2.2 分块：一块代替多次加法</a>
+        <a class="lv2" href="#lec16-p2-3">2.3 每个右端点只存一个块</a>
+        <a class="lv1" href="#lec16-p3">Part 3 · lowbit 与二进制</a>
+        <a class="lv2" href="#lec16-p3-1">3.1 块长度由末尾 0 决定</a>
+        <a class="lv2" href="#lec16-p3-2">3.2 lowbit：最低位的 1</a>
+        <a class="lv2" href="#lec16-p3-3">3.3 用 x &amp; (−x) 算 lowbit</a>
+        <a class="lv1" href="#lec16-p4">Part 4 · BIT 的定义与存储</a>
+        <a class="lv2" href="#lec16-p4-1">4.1 c[x] 的定义</a>
+        <a class="lv2" href="#lec16-p4-2">4.2 前缀 = 若干块的拼接</a>
+        <a class="lv1" href="#lec16-p5">Part 5 · 前缀和查询 sum(x)</a>
+        <a class="lv2" href="#lec16-p5-1">5.1 下一步：x − lowbit(x)</a>
+        <a class="lv2" href="#lec16-p5-2">5.2 C++ 实现</a>
+        <a class="lv2" href="#lec16-p5-3">5.3 走查</a>
+        <a class="lv1" href="#lec16-p6">Part 6 · 点更新 add(x, delta)</a>
+        <a class="lv2" href="#lec16-p6-1">6.1 哪些块变了？</a>
+        <a class="lv2" href="#lec16-p6-2">6.2 C++ 实现</a>
+        <a class="lv2" href="#lec16-p6-3">6.3 走查与停止条件</a>
+        <a class="lv2" href="#lec16-p6-4">6.4 同一个树的两条路</a>
+        <a class="lv1" href="#lec16-p7">Part 7 · 初始化、赋值与复杂度</a>
+        <a class="lv2" href="#lec16-p7-1">7.1 初始化</a>
+        <a class="lv2" href="#lec16-p7-2">7.2 赋值（替换元素）</a>
+        <a class="lv2" href="#lec16-p7-3">7.3 复杂度分析</a>
+        <a class="lv1" href="#lec16-p8">Part 8 · 数逆序对</a>
+        <a class="lv2" href="#lec16-p8-1">8.1 什么是逆序对</a>
+        <a class="lv2" href="#lec16-p8-2">8.2 从大到小处理</a>
+        <a class="lv2" href="#lec16-p8-3">8.3 C++ 代码</a>
+        <a class="lv2" href="#lec16-p8-4">8.4 代价与相等值</a>
+        <a class="lv1" href="#lec16-p9">Part 9 · 区间加 + 点查询</a>
+        <a class="lv2" href="#lec16-p9-1">9.1 问题</a>
+        <a class="lv2" href="#lec16-p9-2">9.2 差分数组</a>
+        <a class="lv2" href="#lec16-p9-3">9.3 只改两个边界</a>
+        <a class="lv2" href="#lec16-p9-4">9.4 BIT 存差分</a>
+        <a class="lv1" href="#lec16-p10">Part 10 · 区间加 + 区间和</a>
+        <a class="lv2" href="#lec16-p10-1">10.1 问题升级</a>
+        <a class="lv2" href="#lec16-p10-2">10.2 加权的差分</a>
+        <a class="lv2" href="#lec16-p10-3">10.3 两个 BIT</a>
+        <a class="lv2" href="#lec16-p10-4">10.4 走查</a>
+        <a class="lv1" href="#lec16-p11">Part 11 · 总结与词汇表</a>
+        <a class="lv2" href="#lec16-p11-1">11.1 一句话总结</a>
+        <a class="lv2" href="#lec16-p11-2">11.2 词汇表</a>
+      </div>
+    </div>
+
 </nav>
 </aside>
 
@@ -1312,7 +1369,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–16</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -11067,6 +11124,504 @@ for (int i = q - 1; i &gt;= 0; --i) {
     </div>
   </section>
 </div><!-- /第15课 -->
+
+
+<!-- ============ 第16课 ============ -->
+<div class="lecture" id="lec16">
+  <div class="lecture-banner">第16课 · Binary Indexed Trees <span class="zh">（树状数组 / Fenwick 树：lowbit · 前缀和查询 · 点更新 · 差分 · 数逆序对）</span></div>
+
+  <section id="lec16-overview">
+    <div class="toc">
+      <div class="toc-title">本讲导览</div>
+      <ol>
+        <li>动机：静态前缀和的 O(1) 查询，被「点更新」打破</li>
+        <li>操作定义与分块思路：每个右端点存一个「最大的块」</li>
+        <li>lowbit 与二进制：块长度 = 端点二进制末尾 0 的个数</li>
+        <li>BIT 的定义与存储：c[x] = a[x − lowbit(x) + 1 … x]</li>
+        <li>前缀和查询 sum(x)：反复 x −= lowbit(x)</li>
+        <li>点更新 add(x, delta)：反复 x += lowbit(x)</li>
+        <li>初始化、赋值与复杂度分析</li>
+        <li>应用：用 BIT 数逆序对</li>
+        <li>区间加 + 点查询：差分数组存进 BIT</li>
+        <li>区间加 + 区间和：两个 BIT（d 与 (i−1)d）</li>
+      </ol>
+    </div>
+
+    <div class="warn box">
+      <div class="box-title">本讲主线</div>
+      <p>第1课我们学会了<b>前缀和（prefix sum）</b>：预处理 O(n)，之后每次区间和 O(1)。但它有个致命前提——<b>数组不能变</b>。一旦允许 <b>Add(i, delta) 单点更新</b>，a[i] 一改，所有包含它的前缀全部失效，更新退化成 O(n)。树状数组（<b>binary indexed tree / Fenwick tree</b>，简称 <b>BIT</b>）的目标就是让<b>查询和更新都落在 O(log n)</b>。核心思想：<b>不存每个前缀，改存「每个右端点结尾的最大块」</b>，块的长度由端点二进制<b>末尾 0 的个数</b>决定（即 <b>lowbit</b>）。查询时<b>不断减 lowbit</b> 拆前缀成若干块，更新时<b>不断加 lowbit</b> 找到所有包含它的块。最后用它做两个经典变形：<b>差分数组 BIT</b> 支持「区间加 + 点查询」，<b>双 BIT</b> 支持「区间加 + 区间和」。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p1">
+    <h2>Part 1 · 动机：从静态前缀和到点更新 <span class="en">Motivation: From Static Prefix Sums to Point Updates</span></h2>
+
+    <h3 id="lec16-p1-1">1.1 静态区间和 <span class="en">Static Range Sums</span></h3>
+    <p>回到第1课的区间查询问题：数组 a[1…n] <b>不变</b>，要回答很多个 <code>calc(l, r) = a[l] + ⋯ + a[r]</code>。</p>
+    <pre><code>long long calc(int l, int r) {
+    long long total = 0;
+    for (int i = l; i &lt;= r; ++i)
+        total += a[i];
+    return total;
+}</code></pre>
+    <p>一次查询读 <b>r − l + 1</b> 个元素，最坏 O(n)；q 次查询最坏 <b>O(nq)</b>。能不能复用之前的工作？</p>
+
+    <h3 id="lec16-p1-2">1.2 前缀和把查询压到 O(1) <span class="en">Prefix Sums Give O(1) Queries</span></h3>
+    <pre><code>PRE[0] = 0;
+for (int i = 1; i &lt;= n; ++i)
+    PRE[i] = PRE[i - 1] + a[i];
+long long calc(int l, int r) {
+    return PRE[r] - PRE[l - 1];
+}</code></pre>
+    <p><b>一个区间 = 两个前缀的差</b>：calc(4,7) = PRE[7] − PRE[3] = 25 − 8 = 17。O(n) 预处理、O(1) 每查询、O(n) 存储，总时间 O(n + q)。</p>
+
+    <h3 id="lec16-p1-3">1.3 点更新打破前缀和 <span class="en">Point Updates Break Prefix Sums</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 例子：给 a[5] 加 4</div>
+      <p>数组 a = [3, 1, 4, 1, 5, 9, 2, 6]（1 下标）。把 a[5] 从 5 改成 9。原前缀 PRE[5…8] 分别是 14, 23, 25, 31，改后变成 18, 27, 29, 35——<b>每个「以 5 或更后结尾」的前缀都变了</b>，因为它们都包含 a[5]。改一个 a[i]，最坏要改 <b>n − i + 1 ≈ O(n)</b> 个前缀。</p>
+    </div>
+    <div class="def box">
+      <div class="box-title">📌 查询与更新的权衡</div>
+      <table>
+        <tr><th>表示</th><th>点加 Add</th><th>区间和 Sum</th></tr>
+        <tr><td>原始数组</td><td>O(1)</td><td>O(n) 最坏</td></tr>
+        <tr><td>全部前缀和</td><td>O(n) 最坏</td><td>O(1)</td></tr>
+      </table>
+      <p>改 a[1] 会改掉<b>每一个</b>前缀（n 个改动）。问题：<b>能不能只存「部分和」，让两个操作都 O(log n)？</b>这就是 BIT 要解决的。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p2">
+    <h2>Part 2 · 操作定义与分块思路 <span class="en">Operations and the Block Idea</span></h2>
+
+    <h3 id="lec16-p2-1">2.1 两个基本操作 <span class="en">The Two Basic Operations</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 操作定义</div>
+      <table>
+        <tr><th>操作</th><th>要求的行为</th></tr>
+        <tr><td><code>Add(i, delta)</code></td><td>把 a[i] 增加 delta</td></tr>
+        <tr><td><code>Sum(r)</code></td><td>返回 a[1] + ⋯ + a[r]</td></tr>
+      </table>
+      <p>查询和更新现在<b>交替出现</b>，前缀查询永远基于当前数组。<b>calc(l, r) = Sum(r) − Sum(l − 1)</b>，约定 <b>Sum(0) = 0</b>。先实现这两个基本操作，区间和自然就有了。</p>
+    </div>
+
+    <h3 id="lec16-p2-2">2.2 分块：用一块代替多次加法 <span class="en">Reusing Blocks of Different Sizes</span></h3>
+    <p>能不能让一个存储的和，代替多次逐个相加？把数组按 2 的幂分层切成块：</p>
+    <div class="figure">
+      <svg viewBox="0 0 360 190" width="360" role="img" aria-label="分块层级：8/4/2/1 层">
+        <text x="18" y="22" class="svg-muted">长度 8</text>
+        <rect x="18" y="28" width="324" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <text x="180" y="44" class="svg-text" text-anchor="middle">[1, 8]</text>
+        <text x="18" y="72" class="svg-muted">长度 4</text>
+        <rect x="18" y="78" width="158" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <text x="97" y="94" class="svg-text" text-anchor="middle">[1, 4]</text>
+        <rect x="184" y="78" width="158" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <text x="263" y="94" class="svg-text" text-anchor="middle">[5, 8]</text>
+        <text x="18" y="122" class="svg-muted">长度 2</text>
+        <rect x="18" y="128" width="75" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <rect x="101" y="128" width="75" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <rect x="184" y="128" width="75" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <rect x="267" y="128" width="75" height="22" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 1.5"/>
+        <text x="55" y="144" class="svg-text" text-anchor="middle">[1,2]</text>
+        <text x="138" y="144" class="svg-text" text-anchor="middle">[3,4]</text>
+        <text x="221" y="144" class="svg-text" text-anchor="middle">[5,6]</text>
+        <text x="304" y="144" class="svg-text" text-anchor="middle">[7,8]</text>
+        <text x="18" y="180" class="svg-muted">长度 1</text>
+        <text x="18" y="180" class="svg-muted" text-anchor="start"></text>
+        <text x="34" y="180" class="svg-text">[1] [2] [3] [4] [5] [6] [7] [8]</text>
+      </svg>
+      <div class="figcap">图：把 [1,8] 按 2 的幂分层切块。两个相邻的长度 4 块合成一个长度 8 块；两个长度 2 块合成一个长度 4 块，以此类推。</div>
+    </div>
+    <p>前缀 [1,7] 可以无缝隙地由 <b>[1,4] + [5,6] + [7]</b> 三块拼出——<b>3 个存储和代替 7 次逐个相加</b>。</p>
+
+    <h3 id="lec16-p2-3">2.3 每个右端点只存一个块 <span class="en">One Stored Block per Right Endpoint</span></h3>
+    <p>关键选择：<b>对每个右端点 i，存「在这个层级里以 i 结尾的最大块」</b>。比如端点 6 结尾的最大块是 [5,6]（长度 2），端点 4 结尾的是 [1,4]（长度 4）。这样 <b>n 个位置只存 n 个块</b>，而它们<b>足够拼出任意前缀</b>。</p>
+    <div class="thm box">
+      <div class="box-title">🎯 存的块构成一棵树</div>
+      <p>把每个小块连到「包含它的最小存储块」上，这些块组成一棵树。按右端点给每个存储和命名：<b>c[1], c[2], …, c[8]</b>。</p>
+    </div>
+    <div class="figure">
+      <svg viewBox="0 0 400 320" width="400" role="img" aria-label="Fenwick 树结构：parent = x + lowbit(x)">
+        <defs>
+          <marker id="bit-ar1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+        </defs>
+        <circle cx="200" cy="36" r="17" style="fill: var(--fig-bg); stroke: var(--sv-hl); stroke-width: 2"/>
+        <text x="200" y="41" class="svg-text" text-anchor="middle">c[8]</text>
+        <text x="200" y="64" class="svg-muted" text-anchor="middle">[1,8]</text>
+        <circle cx="104" cy="120" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="104" y="125" class="svg-text" text-anchor="middle">c[4]</text>
+        <text x="104" y="148" class="svg-muted" text-anchor="middle">[1,4]</text>
+        <circle cx="248" cy="120" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="248" y="125" class="svg-text" text-anchor="middle">c[6]</text>
+        <text x="248" y="148" class="svg-muted" text-anchor="middle">[5,6]</text>
+        <circle cx="336" cy="120" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="336" y="125" class="svg-text" text-anchor="middle">c[7]</text>
+        <text x="336" y="148" class="svg-muted" text-anchor="middle">[7]</text>
+        <circle cx="68" cy="210" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="68" y="215" class="svg-text" text-anchor="middle">c[2]</text>
+        <text x="68" y="238" class="svg-muted" text-anchor="middle">[1,2]</text>
+        <circle cx="150" cy="210" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="150" y="215" class="svg-text" text-anchor="middle">c[3]</text>
+        <text x="150" y="238" class="svg-muted" text-anchor="middle">[3]</text>
+        <circle cx="248" cy="210" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="248" y="215" class="svg-text" text-anchor="middle">c[5]</text>
+        <text x="248" y="238" class="svg-muted" text-anchor="middle">[5]</text>
+        <circle cx="68" cy="296" r="17" style="fill: var(--fig-bg); stroke: var(--accent); stroke-width: 2"/>
+        <text x="68" y="301" class="svg-text" text-anchor="middle">c[1]</text>
+        <text x="68" y="312" class="svg-muted" text-anchor="middle"></text>
+        <line x1="83" y1="288" x2="95" y2="139" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+        <line x1="83" y1="202" x2="95" y2="139" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+        <line x1="133" y1="202" x2="112" y2="139" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+        <line x1="124" y1="112" x2="182" y2="56" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+        <line x1="248" y1="202" x2="248" y2="139" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+        <line x1="258" y1="112" x2="212" y2="56" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+        <line x1="323" y1="112" x2="217" y2="56" style="stroke: var(--sv-neg); stroke-width: 1.5" marker-end="url(#bit-ar1)"/>
+      </svg>
+      <div class="figcap">图：Fenwick 树。每条边是「子块 → 包含它的最小块」：c[1]→c[2]→c[4]→c[8]，c[3]→c[4]，c[5]→c[6]→c[8]，c[7]→c[8]。父节点下标恰是 <b>x + lowbit(x)</b>。</div>
+    </div>
+  </section>
+
+  <section id="lec16-p3">
+    <h2>Part 3 · lowbit 与二进制 <span class="en">lowbit and Binary</span></h2>
+
+    <h3 id="lec16-p3-1">3.1 块的长度由末尾 0 决定 <span class="en">Trailing Zeros Determine Length</span></h3>
+    <p>把每个端点写成二进制，看它<b>最右边的 1 以及它后面的 0</b>：</p>
+    <div class="def box">
+      <div class="box-title">📌 端点二进制 vs 块长度</div>
+      <table>
+        <tr><th>c[i]</th><th>区间</th><th>二进制</th><th>长度</th></tr>
+        <tr><td>c[1]</td><td>[1]</td><td>0001</td><td>1</td></tr>
+        <tr><td>c[2]</td><td>[1,2]</td><td>0010</td><td>2</td></tr>
+        <tr><td>c[3]</td><td>[3]</td><td>0011</td><td>1</td></tr>
+        <tr><td>c[4]</td><td>[1,4]</td><td>0100</td><td>4</td></tr>
+        <tr><td>c[5]</td><td>[5]</td><td>0101</td><td>1</td></tr>
+        <tr><td>c[6]</td><td>[5,6]</td><td>0110</td><td>2</td></tr>
+        <tr><td>c[7]</td><td>[7]</td><td>0111</td><td>1</td></tr>
+        <tr><td>c[8]</td><td>[1,8]</td><td>1000</td><td>8</td></tr>
+      </table>
+      <p>规律：<b>长度 2ᵏ 的块，结尾下标是 2ᵏ 的倍数</b>，即二进制<b>末尾恰好有 k 个 0</b>。4 = 0100₂ 有 2 个末尾 0，所以以 4 结尾的最大块长度是 4。</p>
+    </div>
+
+    <h3 id="lec16-p3-2">3.2 lowbit：最低位的 1 <span class="en">The Lowest Set Bit</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 lowbit 定义</div>
+      <p>对 x &gt; 0，<b>lowbit(x)</b> = 它最右边的 1 位的值。若 x 有 k 个末尾 0，则 lowbit(x) = 2ᵏ。</p>
+      <p>例：lowbit(6) = 2（6 = 110₂），lowbit(88) = 8（88 = 1011000₂，末尾 3 个 0）。</p>
+    </div>
+
+    <h3 id="lec16-p3-3">3.3 用 x &amp; (−x) 算出 lowbit <span class="en">Computing lowbit with x &amp; (−x)</span></h3>
+    <p>把 x 写成「前缀 P + 一个 1 + k 个 0」。按位取反再加 1（即 −x 的补码表示）后：</p>
+    <table>
+      <tr><th></th><th>结构</th></tr>
+      <tr><td>x</td><td>P　1　k 个 0</td></tr>
+      <tr><td>−x</td><td>P 的补　1　k 个 0</td></tr>
+      <tr><td>x &amp; (−x)</td><td>全 0　1　k 个 0</td></tr>
+    </table>
+    <p>取反 +1 会把末尾那 k 个 0 和紧随的 1「还原」，而更高的位全部取反——于是按位与之后<b>只剩下那个最低位的 1</b>：<b>x &amp; (−x) = 2ᵏ</b>。</p>
+    <pre><code>int lowbit(int x) {
+    return x &amp; -x;
+}</code></pre>
+    <div class="warn box">
+      <div class="box-title">⚠️ 负数用补码</div>
+      <p>−x 在计算机里是「按位取反再加 1」（补码，two's complement）。这就是为什么 x &amp; (−x) 能精确剥出最低位 1，而不受高位影响。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p4">
+    <h2>Part 4 · BIT 的定义与存储 <span class="en">Definition and Storage of the BIT</span></h2>
+
+    <h3 id="lec16-p4-1">4.1 c[x] 的定义 <span class="en">Defining c[x]</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 存储定义</div>
+      <p>BIT（又叫 Fenwick 树）把这些块和存进一个数组 c：</p>
+      <p class="formula">c[x] = a[x − lowbit(x) + 1] + ⋯ + a[x]</p>
+      <p>即 c[x] 存「以 x 结尾、长 lowbit(x) 的那一段」的和。共有 n 个存储块，<b>下标 0 不在树里</b>（1…n 才有意义）。</p>
+    </div>
+    <div class="ex box">
+      <div class="box-title">✏️ 例子：a = [3, 1, 4, 1, 5, 9, 2, 6]</div>
+      <p>c[1]=3（[1]）、c[2]=4（[1,2]）、c[3]=4（[3]）、c[4]=9（[1,4]）、c[5]=5（[5]）、c[6]=14（[5,6]）、c[7]=2（[7]）、c[8]=31（[1,8]）。验证 c[8] = 3+1+4+1+5+9+2+6 = 31。</p>
+    </div>
+
+    <h3 id="lec16-p4-2">4.2 前缀 = 若干块的拼接 <span class="en">A Prefix Is a Union of Blocks</span></h3>
+    <p>以 Sum(7) 为例，用二进制「1 的位置」选块：7 = 0111₂ = 4 + 2 + 1，对应 <b>c[4] + c[6] + c[7] = 9 + 14 + 2 = 25</b>，恰好覆盖 [1,4] + [5,6] + [7]。</p>
+    <div class="thm box">
+      <div class="box-title">🎯 二进制位选前缀块</div>
+      <p>更长的例子：13 = 1101₂ = 8 + 4 + 1，前缀 [1,13] 拆成 <b>[1,8] + [9,12] + [13]</b>，即 <b>Sum(13) = c[8] + c[12] + c[13]</b>。二进制里每一个 1 位，对应一个存储块。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p5">
+    <h2>Part 5 · 前缀和查询 sum(x) <span class="en">Prefix Sum Queries</span></h2>
+
+    <h3 id="lec16-p5-1">5.1 下一步下标：x − lowbit(x) <span class="en">The Next Query Index</span></h3>
+    <p>当前选中的块从 <b>x − lowbit(x) + 1</b> 开始、到 x 结束。那么「剩下的未覆盖前缀」就结束于 <b>x − lowbit(x)</b>。于是下一个块的下标是 <b>x −= lowbit(x)</b>，一直做到 x = 0，正好把 [1, r] 无重叠、无缝隙地覆盖完。</p>
+
+    <h3 id="lec16-p5-2">5.2 C++ 实现 <span class="en">C++ Implementation</span></h3>
+    <pre><code>long long sum(int x) {
+    long long ans = 0;
+    while (x &gt; 0) {
+        ans += c[x];
+        x -= lowbit(x);
+    }
+    return ans;
+}</code></pre>
+    <p>循环每步加一个存储块，再跳到剩余前缀。<b>sum(0) 返回 0，且不读 c[0]</b>。</p>
+
+    <h3 id="lec16-p5-3">5.3 走查 <span class="en">A Trace</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ sum(7) 走查（c = [_, 3, 4, 4, 9, 5, 14, 2, 31]）</div>
+      <table>
+        <tr><th>x</th><th>二进制</th><th>lowbit</th><th>加</th><th>下一步 x −= lowbit</th></tr>
+        <tr><td>7</td><td>0111</td><td>1</td><td>c[7]=2</td><td>6</td></tr>
+        <tr><td>6</td><td>0110</td><td>2</td><td>c[6]=14</td><td>4</td></tr>
+        <tr><td>4</td><td>0100</td><td>4</td><td>c[4]=9</td><td>0</td></tr>
+      </table>
+      <p>ans = 2 + 14 + 9 = <b>25</b>。选中的块 [7,7] + [5,6] + [1,4] 恰好覆盖 [1,7]。每步<b>正好清掉二进制里的一个 1</b>（0111 → 0110 → 0100 → 0000）。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p6">
+    <h2>Part 6 · 点更新 add(x, delta) <span class="en">Point Updates</span></h2>
+
+    <h3 id="lec16-p6-1">6.1 哪些块变了？ <span class="en">Which Blocks Change?</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ 给 a[5] 加 4</div>
+      <p>包含位置 5 的块只有三个：c[5]（存 [5,5]）、c[6]（存 [5,6]）、c[8]（存 [1,8]）。这三个和都 +4，其余块不变。</p>
+    </div>
+    <p>下一个包含块的下标是 <b>x + lowbit(x)</b>：x = 5 → 6 → 8。为什么？因为「包含 x 的最小块」正是把 x 的 lowbit 往更高位进位的结果。</p>
+
+    <h3 id="lec16-p6-2">6.2 C++ 实现 <span class="en">C++ Implementation</span></h3>
+    <pre><code>void add(int x, long long delta) {
+    while (x &lt;= n) {
+        c[x] += delta;
+        x += lowbit(x);
+    }
+}</code></pre>
+    <p>从被改的位置出发，更新每个包含它的块。<b>前提 1 ≤ x ≤ n</b>，更新绝不会从 0 开始。</p>
+
+    <h3 id="lec16-p6-3">6.3 走查与停止条件 <span class="en">A Trace and Where It Stops</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ add(5, 4) 走查（n = 8）</div>
+      <table>
+        <tr><th>x</th><th>lowbit</th><th>更新的块</th><th>下一步 x += lowbit</th></tr>
+        <tr><td>5</td><td>1</td><td>c[5] += 4</td><td>6</td></tr>
+        <tr><td>6</td><td>2</td><td>c[6] += 4</td><td>8</td></tr>
+        <tr><td>8</td><td>8</td><td>c[8] += 4</td><td>16</td></tr>
+      </table>
+      <p>16 超过 n = 8，停止。三个被更新的块正是 [5,5]、[5,6]、[1,8]。</p>
+      <p>另一个例子（n = 10，add(9, 4)）：9 → 10（lowbit 1）→ 12（lowbit 2）> 10 停止。只有 c[9] 和 c[10] 需要 +4。</p>
+    </div>
+
+    <h3 id="lec16-p6-4">6.4 查询与更新是同一个树的两条路 <span class="en">Two Directions on the Same Blocks</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 两个方向对照</div>
+      <table>
+        <tr><th>操作</th><th>下一步下标</th><th>目的</th></tr>
+        <tr><td>前缀查询</td><td>x − lowbit(x)</td><td>取左边下一个不相交的块</td></tr>
+        <tr><td>点更新</td><td>x + lowbit(x)</td><td>访问下一个更大的包含块</td></tr>
+      </table>
+      <p>查询覆盖<b>一个前缀</b>（向左拆）；更新改掉<b>所有包含某一个位置</b>的存储和（向上爬）。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p7">
+    <h2>Part 7 · 初始化、赋值与复杂度 <span class="en">Initialization, Assignment, and Complexity</span></h2>
+
+    <h3 id="lec16-p7-1">7.1 初始化 <span class="en">Initialization</span></h3>
+    <pre><code>const int N = 100005;
+int n;
+long long c[N];
+fill(c, c + n + 1, 0);
+for (int i = 1; i &lt;= n; ++i)
+    add(i, a[i]);</code></pre>
+    <p>先把 c 全部清零，再<b>把每个初始值 add 进去</b>。每个 add 把该原始值插进所有包含它的块。</p>
+
+    <h3 id="lec16-p7-2">7.2 赋值（替换元素） <span class="en">Assignment</span></h3>
+    <pre><code>add(i, value - a[i]);   // 变化量 = 新值 − 旧值
+a[i] = value;</code></pre>
+    <p>BIT 只支持「加一个 delta」，要<b>替换</b> a[i] 就加「新值 − 旧值」，并记得同步存回 a[i]。区间和直接：<code>rangeSum(l, r) = sum(r) − sum(l − 1)</code>，要求 1 ≤ l ≤ r ≤ n。</p>
+
+    <h3 id="lec16-p7-3">7.3 复杂度分析 <span class="en">Complexity Analysis</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 两个对数界</div>
+      <p><b>查询步数</b>：每步清掉二进制里的一个 1，所以迭代次数 = 1 的个数 ≤ ⌊log₂ n⌋ + 1。</p>
+      <p><b>更新步数</b>：x 不总翻倍（5 → 6 → 8 → 16），但 <b>lowbit 至少翻倍</b>（1 → 2 → 8 → 16）。加 2ᵏ 产生进位，把所有到第 k 位（含）的位清零，于是下一个最低位 1 的位置严格变大，即 <b>lowbit(下一个 x) ≥ 2 · lowbit(x)</b>。存的下标 ≤ n，最多 ⌊log₂ n⌋ + 1 个块。</p>
+      <table>
+        <tr><th>操作</th><th>代价</th></tr>
+        <tr><td>一次前缀和 / 点加</td><td>O(log n) 最坏</td></tr>
+        <tr><td>一次区间和 / 赋值</td><td>O(log n) 最坏</td></tr>
+        <tr><td>用 n 个初始值建树</td><td>O(n log n)</td></tr>
+        <tr><td>存储 c[1…n]</td><td>O(n) 内存</td></tr>
+      </table>
+      <p>任意初始值 + 之后 m 次操作：总时间 <b>O((n + m) log n)</b>；若从全零数组开始建：<b>O(n + m log n)</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p8">
+    <h2>Part 8 · 应用：数逆序对 <span class="en">Application: Counting Inversions</span></h2>
+
+    <h3 id="lec16-p8-1">8.1 什么是逆序对 <span class="en">What Is an Inversion</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 逆序对</div>
+      <p>一对下标 i &lt; j，但 <b>a[i] &gt; a[j]</b>，称为一个<b>逆序对（inversion）</b>。例：[5, 2, 6, 1, 4, 3] 有 9 个逆序对：(1,2)(1,4)(1,5)(1,6)(2,4)(3,4)(3,5)(3,6)(5,6)。</p>
+    </div>
+
+    <h3 id="lec16-p8-2">8.2 从大到小处理 <span class="en">Process Larger Values First</span></h3>
+    <p>按<b>值从大到小</b>访问，每访问一个值就把它的<b>原始位置标记成 1</b>。当处理值 v 时，BIT 里已经标好的位置都是「<b>比 v 大、且已经处理过</b>」的元素；<b>sum(pos − 1)</b> 就是「在 v 左边、比 v 大」的元素个数——即以 v 为右端的逆序对个数。</p>
+    <div class="ex box">
+      <div class="box-title">✏️ 走查 [5, 2, 6, 1, 4, 3]</div>
+      <p>BIT 存<b>已访问位置的计数</b>（不是原始值）。按 6 → 5 → 4 → 3 → 2 → 1 的顺序：</p>
+      <table>
+        <tr><th>值 v</th><th>位置 pos</th><th>sum(pos−1)（左边更大的）</th><th>累计 answer</th></tr>
+        <tr><td>6</td><td>3</td><td>0</td><td>0</td></tr>
+        <tr><td>5</td><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>4</td><td>5</td><td>2（6、5 在左边）</td><td>2</td></tr>
+        <tr><td>3</td><td>6</td><td>3（6、5、4）</td><td>5</td></tr>
+        <tr><td>2</td><td>2</td><td>1（5）</td><td>6</td></tr>
+        <tr><td>1</td><td>4</td><td>3（6、5、2 在左边）</td><td>9</td></tr>
+      </table>
+      <p>最终 answer = <b>9</b>。</p>
+    </div>
+
+    <h3 id="lec16-p8-3">8.3 C++ 代码 <span class="en">C++ Code</span></h3>
+    <pre><code>pair&lt;long long, int&gt; order[N];
+fill(c, c + n + 1, 0LL);
+for (int i = 1; i &lt;= n; ++i)
+    order[i] = {a[i], i};
+sort(order + 1, order + n + 1);   // 按值排序（默认先按 first）
+
+long long answer = 0;
+for (int k = n; k &gt;= 1; --k) {    // 从大到小
+    int pos = order[k].second;
+    answer += sum(pos - 1);       // 左边更大的个数
+    add(pos, 1);                  // 标记当前位置
+}</code></pre>
+    <p>每个 pair 存「值和原始位置」，<b>排序只改变处理顺序，不重编号数组</b>。</p>
+
+    <h3 id="lec16-p8-4">8.4 代价与相等值 <span class="en">Cost and Equal Values</span></h3>
+    <div class="warn box">
+      <div class="box-title">⚠️ 相等值与 long long</div>
+      <p>排序 O(n log n)，每元素一次查询 + 一次更新 O(n log n)，存储 O(n)。最多 n(n−1)/2 个逆序对，<b>answer 要用 long long</b>。对相等值，pair 排序让相同值的位置从右到左访问，<b>相等的元素之间永远不算逆序对</b>（因为先访问的右边那个还没被标记，左边的等值不会被计入）。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p9">
+    <h2>Part 9 · 区间加 + 点查询 <span class="en">Range Add + Point Query</span></h2>
+
+    <h3 id="lec16-p9-1">9.1 问题 <span class="en">The Problem</span></h3>
+    <div class="def box">
+      <div class="box-title">📌 需求</div>
+      <p>现在要支持 <b>区间加</b>：把 [l, r] 里每个元素都加 v；之后<b>查询某一个元素</b> a[x]。用普通 BIT 的话，区间加要一个个 add，代价 O((r−l+1) log n)。能不能让一次区间更新只改<b>少数几个</b>存储项？</p>
+    </div>
+
+    <h3 id="lec16-p9-2">9.2 差分数组 <span class="en">The Difference Array</span></h3>
+    <p>记 <b>d[i] = a[i] − a[i−1]</b>（令 a[0] = 0）。对 d 做前缀和就能还原 a：</p>
+    <p class="formula">a[x] = d[1] + d[2] + ⋯ + d[x]</p>
+    <p>展开看（望远镜求和）：d[1]+d[2]+d[3]+d[4] = (a[1]−a[0])+(a[2]−a[1])+(a[3]−a[2])+(a[4]−a[3]) = a[4]−a[0] = a[4]，中间的 +a[3] 和 −a[3] 全抵消。</p>
+
+    <h3 id="lec16-p9-3">9.3 区间加只改两个边界 <span class="en">A Range Change Touches Two Boundaries</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 两边界公式</div>
+      <p>给 [l, r] 加 v：只有 d[l] 和 d[r+1] 变了——</p>
+      <p class="formula">d[l] += v　　d[r + 1] −= v</p>
+      <p>对 l &lt; i ≤ r，内部元素都加了 v，差不变：(a[i]+v) − (a[i−1]+v) = d[i]。左边界 l 的差 +v，右边界 r+1 的差 −v 把变化停住。<b>若 r = n，后面没有元素来抵消，跳过 n+1</b>。</p>
+    </div>
+    <div class="ex box">
+      <div class="box-title">✏️ [3,6] += 2 的差分变化</div>
+      <p>Δd 在位置 3 是 +2，位置 7 是 −2，其余 0。对 Δd 做前缀和得 Δa：位置 3 起 +2，持续到位置 6，位置 7 被 −2 抵消恢复 0——正好是「[3,6] 都 +2」。</p>
+    </div>
+
+    <h3 id="lec16-p9-4">9.4 BIT 存差分 <span class="en">A BIT over Differences</span></h3>
+    <pre><code>void rangeAdd(int l, int r, long long v) {
+    add(l, v);
+    if (r &lt; n) add(r + 1, -v);
+}
+long long pointValue(int x) {
+    return sum(x);
+}</code></pre>
+    <p>BIT 里存的是 <b>d 的块和</b>（初始化用 d[i] = a[i] − a[i−1]）。区间加 → d 上两个点更新；点查询 → d 上的前缀和。<b>每个操作 O(log n)</b>。</p>
+  </section>
+
+  <section id="lec16-p10">
+    <h2>Part 10 · 区间加 + 区间和 <span class="en">Range Add + Range Sum</span></h2>
+
+    <h3 id="lec16-p10-1">10.1 问题升级 <span class="en">A Harder Requirement</span></h3>
+    <p>保留区间加，但查询变成<b>区间和</b> a[l] + ⋯ + a[r]。当前 BIT 只存 d，sum(x) 给的是 a[x]（点值），没法直接给前缀和 P[x] = a[1] + ⋯ + a[x]。需要一个能「把 d 变成 a 的前缀和」的办法。</p>
+
+    <h3 id="lec16-p10-2">10.2 加权的差分 <span class="en">Weighted Differences</span></h3>
+    <p>展开 P[5] = a[1]+⋯+a[5]，每个 d[i] 出现多少次？d[i] 会出现在 a[i], …, a[x]，共 <b>x − i + 1</b> 次：</p>
+    <p class="formula">P[x] = Σᵢ₌₁ˣ (x − i + 1) d[i]</p>
+    <p>权重依赖 x。把 x − i + 1 拆成 <b>x − (i − 1)</b>，就把「查询相关的 x」和「存储的值」分开了：</p>
+    <p class="formula">P[x] = x · Σ d[i] − Σ (i − 1) d[i] = x · S₁(x) − S₂(x)</p>
+    <p>其中 <b>S₁</b> 是 d[i] 的前缀和，<b>S₂</b> 是 <b>w[i] = (i − 1) d[i]</b> 的前缀和。</p>
+
+    <h3 id="lec16-p10-3">10.3 两个 BIT <span class="en">Two BITs</span></h3>
+    <pre><code>// b1 存 d，b2 存 (i−1)·d
+void changeDiff(int i, long long v) {
+    add(b1, i, v);
+    add(b2, i, v * (i - 1));
+}
+void rangeAdd(int l, int r, long long v) {
+    changeDiff(l, v);
+    if (r &lt; n) changeDiff(r + 1, -v);
+}
+long long prefixSum(int x) {
+    return x * sum(b1, x) - sum(b2, x);
+}
+long long rangeSum(int l, int r) {
+    return prefixSum(r) - prefixSum(l - 1);
+}</code></pre>
+    <p>d[i] 变 v 时，它的加权值 w[i] 变 <b>v(i − 1)</b>，所以 changeDiff 同时更新两个 BIT。所有和与乘积用 <b>long long</b>，prefixSum(0) 返回 0。</p>
+
+    <h3 id="lec16-p10-4">10.4 走查 <span class="en">A Trace</span></h3>
+    <div class="ex box">
+      <div class="box-title">✏️ [3,6] += 2 后求 P[7]</div>
+      <p>加了 2 之后 d[3]=5、d[7]=−9，w[3]=2·5=10、w[7]=6·(−9)=−54。算 S₁(7) = d[1]+⋯+d[7] = 2，S₂(7) = w[1]+⋯+w[7] = −19，于是 P[7] = 7×2 − (−19) = 33。区间和 rangeSum(3,5) = P[5] − P[2] = 20 − 4 = 16。</p>
+      <p>每个前缀要两次 BIT 查询，一个区间和要四次，仍是 <b>O(log n)</b>。</p>
+    </div>
+  </section>
+
+  <section id="lec16-p11">
+    <h2>Part 11 · 总结与词汇表 <span class="en">Summary and Vocabulary</span></h2>
+
+    <h3 id="lec16-p11-1">11.1 一句话总结 <span class="en">Summary</span></h3>
+    <div class="thm box">
+      <div class="box-title">🎯 树状数组要点</div>
+      <ul>
+        <li><b>核心存储</b>：c[x] = 以 x 结尾、长 lowbit(x) 的块和；lowbit(x) = x &amp; (−x)。</li>
+        <li><b>查询</b>：x −= lowbit(x) 向左拆前缀，步数 = 二进制 1 的个数。</li>
+        <li><b>更新</b>：x += lowbit(x) 向上找包含块，lowbit 至少翻倍。</li>
+        <li><b>本质</b>：加法合并相邻块，减法把两个前缀拼成区间和。</li>
+        <li><b>三种配方</b>：点加 + 前缀和 → 标准 BIT；区间加 + 点查询 → 差分数组 BIT；区间加 + 区间和 → 双 BIT（d 与 (i−1)d）。</li>
+      </ul>
+      <table>
+        <tr><th>需要的操作</th><th>存什么</th></tr>
+        <tr><td>点加 + 前缀和</td><td>标准 BIT 存 a 的块和</td></tr>
+        <tr><td>区间加 + 点查询</td><td>BIT 存差分数组 d</td></tr>
+        <tr><td>区间加 + 区间和</td><td>两个 BIT 存 d[i] 和 (i−1)d[i]</td></tr>
+      </table>
+      <p>每次更新和查询都是 O(log n)，存储 O(n)。<b>「需要什么操作」决定了「存什么信息、怎么合并」</b>。</p>
+    </div>
+
+    <h3 id="lec16-p11-2">11.2 词汇表 <span class="en">Key Vocabulary</span></h3>
+    <div class="vocab">
+      <div class="vocab-title">词汇表 Key Vocabulary</div>
+      <ul>
+        <li><b>range sum / prefix sum</b> — 区间和 / 前缀和；<b>range query</b> — 区间查询</li>
+        <li><b>point update / point addition</b> — 点更新 / 点加；<b>assignment</b> — 赋值（替换）</li>
+        <li><b>binary indexed tree (BIT) / Fenwick tree</b> — 树状数组 / Fenwick 树</li>
+        <li><b>block</b> — 块；<b>stored sum</b> — 存储的和</li>
+        <li><b>lowbit(x)</b> — 最低位 1 的值；<b>trailing zeros</b> — 末尾 0</li>
+        <li><b>two's complement</b> — 补码（−x = 取反加 1）</li>
+        <li><b>bitwise AND</b> — 按位与（&amp;）；<b>lowest set bit</b> — 最低位 1</li>
+        <li><b>inversion</b> — 逆序对</li>
+        <li><b>difference array</b> — 差分数组（d[i] = a[i] − a[i−1]）</li>
+        <li><b>range addition</b> — 区间加；<b>weighted difference</b> — 加权差分（(i−1)d[i]）</li>
+        <li><b>telescoping</b> — 望远镜求和（相邻项相消）</li>
+      </ul>
+    </div>
+  </section>
+</div><!-- /第16课 -->
 
 
 </div>

@@ -76,7 +76,7 @@ window.DATA = {
       category: "计算机",
       status: "active",
       teacher: "Jingbang Chen",
-      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）· 链表（单链表/双向/循环/反转/约瑟夫环/快慢指针）· 结构体、类与模板（struct/class/访问控制/封装/构造析构/资源与拷贝策略/组合继承/函数与类模板）· 栈、队列、集合与映射（ADT/栈LIFO/队列FIFO/括号匹配/后缀中缀求值/循环队列/deque/集合/映射）· 渐近分析与递归（基本操作计数/大O/小o/大Ω/小ω/大Θ/极限判别/常见增长阶/循环模式/Karatsuba乘法/快速幂/主定理/替换法） · 分治（Karatsuba 回顾 · 分治框架 · 归并排序 · 计数逆序对 · 最大子数组 · 快速排序 · 最近点对） · 图与树（图建模与连通分量 · 邻接矩阵/邻接表 · 树与森林 · parent数组/children列表 · 深度与高度 · 二叉树(满/严格/完全) · 前中后序遍历 · 最大深度/子树大小/翻转 · 二叉搜索树BST(查找/插入/验证) · Map与平衡BST · first child/next sibling） · 树与图的遍历（由遍历重建二叉树（前序+中序/中序+后序/前序+后序，LC 105·106·889） · 深度优先搜索DFS（发现状态/连通分量/岛屿LC200/环检测） · 广度优先搜索BFS（无权最短路/路径重建/DFS vs BFS） · 状态图与骑士最少步数（LC1197） · 拓扑排序与Kahn算法（DAG/入度/有向环检测）） · 字典树与哈希（字符串字典ADT search/insert/startsWith/wordsWithPrefix · 一次字符串比较 O(L) · 向量扫描 O(nL) · Trie 合并公共前缀与词边界双圈 · 下标数组存节点 next[26]/terminal · walk/insert/search/startsWith 代码 · wordsWithPrefix 前缀子树 · Trie 时间 O(L) 空间 Θ(26M) M≤S+1 · 字符串指纹与碰撞 · 字母值相加与 base-26 编码 · 整数范围 26⁷ 溢出 · 取余压缩 mod m · 增量取余 · 一对碰撞 1/m · 多对碰撞 n(n−1)/(2m) 与生日效应 √m · 哈希表分离链接 · 装载因子 α=n/m 与 O(1+α) · 扩容重哈希 · hashWord/locate/put 代码 · unordered_map/unordered_set 与 operator[] · Trie vs 哈希表成本对比） · 并查集 Union-Find（不相交集合 ADT MakeSet/Union/Find/Same 与代表元 · 链表表示 O(1) Find · 加权合并小的并入大的 O(n log n) 翻倍论证 · 父指针森林 find 沿父指针上溯 O(高度) · unitePlain 必须连根否则拆集合 · 长链退化 O(n²) · 按大小合并 sz[] 高度 O(log n) · 按秩合并 rank 秩=高度 秩 r 至少含 2^r 元素 · 路径压缩 parent[v]=find(parent[v]) 压平查找路径 · 摊还分析 · 逆阿克曼 α(n) 总代价 O(n+mα(n)) · 离线删边 时间倒流把删边变加边）",
+      desc: "区间和查询 · C++ 基础（类型/运算符/溢出/循环）· 标准库（头文件/I-O/字符串/向量）· 函数、引用与迭代器 · 数组、指针与内存（固定长度数组/越界/指针算术/const 指针/存储期/new-delete/RAII/多维数组）· 链表（单链表/双向/循环/反转/约瑟夫环/快慢指针）· 结构体、类与模板（struct/class/访问控制/封装/构造析构/资源与拷贝策略/组合继承/函数与类模板）· 栈、队列、集合与映射（ADT/栈LIFO/队列FIFO/括号匹配/后缀中缀求值/循环队列/deque/集合/映射）· 渐近分析与递归（基本操作计数/大O/小o/大Ω/小ω/大Θ/极限判别/常见增长阶/循环模式/Karatsuba乘法/快速幂/主定理/替换法） · 分治（Karatsuba 回顾 · 分治框架 · 归并排序 · 计数逆序对 · 最大子数组 · 快速排序 · 最近点对） · 图与树（图建模与连通分量 · 邻接矩阵/邻接表 · 树与森林 · parent数组/children列表 · 深度与高度 · 二叉树(满/严格/完全) · 前中后序遍历 · 最大深度/子树大小/翻转 · 二叉搜索树BST(查找/插入/验证) · Map与平衡BST · first child/next sibling） · 树与图的遍历（由遍历重建二叉树（前序+中序/中序+后序/前序+后序，LC 105·106·889） · 深度优先搜索DFS（发现状态/连通分量/岛屿LC200/环检测） · 广度优先搜索BFS（无权最短路/路径重建/DFS vs BFS） · 状态图与骑士最少步数（LC1197） · 拓扑排序与Kahn算法（DAG/入度/有向环检测）） · 字典树与哈希（字符串字典ADT search/insert/startsWith/wordsWithPrefix · 一次字符串比较 O(L) · 向量扫描 O(nL) · Trie 合并公共前缀与词边界双圈 · 下标数组存节点 next[26]/terminal · walk/insert/search/startsWith 代码 · wordsWithPrefix 前缀子树 · Trie 时间 O(L) 空间 Θ(26M) M≤S+1 · 字符串指纹与碰撞 · 字母值相加与 base-26 编码 · 整数范围 26⁷ 溢出 · 取余压缩 mod m · 增量取余 · 一对碰撞 1/m · 多对碰撞 n(n−1)/(2m) 与生日效应 √m · 哈希表分离链接 · 装载因子 α=n/m 与 O(1+α) · 扩容重哈希 · hashWord/locate/put 代码 · unordered_map/unordered_set 与 operator[] · Trie vs 哈希表成本对比） · 并查集 Union-Find（不相交集合 ADT MakeSet/Union/Find/Same 与代表元 · 链表表示 O(1) Find · 加权合并小的并入大的 O(n log n) 翻倍论证 · 父指针森林 find 沿父指针上溯 O(高度) · unitePlain 必须连根否则拆集合 · 长链退化 O(n²) · 按大小合并 sz[] 高度 O(log n) · 按秩合并 rank 秩=高度 秩 r 至少含 2^r 元素 · 路径压缩 parent[v]=find(parent[v]) 压平查找路径 · 摊还分析 · 逆阿克曼 α(n) 总代价 O(n+mα(n)) · 离线删边 时间倒流把删边变加边） · 树状数组 Binary Indexed Trees/Fenwick 树（静态区间和 O(1) 前缀和 · 点更新打破前缀和 → 查询/更新 O(n)/O(1) 权衡 · Add(i,delta)/Sum(r) 两操作 · 分块层级 每个右端点存最大块 c[x] · lowbit(x)=x&(−x) 块长度=末尾0个数 · c[x]=a[x−lowbit(x)+1…x] · 前缀查询 x−=lowbit(x) 拆前缀 O(log n) · 点更新 x+=lowbit(x) 爬包含块 O(log n) · 初始化 fill0+add O(n log n) · 赋值 add(i,value−a[i]) · 数逆序对 BIT 存 active 位置从大到小 · 差分数组 d[i]=a[i]−a[i−1] 区间加两边界 d[l]+=v/d[r+1]−=v · 区间加+点查询 BIT 存差分 · 区间加+区间和 双BIT 存 d 与 (i−1)d，P[x]=x·S₁−S₂）",
       notes: [
         { title: "数据结构复习笔记", file: "datastructure/数据结构复习笔记.html" }
       ],
@@ -864,7 +864,22 @@ window.DATA = {
       { en: "Path Compression", zh: "路径压缩" },
       { en: "Amortized Analysis", zh: "摊还分析" },
       { en: "Inverse Ackermann Function α(n)", zh: "逆阿克曼函数" },
-      { en: "Offline Deletion / Reverse Processing", zh: "离线删边 / 反向处理" }
+      { en: "Offline Deletion / Reverse Processing", zh: "离线删边 / 反向处理" },
+      { en: "Binary Indexed Tree (BIT) / Fenwick Tree", zh: "树状数组 / Fenwick 树" },
+      { en: "Range Sum / Prefix Sum", zh: "区间和 / 前缀和" },
+      { en: "Point Update / Point Addition", zh: "点更新 / 点加" },
+      { en: "Assignment", zh: "赋值（替换元素）" },
+      { en: "Block", zh: "块" },
+      { en: "lowbit(x)", zh: "最低位 1 的值（x & −x）" },
+      { en: "Trailing Zeros", zh: "末尾 0" },
+      { en: "Two's Complement", zh: "补码" },
+      { en: "Bitwise AND", zh: "按位与（&）" },
+      { en: "Lowest Set Bit", zh: "最低位 1" },
+      { en: "Inversion", zh: "逆序对" },
+      { en: "Difference Array", zh: "差分数组（d[i] = a[i] − a[i−1]）" },
+      { en: "Range Addition", zh: "区间加" },
+      { en: "Weighted Difference", zh: "加权差分（(i−1)d[i]）" },
+      { en: "Telescoping", zh: "望远镜求和（相邻项相消）" }
     ]},
     { course: "caculus", terms: [
       { en: "Sequence", zh: "数列" },
