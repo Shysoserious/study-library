@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSC3001 离散数学 · 2024F 期中卷 纯题目</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fbfbf9;
+    --panel: #ffffff;
+    --text: #1f2328;
+    --muted: #57606a;
+    --border: #e3e1dc;
+    --accent: #1f6feb;
+    --accent-soft: #e8f0fe;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .layout { display: flex; }
+  .sidebar {
+    width: 240px; min-height: 100vh;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 { font-size: 15px; margin: 0 0 4px; line-height: 1.4; }
+  .sidebar .sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .sidebar a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 7px 10px; border-radius: 6px; font-size: 13.5px;
+    border-left: 2px solid transparent;
+  }
+  .sidebar a:hover { background: var(--accent-soft); color: var(--accent); }
+  .content { flex: 1; padding: 36px 40px 80px; }
+  .content-inner { max-width: 860px; margin: 0 auto; }
+  .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 28px; }
+  .doc-head .tag { font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: .5px; }
+  .doc-head h2 { margin: 6px 0 8px; font-size: 26px; }
+  .doc-head .meta { color: var(--muted); font-size: 13.5px; }
+  .note { background: var(--accent-soft); border: 1px solid #cfe1fb; border-radius: 8px; padding: 12px 16px; font-size: 14px; color: #1d3a66; margin-bottom: 28px; }
+  section.q { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 26px; }
+  .q-title { font-size: 19px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .q-title .pts { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .q-statement { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 0; }
+  .q-statement p { margin: 8px 0; }
+  .q-statement .sub { font-weight: 600; color: #0b2e59; }
+  .q-statement pre {
+    background:#f6f8fa; border:1px solid var(--border); border-radius:6px;
+    padding:10px 14px; font-size:14px; overflow-x:auto;
+    font-family: "SF Mono", "Consolas", "Menlo", monospace;
+  }
+  .q-statement code { font-family: "SF Mono", "Consolas", "Menlo", monospace; font-size: 0.92em; }
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { padding: 20px; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h1>CSC3001 离散数学</h1>
+    <div class="sub">2024 Fall 期中卷 · 纯题目（无答案）</div>
+    <a href="#q1">第 1 题 · 括号计数</a>
+    <a href="#q2">第 2 题 · 一阶逻辑翻译</a>
+    <a href="#q3">第 3 题 · 裂项求和</a>
+    <a href="#q4">第 4 题 · 4k+3 型素数</a>
+    <a href="#q5">第 5 题 · 欧几里得步数上界</a>
+    <a href="#q6">第 6 题 · 向日葵引理</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+
+      <div class="doc-head">
+        <div class="tag">MIDTERM EXAM · 纯题目</div>
+        <h2>CSC3001 Discrete Mathematics — 2024 Fall 期中卷</h2>
+        <div class="meta">考试时间 2024-11-09 · 满分 100 · Answer ALL questions</div>
+      </div>
+
+      <div class="note">本页<b>只含题目，不含答案</b>，用于自测限时练习（建议 2.5 小时）。答案见《CSC3001_2024F_Midterm_题目与详解.html》。</div>
+
+      <section class="q" id="q1">
+        <h2 class="q-title">第 1 题 · 括号计数<span class="pts">20 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(n\) be a positive integer. We want to compute how many valid ways to add \(n\) pairs of parentheses. E.g. there are 5 valid ways to add 3 pairs of parentheses, namely <code>((()))</code>, <code>(()())</code>, <code>(())()</code>, <code>()(())</code>, <code>()()()</code>. Let \(r_n\) denote the number of ways to add \(n\) pairs of parentheses, and denote \(r_0 = 1\).</p>
+          <p class="sub">(a) (10 points) Find a recursion of \(r_n\) using \(r_0, r_1, \dots, r_{n-1}\). Briefly justify your solution.</p>
+          <p class="sub">(b) (10 points) Find \(r_4\) and \(r_5\).</p>
+        </div>
+      </section>
+
+      <section class="q" id="q2">
+        <h2 class="q-title">第 2 题 · 一阶逻辑翻译<span class="pts">20 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(D\) be the domain of all people. Let predicate \(\text{nice}(x)\), \(x\in D\), denote that \(x\) is a nice person; predicate \(\text{busy}(x)\), \(x\in D\), denote that \(x\) is a busy person; and \(\text{friend}(x,y)\), \(x,y\in D\), denote that \(x,y\) are friends. Using \(D\), <code>nice</code>, <code>busy</code> and <code>friend</code>, represent the following statements in first-order logic.</p>
+          <p class="sub">• Every busy person has at least one friend;</p>
+          <p class="sub">• Nice people never have a busy person as a friend.</p>
+        </div>
+      </section>
+
+      <section class="q" id="q3">
+        <h2 class="q-title">第 3 题 · 裂项求和<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(k,n\) be positive integers. Alice recently learned a “telescoping” trick to derive the sum of integer power formulas. Namely, by
+          \[ k^4 - (k-1)^4 = k^4 - (k^4 - 4k^3 + 6k^2 - 4k + 1) = 4k^3 - 6k^2 + 4k - 1, \]
+          Alice knows
+          \[ \sum_{k=1}^{n} \big[k^4 - (k-1)^4\big] = 4\sum_{k=1}^{n} k^3 - 6\sum_{k=1}^{n} k^2 + 4\sum_{k=1}^{n} k - \sum_{k=1}^{n} 1. \]</p>
+          <p class="sub">(a) (8 points) Show that \(\displaystyle \sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}\).</p>
+          <p class="sub">(b) (8 points) Find a polynomial formula for \(\displaystyle \sum_{k=1}^{n} k^3\).</p>
+        </div>
+      </section>
+
+      <section class="q" id="q4">
+        <h2 class="q-title">第 4 题 · 形如 4k+3 的素数无穷多<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Prove that there are infinitely many prime numbers of the form \(4k+3\) for some nonnegative integer \(k\).</p>
+        </div>
+      </section>
+
+      <section class="q" id="q5">
+        <h2 class="q-title">第 5 题 · 欧几里得算法步数上界<span class="pts">12 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(a,b,n\) be nonnegative integers and \(a \ge b\). Consider Euclid's greatest common divisor algorithm:</p>
+          <pre>
+gcd(a, b)
+    if b = 0 then
+        Output a
+    else
+        Write a = qb + r, where q = ⌊a/b⌋, r = a − qb     (1)
+        Output gcd(b, r)
+    end if</pre>
+          <p>Let \(f_1 = f_2 = 1\), \(f_k = f_{k-1} + f_{k-2}\), \(\forall k \ge 2\). Show that if \(b &lt; f_n\), \(n \ge 1\), then \(\gcd(a,b)\) executes line (1) for at most \(n-1\) times.</p>
+        </div>
+      </section>
+
+      <section class="q" id="q6">
+        <h2 class="q-title">第 6 题 · 向日葵引理<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(k, r\) be positive integers.</p>
+          <p class="sub">(a) (8 points) Let \(F = \{\{1,2,3\},\{1,3,4\},\{1,3,5\},\{2,6,7\},\{5,8,9\},\{4,7,9\}\}\). Find a set \(W \subseteq F\) and a set \(S\), such that \(|W| \ge 3\), while every pair of distinct sets \(X,Y \in W\), \(X \neq Y\), satisfy \(X \cap Y = S\).</p>
+          <p class="sub">(b) (8 points) Let \(F\) be a collection of more than \(k!(r-1)^k\) distinct non-empty sets each of size at most \(k\). Prove that there is a collection \(W\) of at least \(r\) distinct sets in \(F\), such that there exists a set \(S\) where for every pair of distinct sets \(X,Y\) in \(W\), \(X \neq Y\), we have \(X \cap Y = S\).</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

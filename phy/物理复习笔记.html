@@ -535,8 +535,8 @@ window.MathJax = {
         <a class="lv2" href="#lec9-p3-3">3.3 转动惯量的物理意义</a>
         <a class="lv1" href="#lec9-p4">Part 4 · 转动惯量的计算</a>
         <a class="lv2" href="#lec9-p4-1">4.1 常见形状速查表</a>
-        <a class="lv2" href="#lec9-p4-2">4.2 推导：圆环/圆盘/细杆</a>
-        <a class="lv2" href="#lec9-p4-3">4.3 球壳/实心球/薄盘</a>
+        <a class="lv2" href="#lec9-p4-2">4.2 推导：环/空心圆柱/盘/杆（中心+端点）</a>
+        <a class="lv2" href="#lec9-p4-3">4.3 垂直轴定理 + 盘/板/球壳/实心球</a>
         <a class="lv2" href="#lec9-p4-4">4.4 例题：转盘+物块（能量守恒）</a>
         <a class="lv1" href="#lec9-p5">Part 5 · 平行轴定理</a>
         <a class="lv2" href="#lec9-p5-1">5.1 定理 I = I_cm + Mh²</a>
@@ -597,6 +597,242 @@ window.MathJax = {
         <a class="lv2" href="#lec10-p8-8">8.8 总结</a>
       </div>
     </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第11课 · Elasticity and Equilibrium <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec11-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec11-p1">Part 1 · 平衡条件</a>
+        <a class="lv2" href="#lec11-p1-1">1.1 从转动到平衡</a>
+        <a class="lv2" href="#lec11-p1-2">1.2 平衡的定义</a>
+        <a class="lv2" href="#lec11-p1-3">1.3 平衡的两个要求</a>
+        <a class="lv2" href="#lec11-p1-4">1.4 判定例题</a>
+        <a class="lv1" href="#lec11-p2">Part 2 · 重心</a>
+        <a class="lv2" href="#lec11-p2-1">2.1 重心的定义</a>
+        <a class="lv2" href="#lec11-p2-2">2.2 证明：g 处处相同 ⇒ 重心 = 质心</a>
+        <a class="lv2" href="#lec11-p2-3">2.3 g 不均匀时</a>
+        <a class="lv2" href="#lec11-p2-4">2.4 稳定性</a>
+        <a class="lv1" href="#lec11-p3">Part 3 · 平衡问题的解法</a>
+        <a class="lv2" href="#lec11-p3-1">3.1 解题步骤</a>
+        <a class="lv2" href="#lec11-p3-2">3.2 例题：横梁 + 两杆秤</a>
+        <a class="lv2" href="#lec11-p3-3">3.3 例题：梯子</a>
+        <a class="lv2" href="#lec11-p3-4">3.4 例题：吊臂 + 保险柜</a>
+        <a class="lv1" href="#lec11-p4">Part 4 · 弹性</a>
+        <a class="lv2" href="#lec11-p4-1">4.1 刚体不存在</a>
+        <a class="lv2" href="#lec11-p4-2">4.2 微观视角</a>
+        <a class="lv2" href="#lec11-p4-3">4.3 三种应力与胡克定律</a>
+        <a class="lv1" href="#lec11-p5">Part 5 · 拉伸与压缩</a>
+        <a class="lv2" href="#lec11-p5-1">5.1 应力与应变</a>
+        <a class="lv2" href="#lec11-p5-2">5.2 杨氏模量</a>
+        <a class="lv2" href="#lec11-p5-3">5.3 应力–应变曲线</a>
+        <a class="lv2" href="#lec11-p5-4">5.4 例题：四腿桌</a>
+        <a class="lv1" href="#lec11-p6">Part 6 · 剪切</a>
+        <a class="lv2" href="#lec11-p6-1">6.1 剪切应力与剪切应变</a>
+        <a class="lv2" href="#lec11-p6-2">6.2 剪切模量</a>
+        <a class="lv1" href="#lec11-p7">Part 7 · 体积应力与泊松比</a>
+        <a class="lv2" href="#lec11-p7-1">7.1 体积应力与体积模量</a>
+        <a class="lv2" href="#lec11-p7-2">7.2 可压缩性</a>
+        <a class="lv2" href="#lec11-p7-3">7.3 例题：深海压缩</a>
+        <a class="lv2" href="#lec11-p7-4">7.4 泊松比</a>
+        <a class="lv1" href="#lec11-p8">Part 8 · 应用与总结</a>
+        <a class="lv2" href="#lec11-p8-1">8.1 例题：声速与体积模量</a>
+        <a class="lv2" href="#lec11-p8-2">8.2 公式速查与词汇</a>
+      </div>
+    </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第12课 · Fluid Mechanics <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec12-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec12-p1">Part 1 · 流体与密度</a>
+        <a class="lv2" href="#lec12-p1-1">1.1 什么是流体</a>
+        <a class="lv2" href="#lec12-p1-2">1.2 密度 ρ = m/V</a>
+        <a class="lv1" href="#lec12-p2">Part 2 · 压强</a>
+        <a class="lv2" href="#lec12-p2-1">2.1 压强定义 p = F/A</a>
+        <a class="lv2" href="#lec12-p2-2">2.2 大气压与单位换算</a>
+        <a class="lv1" href="#lec12-p3">Part 3 · 静止流体的压强</a>
+        <a class="lv2" href="#lec12-p3-1">3.1 静水压强的推导</a>
+        <a class="lv2" href="#lec12-p3-2">3.2 深度 h 处的压强 p = p₀ + ρgh</a>
+        <a class="lv2" href="#lec12-p3-3">3.3 绝对压强 vs 表压</a>
+        <a class="lv1" href="#lec12-p4">Part 4 · 测量压强</a>
+        <a class="lv2" href="#lec12-p4-1">4.1 水银气压计</a>
+        <a class="lv2" href="#lec12-p4-2">4.2 开管压力计</a>
+        <a class="lv1" href="#lec12-p5">Part 5 · 帕斯卡原理</a>
+        <a class="lv2" href="#lec12-p5-1">5.1 帕斯卡原理</a>
+        <a class="lv2" href="#lec12-p5-2">5.2 液压杠杆</a>
+        <a class="lv1" href="#lec12-p6">Part 6 · 阿基米德原理</a>
+        <a class="lv2" href="#lec12-p6-1">6.1 浮力 F_b = m_f g</a>
+        <a class="lv2" href="#lec12-p6-2">6.2 漂浮 F_b = F_g</a>
+        <a class="lv2" href="#lec12-p6-3">6.3 视重与浮沉例题</a>
+        <a class="lv1" href="#lec12-p7">Part 7 · 理想流体</a>
+        <a class="lv2" href="#lec12-p7-1">7.1 理想流体的四个假设</a>
+        <a class="lv2" href="#lec12-p7-2">7.2 流线</a>
+        <a class="lv2" href="#lec12-p7-3">7.3 连续性方程 A₁v₁ = A₂v₂</a>
+        <a class="lv1" href="#lec12-p8">Part 8 · 伯努利方程</a>
+        <a class="lv2" href="#lec12-p8-1">8.1 伯努利方程</a>
+        <a class="lv2" href="#lec12-p8-2">8.2 推导（能量法）</a>
+        <a class="lv2" href="#lec12-p8-3">8.3 两个特例</a>
+        <a class="lv2" href="#lec12-p8-4">8.4 机翼升力</a>
+      </div>
+    </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第13课 · Gravitation <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec13-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec13-p1">Part 1 · 牛顿万有引力定律</a>
+        <a class="lv2" href="#lec13-p1-1">1.1 引力无处不在</a>
+        <a class="lv2" href="#lec13-p1-2">1.2 万有引力定律</a>
+        <a class="lv2" href="#lec13-p1-3">1.3 矢量形式</a>
+        <a class="lv2" href="#lec13-p1-4">1.4 G 的测量</a>
+        <a class="lv1" href="#lec13-p2">Part 2 · 叠加原理</a>
+        <a class="lv2" href="#lec13-p2-1">2.1 叠加原理</a>
+        <a class="lv2" href="#lec13-p2-2">2.2 连续物体</a>
+        <a class="lv1" href="#lec13-p3">Part 3 · 壳层定理</a>
+        <a class="lv2" href="#lec13-p3-1">3.1 壳外质点：质量集中球心</a>
+        <a class="lv2" href="#lec13-p3-2">3.2 壳内质点：合力为零</a>
+        <a class="lv1" href="#lec13-p4">Part 4 · 地表附近的重力</a>
+        <a class="lv2" href="#lec13-p4-1">4.1 引力加速度</a>
+        <a class="lv2" href="#lec13-p4-2">4.2 g 与 a_g 的三个差别</a>
+        <a class="lv2" href="#lec13-p4-3">4.3 自转修正</a>
+        <a class="lv1" href="#lec13-p5">Part 5 · 地球内部</a>
+        <a class="lv2" href="#lec13-p5-1">5.1 地球内部的引力</a>
+        <a class="lv2" href="#lec13-p5-2">5.2 线性回复力与简谐振动</a>
+        <a class="lv1" href="#lec13-p6">Part 6 · 引力势能</a>
+        <a class="lv2" href="#lec13-p6-1">6.1 引力势能</a>
+        <a class="lv2" href="#lec13-p6-2">6.2 证明：从 P 到无穷远</a>
+        <a class="lv2" href="#lec13-p6-3">6.3 由势能求力</a>
+        <a class="lv2" href="#lec13-p6-4">6.4 路径无关与多质点体系</a>
+        <a class="lv1" href="#lec13-p7">Part 7 · 逃逸速度与黑洞</a>
+        <a class="lv2" href="#lec13-p7-1">7.1 逃逸速度</a>
+        <a class="lv2" href="#lec13-p7-2">7.2 黑洞与史瓦西半径</a>
+        <a class="lv1" href="#lec13-p8">Part 8 · 卫星轨道与开普勒定律</a>
+        <a class="lv2" href="#lec13-p8-1">8.1 圆轨道：力与能量</a>
+        <a class="lv2" href="#lec13-p8-2">8.2 轨道周期</a>
+        <a class="lv2" href="#lec13-p8-3">8.3 开普勒三定律</a>
+        <a class="lv2" href="#lec13-p8-4">8.4 行星运动与质心</a>
+      </div>
+    </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第14课 · Periodic Motion <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec14-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec14-p1">Part 1 · 振动与描述</a>
+        <a class="lv2" href="#lec14-p1-1">1.1 振动</a>
+        <a class="lv2" href="#lec14-p1-2">1.2 恢复力与振幅</a>
+        <a class="lv2" href="#lec14-p1-3">1.3 周期、频率、角频率</a>
+        <a class="lv1" href="#lec14-p2">Part 2 · 简谐运动</a>
+        <a class="lv2" href="#lec14-p2-1">2.1 SHM 定义</a>
+        <a class="lv2" href="#lec14-p2-2">2.2 运动方程推导</a>
+        <a class="lv2" href="#lec14-p2-3">2.3 位移函数</a>
+        <a class="lv2" href="#lec14-p2-4">2.4 相位常数 φ</a>
+        <a class="lv1" href="#lec14-p3">Part 3 · 速度与加速度</a>
+        <a class="lv2" href="#lec14-p3-1">3.1 速度</a>
+        <a class="lv2" href="#lec14-p3-2">3.2 加速度</a>
+        <a class="lv2" href="#lec14-p3-3">3.3 相位关系</a>
+        <a class="lv1" href="#lec14-p4">Part 4 · SHM 与匀速圆周运动</a>
+        <a class="lv2" href="#lec14-p4-1">4.1 投影关系</a>
+        <a class="lv1" href="#lec14-p5">Part 5 · SHM 的能量</a>
+        <a class="lv2" href="#lec14-p5-1">5.1 势能与动能</a>
+        <a class="lv2" href="#lec14-p5-2">5.2 机械能守恒</a>
+        <a class="lv2" href="#lec14-p5-3">5.3 能量随时间/位移分布</a>
+        <a class="lv2" href="#lec14-p5-4">5.4 例题：高楼质量阻尼器</a>
+        <a class="lv1" href="#lec14-p6">Part 6 · 判断 SHM 的法则</a>
+        <a class="lv2" href="#lec14-p6-1">6.1 四条判据</a>
+        <a class="lv1" href="#lec14-p7">Part 7 · 角 SHM 与摆</a>
+        <a class="lv2" href="#lec14-p7-1">7.1 扭摆</a>
+        <a class="lv2" href="#lec14-p7-2">7.2 单摆</a>
+        <a class="lv2" href="#lec14-p7-3">7.3 小角近似</a>
+        <a class="lv2" href="#lec14-p7-4">7.4 物理摆</a>
+        <a class="lv2" href="#lec14-p7-5">7.5 例题：米尺物理摆</a>
+        <a class="lv1" href="#lec14-p8">Part 8 · 阻尼与受迫振动</a>
+        <a class="lv2" href="#lec14-p8-1">8.1 阻尼力</a>
+        <a class="lv2" href="#lec14-p8-2">8.2 阻尼振动方程</a>
+        <a class="lv2" href="#lec14-p8-3">8.3 三种阻尼</a>
+        <a class="lv2" href="#lec14-p8-4">8.4 阻尼能量</a>
+        <a class="lv2" href="#lec14-p8-5">8.5 受迫振动与共振</a>
+      </div>
+    </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第15课 · Mechanical Waves <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec15-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec15-p1">Part 1 · 波与类型</a>
+        <a class="lv2" href="#lec15-p1-1">1.1 波</a>
+        <a class="lv2" href="#lec15-p1-2">1.2 三类波</a>
+        <a class="lv2" href="#lec15-p1-3">1.3 横波与纵波</a>
+        <a class="lv1" href="#lec15-p2">Part 2 · 行波方程</a>
+        <a class="lv2" href="#lec15-p2-1">2.1 波的描述函数</a>
+        <a class="lv2" href="#lec15-p2-2">2.2 行波</a>
+        <a class="lv2" href="#lec15-p2-3">2.3 波动方程</a>
+        <a class="lv2" href="#lec15-p2-4">2.4 波长</a>
+        <a class="lv1" href="#lec15-p3">Part 3 · 正弦波</a>
+        <a class="lv2" href="#lec15-p3-1">3.1 正弦波函数</a>
+        <a class="lv2" href="#lec15-p3-2">3.2 振幅与波数</a>
+        <a class="lv2" href="#lec15-p3-3">3.3 周期与频率</a>
+        <a class="lv2" href="#lec15-p3-4">3.4 相位常数</a>
+        <a class="lv1" href="#lec15-p4">Part 4 · 波速与质点速度</a>
+        <a class="lv2" href="#lec15-p4-1">4.1 波速</a>
+        <a class="lv2" href="#lec15-p4-2">4.2 质点速度与加速度</a>
+        <a class="lv2" href="#lec15-p4-3">4.3 两个速度之别</a>
+        <a class="lv2" href="#lec15-p4-4">4.4 例题</a>
+        <a class="lv1" href="#lec15-p5">Part 5 · 绳上的波速</a>
+        <a class="lv2" href="#lec15-p5-1">5.1 决定因素</a>
+        <a class="lv2" href="#lec15-p5-2">5.2 波速公式</a>
+        <a class="lv2" href="#lec15-p5-3">5.3 一般形式</a>
+        <a class="lv1" href="#lec15-p6">Part 6 · 波的能量与功率</a>
+        <a class="lv2" href="#lec15-p6-1">6.1 能量分布</a>
+        <a class="lv2" href="#lec15-p6-2">6.2 平均功率</a>
+        <a class="lv2" href="#lec15-p6-3">6.3 例题</a>
+        <a class="lv1" href="#lec15-p7">Part 7 · 叠加与干涉</a>
+        <a class="lv2" href="#lec15-p7-1">7.1 叠加原理</a>
+        <a class="lv2" href="#lec15-p7-2">7.2 干涉</a>
+        <a class="lv2" href="#lec15-p7-3">7.3 相量法</a>
+        <a class="lv2" href="#lec15-p7-4">7.4 例题</a>
+        <a class="lv1" href="#lec15-p8">Part 8 · 驻波与共振</a>
+        <a class="lv2" href="#lec15-p8-1">8.1 驻波</a>
+        <a class="lv2" href="#lec15-p8-2">8.2 波节与波腹</a>
+        <a class="lv2" href="#lec15-p8-3">8.3 驻波能量</a>
+        <a class="lv2" href="#lec15-p8-4">8.4 边界反射与共振</a>
+        <a class="lv2" href="#lec15-p8-5">8.5 例题</a>
+      </div>
+    </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">第16课 · Sound and Hearing <span class="lt-arrow">▼</span></button>
+      <div class="lecture-body">
+        <a href="#lec16-overview">📖 本讲概览</a>
+        <a class="lv1" href="#lec16-p1">Part 1 · 纵波与声速</a>
+        <a class="lv2" href="#lec16-p1-1">1.1 声波是纵波</a>
+        <a class="lv2" href="#lec16-p1-2">1.2 声速</a>
+        <a class="lv2" href="#lec16-p1-3">1.3 声速排序</a>
+        <a class="lv2" href="#lec16-p1-4">1.4 声速推导</a>
+        <a class="lv1" href="#lec16-p2">Part 2 · 行进的声波</a>
+        <a class="lv2" href="#lec16-p2-1">2.1 位移波函数</a>
+        <a class="lv2" href="#lec16-p2-2">2.2 压强变化</a>
+        <a class="lv2" href="#lec16-p2-3">2.3 例题</a>
+        <a class="lv1" href="#lec16-p3">Part 3 · 波前与声强</a>
+        <a class="lv2" href="#lec16-p3-1">3.1 波前与射线</a>
+        <a class="lv2" href="#lec16-p3-2">3.2 声强</a>
+        <a class="lv2" href="#lec16-p3-3">3.3 平方反比定律</a>
+        <a class="lv2" href="#lec16-p3-4">3.4 例题</a>
+        <a class="lv1" href="#lec16-p4">Part 4 · 声强与声级</a>
+        <a class="lv2" href="#lec16-p4-1">4.1 声强与位移振幅</a>
+        <a class="lv2" href="#lec16-p4-2">4.2 声级</a>
+        <a class="lv1" href="#lec16-p5">Part 5 · 干涉</a>
+        <a class="lv2" href="#lec16-p5-1">5.1 干涉</a>
+        <a class="lv2" href="#lec16-p5-2">5.2 程差与相位差</a>
+        <a class="lv1" href="#lec16-p6">Part 6 · 管中驻波与乐音</a>
+        <a class="lv2" href="#lec16-p6-1">6.1 两端开口管</a>
+        <a class="lv2" href="#lec16-p6-2">6.2 一端开口管</a>
+        <a class="lv2" href="#lec16-p6-3">6.3 乐音与音色</a>
+        <a class="lv1" href="#lec16-p7">Part 7 · 拍</a>
+        <a class="lv2" href="#lec16-p7-1">7.1 拍现象</a>
+        <a class="lv2" href="#lec16-p7-2">7.2 拍频</a>
+        <a class="lv2" href="#lec16-p7-3">7.3 例题</a>
+        <a class="lv1" href="#lec16-p8">Part 8 · 多普勒效应与冲击波</a>
+        <a class="lv2" href="#lec16-p8-1">8.1 多普勒效应</a>
+        <a class="lv2" href="#lec16-p8-2">8.2 一般公式</a>
+        <a class="lv2" href="#lec16-p8-3">8.3 例题</a>
+        <a class="lv2" href="#lec16-p8-4">8.4 超声速与冲击波</a>
+      </div>
+    </div>
   </nav>
 </aside>
 
@@ -605,7 +841,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">物理 · 复习笔记</h1>
-<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–10</p>
+<p class="course-meta">PHY1001 Mechanics · 教师 Ling Han（凌晗）· SSE · 中英对照 · 公式使用 LaTeX（MathJax 渲染）· 覆盖 Chapter 1–16</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -3370,6 +3606,14 @@ window.MathJax = {
 
 <h3 id="lec9-p1-9">1.9 匀角加速度转动 Constant Angular Acceleration</h3>
 <p>当 \(\alpha\) 为常数时，与匀加速直线运动公式<b>逐字对应</b>（把 \(x\to\theta,\ v\to\omega,\ a\to\alpha\)）：</p>
+<div class="ex box">
+  <span class="box-title">✏️ 推导：从 \(\alpha = \dfrac{d\omega}{dt} =\) 常数 连续积分两次</span>
+  <p><b>第一次积分</b>——由 \(\dfrac{d\omega}{dt}=\alpha\)（常数），分离变量后从初态 \(t=0,\ \omega=\omega_0\) 积到末态：</p>
+  <p class="formula">\(\displaystyle\int_{\omega_0}^{\omega} d\omega = \int_0^t \alpha\,dt \;\Rightarrow\; \omega - \omega_0 = \alpha t \;\Rightarrow\; \omega = \omega_0 + \alpha t\)</p>
+  <p><b>第二次积分</b>——由 \(\omega=\dfrac{d\theta}{dt}\)，把刚得到的 \(\omega(t)\) 代入再积一次，设 \(t=0,\ \theta=\theta_0\)：</p>
+  <p class="formula">\(\displaystyle\int_{\theta_0}^{\theta} d\theta = \int_0^t(\omega_0+\alpha t)\,dt \;\Rightarrow\; \theta - \theta_0 = \omega_0 t + \dfrac{1}{2}\alpha t^2\)</p>
+  <p><b>消去时间 \(t\)</b>——由第一式解出 \(t=\dfrac{\omega-\omega_0}{\alpha}\)，代入位移式整理，即得第三式；第四式则是「匀加速时平均角速度 \(=\dfrac{\omega_0+\omega}{2}\)」的体现。四个式子与匀加速直线运动<b>结构完全相同</b>，只是换了一套角量的名字。</p>
+</div>
 <p class="formula">\(\omega = \omega_0 + \alpha t\)</p>
 <p class="formula">\(\theta = \theta_0 + \omega_0 t + \dfrac{1}{2}\alpha t^2\)</p>
 <p class="formula">\(\omega^2 = \omega_0^2 + 2\alpha(\theta-\theta_0)\)</p>
@@ -3396,7 +3640,9 @@ window.MathJax = {
 <p>方向：\(\vec{v}\) 垂直于 \(\vec{\omega}\) 与 \(\vec{r}\) 所在平面，沿圆周<b>切向</b>。</p>
 
 <h3 id="lec9-p2-3">2.3 加速度分解：切向 + 径向</h3>
-<p>对 \(\vec{v}=\vec{\omega}\times\vec{r}\) 求导（\(\vec{\omega}\) 与 \(\vec{r}\) 都可变）：</p>
+<p>先看<b>标量版</b>（半径 \(r\) 固定）——对切向速度 \(v=\omega r\) 求导：</p>
+<p class="formula">\(a_t = \dfrac{dv}{dt} = \dfrac{d(\omega r)}{dt} = r\dfrac{d\omega}{dt} = \alpha r\)　（切向加速度，负责<b>改变速率</b>）</p>
+<p>这只给出了沿切线方向的分量。完整的<b>矢量版</b>把「速度方向也在变」一并处理：对 \(\vec{v}=\vec{\omega}\times\vec{r}\) 求导（\(\vec{\omega}\) 与 \(\vec{r}\) 都可变）：</p>
 <p class="formula">\(\vec{a} = \dfrac{d\vec{v}}{dt} = \dfrac{d(\vec{\omega}\times\vec{r})}{dt} = \dfrac{d\vec{\omega}}{dt}\times\vec{r} + \vec{\omega}\times\dfrac{d\vec{r}}{dt} = \vec{\alpha}\times\vec{r} + \vec{\omega}\times\vec{v}\)</p>
 <p>第二项用三重矢量积化简（\(\vec{\omega}\perp\vec{r}\)，故 \(\vec{\omega}\cdot\vec{r}=0\)）：</p>
 <p class="formula">\(\vec{\omega}\times\vec{v} = \vec{\omega}\times(\vec{\omega}\times\vec{r}) = \vec{\omega}(\vec{\omega}\cdot\vec{r}) - \vec{r}(\vec{\omega}\cdot\vec{\omega}) = 0 - \omega^2\vec{r}\)</p>
@@ -3531,39 +3777,87 @@ window.MathJax = {
   <div class="figcap">图：常见形状绕对称轴 / 质心轴的转动惯量速查。</div>
 </div>
 
-<h3 id="lec9-p4-2">4.2 推导示例：圆环 / 圆盘 / 细杆</h3>
+<h3 id="lec9-p4-2">4.2 推导示例：圆环 / 空心圆柱 / 圆盘 / 细杆（中心与端点）</h3>
+<p>转动惯量积分的<b>统一套路</b>：<b>①切质量元 \(dm\)</b>——把它切成使每个质量元到转轴的距离 \(r\) 尽量简单（最好都相等）；<b>②用密度写 \(dm\)</b>——线密度 \(\mu=M/L\)、面密度 \(\sigma=M/A\)、体密度 \(\rho=M/V\)，把 \(dm\) 表示成几何量的函数；<b>③代入 \(dI=r^2\,dm\) 积分</b>；<b>④归一化</b>——把密度表达式换成总质量 \(M\)。下面按这个套路逐个推。</p>
 <div class="ex box">
-  <span class="box-title">✏️ (a) 薄圆环绕中心轴</span>
-  <p>每个质量元 \(dm\) 到轴的距离都是 \(R\)，故</p>
-  <p class="formula">\(I = \displaystyle\int R^2\,dm = R^2\int dm = MR^2\)</p>
+  <span class="box-title">✏️ 圆环绕中心轴：\(I = MR^2\)</span>
+  <p>环上<b>每一个</b>质量元到轴的距离都是 \(R\)（常数），可直接提出积分号外：</p>
+  <p class="formula">\(dI = R^2\,dm \;\Rightarrow\; I = \displaystyle\int R^2\,dm = R^2\int dm = MR^2\)</p>
+  <p>这是最平凡的一例，却是后面所有「切环 / 切壳」积分的起点。</p>
 </div>
 <div class="ex box">
-  <span class="box-title">✏️ (c) 实心圆盘（滑轮）绕中心轴</span>
-  <p>取半径 \(r\)、厚 \(dr\) 的薄环，\(dm = \rho\cdot 2\pi r\,dr\,L\)，总质量 \(M=\pi\rho L R^2\)：</p>
-  <p class="formula">\(I = \displaystyle\int_0^R r^2\,dm = \int_0^R r^2\cdot 2\pi\rho L\,r\,dr = 2\pi\rho L\cdot\dfrac{R^4}{4} = \dfrac{1}{2}MR^2\)</p>
-  <p>（等价于空心圆环 \(R_1=0,\ R_2=R\) 的特例。）</p>
+  <span class="box-title">✏️ 空心圆柱（环状圆柱，内半径 \(R_1\)、外半径 \(R_2\)）绕中心轴：\(I = \tfrac12 M(R_1^2+R_2^2)\)</span>
+  <p>把圆柱切成半径 \(r\)（\(R_1\le r\le R_2\)）、厚 \(dr\) 的<b>薄圆柱壳</b>。每个壳到轴的距离都是 \(r\)，其质量元 \(dm=\rho\cdot(2\pi r\,dr)\cdot L\)（\(L\) 为柱高）：</p>
+  <p class="formula">\(dI = r^2\,dm = 2\pi\rho L\, r^3\,dr\)</p>
+  <p class="formula">\(I = 2\pi\rho L\displaystyle\int_{R_1}^{R_2} r^3\,dr = 2\pi\rho L\cdot\dfrac{R_2^4-R_1^4}{4} = \dfrac{\pi\rho L}{2}\big(R_2^4-R_1^4\big)\)</p>
+  <p>总质量 \(M=\rho\cdot(\text{体积})=\rho\,\pi L(R_2^2-R_1^2)\)；又 \(R_2^4-R_1^4=(R_2^2-R_1^2)(R_2^2+R_1^2)\)，代入消去 \(\rho\)：</p>
+  <p class="formula">\(I = \dfrac{\pi\rho L}{2}(R_2^2-R_1^2)(R_2^2+R_1^2) = \dfrac{1}{2}M(R_1^2+R_2^2)\)</p>
 </div>
 <div class="ex box">
-  <span class="box-title">✏️ (e) 细杆绕过中心且垂直于杆</span>
-  <p>线密度 \(\mu=M/L\)，取长 \(dx\) 的质量元 \(dm=\mu\,dx\)，到轴距离 \(x\)（范围 \(-L/2\) 到 \(L/2\)）：</p>
-  <p class="formula">\(I = \displaystyle\int_{-L/2}^{L/2} x^2\,\mu\,dx = \mu\cdot\dfrac{1}{3}x^3\Big|_{-L/2}^{L/2} = \dfrac{1}{12}ML^2\)</p>
+  <span class="box-title">✏️ 实心圆盘 / 实心圆柱绕中心轴：\(I = \tfrac12 MR^2\)</span>
+  <p>就是上面空心圆柱取 \(R_1=0,\ R_2=R\) 的特例。仍把盘切成半径 \(r\)、厚 \(dr\) 的同心圆环，每个环 \(dm=\rho\cdot 2\pi r\,dr\cdot L\)：</p>
+  <p class="formula">\(I = \displaystyle\int_0^R r^2\,dm = \int_0^R r^2\cdot\rho\,2\pi L\,r\,dr = 2\pi\rho L\int_0^R r^3\,dr = 2\pi\rho L\cdot\dfrac{R^4}{4} = \dfrac{\pi\rho L R^4}{2}\)</p>
+  <p>代入总质量 \(M=\pi R^2 L\rho\)：</p>
+  <p class="formula">\(I = \dfrac{\pi\rho L R^4}{2} = \dfrac{1}{2}\big(\pi R^2 L\rho\big) R^2 = \dfrac{1}{2}MR^2\)</p>
+  <p>关键一步在 \(\int_0^R r^3\,dr = R^4/4\)：<b>质量随半径 \(r\) 增长（越靠外环的质量越大），所以 \(I\) 只有 \(\tfrac12 MR^2\)，而不是把全部质量堆到边缘的 \(MR^2\)</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 细杆绕过中心且垂直于杆：\(I = \tfrac{1}{12}ML^2\)</span>
+  <p>线密度 \(\mu=M/L\)。取坐标 \(x\) 沿杆、<b>原点在杆中点</b>，则长 \(dx\) 的质量元 \(dm=\mu\,dx\) 到轴距离为 \(|x|\)（范围 \(-L/2\le x\le L/2\)）：</p>
+  <p class="formula">\(I = \displaystyle\int_{-L/2}^{L/2} x^2\,\mu\,dx = \mu\left[\dfrac{x^3}{3}\right]_{-L/2}^{L/2} = \mu\cdot\dfrac{1}{3}\left[\Big(\dfrac{L}{2}\Big)^3-\Big(-\dfrac{L}{2}\Big)^3\right] = \mu\cdot\dfrac{L^3}{12}\)</p>
+  <p>代入 \(\mu=M/L\)：</p>
+  <p class="formula">\(I = \dfrac{M}{L}\cdot\dfrac{L^3}{12} = \dfrac{1}{12}ML^2\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 细杆绕过端点且垂直于杆：\(I = \tfrac13 ML^2\)</span>
+  <p>仍取坐标 \(x\) 沿杆，但<b>原点改在端点</b>，则质量元 \(dm=\mu\,dx\) 到轴距离为 \(x\)（范围 \(0\le x\le L\)）：</p>
+  <p class="formula">\(I = \displaystyle\int_0^L x^2\,\mu\,dx = \mu\left[\dfrac{x^3}{3}\right]_0^L = \mu\dfrac{L^3}{3} = \dfrac{1}{3}ML^2\)</p>
+  <p>用<b>平行轴定理</b>复算验证：绕端点轴与绕质心轴相距 \(h=L/2\)，</p>
+  <p class="formula">\(I = I_{cm}+Mh^2 = \dfrac{1}{12}ML^2 + M\Big(\dfrac{L}{2}\Big)^2 = \dfrac{ML^2}{12}+\dfrac{ML^2}{4} = \dfrac{ML^2}{3}\) ✓</p>
+  <p><b>推广</b>：若轴过「距一端 \(h\)」处（\(0\le h\le L\)），直接积分 \(I=\int_0^L (x-h)^2\mu\,dx\) 得</p>
+  <p class="formula">\(I = \dfrac{M}{3}\big(L^2-3Lh+3h^2\big)\)</p>
+  <p>取 \(h=0\) 回到端点结果 \(ML^2/3\)，取 \(h=L/2\) 回到中心结果 \(ML^2/12\)——一个式子统一两种特殊情况。</p>
 </div>
 
-<h3 id="lec9-p4-3">4.3 薄球壳 / 实心球 / 薄盘绕直径</h3>
-<div class="ex box">
-  <span class="box-title">✏️ (g) 薄球壳（空心）绕任意直径</span>
-  <p>面密度 \(\sigma\)，取半径 \(r=R\sin\theta\)、宽 \(R\,d\theta\) 的圆环，\(dm=2\sigma\pi R^2\sin\theta\,d\theta\)，总质量 \(M=4\pi R^2\sigma\)：</p>
-  <p class="formula">\(I = \displaystyle\int_0^{\pi} r^2\,dm = \int_0^{\pi}(R\sin\theta)^2\cdot 2\sigma\pi R^2\sin\theta\,d\theta = 2\sigma\pi R^4\cdot\dfrac{4}{3} = \dfrac{2}{3}MR^2\)</p>
+<h3 id="lec9-p4-3">4.3 垂直轴定理 + 盘 / 板 / 球壳 / 实心球绕直径</h3>
+<div class="thm box">
+  <span class="box-title">🎯 垂直轴定理 Perpendicular-Axis Theorem</span>
+  <p>对<b>薄平板状（厚度可忽略）</b>物体，设板在 \(xy\) 平面内，\(z\) 轴垂直于板：</p>
+  <p class="formula">\(I_z = I_x + I_y\)</p>
+  <p>其中 \(I_x,\ I_y\) 是绕板面内两条<b>互相垂直且交于原点</b>的轴的转动惯量，\(I_z\) 是绕<b>垂直于板面</b>（过同一点）的轴的转动惯量。理由：对板内任一点 \((x,y)\)，到 z 轴距离平方 \(r_z^2=x^2+y^2\)，恰好等于到 x 轴距离平方 \(y^2\) 与到 y 轴距离平方 \(x^2\) 之和，逐点相加即得 \(I_z=I_x+I_y\)。<b>注意：此定理只对平面薄板成立</b>（质量都必须在板面内），对三维体（球、圆柱）不成立。</p>
 </div>
 <div class="ex box">
-  <span class="box-title">✏️ (f) 实心球绕任意直径</span>
-  <p>把实心球切成同心薄球壳：每个壳 \(dI=\tfrac{2}{3}dm\,r^2\)，其中 \(dm=\rho\cdot 4\pi r^2\,dr\)：</p>
-  <p class="formula">\(I = \displaystyle\int_0^R \dfrac{2}{3}r^2\,dm = \dfrac{2}{3}\int_0^R r^2\cdot\rho\,4\pi r^2\,dr = \dfrac{8\pi\rho}{15}R^5 = \dfrac{2}{5}MR^2\)</p>
+  <span class="box-title">✏️ 薄圆盘绕任意直径：\(I = \tfrac14 MR^2\)（用垂直轴定理）</span>
+  <p>设盘在 \(xy\) 平面，z 轴过中心且垂直于盘。已知盘绕中心轴（z）\(I_z=\tfrac12 MR^2\)。由对称性，绕任意直径的 \(I_x\) 与 \(I_y\) 相等，故</p>
+  <p class="formula">\(I_z = I_x + I_y = 2I_x \;\Rightarrow\; I_x = \dfrac{1}{2}I_z = \dfrac{1}{2}\cdot\dfrac{1}{2}MR^2 = \dfrac{1}{4}MR^2\)</p>
+  <p>若用直接积分（切成半径 \(r\) 的同心圆环，每个环绕自身直径 \(dI=\tfrac12 r^2\,dm\)，\(dm=\sigma\,2\pi r\,dr\)）：</p>
+  <p class="formula">\(I = \displaystyle\int_0^R \dfrac{1}{2}r^2\cdot\sigma\,2\pi r\,dr = \pi\sigma\int_0^R r^3\,dr = \dfrac{\pi\sigma R^4}{4} = \dfrac{1}{4}MR^2\) ✓</p>
 </div>
 <div class="ex box">
-  <span class="box-title">✏️ (f′) 薄圆盘绕任意直径</span>
-  <p>把圆盘切成同心圆环，每个环绕自身直径 \(dI=\tfrac{1}{2}dm\,r^2\)（圆环绕直径的结果），\(dm=\sigma\cdot 2\pi r\,dr\)：</p>
-  <p class="formula">\(I = \displaystyle\int_0^R \dfrac{1}{2}r^2\,dm = \int_0^R \dfrac{1}{2}r^2\cdot\sigma\,2\pi r\,dr = \dfrac{\pi\sigma R^4}{4} = \dfrac{1}{4}MR^2\)</p>
+  <span class="box-title">✏️ 矩形薄板（\(a\times b\)）绕过中心且垂直于板：\(I = \tfrac{1}{12}M(a^2+b^2)\)</span>
+  <p>取板中心为原点，边长为 \(a\)（沿 x）、\(b\)（沿 y），面密度 \(\sigma=M/(ab)\)。先用垂直轴定理拆：\(I_z=I_x+I_y\)。</p>
+  <p>绕 x 轴的 \(I_x\)：每个质量元到 x 轴距离为 \(|y|\)，对 y 从 \(-b/2\) 到 \(b/2\) 积分（x 方向先整段乘 \(a\)）：</p>
+  <p class="formula">\(I_x = \displaystyle\int_{-b/2}^{b/2} y^2\cdot\sigma a\,dy = \sigma a\left[\dfrac{y^3}{3}\right]_{-b/2}^{b/2} = \sigma a\cdot\dfrac{b^3}{12} = \dfrac{1}{12}Mb^2\)</p>
+  <p>同理 \(I_y=\tfrac{1}{12}Ma^2\)。故</p>
+  <p class="formula">\(I_z = I_x + I_y = \dfrac{1}{12}Ma^2 + \dfrac{1}{12}Mb^2 = \dfrac{1}{12}M(a^2+b^2)\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 薄球壳（空心）绕任意直径：\(I = \tfrac23 MR^2\)</span>
+  <p>面密度 \(\sigma=M/(4\pi R^2)\)。把球壳切成一条条<b>与直径垂直的窄圆环</b>：取极角 \(\theta\)（从北极量起），环半径 \(r=R\sin\theta\)，环宽 \(R\,d\theta\)，环周长 \(2\pi R\sin\theta\)，故环质量</p>
+  <p class="formula">\(dm = \sigma\cdot(2\pi R\sin\theta)\cdot(R\,d\theta) = 2\pi\sigma R^2\sin\theta\,d\theta\)</p>
+  <p>环上每点到转轴（过球心的直径）距离都是 \(r=R\sin\theta\)，于是</p>
+  <p class="formula">\(I = \displaystyle\int r^2\,dm = \int_0^{\pi}(R\sin\theta)^2\cdot 2\pi\sigma R^2\sin\theta\,d\theta = 2\pi\sigma R^4\int_0^{\pi}\sin^3\theta\,d\theta\)</p>
+  <p>利用 \(\displaystyle\int_0^{\pi}\sin^3\theta\,d\theta = \int_0^{\pi}\sin\theta(1-\cos^2\theta)\,d\theta = \Big[-\cos\theta+\dfrac{\cos^3\theta}{3}\Big]_0^{\pi} = 2-\dfrac{2}{3} = \dfrac{4}{3}\)：</p>
+  <p class="formula">\(I = 2\pi\sigma R^4\cdot\dfrac{4}{3} = \dfrac{8\pi\sigma R^4}{3} = \dfrac{8\pi R^4}{3}\cdot\dfrac{M}{4\pi R^2} = \dfrac{2}{3}MR^2\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 实心球绕任意直径：\(I = \tfrac25 MR^2\)（切壳法）</span>
+  <p>体密度 \(\rho=M/(\tfrac43\pi R^3)\)。把实心球切成半径 \(r\)（\(0\le r\le R\)）、厚 \(dr\) 的<b>同心薄球壳</b>。每个壳绕自身直径的转动惯量是 \(\tfrac23 (dm)\,r^2\)（上一步的结果），其中壳质量 \(dm=\rho\cdot 4\pi r^2\,dr\)：</p>
+  <p class="formula">\(dI = \dfrac{2}{3}r^2\,dm = \dfrac{2}{3}r^2\cdot\rho\,4\pi r^2\,dr = \dfrac{8\pi\rho}{3}r^4\,dr\)</p>
+  <p class="formula">\(I = \displaystyle\int_0^R \dfrac{8\pi\rho}{3}r^4\,dr = \dfrac{8\pi\rho}{3}\cdot\dfrac{R^5}{5} = \dfrac{8\pi\rho R^5}{15}\)</p>
+  <p>代入 \(\rho=\dfrac{M}{\tfrac43\pi R^3}=\dfrac{3M}{4\pi R^3}\)：</p>
+  <p class="formula">\(I = \dfrac{8\pi R^5}{15}\cdot\dfrac{3M}{4\pi R^3} = \dfrac{2}{5}MR^2\)</p>
+  <p>这一招叫<b>「切壳 + 用已知壳的结果」</b>：把难算的球拆成无数个已知转动惯量的薄壳，再对半径积分即可——与「切环」算圆盘是同一个思想。</p>
 </div>
 
 <h3 id="lec9-p4-4">4.4 例题：转盘 + 悬挂物块（能量守恒）</h3>
@@ -3592,12 +3886,19 @@ window.MathJax = {
 </div>
 
 <h3 id="lec9-p5-2">5.2 推导</h3>
-<p>取质心为原点，则 \(\sum m_i x_i = 0,\ \sum m_i y_i = 0\)（质心定义，\(\int x\,dm=\int y\,dm=0\)）。设新轴过点 \((a,b)\)，某质量元在 \((x,y)\)：</p>
+<p><b>第一步：把转轴「平移」成坐标差。</b>取质心为原点（所以质心坐标 \(\vec r_{cm}=0\)，即 \(\sum m_i x_i=0,\ \sum m_i y_i=0\)，连续情形 \(\int x\,dm=\int y\,dm=0\)）。设新轴平行于 z 轴、在 \(xy\) 平面内过点 \((a,b)\)，某质量元位于 \((x,y)\)。该质量元到新轴的距离平方为 \((x-a)^2+(y-b)^2\)，故</p>
 <p class="formula">\(I = \displaystyle\int r^2\,dm = \int\Big[(x-a)^2+(y-b)^2\Big]dm\)</p>
-<p>展开：</p>
-<p class="formula">\(I = \displaystyle\int(x^2+y^2)\,dm - 2a\int x\,dm - 2b\int y\,dm + (a^2+b^2)\int dm\)</p>
-<p>其中 \(\int(x^2+y^2)dm = I_{cm}\)（到质心轴的距离平方），两个交叉项因质心在原点为 0，\((a^2+b^2)\int dm = Mh^2\)：</p>
+<p><b>第二步：完全平方展开。</b>把两个括号展开成四项：</p>
+<p class="formula">\(I = \displaystyle\int\big[x^2-2ax+a^2 + y^2-2by+b^2\big]dm = \underbrace{\int(x^2+y^2)\,dm}_{\text{项1}} \;\underbrace{-\,2a\int x\,dm - 2b\int y\,dm}_{\text{交叉项}} \;+\; \underbrace{(a^2+b^2)\int dm}_{\text{项3}}\)</p>
+<p><b>逐项解释</b>：</p>
+<ul>
+  <li><b>项1</b> \(\int(x^2+y^2)\,dm\)：这是质量元到<b>质心轴</b>（z 轴）距离平方的积分，就是 \(I_{cm}\)。</li>
+  <li><b>交叉项</b> \(-2a\int x\,dm - 2b\int y\,dm\)：因为坐标原点取在质心，\(\int x\,dm = M x_{cm} = 0\)、\(\int y\,dm = M y_{cm} = 0\)，所以两个交叉项<b>恰好消掉为 0</b>。这正是「定理要求其中一根轴过质心」的原因——原点不是质心时这一项不会消失，公式也就不成立。</li>
+  <li><b>项3</b> \((a^2+b^2)\int dm\)：\(\int dm=M\)，而 \((a^2+b^2)\) 是两轴之间垂直距离的平方 \(h^2\)。</li>
+</ul>
+<p>于是：</p>
 <p class="formula">\(I = I_{cm} + Mh^2\)　（Parallel-axis Theorem）</p>
+<p><b>心法</b>：平行轴定理本质是「转动惯量=绕质心轴的 + 把全部质量当作质点集中在质心后绕新轴的部分」。交叉项之所以消失，是因为质心处「一阶矩」为零——这跟线运动里「质心动能 + 相对质心动能」的分解是同一个道理。</p>
 
 <h3 id="lec9-p5-3">5.3 例题：两粒子杆</h3>
 <div class="ex box">
@@ -4151,6 +4452,2229 @@ window.MathJax = {
 </div>
 </section>
 </div><!-- /第10课 -->
+
+<!-- ============ 第11课 ============ -->
+<div class="lecture" id="lec11">
+<div class="lecture-banner">第11课 · Elasticity and Equilibrium <span class="zh">（弹性与平衡）</span></div>
+
+<section id="lec11-overview">
+  <h2>本讲概览 Overview</h2>
+  <p>上一讲我们建立了刚体转动与角动量的完整图像：\(\vec F_{net}=d\vec P/dt\)、\(\vec\tau_{net}=d\vec L/dt\)。这一章把它们用到两个"反向"的问题上。第一个是<b>平衡</b>：物体在力和力矩作用下会加速（平动和转动），那么怎样才能保证它<b>不加速</b>？桥梁、吊车、梯子这些结构之所以能稳稳待着，靠的就是满足平衡条件。第二个是<b>弹性</b>：上一讲我们一直把物体当<b>刚体</b>（rigid body），但真实物体受力一定会形变，本章用"应力–应变"关系（胡克定律）来定量描述拉伸、剪切、体积三种形变。</p>
+  <p>本讲主线：先立起平衡的两个方程（<b>力平衡 + 力矩平衡</b>）并引入<b>重心</b>，再练三四个经典平衡题；后半章进入弹性，逐个讲<b>杨氏模量、剪切模量、体积模量、泊松比</b>，最后用"声速到底用哪个模量"的牛顿 vs 拉普拉斯之争把体积模量串起来。</p>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec11-p1">Part 1 · 平衡条件</a></li>
+      <li><a href="#lec11-p2">Part 2 · 重心</a></li>
+      <li><a href="#lec11-p3">Part 3 · 平衡问题的解法</a></li>
+      <li><a href="#lec11-p4">Part 4 · 弹性</a></li>
+      <li><a href="#lec11-p5">Part 5 · 拉伸与压缩</a></li>
+      <li><a href="#lec11-p6">Part 6 · 剪切</a></li>
+      <li><a href="#lec11-p7">Part 7 · 体积应力与泊松比</a></li>
+      <li><a href="#lec11-p8">Part 8 · 应用与总结</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec11-p1">
+<h2>Part 1 · 平衡条件 <span class="zh">Equilibrium</span></h2>
+
+<h3 id="lec11-p1-1">1.1 从转动到平衡 <span class="zh">From Rotation to Equilibrium</span></h3>
+<p>上一讲的结论可以直接搬过来：只要给物体施加<b>净外力</b>，它的质心线动量就会变——\(\vec F_{net}=d\vec P/dt\)；只要施加<b>净外力矩</b>，它的角动量就会变——\(\vec\tau_{net}=d\vec L/dt\)。也就是说，<b>力和力矩都会让物体"加速"</b>（前者是平动加速，后者是转动加速）。</p>
+<p>那么工程上最自然的问题就来了：<b>怎样才能保证它不加速？</b>答案就是让净力和净力矩同时为零。这正是建筑、桥梁、梯子、吊车这些结构的设计核心——它们每时每刻都处在力和力矩的"拔河"中，只有所有力相互抵消、所有力矩相互抵消，结构才能稳稳立住。所以本章第一部分其实就是回答一个问题：<b>物体不加速的完整条件是什么？</b></p>
+
+<h3 id="lec11-p1-2">1.2 平衡的定义 <span class="zh">Definition of Equilibrium</span></h3>
+<p><b>平衡（equilibrium）</b>的一般定义是：质心的线动量恒定、角动量也恒定（绕质心或绕任意其他点）：</p>
+<p class="formula">\(P=\text{const},\qquad L=\text{const}\)</p>
+<p>注意这里"恒定"不等于"为零"——一个匀速直线运动的物体、一个匀速转动的转盘，它们的 \(P\)、\(L\) 都恒定，所以也算处在平衡状态。但本章（以及绝大多数力学题）关心的是更特殊、更常见的情况：</p>
+<div class="def box">
+  <span class="box-title">📌 静力平衡（static equilibrium）</span>
+  <p>物体既不平动、也不转动：</p>
+  <p class="formula">\(P=0,\qquad L=0\)</p>
+  <p>也就是"完全静止地待着"——本讲后面所有例题都属于<b>静力平衡</b>。</p>
+</div>
+<p>此外还有<b>稳定平衡</b>（stable，被轻轻推一下会回到原位，如碗底的珠子）与<b>不稳定平衡</b>（unstable，轻轻一推就离开，如倒立的笔）之分，本质取决于重心与支点的位置关系，Part 2 末尾会再回到这个话题。</p>
+
+<h3 id="lec11-p1-3">1.3 平衡的两个要求 <span class="zh">Requirements of Equilibrium</span></h3>
+<p>把平衡条件写成分量形式，就得到平衡的<b>两个要求</b>：</p>
+<div class="thm box">
+  <span class="box-title">🎯 平衡条件（两个要求）</span>
+  <ul>
+    <li><b>平动平衡（力平衡）</b>：作用在物体上的所有<b>外力的矢量和为零</b>
+      <p class="formula">\(\vec F_{net}=\dfrac{d\vec P}{dt}=0\)</p></li>
+    <li><b>转动平衡（力矩平衡）</b>：作用在物体上的所有<b>外力矩的矢量和为零</b>，且<b>对任意点</b>都成立
+      <p class="formula">\(\vec\tau_{net}=\dfrac{d\vec L}{dt}=0\)</p></li>
+  </ul>
+  <p>一句话总结：<b>所有外力合力为零 + 所有外力矩（对任意点）合力矩为零</b>，物体就处于静力平衡。</p>
+</div>
+<p>实际做题时，大多数情形力都在 <b>xy 平面内</b>，此时力只能在 z 方向产生力矩，于是三个矢量方程退化成<b>三个独立的标量方程</b>：</p>
+<p class="formula">\(F_{net,x}=0,\qquad F_{net,y}=0,\qquad \tau_{net,z}=0\)</p>
+<p>这三个方程就是我们解平衡题的全部武器：两个分量力方程 + 一个力矩方程。</p>
+
+<h3 id="lec11-p1-4">1.4 判定例题 <span class="zh">Concept Check</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：哪些物体处于平衡？（概念判断）</span>
+  <p>如图给出均匀杆的六种俯视图 (a)–(f)，杆上作用着两、三个<b>垂直于杆</b>的力（各力大小可调但不为零）。问：在哪些情形下，杆<b>可以</b>处于静力平衡？</p>
+  <p><b>答案：(c)、(e)、(f)。</b></p>
+  <p><b>判据</b>：静力平衡必须同时满足两条——① 各力的矢量和能调成零（因此<b>必须存在方向相反的力</b>，否则合力不可能为零）；② 各力对杆的力矩和也能调成零（力臂与方向配得起来）。只有 (c)、(e)、(f) 能同时满足这两条。</p>
+</div>
+</section>
+
+<section id="lec11-p2">
+<h2>Part 2 · 重心 <span class="zh">Center of Gravity</span></h2>
+
+<h3 id="lec11-p2-1">2.1 重心的定义 <span class="zh">Definition</span></h3>
+<p>重力其实不是"一个"力——它作用在物体<b>每一个原子</b>上，是无数个微小重力的<b>矢量和</b>。做平衡题时，我们当然不想逐个原子算力矩。好消息是：这无数个重力可以<b>等效地集中作用在一点</b>，这一点叫<b>重心（center of gravity, cog）</b>。换句话说，物体的总重力 \(\vec F_g\) 等效地作用在重心上，绕任意点的重力矩都可以只用"重心位置 × 总重力"来算。</p>
+
+<h3 id="lec11-p2-2">2.2 证明：g 处处相同 ⇒ 重心 = 质心 <span class="zh">Proof</span></h3>
+<p>关键结论：<b>如果 g 在物体各处相同，则重心与质心重合</b>（\(x_{cog}=x_{com}\)）。下面给出证明。</p>
+<p>对单个质点 \(i\)，它受的重力为 \(m_i\vec g\)，绕原点 O 的力矩：</p>
+<p class="formula">\(\vec\tau_i=\vec r_i\times m_i\vec g=m_i\,\vec r_i\times\vec g\)</p>
+<p>总力矩就是所有质点之和：</p>
+<p class="formula">\(\vec\tau_{tot}=\sum_i \vec\tau_i=\sum_i m_i\,\vec r_i\times\vec g=M\vec r_{com}\times\vec g=\vec r_{com}\times M\vec g\)</p>
+<p>其中用到了质心定义 \(\vec r_{com}=\dfrac{\sum m_i\vec r_i}{M}\)。最后一步说明：<b>总重力矩等于"总重力 \(M\vec g\) 作用在 \(\vec r_{com}\) 上"产生的力矩</b>。也就是说，只要 g 处处相同，重力这个分布式力就可以整体搬到质心上，于是重心就是质心。</p>
+
+<h3 id="lec11-p2-3">2.3 g 不均匀时 <span class="zh">When g Varies</span></h3>
+<p>严格说 g 随高度会略变，但差别极小。经典例子：马来西亚 452 m 高的<b>双子塔（Petronas Towers）</b>，塔底的重力加速度只比塔顶<b>大 0.014%</b>，由此算出的重心只比质心<b>低约 2 cm</b>——相对于 452 m 的高度完全可以忽略。</p>
+<p>所以做题时默认：<b>除非题目明确说明，否则一律认为 cog = com</b>，重力画在质心处即可。</p>
+
+<h3 id="lec11-p2-4">2.4 稳定性 <span class="zh">Stability</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 稳定性的判据</span>
+  <p><b>重心越低、支撑面积（area of support）越大，物体就越难被推倒。</b></p>
+  <p>直觉：重心低 → 推它时要把它"抬高"的势能更多；支撑面积大 → 重力的作用线不容易落到支撑面之外。这也是为什么赛车的底盘压得很低、三脚架要张得开。</p>
+</div>
+</section>
+
+<section id="lec11-p3">
+<h2>Part 3 · 平衡问题的解法 <span class="zh">Solving Equilibrium Problems</span></h2>
+
+<h3 id="lec11-p3-1">3.1 解题步骤 <span class="zh">Strategy</span></h3>
+<p>解平衡题的基本套路是把两个方程<b>联用</b>：</p>
+<ol>
+  <li>画出<b>受力图</b>，标出所有外力及其作用点；</li>
+  <li>列 \(\vec F_{net}=0\) 的两个分量方程；</li>
+  <li>列 \(\vec\tau_{net}=0\) 的力矩方程。<b>技巧：转轴选在一个未知力的作用点上</b>，让该力的力臂为 0，它就不出现在力矩方程里——这叫<b>用选轴来消去一个未知力</b>；</li>
+  <li>解出剩下的未知量，最后再用力的平衡方程求最后一个未知力。</li>
+</ol>
+<p>一句话：<b>有两个未知力时，先把转轴放在其中一个力的作用线上消掉它，用力矩方程求另一个；再回到力平衡求被消掉的那个。</b></p>
+
+<h3 id="lec11-p3-2">3.2 例题：横梁 + 两杆秤 <span class="zh">Beam on Two Scales</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：均匀横梁 + 物块</span>
+  <p>一根均匀横梁长 \(L\)、质量 \(m=1.8\) kg，两端各放在一杆秤上静止。一个均匀物块质量 \(M=2.7\) kg，静止放在梁上，其中心距梁左端 \(L/4\)。求两秤读数。</p>
+  <p><b>设</b>左秤读数为 \(F_L\)、右秤读数为 \(F_R\)。选<b>左端</b>为转轴（消去 \(F_L\)）：</p>
+  <p class="formula">\(\tau_{net}=0:\quad F_R L = Mg\dfrac{L}{4}+mg\dfrac{L}{2}\)</p>
+  <p>约去 \(L\)：</p>
+  <p class="formula">\(F_R=\dfrac{Mg}{4}+\dfrac{mg}{2}=9.8\times\!\Big(\dfrac{2.7}{4}+\dfrac{1.8}{2}\Big)=9.8\times1.575\approx 15.4\ \text{N}\)</p>
+  <p>再用<b>力平衡</b>：\(F_L+F_R=(m+M)g=4.5\times9.8=44.1\) N，得</p>
+  <p class="formula">\(F_L=44.1-15.4\approx 28.7\ \text{N}\)</p>
+  <p><b>答</b>：左秤约 <b>28.7 N</b>，右秤约 <b>15.4 N</b>（物块靠左，所以左秤吃更多力）。</p>
+</div>
+
+<h3 id="lec11-p3-3">3.3 例题：梯子 <span class="zh">Ladder</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：靠墙的梯子</span>
+  <p>梯子长 \(L=12\) m、质量 \(m=45\) kg，靠在一面<b>光滑（无摩擦）</b>墙上，上端离地高 \(h=9.3\) m；下端落在地面上，地面<b>有摩擦</b>。梯子质心距下端 \(L/3\)；消防员质量 \(M=72\) kg 爬上梯子，其质心距下端 \(L/2\)。求墙和地面对梯子的力。</p>
+  <p><b>分析</b>：墙光滑 ⇒ 墙只给水平法向力 \(F_w\)（没有竖直摩擦）。地面给竖直法向力 \(F_{py}\) 和水平摩擦力 \(F_{px}\)。梯子与水平夹角 \(\theta\) 满足：</p>
+  <p class="formula">\(x=\sqrt{L^2-h^2}=\sqrt{12^2-9.3^2}=7.58\ \text{m},\qquad \cos\theta=\dfrac{x}{L}=0.632\)</p>
+  <p>绕<b>下端</b>取矩（消去地面的两个力）。墙力 \(F_w\) 的力臂是 \(h\)；梯子重力 \(mg\) 的水平力臂是 \((L/3)\cos\theta\)，消防员重力 \(Mg\) 的水平力臂是 \((L/2)\cos\theta\)：</p>
+  <p class="formula">\(F_w h = mg\dfrac{L}{3}\cos\theta + Mg\dfrac{L}{2}\cos\theta\)</p>
+  <p class="formula">\(F_w=\dfrac{9.8\times(45\times4\times0.632+72\times6\times0.632)}{9.3}\approx 4.1\times10^{2}\ \text{N}\approx 407\ \text{N}\)</p>
+  <p>力平衡：竖直方向 \(F_{py}=(m+M)g=117\times9.8\approx 1.15\times10^3\) N；水平方向 \(F_{px}=F_w\approx 407\) N。地面净力大小为：</p>
+  <p class="formula">\(F_p=\sqrt{F_{px}^{2}+F_{py}^{2}}\approx\sqrt{407^{2}+1147^{2}}\approx 1.2\times10^{3}\ \text{N}\)</p>
+  <p><b>答</b>：墙对梯子的力约 <b>407 N</b>（水平）；地面对梯子的净力约 <b>1.2×10³ N</b>（竖直分量 ≈1.15×10³ N，摩擦分量 ≈407 N，方向斜向上）。</p>
+</div>
+
+<h3 id="lec11-p3-4">3.4 例题：吊臂 + 保险柜 <span class="zh">Boom and Safe</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：吊臂吊保险柜</span>
+  <p>保险柜质量 \(M=430\) kg，用绳吊在一根吊臂上；吊臂由一根<b>铰接</b>横梁和一根<b>水平缆绳</b>（把梁连到墙上）组成，尺寸 \(a=1.9\) m、\(b=2.5\) m。均匀横梁质量 \(m=85\) kg；缆绳与吊绳质量可忽略。横梁与水平成 45°（由图中几何给出，故 \(\tan\theta=1\)）。(a) 求缆绳张力 \(T\)；(b) 求铰链对梁的净力。</p>
+  <p><b>(a)</b> 选<b>铰链</b>为转轴（消去铰链力）。缆绳水平，张力 \(T\) 的力臂为 \(a\tan\theta=a\)（45°）；横梁重力 \(mg\) 的水平力臂为 \(b/2\)，保险柜重力 \(Mg\) 的水平力臂为 \(b\)：</p>
+  <p class="formula">\(T a = mg\dfrac{b}{2}+Mg b=g b\Big(\dfrac{m}{2}+M\Big)\)</p>
+  <p class="formula">\(T=\dfrac{9.8\times2.5\times(42.5+430)}{1.9}=\dfrac{11576}{1.9}\approx 6.1\times10^{3}\ \text{N}\)</p>
+  <p><b>(b)</b> 力平衡：水平方向铰链力 \(F_{hx}=T\approx 6.1\times10^3\) N；竖直方向 \(F_{hy}=(m+M)g=515\times9.8\approx 5.05\times10^3\) N。净力：</p>
+  <p class="formula">\(F_h=\sqrt{F_{hx}^{2}+F_{hy}^{2}}\approx\sqrt{6093^{2}+5047^{2}}\approx 7.9\times10^{3}\ \text{N}\)</p>
+  <p><b>答</b>：(a) 缆绳张力约 <b>6.1×10³ N</b>；(b) 铰链对梁的净力约 <b>7.9×10³ N</b>（水平分量 6.1×10³ N，竖直分量 5.05×10³ N）。</p>
+</div>
+</section>
+
+<section id="lec11-p4">
+<h2>Part 4 · 弹性 <span class="zh">Elasticity</span></h2>
+
+<h3 id="lec11-p4-1">4.1 刚体不存在 <span class="zh">No Rigid Body</span></h3>
+<p>前几讲里"刚体"（rigid body）是一个理想化模型——假设受力时完全不形变。但<b>真实物体受力一定会形变</b>：桌子压一下会微微下凹、钢丝绳吊重物会伸长、橡皮筋一拉就变长。<b>弹性（elasticity）</b>描述的正是真实物体在受力时如何形变：物体被拉伸或压缩后<b>恢复原状的能力</b>。</p>
+
+<h3 id="lec11-p4-2">4.2 微观视角 <span class="zh">Microscopic View</span></h3>
+<p>从微观看，固体里的原子由化学键连在一起，可以想象成<b>原子间有一根根小弹簧（interatomic springs）</b>。拉它时弹簧伸长、压它时弹簧缩短，撤去外力后弹簧恢复原长——这就是弹性的来源。弹簧"硬"的材料（键强、原子排列紧密）就<b>刚（rigid）</b>；弹簧"软"的材料（原子与邻居结合松散）就<b>容易形变</b>。</p>
+
+<h3 id="lec11-p4-3">4.3 三种应力与胡克定律 <span class="zh">Three Stresses &amp; Hooke's Law</span></h3>
+<p>固体受力改变尺寸有三种基本方式：</p>
+<ul>
+  <li><b>拉伸应力（tensile stress）</b>——沿一个方向拉/压；</li>
+  <li><b>剪切应力（shearing stress）</b>——力沿面积平面作用；</li>
+  <li><b>体积应力（hydraulic stress）</b>——流体压强均匀压表面。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 胡克定律（Hooke's Law）</span>
+  <p>在小形变范围内，<b>应力与应变成正比</b>，比例系数就是该材料的<b>弹性模量（modulus of elasticity）</b>：</p>
+  <p class="formula">\(\text{stress}=\text{modulus}\times\text{strain}\)</p>
+  <p>后面三部分就是这句话的三种具体写法：拉伸/压缩、剪切、体积。</p>
+</div>
+</section>
+
+<section id="lec11-p5">
+<h2>Part 5 · 拉伸与压缩 <span class="zh">Tension and Compression</span></h2>
+
+<h3 id="lec11-p5-1">5.1 应力与应变 <span class="zh">Stress and Strain</span></h3>
+<p>先定义两个词，它们贯穿整个弹性部分：</p>
+<ul>
+  <li><b>应力（stress）</b> = 单位面积上的力 \(F/A\)，单位 N/m² = Pa；</li>
+  <li><b>应变（strain）</b> = 单位形变 \(\Delta L/L\)，是<b>无量纲的比值</b>。</li>
+</ul>
+<p>为什么用"单位面积"而不是"力"本身？因为同样 100 N 拉一根细铁丝和一根粗钢柱，效果完全不同——关键在<b>每个原子分担多少力</b>，所以应力才是决定形变的本征量。应变同理：长 1 m 的杆伸长 1 cm 和长 10 m 的杆伸长 1 cm，前者的"相对拉伸"大得多。</p>
+
+<h3 id="lec11-p5-2">5.2 杨氏模量 <span class="zh">Young's Modulus</span></h3>
+<div class="def box">
+  <span class="box-title">📌 杨氏模量 Y</span>
+  <p>对拉伸/压缩，应力与应变的关系是：</p>
+  <p class="formula">\(\dfrac{F}{A}=Y\dfrac{\Delta L}{L}\quad\Longrightarrow\quad Y=\dfrac{F/A}{\Delta L/L}\)</p>
+  <ul>
+    <li>\(Y\) 的单位是 N/m² = Pa；</li>
+    <li>对<b>拉伸和压缩都适用</b>；</li>
+    <li>多数材料在拉伸和压缩时的 \(Y\) <b>相同</b>。</li>
+  </ul>
+</div>
+<p>直觉：\(Y\) 大 ⇒ 材料"硬"（同样的力形变小），\(Y\) 小 ⇒ 材料"软"。钢的 \(Y\approx 2\times10^{11}\) Pa，橡胶就小得多。</p>
+
+<h3 id="lec11-p5-3">5.3 应力–应变曲线 <span class="zh">Stress–Strain Curve</span></h3>
+<p>做拉伸实验，画出应力–应变曲线，能读出一整条材料"性格线"：</p>
+<table class="truth">
+  <thead><tr><th>阶段</th><th>特征</th></tr></thead>
+  <tbody>
+    <tr><td><b>应力 &lt; 屈服强度</b>（yield strength）</td><td>线性关系（胡克定律成立），撤去应力后可恢复——<b>弹性形变</b>（elastic deformation）</td></tr>
+    <tr><td><b>应力 &gt; 屈服强度</b></td><td>产生<b>永久（塑性）形变</b>（plastic deformation），撤去应力无法恢复</td></tr>
+    <tr><td><b>极限强度</b>（ultimate strength）</td><td>断裂/破裂点；拉伸与压缩的极限强度可能不同</td></tr>
+  </tbody>
+</table>
+<div class="thm box">
+  <span class="box-title">🎯 颈缩与均匀形变</span>
+  <p>超过屈服强度后，先是<b>均匀形变</b>（uniform deformation），随后出现<b>颈缩（necking）</b>——某一小段急剧变细，最终在那里断裂。</p>
+</div>
+
+<h3 id="lec11-p5-4">5.4 例题：四腿桌 <span class="zh">Four-Legged Table</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：一条腿短了一截的桌子</span>
+  <p>四腿桌，三条腿等长，第四条腿短了 \(d\)（\(d\ll L\)）。求各腿受力。</p>
+  <p>每条腿受压都满足胡克定律：三条等长腿受力 \(F_1=F_2=F_3=A Y\dfrac{\Delta L}{L}\)。第四条短腿要压到同一水平，压缩量是 \(\Delta L+d\)：</p>
+  <p class="formula">\(F_4=A Y\dfrac{\Delta L+d}{L+d}\approx A Y\dfrac{\Delta L+d}{L}=F_1+A Y\dfrac{d}{L}\)</p>
+  <p>整体力平衡（桌子总重 \(Mg\)）：</p>
+  <p class="formula">\(F_1+F_2+F_3+F_4=Mg\quad\Longrightarrow\quad 4F_1+A Y\dfrac{d}{L}=Mg\)</p>
+  <p class="formula">\(F_1=\dfrac{Mg}{4}-\dfrac{A Y d}{4L},\qquad F_4=\dfrac{Mg}{4}+\dfrac{3A Y d}{4L}\)</p>
+  <p><b>结论</b>：短腿比等长腿多承担 \(\dfrac{3A Y d}{4L}\) 的额外力——桌腿越硬（\(Y\) 大）、越粗（\(A\) 大）、短得越多（\(d\) 大），这条腿"顶"得越狠。</p>
+</div>
+</section>
+
+<section id="lec11-p6">
+<h2>Part 6 · 剪切 <span class="zh">Shearing</span></h2>
+
+<h3 id="lec11-p6-1">6.1 剪切应力与剪切应变 <span class="zh">Shear Stress and Strain</span></h3>
+<p>剪切的特点是：<b>力作用在面积所在的平面内</b>（想象一本厚书，把手掌按在封面上往侧边推，书页之间发生错动）。此时：</p>
+<ul>
+  <li><b>剪切应力</b>：仍是 \(F/A\)，但 \(F\) 平行于面积 \(A\)；</li>
+  <li><b>剪切应变</b>：\(\Delta x/L\)，其中 \(\Delta x\) 是顶面相对底面的横向位移，\(L\) 是物体高度——即剪切角 \(\theta\) 的正切（小角度时 ≈ 角度本身）。</li>
+</ul>
+
+<h3 id="lec11-p6-2">6.2 剪切模量 <span class="zh">Shear Modulus</span></h3>
+<div class="def box">
+  <span class="box-title">📌 剪切模量 S</span>
+  <p class="formula">\(\dfrac{F}{A}=S\dfrac{\Delta x}{L}\quad\Longrightarrow\quad S=\dfrac{F/A}{\Delta x/L}\)</p>
+  <p>单位 N/m² = Pa。<b>剪切模量通常是杨氏模量的 1/3 到 1/2</b>——大多数材料"抗剪切"比"抗拉伸"更弱。</p>
+</div>
+</section>
+
+<section id="lec11-p7">
+<h2>Part 7 · 体积应力与泊松比 <span class="zh">Hydraulic Stress &amp; Poisson's Ratio</span></h2>
+
+<h3 id="lec11-p7-1">7.1 体积应力与体积模量 <span class="zh">Hydraulic (Bulk) Stress &amp; Bulk Modulus</span></h3>
+<p>把物体泡在流体里，流体压强 \(p\) 几乎均匀地压在物体<b>整个表面</b>上，这叫<b>体积（液压）应力</b>。对应的应变是<b>体积应变</b> \(|\Delta V|/V\)（体积变化的百分比）。</p>
+<div class="def box">
+  <span class="box-title">📌 体积模量 B</span>
+  <p class="formula">\(B=-\dfrac{\Delta p}{\Delta V/V}\)</p>
+  <ul>
+    <li>\(\Delta p\) 是压强的变化量；</li>
+    <li>压强增大（\(\Delta p&gt;0\)）时体积减小（\(\Delta V&lt;0\)），所以式子带<b>负号</b>，保证 \(B&gt;0\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec11-p7-2">7.2 可压缩性 <span class="zh">Compressibility</span></h3>
+<p><b>可压缩性（compressibility）</b> \(k\) 是体积模量的倒数，描述"单位压强变化引起的体积相对变化"：</p>
+<p class="formula">\(k=\dfrac{1}{B}=-\dfrac{1}{V}\dfrac{\Delta V}{\Delta p}\)</p>
+<p>\(B\) 大（\(k\) 小）⇒ 难压缩；\(B\) 小（\(k\) 大）⇒ 容易压缩。</p>
+
+<h3 id="lec11-p7-3">7.3 例题：深海压缩 <span class="zh">Compression in the Pacific</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：太平洋深处的压缩量</span>
+  <p>太平洋平均深约 4000 m，此处压强 \(p=4.0\times10^{7}\) N/m²。求水与钢在海底被压缩的体积百分比。</p>
+  <p>水的 \(B=2.2\times10^{9}\) N/m²：</p>
+  <p class="formula">\(\dfrac{\Delta V}{V}=\dfrac{\Delta p}{B}=\dfrac{4.0\times10^{7}}{2.2\times10^{9}}=1.8\%\)</p>
+  <p>钢的 \(B=1.6\times10^{11}\) N/m²：</p>
+  <p class="formula">\(\dfrac{\Delta V}{V}=\dfrac{4.0\times10^{7}}{1.6\times10^{11}}=0.025\%\)</p>
+  <p><b>结论</b>：同样 4000 m 深，水被压掉 1.8% 的体积，钢只被压掉 0.025%。<b>固体（原子晶格刚性）比液体更难压缩</b>——液体中原子/分子与邻居的耦合更松。</p>
+</div>
+
+<h3 id="lec11-p7-4">7.4 泊松比 <span class="zh">Poisson's Ratio</span></h3>
+<p>只在 z 方向加拉应力，会发生一件常被忽略的事：材料沿 z 伸长，同时在<b>横向（x、y 方向）收缩</b>——像拉一根橡皮筋，它变长的同时也变细。</p>
+<div class="def box">
+  <span class="box-title">📌 泊松比 ν</span>
+  <p>对<b>各向同性</b>材料，横向收缩应变 \(\varepsilon_x=\varepsilon_y\)，泊松比定义为横向应变与轴向应变之比：</p>
+  <p class="formula">\(\nu=-\dfrac{\varepsilon_x}{\varepsilon_z}=-\dfrac{\varepsilon_y}{\varepsilon_z}\)</p>
+  <p>因为 \(\varepsilon_x\) 与 \(\varepsilon_z\) <b>符号相反</b>（z 伸长、x/y 收缩），前面加<b>负号</b>使 \(\nu&gt;0\)。</p>
+</div>
+</section>
+
+<section id="lec11-p8">
+<h2>Part 8 · 应用与总结 <span class="zh">Applications &amp; Summary</span></h2>
+
+<h3 id="lec11-p8-1">8.1 例题：声速与体积模量（牛顿 vs 拉普拉斯） <span class="zh">Speed of Sound</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：声速应该用哪个 B？</span>
+  <p>纵波（声波）在介质中的传播速度 \(v=\sqrt{B/\rho}\)，其中 \(B\) 是体积模量，\(\rho\) 是密度。理想气体满足 \(pV=RT\)。声音传播过程到底是<b>等温</b>还是<b>绝热</b>？牛顿与拉普拉斯各执一词。</p>
+  <p><b>(a) 牛顿：等温假设</b>（温度恒定，\(pV=\text{const}\)）。两边微分：</p>
+  <p class="formula">\(p\,dV+V\,dp=0\;\Rightarrow\;\dfrac{dp}{dV}=-\dfrac{p}{V}\)</p>
+  <p class="formula">\(B=-V\dfrac{dp}{dV}=-V\Big(-\dfrac{p}{V}\Big)=p\)</p>
+  <p>于是 \(v=\sqrt{p_0/\rho}\)。代入干空气 \(\rho=1.18\) kg/m³、\(p_0=1.01\times10^{5}\) Pa：</p>
+  <p class="formula">\(v=\sqrt{\dfrac{1.01\times10^{5}}{1.18}}\approx 293\ \text{m/s}\)</p>
+  <p><b>(b) 拉普拉斯：绝热假设</b>（无热交换，\(pV^{\gamma}=\text{const}\)，\(\gamma\) 为绝热指数）。微分：</p>
+  <p class="formula">\(p\,\gamma V^{\gamma-1}dV+V^{\gamma}dp=0\;\Rightarrow\;\dfrac{dp}{dV}=-\dfrac{\gamma p}{V}\)</p>
+  <p class="formula">\(B=-V\dfrac{dp}{dV}=\gamma p\quad\Rightarrow\quad v=\sqrt{\dfrac{\gamma p_0}{\rho}}\)</p>
+  <p>对空气 \(\gamma=1.40\)：</p>
+  <p class="formula">\(v=\sqrt{\dfrac{1.40\times1.01\times10^{5}}{1.18}}=\sqrt{1.40\times(293)^{2}}\approx 346\ \text{m/s}\)</p>
+  <p><b>(c) 实测</b>：300 K 下空气中声速实测约 <b>346 m/s</b>。<b>拉普拉斯（绝热）正确</b>——声音来得太快，局部来不及与周围交换热量。</p>
+</div>
+
+<h3 id="lec11-p8-2">8.2 公式速查与词汇 <span class="zh">Summary &amp; Vocabulary</span></h3>
+  <div class="toc">
+    <span class="toc-title">📑 本讲公式速查</span>
+    <p class="formula">平衡：\(\vec F_{net}=0,\qquad \vec\tau_{net}=0\)</p>
+    <p class="formula">重心（g 相同）：\(x_{cog}=x_{com}\)</p>
+    <p class="formula">胡克定律：\(\text{stress}=\text{modulus}\times\text{strain}\)</p>
+    <p class="formula">拉伸/压缩：\(\dfrac{F}{A}=Y\dfrac{\Delta L}{L}\)</p>
+    <p class="formula">剪切：\(\dfrac{F}{A}=S\dfrac{\Delta x}{L}\)</p>
+    <p class="formula">体积：\(\Delta p=-B\dfrac{\Delta V}{V},\qquad k=\dfrac{1}{B}\)</p>
+    <p class="formula">泊松比：\(\nu=-\dfrac{\varepsilon_x}{\varepsilon_z}=-\dfrac{\varepsilon_y}{\varepsilon_z}\)</p>
+    <p class="formula">声速：\(v=\sqrt{\dfrac{B}{\rho}}\)（绝热气体 \(B=\gamma p\)，等温 \(B=p\)）</p>
+  </div>
+
+  <div class="vocab">
+    <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+    <ul>
+      <li><b>equilibrium</b> — 平衡；<b>static equilibrium</b> — 静力平衡；<b>center of gravity</b> — 重心</li>
+      <li><b>center of mass</b> — 质心；<b>torque</b> — 力矩；<b>elasticity</b> — 弹性</li>
+      <li><b>stress</b> — 应力；<b>strain</b> — 应变；<b>elastic modulus</b> — 弹性模量</li>
+      <li><b>Hooke's law</b> — 胡克定律；<b>tension</b> — 拉伸；<b>compression</b> — 压缩</li>
+      <li><b>Young's modulus</b> — 杨氏模量；<b>yield strength</b> — 屈服强度；<b>ultimate strength</b> — 极限强度</li>
+      <li><b>elastic deformation</b> — 弹性形变；<b>plastic deformation</b> — 塑性形变；<b>necking</b> — 颈缩</li>
+      <li><b>shear</b> — 剪切；<b>shear modulus</b> — 剪切模量；<b>hydraulic (bulk) stress</b> — 体积（液压）应力</li>
+      <li><b>bulk modulus</b> — 体积模量；<b>compressibility</b> — 可压缩性；<b>Poisson's ratio</b> — 泊松比</li>
+      <li><b>adiabatic</b> — 绝热；<b>isothermal</b> — 等温</li>
+    </ul>
+  </div>
+</section>
+</div><!-- /第11课 -->
+
+<!-- ============ 第12课 ============ -->
+<div class="lecture" id="lec12">
+<div class="lecture-banner">第12课 · Fluid Mechanics <span class="zh">（流体力学）</span></div>
+
+<section id="lec12-overview">
+  <h2>本讲概览 Overview</h2>
+  <div class="def box">
+    <span class="box-title">📌 本讲内容</span>
+    <p>本章把研究对象从<b>刚体</b>换成<b>流体（fluid）</b>——既能流动、又贴合容器边界的物质（液体与气体）。主线：先用<b>密度 \(\rho\)</b> 描述「多少物质」、用<b>压强 \(p\)</b> 描述「单位面积受多大力」；然后处理<b>静止流体</b>的压强分布 \(p=p_0+\rho gh\)；再讲<b>测量压强</b>的气压计与压力计；接着是三个「压强/浮力的应用」——<b>帕斯卡原理</b>（液压杠杆）、<b>阿基米德原理</b>（浮力）；最后研究<b>理想流体的流动</b>：连续性方程 \(A_1v_1=A_2v_2\) 与<b>伯努利方程</b> \(p+\tfrac12\rho v^2+\rho g y=\text{常数}\)（流体版的能量守恒）。</p>
+  </div>
+  <div class="warn box">
+    <span class="box-title">💡 与上一讲的衔接</span>
+    <p>上一讲（平衡与弹性）里我们已经见过<b>水压应力</b> \(p=-B\,\dfrac{\Delta V}{V}\)——那里的 \(p\) 正是本章的<b>压强</b>。上一讲处理「固体受力变形」，本章处理「流体受力流动/静止」，压强概念贯穿两者。</p>
+  </div>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec12-p1">Part 1 · 流体与密度</a></li>
+      <li><a href="#lec12-p2">Part 2 · 压强</a></li>
+      <li><a href="#lec12-p3">Part 3 · 静止流体的压强</a></li>
+      <li><a href="#lec12-p4">Part 4 · 测量压强</a></li>
+      <li><a href="#lec12-p5">Part 5 · 帕斯卡原理</a></li>
+      <li><a href="#lec12-p6">Part 6 · 阿基米德原理</a></li>
+      <li><a href="#lec12-p7">Part 7 · 理想流体</a></li>
+      <li><a href="#lec12-p8">Part 8 · 伯努利方程</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec12-p1">
+<h2>Part 1 · 流体与密度 <span class="zh">Fluids and Density</span></h2>
+
+<h3 id="lec12-p1-1">1.1 什么是流体 <span class="zh">Fluids</span></h3>
+<p>与固体相反，<b>流体（fluid）</b>是一种<b>能够流动</b>的物质（液体与气体）。流体总是<b>贴合容器的边界</b>（液体流进什么形状的容器就变成什么形状），根本原因在于：<b>流体不能承受切向（平行于表面）的力</b>——它<b>无法抵抗剪切应力（shearing stress）</b>；它只能沿<b>垂直于表面</b>的方向施力。</p>
+<ul>
+  <li>固体（如钢梁）既能承受垂直于表面的正应力，也能承受切向的剪切应力；流体<b>只对切向“缴械”</b>，所以表面一有切向分量的力，它就开始流动。</li>
+  <li>流体没有<b>长程晶格（long-range crystalline lattice）</b>——这正是「固体有固定形状、流体没有」的微观来源。</li>
+  <li>注意：有些材料（如沥青 pitch）要<b>很长时间</b>才贴合容器，但它仍是流体——判据不是「流动快慢」，而是「能不能长期抵抗剪切」。</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 一句话记住</span>
+  <p>流体与固体的本质区别：<b>流体不能承受切向力（不能抵抗剪切应力）</b>，只能沿表面法向施力。</p>
+</div>
+
+<h3 id="lec12-p1-2">1.2 密度 <span class="zh">Density</span></h3>
+<div class="def box">
+  <span class="box-title">📌 密度 Density</span>
+  <p>密度是「单位体积内所含质量」：</p>
+  <p class="formula">\(\rho=\dfrac{\Delta m}{\Delta V}\)</p>
+  <p>若物体<b>均匀</b>（各处一样），则</p>
+  <p class="formula">\(\rho=\dfrac{m}{V}\)</p>
+  <ul>
+    <li>密度是<b>标量（scalar）</b>，没有方向；</li>
+    <li>SI 单位：\(\text{kg/m}^3\)。</li>
+  </ul>
+</div>
+<p>直觉：密度告诉你「同样大小的体积里装了多少质量」。铅比铝重，不是因为它「更用力」，而是同样的体积里铅的质量更大——这就是密度。计算流体的质量常用 \(m=\rho V\)。</p>
+</section>
+
+<section id="lec12-p2">
+<h2>Part 2 · 压强 <span class="zh">Pressure</span></h2>
+
+<h3 id="lec12-p2-1">2.1 压强定义 <span class="zh">Pressure</span></h3>
+<div class="def box">
+  <span class="box-title">📌 压强 Pressure</span>
+  <p>压强是「单位面积上所受的<b>法向</b>力」：</p>
+  <p class="formula">\(p=\dfrac{\Delta F}{\Delta A}\)</p>
+  <p>若力在平面面积 \(A\) 上<b>均匀</b>分布，则</p>
+  <p class="formula">\(p=\dfrac{F}{A}\)</p>
+  <ul>
+    <li>压强<b>与压强传感器的朝向无关</b>——同一点的压强各个方向都一样；</li>
+    <li>压强是<b>标量（scalar）</b>：它只涉及<b>力的大小</b>，不含方向（力的方向总是垂直于表面，这个「垂直」由表面决定，不是压强本身的方向）；</li>
+    <li>SI 单位：<b>Pa（pascal，帕斯卡）</b>，\(1\ \text{N/m}^2=1\ \text{Pa}\)。</li>
+  </ul>
+</div>
+<p>直觉：同样的力，作用面积越小，压强越大——图钉能扎进木板而手指按不进，就是因为钉尖面积极小。压强把「力」除以「面积」，比较的是「单位面积上受力多猛」。</p>
+
+<h3 id="lec12-p2-2">2.2 大气压 <span class="zh">Atmospheric Pressure</span></h3>
+<p>大气（空气）本身也有重量，因此地面附近的物体表面受到<b>大气压（atmospheric pressure）</b>。大气压<b>随天气与海拔变化</b>，定义标准大气压为：</p>
+<p class="formula">\(1\ \text{atm}=1.01\times10^{5}\ \text{Pa}=760\ \text{torr}=14.7\ \text{lb/in}^2\)</p>
+<ul>
+  <li><b>torr（托）</b>是广泛使用的压强单位，曾被称为<b>毫米汞柱（mmHg）</b>；</li>
+  <li>它以 <b>Evangelista Torricelli</b> 命名——他发明了<b>水银气压计（mercury barometer）</b>。</li>
+</ul>
+<div class="ex box">
+  <span class="box-title">✏️ 例：大气对房间地板的力</span>
+  <p>标准大气压 \(p_0=1.01\times10^5\ \text{Pa}\) 意味着<b>每平方米</b>地板受到约 \(1.01\times10^5\ \text{N}\) 的力（约 10 吨重物的重力）。若房间地板面积 \(A\)，则大气总压力</p>
+  <p class="formula">\(F=p_0\,A.\)</p>
+  <p>这个力非常巨大，但地板不会被压垮——因为地板<b>下方/内部</b>也有向上的大气压几乎完全抵消它。感受压强之大：平时我们没被「压扁」，正是因为体内压强与外界大气压平衡。</p>
+</div>
+</section>
+
+<section id="lec12-p3">
+<h2>Part 3 · 静止流体的压强 <span class="zh">Fluid at Rest</span></h2>
+
+<h3 id="lec12-p3-1">3.1 静水压强的推导 <span class="zh">Derivation of Hydrostatic Pressure</span></h3>
+<p>先回答一个问题：水面下的压强随深度怎么变？取一竖直水柱，截面 \(A\)，两端高度分别为 \(y_1\)（上）与 \(y_2\)（下，\(y_2&lt;y_1\)）。水柱处于<b>静力平衡（static equilibrium）</b>：向上的力 = 向下的力：</p>
+<p class="formula">\(F_2=F_1+mg\)</p>
+<p>把力换成压强（\(F=pA\)），把质量换成密度（\(m=\rho V=\rho A(y_1-y_2)\)）：</p>
+<p class="formula">\(p_2A=p_1A+mg=p_1A+\rho A g(y_1-y_2)\)</p>
+<p>两边约去 \(A\)，即得静水压强公式：</p>
+<p class="formula">\(p_2=p_1+\rho g(y_1-y_2).\)</p>
+<p>一句话：<b>越深，压强越大</b>，每下降一段高度，压强就增加上面那段流体的重量 \(\rho g(y_1-y_2)\)。</p>
+
+<h3 id="lec12-p3-2">3.2 深度 h 处的压强 <span class="zh">Pressure at Depth h</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 静水压强公式</span>
+  <p>设液面处压强为 \(p_0\)（通常即大气压），则<b>深度 \(h\)</b> 处的压强为</p>
+  <p class="formula">\(p=p_0+\rho g h\)</p>
+  <ul>
+    <li>压强<b>只取决于深度 \(h\)</b>，与容器、流体的<b>水平尺寸无关</b>；</li>
+    <li>同一深度各点压强相同（不同形状的容器，只要 \(h\) 相同，底部压强就相同）。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p3-3">3.3 绝对压强 vs 表压 <span class="zh">Absolute vs Gauge Pressure</span></h3>
+<div class="def box">
+  <span class="box-title">📌 绝对压强与表压</span>
+  <p><b>绝对压强（absolute pressure）</b> \(p\) 由两部分贡献：</p>
+  <p class="formula">\(p=p_0+\rho g h\)</p>
+  <ul>
+    <li>\(p_0\)：来自<b>大气</b>的压强；</li>
+    <li>\(\rho gh\)：<b>表压（gauge pressure）</b>——定义为<b>绝对压强与大气压之差</b>，即「超出大气压的那部分」。</li>
+  </ul>
+</div>
+<p>大气中反过来：随高度上升，空气越来越稀薄，压强<b>减小</b>。设大气层中某点比参考高度（level 1）高 \(d\)，则</p>
+<p class="formula">\(p=p_0-\rho_{\text{air}}\,g\,d\)</p>
+<p>其中 \(d\) 是该点<b>高于 level 1</b> 的距离。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例：10 m 水深处的表压</span>
+  <p>水的密度 \(\rho=1000\ \text{kg/m}^3\)，取 \(g=9.8\ \text{m/s}^2\)，深度 \(h=10\ \text{m}\)：</p>
+  <p class="formula">\(\rho gh=(1000)(9.8)(10)=9.8\times10^4\ \text{Pa}\approx 0.97\ \text{atm}\)</p>
+  <p>即每下潜 10 m，表压增加约 1 个大气压；绝对压强 \(p=p_0+\rho gh\approx 1.97\ \text{atm}\)。</p>
+</div>
+</section>
+
+<section id="lec12-p4">
+<h2>Part 4 · 测量压强 <span class="zh">Measuring Pressure</span></h2>
+
+<h3 id="lec12-p4-1">4.1 水银气压计 <span class="zh">Mercury Barometer</span></h3>
+<div class="def box">
+  <span class="box-title">📌 水银气压计</span>
+  <p>把一根装满水银的管子倒插进水银槽，管顶形成真空，大气压把水银柱顶起。平衡时：</p>
+  <p class="formula">\(p_0=\rho g h\)</p>
+  <ul>
+    <li>\(\rho\)：<b>水银的密度</b>；\(h\)：<b>空气-水银界面与水银液面之间的高度差</b>；</li>
+    <li>读数<b>与管子截面积无关</b>（管粗管细，液柱高度都一样）；</li>
+    <li>\(h\) 的数值<b>恰等于 torr 数值</b>，仅当：① 气压计所在处 \(g\) 取标准值 \(9.80665\ \text{m/s}^2\)；② 水银温度为 \(0\,^\circ\text{C}\)。</li>
+  </ul>
+</div>
+<p>验算：水银密度 \(\rho=13.6\times10^3\ \text{kg/m}^3\)，标准条件下 \(h=0.760\ \text{m}\)，则</p>
+<p class="formula">\(p_0=\rho gh=(13.6\times10^3)(9.80665)(0.760)\approx1.01\times10^5\ \text{Pa}=760\ \text{torr}.\)</p>
+
+<h3 id="lec12-p4-2">4.2 开管压力计 <span class="zh">The Open-Tube Manometer</span></h3>
+<div class="def box">
+  <span class="box-title">📌 开管压力计</span>
+  <p>开管压力计用来测<b>气体的表压（gauge pressure）</b> \(p_g\)：</p>
+  <p class="formula">\(p_g=p-p_0=\rho g h\)</p>
+  <ul>
+    <li>\(\rho\)：管内液体密度；\(p_g\) 与液柱高度差 \(h\) 成正比；</li>
+    <li>表压<b>可正可负</b>：取决于 \(p&gt;p_0\)（正）还是 \(p&lt;p_0\)（负）。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：吸吸管</span>
+  <p>用吸管把液体吸上来时，你肺内的<b>绝对压强小于大气压</b>：\(p&lt;p_0\)，故表压 \(p_g=p-p_0&lt;0\)。液体正是被「大气压把液面压进吸管」推上来的。</p>
+</div>
+</section>
+
+<section id="lec12-p5">
+<h2>Part 5 · 帕斯卡原理 <span class="zh">Pascal's Principle</span></h2>
+
+<h3 id="lec12-p5-1">5.1 帕斯卡原理 <span class="zh">Pascal's Principle</span></h3>
+<div class="def box">
+  <span class="box-title">📌 帕斯卡原理 Pascal's Principle</span>
+  <p>帕斯卡原理描述压强如何<b>在不可压缩流体中传递</b>：</p>
+  <p>施加在<b>封闭的不可压缩流体</b>上的压强变化，会<b>无衰减地（undiminished）传到流体的每一部分和容器壁</b>。</p>
+  <p>流体中任一点的压强：</p>
+  <p class="formula">\(p=p_{\text{ext}}+\rho g h\)</p>
+  <p>移项即得压强改变量：</p>
+  <p class="formula">\(\Delta p=p-\rho g h=p_{\text{ext}}\)</p>
+  <ul>
+    <li>这个压强改变 \(\Delta p=p_{\text{ext}}\) <b>与深度 \(h\) 无关</b>——外部施加多少，流体各点（无论多深）就都增加多少。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p5-2">5.2 液压杠杆 <span class="zh">Hydraulic Lever</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：液压杠杆——小力变大力</span>
+  <p>液压杠杆把「给定的力作用给定的距离」转化为「<b>更大的力作用更小的距离</b>」。两个活塞连通同一封闭流体，压强改变相同：</p>
+  <p class="formula">\(\Delta p=\dfrac{F_i}{A_i}=\dfrac{F_o}{A_o}\)</p>
+  <p>故输出力：</p>
+  <p class="formula">\(F_o=F_i\,\dfrac{A_o}{A_i}\)</p>
+  <p>体积守恒（流体不可压缩，被压出的体积 = 被顶起的体积）：</p>
+  <p class="formula">\(V=A_i d_i=A_o d_o \;\Rightarrow\; d_o=d_i\,\dfrac{A_i}{A_o}\)</p>
+  <p>功守恒（力放大多少倍，距离就缩小多少倍）：</p>
+  <p class="formula">\(W=F_o d_o=F_i\,\dfrac{A_o}{A_i}\times d_i\,\dfrac{A_i}{A_o}=F_i d_i\)</p>
+  <p>数字示例：小活塞面积 \(A_i=1.0\ \text{cm}^2\) 上施加 \(F_i=100\ \text{N}\)，大活塞面积 \(A_o=100\ \text{cm}^2\)，则 \(F_o=100\times\dfrac{100}{1}=1.0\times10^4\ \text{N}\)；若小活塞压下 \(d_i=10\ \text{cm}\)，大活塞只升起 \(d_o=10\times\dfrac{1}{100}=0.10\ \text{cm}\)。两边做功都是 \(10\ \text{J}\)——<b>力放大 100 倍，距离缩小 100 倍，能量不白赚</b>。</p>
+</div>
+</section>
+
+<section id="lec12-p6">
+<h2>Part 6 · 阿基米德原理 <span class="zh">Archimedes' Principle</span></h2>
+
+<h3 id="lec12-p6-1">6.1 浮力 <span class="zh">Buoyant Force</span></h3>
+<div class="def box">
+  <span class="box-title">📌 浮力 Buoyant Force</span>
+  <p><b>浮力</b>是流体对浸没物体施加的<b>向上的净力</b>。它对抗物体的重力，来源是<b>压强随深度增加</b>——物体底部压强比顶部大，两侧压强抵消，净效果向上。</p>
+  <p>浮力的大小：</p>
+  <p class="formula">\(F_b=m_f g\)</p>
+  <ul>
+    <li>\(m_f\)：被物体<b>排开（displace）的流体</b>的质量；</li>
+    <li>即浮力<b>等于被排开流体的重量</b>。写成密度形式：\(F_b=\rho_{\text{fluid}}\,V_{\text{displaced}}\,g\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p6-2">6.2 漂浮 <span class="zh">Floating</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 漂浮条件</span>
+  <p>物体<b>漂浮</b>在流体中时，浮力大小等于物体重力：</p>
+  <p class="formula">\(F_b=F_g\)</p>
+  <p>等价地：物体重力<b>等于被它排开的流体的重量</b>：</p>
+  <p class="formula">\(F_g=m_f g\)</p>
+  <ul>
+    <li>漂浮物体排开的流体体积 <b>小于</b> 物体总体积（有一部分露出液面）；</li>
+    <li>船「能载多重」由它<b>排开水的最大重量</b>决定。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p6-3">6.3 视重 <span class="zh">Apparent Weight in a Fluid</span></h3>
+<div class="def box">
+  <span class="box-title">📌 视重 Apparent Weight</span>
+  <p>物体在流体中的<b>视重（apparent weight）</b>与它的实际重量、浮力之间满足：</p>
+  <p class="formula">\((\text{apparent weight})=(\text{actual weight})-(\text{buoyant force})\)</p>
+  <p class="formula">\(w_{\text{app}}=w-F_b\)</p>
+  <ul>
+    <li>即「称起来有多重」=「真实重量」减去「浮力」——水里搬石头比岸上轻，正是这个原因。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：密度 \(0.95\rho_0,\ 1\rho_0,\ 1.1\rho_0\) 的三个物体</span>
+  <p>把三个<b>体积相同</b>、密度分别为 \(0.95\rho_0,\ \rho_0,\ 1.1\rho_0\) 的物体放入密度为 \(\rho_0\) 的液体（如水）中（\(\rho_0\) 即液体密度）：</p>
+  <ul>
+    <li><b>\(0.95\rho_0\)（比液体轻）</b>：<b>漂浮</b>。浮力 \(F_b=F_g\)，排开液体的体积只有自身体积的 \(95\%\)，露出 \(5\%\)。</li>
+    <li><b>\(\rho_0\)（密度相等）</b>：<b>完全浸没且悬浮</b>——放在哪就停在哪，\(F_b=F_g\)，视重为零。</li>
+    <li><b>\(1.1\rho_0\)（比液体重）</b>：<b>下沉</b>。浮力只有 \(F_b=\rho_0 Vg\)，小于重力 \(F_g=1.1\rho_0 Vg\)，视重 \(w_{\text{app}}=0.1\rho_0 Vg&gt;0\)。</li>
+  </ul>
+  <p>结论：<b>物体密度 &lt; 液体密度 → 浮；= 液体密度 → 悬浮；&gt; 液体密度 → 沉</b>。浮力大小只取决于「排开液体的体积」，而浮沉取决于「密度谁大谁小」。</p>
+</div>
+</section>
+
+<section id="lec12-p7">
+<h2>Part 7 · 理想流体 <span class="zh">Ideal Fluids in Motion</span></h2>
+
+<h3 id="lec12-p7-1">7.1 理想流体的四个假设 <span class="zh">Four Assumptions of an Ideal Fluid</span></h3>
+<div class="def box">
+  <span class="box-title">📌 理想流体的四个假设</span>
+  <ul>
+    <li><b>稳流（steady flow）</b>：任一<b>固定点</b>处流体的速度<b>不随时间变化</b>（流线图案不变，但沿流线速度可以不同）。</li>
+    <li><b>不可压缩（incompressible flow）</b>：密度<b>恒定且均匀</b>（理想流体不可压缩）。</li>
+    <li><b>无黏性（nonviscous flow）</b>：黏性（viscosity）是流体「抵抗流动」程度的量度；理想流体<b>没有黏滞阻力</b>。</li>
+    <li><b>无旋（irrotational flow）</b>：放入的<b>测试体（如小桨轮）不会绕自身质心转动</b>——它可能沿圆周运动（像摩天轮上的座舱），但不自转。</li>
+  </ul>
+</div>
+<p>补充：真实流体中贴近固体表面的区域黏性不可忽略，属<b>黏性流（viscous flow）</b>；但在离壁较远的<b>无黏区（inviscid region）</b>，黏性力远小于惯性力/压力，令 \(\mu=0\) 可大大简化分析而精度损失很小。</p>
+
+<h3 id="lec12-p7-2">7.2 流线 <span class="zh">Streamlines</span></h3>
+<p><b>流线（streamline）</b>是流体中一小块流体元（fluid element）流动时经过的<b>路径</b>。流线上每点的<b>速度方向都与该处流线相切</b>。</p>
+<ul>
+  <li><b>两条流线永远不会相交</b>：若相交，则到达交点的流体元将<b>同时拥有两个不同的速度</b>——这是不可能的。</li>
+  <li>流线越密，流速越大。</li>
+</ul>
+
+<h3 id="lec12-p7-3">7.3 连续性方程 <span class="zh">The Equation of Continuity</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 连续性方程</span>
+  <p>对<b>不可压缩</b>流体，通过任一截面的<b>体积流量（volume flow rate）</b>必须恒定。在 \(\Delta t\) 内流过截面 1、2 的体积相同：</p>
+  <p class="formula">\(\Delta V=A_1 v_1\Delta t=A_2 v_2\Delta t\)</p>
+  <p>约去 \(\Delta t\)：</p>
+  <p class="formula">\(A_1 v_1=A_2 v_2\)</p>
+  <ul>
+    <li><b>体积流量</b>：\(R_v=Av=\text{常数}\)，单位 \(\text{m}^3/\text{s}\)（单位时间流过某点的体积）；</li>
+    <li><b>质量流量</b>：\(R_m=\rho Av=\text{常数}\)，单位 \(\text{kg/s}\)；</li>
+    <li><b>面积越小，速度越大</b>——水管捏细了，水就喷得更快（水「脖子」变细处流速增大，但体积流量不变）。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：水管变细</span>
+  <p>水以 \(v_1=2.0\ \text{m/s}\) 流过截面积 \(A_1=10\ \text{cm}^2\) 的粗管，进入 \(A_2=2.0\ \text{cm}^2\) 的细管。求细管流速。</p>
+  <p class="formula">\(v_2=\dfrac{A_1}{A_2}v_1=\dfrac{10}{2.0}\times2.0=10\ \text{m/s}\)</p>
+  <p>体积流量：\(R_v=A_1v_1=(10\times10^{-4})(2.0)=2.0\times10^{-3}\ \text{m}^3/\text{s}\)，粗细两段相同。</p>
+</div>
+</section>
+
+<section id="lec12-p8">
+<h2>Part 8 · 伯努利方程 <span class="zh">Bernoulli's Equation</span></h2>
+
+<h3 id="lec12-p8-1">8.1 伯努利方程 <span class="zh">Bernoulli's Equation</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 伯努利方程</span>
+  <p>对<b>稳流</b>的理想流体，沿任一条流线：</p>
+  <p class="formula">\(p+\tfrac{1}{2}\rho v^2+\rho g y=\text{常数}\)</p>
+  <p>即同一流线上两点：</p>
+  <p class="formula">\(p_1+\tfrac12\rho v_1^2+\rho g y_1=p_2+\tfrac12\rho v_2^2+\rho g y_2\)</p>
+  <ul>
+    <li>\(\tfrac12\rho v^2\)：流体的<b>动能密度</b>（单位体积的动能）；</li>
+    <li>\(\rho g y\)：流体的<b>重力势能密度</b>；</li>
+    <li>\(p\)：压强。三项之和沿流线守恒——这是<b>流体版的能量守恒</b>。</li>
+  </ul>
+</div>
+
+<h3 id="lec12-p8-2">8.2 推导：能量法 <span class="zh">Proof by Work-Energy</span></h3>
+<p>沿一根流管，取一小块流体从位置 1 流到位置 2。外力做的功等于动能增量：</p>
+<p class="formula">\(W=W_g+W_p=\Delta K\)</p>
+<ul>
+  <li><b>重力做的功</b>（重力对这块流体）：\(W_g=-\Delta m\,g(y_2-y_1)=-\rho\Delta V\,g(y_2-y_1)\)；</li>
+  <li><b>压力做的功</b>：入口处压强 \(p_1\) 推入做功 \(p_1\Delta V\)，出口处 \(p_2\) 反推做负功，故 \(W_p=p_1\Delta V-p_2\Delta V=-\Delta V(p_2-p_1)\)；</li>
+  <li><b>动能增量</b>：\(\Delta K=\tfrac12\Delta m\,v_2^2-\tfrac12\Delta m\,v_1^2=\tfrac12\rho\Delta V(v_2^2-v_1^2)\)。</li>
+</ul>
+<p>代入 \(W_g+W_p=\Delta K\)：</p>
+<p class="formula">\(-\rho\Delta V\,g(y_2-y_1)-\Delta V(p_2-p_1)=\tfrac12\rho\Delta V(v_2^2-v_1^2)\)</p>
+<p>约去 \(\Delta V\) 并整理，即得</p>
+<p class="formula">\(p_1+\tfrac12\rho v_1^2+\rho g y_1=p_2+\tfrac12\rho v_2^2+\rho g y_2.\)</p>
+
+<h3 id="lec12-p8-3">8.3 两个特例 <span class="zh">Two Special Cases</span></h3>
+<div class="def box">
+  <span class="box-title">📌 伯努利方程的两个特例</span>
+  <ul>
+    <li><b>静止流体（\(v_1=v_2=0\)）</b>：伯努利方程退化为静水压强公式
+      <p class="formula">\(p_2=p_1+\rho g(y_1-y_2)\)</p></li>
+    <li><b>同一高度（\(y_1=y_2\)）</b>：
+      <p class="formula">\(p_1+\tfrac12\rho v_1^2=p_2+\tfrac12\rho v_2^2\)</p>
+      <p>速度越大，压强越小——沿水平流线，流速增大处压强必减小，反之亦然。</p></li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：水平管道中的压强差</span>
+  <p>水平管道（\(y_1=y_2\)）中，水（\(\rho=1000\ \text{kg/m}^3\)）流速从 \(v_1=2.0\ \text{m/s}\) 增到 \(v_2=4.0\ \text{m/s}\)。压强降低多少？</p>
+  <p class="formula">\(p_1-p_2=\tfrac12\rho(v_2^2-v_1^2)=\tfrac12(1000)(4.0^2-2.0^2)=6.0\times10^3\ \text{Pa}\)</p>
+  <p>即细管处压强比粗管处低 \(6000\ \text{Pa}\)。</p>
+</div>
+
+<h3 id="lec12-p8-4">8.4 机翼升力 <span class="zh">Lift of an Airplane</span></h3>
+<p>伯努利方程解释了飞机为什么能飞。机翼上表面弧度大、空气流速<b>快</b>，由 \(p+\tfrac12\rho v^2=\text{常数}\) 知<b>上方压强小</b>；下表面空气流速<b>慢</b>，<b>下方压强大</b>。这个上下压强差产生向上的净力——<b>升力（lift）</b>，把飞机托起。流线越密处流速越大、压强越小。</p>
+
+<div class="toc">
+  <span class="toc-title">📑 本讲公式速查</span>
+  <ul>
+    <li><b>密度</b>：\(\rho=\dfrac{m}{V}\)（均匀时）。</li>
+    <li><b>压强</b>：\(p=\dfrac{F}{A}\)；\(1\ \text{atm}=1.01\times10^5\ \text{Pa}=760\ \text{torr}=14.7\ \text{lb/in}^2\)。</li>
+    <li><b>静水压强</b>：\(p=p_0+\rho gh\)（绝对压强）；表压 \(=\rho gh\)。</li>
+    <li><b>气压计</b>：\(p_0=\rho gh\)；<b>压力计</b>：\(p_g=p-p_0=\rho gh\)。</li>
+    <li><b>帕斯卡原理</b>：压强变化无衰减传递；\(p=p_{\text{ext}}+\rho gh\)。</li>
+    <li><b>液压杠杆</b>：\(\dfrac{F_i}{A_i}=\dfrac{F_o}{A_o}\)，\(A_i d_i=A_o d_o\)，\(W=F_i d_i=F_o d_o\)。</li>
+    <li><b>阿基米德原理</b>：\(F_b=m_f g=\rho_{\text{fluid}}V_{\text{displaced}}\,g\)；视重 \(w_{\text{app}}=w-F_b\)。</li>
+    <li><b>连续性方程</b>：\(A_1v_1=A_2v_2\)；\(R_v=Av\)，\(R_m=\rho Av\)。</li>
+    <li><b>伯努利方程</b>：\(p+\tfrac12\rho v^2+\rho g y=\text{常数}\)；特例 \(v=0\) → 静水压强；\(y\) 相同 → 流速大压强小。</li>
+  </ul>
+</div>
+
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>fluid</b> — 流体；<b>density</b> — 密度</li>
+    <li><b>pressure</b> — 压强；<b>pascal (Pa)</b> — 帕斯卡</li>
+    <li><b>atmospheric pressure</b> — 大气压；<b>torr</b> — 托（mmHg）</li>
+    <li><b>absolute pressure</b> — 绝对压强；<b>gauge pressure</b> — 表压</li>
+    <li><b>hydrostatic pressure</b> — 静水压强；<b>static equilibrium</b> — 静力平衡</li>
+    <li><b>barometer</b> — 气压计；<b>mercury barometer</b> — 水银气压计；<b>manometer</b> — 压力计</li>
+    <li><b>Pascal's principle</b> — 帕斯卡原理；<b>hydraulic lever</b> — 液压杠杆；<b>incompressible fluid</b> — 不可压缩流体</li>
+    <li><b>buoyant force</b> — 浮力；<b>Archimedes' principle</b> — 阿基米德原理；<b>apparent weight</b> — 视重</li>
+    <li><b>floating</b> — 漂浮；<b>displaced fluid</b> — 被排开的流体</li>
+    <li><b>ideal fluid</b> — 理想流体；<b>steady flow</b> — 稳流；<b>incompressible</b> — 不可压缩；<b>nonviscous</b> — 无黏性；<b>irrotational</b> — 无旋</li>
+    <li><b>viscosity</b> — 黏性；<b>viscous / inviscid flow</b> — 黏性流 / 无黏流</li>
+    <li><b>streamline</b> — 流线；<b>equation of continuity</b> — 连续性方程</li>
+    <li><b>volume flow rate</b> — 体积流量；<b>mass flow rate</b> — 质量流量</li>
+    <li><b>Bernoulli's equation</b> — 伯努利方程；<b>kinetic energy density</b> — 动能密度</li>
+    <li><b>lift</b> — 升力；<b>airplane wing</b> — 机翼</li>
+  </ul>
+</div>
+</section>
+
+</div><!-- /第12课 -->
+
+<!-- ============ 第13课 ============ -->
+<div class="lecture" id="lec13">
+<div class="lecture-banner">第13课 · Gravitation <span class="zh">（万有引力）</span></div>
+
+<section id="lec13-overview">
+  <h2>本讲概览 Overview</h2>
+  <p>上一讲我们在流体力学里打转（压强、阿基米德原理、伯努利方程）；这一讲回到力学中最「经典」的相互作用——<b>万有引力（gravitation）</b>。牛顿在 1665 年（23 岁）就意识到：把苹果拉向地面、把月亮拉在绕地轨道、把地球拉在绕日轨道的是<b>同一种力</b>，它遵循同一个平方反比定律 \(F=\dfrac{Gm_1m_2}{r^2}\)。</p>
+  <p>本讲主线分三层：先建立<b>万有引力定律</b>本身（大小、矢量形式、叠加原理、壳层定理）；再把它用到两类特殊场景——<b>地表附近的重力</b>（解释 \(g\) 与引力加速度 \(a_g\) 的差别）和<b>地球内部的引力</b>（线性回复力、简谐振动）；最后研究<b>引力势能与卫星轨道</b>——逃逸速度、黑洞、开普勒三定律。你会发现：开普勒的三大经验定律，其实是牛顿引力定律 + 角动量守恒的<b>必然结果</b>。</p>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec13-p1">Part 1 · 牛顿万有引力定律</a></li>
+      <li><a href="#lec13-p2">Part 2 · 叠加原理</a></li>
+      <li><a href="#lec13-p3">Part 3 · 壳层定理</a></li>
+      <li><a href="#lec13-p4">Part 4 · 地表附近的重力</a></li>
+      <li><a href="#lec13-p5">Part 5 · 地球内部</a></li>
+      <li><a href="#lec13-p6">Part 6 · 引力势能</a></li>
+      <li><a href="#lec13-p7">Part 7 · 逃逸速度与黑洞</a></li>
+      <li><a href="#lec13-p8">Part 8 · 卫星轨道与开普勒定律</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec13-p1">
+<h2>Part 1 · 牛顿万有引力定律 <span class="zh">Newton's Law of Gravitation</span></h2>
+
+<h3 id="lec13-p1-1">1.1 引力无处不在 <span class="zh">Gravitational Force</span></h3>
+<p>引力是自然界四种基本相互作用之一。它的身影无处不在：把你<b>拉在地面</b>，把<b>月亮拉在绕地球的轨道</b>上，把<b>地球拉在绕太阳的轨道</b>上；它把银河系里数不清的恒星、以及恒星之间的分子与尘埃束缚在一起。在极端情形下，引力还可能让恒星<b>向内坍缩</b>，最终形成<b>黑洞（black hole）</b>——表面的引力强到连<b>光都无法逃逸</b>。</p>
+<p>一句话：引力「试图」把整个宇宙聚在一起（尽管宇宙正在膨胀），而且直到今天，我们对它的理解仍然没有完全「穷尽」。</p>
+
+<h3 id="lec13-p1-2">1.2 万有引力定律 <span class="zh">Newton's Law of Gravitation</span></h3>
+<p>牛顿的引力定律关注<b>两个质点</b>（没有大小的点）之间的力。直觉上，两个物体之间的吸引取决于各自有多少「东西」（即<b>质量</b>），并且随距离增大而迅速减弱。</p>
+<div class="def box">
+  <span class="box-title">📌 万有引力定律（Newton's Law of Gravitation）</span>
+  <p>两个<b>质点</b>之间的引力大小，与两质量乘积成正比、与距离平方成反比：</p>
+  <p class="formula">\(F=\dfrac{Gm_1m_2}{r^2}\)</p>
+  <ul>
+    <li>\(G=6.67\times10^{-11}\ \text{N·m}^2/\text{kg}^2\) 是<b>引力常量（gravitational constant）</b>；</li>
+    <li>\(m_1,m_2\) 是两个质点的质量，\(r\) 是它们之间的<b>距离（separation）</b>；</li>
+    <li>\(G\) 极其小，所以两个日常物体之间的引力小到难以察觉，必须用精密仪器才能测到；只有天体级别的质量才让引力显得「巨大」。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p1-3">1.3 矢量形式 <span class="zh">Vector Form</span></h3>
+<p>要写成矢量，需要规定方向。引入沿 r 轴、量纲为 1、长度为 1 的<b>径向单位矢量（radial unit vector）</b> \(\hat r\)——取它从<b>受力质点指向施力质点</b>（也就是引力本身的方向）：</p>
+<div class="def box">
+  <span class="box-title">📌 矢量形式</span>
+  <p class="formula">\(\vec F=\dfrac{Gm_1m_2}{r^2}\,\hat r\)</p>
+  <ul>
+    <li>质点 2 对质点 1 的引力，方向沿 \(\hat r\)（从 1 指向 2，即<b>吸引力</b>）；</li>
+    <li>质点 1 对质点 2 的引力大小相同、方向相反——两者构成一对<b>牛顿第三定律的作用-反作用力对</b>；</li>
+    <li>引力<b>不能被其他物体屏蔽</b>：即使有第三个物体隔在中间，两质点间的引力大小也不改变（这一点与电磁力不同——电磁力可以被导体屏蔽）。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p1-4">1.4 G 的测量 <span class="zh">Measuring G</span></h3>
+<p>\(G\) 是实验室里最难测准的基本常量之一。要测 \(G\)，必须测量两个已知质量、已知距离的物体之间的引力——而实验室尺度的物体之间引力极小。科学家用<b>扭秤（torsion balance）</b>，通过测量悬丝的扭转角度来读出这个微小的力；<b>Cavendish 于 1798 年</b>用扭秤成功测出了 \(G\)。</p>
+</section>
+
+<section id="lec13-p2">
+<h2>Part 2 · 叠加原理 <span class="zh">Superposition</span></h2>
+
+<h3 id="lec13-p2-1">2.1 叠加原理 <span class="zh">Superposition</span></h3>
+<p>一个质点受多个质点引力时怎么办？答案是<b>叠加原理</b>：「净效果 = 各分效果之和」。</p>
+<div class="def box">
+  <span class="box-title">📌 叠加原理（Principle of Superposition）</span>
+  <p>n 个质点对质点 1 的净引力，是各个引力之<b>矢量和</b>：</p>
+  <p class="formula">\(\vec F_{1,\text{net}}=\vec F_{12}+\vec F_{13}+\cdots+\vec F_{1n}=\sum_{i=2}^{n}\vec F_{1i}\)</p>
+  <ul>
+    <li>\(\vec F_{1,\text{net}}\)：质点 1 所受的净引力；\(\vec F_{1i}\)：质点 \(i\) 对质点 1 的引力；</li>
+    <li>因为力是<b>矢量</b>，叠加必须按<b>分量</b>相加，不能只把大小直接加起来。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：三个质点的净引力</span>
+  <p>三个质点构成边长 \(a=2.0\ \text{cm}=0.020\ \text{m}\) 的等边三角形：质点 1 质量 \(m_1=6.0\ \text{kg}\)，质点 2、3 质量 \(m_2=m_3=4.0\ \text{kg}\)。求质点 1 所受的净引力。</p>
+  <p><b>解：</b>质点 2、3 对质点 1 的引力大小相等：</p>
+  <p class="formula">\(F_{12}=F_{13}=\dfrac{Gm_1m_2}{a^2}=\dfrac{(6.67\times10^{-11})(6.0)(4.0)}{(0.020)^2}=4.0\times10^{-6}\ \text{N}\)</p>
+  <p>两力方向关于对称轴夹角 \(60^\circ\)，其矢量和沿对称轴方向（指向 2、3 连线的中点）：</p>
+  <p class="formula">\(F_{1,\text{net}}=2F_{12}\cos 30^\circ=\sqrt{3}\,F_{12}=6.9\times10^{-6}\ \text{N}\)</p>
+</div>
+
+<h3 id="lec13-p2-2">2.2 连续物体 <span class="zh">Extended Objects</span></h3>
+<p>对于有大小、形状的真实物体，把物体切成许多<b>质量元 \(dm\)</b>，每个 \(dm\) 都可视为质点，再对所有微分力做<b>矢量积分</b>：</p>
+<div class="def box">
+  <span class="box-title">📌 连续物体的引力</span>
+  <p class="formula">\(\vec F_1=\int d\vec F\)</p>
+  <ul>
+    <li>若物体是<b>均匀球或均匀球壳</b>，积分有捷径——直接用<b>壳层定理（shell theorem）</b>；</li>
+    <li>严格说牛顿引力定律只对<b>质点</b>成立；对非质点物体，只要物体线度远小于物体间距离（如月亮与地球），也可直接当作质点处理。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec13-p3">
+<h2>Part 3 · 壳层定理 <span class="zh">Shell Theorem</span></h2>
+
+<h3 id="lec13-p3-1">3.1 壳外质点：质量集中球心 <span class="zh">Outside the Shell</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 壳层定理（Shell Theorem）——外部</span>
+  <p>一个<b>均匀球壳</b>对壳外质点的引力，等价于把<b>壳的全部质量集中在球心</b>的一个质点所产生的引力。</p>
+  <ul>
+    <li>地球可以看作一层层<b>同心球壳</b>嵌套而成，因此地球对地外物体的引力，也像质量集中在球心一样；</li>
+    <li>这就是为什么「苹果—地球」系统可以直接用 \(F=\dfrac{GMm}{r^2}\)，其中 \(r\) 从<b>地心</b>算起。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p3-2">3.2 壳内质点：合力为零 <span class="zh">Inside the Shell</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 壳层定理——内部受力为零</span>
+  <p>均匀球壳对其<b>内部</b>的质点，净引力为<b>零</b>。</p>
+  <ul>
+    <li>注意：这不是「力消失了」，而是壳上各质量元对内部质点的引力在<b>各个方向上互相抵消</b>，矢量之和为零；</li>
+    <li>推论：在地球内部某处，只有<b>半径小于 \(r\) 的那部分质量</b>对它产生净引力，外面所有壳层的贡献之和为零（这正是 Part 5 的基础）。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec13-p4">
+<h2>Part 4 · 地表附近的重力 <span class="zh">Gravitation Near Earth's Surface</span></h2>
+
+<h3 id="lec13-p4-1">4.1 引力加速度 <span class="zh">Gravitational Acceleration</span></h3>
+<p>假设地球是质量 \(M\) 的均匀球，它对（地表附近）质量 \(m\) 的引力为 \(F=\dfrac{GMm}{r^2}\)。若释放该质点，它在引力作用下的加速度称为<b>引力加速度（gravitational acceleration）</b>：</p>
+<p class="formula">\(a_g=\dfrac{F}{m}=\dfrac{GM}{r^2}\)</p>
+<p>这个 \(a_g\) 与平时测得的<b>自由落体加速度（free-fall acceleration）</b> \(g\approx9.8\ \text{m/s}^2\) <b>略有不同</b>。第 5 章里我们忽略地球自转、把地球当作惯性系，才有 \(a_g=g\)；严格地说两者并不相等。</p>
+
+<h3 id="lec13-p4-2">4.2 g 与 a_g 的三个差别 <span class="zh">Three Reasons</span></h3>
+<p>在给定地点测得的 \(g\) 之所以与 \(a_g\) 不同，有三个原因：</p>
+<ol>
+  <li><b>地球质量分布不均匀</b>：不同地区的地表 \(g\) 各不相同；</li>
+  <li><b>地球不是正球体，而是椭球（ellipsoid）</b>：沿海平面从赤道走向北极或南极，离地心越来越近，\(g\) 会<b>增大</b>；</li>
+  <li><b>地球在自转</b>：地面物体随地球转动，带有<b>向心加速度（centripetal acceleration）</b>，需要「分掉」一部分引力。</li>
+</ol>
+<p>NASA 的 GRACE 任务测出的地球重力场图上，红色表示 \(g\) 比理想光滑椭球的理论值大、蓝色表示小——直观展示了前两个原因造成的重力不均匀。</p>
+
+<h3 id="lec13-p4-3">4.3 自转修正 <span class="zh">Rotation Correction</span></h3>
+<p>在地球表面，物体受向下的引力 \(F_g=ma_g\) 和向上的支持力（即<b>视重</b>）\(F_N=mg\)，二者的合力提供随地球自转所需的向心加速度：</p>
+<div class="def box">
+  <span class="box-title">📌 自转修正：g 与 \(a_g\) 的关系</span>
+  <p class="formula">\(mg=ma_g-m\omega^2R\)</p>
+  <p>两边约去 \(m\)：</p>
+  <p class="formula">\(g=a_g-\omega^2R\)</p>
+  <ul>
+    <li><b>自由落体加速度 = 引力加速度 − 向心加速度</b>；</li>
+    <li>赤道上 \(R\) 最大，差值最大：\(\omega^2R=\left(\dfrac{2\pi}{24\times3600}\right)^2\times6.37\times10^6=0.034\ \text{m/s}^2\)；</li>
+    <li>与 \(9.8\ \text{m/s}^2\) 相比很小，所以<b>通常忽略</b> \(g\) 与 \(a_g\) 的差别（也就忽略视重与引力的差别）是合理的。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec13-p5">
+<h2>Part 5 · 地球内部 <span class="zh">Gravitation Inside Earth</span></h2>
+
+<h3 id="lec13-p5-1">5.1 地球内部的引力 <span class="zh">Inside Earth</span></h3>
+<p>在地球内部距地心 \(r\)（\(r&lt;R\)）处，壳层定理告诉我们：所有半径大于 \(r\) 的外层壳对质点净力为零，只有半径 \(r\) 以内的质量 \(M_{\text{ins}}\) 有贡献。设地球密度均匀：</p>
+<div class="thm box">
+  <span class="box-title">🎯 地球内部的引力</span>
+  <p class="formula">\(M_{\text{ins}}=\dfrac{4}{3}\pi r^3\rho=\dfrac{r^3}{R^3}M\)</p>
+  <p class="formula">\(F=\dfrac{GmM_{\text{ins}}}{r^2}=\dfrac{GmM}{R^3}\,r\)</p>
+  <ul>
+    <li>在地表（\(r=R\)）\(F\) 最大；越往里走 \(F\) 越小，地心处 \(F=0\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p5-2">5.2 线性回复力与简谐振动 <span class="zh">SHM Inside Earth</span></h3>
+<p>把上面的力写成矢量（\(\vec r\) 是从地心指向质点的位矢），得到<b>线性回复力</b>：</p>
+<p class="formula">\(\vec F=-K\,\vec r,\qquad K=\dfrac{GmM}{R^3}\)</p>
+<p>力和 \(\vec r\) 反向、大小随 \(r\) 线性减小——这正好是<b>弹簧振子（简谐运动）</b>的形式。也就是说，如果在南极与北极之间打一条贯穿地心的隧道，让一个小舱掉进去，它会像「物块连在弹簧上」一样，在地心两侧<b>来回简谐振动</b>。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例：穿过地心的振动周期</span>
+  <p>由 \(\omega^2=\dfrac{K}{m}=\dfrac{GM}{R^3}\)，周期为：</p>
+  <p class="formula">\(T=\dfrac{2\pi}{\omega}=2\pi\sqrt{\dfrac{R^3}{GM}}\)</p>
+  <p>代入 \(g=\dfrac{GM}{R^2}\) 得 \(T=2\pi\sqrt{\dfrac{R}{g}}=2\pi\sqrt{\dfrac{6.37\times10^6}{9.8}}\approx5.1\times10^3\ \text{s}\approx84\ \text{min}\)——这个周期和贴着地面飞行的卫星周期<b>一样</b>，并非巧合。</p>
+</div>
+</section>
+
+<section id="lec13-p6">
+<h2>Part 6 · 引力势能 <span class="zh">Gravitational Potential Energy</span></h2>
+
+<h3 id="lec13-p6-1">6.1 引力势能 <span class="zh">Gravitational Potential Energy</span></h3>
+<p>第 8 章讨论的是地表附近引力近似恒定时的势能 \(U=mgy\)；现在处理一般的（远离地球的）情形。</p>
+<div class="def box">
+  <span class="box-title">📌 引力势能（Gravitational Potential Energy）</span>
+  <p>质量为 \(M\) 与 \(m\)、相距 \(r\) 的两质点体系，其引力势能为：</p>
+  <p class="formula">\(U=-\dfrac{GMm}{r}\)</p>
+  <ul>
+    <li><b>约定</b> \(r=\infty\) 时 \(U=0\)（参考点取在无穷远）；</li>
+    <li>任意<b>有限距离</b>处 \(U\) 都是<b>负的</b>——因为把两个质点从无穷远「拉到」有限距离，引力做<b>正</b>功，势能必然下降为负值。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p6-2">6.2 证明：从 P 到无穷远 <span class="zh">Proof of U</span></h3>
+<p>把一个质量 \(m\) 的质点从距地心 \(R\) 的 P 点沿径向直接推到无穷远，引力做的功为（引力沿径向朝内，径向分量是 \(-GMm/r^2\)）：</p>
+<p class="formula">\(W=\int_R^\infty -\dfrac{GMm}{r^2}\,dr=\left[\dfrac{GMm}{r}\right]_R^\infty=0-\dfrac{GMm}{R}=-\dfrac{GMm}{R}\)</p>
+<p>由保守力的功-能关系 \(\Delta U=-W\)：</p>
+<p class="formula">\(U(\infty)-U(R)=-W=\dfrac{GMm}{R}\)</p>
+<p>而 \(U(\infty)=0\)，所以 \(U(R)=-\dfrac{GMm}{R}\)。证毕。</p>
+
+<h3 id="lec13-p6-3">6.3 由势能求力 <span class="zh">Force from U</span></h3>
+<div class="def box">
+  <span class="box-title">📌 由势能求力</span>
+  <p>一维情形下，力是势能对距离的<b>负导数</b>：</p>
+  <p class="formula">\(F=-\dfrac{dU}{dr}=-\dfrac{d}{dr}\left(-\dfrac{GMm}{r}\right)=-\dfrac{GMm}{r^2}\)</p>
+  <ul>
+    <li>负号表示力指向 \(M\)（沿 \(r\) 减小的方向），即<b>吸引力</b>；</li>
+    <li>这与第 8 章的 \(F_x=-\dfrac{dU}{dx}\) 完全一致，只是现在 \(U\) 随 \(r\)（而非高度）变化。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p6-4">6.4 路径无关与多质点体系 <span class="zh">Path Independence &amp; Many Particles</span></h3>
+<div class="def box">
+  <span class="box-title">📌 路径无关与多质点体系</span>
+  <p>引力是<b>保守力（conservative force）</b>：从 A 到 B，无论走哪条路径，引力做功都一样（沿不同折线走时，垂直于径向的水平段不做功，只剩径向段的贡献）。因此 \(\Delta U\) 也与路径无关。</p>
+  <p>多质点体系的总势能，等于<b>每一对质点</b>的势能之和（逐对相加）：</p>
+  <p class="formula">\(U=-\left(\dfrac{Gm_1m_2}{r_{12}}+\dfrac{Gm_1m_3}{r_{13}}+\dfrac{Gm_2m_3}{r_{23}}\right)\)</p>
+  <ul>
+    <li>注意 \(U\) 是整个<b>体系</b>的性质，不是某一个质点单独的性质；</li>
+    <li>当 \(M\gg m\)（如地球—棒球），体系势能的变化几乎全部表现为棒球动能的变化，所以常简说「棒球的势能」。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec13-p7">
+<h2>Part 7 · 逃逸速度与黑洞 <span class="zh">Escape Speed and Black Holes</span></h2>
+
+<h3 id="lec13-p7-1">7.1 逃逸速度 <span class="zh">Escape Speed</span></h3>
+<p>从行星表面向上发射一个抛体，通常它会减速、暂时停下、再落回来。存在一个<b>最小初速度</b>，让抛体「永远向上飞、理论上只在无穷远停下」——这就是<b>逃逸速度（escape speed）</b>。</p>
+<div class="thm box">
+  <span class="box-title">🎯 逃逸速度（Escape Speed）</span>
+  <p>由能量守恒：无穷远处动能、势能都为零，而发射瞬间总能量也要为零：</p>
+  <p class="formula">\(K+U=\tfrac12 mv^2-\dfrac{GMm}{R}=0\)</p>
+  <p class="formula">\(v=\sqrt{\dfrac{2GM}{R}}\)</p>
+  <ul>
+    <li>逃逸速度<b>与发射方向无关</b>（能量守恒只看初末态）；</li>
+    <li>沿行星<b>自转方向</b>发射可以「借用」地表随自转的速度，更容易达到这个值。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：地球的逃逸速度</span>
+  <p>取 \(M=5.97\times10^{24}\ \text{kg}\)、\(R=6.37\times10^6\ \text{m}\)：</p>
+  <p class="formula">\(v=\sqrt{\dfrac{2GM}{R}}=\sqrt{\dfrac{2(6.67\times10^{-11})(5.97\times10^{24})}{6.37\times10^6}}\approx1.12\times10^4\ \text{m/s}\approx11.2\ \text{km/s}\)</p>
+  <p>即每秒约 11.2 km 的初速度才能彻底脱离地球引力（对比：近地卫星的环绕速度只有约 7.9 km/s，见 Part 8）。</p>
+</div>
+
+<h3 id="lec13-p7-2">7.2 黑洞与史瓦西半径 <span class="zh">Black Holes &amp; Schwarzschild Radius</span></h3>
+<p>对黑洞，不能简单地把逃逸速度公式里的 \(v\) 换成光速 \(c\) 来讨论——那需要广义相对论。Schwarzschild 用爱因斯坦广义相对论给出：若「逃逸速度」达到光速，对应的半径是：</p>
+<div class="def box">
+  <span class="box-title">📌 黑洞与史瓦西半径（Schwarzschild Radius）</span>
+  <p class="formula">\(c=\sqrt{\dfrac{2GM}{R_s}}\quad\Longrightarrow\quad R_s=\dfrac{2GM}{c^2}\)</p>
+  <ul>
+    <li>\(R_s\) 称为<b>史瓦西半径（Schwarzschild radius）</b>；</li>
+    <li>以 \(R_s\) 为半径的球面称为<b>视界（event horizon）</b>：视界之内连光都无法逃逸，外面的人看不见里面的任何东西。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec13-p8">
+<h2>Part 8 · 卫星轨道与开普勒定律 <span class="zh">Satellites and Kepler's Laws</span></h2>
+
+<h3 id="lec13-p8-1">8.1 圆轨道：力与能量 <span class="zh">Circular Orbits</span></h3>
+<p>卫星绕地球做半径为 \(r\) 的匀速圆周运动，引力提供向心力。</p>
+<div class="thm box">
+  <span class="box-title">🎯 圆轨道：力、能与能量关系</span>
+  <p class="formula">\(\dfrac{GMm}{r^2}=\dfrac{mv^2}{r}\)</p>
+  <p>轨道速度决定了动能，半径 \(r\) 决定了势能：</p>
+  <p class="formula">\(K=\tfrac12 mv^2=\dfrac{GMm}{2r},\qquad U=-\dfrac{GMm}{r}\)</p>
+  <p class="formula">\(E=K+U=-\dfrac{GMm}{2r}=-K\)</p>
+  <ul>
+    <li>圆轨道卫星的<b>总机械能 = 动能的负值</b>（\(E=-K\)），且为<b>负</b>——负的总能量表示卫星被「束缚」在地球周围；</li>
+    <li>这就是为什么给卫星「加速」反而会降低其总能量 \(E\)（更负），半径变小。</li>
+  </ul>
+</div>
+
+<h3 id="lec13-p8-2">8.2 轨道周期 <span class="zh">Orbital Period</span></h3>
+<p>匀速圆周运动 \(v=\dfrac{2\pi r}{T}\)，代入 \(v=\sqrt{\dfrac{GM}{r}}\)：</p>
+<div class="thm box">
+  <span class="box-title">🎯 轨道周期（Period）</span>
+  <p class="formula">\(T=\dfrac{2\pi r^{3/2}}{\sqrt{GM}}\quad\Longleftrightarrow\quad T^2=\dfrac{4\pi^2}{GM}\,r^3\)</p>
+  <p>对<b>椭圆轨道</b>（半长轴 \(a\)），把 \(r\) 换成 \(a\)：</p>
+  <p class="formula">\(E=-\dfrac{GMm}{2a},\qquad T^2=\dfrac{4\pi^2}{GM}\,a^3\)</p>
+  <ul>
+    <li>轨道总机械能<b>只取决于半长轴 \(a\)</b>，与偏心率 \(e\) 无关；</li>
+    <li>\(T^2/a^3\) 只与中心天体质量 \(M\) 有关，是一个常量。</li>
+  </ul>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：贴着地面飞行的卫星</span>
+  <p>取 \(r\approx R\)，则 \(v=\sqrt{\dfrac{GM}{R}}=\sqrt{gR}\approx\sqrt{9.8\times6.37\times10^6}\approx7.9\ \text{km/s}\)，周期：</p>
+  <p class="formula">\(T=\dfrac{2\pi R}{v}=2\pi\sqrt{\dfrac{R}{g}}\approx84\ \text{min}\)</p>
+  <p>这就是「第一宇宙速度」与近地卫星周期的量级——约 7.9 km/s 环绕、约 84 分钟一圈。</p>
+</div>
+
+<h3 id="lec13-p8-3">8.3 开普勒三定律 <span class="zh">Kepler's Laws</span></h3>
+<p>开普勒（1571–1630）用毕生的观测数据，归纳出行星绕太阳运动的三条<b>经验</b>定律（对绕地球的天然/人造卫星同样成立）：</p>
+<div class="def box">
+  <span class="box-title">📌 开普勒三定律（Kepler's Laws）</span>
+  <ol>
+    <li><b>轨道定律（law of orbits）</b>：所有行星沿<b>椭圆</b>轨道运动，太阳在椭圆的一个<b>焦点</b>上。椭圆用<b>半长轴 \(a\)</b> 与<b>偏心率 \(e\)</b> 描述：\(e=0\) 是圆，地球轨道 \(e=0.0167\)（接近圆）；<b>近日点（perihelion）</b>离太阳最近，<b>远日点（aphelion）</b>最远。</li>
+    <li><b>面积定律（law of areas）</b>：行星与太阳的连线在<b>相等时间内扫过相等面积</b>：\(\dfrac{dA}{dt}=\dfrac12 r^2\omega=\dfrac{L}{2m}\) 为常量。原因是引力始终沿 \(\vec r\) 方向、对太阳的力矩为零（\(\vec r\parallel\vec F\)），所以行星关于太阳的<b>角动量 \(L\) 守恒</b>。由此行星在近日点最快、远日点最慢。</li>
+    <li><b>周期定律（law of periods）</b>：周期的平方与半长轴的立方成正比：\(T^2=\dfrac{4\pi^2}{GM}a^3\)。</li>
+  </ol>
+</div>
+<p>一句话总结：面积定律 = <b>角动量守恒</b>，周期定律 = <b>引力 + 向心力</b>的必然结果——开普勒的「经验」背后，正是牛顿引力定律。</p>
+
+<h3 id="lec13-p8-4">8.4 行星运动与质心 <span class="zh">Planetary Motion &amp; COM</span></h3>
+<p><b>行星运动与质心：</b>严格地说，太阳与行星都绕它们<b>共同的质心（COM）</b>转动；只是 \(M\gg m\) 时质心几乎在太阳中心，才近似说「行星绕太阳转」。牛顿分析行星运动的意义在于：<b>天上的物体和地上的物体服从同一套运动定律</b>——宇宙不再是神秘的禁区，而是日常世界的直接延伸。</p>
+<p><b>爱因斯坦等效原理（principle of equivalence）：</b>引力与加速<b>等效</b>。一个人被锁在密闭箱子里，无法区分箱子是静止在地球表面、还是在星际空间以 \(9.8\ \text{m/s}^2\) 加速——他感觉到的「重力」、体重秤读数、以及物体落下的相对加速度都完全相同。</p>
+
+  <div class="toc">
+    <span class="toc-title">📑 本讲公式速查</span>
+    <p class="formula">\(F=\dfrac{Gm_1m_2}{r^2},\qquad \vec F=\dfrac{Gm_1m_2}{r^2}\,\hat r\)</p>
+    <p class="formula">\(\vec F_{1,\text{net}}=\sum_{i=2}^{n}\vec F_{1i},\qquad \vec F_1=\int d\vec F\)</p>
+    <p class="formula">\(a_g=\dfrac{GM}{r^2},\qquad g=a_g-\omega^2R\)</p>
+    <p class="formula">\(F=\dfrac{GmM}{R^3}\,r=-K r,\qquad K=\dfrac{GmM}{R^3}\)</p>
+    <p class="formula">\(U=-\dfrac{GMm}{r},\qquad F=-\dfrac{dU}{dr}\)</p>
+    <p class="formula">\(v_{\text{esc}}=\sqrt{\dfrac{2GM}{R}},\qquad R_s=\dfrac{2GM}{c^2}\)</p>
+    <p class="formula">\(K=\dfrac{GMm}{2r},\quad U=-\dfrac{GMm}{r},\quad E=-\dfrac{GMm}{2r}=-K\)</p>
+    <p class="formula">\(T^2=\dfrac{4\pi^2}{GM}r^3\ \ (\text{椭圆用 }a^3),\qquad \dfrac{dA}{dt}=\dfrac{L}{2m}\)</p>
+  </div>
+
+  <div class="vocab">
+    <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+    <ul>
+      <li><b>gravitation</b> — 万有引力；<b>gravitational constant</b> — 引力常量</li>
+      <li><b>superposition</b> — 叠加原理；<b>shell theorem</b> — 壳层定理</li>
+      <li><b>radial unit vector</b> — 径向单位矢量；<b>free-fall acceleration</b> — 自由落体加速度</li>
+      <li><b>gravitational acceleration</b> — 引力加速度；<b>centripetal acceleration</b> — 向心加速度</li>
+      <li><b>gravitational potential energy</b> — 引力势能；<b>conservative force</b> — 保守力</li>
+      <li><b>escape speed</b> — 逃逸速度；<b>black hole</b> — 黑洞</li>
+      <li><b>Schwarzschild radius</b> — 史瓦西半径；<b>event horizon</b> — 视界</li>
+      <li><b>satellite</b> — 卫星；<b>elliptical orbit</b> — 椭圆轨道</li>
+      <li><b>semi-major axis</b> — 半长轴；<b>eccentricity</b> — 偏心率</li>
+      <li><b>perihelion</b> — 近日点；<b>aphelion</b> — 远日点</li>
+      <li><b>Kepler's laws</b> — 开普勒定律；<b>law of areas</b> — 面积定律；<b>law of periods</b> — 周期定律</li>
+      <li><b>angular momentum conservation</b> — 角动量守恒</li>
+    </ul>
+  </div>
+</section>
+</div><!-- /第13课 -->
+
+<!-- ============ 第14课 ============ -->
+<div class="lecture" id="lec14">
+<div class="lecture-banner">第14课 · Periodic Motion <span class="zh">（周期运动·简谐振动）</span></div>
+
+<section id="lec14-overview">
+  <h2>本讲概览 Overview</h2>
+  <p>上一讲（第 13 课）我们处理了万有引力——从牛顿万有引力定律、球壳定理，到引力势能与开普勒定律。这一讲我们回到「力与运动」中最核心的一类问题：<b>周期运动（periodic motion）</b>。如果一个物体围绕某个平衡位置反复来回运动，并且运动随时间周期性重复，它就是<b>振动（oscillation）</b>。本讲从最简单的理想情形——<b>简谐运动（simple harmonic motion, SHM）</b>出发，建立起「恢复力 \(F=-kx\)」这一整章的地基，然后依次讨论它的位移、速度、加速度、能量，以及它与匀速圆周运动的关系；最后推广到角振动（扭摆、单摆、物理摆）和更真实的阻尼振动与受迫共振。</p>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec14-p1">Part 1 · 振动与描述</a></li>
+      <li><a href="#lec14-p2">Part 2 · 简谐运动</a></li>
+      <li><a href="#lec14-p3">Part 3 · 速度与加速度</a></li>
+      <li><a href="#lec14-p4">Part 4 · SHM 与匀速圆周运动</a></li>
+      <li><a href="#lec14-p5">Part 5 · SHM 的能量</a></li>
+      <li><a href="#lec14-p6">Part 6 · 判断 SHM 的法则</a></li>
+      <li><a href="#lec14-p7">Part 7 · 角 SHM 与摆</a></li>
+      <li><a href="#lec14-p8">Part 8 · 阻尼与受迫振动</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec14-p1">
+<h2>Part 1 · 振动与描述 <span class="zh">Oscillation</span></h2>
+
+<h3 id="lec14-p1-1">1.1 振动 <span class="zh">Oscillation</span></h3>
+<p><b>振动（oscillation）</b>是物体反复来回运动的过程，任何以周期性方式重复自身的运动都可以叫做周期运动。生活与工程中随处可见：摆（pendulum）的来回摆动、分子围绕其平衡位置的振动、弹簧上的物块、乐器琴弦、建筑里的质量阻尼器……振动在物理与工程中都极其重要。</p>
+<p>要发生振动，系统必须有一个「平衡位置」（equilibrium position），并且当物体偏离平衡位置时，存在一个把它拉回平衡位置的力——这就是下一小节要讲的恢复力。</p>
+
+<h3 id="lec14-p1-2">1.2 恢复力与振幅 <span class="zh">Restoring Force and Amplitude</span></h3>
+<p>我们把物体在 \(x\) 轴上围绕原点（平衡位置）来回运动的位移记作 \(x\)，它是<b>偏离平衡位置的位移</b>。弹簧的力总是倾向于把物体拉回平衡位置，这种力叫<b>恢复力（restoring force）</b>：</p>
+<div class="def box">
+  <span class="box-title">📌 恢复力 restoring force</span>
+  <p class="formula">\(F=-kx\)</p>
+  <ul>
+    <li>负号表示力的方向始终与位移 \(x\) 相反，总是指向平衡位置；</li>
+    <li>\(k\) 是弹簧的劲度系数（spring constant）；</li>
+    <li>只有存在恢复力，振动才会发生。</li>
+  </ul>
+</div>
+<p>如果假设<b>没有摩擦</b>，物体就会以相同的最大位移 \(\pm A\)（也写作 \(\pm x_m\)）永远振动下去。<b>振幅（amplitude）\(x_m\)</b> 定义为相对平衡点的<b>最大位移</b>：它是振动的「幅度」，决定了振动的剧烈程度，但（我们马上会看到）不影响周期。</p>
+
+<h3 id="lec14-p1-3">1.3 周期、频率、角频率 <span class="zh">Period, Frequency, Angular Frequency</span></h3>
+<p>描述振动「快慢」的有三个等价量。设物体从 \(x_m\to 0\to -x_m\to 0\to x_m\) 完成一次完整循环：</p>
+<div class="def box">
+  <span class="box-title">📌 周期、频率、角频率</span>
+  <ul>
+    <li><b>周期（period）\(T\)</b>：完成一次完整循环所需的时间，单位秒（s）；</li>
+    <li><b>频率（frequency）\(f\)</b>：单位时间内的循环次数，\(f=\dfrac{1}{T}\)，单位赫兹（Hz），\(1\,\text{Hz}=1\,\text{s}^{-1}\)；</li>
+    <li><b>角频率（angular frequency）\(\omega\)</b>：\(\omega=2\pi f=\dfrac{2\pi}{T}\)，单位 rad/s。</li>
+  </ul>
+</div>
+<p>一句话总结：\(T\) 问「一次多久」，\(f\) 问「一秒几次」，\(\omega\) 是它们的「弧度版」——三者知其一即可求其余。</p>
+</section>
+
+<section id="lec14-p2">
+<h2>Part 2 · 简谐运动 <span class="zh">Simple Harmonic Motion</span></h2>
+
+<h3 id="lec14-p2-1">2.1 SHM 定义 <span class="zh">Definition of SHM</span></h3>
+<p>所有振动里最简单、也最重要的一种，是恢复力<b>正比于位移且方向相反</b>的振动：</p>
+<div class="def box">
+  <span class="box-title">📌 简谐运动 simple harmonic motion (SHM)</span>
+  <p class="formula">\(F_x=-kx\)</p>
+  <ul>
+    <li>恢复力正比于偏离平衡位置的位移 \(x\)，方向相反；</li>
+    <li>做 SHM 的物体叫<b>谐振子（harmonic oscillator）</b>，理想模型是弹簧–物块系统；</li>
+    <li>大多数真实振动在<b>小振幅</b>下都近似为 SHM——这是它如此重要的原因。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p2-2">2.2 运动方程推导 <span class="zh">Deriving the Equation of Motion</span></h3>
+<p>把 \(F=-kx\) 代入牛顿第二定律 \(F=ma=m\dfrac{d^2x}{dt^2}\)：</p>
+<div class="thm box">
+  <span class="box-title">🎯 SHM 的动力学方程</span>
+  <p class="formula">\(m\dfrac{d^2x}{dt^2}=-kx \quad\Rightarrow\quad m\dfrac{d^2x}{dt^2}+kx=0\)</p>
+</div>
+<p>这是一个二阶线性微分方程。用试探解 \(x=Ae^{i(\omega t+\phi)}\) 代回：对时间求两次导得 \(\dfrac{d^2x}{dt^2}=-\omega^2 A e^{i(\omega t+\phi)}=-\omega^2 x\)，代入原方程：</p>
+<p class="formula">\(-m\omega^2 x + kx = 0 \quad\Rightarrow\quad -m\omega^2 + k = 0 \quad\Rightarrow\quad \omega=\sqrt{\dfrac{k}{m}}\)</p>
+<p>也就是说，只要系统是「弹簧 + 质量」，它的角频率就完全由 \(\sqrt{k/m}\) 决定——与振幅无关。</p>
+
+<h3 id="lec14-p2-3">2.3 位移函数 <span class="zh">Displacement Function</span></h3>
+<p>SHM 的位移是时间的<b>正弦型函数</b>（写成正弦或余弦皆可，通常取余弦）：</p>
+<div class="def box">
+  <span class="box-title">📌 SHM 的位移函数</span>
+  <p class="formula">\(x(t)=x_m\cos(\omega t+\phi)\)</p>
+  <p class="formula">\(T=\dfrac{1}{f}=\dfrac{2\pi}{\omega}=2\pi\sqrt{\dfrac{m}{k}}\)</p>
+  <ul>
+    <li>物体在 \(+x_m\) 与 \(-x_m\) 之间振荡；</li>
+    <li><b>周期与振幅无关</b>，只由 \(m\) 和 \(k\) 决定；</li>
+    <li>\(k\) 大（弹簧硬）→ \(\omega\) 大 → \(T\) 小，振动快。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p2-4">2.4 相位常数 φ <span class="zh">Phase Constant</span></h3>
+<p><b>相位常数（phase constant）\(\phi\)</b> 描述的是 \(t=0\) 时刻物体处于振动周期的哪个位置，它由<b>初始条件</b>决定。例如：</p>
+<ul>
+  <li>若 \(t=0\) 时物体恰好在正的最大位移处（\(x=x_m\)），代入 \(x(0)=x_m\cos\phi=x_m\)，得 \(\phi=0\) rad；</li>
+  <li>若 \(t=0\) 时物体在平衡位置且向正方向运动，则 \(\phi=-\pi/2\)（此时 \(x(t)=x_m\sin\omega t\)）。</li>
+</ul>
+<p>一句话总结：振幅 \(x_m\) 回答「振多大」，角频率 \(\omega\) 回答「振多快」，相位 \(\phi\) 回答「从哪开始振」。</p>
+</section>
+
+<section id="lec14-p3">
+<h2>Part 3 · 速度与加速度 <span class="zh">Velocity and Acceleration</span></h2>
+
+<h3 id="lec14-p3-1">3.1 速度 <span class="zh">Velocity</span></h3>
+<p>速度是位移对时间的导数：</p>
+<div class="def box">
+  <span class="box-title">📌 SHM 的速度</span>
+  <p class="formula">\(v(t)=\dfrac{dx}{dt}=-\omega x_m\sin(\omega t+\phi)\)</p>
+  <ul>
+    <li><b>速度振幅（velocity amplitude）</b>：\(v_m=\omega x_m\)，是速度能达到的最大值；</li>
+    <li>当 \(x=0\)（过平衡点）时速度最大；</li>
+    <li>速度的大小与方向在振动过程中不断变化。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p3-2">3.2 加速度 <span class="zh">Acceleration</span></h3>
+<p>加速度是速度的导数，也即位移的二阶导数：</p>
+<div class="def box">
+  <span class="box-title">📌 SHM 的加速度</span>
+  <p class="formula">\(a(t)=\dfrac{dv}{dt}=-\omega^2 x_m\cos(\omega t+\phi)=-\omega^2 x(t)\)</p>
+  <ul>
+    <li><b>加速度振幅（acceleration amplitude）</b>：\(a_m=\omega^2 x_m\)；</li>
+    <li>加速度<b>始终与位移反向</b>、大小与位移成正比：\(a=-\omega^2 x\)（这正是 \(F=ma=-kx\) 的必然结果）；</li>
+    <li>比例常数是角频率的平方 \(\omega^2\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p3-3">3.3 相位关系 <span class="zh">Phase Relations</span></h3>
+<p>位移、速度、加速度都是正弦型函数，只是相位彼此错开：</p>
+<div class="thm box">
+  <span class="box-title">🎯 相位关系</span>
+  <ul>
+    <li>\(v\) 比 \(x\) <b>超前 \(\pi/2\)</b>（余弦变成负正弦）；</li>
+    <li>\(a\) 比 \(x\) <b>超前 \(\pi\)</b>（即与 \(x\) 反相）；</li>
+    <li><b>最大速度</b>（正或负）发生在物块冲过原点（\(x=0\)）时；</li>
+    <li><b>最大加速度</b>（正或负）发生在物块到达路径端点（\(x=\pm x_m\)）时。</li>
+  </ul>
+</div>
+<p>直觉图像：物块过中点时「最快但不急」，在端点时「最慢但被拉得最狠」。</p>
+</section>
+
+<section id="lec14-p4">
+<h2>Part 4 · SHM 与匀速圆周运动 <span class="zh">SHM and Uniform Circular Motion</span></h2>
+
+<h3 id="lec14-p4-1">4.1 投影关系 <span class="zh">Projection</span></h3>
+<p>一个非常漂亮的几何图像：让一个点 \(P'\) 以恒定角速度 \(\omega\) 做<b>匀速圆周运动（uniform circular motion, UCM）</b>，初始角位置为 \(\phi\)。把它投影到圆的某条直径（取 \(x\) 轴）上，投影点的运动就恰好是简谐运动。</p>
+<div class="thm box">
+  <span class="box-title">🎯 SHM 是匀速圆周运动在直径上的投影</span>
+  <p class="formula">\(x(t)=x_m\cos[\theta(t)]=x_m\cos(\omega t+\phi)\)</p>
+  <p class="formula">\(v_x=-\omega x_m\sin(\omega t+\phi)\)</p>
+  <p class="formula">\(a_x=-\omega^2 x_m\cos(\omega t+\phi)\)</p>
+  <ul>
+    <li>\(x_m\) 就是圆周运动的半径 \(R\)，\(\omega\) 就是圆周运动的角速度；</li>
+    <li>速度投影：圆周运动的切向速度 \(v=\omega R=\omega x_m\)，其在 \(x\) 轴的分量就是 \(v_x\)；</li>
+    <li>加速度投影：向心加速度 \(a=\omega^2 R=\omega^2 x_m\)，其在 \(x\) 轴的分量就是 \(a_x\)。</li>
+  </ul>
+</div>
+<p>也就是说，无论看位移、速度还是加速度，匀速圆周运动的投影都是 SHM。这个图像也解释了为什么 \(\omega\) 被称作「角频率」，以及为什么相位用「角度」来度量。</p>
+</section>
+
+<section id="lec14-p5">
+<h2>Part 5 · SHM 的能量 <span class="zh">Energy in SHM</span></h2>
+
+<h3 id="lec14-p5-1">5.1 势能与动能 <span class="zh">Potential and Kinetic Energy</span></h3>
+<p>线性谐振子的势能完全储存在弹簧中。把 \(x(t)\)、\(v(t)\) 代入 \(U=\tfrac12 kx^2\)、\(K=\tfrac12 mv^2\)：</p>
+<div class="def box">
+  <span class="box-title">📌 SHM 的能量</span>
+  <p class="formula">\(U(t)=\tfrac12 kx^2=\tfrac12 kx_m^2\cos^2(\omega t+\phi)\)</p>
+  <p class="formula">\(K(t)=\tfrac12 mv^2=\tfrac12 m\omega^2 x_m^2\sin^2(\omega t+\phi)=\tfrac12 kx_m^2\sin^2(\omega t+\phi)\)</p>
+  <p>（最后一步用了 \(\omega^2=k/m\)，即 \(m\omega^2=k\)。）</p>
+</div>
+
+<h3 id="lec14-p5-2">5.2 机械能守恒 <span class="zh">Conservation of Mechanical Energy</span></h3>
+<p>把两项相加，利用 \(\cos^2+\sin^2=1\)：</p>
+<div class="thm box">
+  <span class="box-title">🎯 SHM 机械能守恒</span>
+  <p class="formula">\(E=U+K=\tfrac12 kx_m^2[\cos^2(\omega t+\phi)+\sin^2(\omega t+\phi)]=\tfrac12 kx_m^2\)</p>
+  <ul>
+    <li>总机械能是<b>常数</b>，不随时间变化；</li>
+    <li>它只取决于初始条件——即最大拉伸 \(x_m\)；</li>
+    <li>因为系统中只有保守力（弹簧力），总能量守恒。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p5-3">5.3 能量随时间/位移的分布 <span class="zh">Energy Distribution</span></h3>
+<ul>
+  <li>物块在<b>端点</b>（弹簧最大拉伸处，\(x=\pm x_m\)）时：势能最大、动能为零；</li>
+  <li>物块冲过<b>中点</b>（\(x=0\)）时：动能最大、势能为零；</li>
+  <li>总能量在时间与位移上都是常数，能量只在 \(U\) 与 \(K\) 之间来回「搬家」。</li>
+</ul>
+
+<h3 id="lec14-p5-4">5.4 例题：高楼质量阻尼器 <span class="zh">Example: Mass Damper</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：高楼质量阻尼器的能量与速度</span>
+  <p>许多高楼装有<b>质量阻尼器（mass damper）</b>来抑制风致摆动。设物块质量 \(m=2.72\times 10^{5}\,\text{kg}\)，设计振动频率 \(f=10.0\,\text{Hz}\)，振幅 \(x_m=20.0\,\text{cm}=0.20\,\text{m}\)。求：(a) 系统总机械能 \(E\)；(b) 物块过平衡点时的速度。</p>
+  <p><b>解：</b>先求角频率与劲度系数：</p>
+  <p class="formula">\(\omega=2\pi f=2\pi(10.0)=62.83\,\text{rad/s},\qquad k=m\omega^2=2.72\times10^{5}\times(62.83)^2\approx1.07\times10^{9}\,\text{N/m}\)</p>
+  <p>(a) 总机械能：</p>
+  <p class="formula">\(E=\tfrac12 kx_m^2=\tfrac12(1.07\times10^{9})(0.20)^2\approx2.15\times10^{7}\,\text{J}\)</p>
+  <p>(b) 过平衡点时速度最大：</p>
+  <p class="formula">\(v_m=\omega x_m=62.83\times0.20\approx12.6\,\text{m/s}\)</p>
+</div>
+</section>
+
+<section id="lec14-p6">
+<h2>Part 6 · 判断 SHM 的法则 <span class="zh">Rules to Distinguish SHM</span></h2>
+
+<h3 id="lec14-p6-1">6.1 四条判据 <span class="zh">Four Criteria</span></h3>
+<p>要判断一个运动是不是 SHM，四条判据<b>等价</b>，满足任意一条即可：</p>
+<div class="thm box">
+  <span class="box-title">🎯 判断 SHM 的四条法则</span>
+  <table class="truth">
+    <thead><tr><th>判据</th><th>表达式</th></tr></thead>
+    <tbody>
+      <tr><td>恢复力</td><td>\(F=-kx\)</td></tr>
+      <tr><td>加速度</td><td>\(a=-\omega^2 x\)</td></tr>
+      <tr><td>动力学方程</td><td>\(\dfrac{d^2x}{dt^2}+\omega^2 x=0\)</td></tr>
+      <tr><td>运动学方程</td><td>\(x(t)=x_m\cos(\omega t+\phi)\)</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>用法：遇到一个具体系统，先写出恢复力或力矩（或列出牛顿方程），若能化成 \(a=-\omega^2 x\) 的形式，就说明它是 SHM，且角频率 \(\omega\) 就是 \(x\) 前面那个系数开根号。</p>
+</section>
+
+<section id="lec14-p7">
+<h2>Part 7 · 角 SHM 与摆 <span class="zh">Angular SHM and Pendulums</span></h2>
+
+<h3 id="lec14-p7-1">7.1 扭摆 <span class="zh">Torsion Pendulum</span></h3>
+<p>把「弹簧」换成「悬丝」，就得到<b>扭摆（torsion pendulum）</b>。把圆盘转过角位移 \(\theta\) 后释放，它会在平衡位置附近做<b>角简谐运动</b>。悬丝的恢复力矩满足「角形式的胡克定律」：</p>
+<div class="def box">
+  <span class="box-title">📌 扭摆</span>
+  <p class="formula">\(\tau=-\kappa\theta\)</p>
+  <p class="formula">\(\theta=\Theta\cos(\omega t+\phi),\qquad \omega=\sqrt{\dfrac{\kappa}{I}},\qquad T=2\pi\sqrt{\dfrac{I}{\kappa}}\)</p>
+  <ul>
+    <li>\(\kappa\)（kappa）是<b>扭转常数（torsion constant）</b>，取决于悬丝的长度、直径与材料；</li>
+    <li>\(I\) 是振动圆盘的转动惯量；</li>
+    <li>应用：测出周期 \(T\)，即可由已知物体的 \(I\) 反推<b>未知物体的转动惯量</b>。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p7-2">7.2 单摆 <span class="zh">Simple Pendulum</span></h3>
+<p><b>单摆（simple pendulum）</b>：质量 \(m\) 的质点悬在长为 \(L\) 的不可伸长、无质量的轻绳一端。当角位移为 \(\theta\) 时，重力提供的恢复力矩为 \(\tau=L F_g\sin\theta\)（\(F_g=mg\)），由 \(\tau=I\alpha\) 得：</p>
+<div class="thm box">
+  <span class="box-title">🎯 单摆的小角 SHM</span>
+  <p class="formula">\(\alpha=-\dfrac{mgL}{I}\sin\theta \;\approx\;-\dfrac{mgL}{I}\theta \quad\Rightarrow\quad \omega=\sqrt{\dfrac{mgL}{I}}\)</p>
+  <p>对单摆 \(I=mL^2\)，于是：</p>
+  <p class="formula">\(T=2\pi\sqrt{\dfrac{L}{g}}\)</p>
+  <ul>
+    <li>周期只与绳长 \(L\) 和重力加速度 \(g\) 有关，<b>与质量无关</b>；</li>
+    <li>只有小角摆动才是 SHM。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p7-3">7.3 小角近似 <span class="zh">Small-Angle Approximation</span></h3>
+<p>单摆公式用到 \(\sin\theta\approx\theta\)，这要求 \(\theta\ll 1\)（弧度制）。这个近似到底在多大角度内可靠？</p>
+<div class="def box">
+  <span class="box-title">📌 小角近似 sin θ ≈ θ</span>
+  <table class="truth">
+    <thead><tr><th>θ（度）</th><th>θ（弧度）</th><th>sin θ</th><th>误差</th></tr></thead>
+    <tbody>
+      <tr><td>5°</td><td>0.087</td><td>0.087</td><td>≈0</td></tr>
+      <tr><td>10°</td><td>0.174</td><td>0.174</td><td>≈0</td></tr>
+      <tr><td>15°</td><td>0.262</td><td>0.259</td><td>约 1%</td></tr>
+      <tr><td>20°</td><td>0.349</td><td>0.342</td><td>约 2%</td></tr>
+    </tbody>
+  </table>
+  <p>结论：保持 \(\theta<15^\circ\) 即为「小角」，近似足够好（误差 &lt;1%）。</p>
+</div>
+
+<h3 id="lec14-p7-4">7.4 物理摆 <span class="zh">Physical Pendulum</span></h3>
+<p><b>物理摆（physical pendulum）</b>：质量分布复杂的刚体绕支点 O 摆动。与单摆唯一的区别在于用「质心到支点的距离 \(h\)」代替绳长 \(L\)：</p>
+<div class="def box">
+  <span class="box-title">📌 物理摆</span>
+  <p class="formula">\(\alpha\approx-\dfrac{mgh}{I}\theta \quad\Rightarrow\quad T=2\pi\sqrt{\dfrac{I}{mgh}}\)</p>
+  <ul>
+    <li>\(I\) 是刚体绕支点 O 的转动惯量，\(h\) 是质心（COG）到支点的距离；</li>
+    <li>周期取决于 \(I\) 与 \(h\)，<b>与质量无关</b>；</li>
+    <li>若支点恰在质心（\(h=0\)），则根本不摆动。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p7-5">7.5 例题：米尺物理摆 <span class="zh">Example: Meter Stick</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：绕一端摆动的米尺</span>
+  <p>一根长 \(L=1.0\,\text{m}\) 的米尺绕一端的支点摆动，支点到质心距离 \(h=L/2\)。求：(a) 摆动周期 \(T\)；(b) 等周期的单摆长度 \(L_0\)。</p>
+  <p><b>解：</b>质量沿全长分布，所以是物理摆。绕端点的转动惯量 \(I=\tfrac13 mL^2\)，\(h=L/2\)：</p>
+  <p class="formula">\(T=2\pi\sqrt{\dfrac{I}{mgh}}=2\pi\sqrt{\dfrac{\tfrac13 mL^2}{mg\cdot\tfrac12 L}}=2\pi\sqrt{\dfrac{2L}{3g}}=2\pi\sqrt{\dfrac{2(1.0)}{3(9.8)}}\approx1.64\,\text{s}\)</p>
+  <p>(b) 令单摆周期相等：</p>
+  <p class="formula">\(T=2\pi\sqrt{\dfrac{L_0}{g}}=2\pi\sqrt{\dfrac{2L}{3g}} \quad\Rightarrow\quad L_0=\dfrac{2L}{3}=0.667\,\text{m}=66.7\,\text{cm}\)</p>
+  <p>注意：等周期单摆的长度 \(L_0=\tfrac23 L\) 比米尺本身的长度短——米尺与同长单摆的周期并不相同。</p>
+</div>
+</section>
+
+<section id="lec14-p8">
+<h2>Part 8 · 阻尼与受迫振动 <span class="zh">Damped and Forced Oscillations</span></h2>
+
+<h3 id="lec14-p8-1">8.1 阻尼力 <span class="zh">Damping Force</span></h3>
+<p>真实振动总会因外界阻力而逐渐减弱，这种振动叫<b>阻尼振动（damped oscillation）</b>。常见的阻尼力（如液体/空气阻力）与速度反向、大小成正比：</p>
+<div class="def box">
+  <span class="box-title">📌 阻尼力 damping force</span>
+  <p class="formula">\(\vec F_d=-b\vec v\)</p>
+  <ul>
+    <li>\(b\) 是<b>阻尼常数（damping constant）</b>，取决于阻尼装置与流体的特性，SI 单位 kg/s；</li>
+    <li>阻尼过程中机械能不断转化为热能。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p8-2">8.2 阻尼振动方程 <span class="zh">Damped Oscillation Equation</span></h3>
+<p>把阻尼力与弹簧力一起代入牛顿第二定律（\(-bv-kx=ma\)）：</p>
+<div class="thm box">
+  <span class="box-title">🎯 阻尼振动方程与解</span>
+  <p class="formula">\(m\dfrac{d^2x}{dt^2}+b\dfrac{dx}{dt}+kx=0\)</p>
+  <p class="formula">\(x(t)=x_m e^{-bt/2m}\cos(\omega' t+\phi),\qquad \omega'=\sqrt{\dfrac{k}{m}-\dfrac{b^2}{4m^2}}\)</p>
+  <ul>
+    <li>振幅 \(x_m e^{-bt/2m}\) 随时间<b>指数衰减</b>；</li>
+    <li>有阻尼的角频率 \(\omega'\) 比无阻尼的 \(\omega=\sqrt{k/m}\) 略小。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p8-3">8.3 三种阻尼 <span class="zh">Three Types of Damping</span></h3>
+<p>按阻尼常数 \(b\) 与临界值 \(2\sqrt{km}\) 的大小关系，分三种情形：</p>
+<div class="def box">
+  <span class="box-title">📌 三种阻尼情形</span>
+  <table class="truth">
+    <thead><tr><th>条件</th><th>名称</th><th>行为</th></tr></thead>
+    <tbody>
+      <tr><td>\(b=0\)</td><td>无阻尼 undamped</td><td>等幅简谐振动</td></tr>
+      <tr><td>\(b<2\sqrt{km}\)</td><td>欠阻尼 underdamping</td><td>振幅逐渐衰减的振动</td></tr>
+      <tr><td>\(b=2\sqrt{km}\)</td><td>临界阻尼 critical damping</td><td>不振荡、最快回到平衡</td></tr>
+      <tr><td>\(b>2\sqrt{km}\)</td><td>过阻尼 overdamping</td><td>不振荡、缓慢回到平衡</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>一句话：欠阻尼「晃着停下来」，临界阻尼「最快速地停住」，过阻尼「慢慢爬回平衡」。</p>
+
+<h3 id="lec14-p8-4">8.4 阻尼能量 <span class="zh">Damped Energy</span></h3>
+<p>阻尼振动中机械能不再是常数，随时间指数衰减：</p>
+<div class="def box">
+  <span class="box-title">📌 阻尼振动的能量</span>
+  <p class="formula">\(E(t)\approx\tfrac12 kx_m^2 e^{-bt/m}\)</p>
+  <ul>
+    <li>能量按 \(e^{-bt/m}\) 衰减，衰减速率是振幅（\(e^{-bt/2m}\)）的两倍；</li>
+    <li>能量损失率 \(\dfrac{dE}{dt}=-bv^2\)，与速度平方成正比。</li>
+  </ul>
+</div>
+
+<h3 id="lec14-p8-5">8.5 受迫振动与共振 <span class="zh">Forced Oscillation and Resonance</span></h3>
+<p>给振动系统加一个周期性的<b>驱动力（driving force）</b>，就成为<b>受迫振动（forced/driven oscillation）</b>。系统会以<b>驱动力的角频率 \(\omega_d\)</b>振动（而不是自己的自然频率）：\(x(t)=x_m\cos(\omega_d t+\phi)\)。</p>
+<div class="thm box">
+  <span class="box-title">🎯 共振 resonance</span>
+  <ul>
+    <li>当驱动频率 \(\omega_d=\omega\)（系统的<b>自然频率 natural frequency</b>）时，位移振幅与<b>速度振幅最大</b>——这就是<b>共振（resonance）</b>；</li>
+    <li>共振时振幅可能非常大，足以摧毁结构；</li>
+    <li>实例：1831 年英国 Broughton 吊桥因士兵齐步走（机械共振）而坍塌，此后英军下令过桥「便步走」（break step）。</li>
+  </ul>
+</div>
+
+  <div class="toc">
+    <span class="toc-title">📑 本讲公式速查</span>
+    <p class="formula">\(x(t)=x_m\cos(\omega t+\phi)\)</p>
+    <p class="formula">\(v(t)=-\omega x_m\sin(\omega t+\phi),\quad v_m=\omega x_m\)</p>
+    <p class="formula">\(a(t)=-\omega^2 x(t),\quad a_m=\omega^2 x_m\)</p>
+    <p class="formula">\(\omega=\sqrt{\dfrac{k}{m}},\quad T=2\pi\sqrt{\dfrac{m}{k}}\)</p>
+    <p class="formula">\(E=U+K=\tfrac12 kx_m^2\)</p>
+    <p class="formula">扭摆 \(T=2\pi\sqrt{\dfrac{I}{\kappa}}\)；单摆 \(T=2\pi\sqrt{\dfrac{L}{g}}\)；物理摆 \(T=2\pi\sqrt{\dfrac{I}{mgh}}\)</p>
+    <p class="formula">阻尼：\(x(t)=x_m e^{-bt/2m}\cos(\omega' t+\phi),\quad \omega'=\sqrt{\dfrac{k}{m}-\dfrac{b^2}{4m^2}}\)</p>
+    <p class="formula">共振条件：\(\omega_d=\omega\)</p>
+  </div>
+
+  <div class="vocab">
+    <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+    <ul>
+      <li><b>oscillation</b> — 振动；<b>periodic motion</b> — 周期运动</li>
+      <li><b>restoring force</b> — 恢复力；<b>amplitude</b> — 振幅</li>
+      <li><b>period</b> — 周期；<b>frequency</b> — 频率；<b>angular frequency</b> — 角频率</li>
+      <li><b>simple harmonic motion (SHM)</b> — 简谐运动；<b>harmonic oscillator</b> — 谐振子</li>
+      <li><b>phase constant</b> — 相位常数；<b>uniform circular motion</b> — 匀速圆周运动</li>
+      <li><b>torsion pendulum</b> — 扭摆；<b>torsion constant</b> — 扭转常数</li>
+      <li><b>simple pendulum</b> — 单摆；<b>physical pendulum</b> — 物理摆</li>
+      <li><b>small-angle approximation</b> — 小角近似</li>
+      <li><b>damping</b> — 阻尼；<b>damping constant</b> — 阻尼常数</li>
+      <li><b>underdamping / critical damping / overdamping</b> — 欠阻尼 / 临界阻尼 / 过阻尼</li>
+      <li><b>forced oscillation</b> — 受迫振动；<b>driving force</b> — 驱动力</li>
+      <li><b>resonance</b> — 共振；<b>natural frequency</b> — 自然频率</li>
+    </ul>
+  </div>
+</section>
+</div><!-- /第14课 -->
+
+<!-- ============ 第15课 ============ -->
+<div class="lecture" id="lec15">
+<div class="lecture-banner">第15课 · Mechanical Waves <span class="zh">（机械波）</span></div>
+
+<section id="lec15-overview">
+  <h2>本讲概览 Overview</h2>
+  <p>上一讲我们研究的是<b>单个质点</b>的振动：简谐运动 SHM、阻尼振动与受迫振动/共振。这一讲把视野从一个质元扩展到一整条介质：当振动在<b>空间中传播</b>、把能量从一处带到另一处时，就形成了<b>波（wave）</b>。波传播的是<b>能量与振动状态</b>，介质质元本身只在原地振动、并不随波迁移——这是理解波的第一直觉。</p>
+  <p>本章主线是一条龙：先认识波的三类（电磁波/物质波/机械波）与横波、纵波之分，再建立描述波的函数 \(y(x,t)\)，由行波导出<b>波动方程</b> \(\dfrac{1}{v^2}\dfrac{\partial^2 y}{\partial t^2}=\dfrac{\partial^2 y}{\partial x^2}\)；接着聚焦最常用的<b>正弦波</b>，厘清振幅、波长、周期、频率、相位常数，并重点区分<b>波速 \(v\)</b>（相位传播速度，由介质决定）与<b>质点速度 \(u\)</b>（质元自身振动速度）；然后回答波速由什么决定（绳上 \(v=\sqrt{\tau/\mu}\)）、波沿绳传输多少功率（\(P_{avg}=\tfrac12\mu v\,\omega^2y_m^2\)）；最后研究两列波的<b>叠加与干涉</b>，以及相向传播产生的<b>驻波</b>与<b>共振</b>——这正是吉他弦、管乐器发声的物理基础。</p>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec15-p1">波与类型</a></li>
+      <li><a href="#lec15-p2">行波方程</a></li>
+      <li><a href="#lec15-p3">正弦波</a></li>
+      <li><a href="#lec15-p4">波速与质点速度</a></li>
+      <li><a href="#lec15-p5">绳上的波速</a></li>
+      <li><a href="#lec15-p6">波的能量与功率</a></li>
+      <li><a href="#lec15-p7">叠加与干涉</a></li>
+      <li><a href="#lec15-p8">驻波与共振</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec15-p1">
+<h2>Part 1 · 波与类型 <span class="zh">Waves and Types</span></h2>
+
+<h3 id="lec15-p1-1">1.1 波：在空间中传播的振荡 <span class="zh">Wave</span></h3>
+<p>想象一条拉直的绳，用手上下抖动一端：你看到一个「鼓包」沿绳跑向另一端，而绳上的每个质元只是上下振动、并没有跟着跑过去。这个鼓包就是<b>波</b>。讲话、听音乐、收音机收到的无线电波，本质上都是某种振荡在空间中的传播。</p>
+<div class="def box">
+  <span class="box-title">📌 波 Wave</span>
+  <p>任何<b>在空间中传播</b>、把<b>能量</b>从一处传到另一处的振荡（oscillation）。</p>
+  <ul>
+    <li>波传播的是<b>能量与振动状态</b>，介质质元本身只在平衡位置附近振动，<b>不随波迁移</b>；</li>
+    <li>振荡随时间如何演化，由<b>波动方程</b>（wave equation）描述。</li>
+  </ul>
+</div>
+
+<h3 id="lec15-p1-2">1.2 三类波 <span class="zh">Three Types of Waves</span></h3>
+<p>按「满足哪条物理规律」和「是否需要介质」来分，波有三大类：<b>电磁波</b>满足麦克斯韦方程，无需任何介质，在真空中都以同一光速传播；<b>物质波</b>满足薛定谔/狄拉克方程，是量子力学中粒子的描述；<b>机械波</b>由牛顿定律支配，只能在材料介质中存在——本讲研究的就是机械波。</p>
+<table class="truth">
+  <thead><tr><th>类型</th><th>满足的规律</th><th>介质</th><th>例子</th></tr></thead>
+  <tbody>
+    <tr><td>电磁波<br><span class="zh">electromagnetic wave</span></td><td>麦克斯韦方程 Maxwell's equations</td><td>无需介质</td><td>可见光、无线电波、X 射线</td></tr>
+    <tr><td>物质波<br><span class="zh">matter wave</span></td><td>薛定谔/狄拉克方程 Schrödinger/Dirac</td><td>—（量子描述）</td><td>电子、质子、原子、分子</td></tr>
+    <tr><td>机械波<br><span class="zh">mechanical wave</span></td><td>牛顿定律 Newton's laws</td><td>只能在介质中</td><td>水波、声波、地震波</td></tr>
+  </tbody>
+</table>
+<p>电磁波在真空中全部以同一速度传播：\(c=299\,792\,458\ \mathrm{m/s}\)。</p>
+
+<h3 id="lec15-p1-3">1.3 横波与纵波 <span class="zh">Transverse and Longitudinal Waves</span></h3>
+<p>机械波按「质元振动方向与波传播方向的关系」再分两类：振动方向<b>垂直于</b>传播方向的是<b>横波</b>（如绳上的波）；振动方向<b>平行于</b>传播方向的是<b>纵波</b>（如声波，介质在传播方向上被压缩、拉伸）。</p>
+<div class="def box">
+  <span class="box-title">📌 横波与纵波</span>
+  <ul>
+    <li><b>横波 transverse wave</b>：质元振荡方向<b>垂直于</b>波的传播方向；</li>
+    <li><b>纵波 longitudinal wave</b>：质元振荡方向<b>平行于</b>波的传播方向。</li>
+  </ul>
+  <p>注意：水波（water wave）是混合的——水面质元既有纵向位移分量、也有横向位移分量（推平木板前后移动时，水的位移同时含纵、横两种成分）。</p>
+</div>
+</section>
+
+<section id="lec15-p2">
+<h2>Part 2 · 行波方程 <span class="zh">Wave Equation</span></h2>
+
+<h3 id="lec15-p2-1">2.1 波的描述函数 <span class="zh">Describing a Wave</span></h3>
+<p>要描述绳上的波，需要一个给出<b>波形</b>的函数。记 \(y=f(x,t)\)：其中 \(y\) 是<b>某一质元</b>在 \(t\) 时刻、位置 \(x\) 处的<b>横向位移</b>（transverse displacement）。在 \(t=0\) 时刻波形是 \(y=f(x,0)=f(x)\)；到 \(t\) 时刻，波形整体平移，仍由同一函数 \(f\) 描述，只是自变量换成平移后的坐标。</p>
+
+<h3 id="lec15-p2-2">2.2 行波 <span class="zh">Traveling Wave</span></h3>
+<p><b>行波（traveling wave）</b>指波形以速度 \(v\) 整体平移、从一个点传到另一个点的波。波向右移动时，把 \(x\) 换成 \(x-vt\) 就能跟上同一个波形：\(f(x-vt)=f(x')\)，其中 \(x'\) 是「跟随波形」的坐标。</p>
+<div class="def box">
+  <span class="box-title">📌 行波 Traveling Wave</span>
+  <p class="formula">\(y(x,t)=h(x\pm vt)\)</p>
+  <ul>
+    <li>\(h(x-vt)\)：波形向 \(+x\) 方向（向右）传播；</li>
+    <li>\(h(x+vt)\)：波形向 \(-x\) 方向（向左）传播；</li>
+    <li>波形以速度 \(v\) 平移而<b>形状不变</b>——质元本身不随波移动。</li>
+  </ul>
+</div>
+
+<h3 id="lec15-p2-3">2.3 波动方程 <span class="zh">Wave Equation</span></h3>
+<p>把 \(y=h(x\pm vt)\) 对 \(t\)、对 \(x\) 各求两次导数（链式法则），两次导数之间正好相差一个 \(v^2\) 因子。也就是说，<b>所有行波</b>都满足同一个微分方程：</p>
+<div class="thm box">
+  <span class="box-title">🎯 波动方程</span>
+  <p class="formula">\(\dfrac{1}{v^2}\dfrac{\partial^2 y}{\partial t^2}=\dfrac{\partial^2 y}{\partial x^2}\)</p>
+  <p>这是行波的「身份证明」：任何函数 \(h(x\pm vt)\) 代入都成立，其中 \(v\) 就是波速。反过来，波动方程还给了我们<b>另一个求波速的途径</b>（见 Part 5）。</p>
+</div>
+
+<h3 id="lec15-p2-4">2.4 波长 <span class="zh">Wavelength</span></h3>
+<p><b>周期波（periodic wave）</b>沿传播方向在空间上重复自己的形状。<b>波长 λ</b> 就是沿传播方向、相邻两次形状重复之间的<b>最小距离</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 波长 Wavelength</span>
+  <p>波长 \(\lambda\)：周期波沿传播方向<b>重复</b>自己的最小距离（平行于传播方向量度）。</p>
+</div>
+</section>
+
+<section id="lec15-p3">
+<h2>Part 3 · 正弦波 <span class="zh">Sinusoidal Waves</span></h2>
+
+<h3 id="lec15-p3-1">3.1 正弦波函数 <span class="zh">Sinusoidal Wave Function</span></h3>
+<p>最重要的周期波是<b>正弦波（sinusoidal wave）</b>——它同时给出两个信息：固定某一位置 \(x\)，看该质元<b>随时间</b>的位移变化；固定某一时刻 \(t\)，看整条绳<b>此刻的形状</b>。任何复杂波形都可以由不同频率的正弦波叠加而成（傅里叶分解），所以把正弦波吃透是本章核心。</p>
+<div class="def box">
+  <span class="box-title">📌 正弦波函数</span>
+  <p class="formula">\(y(x,t)=y_m\sin(kx-\omega t)\)</p>
+  <ul>
+    <li>固定 \(x\)：给出该质元位移随<b>时间</b>的变化（质元做简谐运动）；</li>
+    <li>固定 \(t\)：给出该时刻整条波的<b>形状</b>。</li>
+  </ul>
+</div>
+
+<h3 id="lec15-p3-2">3.2 振幅与波数 <span class="zh">Amplitude and Angular Wave Number</span></h3>
+<p><b>振幅 \(y_m\)</b> 是质元相对平衡点的<b>最大位移</b>。<b>角波数 \(k\)</b>（angular wave number，单位 rad/m）则与波长联系：把 \(x\) 平移一个波长 \(\lambda\)，波形必须复原，即</p>
+<p class="formula">\(y_m\sin(kx_2)=y_m\sin\!\big(k(x_2+\lambda)\big)\ \Rightarrow\ k\lambda=2\pi\ \Rightarrow\ k=\dfrac{2\pi}{\lambda}\)</p>
+<p>直观理解：波数 \(k\) 是「每米多少个弧度」的空间频率——\(\lambda\) 越长，单位长度内装的波形越少，\(k\) 越小。</p>
+<div class="def box">
+  <span class="box-title">📌 振幅与角波数</span>
+  <p class="formula">\(k=\dfrac{2\pi}{\lambda}\quad(\mathrm{rad/m})\)</p>
+  <p>振幅 \(y_m\)：质元相对平衡点的最大位移；角波数 \(k\)：空间上的「角频率」。</p>
+</div>
+
+<h3 id="lec15-p3-3">3.3 周期与频率 <span class="zh">Period and Frequency</span></h3>
+<p>固定位置 \(x=0\)，该处质元的位移是 \(y=y_m\sin(-\omega t)=-y_m\sin(\omega t)\)——这正是<b>简谐运动 SHM</b>（上一讲的结论）。于是角频率、周期、频率的关系照搬 SHM：</p>
+<div class="def box">
+  <span class="box-title">📌 周期与频率</span>
+  <p class="formula">\(\omega=\dfrac{2\pi}{T}=2\pi f\)</p>
+  <ul>
+    <li><b>周期 \(T\)</b>：任一质元完成一次完整振荡所需的时间；</li>
+    <li><b>频率 \(f\)</b>：单位时间内的振荡次数，\(f=1/T\)；</li>
+    <li>\(\omega\) 是波的<b>角频率</b>（rad/s）。</li>
+  </ul>
+</div>
+
+<h3 id="lec15-p3-4">3.4 相位常数 <span class="zh">Phase Constant</span></h3>
+<p>波未必在 \(x=0,\,t=0\) 处恰好位移为零，更一般的写法带上<b>相位常数 \(\phi\)</b>：</p>
+<p class="formula">\(y(x,t)=y_m\sin(kx-\omega t+\phi)\)</p>
+<div class="def box">
+  <span class="box-title">📌 相位常数 Phase Constant</span>
+  <p>相位常数 \(\phi\) 决定波形在 \(x\) 轴上的初始偏移，其余各项不变：</p>
+  <ul>
+    <li>\(\phi&gt;0\)：曲线向 \(x\) 轴<b>负方向</b>平移；</li>
+    <li>\(\phi&lt;0\)：曲线向 \(x\) 轴<b>正方向</b>平移。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec15-p4">
+<h2>Part 4 · 波速与质点速度 <span class="zh">Wave Speed</span></h2>
+
+<h3 id="lec15-p4-1">4.1 波速 <span class="zh">Wave Speed</span></h3>
+<p>波形上每一个点都保持自己的位移不变（跟着波形走）。对正弦波，即相位不变：\(kx-\omega t=\mathrm{const}\)。两边对 \(t\) 求导：\(k\dfrac{dx}{dt}-\omega=0\)，于是</p>
+<div class="thm box">
+  <span class="box-title">🎯 波速 Wave Speed</span>
+  <p class="formula">\(v=\dfrac{dx}{dt}=\dfrac{\omega}{k}=\dfrac{\lambda}{T}=\lambda f\)</p>
+  <p>若波向负方向传播，相位是 \(kx+\omega t=\mathrm{const}\)，则 \(v=\dfrac{dx}{dt}=-\dfrac{\omega}{k}\)（带负号）。一般地，任意形状的波都可写成 \(y=h(kx\pm\omega t)\)。</p>
+</div>
+
+<h3 id="lec15-p4-2">4.2 质点速度与加速度 <span class="zh">Particle Velocity and Acceleration</span></h3>
+<p>质元自身的<b>横向速度 \(u\)</b> 是固定 \(x\)、只对 \(t\) 求偏导；加速度再求一次：</p>
+<div class="def box">
+  <span class="box-title">📌 质点速度与加速度</span>
+  <p class="formula">\(u=\dfrac{\partial y}{\partial t}=-\omega y_m\cos(kx-\omega t)\)</p>
+  <p class="formula">\(a_y=\dfrac{\partial^2 y}{\partial t^2}=-\omega^2 y_m\sin(kx-\omega t)=-\omega^2 y\)</p>
+  <p>加速度与位移成正比、反向，形式与 SHM 完全一致（上一讲的 \(a=-\omega^2x\)）。由此也能反查波动方程：\(\dfrac{\partial^2 y}{\partial x^2}=-k^2y\)，两式相除得 \(\dfrac{\partial^2y/\partial t^2}{\partial^2y/\partial x^2}=\dfrac{-\omega^2y}{-k^2y}=\dfrac{\omega^2}{k^2}=v^2\)。</p>
+</div>
+
+<h3 id="lec15-p4-3">4.3 两个速度之别 <span class="zh">Two Velocities</span></h3>
+<div class="warn box">
+  <span class="box-title">⚠️ 波速 vs 质点速度</span>
+  <p>一个行波里同时存在<b>两个速度</b>，千万别混：</p>
+  <ul>
+    <li><b>波速 \(v\)</b>：<b>常数</b>，是波形/相位的传播速度，由<b>介质性质</b>决定（见 Part 5）；</li>
+    <li><b>质点速度 \(u\)</b>：是 \(x,t\) 的<b>函数</b>，是介质质元自身的横向振动速度，最大值 \(u_m=\omega y_m\)。</li>
+  </ul>
+  <p>一句话：\(v\) 是「鼓包跑多快」，\(u\) 是「绳上的点上下动多快」。</p>
+</div>
+
+<h3 id="lec15-p4-4">4.4 例题：读波函数 <span class="zh">Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：由 \(y=0.00327\sin(72.1x-2.72t)\) 求波的全部参数</span>
+  <p>已知一列沿绳传播的波 \(y(x,t)=0.00327\sin(72.1x-2.72t)\)（SI 单位：0.00327 m、72.1 rad/m、2.72 rad/s）。</p>
+  <ol>
+    <li><b>振幅</b>：直接读出 \(y_m=0.00327\ \mathrm{m}=3.27\ \mathrm{mm}\)；</li>
+    <li><b>波长/周期/频率</b>：\(k=72.1\ \mathrm{rad/m}\)，\(\lambda=\dfrac{2\pi}{k}=\dfrac{2\pi}{72.1}=8.71\ \mathrm{cm}\)；\(\omega=2.72\ \mathrm{rad/s}\)，\(T=\dfrac{2\pi}{\omega}=2.31\ \mathrm{s}\)，\(f=\dfrac{1}{T}=0.433\ \mathrm{Hz}\)；</li>
+    <li><b>波速</b>：\(v=\dfrac{\omega}{k}=\dfrac{2.72}{72.1}=0.0377\ \mathrm{m/s}\)；</li>
+    <li><b>特定点的位移</b>：\(x=22.5\ \mathrm{cm}=0.225\ \mathrm{m}\)、\(t=18.9\ \mathrm{s}\) 时，\(kx-\omega t=72.1\times0.225-2.72\times18.9=-35.19\ \mathrm{rad}\)，\(y=0.00327\sin(-35.19)=1.92\ \mathrm{mm}\)；</li>
+    <li><b>横向速度与加速度</b>：\(u=-\omega y_m\cos(kx-\omega t)=7.20\ \mathrm{mm/s}\)，\(a_y=-\omega^2y=-14.2\ \mathrm{mm/s^2}\)。</li>
+  </ol>
+</div>
+</section>
+
+<section id="lec15-p5">
+<h2>Part 5 · 绳上的波速 <span class="zh">Wave Speed on a Stretched String</span></h2>
+
+<h3 id="lec15-p5-1">5.1 决定因素 <span class="zh">What Sets the Wave Speed</span></h3>
+<p>波速 \(v\) 虽满足 \(v=\lambda f\)，但<b>它由介质性质决定</b>，而不是由 \(\lambda\)、\(f\) 反过来决定。波要通过介质（如一根拉紧的绳），就必须让介质质元振动，这同时需要<b>质量</b>（提供动能 K.E.）和<b>弹性</b>（提供势能 P.E.）——正是这两者决定了波能传多快。</p>
+<div class="def box">
+  <span class="box-title">📌 线密度 Linear Mass Density</span>
+  <p class="formula">\(\mu=\dfrac{m}{l}\)</p>
+  <p>单位长度的质量（kg/m）。绳越重（\(\mu\) 越大），质元越「懒」，波速越慢。</p>
+</div>
+
+<h3 id="lec15-p5-2">5.2 波速公式 <span class="zh">Deriving \(v=\sqrt{\tau/\mu}\)</span></h3>
+<p>用<b>冲量-动量定理</b>推导。考虑绳上一小段，张力 \(\tau\) 的横向分量提供横向冲量：</p>
+<ul>
+  <li>横向冲量：\(F_y\,t=(\mu vt)\,u_y\)——时间 \(t\) 内被带动起来的绳长是 \(vt\)，质量是 \(\mu vt\)；</li>
+  <li>几何关系：质元速度沿绳的切线方向，故 \(\dfrac{u_y}{v}=\dfrac{F_y}{\tau}\)（斜率等于横向力与张力之比），即 \(u_y=\dfrac{vF_y}{\tau}\)；</li>
+  <li>代入消去 \(u_y\)：\(F_y\,t=\mu vt\cdot\dfrac{vF_y}{\tau}\ \Rightarrow\ 1=\dfrac{\mu v^2}{\tau}\ \Rightarrow\ v^2=\dfrac{\tau}{\mu}\)。</li>
+</ul>
+<div class="thm box">
+  <span class="box-title">🎯 绳上的波速</span>
+  <p class="formula">\(v=\sqrt{\dfrac{\tau}{\mu}}\)</p>
+  <p>\(\tau\) 为张力（tension）、\(\mu\) 为线密度。张力越大、绳越轻，波速越快。注意这里的 \(\tau\) 是张力，<b>别</b>和质元横向速度 \(u\)（也常写作 \(v_y\)）混为一谈。</p>
+</div>
+
+<h3 id="lec15-p5-3">5.3 一般形式与分工 <span class="zh">General Form</span></h3>
+<p>对许多机械波（不止绳上的波），波速都有同一个普遍形式：<b>恢复力 ÷ 惯性</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 机械波波速的一般形式</span>
+  <p class="formula">\(v=\sqrt{\dfrac{\text{restoring force}}{\text{inertia}}}=\sqrt{\dfrac{\text{使系统回复平衡的力}}{\text{抵抗回复的惯性}}}\)</p>
+  <p>绳上：张力 \(\tau\) 是让绳回直的恢复力，线密度 \(\mu\) 是阻止它立刻回直的惯性。</p>
+  <ul>
+    <li><b>波速与频率无关</b>，只由张力和线密度决定；</li>
+    <li><b>频率</b>完全由波源（驱动力）决定；</li>
+    <li><b>波长</b>由 \(\lambda=v/f\) 定：波速和频率都定了，波长就被动确定。</li>
+  </ul>
+</div>
+</section>
+
+<section id="lec15-p6">
+<h2>Part 6 · 波的能量与功率 <span class="zh">Energy and Power of a Wave</span></h2>
+
+<h3 id="lec15-p6-1">6.1 能量分布 <span class="zh">Energy Distribution</span></h3>
+<p>波向前走的同时，把能量以<b>动能 K.E. 和势能 P.E.</b> 两种形式沿绳传输。取一个质元 \(\Delta m\)，一个反直觉的结论是：</p>
+<div class="thm box">
+  <span class="box-title">🎯 能量分布</span>
+  <ul>
+    <li>在 <b>\(y=0\)</b>（位移为零）处，质元的<b>动能和势能都最大</b>；</li>
+    <li>在 <b>\(y=\pm y_m\)</b>（位移最大）处，两者<b>都为零</b>。</li>
+  </ul>
+  <p>为什么势能也在 \(y=0\) 处最大？因为波通过时绳子必然被<b>拉伸</b>，而<b>斜率（拉伸量）最大的地方正是位移为零处</b>；位移最大处（波峰/波谷）绳子反而最「平」。一句话：<b>位移最大处无能量，位移为零处能量最大</b>，波把能量沿绳传输。</p>
+</div>
+
+<h3 id="lec15-p6-2">6.2 平均功率 <span class="zh">Average Power</span></h3>
+<p>能量传输的瞬时功率是<b>横向力 × 横向速度</b>：</p>
+<p class="formula">\(P=\vec F\cdot\vec u=-F\dfrac{\partial y}{\partial x}\dfrac{\partial y}{\partial t}\)</p>
+<p>代入正弦波 \(\dfrac{\partial y}{\partial x}=k y_m\cos(kx-\omega t)\)、\(\dfrac{\partial y}{\partial t}=-\omega y_m\cos(kx-\omega t)\)，并利用 \(F=\mu v^2\)、\(v=\omega/k\)：</p>
+<p class="formula">\(P=-F\big[k y_m\cos(kx-\omega t)\big]\big[-\omega y_m\cos(kx-\omega t)\big]=\mu v\,\omega^2y_m^2\cos^2(kx-\omega t)\)</p>
+<p>一个周期内 \(\cos^2\) 的平均值是 \(1/2\)，于是</p>
+<div class="thm box">
+  <span class="box-title">🎯 平均功率</span>
+  <p class="formula">\(P_{avg}=\dfrac12\mu v\,\omega^2 y_m^2\)</p>
+  <p>平均功率正比于线密度、波速、角频率的平方和振幅的平方：频率翻倍、功率变 4 倍；振幅翻倍、功率也变 4 倍。</p>
+</div>
+
+<h3 id="lec15-p6-3">6.3 例题：功率 <span class="zh">Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：求波沿绳传输能量的平均速率</span>
+  <p>已知绳的线密度 \(\mu=525\ \mathrm{g/m}=0.525\ \mathrm{kg/m}\)、张力 \(\tau=45\ \mathrm{N}\)，沿绳发送频率 \(f=120\ \mathrm{Hz}\)、振幅 \(y_m=8.5\ \mathrm{mm}\) 的正弦波。</p>
+  <ol>
+    <li><b>角频率</b>：\(\omega=2\pi f=2\pi\times120=754\ \mathrm{rad/s}\)；</li>
+    <li><b>波速</b>：\(v=\sqrt{\dfrac{\tau}{\mu}}=\sqrt{\dfrac{45}{0.525}}=9.26\ \mathrm{m/s}\)；</li>
+    <li><b>平均功率</b>：\(P_{avg}=\dfrac12\mu v\,\omega^2y_m^2=0.5\times0.525\times9.26\times754^2\times0.0085^2=100\ \mathrm{W}\)。</li>
+  </ol>
+</div>
+</section>
+
+<section id="lec15-p7">
+<h2>Part 7 · 叠加与干涉 <span class="zh">Superposition and Interference</span></h2>
+
+<h3 id="lec15-p7-1">7.1 叠加原理 <span class="zh">Principle of Superposition</span></h3>
+<p>两列波同时经过绳上同一区域时会怎样？答案是：各波保持自己的形状照常传播，而质元的<b>净位移是各波位移之和</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 叠加原理 Principle of Superposition</span>
+  <p class="formula">\(y'(x,t)=y_1(x,t)+y_2(x,t)\)</p>
+  <ul>
+    <li>几个作用同时发生时，净效果是各单独效果之和；</li>
+    <li>重叠的波<b>代数相加</b>产生合成波（net wave）；</li>
+    <li>重叠的波<b>互不改变</b>对方的传播——擦肩而过、各走各路。</li>
+  </ul>
+</div>
+
+<h3 id="lec15-p7-2">7.2 干涉 <span class="zh">Interference of Waves</span></h3>
+<p>两列<b>同方向、同振幅、同波长</b>的正弦波合成，就是<b>干涉（interference）</b>：</p>
+<p class="formula">\(y_1=y_m\sin(kx-\omega t),\quad y_2=y_m\sin(kx-\omega t+\phi)\)</p>
+<p>用和差化积 \(\sin A+\sin B=2\sin\tfrac12(A+B)\cos\tfrac12(A-B)\)：</p>
+<div class="thm box">
+  <span class="box-title">🎯 干涉结果</span>
+  <p class="formula">\(y'=2y_m\cos\!\Big(\dfrac{\phi}{2}\Big)\sin\!\Big(kx-\omega t+\dfrac{\phi}{2}\Big)\)</p>
+  <ul>
+    <li>\(\phi=0\)（同相 in phase）：\(\cos 0=1\)，振幅 \(2y_m\)——<b>完全相长 fully constructive</b>；</li>
+    <li>\(\phi=\pi\)（反相 out of phase by π）：\(\cos(\pi/2)=0\)——<b>完全相消 fully destructive</b>；</li>
+    <li>中间值：振幅介于 0 与 \(2y_m\) 之间的<b>中间干涉 intermediate</b>。</li>
+  </ul>
+  <p>合成波仍是向 \(+x\) 方向传播的正弦波——这就是你实际能看到的唯一一列波。</p>
+</div>
+
+<h3 id="lec15-p7-3">7.3 相量法 <span class="zh">Phasors</span></h3>
+<p>当两列波<b>振幅不同</b>时，直接用<b>相量（phasor）</b>更直观：把每列波的位移振幅看成一个<b>绕尾部旋转的矢量</b>（角速度 = 波的角频率 \(\omega\)，随时间顺时针转），正弦函数就是该矢量在竖直方向的投影。于是合成 = <b>矢量相加</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 相量法 Phasor</span>
+  <p>对同 \(k\)、同 \(\omega\) 的波（振幅可以不同）：</p>
+  <p class="formula">\(y'(x,t)=y'_m\sin(kx-\omega t+\beta)\)</p>
+  <ul>
+    <li>横向分量：\(A_h=y_{m1}\cos\phi_1+y_{m2}\cos\phi_2\)；</li>
+    <li>纵向分量：\(A_v=y_{m1}\sin\phi_1+y_{m2}\sin\phi_2\)；</li>
+    <li>合成振幅：\(y'_m=\sqrt{A_h^2+A_v^2}\)，相位常数 \(\beta\) 满足 \(\cos\beta=\dfrac{A_h}{y'_m}\)、\(\sin\beta=\dfrac{A_v}{y'_m}\)。</li>
+  </ul>
+</div>
+
+<h3 id="lec15-p7-4">7.4 例题：相量合成 <span class="zh">Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：不同振幅两波的合成</span>
+  <p>两列同波长、同方向的正弦波 \(y_1\)、\(y_2\)，振幅分别为 \(y_{m1}=4.0\ \mathrm{mm}\)、\(y_{m2}=3.0\ \mathrm{mm}\)，相位常数分别为 \(0\) 与 \(\pi/3\)。求合成波的振幅 \(y'_m\) 与相位常数 \(\beta\)。</p>
+  <ol>
+    <li><b>横向分量</b>：\(A_h=4.0\cos 0+3.0\cos\dfrac{\pi}{3}=4.0+1.5=5.5\ \mathrm{mm}\)；</li>
+    <li><b>纵向分量</b>：\(A_v=4.0\sin 0+3.0\sin\dfrac{\pi}{3}=0+2.60=2.60\ \mathrm{mm}\)；</li>
+    <li><b>合成振幅</b>：\(y'_m=\sqrt{5.5^2+2.60^2}=\sqrt{37}\approx6.1\ \mathrm{mm}\)；</li>
+    <li><b>相位常数</b>：\(\beta=\arctan\dfrac{2.60}{5.5}=0.44\ \mathrm{rad}\)。</li>
+  </ol>
+  <p>即 \(y'(x,t)=6.1\sin(kx-\omega t+0.44)\ \mathrm{mm}\)。</p>
+</div>
+</section>
+
+<section id="lec15-p8">
+<h2>Part 8 · 驻波与共振 <span class="zh">Standing Waves and Resonance</span></h2>
+
+<h3 id="lec15-p8-1">8.1 驻波 <span class="zh">Standing Wave</span></h3>
+<p>两列<b>同振幅、同波长、相向传播</b>的波叠加，会产生一种完全不同的图景：某些点（波节）纹丝不动，某些点（波腹）振动最剧烈，整个波形<b>不再移动</b>——这就是<b>驻波（standing wave）</b>。</p>
+<div class="thm box">
+  <span class="box-title">🎯 驻波</span>
+  <p>\(y_1=y_m\sin(kx-\omega t)\) 与 \(y_2=y_m\sin(kx+\omega t)\) 相向叠加：</p>
+  <p class="formula">\(y'(x,t)=y_m\sin(kx-\omega t)+y_m\sin(kx+\omega t)=2y_m\sin(kx)\cos(\omega t)\)</p>
+  <p>合成结果<b>不再是行波</b>！位置 \(x\) 和时间 \(t\) 被拆进两个因子：每个质元在原地做 SHM，振动<b>振幅随位置变化</b>，为 \(2y_m\sin(kx)\)。</p>
+</div>
+
+<h3 id="lec15-p8-2">8.2 波节与波腹 <span class="zh">Nodes and Antinodes</span></h3>
+<div class="def box">
+  <span class="box-title">📌 波节与波腹</span>
+  <ul>
+    <li><b>波节 node</b>：振幅 \(=0\)，永远不动。\(2y_m\sin(kx)=0\ \Rightarrow\ kx=n\pi\ \Rightarrow\ x=\dfrac{n\lambda}{2}\)（\(n=0,1,2,\dots\)）；</li>
+    <li><b>波腹 antinode</b>：振幅最大 \(=2y_m\)，振动最剧烈。\(2y_m\sin(kx)=2y_m\ \Rightarrow\ kx=\big(n+\tfrac12\big)\pi\ \Rightarrow\ x=\dfrac{(n+\tfrac12)\lambda}{2}\)。</li>
+  </ul>
+  <p>相邻波节（或相邻波腹）相距 \(\lambda/2\)，相邻波节与波腹相距 \(\lambda/4\)。</p>
+</div>
+
+<h3 id="lec15-p8-3">8.3 驻波能量 <span class="zh">Energy of Standing Waves</span></h3>
+<p>驻波的能量<b>不沿绳传播</b>，而是在波节与波腹之间来回流动：</p>
+<ul>
+  <li>绳处于<b>最大弯曲</b>时：没有动能；此时<b>波节处</b>绳子拉伸最厉害，<b>势能最大</b>；</li>
+  <li>绳被<b>拉直</b>时：没有势能；此时<b>波腹处</b>速度最大，<b>动能最大</b>；</li>
+  <li>机械能在波节与波腹之间<b>来回流动</b>，不从一处传到另一处。</li>
+</ul>
+
+<h3 id="lec15-p8-4">8.4 边界反射与共振 <span class="zh">Reflection and Resonance</span></h3>
+<p>波遇到边界会反射。边界类型决定反射端是波节还是波腹：</p>
+<ul>
+  <li><b>硬边界（hard boundary）</b>：位移被固定为零（如两端固定的弦）→ 边界处是<b>波节</b>；</li>
+  <li><b>自由边界（free boundary）</b>：位移可以取最大 → 边界处是<b>波腹</b>。</li>
+</ul>
+<p>两端都是硬边界时，反射波与入射波干涉；只有特定频率能形成稳定的驻波图样（振荡模式），这就是<b>共振（resonance）</b>。不是共振频率时，得不到清晰的驻波图样。</p>
+<div class="thm box">
+  <span class="box-title">🎯 共振频率 Resonant Frequencies</span>
+  <p><b>两端硬边界</b>（两端都是波节，长度须装下整数个半波长）：</p>
+  <p class="formula">\(L=\dfrac{n\lambda}{2},\qquad f=\dfrac{v}{\lambda}=\dfrac{nv}{2L}\quad(n=1,2,3,\dots)\)</p>
+  <p><b>一端硬、一端自由</b>（一节点一波腹，长度须是奇数个四分之一波长）：</p>
+  <p class="formula">\(L=\dfrac{n\lambda}{4},\qquad f=\dfrac{nv}{4L}\quad(n=1,3,5,\dots)\)</p>
+  <p>\(n=1\) 的频率叫<b>基频</b>（基波），更高 \(n\) 的叫<b>谐波 harmonic</b>——吉他和管乐的音高正是由这些共振频率决定。</p>
+</div>
+
+<h3 id="lec15-p8-5">8.5 例题：驻波 <span class="zh">Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：弦的共振驻波</span>
+  <p>图示一弦的共振振荡图样。弦质量 \(m=2.500\ \mathrm{g}\)、长度 \(L=0.800\ \mathrm{m}\)、张力 \(\tau=325.0\ \mathrm{N}\)。</p>
+  <ol>
+    <li><b>波长</b>：图中有 4 个波腹（\(n=4\)），由 \(L=\dfrac{n\lambda}{2}\) 得 \(\lambda=\dfrac{2L}{n}=\dfrac{2\times0.800}{4}=0.400\ \mathrm{m}\)；</li>
+    <li><b>频率</b>：线密度 \(\mu=\dfrac{m}{L}=\dfrac{0.002500}{0.800}=0.003125\ \mathrm{kg/m}\)，波速 \(v=\sqrt{\dfrac{\tau}{\mu}}=\sqrt{\dfrac{325}{0.003125}}=322.5\ \mathrm{m/s}\)，故 \(f=\dfrac{v}{\lambda}=\dfrac{322.5}{0.400}=806\ \mathrm{Hz}\)（整根弦的每个质元都以此频率做简谐振动）；</li>
+    <li><b>质元最大横向速度</b>：从图读得 \(2y_m=4.00\ \mathrm{mm}\)，在 \(x=0.180\ \mathrm{m}\) 处，\(k=\dfrac{2\pi}{\lambda}=\dfrac{2\pi}{0.400}=15.7\ \mathrm{rad/m}\)，\(kx=15.7\times0.180=2.83\ \mathrm{rad}\)，\(\sin(kx)=0.31\)；最大速度 \(u_m=\omega\cdot 2y_m\sin(kx)=2\pi f\times0.0040\times0.31=5064\times0.0040\times0.31=6.3\ \mathrm{m/s}\)。</li>
+  </ol>
+</div>
+
+  <div class="toc">
+    <span class="toc-title">📑 本讲公式速查</span>
+    <p class="formula">\(y(x,t)=h(x\pm vt),\qquad \dfrac{1}{v^2}\dfrac{\partial^2 y}{\partial t^2}=\dfrac{\partial^2 y}{\partial x^2}\)</p>
+    <p class="formula">\(y(x,t)=y_m\sin(kx-\omega t+\phi),\quad k=\dfrac{2\pi}{\lambda},\quad \omega=\dfrac{2\pi}{T}=2\pi f\)</p>
+    <p class="formula">\(v=\dfrac{\omega}{k}=\dfrac{\lambda}{T}=\lambda f,\qquad u=\dfrac{\partial y}{\partial t}=-\omega y_m\cos(kx-\omega t),\qquad a_y=-\omega^2 y\)</p>
+    <p class="formula">\(v=\sqrt{\dfrac{\tau}{\mu}},\qquad P_{avg}=\dfrac12\mu v\,\omega^2y_m^2\)</p>
+    <p class="formula">\(y'=2y_m\cos\!\Big(\dfrac{\phi}{2}\Big)\sin\!\Big(kx-\omega t+\dfrac{\phi}{2}\Big),\qquad y'(x,t)=y'_m\sin(kx-\omega t+\beta)\)</p>
+    <p class="formula">\(y'(x,t)=2y_m\sin(kx)\cos(\omega t),\qquad \text{node}:x=\dfrac{n\lambda}{2},\ \ \text{antinode}:x=\dfrac{(n+\tfrac12)\lambda}{2}\)</p>
+    <p class="formula">\(f=\dfrac{nv}{2L}\ (n=1,2,3,\dots),\qquad f=\dfrac{nv}{4L}\ (n=1,3,5,\dots)\)</p>
+  </div>
+
+  <div class="vocab">
+    <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+    <ul>
+      <li><b>wave</b> — 波；<b>mechanical wave</b> — 机械波；<b>electromagnetic wave</b> — 电磁波；<b>matter wave</b> — 物质波</li>
+      <li><b>transverse wave</b> — 横波；<b>longitudinal wave</b> — 纵波</li>
+      <li><b>wave equation</b> — 波动方程；<b>traveling wave</b> — 行波；<b>sinusoidal wave</b> — 正弦波</li>
+      <li><b>amplitude</b> — 振幅；<b>wavelength</b> — 波长；<b>angular wave number</b> — 角波数</li>
+      <li><b>period</b> — 周期；<b>frequency</b> — 频率；<b>phase constant</b> — 相位常数</li>
+      <li><b>wave speed</b> — 波速；<b>particle velocity</b> — 质点速度</li>
+      <li><b>linear mass density</b> — 线密度；<b>tension</b> — 张力；<b>average power</b> — 平均功率</li>
+      <li><b>superposition</b> — 叠加原理；<b>interference</b> — 干涉；<b>in phase / out of phase</b> — 同相/异相</li>
+      <li><b>fully constructive / destructive</b> — 完全相长/相消；<b>phasor</b> — 相量</li>
+      <li><b>standing wave</b> — 驻波；<b>node</b> — 波节；<b>antinode</b> — 波腹</li>
+      <li><b>reflection</b> — 反射；<b>resonance</b> — 共振；<b>resonant frequency</b> — 共振频率；<b>harmonic</b> — 谐波</li>
+    </ul>
+  </div>
+</section>
+</div><!-- /第15课 -->
+
+<!-- ============ 第16课 ============ -->
+<div class="lecture" id="lec16">
+<div class="lecture-banner">第16课 · Sound and Hearing <span class="zh">（声音与听觉）</span></div>
+
+<section id="lec16-overview">
+  <h2>本讲概览 Overview</h2>
+  <p>上一讲我们学了机械波的一般性质：横波与纵波、行波方程、叠加与干涉，以及在两端固定弦上形成的驻波与共振频率。这一讲把这些工具全部搬到一个最贴近日常的例子——<b>声音（sound）</b>上。</p>
+  <p>声音是<b>纵波（longitudinal wave）</b>：空气质元的振动方向与传播方向平行，以「压缩（compression）— 稀疏（rarefaction）」的压强涨落形式向前传递。本章主线是：先求声波在介质中的<b>波速</b> \(v=\sqrt{B/\rho}\)，再写出<b>位移波与压强波</b>两个描述函数，然后讨论声音「有多响」——<b>声强 \(I\)</b> 与<b>声级（分贝）</b>，接着研究两列声波的<b>干涉、驻波（乐器发声）与拍</b>，最后处理波源或探测器运动时的<b>多普勒效应</b>与超声速冲击波。全章几乎每个公式都能在上一讲的机械波基础上直接对应，关键是抓住「纵波用压强涨落来描述」这一新点。</p>
+  <div class="toc">
+    <span class="toc-title">📑 本讲目录</span>
+    <ol>
+      <li><a href="#lec16-p1">Part 1 · 纵波与声速</a></li>
+      <li><a href="#lec16-p2">Part 2 · 行进的声波</a></li>
+      <li><a href="#lec16-p3">Part 3 · 波前与声强</a></li>
+      <li><a href="#lec16-p4">Part 4 · 声强与声级</a></li>
+      <li><a href="#lec16-p5">Part 5 · 干涉</a></li>
+      <li><a href="#lec16-p6">Part 6 · 管中驻波与乐音</a></li>
+      <li><a href="#lec16-p7">Part 7 · 拍</a></li>
+      <li><a href="#lec16-p8">Part 8 · 多普勒效应与冲击波</a></li>
+    </ol>
+  </div>
+</section>
+
+<section id="lec16-p1">
+<h2>Part 1 · 纵波与声速 <span class="zh">Longitudinal Waves and the Speed of Sound</span></h2>
+
+<h3 id="lec16-p1-1">1.1 声波是纵波 <span class="zh">Sound Is a Longitudinal Wave</span></h3>
+<p>上一讲区分过两种机械波：<b>横波（transverse wave）</b>的振动方向垂直于传播方向（比如弦上的波），而<b>纵波（longitudinal wave）</b>的振动方向<b>平行于</b>传播方向。声波就是典型的纵波——喇叭振动时，把附近空气推拢，形成高压区（<b>压缩 compression</b>），又拉开形成低压区（<b>稀疏 rarefaction</b>），这一疏一密沿着传播方向依次向前传递。</p>
+<p>也就是说，声波本质上是<b>压强涨落（pressure fluctuation）</b>在介质中的传播，空气质元本身只在平衡位置附近来回小幅度振动，并不随波「跑远」。</p>
+<div class="def box">
+  <span class="box-title">📌 纵波 Longitudinal Wave</span>
+  <p>质元振动方向<b>平行于</b>波的传播方向，以周期性<b>压缩（compression）与稀疏（rarefaction）</b>的形式传播；声波（sound wave）是纵波的典型代表。</p>
+  <ul>
+    <li><b>压缩区</b>：空气被挤在一起，压强略高于平均值；</li>
+    <li><b>稀疏区</b>：空气被拉开，压强略低于平均值；</li>
+    <li><b>应用</b>：声呐（sonar）探测水下障碍物、利用心跳声信号诊断医学问题。</li>
+  </ul>
+</div>
+
+<h3 id="lec16-p1-2">1.2 声速 <span class="zh">Speed of Sound</span></h3>
+<p>上一讲学过弦上横波的波速 \(v=\sqrt{\tau/\mu}\)——分子是<b>弹性性质</b>（恢复力，把系统拉回平衡），分母是<b>惯性性质</b>（抗拒返回平衡）。所有机械波的波速都遵循同一个模式：</p>
+<p class="formula">\(v=\sqrt{\dfrac{\text{弹性性质 elastic property}}{\text{惯性性质 inertia property}}}\)</p>
+<p>对空气中的声波，弹性性质由<b>体积模量（bulk modulus）</b> \(B\) 描述——它衡量介质被压缩时的「反抗程度」；惯性性质由<b>密度（density）</b> \(\rho\) 描述。因此：</p>
+<div class="thm box">
+  <span class="box-title">🎯 空气中声速</span>
+  <p class="formula">\(v=\sqrt{\dfrac{B}{\rho}}\)</p>
+  <ul>
+    <li>\(B\) 为体积模量（单位 Pa），由 \(p=B\dfrac{\Delta V}{V}\) 定义；</li>
+    <li>\(\rho\) 为介质密度（kg/m³）。</li>
+  </ul>
+</div>
+<p>一句话总结：<b>介质越「硬」（B 大）、越「轻」（ρ 小），声速越快</b>。</p>
+
+<h3 id="lec16-p1-3">1.3 声速排序 <span class="zh">Ordering of Sound Speeds</span></h3>
+<p>三种状态的物质，体积模量相差极大：固体几乎不可压缩，液体次之，气体最容易压缩。因此声速也呈现同样的排序：</p>
+<p class="formula">\(B_{\text{solid}}\gg B_{\text{liquid}}\gg B_{\text{gas}}\quad\Longrightarrow\quad v_{\text{solid}}\gg v_{\text{liquid}}\gg v_{\text{gas}}\)</p>
+<table class="truth">
+  <thead><tr><th>介质 medium</th><th>体积模量 bulk modulus \(B\)</th><th>声速 speed of sound \(v\)</th></tr></thead>
+  <tbody>
+    <tr><td>固体 solid</td><td>最大（几乎不可压缩）</td><td>最快</td></tr>
+    <tr><td>液体 liquid</td><td>中等</td><td>中等</td></tr>
+    <tr><td>气体 gas</td><td>最小（最易压缩）</td><td>最慢</td></tr>
+  </tbody>
+</table>
+<p>补充：在<b>固体棒（solid rod）</b>中，弹性性质用<b>杨氏模量（Young's modulus）</b> \(E\) 表示，声速为</p>
+<p class="formula">\(v=\sqrt{\dfrac{E}{\rho}}\)</p>
+<p>一句话总结：声音在固体中传得最快、液体次之、气体最慢——这也是「把耳朵贴在铁轨上能先听到火车声」的物理原因。</p>
+
+<h3 id="lec16-p1-4">1.4 声速推导 <span class="zh">Derivation of the Speed of Sound</span></h3>
+<p>\(v=\sqrt{B/\rho}\) 是怎么来的？考虑一列向右传播的声波，取一块以速度 \(v\) 运动的空气元（air element）：</p>
+<ul>
+  <li>这块空气元的质量 \(\Delta m=\rho A\Delta x=\rho A v\Delta t\)（\(A\) 为截面积）；</li>
+  <li>它进入<b>压缩区</b>时会被减速，设速度减小了 \(\Delta v\)，则加速度 \(a=\dfrac{\Delta v}{\Delta t}\)；</li>
+  <li>压缩区对它的净压力差为 \(F=(p+\Delta p)A-pA=\Delta p A\)。</li>
+</ul>
+<p>由牛顿第二定律 \(F=\Delta m\, a\)：</p>
+<p class="formula">\(\Delta p A=\rho A v\Delta t\cdot\dfrac{\Delta v}{\Delta t}\quad\Longrightarrow\quad \Delta p=\rho v\Delta v\)</p>
+<p>另一方面，由体积模量定义，压强变化与体积变化挂钩。设空气元厚度为 \(v\Delta t\)、截面积为 \(A\)，则体积 \(V=Av\Delta t\)，体积变化 \(\Delta V=A\Delta v\,\Delta t\)：</p>
+<p class="formula">\(\Delta p=B\dfrac{\Delta V}{V}=B\dfrac{A\Delta v\,\Delta t}{A v\Delta t}=B\dfrac{\Delta v}{v}\)</p>
+<p>把两种表达相等：</p>
+<p class="formula">\(\rho v\Delta v=B\dfrac{\Delta v}{v}\quad\Longrightarrow\quad v=\sqrt{\dfrac{B}{\rho}}\)</p>
+<p>一句话总结：<b>「牛顿第二定律」和「体积模量定义」两条路都给出同一压强差 \(\Delta p\)，令二者相等即可解出声速</b>。</p>
+</section>
+
+<section id="lec16-p2">
+<h2>Part 2 · 行进的声波 <span class="zh">Traveling Sound Wave</span></h2>
+
+<h3 id="lec16-p2-1">2.1 位移波函数 <span class="zh">Displacement Wave</span></h3>
+<p>上一讲横波的位移 \(y(x,t)\) 垂直于传播方向；对纵波，质元沿 \(x\) 方向来回振动，我们把位移记作 \(s(x,t)\)（用 \(s\) 代替 \(y\)），它沿 \(x\) 方向。正弦行波形式完全一样：</p>
+<div class="def box">
+  <span class="box-title">📌 声波的位移波函数</span>
+  <p class="formula">\(s(x,t)=s_m\cos(kx-\omega t)\)</p>
+  <ul>
+    <li>\(s_m\) 为<b>位移振幅（displacement amplitude）</b>——空气质元偏离平衡位置的最大距离；</li>
+    <li>\(k=2\pi/\lambda\)、\(\omega=2\pi f\)，与横波的求法完全相同；</li>
+    <li>当质元位移 \(s=0\) 时，它正好位于压缩与稀疏的<b>正中间</b>；位移达到 \(\pm s_m\) 时对应压缩或稀疏最强。</li>
+  </ul>
+</div>
+<p>质元振动的速度与加速度也可由求导得到：\(u=\dfrac{\partial s}{\partial t}=\omega s_m\sin(kx-\omega t)\)，\(a=\dfrac{\partial^2 s}{\partial t^2}=-\omega^2 s_m\cos(kx-\omega t)\)。</p>
+
+<h3 id="lec16-p2-2">2.2 压强变化 <span class="zh">Pressure Variation</span></h3>
+<p>声波的「信号」其实是<b>压强涨落</b>。由体积模量定义，位移的梯度（疏密程度）决定压强变化：</p>
+<div class="thm box">
+  <span class="box-title">🎯 压强变化与压强振幅</span>
+  <p class="formula">\(\Delta p(x,t)=-B\dfrac{\partial s}{\partial x}=\Delta p_m\sin(kx-\omega t)\)</p>
+  <p>其中<b>压强振幅（pressure amplitude）</b></p>
+  <p class="formula">\(\Delta p_m=B k s_m=(v\rho\omega)s_m\)</p>
+  <ul>
+    <li>推导：\(\dfrac{\partial s}{\partial x}=-k s_m\sin(kx-\omega t)\)，故 \(\Delta p=-B\dfrac{\partial s}{\partial x}=B k s_m\sin(kx-\omega t)\)；</li>
+    <li>再用 \(v^2=B/\rho\) 及 \(v=\omega/k\) 得 \(B k=v^2\rho k=v\rho\omega\)。</li>
+  </ul>
+</div>
+<p>注意压强波与位移波相位差 \(90^\circ\)：位移 \(s=0\) 处（疏密交界）压强变化<b>最大</b>；位移 \(s=\pm s_m\) 处压强变化为零。</p>
+
+<h3 id="lec16-p2-3">2.3 例题：人耳能忍受的最大位移振幅 <span class="zh">Example</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：从压强振幅求位移振幅</span>
+  <p><b>已知</b>：人耳在很响的声音中能忍受的最大压强振幅约 \(\Delta p_m\approx 28\ \text{Pa}\)（这远小于正常大气压 \(10^5\ \text{Pa}\)）。空气密度 \(\rho=1.21\ \text{kg/m}^3\)，频率 \(f=1000\ \text{Hz}\)，声速 \(v=343\ \text{m/s}\)。<b>求</b>相应的位移振幅 \(s_m\)。</p>
+  <p><b>解</b>：由 \(\Delta p_m=v\rho\omega s_m=v\rho(2\pi f)s_m\)，解出</p>
+  <p class="formula">\(s_m=\dfrac{\Delta p_m}{v\rho(2\pi f)}=\dfrac{28}{343\times1.21\times2\pi\times1000}\approx 1.1\times10^{-5}\ \text{m}=11\ \mu\text{m}\)</p>
+  <p><b>答</b>：位移振幅仅约 \(11\ \mu\text{m}\)——比头发丝还细，说明即便「震耳欲聋」的声音，空气质元的实际位移也极小。</p>
+</div>
+</section>
+
+<section id="lec16-p3">
+<h2>Part 3 · 波前与声强 <span class="zh">Wavefronts and Intensity</span></h2>
+
+<h3 id="lec16-p3-1">3.1 波前与射线 <span class="zh">Wavefronts and Rays</span></h3>
+<p>弦上的波只沿一维传能量，但空气中的声波向<b>三维空间</b>四面八方传播。为了描述它，引入两个几何工具：</p>
+<div class="def box">
+  <span class="box-title">📌 波前与射线</span>
+  <ul>
+    <li><b>波前（wavefront）</b>：振动<b>同相位</b>的点构成的曲面——对点源就是一系列同心球面；</li>
+    <li><b>射线（ray）</b>：垂直于波前、指示传播方向的直线（箭头）。</li>
+  </ul>
+</div>
+<p>各向同性<b>点源（point source）</b>发出的波前是同心球面，射线沿半径方向向外指。</p>
+
+<h3 id="lec16-p3-2">3.2 声强 <span class="zh">Intensity of Sound</span></h3>
+<div class="def box">
+  <span class="box-title">📌 声强 Intensity</span>
+  <p>声强是单位面积上能量传递的<b>平均功率</b>：</p>
+  <p class="formula">\(I=\dfrac{P}{A}\quad(\text{W/m}^2)\)</p>
+  <p>对各向同性点源（功率 \(P_s\)），能量均匀摊在半径为 \(r\) 的球面上：</p>
+  <p class="formula">\(I=\dfrac{P_s}{4\pi r^2}\)</p>
+</div>
+<p>直觉：离声源越远，同样的总功率被摊在越大的球面上，所以单位面积分到的能量（声强）就越小。</p>
+
+<h3 id="lec16-p3-3">3.3 平方反比定律 <span class="zh">Inverse-Square Law</span></h3>
+<p>若两个球面之间没有能量被吸收，穿过两者的总功率相同：</p>
+<div class="thm box">
+  <span class="box-title">🎯 平方反比定律</span>
+  <p class="formula">\(4\pi r_1^2 I_1=4\pi r_2^2 I_2\quad\Longrightarrow\quad \dfrac{I_1}{I_2}=\dfrac{r_2^2}{r_1^2}\)</p>
+  <p>即 \(I\propto 1/r^2\)：声强与到声源距离的<b>平方成反比</b>。</p>
+</div>
+<p>一句话总结：距离加倍，声强降为原来的 \(1/4\)。</p>
+
+<h3 id="lec16-p3-4">3.4 例题：线源的声强 <span class="zh">Example: A Line Source</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：火花沿直线发声</span>
+  <p><b>已知</b>：一道电火花沿长 \(L=10\ \text{m}\) 的直线跳跃，向外发出沿径向传播的声脉冲（称为<b>线源 line source</b>），声发射功率 \(P_s=1.6\times10^4\ \text{W}\)。(a) 求距火花 \(r=12\ \text{m}\) 处的声强 \(I\)；(b) 求面积 \(A_d=2.0\ \text{cm}^2\)、同样距 \(r=12\ \text{m}\) 的探测器每秒接收到的声能 \(P_d\)。</p>
+  <p><b>解</b>：(a) 线源的能量铺在<b>圆柱面</b>上，面积 \(A=2\pi r L\)：</p>
+  <p class="formula">\(I=\dfrac{P_s}{A}=\dfrac{P_s}{2\pi r L}=\dfrac{1.6\times10^4}{2\pi\times12\times10}\approx 21\ \text{W/m}^2\)</p>
+  <p>(b) 探测器截获的功率为声强乘以探测器面积：</p>
+  <p class="formula">\(P_d=I A_d=21\times2.0\times10^{-4}\approx 4.2\ \text{mW}\)</p>
+  <p><b>答</b>：(a) \(I\approx 21\ \text{W/m}^2\)；(b) \(P_d\approx 4.2\ \text{mW}\)。</p>
+</div>
+</section>
+
+<section id="lec16-p4">
+<h2>Part 4 · 声强与声级 <span class="zh">Intensity and Sound Level</span></h2>
+
+<h3 id="lec16-p4-1">4.1 声强与位移振幅 <span class="zh">Intensity and Displacement Amplitude</span></h3>
+<p>声强可以像横波一样由质元的动能/势能算出来。一个厚度 \(dx\)、面积 \(A\)、质量 \(dm\) 的薄空气片，其振动速度 \(u=\dfrac{\partial s}{\partial t}=\omega s_m\sin(kx-\omega t)\)，动能对时间的平均与横波完全类似，且平均势能与平均动能相等，于是：</p>
+<div class="thm box">
+  <span class="box-title">🎯 声强与振幅的关系</span>
+  <p class="formula">\(I=\tfrac12\rho v\omega^2 s_m^2=\dfrac{\Delta p_m^2}{2\rho v}\)</p>
+  <ul>
+    <li>第一种写法：从平均功率 \(P_{\text{avg}}=\tfrac12\rho A v\omega^2 s_m^2\) 除以面积 \(A\) 得到；</li>
+    <li>第二种写法：利用 \(\Delta p_m=v\rho\omega s_m\) 代换得到。</li>
+  </ul>
+</div>
+
+<h3 id="lec16-p4-2">4.2 声级 <span class="zh">Sound Level</span></h3>
+<p>人耳能听到的声强跨度极大（从听觉下限到痛阈相差十几个数量级），直接谈声强数字很不方便，而且人耳对响度的感受是<b>对数式</b>的。于是引入<b>声级（sound level）</b>：</p>
+<div class="def box">
+  <span class="box-title">📌 声级与分贝</span>
+  <p class="formula">\(\beta=(10\ \text{dB})\log_{10}\dfrac{I}{I_0}\)</p>
+  <ul>
+    <li>单位是<b>分贝（decibel, dB）</b>；</li>
+    <li>参考声强 \(I_0=10^{-12}\ \text{W/m}^2\)，是人耳听觉的<b>下限</b>。</li>
+  </ul>
+</div>
+<p>注意：声级是<b>相对</b>、<b>对数</b>的量——声强每增大 10 倍，声级只增加 10 dB；两个声源叠加不会简单把分贝数相加，而要把声强相加后再取对数。</p>
+</section>
+
+<section id="lec16-p5">
+<h2>Part 5 · 干涉 <span class="zh">Interference</span></h2>
+
+<h3 id="lec16-p5-1">5.1 两列声波的干涉 <span class="zh">Interference of Two Waves</span></h3>
+<p>两个相同的点声源 \(S_1\)、\(S_2\) 发出同相位的声波，到达 P 点时带一个相位差 \(\phi\)：</p>
+<p class="formula">\(s_1=s_m\cos(kx-\omega t),\qquad s_2=s_m\cos(kx-\omega t+\phi)\)</p>
+<p>与上一讲的干涉公式完全相同，合成波仍是行波：</p>
+<div class="thm box">
+  <span class="box-title">🎯 干涉合成振幅</span>
+  <p class="formula">\(s'(x,t)=2s_m\cos\!\big(\tfrac{\phi}{2}\big)\cos\!\big(kx-\omega t+\tfrac{\phi}{2}\big)\)</p>
+  <p>合成振幅为</p>
+  <p class="formula">\(s'_m=\Big|2s_m\cos\!\big(\tfrac{\phi}{2}\big)\Big|\)</p>
+</div>
+<p>相位差 \(\phi\) 由两列波走过的<b>路程差</b>决定。</p>
+
+<h3 id="lec16-p5-2">5.2 程差与相位差 <span class="zh">Path Length Difference</span></h3>
+<div class="def box">
+  <span class="box-title">📌 程差与相位差</span>
+  <p>设两源到 P 点的距离分别为 \(L_1\)、\(L_2\)，则<b>程差（path length difference）</b> \(\Delta L=|L_2-L_1|\)，对应相位差</p>
+  <p class="formula">\(\phi=\dfrac{2\pi}{\lambda}\Delta L\)</p>
+  <ul>
+    <li><b>完全相长（fully constructive）</b>：\(\Delta L=n\lambda\)（\(n=0,1,2,\dots\)），两波同相叠加，声音最响；</li>
+    <li><b>完全相消（fully destructive）</b>：\(\Delta L=\big(n+\tfrac12\big)\lambda\)（\(n=0,1,2,\dots\)），两波反相抵消，声音最弱。</li>
+  </ul>
+</div>
+<p>一句话总结：<b>路程差每多一个波长，相位就多转一整圈 \(2\pi\)</b>；整数个波长相长，半整数个波长相消。</p>
+</section>
+
+<section id="lec16-p6">
+<h2>Part 6 · 管中驻波与乐音 <span class="zh">Standing Waves in Pipes and Musical Sound</span></h2>
+
+<h3 id="lec16-p6-1">6.1 两端开口管 <span class="zh">Pipe with Two Open Ends</span></h3>
+<p>管乐器（木管、铜管）靠管内驻波发声——声波在管端反射、干涉，形成稳定的<b>驻波（standing wave）</b>。管子<b>两端开口</b>时，两端都是<b>波腹（antinode）</b>（类比上一讲「两个自由端」），与两端固定弦的驻波完全对应：</p>
+<div class="thm box">
+  <span class="box-title">🎯 两端开口管的共振</span>
+  <p class="formula">\(L=\dfrac{n\lambda}{2},\qquad \lambda=\dfrac{2L}{n},\qquad f=\dfrac{v}{\lambda}=\dfrac{nv}{2L}\quad(n=1,2,3,\dots)\)</p>
+  <p>两端都是波腹，管内可容纳 \(n\) 个半波长。</p>
+</div>
+
+<h3 id="lec16-p6-2">6.2 一端开口管 <span class="zh">Pipe with One Open End</span></h3>
+<p>若管子<b>一端开口、另一端封闭</b>（one open end, one closed end），则开口端是<b>波腹</b>、封闭端是<b>波节（node）</b>（类比「一个自由端 + 一个固定端」）。这要求管长容纳「奇数个四分之一波长」：</p>
+<div class="thm box">
+  <span class="box-title">🎯 一端开口管的共振</span>
+  <p class="formula">\(L=\dfrac{n\lambda}{4},\qquad \lambda=\dfrac{4L}{n},\qquad f=\dfrac{v}{\lambda}=\dfrac{nv}{4L}\quad(n=1,3,5,\dots)\)</p>
+  <p>一端波腹、一端波节，<b>只取奇数 \(n\)</b>；所有偶数谐波都缺失。</p>
+</div>
+<p>注意对比：两端开口管能发出 \(f_1,2f_1,3f_1,\dots\) 全部整数倍谐波；一端开口管只能发出 \(f_1,3f_1,5f_1,\dots\) 奇数倍谐波。</p>
+
+<h3 id="lec16-p6-3">6.3 乐音与音色 <span class="zh">Musical Sound and Quality</span></h3>
+<div class="def box">
+  <span class="box-title">📌 基频与泛音</span>
+  <ul>
+    <li><b>基频（fundamental frequency）</b>：最低的共振频率，决定我们感知到的<b>音高（pitch）</b>；</li>
+    <li><b>泛音（overtone）</b>：高于基频的各次谐波，叠加在基频之上；</li>
+    <li>基频与泛音的<b>组合波形</b>决定了声音的<b>音色（timbre / quality）</b>——这正是小提琴、风笛与人声听起来各不相同的原因。</li>
+  </ul>
+</div>
+<p>一句话总结：<b>音高看基频，音色看泛音组合的波形</b>。</p>
+</section>
+
+<section id="lec16-p7">
+<h2>Part 7 · 拍 <span class="zh">Beats</span></h2>
+
+<h3 id="lec16-p7-1">7.1 拍现象 <span class="zh">Beat Phenomenon</span></h3>
+<p>当两列<b>频率略有差别</b>的声波（\(f_1\)、\(f_2\)）同时到达人耳，它们的干涉结果不是稳定的加强或减弱，而是声强<b>周期性地起伏</b>——时强时弱，这种「嗡嗡」的起伏就叫<b>拍（beat）</b>。</p>
+
+<h3 id="lec16-p7-2">7.2 拍频 <span class="zh">Beat Frequency</span></h3>
+<p>设两列等幅、频率略不同的波 \(s_1=s_m\cos(kx+\omega_1 t)\)、\(s_2=s_m\cos(kx+\omega_2 t)\)。用和差化积 \(\cos\alpha+\cos\beta=2\cos\frac12(\alpha-\beta)\cos\frac12(\alpha+\beta)\)：</p>
+<p class="formula">\(s'=s_1+s_2=2s_m\cos(\omega' t)\cos(kx+\omega t)\)</p>
+<p>其中 \(\omega'=\tfrac12(\omega_1-\omega_2)\)、\(\omega=\tfrac12(\omega_1+\omega_2)\)，且 \(\omega\gg\omega'\)。可把它看成一列「振幅随时间缓慢起伏」的波：</p>
+<div class="thm box">
+  <span class="box-title">🎯 拍频</span>
+  <p class="formula">\(f_{\text{beat}}=|f_1-f_2|\)</p>
+  <p>合成振幅 \(s'_m=|2s_m\cos(\omega' t)|\) 以角频率 \(2\omega'=|\omega_1-\omega_2|\) 起伏，故强度起伏的频率（拍频）恰为两频率之差。</p>
+  <ul>
+    <li><b>应用</b>：乐器调音（tuning）——把待调乐器与标准音叉同时奏响，听拍频逐渐降到零即调准。</li>
+  </ul>
+</div>
+
+<h3 id="lec16-p7-3">7.3 例题：帝企鹅的叫声 <span class="zh">Example: Emperor Penguins</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：两侧喉管的拍频</span>
+  <p><b>已知</b>：帝企鹅同时用发声器官的两侧发声，每侧在喉与口中建立起驻波，类似两端开口的管。侧 A 第一谐波频率 \(f_{A1}=432\ \text{Hz}\)，侧 B 第一谐波频率 \(f_{B1}=371\ \text{Hz}\)。<b>求</b>两个第一谐波之间的拍频，以及两个第二谐波之间的拍频。</p>
+  <p><b>解</b>：第一谐波之间的拍频</p>
+  <p class="formula">\(f_{\text{beat},1}=|f_{A1}-f_{B1}|=|432-371|=61\ \text{Hz}\)</p>
+  <p>两端开口管的第二谐波是第一谐波的 2 倍：\(f_2=2f_1\)，故第二谐波拍频</p>
+  <p class="formula">\(f_{\text{beat},2}=|2f_{A1}-2f_{B1}|=2\times61=122\ \text{Hz}\)</p>
+  <p><b>答</b>：第一谐波拍频 \(61\ \text{Hz}\)，第二谐波拍频 \(122\ \text{Hz}\)。备注：人耳分辨不出高于约 12 Hz 的拍；企鹅叫声含丰富谐波与拍频，使它在成千上万只紧挨的企鹅中也能被辨认出来。</p>
+</div>
+</section>
+
+<section id="lec16-p8">
+<h2>Part 8 · 多普勒效应与冲击波 <span class="zh">The Doppler Effect and Shock Waves</span></h2>
+
+<h3 id="lec16-p8-1">8.1 多普勒效应 <span class="zh">Doppler Effect</span></h3>
+<div class="def box">
+  <span class="box-title">📌 多普勒效应 Doppler Effect</span>
+  <p>当<b>波源与探测器之间存在相对运动</b>时，探测器接收到的频率 \(f'\) 与波源发射的频率 \(f\) 不同。这个效应<b>对电磁波同样成立</b>（如雷达测速、宇宙红移）。</p>
+  <ul>
+    <li>警车鸣笛停在原地，你也停在原地：听到 \(1000\ \text{Hz}\)；</li>
+    <li>你开车驶向它：听到<b>更高</b>的频率；驶离它：听到<b>更低</b>的频率。</li>
+  </ul>
+</div>
+
+<h3 id="lec16-p8-2">8.2 一般公式 <span class="zh">General Equation</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 多普勒效应一般公式</span>
+  <p class="formula">\(f'=f\dfrac{v\pm v_d}{v\pm v_s}\)</p>
+  <ul>
+    <li>\(v\)：声波在空气中的速度；\(v_d\)：探测器相对空气的速度；\(v_s\)：波源相对空气的速度；</li>
+    <li><b>选正负号的原则</b>：相互<b>靠近</b> → 频率升高；相互<b>远离</b> → 频率降低。</li>
+  </ul>
+</div>
+<p>分两步理解（其实是一般公式的特殊情况）：</p>
+<ul>
+  <li><b>探测器动、波源静</b>：\(f'=f\dfrac{v\pm v_d}{v}\)（探测器迎着波「多接」波前，频率升高）；</li>
+  <li><b>波源动、探测器静</b>：\(f'=f\dfrac{v}{v\mp v_s}\)（波源追着自己的波前跑，前方波长被压缩，频率升高）。</li>
+</ul>
+
+<h3 id="lec16-p8-3">8.3 例题：蝙蝠追蛾 <span class="zh">Example: Bat Chasing a Moth</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例：蝙蝠的多普勒导航</span>
+  <p><b>已知</b>：蝙蝠发出频率 \(f_{be}=82.52\ \text{kHz}\) 的超声波，以速度 \(v_b=9.00\ \text{m/s}\) 飞行并追逐以 \(v_m=8.00\ \text{m/s}\) 飞行的飞蛾；空气中的声速 \(v=343\ \text{m/s}\)。<b>求</b>：(a) 飞蛾探测到的频率 \(f'\)；(b) 蝙蝠在返回的回声中探测到的频率 \(f''\)。</p>
+  <p><b>解</b>：(a) 飞蛾是探测器（被追、在逃），蝙蝠是波源（在追）。两者同向运动但蝙蝠更快、正在靠近，频率应升高：</p>
+  <p class="formula">\(f'=f\dfrac{v-v_m}{v-v_b}=82.52\times\dfrac{343-8.00}{343-9.00}=82.52\times\dfrac{335}{334}\approx 82.8\ \text{kHz}\)</p>
+  <p>(b) 回声阶段：飞蛾（反射体）成为波源、蝙蝠成为探测器。飞蛾仍在远离蝙蝠，蝙蝠仍在靠近飞蛾：</p>
+  <p class="formula">\(f''=f'\dfrac{v+v_b}{v+v_m}=82.8\times\dfrac{343+9.00}{343+8.00}=82.8\times\dfrac{352}{351}\approx 83.0\ \text{kHz}\)</p>
+  <p><b>答</b>：(a) 飞蛾听到 \(82.8\ \text{kHz}\)；(b) 蝙蝠收到回声 \(83.0\ \text{kHz}\)。</p>
+</div>
+
+<h3 id="lec16-p8-4">8.4 超声速与冲击波 <span class="zh">Supersonic Speeds and Shock Waves</span></h3>
+<p>当波源动、探测器静时，前方频率公式为 \(f'=f\dfrac{v}{v-v_s}\)。考察波源速度 \(v_s\) 逼近声速 \(v\)：</p>
+<ul>
+  <li>\(v_s=v\)：波源<b>与自己的球面波前同步</b>，波前在波源前方无限堆积；</li>
+  <li>\(v_s&gt;v\)：波源<b>冲出音障</b>，甩开自己的声波，产生<b>音爆（sonic boom）</b>——与船速超过水波速度时拖出的尾迹是同一现象。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 冲击波与马赫锥</span>
+  <p>超声速时所有波前聚成一个三维锥面，称为<b>马赫锥（Mach cone）</b>，锥面上存在<b>冲击波（shock wave）</b>。马赫锥的半顶角（<b>马赫角</b>）满足</p>
+  <p class="formula">\(\sin\theta=\dfrac{vt}{v_s t}=\dfrac{v}{v_s}=\dfrac{1}{M}\)</p>
+  <p>其中 \(M=v_s/v\) 为<b>马赫数（Mach number）</b>：速度越快，马赫数越大，锥越尖。</p>
+</div>
+
+  <div class="toc">
+    <span class="toc-title">📑 本讲公式速查</span>
+    <p class="formula">\(v=\sqrt{\dfrac{B}{\rho}}\)</p>
+    <p class="formula">\(s(x,t)=s_m\cos(kx-\omega t),\qquad \Delta p=\Delta p_m\sin(kx-\omega t),\qquad \Delta p_m=B k s_m=v\rho\omega s_m\)</p>
+    <p class="formula">\(I=\dfrac{P}{A}=\dfrac{P_s}{4\pi r^2},\qquad I=\tfrac12\rho v\omega^2 s_m^2=\dfrac{\Delta p_m^2}{2\rho v}\)</p>
+    <p class="formula">\(\beta=(10\ \text{dB})\log_{10}\dfrac{I}{I_0},\quad I_0=10^{-12}\ \text{W/m}^2\)</p>
+    <p class="formula">\(s'_m=\Big|2s_m\cos\big(\tfrac{\phi}{2}\big)\Big|,\qquad \phi=\dfrac{2\pi}{\lambda}\Delta L\)；相长 \(\Delta L=n\lambda\)，相消 \(\Delta L=\big(n+\tfrac12\big)\lambda\)</p>
+    <p class="formula">两端开口管 \(f=\dfrac{nv}{2L}\ (n=1,2,3,\dots)\)；一端开口管 \(f=\dfrac{nv}{4L}\ (n=1,3,5,\dots)\)</p>
+    <p class="formula">\(f_{\text{beat}}=|f_1-f_2|\)</p>
+    <p class="formula">\(f'=f\dfrac{v\pm v_d}{v\pm v_s},\qquad \sin\theta=\dfrac{v}{v_s}=\dfrac{1}{M}\)</p>
+  </div>
+
+  <div class="vocab">
+    <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+    <ul>
+      <li><b>sound wave</b> — 声波；<b>longitudinal wave</b> — 纵波；<b>speed of sound</b> — 声速</li>
+      <li><b>bulk modulus</b> — 体积模量；<b>Young's modulus</b> — 杨氏模量；<b>compression / rarefaction</b> — 压缩 / 稀疏</li>
+      <li><b>displacement amplitude</b> — 位移振幅；<b>pressure amplitude</b> — 压强振幅</li>
+      <li><b>wavefront</b> — 波前；<b>ray</b> — 射线；<b>intensity</b> — 声强；<b>inverse-square law</b> — 平方反比定律</li>
+      <li><b>sound level</b> — 声级；<b>decibel</b> — 分贝</li>
+      <li><b>interference</b> — 干涉；<b>path length difference</b> — 程差；<b>fully constructive / destructive</b> — 完全相长 / 相消</li>
+      <li><b>standing wave</b> — 驻波；<b>fundamental</b> — 基频；<b>overtone</b> — 泛音；<b>pitch</b> — 音高；<b>timbre / quality</b> — 音色</li>
+      <li><b>beat</b> — 拍；<b>beat frequency</b> — 拍频</li>
+      <li><b>Doppler effect</b> — 多普勒效应；<b>supersonic</b> — 超声速；<b>sonic boom</b> — 音爆</li>
+      <li><b>shock wave</b> — 冲击波；<b>Mach cone</b> — 马赫锥；<b>Mach number</b> — 马赫数</li>
+    </ul>
+  </div>
+</section>
+</div><!-- /第16课 -->
 
 
 </div>

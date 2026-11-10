@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSC3001 离散数学 · 2025F 期中卷 纯题目</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fbfbf9;
+    --panel: #ffffff;
+    --text: #1f2328;
+    --muted: #57606a;
+    --border: #e3e1dc;
+    --accent: #1f6feb;
+    --accent-soft: #e8f0fe;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .layout { display: flex; }
+  .sidebar {
+    width: 240px; min-height: 100vh;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 { font-size: 15px; margin: 0 0 4px; line-height: 1.4; }
+  .sidebar .sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .sidebar a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 7px 10px; border-radius: 6px; font-size: 13.5px;
+    border-left: 2px solid transparent;
+  }
+  .sidebar a:hover { background: var(--accent-soft); color: var(--accent); }
+  .content { flex: 1; padding: 36px 40px 80px; }
+  .content-inner { max-width: 860px; margin: 0 auto; }
+  .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 28px; }
+  .doc-head .tag { font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: .5px; }
+  .doc-head h2 { margin: 6px 0 8px; font-size: 26px; }
+  .doc-head .meta { color: var(--muted); font-size: 13.5px; }
+  .note { background: var(--accent-soft); border: 1px solid #cfe1fb; border-radius: 8px; padding: 12px 16px; font-size: 14px; color: #1d3a66; margin-bottom: 28px; }
+  section.q { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 26px; }
+  .q-title { font-size: 19px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .q-title .pts { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .q-statement { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 0; }
+  .q-statement p { margin: 8px 0; }
+  .q-statement .sub { font-weight: 600; color: #0b2e59; }
+  .q-statement code { font-family: "SF Mono", "Consolas", "Menlo", monospace; font-size: 0.92em; }
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { padding: 20px; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h1>CSC3001 离散数学</h1>
+    <div class="sub">2025 Fall 期中卷 · 纯题目（无答案）</div>
+    <a href="#q1">第 1 题 · Z = {3s+5t}</a>
+    <a href="#q2">第 2 题 · 集合包含与差集</a>
+    <a href="#q3">第 3 题 · 递推关系建模</a>
+    <a href="#q4">第 4 题 · 因子分解</a>
+    <a href="#q5">第 5 题 · 斐波那契恒等式</a>
+    <a href="#q6">第 6 题 · 翻牌游戏</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+
+      <div class="doc-head">
+        <div class="tag">MIDTERM EXAM · 纯题目</div>
+        <h2>CSC3001 Discrete Mathematics — 2025 Fall 期中卷</h2>
+        <div class="meta">考试时间 2025-11-02 · 满分 100 · Answer ALL questions</div>
+      </div>
+
+      <div class="note">本页<b>只含题目，不含答案</b>，用于自测限时练习（建议 2.5 小时）。答案见《CSC3001_2025F_Midterm_题目与详解.html》。</div>
+
+      <section class="q" id="q1">
+        <h2 class="q-title">第 1 题 · 整数表示<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Show that \(\mathbb{Z} = \{3s + 5t \mid s, t \in \mathbb{Z}\}\), where \(\mathbb{Z}\) denotes the set of integers.</p>
+        </div>
+      </section>
+
+      <section class="q" id="q2">
+        <h2 class="q-title">第 2 题 · 集合包含与差集<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(A, B, C\) be sets. Prove or disprove: If \(A \subseteq B\), \(a \in A\), \(a \notin (B - C)\), then \(a \in C\).</p>
+        </div>
+      </section>
+
+      <section class="q" id="q3">
+        <h2 class="q-title">第 3 题 · 递推关系建模<span class="pts">20 分</span></h2>
+        <div class="q-statement">
+          <p>Express the following as recurrence relations and initial conditions. It is <em>not</em> required to solve the recurrence.</p>
+          <p class="sub">(a) (10 points) Count the number of \(n\)-bit binary strings where every occurrence of \(1\) is immediately followed by at least two \(0\)s.</p>
+          <p class="sub">(b) (10 points) Count the number of \(n\)-bit binary strings with at most two \(1\)s.</p>
+        </div>
+      </section>
+
+      <section class="q" id="q4">
+        <h2 class="q-title">第 4 题 · 因子分解<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(N\) be an odd composite number that is not a prime power. Let \(a\) be an integer with \(2 \le a &lt; N\), and \(r\) be the smallest positive integer satisfying the congruence
+          \[ a^{r} \equiv 1 \pmod{N}. \]
+          Assume that \(a\) and \(N\) are picked in a way that \(r\) is an even number.</p>
+          <p class="sub">(a) (8 points) Show that \(N \nmid a^{r/2} - 1\).</p>
+          <p class="sub">(b) (8 points) Show that if \(\gcd(N, a^{r/2}+1) \neq N\), then \(\gcd(N, a^{r/2}-1)\) is a nontrivial factor of \(N\) (a factor of \(N\) that is not \(1\) or \(N\) itself).</p>
+        </div>
+      </section>
+
+      <section class="q" id="q5">
+        <h2 class="q-title">第 5 题 · 斐波那契恒等式<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(F_n\) denote the \(n\)-th Fibonacci number defined by \(F_0 = 0\), \(F_1 = 1\), and \(F_n = F_{n-1} + F_{n-2}\) for \(n \ge 2\).</p>
+          <p class="sub">(a) (8 points) Prove that for any positive integers \(m\) and \(n\), \(F_{m+n} = F_m F_{n+1} + F_n F_{m-1}\).</p>
+          <p class="sub">(b) (8 points) Prove that for integers \(m, n &gt; 1\), \(\gcd(F_m, F_n) = F_{\gcd(m,n)}\).</p>
+        </div>
+      </section>
+
+      <section class="q" id="q6">
+        <h2 class="q-title">第 6 题 · 二进制串翻牌游戏<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>A \(2000\)-bit binary string has all its bits initially \(1\). In each step, Alice could pick a bit from the first \(1951\) bits that is a \(1\), and toggle that bit and the next \(49\) bits to its right (toggle means change \(1\) to \(0\) and \(0\) to \(1\)). A consecutive block of \(50\) bits will have their value changed as a consequence in each step. Alice will keep playing the game until such a bit cannot be found.</p>
+          <p class="sub">(a) (8 points) Write, from left to right, the bit string as a binary number, ignoring the leading zeros. Show that this binary number decreases in each step.</p>
+          <p class="sub">(b) (8 points) Show that regardless of Alice's strategy, the game terminates in an even number of steps.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

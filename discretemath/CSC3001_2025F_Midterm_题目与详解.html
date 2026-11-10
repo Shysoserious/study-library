@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSC3001 离散数学 · 2025F 期中卷 纯题目与详解</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fbfbf9;
+    --panel: #ffffff;
+    --text: #1f2328;
+    --muted: #57606a;
+    --border: #e3e1dc;
+    --accent: #1f6feb;
+    --accent-soft: #e8f0fe;
+    --idea-bg: #f3f8ff;
+    --answer-bg: #f6f8f6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .layout { display: flex; }
+  .sidebar {
+    width: 240px; min-height: 100vh;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 { font-size: 15px; margin: 0 0 4px; line-height: 1.4; }
+  .sidebar .sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .sidebar a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 7px 10px; border-radius: 6px; font-size: 13.5px;
+    border-left: 2px solid transparent;
+  }
+  .sidebar a:hover { background: var(--accent-soft); color: var(--accent); }
+  .content { flex: 1; padding: 36px 40px 80px; }
+  .content-inner { max-width: 860px; margin: 0 auto; }
+  .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 28px; }
+  .doc-head .tag { font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: .5px; }
+  .doc-head h2 { margin: 6px 0 8px; font-size: 26px; }
+  .doc-head .meta { color: var(--muted); font-size: 13.5px; }
+  .note { background: var(--accent-soft); border: 1px solid #cfe1fb; border-radius: 8px; padding: 12px 16px; font-size: 14px; color: #1d3a66; margin-bottom: 28px; }
+  section.q { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 26px; }
+  .q-title { font-size: 19px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .q-title .pts { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .q-statement { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 0 0 20px; }
+  .q-statement p { margin: 8px 0; }
+  .q-statement .sub { font-weight: 600; color: #0b2e59; }
+  .q-solution h3 { font-size: 15px; color: var(--accent); margin: 0 0 12px; letter-spacing: .5px; }
+  .idea { background: var(--idea-bg); border-radius: 8px; padding: 14px 16px; margin: 0 0 16px; font-size: 15px; }
+  .idea .lbl { font-weight: 700; color: #0b5394; }
+  .formal { background: var(--answer-bg); border: 1px solid #dde5da; border-radius: 8px; padding: 16px 18px; }
+  .formal .lbl { font-weight: 700; color: #2a5d34; display: block; margin-bottom: 8px; font-size: 14px; }
+  .formal p { margin: 8px 0; }
+  .formal ol, .formal ul { margin: 8px 0; padding-left: 22px; }
+  .formal li { margin: 4px 0; }
+  .sub-a, .sub-b { margin-top: 14px; }
+  .sub-a::before { content: "（a）"; font-weight: 700; color: #0b2e59; margin-right: 6px; }
+  .sub-b::before { content: "（b）"; font-weight: 700; color: #0b2e59; margin-right: 6px; }
+  .sub-a.hdr::before, .sub-b.hdr::before { content: ""; margin: 0; }
+  .eq-display { text-align: center; overflow-x: auto; padding: 6px 0; }
+  table.tab { border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+  table.tab th, table.tab td { border: 1px solid var(--border); padding: 6px 14px; text-align: center; }
+  table.tab th { background: #f1f3f5; }
+  .remark { font-size: 13.5px; color: var(--muted); margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 10px; }
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { padding: 20px; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h1>CSC3001 离散数学</h1>
+    <div class="sub">2025 Fall 期中卷 · 纯题目与详解</div>
+    <a href="#q1">第 1 题 · 整数表示 Z = {3s+5t}</a>
+    <a href="#q2">第 2 题 · 集合包含与差集</a>
+    <a href="#q3">第 3 题 · 递推关系建模</a>
+    <a href="#q4">第 4 题 · 因子分解（Shor 背景）</a>
+    <a href="#q5">第 5 题 · 斐波那契恒等式</a>
+    <a href="#q6">第 6 题 · 二进制串翻牌游戏</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+
+      <div class="doc-head">
+        <div class="tag">MIDTERM EXAM · 纯题目 + 详解</div>
+        <h2>CSC3001 Discrete Mathematics — 2025 Fall 期中卷</h2>
+        <div class="meta">考试时间 2025-11-02 · 满分 100 · 覆盖 LN1–LN6（逻辑 / 集合 / 证明 / 归纳 / 递归 / GCD）· 讲解中英、正式解答英文</div>
+      </div>
+
+      <div class="note">
+        说明：每题先给出<strong>英文原题</strong>，再给「<strong>思路</strong>」（中文讲清为什么这么做）与「<strong>解答</strong>」（英文完整作答，按考试要求全英文）。公式用 LaTeX（MathJax）渲染。
+      </div>
+
+      <!-- ============ Q1 ============ -->
+      <section class="q" id="q1">
+        <h2 class="q-title">第 1 题 · 整数表示 Z = {3s+5t}<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Show that \(\mathbb{Z} = \{3s + 5t \mid s, t \in \mathbb{Z}\}\), where \(\mathbb{Z}\) denotes the set of integers.</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>证明两个集合相等，标准做法是<b>双向包含（double inclusion）</b>。方向一 \(\supseteq\)（右集合 ⊆ 整数集）平凡：整数对加法、乘法封闭，所以 \(3s+5t\) 一定是整数。方向二 \(\subseteq\)（任意整数都能写成 \(3s+5t\)）是难点，技巧是<b>找一组具体的 \(s,t\) 把任意 \(n\) 表示出来</b>。因为 \(3\) 和 \(5\) 互素（\(3\cdot 2 + 5\cdot(-1) = 1\)），把该式两边乘 \(n\) 即得 \(n = 3(2n) + 5(-n)\)。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <p><strong>(⊇)</strong> Since addition and multiplication are closed on the integers, for any \(s,t\in\mathbb{Z}\) we have \(3s+5t \in \mathbb{Z}\). Hence \(\{3s+5t \mid s,t\in\mathbb{Z}\} \subseteq \mathbb{Z}\).</p>
+            <p><strong>(⊆)</strong> For any \(n \in \mathbb{Z}\), take \(s = 2n\) and \(t = -n\). Then
+            \[ 3s + 5t = 3(2n) + 5(-n) = 6n - 5n = n. \]
+            Thus \(n = 3(2n) + 5(-n) \in \{3s+5t \mid s,t\in\mathbb{Z}\}\), so \(\mathbb{Z} \subseteq \{3s+5t \mid s,t\in\mathbb{Z}\}\).</p>
+            <p>By double inclusion, \(\mathbb{Z} = \{3s+5t \mid s,t\in\mathbb{Z}\}\).</p>
+          </div>
+          <div class="remark">补：本质是“两个互素整数 \(a,b\) 的所有整系数线性组合恰是全体整数”，即 \(\gcd(3,5)=1 \Rightarrow \{3s+5t\}=\mathbb{Z}\)。更一般地 \(\{as+bt\}=\gcd(a,b)\mathbb{Z}\)（LN6：gcd = 最小正线性组合 spc）。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q2 ============ -->
+      <section class="q" id="q2">
+        <h2 class="q-title">第 2 题 · 集合包含与差集<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(A, B, C\) be sets. Prove or disprove: If \(A \subseteq B\), \(a \in A\), \(a \notin (B - C)\), then \(a \in C\).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>命题<b>成立</b>。用<b>反证法（proof by contradiction）</b>最顺：假设结论不成立即 \(a \notin C\)。由 \(a \in A \subseteq B\) 得 \(a \in B\)；于是 \(a \in B\) 且 \(a \notin C\)，按差集定义 \(a \in B - C\)，这与已知 \(a \notin (B-C)\) 矛盾。也可直接证：\(a \in B\) 且 \(a \notin (B-C)\)，而 \(B-C = B \cap \overline{C}\)，故 \(a \notin B-C\) 意味着“\(a \notin B\) 或 \(a \in C\)”，配合 \(a\in B\) 只能 \(a \in C\)。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <p>The statement is <strong>true</strong>. We prove it by contradiction.</p>
+            <p>Assume \(a \notin C\). Since \(A \subseteq B\) and \(a \in A\), we have \(a \in B\). Together with \(a \notin C\), the definition of set difference gives \(a \in B - C\). But this contradicts the hypothesis \(a \notin (B - C)\). Therefore the assumption was false, and \(a \in C\). ∎</p>
+            <p><em>Alternative (direct):</em> \(a \in B\) and \(a \notin (B-C)\). Since \(B - C = B \setminus C\), \(a \notin B \setminus C\) means \(a \notin B\) or \(a \in C\). As \(a \in B\), it must be that \(a \in C\).</p>
+          </div>
+          <div class="remark">术语对照：差集 set difference \(B - C = \{x \mid x \in B,\ x \notin C\}\)、反证法 proof by contradiction。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q3 ============ -->
+      <section class="q" id="q3">
+        <h2 class="q-title">第 3 题 · 递推关系建模<span class="pts">20 分</span></h2>
+        <div class="q-statement">
+          <p>Express the following as recurrence relations and initial conditions. It is <em>not</em> required to solve the recurrence.</p>
+          <p class="sub">(a) (10 points) Count the number of \(n\)-bit binary strings where every occurrence of \(1\) is immediately followed by at least two \(0\)s.</p>
+          <p class="sub">(b) (10 points) Count the number of \(n\)-bit binary strings with at most two \(1\)s.</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>这两小题都是“<b>按结尾分情形（reason by cases）</b>”搭递推。(a) 合法的串不可能以 \(1\) 或 \(10\) 结尾（因为 \(1\) 后面必须跟两个 \(0\)），所以只看结尾为 \(000\)（由合法 \(n-1\) 位串补一个 \(0\) 得到）与结尾为 \(100\)（由合法 \(n-3\) 位串补 \(100\) 得到）两种，得 \(a_n = a_{n-1} + a_{n-3}\)。(b) 按“末位加 0 还是加 1”分：加 0 直接接在任意合法 \(n-1\) 位串后（\(a_{n-1}\)）；加 1 则要求前 \(n-1\) 位里最多只有 1 个 \(1\)——0 个 1 的有 1 种、恰 1 个 1 的有 \(\binom{n-1}{1}=n-1\) 种，合计 \(n\) 种，得 \(a_n = a_{n-1} + n\)。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <div class="sub-a hdr"><p>Let \(a_n\) be the number of valid \(n\)-bit strings. A valid string cannot end in \(1\) (that \(1\) would have no following \(0\)s) and cannot end in \(10\) (the \(1\) would be followed by only one \(0\)). So the only possible endings are:</p>
+            <ul>
+              <li><strong>ending in \(000\):</strong> append \(0\) to any valid \((n-1)\)-bit string — contributes \(a_{n-1}\);</li>
+              <li><strong>ending in \(100\):</strong> append \(100\) to any valid \((n-3)\)-bit string — contributes \(a_{n-3}\).</li>
+            </ul>
+            <p>Hence
+            \[ a_n = a_{n-1} + a_{n-3}, \qquad a_0 = a_1 = a_2 = 1. \]
+            (Initial values: \(a_0=1\) for the empty string; \(a_1=1\), the string “0”; \(a_2=1\), the string “00”.)</p></div>
+            <div class="sub-b hdr"><p>Let \(b_n\) be the number of \(n\)-bit strings with at most two \(1\)s. Reason by the last bit:</p>
+            <ul>
+              <li><strong>append \(0\):</strong> to any valid \((n-1)\)-bit string — contributes \(b_{n-1}\);</li>
+              <li><strong>append \(1\):</strong> the prefix must contain at most one \(1\). There is exactly \(1\) prefix with zero \(1\)s, and \(\binom{n-1}{1} = n-1\) prefixes with exactly one \(1\), for a total of \(1 + (n-1) = n\) such prefixes.</li>
+            </ul>
+            <p>Hence
+            \[ b_n = b_{n-1} + n, \qquad b_0 = 1. \]</p></div>
+          </div>
+          <div class="remark">术语对照：递推关系 recurrence relation、初始条件 initial condition、按情形讨论 reason by cases、二进制串 binary string。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q4 ============ -->
+      <section class="q" id="q4">
+        <h2 class="q-title">第 4 题 · 因子分解（Shor 算法背景）<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(N\) be an odd composite number that is not a prime power. Let \(a\) be an integer with \(2 \le a &lt; N\), and \(r\) be the smallest positive integer satisfying the congruence
+          \[ a^{r} \equiv 1 \pmod{N}. \]
+          Assume that \(a\) and \(N\) are picked in a way that \(r\) is an even number.</p>
+          <p class="sub">(a) (8 points) Show that \(N \nmid a^{r/2} - 1\).</p>
+          <p class="sub">(b) (8 points) Show that if \(\gcd(N, a^{r/2}+1) \neq N\), then \(\gcd(N, a^{r/2}-1)\) is a nontrivial factor of \(N\) (a factor of \(N\) that is not \(1\) or \(N\) itself).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>(a) 用 \(r\) 的<b>最小性（minimality）</b>：若 \(N \mid a^{r/2}-1\)，则 \(a^{r/2}\equiv 1 \pmod N\)，而 \(r/2\) 是比 \(r\) 更小的正整数，矛盾。(b) 分两步：先证 \(g=\gcd(N, a^{r/2}-1)\) 是 \(N\) 的因子且 \(g\neq N\)（由 (a)）；再证 \(g\neq 1\)——因为 \(a^r\equiv 1\pmod N\) 意味着 \(N \mid (a^{r/2}-1)(a^{r/2}+1)\)，若 \(g=1\)，则 \(N\) 与第一个因子互素，由欧几里得引理 \(N \mid a^{r/2}+1\)，即 \(\gcd(N, a^{r/2}+1)=N\)，与题设矛盾。故 \(g\) 既不是 1 也不是 \(N\)，是<b>非平凡因子（nontrivial factor）</b>。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <div class="sub-a hdr"><p>Suppose, for contradiction, that \(N \mid a^{r/2} - 1\). Then \(a^{r/2} \equiv 1 \pmod N\). Since \(r\) is even, \(r/2\) is a positive integer smaller than \(r\). This contradicts the minimality of \(r\) (the smallest positive integer with \(a^r \equiv 1 \pmod N\)). Hence \(N \nmid a^{r/2} - 1\).</p></div>
+            <div class="sub-b hdr"><p>Let \(g = \gcd(N, a^{r/2}-1)\). By definition \(g\) is a factor of \(N\). By part (a), \(N \nmid a^{r/2}-1\), so \(g \neq N\).</p>
+            <p>Since \(a^r \equiv 1 \pmod N\), we have \(N \mid a^r - 1 = (a^{r/2}-1)(a^{r/2}+1)\). Suppose \(g = 1\), i.e. \(\gcd(N, a^{r/2}-1) = 1\). Because \(N\) divides the product \((a^{r/2}-1)(a^{r/2}+1)\) and is coprime to the first factor, Euclid's lemma gives \(N \mid a^{r/2}+1\), so \(\gcd(N, a^{r/2}+1) = N\), contradicting the assumption \(\gcd(N, a^{r/2}+1) \neq N\). Therefore \(g \neq 1\).</p>
+            <p>Thus \(g = \gcd(N, a^{r/2}-1)\) is a factor of \(N\) with \(g \neq 1\) and \(g \neq N\), i.e. a <strong>nontrivial factor</strong> of \(N\). ∎</p></div>
+          </div>
+          <div class="remark">补：这就是 Shor 量子分解算法的数论核心——只要找到偶数阶 \(r\) 且 \(a^{r/2}\not\equiv -1\pmod N\)，两次 gcd 就能劈出 \(N\) 的非平凡因子。术语：阶 order、非平凡因子 nontrivial factor、欧几里得引理 Euclid's lemma。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q5 ============ -->
+      <section class="q" id="q5">
+        <h2 class="q-title">第 5 题 · 斐波那契恒等式<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(F_n\) denote the \(n\)-th Fibonacci number defined by \(F_0 = 0\), \(F_1 = 1\), and \(F_n = F_{n-1} + F_{n-2}\) for \(n \ge 2\).</p>
+          <p class="sub">(a) (8 points) Prove that for any positive integers \(m\) and \(n\), \(F_{m+n} = F_m F_{n+1} + F_n F_{m-1}\).</p>
+          <p class="sub">(b) (8 points) Prove that for integers \(m, n &gt; 1\), \(\gcd(F_m, F_n) = F_{\gcd(m,n)}\).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>(a) 用<b>矩阵幂</b>。令 \(A = \begin{pmatrix}1&1\\1&0\end{pmatrix}\)，归纳可证 \(A^k = \begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix}\)。于是 \(F_{m+n}\) 是 \(A^{m+n-1}\) 的左上角元素，而 \(A^{m+n-1} = A^n A^{m-1}\)，左上角 =（\(A^n\) 第一行）·（\(A^{m-1}\) 第一列）\(= F_{n+1}F_m + F_n F_{m-1}\)。(b) 核心是一个“<b>减法引理</b>”：\(m&gt;n\) 时 \(\gcd(F_m,F_n)=\gcd(F_{m-n},F_n)\)。由 (a) 把 \(F_m = F_{m-n}F_{n+1} + F_{m-n-1}F_n\) 代入，且 \(\gcd(F_{n+1},F_n)=1\)（相邻斐波那契数互素），可把含 \(F_n\) 的那项“约掉”。反复用此引理，指数 \((m,n)\) 按欧几里得算法递减，直到落到 \(\gcd(F_{\gcd(m,n)}, F_0) = F_{\gcd(m,n)}\)。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <div class="sub-a hdr"><p>Let \(A = \begin{pmatrix}1&1\\1&0\end{pmatrix}\). We first prove by induction that
+            \[ A^{k} = \begin{pmatrix} F_{k+1} & F_k \\ F_k & F_{k-1} \end{pmatrix} \quad \text{for all } k \ge 1. \]
+            <em>Base</em> \(k=1\): \(A^1 = \begin{pmatrix}1&1\\1&0\end{pmatrix} = \begin{pmatrix}F_2&F_1\\F_1&F_0\end{pmatrix}\). ✓
+            <em>Step:</em> \(A^{k+1} = A \cdot A^k = \begin{pmatrix}1&1\\1&0\end{pmatrix}\begin{pmatrix}F_{k+1}&F_k\\F_k&F_{k-1}\end{pmatrix} = \begin{pmatrix}F_{k+1}+F_k & F_k+F_{k-1}\\ F_{k+1} & F_k\end{pmatrix} = \begin{pmatrix}F_{k+2}&F_{k+1}\\F_{k+1}&F_k\end{pmatrix}\). ✓</p>
+            <p>Now \(F_{m+n}\) is the \((1,1)\) entry of \(A^{m+n-1} = A^n A^{m-1}\). Therefore
+            \[
+            F_{m+n} = \big[A^{m+n-1}\big]_{1,1}
+              = \big[A^n A^{m-1}\big]_{1,1}
+              = \big(F_{n+1},\ F_n\big)\cdot\big(F_m,\ F_{m-1}\big)^{\mathsf T}
+              = F_m F_{n+1} + F_n F_{m-1}.
+            \]
+            ∎</p></div>
+            <div class="sub-b hdr"><p>We use the well-known fact \(\gcd(F_{n+1}, F_n) = 1\), which follows by induction:
+            \[ \gcd(F_{n+1},F_n) = \gcd(F_n + F_{n-1}, F_n) = \gcd(F_{n-1}, F_n) = \cdots = \gcd(F_1, F_0) = \gcd(1,0) = 1. \]</p>
+            <p>For \(m &gt; n\), using part (a) with indices \(m-n\) and \(n\):
+            \[ F_m = F_{(m-n)+n} = F_{m-n}F_{n+1} + F_{m-n-1}F_n. \]
+            Hence
+            \[ \gcd(F_m, F_n) = \gcd\!\big(F_{m-n}F_{n+1} + F_{m-n-1}F_n,\ F_n\big) = \gcd(F_{m-n}F_{n+1},\ F_n). \]
+            Since \(\gcd(F_{n+1}, F_n) = 1\), this equals
+            \[ \gcd(F_{m-n}, F_n). \]
+            This reduction replaces \((m,n)\) by \((m-n, n)\), exactly one step of Euclid's algorithm. Repeating it (and handling the symmetric case \(n &gt; m\) by swapping) drives the index pair down to \((\gcd(m,n), 0)\). Finally
+            \[ \gcd(F_m, F_n) = \gcd(F_{\gcd(m,n)},\ F_0) = \gcd(F_{\gcd(m,n)}, 0) = F_{\gcd(m,n)}. \]
+            ∎</p></div>
+          </div>
+          <div class="remark">术语对照：矩阵幂 matrix power、归纳法 induction、互素 coprime、欧几里得算法 Euclid's algorithm。这个结论表明“斐波那契数的 gcd 与下标的 gcd 是同一套结构”。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q6 ============ -->
+      <section class="q" id="q6">
+        <h2 class="q-title">第 6 题 · 二进制串翻牌游戏<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>A \(2000\)-bit binary string has all its bits initially \(1\). In each step, Alice could pick a bit from the first \(1951\) bits that is a \(1\), and toggle that bit and the next \(49\) bits to its right (toggle means change \(1\) to \(0\) and \(0\) to \(1\)). A consecutive block of \(50\) bits will have their value changed as a consequence in each step. Alice will keep playing the game until such a bit cannot be found.</p>
+          <p class="sub">(a) (8 points) Write, from left to right, the bit string as a binary number, ignoring the leading zeros. Show that this binary number decreases in each step.</p>
+          <p class="sub">(b) (8 points) Show that regardless of Alice's strategy, the game terminates in an even number of steps.</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>(a) Alice 每次选的都是 \(1\)，且这个 \(1\) 是被翻转的 50 位里<strong>最靠左（最高位）</strong>的那一位（右边 49 位都在它右侧、权值更低）。最高被翻转位从 \(1\to 0\)，所以整串对应的二进制数严格减小。(b) 关键找一个<b>每步恰好翻转一次的“不变量指标”</b>：看位置 \(1, 51, 101, \dots, 1+50k\ (k=0,\dots,39)\) 这 40 个特定位。任意一步翻转的 50 个连续位置里，恰好包含其中一个这样的位（因为 50 个连续整数中恰有一个模 50 余 1）。所以这 40 位的“和”的<b>奇偶性每步都改变</b>。初始 40 位全是 1，和为 40（偶）；结束态前 1951 位全 0，这些位也是 0，和为 0（偶）。奇偶性从偶回到偶，必须经过偶数次翻转。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <div class="sub-a hdr"><p>In each step Alice toggles a block of \(50\) consecutive bits whose <em>leftmost</em> bit is a \(1\). Among all toggled bits, the most significant one is this leftmost bit, and it changes from \(1\) to \(0\). All changes to less significant bits cannot compensate for this decrease in the most significant position. Therefore the value of the binary number strictly <strong>decreases</strong> in each step.</p></div>
+            <div class="sub-b hdr"><p>Consider the positions \(1 + 50k\) for \(k = 0, 1, \dots, 39\), i.e. positions \(1, 51, 101, \dots, 1951\), and let
+            \[ S = \text{sum of the bits at these positions}. \]</p>
+            <p>Every step toggles \(50\) consecutive bits, and among any \(50\) consecutive integers exactly one is congruent to \(1 \pmod{50}\). Hence each step toggles <em>exactly one</em> of the bits counted in \(S\), so the parity of \(S\) flips in every step.</p>
+            <p>Initially all \(40\) such bits are \(1\), so \(S = 40\) (even). Since the value decreases by at least \(1\) each step and starts finite (part (a)), the game must terminate; at termination all of the first \(1951\) bits are \(0\), in particular all \(40\) counted bits are \(0\), so \(S = 0\) (even).</p>
+            <p>As the parity of \(S\) flips each step and goes from even (\(40\)) back to even (\(0\)), the number of steps must be <strong>even</strong>. ∎</p></div>
+          </div>
+          <div class="remark">补：这是一个“用不变量（invariant）的奇偶性证明步数”的经典题型——不变量本身每一步都在变，但它的<b>奇偶性</b>是被锁定的（LN4 不变量法 invariant method）。</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>

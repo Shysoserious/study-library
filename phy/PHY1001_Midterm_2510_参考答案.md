@@ -117,7 +117,7 @@ $$\boxed{\text{No}}.$$
 
 ## Question 4 — Two blocks connected by a rigid rod on an incline
 
-> $m_1=4.0\ \text{kg}\ (\mu_1=0.35)$，$m_2=8.0\ \text{kg}\ (\mu_2=0.25)$，由无质量刚性杆相连，沿 $30^\circ$ 斜面下滑。$g=9.8\ \text{m/s}^2$。
+> $m_1=4.0\ \text{kg}\ (\mu_1=0.35)$，$m_2=8.0\ \text{kg}\ (\mu_2=0.25)$，由无质量刚性杆相连，沿 $30^\circ$ 斜面下滑（图中 $m_2$ 在上、$m_1$ 在下）。$g=9.8\ \text{m/s}^2$。
 
 ### Solution
 
@@ -135,27 +135,31 @@ $$\boxed{a = 2.5\ \text{m/s}^2\ \text{down the incline}}.$$
 
 **(b) Force of the rod on the 4.0-kg block**
 
-Apply Newton's second law to the 4.0-kg block alone, taking downhill as positive. Let $T$ be the rod force (positive = downhill, i.e. the rod pulls the block down):
+Apply Newton's second law to the 4.0-kg block alone, taking downhill as positive. Let $F$ be the rod force on the 4-kg block (positive = downhill):
 
-$$m_1 g\sin\theta + T - \mu_1 m_1 g\cos\theta = m_1 a$$
+$$m_1 g\sin\theta + F - \mu_1 m_1 g\cos\theta = m_1 a$$
 
-$$T = m_1(a - g\sin\theta + \mu_1 g\cos\theta) = (4.0)(2.50 - 4.9 + 0.35\cdot9.8\cdot0.866) = (4.0)(0.566) = 2.26\ \text{N}.$$
+$$F = m_1(a - g\sin\theta + \mu_1 g\cos\theta) = (4.0)(2.50 - 4.9 + 0.35\cdot9.8\cdot0.866) = (4.0)(0.566) = 2.26\ \text{N}.$$
 
-$$\boxed{T = 2.3\ \text{N},\ \text{directed down the incline (parallel to the plane, downhill).}}$$
+$$\boxed{F = 2.3\ \text{N},\ \text{directed down the incline — the rod pushes the 4-kg block downhill.}}$$
 
-*Check:* the 4-kg block has the larger friction coefficient, so alone it would accelerate slower ($a_1=g(\sin\theta-\mu_1\cos\theta)=1.93\ \text{m/s}^2$) than the 8-kg block ($a_2=2.78\ \text{m/s}^2$). The rod therefore **pulls** the 4-kg block downhill (the rod is in tension).
+*Check:* the 4-kg block has the larger friction coefficient, so alone it would accelerate slower ($a_1=g(\sin\theta-\mu_1\cos\theta)=1.93\ \text{m/s}^2$) than the 8-kg block ($a_2=2.78\ \text{m/s}^2$). Since $m_2$ (the faster block) is **uphill** (behind), it catches up to the slower $m_1$ in front; the rod is therefore in **compression**, pushing $m_1$ downhill and pushing $m_2$ uphill.
 
 **(c) Rod replaced by a string**
 
-Same acceleration? — **Yes.** Slack? — **No.**
+Same acceleration? — **No.** Slack? — **Yes.**
 
-The rod was in *tension*, so a string (which can also support tension but not compression) behaves identically; the string remains taut and the blocks move with the same acceleration.
+The rod was in *compression* (pushing the two blocks apart). A string cannot support compression — it can only pull. So when the rod is replaced by a string, the string immediately goes **slack**, and the two blocks no longer move together; each slides with its own natural acceleration,
+
+$$a_1 = g(\sin\theta-\mu_1\cos\theta)=1.93\ \text{m/s}^2,\qquad a_2 = g(\sin\theta-\mu_2\cos\theta)=2.78\ \text{m/s}^2.$$
+
+Since $m_2$ (above, faster) outruns $m_1$ (below, slower), they do **not** share a common acceleration.
 
 ### 知识点解析
 
 - **整体法**求系统加速度：把两个滑块看成一个系统，内力（杆的力）互相抵消，只考虑外力（重力分量、摩擦力）。
 - **隔离法**求内力：对其中一个滑块单独列牛顿第二定律，把杆的作用力当成未知外力解出。
-- 判断杆是「拉」还是「推」的关键：看**两块各自独立的加速度谁大谁小**。摩擦大的（4-kg）自然加速度小，会被摩擦小的（8-kg）拖着走，所以杆被拉伸（tension）。若换成绳子，绳子只能承受拉力不能承受压力，所以本题绳子可行且不会松弛；反之若杆是压力，绳子就会松弛。
+- 判断杆是「拉」还是「推」的关键：看**加速度大的那块在哪一头**。本题 $m_2$（8-kg，摩擦小）自然加速度大（$2.78$），且它在**上（后面）**，会追上前面慢的 $m_1$（4-kg，$1.93$），所以杆被**压缩（compression）**：推 $m_1$ 向下、推 $m_2$ 向上。若换成绳子，绳子只能承受拉力不能承受压力，所以绳子会**松弛**，两块各自独立下滑（加速度不再相同）。反之，若杆是 tension（前面的块更快、把后面的拖着走），绳子才不会松。
 
 ---
 
@@ -365,40 +369,41 @@ $$\boxed{(x_{\rm com},\,y_{\rm com}) = \left(\tfrac35 L,\ \tfrac15 L\right)}.$$
 
 ## Question 10 — Block on two strings rotating about a rod
 
-> $4.00\ \text{kg}$ 物块用两根无质量绳连到竖直杆上，随系统绕杆轴旋转，上绳张力 $80.0\ \text{N}$。几何（由题图）：物块到转轴的水平距离 $r=1.25\ \text{m}$，两根绳在杆上的挂点竖直相距 $2.00\ \text{m}$，物块位于两挂点正中间，故每根绳与水平夹角 $\theta$ 满足 $\tan\theta=\frac{1.00}{1.25}$。
+> $4.00\ \text{kg}$ 物块用两根无质量绳连到竖直杆上，随系统绕杆轴旋转，上绳张力 $80.0\ \text{N}$。几何（由题图）：每根绳长 $1.25\ \text{m}$，两根绳在杆上的挂点竖直相距 $2.00\ \text{m}$，物块位于两挂点正中间，故物块到转轴的水平距离 $r=\sqrt{1.25^2-1.00^2}=0.75\ \text{m}$，绳与竖直方向夹角 $\theta$ 满足 $\sin\theta=0.6,\ \cos\theta=0.8$。
 
 ### Solution
 
-Let the upper string tension be $T_1=80.0\ \text{N}$ (pulls up and inward) and the lower string tension be $T_2$ (pulls down and inward). With $\sin\theta=\frac{1.00}{\sqrt{1.00^2+1.25^2}}=0.625$, $\cos\theta=\frac{1.25}{\sqrt{1.00^2+1.25^2}}=0.781$.
+Let the upper string tension be $T_1=80.0\ \text{N}$ and the lower string tension be $T_2$. Let $\theta$ be the angle each string makes with the **vertical** rod; from the figure $\sin\theta=0.6$ (horizontal component) and $\cos\theta=0.8$ (vertical component), and the horizontal distance from the block to the axis is $r=0.75\ \text{m}$.
 
 **(a) Tension in the lower string** — vertical equilibrium:
 
-$$T_1\sin\theta - T_2\sin\theta - mg = 0 \quad\Rightarrow\quad T_2 = T_1 - \frac{mg}{\sin\theta}.$$
+$$T_1\cos\theta - T_2\cos\theta - mg = 0 \quad\Rightarrow\quad T_2 = T_1 - \frac{mg}{\cos\theta}.$$
 
-$$T_2 = 80.0 - \frac{(4.00)(9.80)}{0.625} = 80.0 - 62.7 = \boxed{17.3\ \text{N}}.$$
+$$T_2 = 80.0 - \frac{(4.00)(9.80)}{0.8} = 80.0 - 49.0 = \boxed{31.0\ \text{N}}.$$
 
 **(b) Speed of the block** — horizontal (centripetal) direction:
 
-$$T_1\cos\theta + T_2\cos\theta = \frac{mv^2}{r}$$
+$$(T_1+T_2)\sin\theta = \frac{mv^2}{r}$$
 
-$$v = \sqrt{\frac{(T_1+T_2)\,r\cos\theta}{m}} = \sqrt{\frac{(80.0+17.3)(1.25)(0.781)}{4.00}} = \sqrt{23.7} = \boxed{4.87\ \text{m/s}}.$$
+$$v = \sqrt{\frac{(T_1+T_2)\,r\sin\theta}{m}} = \sqrt{\frac{(80.0+31.0)(0.75)(0.6)}{4.00}} = \boxed{3.53\ \text{m/s}}.$$
 
 **(c) Critical speed (lower string just goes slack, $T_2=0$)**
 
 Vertical equilibrium with $T_2=0$:
 
-$$T_1\sin\theta = mg \quad\Rightarrow\quad T_1 = \frac{mg}{\sin\theta} = 62.7\ \text{N}.$$
+$$T_1\cos\theta = mg \quad\Rightarrow\quad T_1 = \frac{mg}{\cos\theta} = \frac{(4.00)(9.80)}{0.8} = 49.0\ \text{N}.$$
 
 Horizontal:
 
-$$T_1\cos\theta = \frac{mv_c^2}{r} \quad\Rightarrow\quad v_c = \sqrt{\frac{T_1 r\cos\theta}{m}} = \sqrt{\frac{(62.7)(1.25)(0.781)}{4.00}} = \sqrt{15.3} = \boxed{3.91\ \text{m/s}}.$$
+$$T_1\sin\theta = \frac{mv_c^2}{r} \quad\Rightarrow\quad v_c = \sqrt{\frac{T_1 r\sin\theta}{m}} = \sqrt{\frac{(49.0)(0.75)(0.6)}{4.00}} = \boxed{2.35\ \text{m/s}}.$$
 
-*(Equivalently $v_c=\sqrt{gr/\tan\theta}=\sqrt{(9.8)(1.25)(1.25)}=3.91\ \text{m/s}$.)*
+*(Equivalently $v_c=\sqrt{gr\tan\theta}=\sqrt{(9.8)(0.75)(0.75)}=2.35\ \text{m/s}$.)*
 
 ### 知识点解析
 
+- **几何**：$\theta$ 是绳与**竖直**杆的夹角，$\sin\theta=0.6$ 是绳的**水平分量**、$\cos\theta=0.8$ 是**竖直分量**；绳长 $1.25\ \text{m}$、挂点相距 $2.00\ \text{m}$、物块在中点，故水平距离 $r=\sqrt{1.25^2-1.00^2}=0.75\ \text{m}$。
 - **匀速圆周运动 + 牛顿第二定律**：竖直方向合力为零（平衡），水平方向合力提供向心力 $F_{\rm net}=\frac{mv^2}{r}$ 指向圆心。本题圆心在杆轴上，向心力由两绳水平分量之和提供。
-- **两个方向的受力分析要分开**：上绳的竖直分量**向上**，下绳的竖直分量**向下**（它挂在物块下方，把物块往下拉），重力也向下——这是容易搞错符号的地方。
+- **两个方向的受力分析要分开**：上绳的竖直分量**向上**（$T_1\cos\theta$），下绳的竖直分量**向下**（$T_2\cos\theta$，它挂在物块下方，把物块往下拉），重力也向下——这是容易搞错符号的地方。
 - **临界速度**：转速降低时，所需向心力减小，下绳张力 $T_2$ 随之减小；当 $T_2\to0$ 时就是临界状态，再慢的话下绳会松弛（物块会下垂改变构型）。此时只有上绳张力支撑重力并提供向心力。
 - 这类"圆锥摆/绳连接转动"题的通用套路：① 画受力图；② 竖直平衡；③ 水平向心力；④ 解未知量。
 

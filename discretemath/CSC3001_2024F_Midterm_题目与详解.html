@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSC3001 离散数学 · 2024F 期中卷 纯题目与详解</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #fbfbf9;
+    --panel: #ffffff;
+    --text: #1f2328;
+    --muted: #57606a;
+    --border: #e3e1dc;
+    --accent: #1f6feb;
+    --accent-soft: #e8f0fe;
+    --idea-bg: #f3f8ff;
+    --answer-bg: #f6f8f6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.75;
+    font-size: 16px;
+  }
+  .layout { display: flex; }
+  .sidebar {
+    width: 240px; min-height: 100vh;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 24px 16px;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 { font-size: 15px; margin: 0 0 4px; line-height: 1.4; }
+  .sidebar .sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .sidebar a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 7px 10px; border-radius: 6px; font-size: 13.5px;
+    border-left: 2px solid transparent;
+  }
+  .sidebar a:hover { background: var(--accent-soft); color: var(--accent); }
+  .content { flex: 1; padding: 36px 40px 80px; }
+  .content-inner { max-width: 860px; margin: 0 auto; }
+  .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 28px; }
+  .doc-head .tag { font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: .5px; }
+  .doc-head h2 { margin: 6px 0 8px; font-size: 26px; }
+  .doc-head .meta { color: var(--muted); font-size: 13.5px; }
+  .note { background: var(--accent-soft); border: 1px solid #cfe1fb; border-radius: 8px; padding: 12px 16px; font-size: 14px; color: #1d3a66; margin-bottom: 28px; }
+  section.q { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; margin-bottom: 26px; }
+  .q-title { font-size: 19px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .q-title .pts { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .q-statement { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 0 0 20px; }
+  .q-statement p { margin: 8px 0; }
+  .q-statement .sub { font-weight: 600; color: #0b2e59; }
+  .q-solution h3 { font-size: 15px; color: var(--accent); margin: 0 0 12px; letter-spacing: .5px; }
+  .idea { background: var(--idea-bg); border-radius: 8px; padding: 14px 16px; margin: 0 0 16px; font-size: 15px; }
+  .idea .lbl { font-weight: 700; color: #0b5394; }
+  .formal { background: var(--answer-bg); border: 1px solid #dde5da; border-radius: 8px; padding: 16px 18px; }
+  .formal .lbl { font-weight: 700; color: #2a5d34; display: block; margin-bottom: 8px; font-size: 14px; }
+  .formal p { margin: 8px 0; }
+  .formal ol, .formal ul { margin: 8px 0; padding-left: 22px; }
+  .formal li { margin: 4px 0; }
+  .sub-a, .sub-b { margin-top: 14px; }
+  .sub-a::before { content: "（a）"; font-weight: 700; color: #0b2e59; margin-right: 6px; }
+  .sub-b::before { content: "（b）"; font-weight: 700; color: #0b2e59; margin-right: 6px; }
+  .sub-a.hdr::before, .sub-b.hdr::before { content: ""; margin: 0; }
+  .eq-display { text-align: center; overflow-x: auto; padding: 6px 0; }
+  table.tab { border-collapse: collapse; margin: 12px 0; font-size: 15px; }
+  table.tab th, table.tab td { border: 1px solid var(--border); padding: 6px 14px; text-align: center; }
+  table.tab th { background: #f1f3f5; }
+  .remark { font-size: 13.5px; color: var(--muted); margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 10px; }
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--border); }
+    .content { padding: 20px; }
+  }
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar">
+    <h1>CSC3001 离散数学</h1>
+    <div class="sub">2024 Fall 期中卷 · 纯题目与详解</div>
+    <a href="#q1">第 1 题 · 括号计数 / 卡特兰数</a>
+    <a href="#q2">第 2 题 · 一阶逻辑翻译</a>
+    <a href="#q3">第 3 题 · 裂项求和（幂和公式）</a>
+    <a href="#q4">第 4 题 · 形如 4k+3 的素数无穷</a>
+    <a href="#q5">第 5 题 · 欧几里得算法步数上界</a>
+    <a href="#q6">第 6 题 · 向日葵引理</a>
+  </nav>
+  <main class="content">
+    <div class="content-inner">
+
+      <div class="doc-head">
+        <div class="tag">MIDTERM EXAM · 纯题目 + 详解</div>
+        <h2>CSC3001 Discrete Mathematics — 2024 Fall 期中卷</h2>
+        <div class="meta">考试时间 2024-11-09 · 满分 100 · 覆盖 LN1–LN6（逻辑 / 集合 / 证明 / 归纳 / 递归 / GCD）· 讲解中英、正式解答英文</div>
+      </div>
+
+      <div class="note">
+        说明：每题先给出<strong>英文原题</strong>，再给「<strong>思路</strong>」（中文讲清为什么这么做）与「<strong>解答</strong>」（英文完整作答，按考试要求全英文）。公式用 LaTeX（MathJax）渲染。
+      </div>
+
+      <!-- ============ Q1 ============ -->
+      <section class="q" id="q1">
+        <h2 class="q-title">第 1 题 · 括号计数（卡特兰数）<span class="pts">20 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(n\) be a positive integer. We want to compute how many valid ways to add \(n\) pairs of parentheses. E.g. there are 5 valid ways to add 3 pairs of parentheses, namely <code>((()))</code>, <code>(()())</code>, <code>(())()</code>, <code>()(())</code>, <code>()()()</code>. Let \(r_n\) denote the number of ways to add \(n\) pairs of parentheses, and denote \(r_0 = 1\).</p>
+          <p class="sub">(a) (10 points) Find a recursion of \(r_n\) using \(r_0, r_1, \dots, r_{n-1}\). Briefly justify your solution.</p>
+          <p class="sub">(b) (10 points) Find \(r_4\) and \(r_5\).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>这是<b>卡特兰数（Catalan number）</b>的经典递推。核心想法是<b>看第一个 “(” 与谁配对</b>。任何一个合法的括号串，第一个字符一定是 “(”（合法串不可能以 “)” 开头），它必定在某个位置和后面的一个 “)” 配对，而这对括号恰好“包住”中间若干对、并在它右边留下其余若干对。于是可以按“第一对括号里面装了几对”来分类累加，得到自卷积形式的递推。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <div class="sub-a hdr"><p>We have
+            \[ r_n = \sum_{i=1}^{n} r_{i-1}\, r_{n-i}, \qquad r_0 = 1. \]
+            <strong>Justification.</strong> In any valid arrangement, the first symbol must be “(”. Let this opening parenthesis be matched by the parenthesis that closes the \(i\)-th pair (so together they form the \(i\)-th pair, \(1 \le i \le n\)). Then:</p>
+            <ul>
+              <li>inside this pair there are exactly \(i-1\) pairs, contributing \(r_{i-1}\) ways;</li>
+              <li>to the right of this pair there are exactly \(n-i\) pairs, contributing \(r_{n-i}\) ways.</li>
+            </ul>
+            <p>Summing over all possible \(i = 1, \dots, n\) gives the recursion.</p></div>
+            <div class="sub-b hdr"><p>Using \(r_0 = 1\) and the recursion:</p>
+            <p class="eq-display">\(r_1 = r_0 r_0 = 1\)</p>
+            <p class="eq-display">\(r_2 = r_0 r_1 + r_1 r_0 = 1 + 1 = 2\)</p>
+            <p class="eq-display">\(r_3 = r_0 r_2 + r_1 r_1 + r_2 r_0 = 2 + 1 + 2 = 5\)</p>
+            <p class="eq-display">\(r_4 = r_0 r_3 + r_1 r_2 + r_2 r_1 + r_3 r_0 = 5 + 2 + 2 + 5 = 14\)</p>
+            <p class="eq-display">\(r_5 = r_0 r_4 + r_1 r_3 + r_2 r_2 + r_3 r_1 + r_4 r_0 = 14 + 5 + 4 + 5 + 14 = 42\)</p>
+            <p>Hence \(\boxed{r_4 = 14}\) and \(\boxed{r_5 = 42}\).</p></div>
+          </div>
+          <div class="remark">补：这就是卡特兰数 \(r_n = \tfrac{1}{n+1}\binom{2n}{n}\)，序列 \(1,1,2,5,14,42,\dots\)。递推的“自卷积”结构是它的标志（LN5 阶梯问题 / 括号匹配都归到它）。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q2 ============ -->
+      <section class="q" id="q2">
+        <h2 class="q-title">第 2 题 · 一阶逻辑翻译<span class="pts">20 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(D\) be the domain of all people. Let predicate \(\text{nice}(x)\), \(x\in D\), denote that \(x\) is a nice person; predicate \(\text{busy}(x)\), \(x\in D\), denote that \(x\) is a busy person; and \(\text{friend}(x,y)\), \(x,y\in D\), denote that \(x,y\) are friends. Using \(D\), <code>nice</code>, <code>busy</code> and <code>friend</code>, represent the following statements in first-order logic.</p>
+          <p class="sub">• Every busy person has at least one friend;</p>
+          <p class="sub">• Nice people never have a busy person as a friend.</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>一阶逻辑翻译的套路：先写<b>量词</b>，再写<b>蕴含（\(\to\)）</b>连接“限定条件”与“结论”。第一条是“对所有 \(x\)：若 \(x\) 忙，则 \(x\) 至少有一个朋友（存在 \(y\) 与之是朋友）”。第二条注意“never … as a friend”＝“不存在这样的 \(y\)：\(y\) 忙且与 \(x\) 是朋友”，等价地可说“\(x\) 的所有朋友里没有忙人”。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <p><strong>Every busy person has at least one friend:</strong>
+            \[ \forall x\in D,\ \big(\text{busy}(x) \to \exists y\in D,\ \text{friend}(x,y)\big). \]</p>
+            <p><strong>Nice people never have a busy person as a friend:</strong>
+            \[ \forall x\in D,\ \Big(\text{nice}(x) \to \neg \exists y\in D,\ \big(\text{busy}(y) \land \text{friend}(x,y)\big)\Big). \]
+            Equivalently (pushing the negation inside):
+            \[ \forall x\in D,\ \forall y\in D,\ \big(\text{nice}(x) \land \text{busy}(y) \to \neg \text{friend}(x,y)\big). \]</p>
+          </div>
+          <div class="remark">术语对照：量词 quantifier（\(\forall\) universal / \(\exists\) existential）、蕴含 implication、否定 negation、合取 conjunction。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q3 ============ -->
+      <section class="q" id="q3">
+        <h2 class="q-title">第 3 题 · 裂项求和（幂和公式）<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(k,n\) be positive integers. Alice recently learned a “telescoping” trick to derive the sum of integer power formulas. Namely, by
+          \[ k^4 - (k-1)^4 = k^4 - (k^4 - 4k^3 + 6k^2 - 4k + 1) = 4k^3 - 6k^2 + 4k - 1, \]
+          Alice knows
+          \[ \sum_{k=1}^{n} \big[k^4 - (k-1)^4\big] = 4\sum_{k=1}^{n} k^3 - 6\sum_{k=1}^{n} k^2 + 4\sum_{k=1}^{n} k - \sum_{k=1}^{n} 1. \]</p>
+          <p class="sub">(a) (8 points) Show that \(\displaystyle \sum_{k=1}^{n} k^2 = \frac{n(n+1)(2n+1)}{6}\).</p>
+          <p class="sub">(b) (8 points) Find a polynomial formula for \(\displaystyle \sum_{k=1}^{n} k^3\).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>(a) 直接<b>数学归纳法</b>证明平方和公式。(b) 用题目给的<b>裂项（telescoping）恒等式</b>：左边 \(\sum [k^4-(k-1)^4]\) 相邻项相消，只剩 \(n^4 - 0^4 = n^4\)；右边把已知的 \(\sum k^2\)（(a) 的结果）、\(\sum k = n(n+1)/2\)、\(\sum 1 = n\) 代入，解出 \(\sum k^3\)。这题不需要从零推三次方和，只需代已知量。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <div class="sub-a hdr"><p>We prove by induction on \(n\).</p>
+            <p><strong>Base case</strong> \(n=1\): LHS \(= 1^2 = 1\), RHS \(= \tfrac{1\cdot 2\cdot 3}{6} = 1\). ✓</p>
+            <p><strong>Inductive step.</strong> Assume the formula holds for \(n\); we prove it for \(n+1\):
+            \[
+            \sum_{k=1}^{n+1} k^2 = \sum_{k=1}^{n} k^2 + (n+1)^2
+              = \frac{n(n+1)(2n+1)}{6} + (n+1)^2
+              = \frac{n+1}{6}\big[n(2n+1) + 6(n+1)\big].
+            \]
+            Now \(n(2n+1) + 6(n+1) = 2n^2 + 7n + 6 = (n+2)(2n+3)\), so
+            \[
+            \sum_{k=1}^{n+1} k^2 = \frac{(n+1)(n+2)(2n+3)}{6},
+            \]
+            which is exactly the formula with \(n\) replaced by \(n+1\). By induction the formula holds for all \(n \in \mathbb{Z}^{+}\).</p></div>
+            <div class="sub-b hdr"><p>The left-hand side of the telescoping identity equals
+            \[ \sum_{k=1}^{n}\big[k^4-(k-1)^4\big] = (1^4-0^4) + (2^4-1^4) + \cdots + (n^4-(n-1)^4) = n^4. \]
+            Substituting the known sums \(\sum k^2 = \frac{n(n+1)(2n+1)}{6}\), \(\sum k = \frac{n(n+1)}{2}\), \(\sum 1 = n\):
+            \[
+            n^4 = 4\sum_{k=1}^{n} k^3 - 6\cdot\frac{n(n+1)(2n+1)}{6} + 4\cdot\frac{n(n+1)}{2} - n
+                = 4\sum_{k=1}^{n} k^3 - n(n+1)(2n+1) + 2n(n+1) - n.
+            \]
+            Hence
+            \[
+            4\sum_{k=1}^{n} k^3 = n^4 + n(n+1)(2n+1) - 2n(n+1) + n.
+            \]
+            Expanding \(n(n+1)(2n+1) = 2n^3+3n^2+n\) and \(-2n(n+1) = -2n^2-2n\):
+            \[
+            4\sum_{k=1}^{n} k^3 = n^4 + 2n^3 + n^2 = n^2(n^2 + 2n + 1) = n^2(n+1)^2.
+            \]
+            Therefore
+            \[ \boxed{\ \sum_{k=1}^{n} k^3 = \frac{n^2(n+1)^2}{4} = \Big(\frac{n(n+1)}{2}\Big)^2\ }. \]</p></div>
+          </div>
+          <div class="remark">补：这个裂项技巧是“用更高一次的差分恒等式反推低次幂和”的通用方法（要推 \(\sum k^p\) 就展开 \(k^{p+1}-(k-1)^{p+1}\)）。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q4 ============ -->
+      <section class="q" id="q4">
+        <h2 class="q-title">第 4 题 · 形如 4k+3 的素数无穷多<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Prove that there are infinitely many prime numbers of the form \(4k+3\) for some nonnegative integer \(k\).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>这是<b>欧几里得式反证法</b>（Euclid-style contradiction）。假设只有有限个 \(4k+3\) 型素数 \(q_1,\dots,q_n\)，构造 \(Q = 4q_1 q_2 \cdots q_n - 1\)。关键三步：① \(Q\) 本身也是 \(4k+3\) 型；② 任何 \(q_j\) 都不能整除 \(Q\)（因为 \(Q\equiv -1 \pmod{q_j}\)）；③ \(Q\) 的素因子都是奇数（\(4k+1\) 型或 \(4k+3\) 型），若全为 \(4k+1\) 型，乘积也应是 \(4k+1\) 型，与 \(Q\) 是 \(4k+3\) 型矛盾。于是必存在一个不在列表里的 \(4k+3\) 型素因子，矛盾。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <p>Suppose, for contradiction, that the primes of the form \(4k+3\) are exactly \(q_1, q_2, \dots, q_n\). Define
+            \[ Q = 4q_1 q_2 \cdots q_n - 1. \]</p>
+            <p><strong>Step 1.</strong> \(Q \equiv -1 \equiv 3 \pmod 4\), so \(Q\) is of the form \(4k+3\). In particular \(Q\) is odd, so \(Q\) is not divisible by \(2\).</p>
+            <p><strong>Step 2.</strong> For each \(j\), \(Q = q_j(4\prod_{i\neq j} q_i) - 1\), hence \(Q \equiv -1 \pmod{q_j}\). Thus \(q_j \nmid Q\) for every \(j\); none of the listed primes divides \(Q\).</p>
+            <p><strong>Step 3.</strong> Every prime factor of \(Q\) is odd, hence is either of the form \(4k+1\) or of the form \(4k+3\). Note that the product of numbers of the form \(4k+1\) is again of the form \(4k+1\) (since \((4a+1)(4b+1) = 4(4ab+a+b) + 1\)). If all prime factors of \(Q\) were of the form \(4k+1\), then \(Q\) itself would be of the form \(4k+1\), contradicting Step 1. Therefore \(Q\) has at least one prime factor of the form \(4k+3\).</p>
+            <p>By Step 2, this prime factor is not among \(q_1,\dots,q_n\) — a contradiction to our assumption that these were all such primes. Hence there are infinitely many primes of the form \(4k+3\).</p>
+          </div>
+          <div class="remark">术语对照：反证法 proof by contradiction、合数 composite、素数 prime、整除 divisibility、同余 congruence。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q5 ============ -->
+      <section class="q" id="q5">
+        <h2 class="q-title">第 5 题 · 欧几里得算法步数上界（Lamé）<span class="pts">12 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(a,b,n\) be nonnegative integers and \(a \ge b\). Consider Euclid's greatest common divisor algorithm:</p>
+          <pre style="background:#f6f8fa;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:14px;overflow-x:auto;">
+gcd(a, b)
+    if b = 0 then
+        Output a
+    else
+        Write a = qb + r, where q = ⌊a/b⌋, r = a − qb     (1)
+        Output gcd(b, r)
+    end if</pre>
+          <p>Let \(f_1 = f_2 = 1\), \(f_k = f_{k-1} + f_{k-2}\), \(\forall k \ge 2\). Show that if \(b &lt; f_n\), \(n \ge 1\), then \(\gcd(a,b)\) executes line (1) for at most \(n-1\) times.</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>用<b>逆否命题 + 强归纳</b>。要证“\(b &lt; f_n \Rightarrow\) 至多执行 \(n-1\) 次”，等价于证其逆否：“若至少执行 \(n\) 次，则 \(b \ge f_n\)”。更具体地证一个更强的命题：<b>欧几里得算法对 \((a,b)\) 至少执行 \(n\) 次除法的必要条件是 \(a \ge f_{n+1}\) 且 \(b \ge f_n\)</b>。归纳步的直觉：第一次除法把问题降为 \((b,r)\)，而 \((b,r)\) 还要再执行 \(n-1\) 次，由归纳假设 \(b \ge f_n\) 且 \(r \ge f_{n-1}\)，于是 \(a = qb + r \ge b + r \ge f_n + f_{n-1} = f_{n+1}\)——正好是斐波那契递推。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <p>We prove the stronger claim, which implies the desired statement by contraposition:</p>
+            <p><strong>Claim.</strong> For \(n \ge 1\), if Euclid's algorithm on \((a,b)\) (with \(a \ge b \ge 0\)) executes line (1) at least \(n\) times, then \(a \ge f_{n+1}\) and \(b \ge f_n\).</p>
+            <p><strong>Base case</strong> \(n = 1\). Executing line (1) at least once means \(b \neq 0\), so \(b \ge 1 = f_1\), and \(a \ge b \ge 1 = f_2\). ✓</p>
+            <p><strong>Inductive step.</strong> Assume the claim holds for \(n\), and suppose line (1) is executed at least \(n+1\) times. The first execution writes \(a = qb + r\) with \(0 \le r &lt; b\) and \(q = \lfloor a/b\rfloor \ge 1\). The recursive call \(\gcd(b,r)\) then executes line (1) at least \(n\) times, so by the induction hypothesis,
+            \[ b \ge f_{n+1}, \qquad r \ge f_n. \]
+            Therefore
+            \[ a = qb + r \ge b + r \ge f_{n+1} + f_n = f_{n+2}. \]
+            So \(a \ge f_{n+2}\) and \(b \ge f_{n+1}\), completing the induction.</p>
+            <p>Now take the contrapositive of the \(b\)-bound: if \(b &lt; f_n\), then the algorithm cannot execute line (1) at least \(n\) times, i.e. it executes line (1) <strong>at most \(n-1\) times</strong>. ∎</p>
+          </div>
+          <div class="remark">补：这就是 <strong>Lamé 定理</strong>（Gabriel Lamé, 1844）——欧几里得算法的最坏情形输入恰是一对相邻斐波那契数，它也是计算复杂度理论的起点之一。</div>
+        </div>
+      </section>
+
+      <!-- ============ Q6 ============ -->
+      <section class="q" id="q6">
+        <h2 class="q-title">第 6 题 · 向日葵引理<span class="pts">16 分</span></h2>
+        <div class="q-statement">
+          <p>Let \(k, r\) be positive integers.</p>
+          <p class="sub">(a) (8 points) Let \(F = \{\{1,2,3\},\{1,3,4\},\{1,3,5\},\{2,6,7\},\{5,8,9\},\{4,7,9\}\}\). Find a set \(W \subseteq F\) and a set \(S\), such that \(|W| \ge 3\), while every pair of distinct sets \(X,Y \in W\), \(X \neq Y\), satisfy \(X \cap Y = S\).</p>
+          <p class="sub">(b) (8 points) Let \(F\) be a collection of more than \(k!(r-1)^k\) distinct non-empty sets each of size at most \(k\). Prove that there is a collection \(W\) of at least \(r\) distinct sets in \(F\), such that there exists a set \(S\) where for every pair of distinct sets \(X,Y\) in \(W\), \(X \neq Y\), we have \(X \cap Y = S\).</p>
+        </div>
+        <div class="q-solution">
+          <h3>详解</h3>
+          <p class="idea"><span class="lbl">思路：</span>先交代定义：一组集合叫<b>向日葵（sunflower）</b>，若存在公共的<b>核（core）</b> \(S\)，使得任意两片的交都恰好是 \(S\)。(a) 直接观察：\(\{1,2,3\},\{1,3,4\},\{1,3,5\}\) 三片两两交都是 \(\{1,3\}\)，即核 \(S=\{1,3\}\)。(b) 是 <strong>Erdős–Rado 向日葵引理</strong>，标准证法是对 \(k\) 归纳：先取一个“两两不交”的极大子族 \(\mathcal A\)；若它片数 \(\ge r\) 就完工（空核）。否则它的并集 \(B\) 很小（\(\le k(r-1)\)），由鸽笼原理 \(B\) 中某个元素 \(x\) 落在至少 \(\frac{|F|}{|B|} &gt; (k-1)!(r-1)^{k-1}\) 个集合里；把这些集合删去 \(x\) 得到元素数 \(\le k-1\) 的新族，用归纳假设找到向日葵，再把 \(x\) 加回去即可。</p>
+          <div class="formal">
+            <span class="lbl">解答 Solution</span>
+            <p><strong>Definition.</strong> A collection \(W=\{A_1,\dots,A_m\}\) is a <em>sunflower</em> if there is a set \(S\) (the <em>core</em>) such that \(A_i\cap A_j = S\) for all \(i\neq j\).</p>
+            <div class="sub-a hdr"><p>Take
+            \[ W = \big\{\{1,2,3\},\ \{1,3,4\},\ \{1,3,5\}\big\}, \qquad S = \{1,3\}. \]
+            Checking the pairwise intersections:
+            \[ \{1,2,3\}\cap\{1,3,4\} = \{1,3\},\quad \{1,2,3\}\cap\{1,3,5\} = \{1,3\},\quad \{1,3,4\}\cap\{1,3,5\} = \{1,3\}. \]
+            All equal \(S\), and \(|W|=3 \ge 3\). ✓</p></div>
+            <div class="sub-b hdr"><p>We prove by induction on \(k\).</p>
+            <p><strong>Base case</strong> \(k=1\): \(F\) contains more than \(1!(r-1)^1 = r-1\) distinct non-empty sets, each of size at most 1, hence each is a singleton. So \(F\) contains at least \(r\) pairwise-disjoint 1-element sets; any \(r\) of them form a sunflower with core \(S = \varnothing\).</p>
+            <p><strong>Inductive step.</strong> Assume the statement for \(k-1\) (and smaller). Let \(\mathcal A = \{A_1,\dots,A_t\}\) be a <em>maximal</em> family of pairwise disjoint members of \(F\) (maximal means no further set can be added while preserving pairwise disjointness).</p>
+            <ul>
+              <li>If \(t \ge r\), then \(\mathcal A\) itself is a sunflower with \(t \ge r\) petals and core \(S=\varnothing\), and we are done.</li>
+            </ul>
+            <p>So assume \(t \le r-1\). Let \(B = A_1 \cup \cdots \cup A_t\). Since each \(|A_i| \le k\),
+            \[ |B| \le k t \le k(r-1). \]
+            By maximality of \(\mathcal A\), every member of \(F\) intersects \(B\). By the pigeonhole principle, some element \(x \in B\) lies in at least
+            \[ \frac{|F|}{|B|} &gt; \frac{k!(r-1)^k}{k(r-1)} = (k-1)!(r-1)^{k-1} \]
+            members of \(F\). Consider the family
+            \[ F_x = \big\{ A \setminus \{x\} : A \in F,\ x \in A \big\}. \]
+            Every set in \(F_x\) has size at most \(k-1\), and \(F_x\) contains more than \((k-1)!(r-1)^{k-1}\) distinct sets. By the induction hypothesis, \(F_x\) contains a sunflower \(W'\) with \(r\) petals and some core \(S'\). Adding \(x\) back to every set of \(W'\) yields \(r\) distinct sets of \(F\) whose pairwise intersections are all \(S' \cup \{x\}\). Hence \(F\) contains a sunflower with \(r\) petals, as required. ∎</p></div>
+          </div>
+          <div class="remark">补：这就是 Erdős–Rado（1960）向日葵引理，其界已被后续工作改进到 \(O(r\log(kr))^k\)（见 Tao 的博客）。术语：核 core、花瓣 petal、两两不交 pairwise disjoint、极大 maximal、鸽笼原理 pigeonhole principle。</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+</body>
+</html>
