@@ -1409,6 +1409,47 @@ window.MathJax = {
   </div>
 </div>
 
+<div class="lecture-group">
+  <button class="lecture-toggle" type="button"><span class="lt-title">第18课 · Segment Trees II</span><span class="lt-arrow">▾</span></button>
+  <div class="lecture-body">
+    <a href="#lec18-overview">📖 本讲导览</a>
+    <div class="divider"></div>
+    <a class="lv1" href="#lec18-p1">Part 1 · 回顾与新问题</a>
+    <a class="lv2" href="#lec18-p1-1">1.1 线段树回顾</a>
+    <a class="lv2" href="#lec18-p1-2">1.2 四类「更新 × 查询」需求</a>
+    <a class="lv1" href="#lec18-p2">Part 2 · 永久加法标记</a>
+    <a class="lv2" href="#lec18-p2-1">2.1 需求与 tag 的含义</a>
+    <a class="lv2" href="#lec18-p2-2">2.2 addTag 区间加</a>
+    <a class="lv2" href="#lec18-p2-3">2.3 pointValue 单点查</a>
+    <a class="lv1" href="#lec18-p3">Part 3 · 永久下界标记（chmax）</a>
+    <a class="lv2" href="#lec18-p3-1">3.1 chmax 与下界语义</a>
+    <a class="lv2" href="#lec18-p3-2">3.2 raiseTag 区间 chmax</a>
+    <a class="lv2" href="#lec18-p3-3">3.3 pointMax 单点查</a>
+    <a class="lv1" href="#lec18-p4">Part 4 · 永久标记回答不了区间和</a>
+    <a class="lv2" href="#lec18-p4-1">4.1 为什么失败</a>
+    <a class="lv2" href="#lec18-p4-2">4.2 急切下推的代价 Θ(n)</a>
+    <a class="lv1" href="#lec18-p5">Part 5 · 懒惰传播</a>
+    <a class="lv2" href="#lec18-p5-1">5.1 核心思想：现在改 sum，标记留给孩子</a>
+    <a class="lv2" href="#lec18-p5-2">5.2 apply / push / pull 三动作</a>
+    <a class="lv1" href="#lec18-p6">Part 6 · 懒惰树操作实现</a>
+    <a class="lv2" href="#lec18-p6-1">6.1 build</a>
+    <a class="lv2" href="#lec18-p6-2">6.2 rangeAdd</a>
+    <a class="lv2" href="#lec18-p6-3">6.3 rangeSum</a>
+    <a class="lv2" href="#lec18-p6-4">6.4 完整走查（16 与 34）</a>
+    <a class="lv1" href="#lec18-p7">Part 7 · 复杂度与小结</a>
+    <a class="lv2" href="#lec18-p7-1">7.1 O(log n) 论证</a>
+    <a class="lv2" href="#lec18-p7-2">7.2 重叠更新如何合并</a>
+    <a class="lv1" href="#lec18-p8">Part 8 · 平方和</a>
+    <a class="lv2" href="#lec18-p8-1">8.1 为什么只存 Q 不够</a>
+    <a class="lv2" href="#lec18-p8-2">8.2 更新公式 Q′ = Q + 2dS + d²len</a>
+    <a class="lv2" href="#lec18-p8-3">8.3 pull / applySquare / push / queryQ</a>
+    <a class="lv2" href="#lec18-p8-4">8.4 完整走查（329 与 217）</a>
+    <a class="lv1" href="#lec18-p9">Part 9 · 总结与词汇表</a>
+    <a class="lv2" href="#lec18-p9-1">9.1 四种方法对照表</a>
+    <a class="lv2" href="#lec18-p9-2">9.2 词汇表</a>
+  </div>
+</div>
+
 </nav>
 </aside>
 
@@ -1417,7 +1458,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–17</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–18</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -12015,7 +12056,317 @@ return left + right;</code></pre>
   </div>
 </section>
 
+<div class="lecture-banner">第18课 · Segment Trees II <span class="zh">（线段树（二）：区间更新 · 永久标记 · 懒惰传播 · 平方和）</span></div>
 
+<section id="lec18-overview">
+  <div class="toc">
+    <div class="toc-title">本讲导览</div>
+    <ol>
+      <li>回顾线段树，抛出「区间更新」新需求，梳理四类「更新 × 查询」组合</li>
+      <li>永久加法标记：区间加 + 单点查（值 = 原值 + 路径 tag 之和）</li>
+      <li>永久下界标记：区间 chmax + 单点查（值 = max(原值, 路径 tag)）</li>
+      <li>为什么永久标记回答不了区间和，急切下推的 Θ(n) 代价</li>
+      <li>懒惰传播：全覆段立即改 sum、进孩子前才 push</li>
+      <li>懒惰树操作实现：build / apply / push / pull / rangeAdd / rangeSum</li>
+      <li>复杂度 O(log n) 论证与重叠更新的合并</li>
+      <li>平方和：存 sum 与 square sum，更新公式 Q′ = Q + 2dS + d²len</li>
+      <li>四种方法对照表与词汇表</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <div class="box-title">本讲主线</div>
+    <p>点更新只改一条路径；区间更新要改整个 [l,r]，所以要先拆成 O(log n) 个不相交的树段，再在每个全覆段上「挂标记」或「立即改汇总」。单点查询只需读一条路径上的标记（永久标记即可）；区间查询需要知道每段的汇总值，全覆段必须立即改好，于是引入 lazy 标记，进入孩子前才 push。平方和则说明「存什么信息」由 update 能否 O(1) 决定。</p>
+  </div>
+</section>
+
+<section id="lec18-p1">
+  <h2>Part 1 · 回顾与新问题 <span class="en">Review &amp; New Problems</span></h2>
+
+  <h3 id="lec18-p1-1">1.1 线段树回顾 <span class="en">Segment Tree Recap</span></h3>
+  <p>第17课建立的线段树是一棵完全二叉树：n 个叶子对应数组位置 1..n，整棵树最多 2n−1 个节点，树高不超过 ⌈log₂n⌉。用数组存树，节点 p 的左孩子是 <code>2p</code>、右孩子是 <code>2p+1</code>。区间查询用三决策：查询区间与当前段完全不相交就返回空值；完全覆盖当前段就返回该段存的汇总值；部分重叠就下探两个孩子再 merge（合并）。build 是 O(n)，点更新沿一条路径是 O(log n)，区间查询拆成 O(log n) 个树段也是 O(log n)。</p>
+  <p>这一切都建立在一个假设上：<b>一次只改一个位置</b>。点更新只需走一条路径、改沿途每个祖先。现在提出新问题——<b>What about range updates?</b>（区间更新怎么办？）区间更新会一次改动 [l,r] 里每一个位置；如果照搬点更新的做法，最坏要改 Θ(n) 个叶子，完全失去线段树的优势。</p>
+
+  <h3 id="lec18-p1-2">1.2 四类「更新 × 查询」需求 <span class="en">Four Update × Query Needs</span></h3>
+  <p>把「更新」和「查询」各分成区间/单点两类，本课重点处理下面四种组合，每种对应一种技术，难度逐级上升：</p>
+  <table>
+    <tr><th>更新操作</th><th>查询操作 → 对应技术</th></tr>
+    <tr><td>区间加 d（add(l,r,d)）</td><td>读单点（value(x)）→ 永久加法标记</td></tr>
+    <tr><td>区间抬到下限 v（chmax(l,r,v)）</td><td>读单点（pointMax(x)）→ 永久下界标记</td></tr>
+    <tr><td>区间加 d</td><td>读区间和（sum(l,r)）→ 懒惰传播</td></tr>
+    <tr><td>区间加 d</td><td>读区间平方和（Q(l,r)）→ 平方和（存 S 与 Q）</td></tr>
+  </table>
+  <p>四种组合的关键分野：单点查询只要读一条路径，永久标记（permanent tag）就够；区间查询需要每个全覆段的汇总值随时正确，于是引出 lazy；平方和再进一步，逼我们想清楚「该存哪些信息」。</p>
+</section>
+
+<section id="lec18-p2">
+  <h2>Part 2 · 永久加法标记 <span class="en">Permanent Addition Tags</span></h2>
+
+  <h3 id="lec18-p2-1">2.1 需求与 tag 的含义 <span class="en">The Problem and What a Tag Means</span></h3>
+  <p>需求：<code>add(l,r,d)</code> 给 [l,r] 里每个 a[i] 加上 d；<code>value(x)</code> 返回 a[x] 的当前值。单点查询的妙处在于：一个位置 x 的最终值，只跟「根到叶 x 这条路径上挂过的标记」有关。直觉上，任何覆盖 x 的区间更新，它挂标记的那个树段一定在 x 的路径上；不覆盖 x 的更新挂的段在路径之外，碰不到 x。于是有核心等式：</p>
+  <div class="def box">
+    <div class="box-title">📌 当前值 = 原值 + 路径上所有 tag 之和</div>
+    <p><code>value(x) = a[x] + tag[root] + ⋯ + tag[leaf x]</code>。每个 tag 代表「这一整段被整体加过 d」，谁落在段里谁就欠这个 d。</p>
+  </div>
+  <p>例：tag +2 挂在段 [3,4] 上（表示 [3,4] 整体 +2），则 <code>value(4) = 1 + 0 + 0 + 2 + 0 = 3</code>——其中 a[4]=1 是原值，路径上只有 [3,4] 那个节点带 tag 2，其余为 0。</p>
+  <p>用三组加法走查 n=7 的情形：<code>add(2,6,2)</code>、<code>add(1,7,1)</code>、<code>add(4,7,3)</code>，最终 current = [4,4,7,7,11,15,6]。位置 5 依次被加过 2、1、3，共 +6，所以 <code>value(5) = 5 + 2 + 1 + 3 = 11</code>（原值 a[5]=5 加上路径上的三个 tag）：</p>
+  <table>
+    <tr><th>操作</th><th>拆成的全覆段（挂 tag）</th><th>对 a[5] 的贡献</th></tr>
+    <tr><td>add(2,6,2)</td><td>[2,2]、[3,4]、[5,6] 各 +2</td><td>+2（[5,6] 覆盖 5）</td></tr>
+    <tr><td>add(1,7,1)</td><td>[1,7] 根节点 +1</td><td>+1</td></tr>
+    <tr><td>add(4,7,3)</td><td>[4,4]、[5,7] 各 +3</td><td>+3（[5,7] 覆盖 5）</td></tr>
+  </table>
+  <p>对任意 x，把根到 x 路径上所有 tag 加起来、再加上原值 a[x]，就是答案。</p>
+
+  <h3 id="lec18-p2-2">2.2 addTag 区间加 <span class="en">addTag: Range Addition</span></h3>
+  <p>更新的三决策与区间查询几乎一样，差别只在全覆段：<b>全覆段只改 tag[p]，立刻停止</b>。不能继续往下递归——那样同一个 d 会被孩子段的 tag 再记一遍，将来沿路径求和时会算两次。部分重叠则下探两个孩子。</p>
+<pre><code>void addTag(int p, int L, int R, int l, int r, long long d) {
+    if (r &lt; L || R &lt; l) return;
+    if (l &lt;= L &amp;&amp; R &lt;= r) { tag[p] += d; return; }
+    int M = (L + R) / 2;
+    addTag(2*p, L, M, l, r, d);
+    addTag(2*p+1, M+1, R, l, r, d);
+}</code></pre>
+  <p>存储：<code>const int MAXN = 100005; int a[MAXN]; long long tag[4*MAXN];</code>。<code>a</code> 保存原值，永不改动；<code>tag</code> 初始全 0，只往树上挂。</p>
+
+  <h3 id="lec18-p2-3">2.3 pointValue 单点查 <span class="en">pointValue: Point Query</span></h3>
+  <p>单点查询沿根到 x 的单条路径一路累加 tag，到叶子时再加上原值 a[x]：</p>
+<pre><code>long long pointValue(int p, int L, int R, int x) {
+    if (L == R) return a[x] + tag[p];
+    int M = (L + R) / 2;
+    if (x &lt;= M) return tag[p] + pointValue(2*p, L, M, x);
+    return tag[p] + pointValue(2*p+1, M+1, R, x);
+}</code></pre>
+  <p>例：<code>pointValue(1,1,7,5)</code> 走 [1,7] → [5,7] → [5,6] → [5,5]，返回 5 + 1 + 3 + 2 + 0 = 11。小结：区间加拆成 O(log n) 个全覆段、每段 O(1) 挂 tag；单点查沿 O(log n) 路径累加；所有 tag 原地不动（永久）。</p>
+</section>
+
+<section id="lec18-p3">
+  <h2>Part 3 · 永久下界标记（chmax） <span class="en">Permanent Lower-Bound Tags</span></h2>
+
+  <h3 id="lec18-p3-1">3.1 chmax 与下界语义 <span class="en">chmax and Lower-Bound Semantics</span></h3>
+  <p>需求：<code>chmax(l,r,v)</code> 把 [l,r] 每个 a[i] 换成 <code>max(a[i], v)</code>，即「抬到下限 v」，本来就 ≥ v 的位置不动。与加法不同，这里的合并运算是 max：多个 chmax 作用在一个位置上，最终等于「原值」和「所有下界」一起取最大。</p>
+  <div class="def box">
+    <div class="box-title">📌 当前值 = max(原值, 路径上所有下界 tag)</div>
+    <p><code>value(x) = max(a[x], floorTag[root], ⋯, floorTag[leaf x])</code>。加法 tag 是求和，下界 tag 是取 max——同一个「路径读标记」框架，换一种合并运算。</p>
+  </div>
+  <p>三组 chmax 走查 n=7：<code>chmax(2,6,6)</code>、<code>chmax(1,7,4)</code>、<code>chmax(4,7,8)</code>，最终 current = [4,6,6,8,8,9,8]。位置 6 依次见过下界 6、4、8，但原值 9 压过所有下界，所以 <code>value(6) = max(9, 6, 4, 8) = 9</code>。</p>
+
+  <h3 id="lec18-p3-2">3.2 raiseTag 区间 chmax <span class="en">raiseTag: Range chmax</span></h3>
+  <p>全覆段把下界合并进 tag：<code>floorTag[p] = max(floorTag[p], v)</code>。存储 <code>int floorTag[4*MAXN]</code>，用 <code>std::fill(..., INT_MIN)</code> 初始化为 −∞——未用过 tag 的段不设任何下界。</p>
+<pre><code>void raiseTag(int p, int L, int R, int l, int r, int v) {
+    if (r &lt; L || R &lt; l) return;
+    if (l &lt;= L &amp;&amp; R &lt;= r) { floorTag[p] = std::max(floorTag[p], v); return; }
+    int M = (L + R) / 2;
+    raiseTag(2*p, L, M, l, r, v);
+    raiseTag(2*p+1, M+1, R, l, r, v);
+}</code></pre>
+
+  <h3 id="lec18-p3-3">3.3 pointMax 单点查 <span class="en">pointMax: Point Query</span></h3>
+  <p>沿路径一路取 max，到叶子再和原值 a[x] 取 max：</p>
+<pre><code>int pointMax(int p, int L, int R, int x) {
+    if (L == R) return std::max(a[x], floorTag[p]);
+    int M = (L + R) / 2;
+    if (x &lt;= M) return std::max(floorTag[p], pointMax(2*p, L, M, x));
+    return std::max(floorTag[p], pointMax(2*p+1, M+1, R, x));
+}</code></pre>
+  <p>例：<code>pointMax(5) = 8</code>（原值 5 被下界 8 抬起来）、<code>pointMax(6) = 9</code>（原值 9 压过所有下界）。小结：加法和下界两种 tag 都是「点查询只读一条路径」，永久标记即可；重叠更新按加法 / max 自然合并。</p>
+</section>
+
+<section id="lec18-p4">
+  <h2>Part 4 · 永久标记回答不了区间和 <span class="en">Why Permanent Tags Fail for Range Sum</span></h2>
+
+  <h3 id="lec18-p4-1">4.1 为什么失败 <span class="en">Why It Fails</span></h3>
+  <p>试把永久加法标记套到「区间加 + 区间和」上。n=8、初值 [3,1,4,1,5,9,2,6]，整段 sum[1] = 31。执行 <code>add(3,5,2)</code>：它把 +2 挂在 [3,4] 与 [5,5] 的 tag 上，root 的 tag 仍是 0。此时查 <code>sum(1,8)</code>，三决策里 [1,8] 是全覆段，直接返回 sum[1] = 31——但真实和是 37。</p>
+  <div class="warn box">
+    <div class="box-title">⚠️ 单点查 vs 区间查的关键差别</div>
+    <p>单点查读一条完整路径，能把每个祖先的 tag 都收集到；区间查读的是「被取走的若干块」，每块只能拿到它自己的 sum，拿不到块内部更深层挂着的 tag。于是全覆段的旧 sum 漏掉了后代 tag 的贡献。</p>
+  </div>
+
+  <h3 id="lec18-p4-2">4.2 急切下推的代价 Θ(n) <span class="en">The Θ(n) Cost of Eager Flushing</span></h3>
+  <p>朴素修正：每次更新把所有受影响节点的 sum 立刻改对，一路 flush（冲刷）到叶子。<code>eagerAdd</code> 做全区间 +2 时，要访问全部 15 个节点、改 15 个 sum，即 Θ(n)；即使只更新 [3,5] 也要访问 11 个节点。问题在于：全区间更新本只覆盖 1 个根节点，却因为「必须让每个 sum 都对」而下推到所有叶子。</p>
+  <div class="warn box">
+    <div class="box-title">⚠️ 矛盾的来源</div>
+    <p>区间查询要求每个全覆段的 sum 立刻正确（否则查询 O(1) 拿不到对的数），但「立刻正确」如果靠冲到叶子实现就退化成 Θ(n)。出路是 lazy：<b>全覆段立即改自己的 sum，把欠孩子的加量记在 lazy 里，等真要进孩子时再 push</b>。</p>
+  </div>
+</section>
+
+<section id="lec18-p5">
+  <h2>Part 5 · 懒惰传播 <span class="en">Lazy Propagation</span></h2>
+
+  <h3 id="lec18-p5-1">5.1 核心思想：现在改 sum，标记留给孩子 <span class="en">Fix Sum Now, Defer Children</span></h3>
+  <p>lazy 的核心是一个「推迟记账」：当更新完全覆盖某段时，<b>立即改这一段的汇总值 sum[p]</b>（保证将来任何区间查询从这层拿数都是对的），同时把「欠两个孩子、还没下发的加量」记进 <code>lazy[p]</code>。孩子不立刻改——等以后某个操作真正需要进入孩子时，再把 lazy 下发（push）。</p>
+  <p>例：n=8 全区间 +2，根节点 <code>sum[p] = 31 + 2 × 8 = 47</code>、<code>lazy[p] = +2</code>；两个孩子的 sum 仍是 9 与 22，保持「欠账」状态。此刻查 <code>sum(1,8)</code> 直接返回 47，正确。</p>
+
+  <h3 id="lec18-p5-2">5.2 apply / push / pull 三动作 <span class="en">Three Actions: apply, push, pull</span></h3>
+  <table>
+    <tr><th>动作</th><th>时机</th><th>效果</th></tr>
+    <tr><td>apply</td><td>某段收到整段 +d</td><td><code>sum[p] += d × 长度</code>；若 L &lt; R 再 <code>lazy[p] += d</code></td></tr>
+    <tr><td>push</td><td>部分重叠、要进入孩子前</td><td>把 lazy[p] 用 apply 下发给两孩子，然后清空 lazy[p]</td></tr>
+    <tr><td>pull</td><td>部分更新回溯时</td><td>父亲 sum = 左孩子 sum + 右孩子 sum</td></tr>
+  </table>
+  <p>附注：查询也可能 push（部分重叠要下探），但查询不修改任何值，父亲 sum 始终正确，所以<b>查询无需 pull</b>；只有更新回溯时才 pull 重算祖先。</p>
+</section>
+
+<section id="lec18-p6">
+  <h2>Part 6 · 懒惰树操作实现 <span class="en">Lazy Tree Implementation</span></h2>
+
+  <h3 id="lec18-p6-1">6.1 build <span class="en">build</span></h3>
+  <p>声明 <code>long long a[N], sum[4*N], lazy[4*N];</code>。build 时把每个节点的 lazy 清零；叶子 <code>sum[p] = a[L]</code>；否则先建两孩子再合并。</p>
+<pre><code>void build(int p, int L, int R) {
+    lazy[p] = 0;
+    if (L == R) { sum[p] = a[L]; return; }
+    int m = (L + R) / 2;
+    build(2*p, L, m);
+    build(2*p+1, m+1, R);
+    sum[p] = sum[2*p] + sum[2*p+1];
+}</code></pre>
+
+  <h3 id="lec18-p6-2">6.2 apply / push <span class="en">apply and push</span></h3>
+<pre><code>void apply(int p, int L, int R, long long d) {
+    sum[p] += d * (R - L + 1);
+    if (L &lt; R) lazy[p] += d;
+}
+void push(int p, int L, int R) {
+    if (L == R || lazy[p] == 0) return;
+    int m = (L + R) / 2;
+    apply(2*p, L, m, lazy[p]);
+    apply(2*p+1, m+1, R, lazy[p]);
+    lazy[p] = 0;
+}</code></pre>
+  <p>apply 是「整段 +d」的唯一入口：改 sum、记 lazy。push 只在非叶且有 pending 时把 lazy 下发给两孩子，自己清零。</p>
+
+  <h3 id="lec18-p6-3">6.3 rangeAdd / rangeSum <span class="en">rangeAdd and rangeSum</span></h3>
+<pre><code>void rangeAdd(int p, int L, int R, int l, int r, long long d) {
+    if (r &lt; L || R &lt; l) return;
+    if (l &lt;= L &amp;&amp; R &lt;= r) { apply(p, L, R, d); return; }
+    push(p, L, R);
+    int m = (L + R) / 2;
+    rangeAdd(2*p, L, m, l, r, d);
+    rangeAdd(2*p+1, m+1, R, l, r, d);
+    sum[p] = sum[2*p] + sum[2*p+1];
+}
+long long rangeSum(int p, int L, int R, int l, int r) {
+    if (r &lt; L || R &lt; l) return 0;
+    if (l &lt;= L &amp;&amp; R &lt;= r) return sum[p];
+    push(p, L, R);
+    int m = (L + R) / 2;
+    long long left = rangeSum(2*p, L, m, l, r);
+    long long right = rangeSum(2*p+1, m+1, R, l, r);
+    return left + right;
+}</code></pre>
+
+  <h3 id="lec18-p6-4">6.4 完整走查（16 与 34） <span class="en">Full Walkthrough: 16 and 34</span></h3>
+  <p>n=8，初值 [3,1,4,1,5,9,2,6]。顺序：build → 全区间 +2 → 查 [3,5] 得 9+7=<b>16</b> → [1,4] +3 → 全区间 +4 → 查 [3,5] 得 23+11=<b>34</b>。主程序：</p>
+<pre><code>build(1, 1, n);
+rangeAdd(1, 1, n, 1, 8, 2);
+cout &lt;&lt; rangeSum(1, 1, n, 3, 5); // 16
+rangeAdd(1, 1, n, 1, 4, 3);
+rangeAdd(1, 1, n, 1, 8, 4);
+cout &lt;&lt; rangeSum(1, 1, n, 3, 5); // 34</code></pre>
+  <p>解释：全区间 +2 后 [3,4] 段 sum = 9（4+1+2×2）、[5,5] sum = 7（5+2）；查 [3,5] 拆成 [3,4] 与 [5,5] 求和 16。再 [1,4] +3（[3,4] 再加 3 变成 15）与全区间 +4（[3,4] 变 23、[5,5] 变 11），查 [3,5] 得 23+11=34。所有操作中 lazy 只在需要进入孩子时才 push。</p>
+</section>
+
+<section id="lec18-p7">
+  <h2>Part 7 · 复杂度与小结 <span class="en">Complexity &amp; Summary</span></h2>
+
+  <h3 id="lec18-p7-1">7.1 O(log n) 论证 <span class="en">Why It Is O(log n)</span></h3>
+  <p>一次操作里，全覆段只做 O(1)（改 sum + 记 tag）就停；完全不相交的段 O(1) 直接返回；只有部分重叠的段才递归。每一层最多有 2 个段包含 [l,r] 的左右边界，因此每层最多 2 个「分裂节点」，每个分裂节点最多 2 个子调用，一层 ≤ 4 个子调用。树高 h = O(log n)，所以每次操作最多 1 + 4h 次节点访问，每次访问 O(1)（含 push 的两孩子 apply）。结论：update 与 query 都是 <code>O(log n)</code>，空间 O(n)。</p>
+  <div class="thm box">
+    <div class="box-title">🎯 lazy 线段树复杂度</div>
+    <p>区间加 / 区间和 / 区间 chmax 等操作均为 <code>O(log n)</code> 时间、O(n) 空间；懒惰下推不改变渐近界，只是把「孩子晚点改」的账挂起来。</p>
+  </div>
+
+  <h3 id="lec18-p7-2">7.2 重叠更新如何合并 <span class="en">How Overlapping Updates Merge</span></h3>
+  <p>lazy 就是一个数，重复加法自然累加：同一段先后收到 +3 与 +4，lazy 变成 +7。push 时把累加值一次性下发。例：全区间 +4 下推到左孩子时，左孩子已有 pending +3，apply 之后它的 lazy 变成 +7——「欠账」自动合并，无需为每次更新单独排队。</p>
+</section>
+
+<section id="lec18-p8">
+  <h2>Part 8 · 平方和 <span class="en">Sum of Squares</span></h2>
+
+  <h3 id="lec18-p8-1">8.1 为什么只存 Q 不够 <span class="en">Why Storing Only Q Is Not Enough</span></h3>
+  <p>需求：区间加 d，查询区间平方和 Q。若每段只存平方和 Q 和长度 len，更新时能否 O(1) 推出新 Q？反例：两段长度相同、平方和也相同——A = [1,7]（S=8，Q=50），B = [5,5]（S=10，Q=50）；但整段 +1 后 A 的 Q 变成 68，B 变成 72。仅凭 Q 与 len 无法区分它们，更无法推出新 Q。</p>
+  <div class="warn box">
+    <div class="box-title">⚠️ 结论</div>
+    <p>要让整段更新 O(1) 算出来，必须<b>同时存和 S 与平方和 Q</b>。这正是线段树设计的核心原则：存什么信息，由「update 能否 O(1) 完成」决定。</p>
+  </div>
+
+  <h3 id="lec18-p8-2">8.2 更新公式 Q′ = Q + 2dS + d²len <span class="en">Update Formula</span></h3>
+  <div class="thm box">
+    <div class="box-title">🎯 平方和更新公式</div>
+    <p><code>Q′ = Q + 2d·S + d²·len</code>，然后 <code>S′ = S + d·len</code>。因为 Σ(x+d)² = Σx² + 2dΣx + d²·len，三个量 Q、S、len 都已知，故可 O(1) 更新。</p>
+  </div>
+  <p>例：n=8 初值 [3,1,4,1,5,9,2,6]，S = 31、Q = 173。全区间 +2：<code>Q′ = 173 + 2×2×31 + 2²×8 = 173 + 124 + 32 = 329</code>，S 变 47。</p>
+
+  <h3 id="lec18-p8-3">8.3 pull / applySquare / push / queryQ <span class="en">pull, applySquare, push, queryQ</span></h3>
+<pre><code>void pull(int p) {
+    sum[p] = sum[2*p] + sum[2*p+1];
+    square[p] = square[2*p] + square[2*p+1];
+}
+void applySquare(int p, int L, int R, long long d) {
+    int len = R - L + 1;
+    square[p] += 2*d*sum[p] + d*d*len;
+    sum[p] += d * len;
+    if (L &lt; R) lazy[p] += d;
+}
+void push(int p, int L, int R) {
+    if (L == R || lazy[p] == 0) return;
+    int m = (L + R) / 2;
+    applySquare(2*p, L, m, lazy[p]);
+    applySquare(2*p+1, m+1, R, lazy[p]);
+    lazy[p] = 0;
+}
+long long queryQ(int p, int L, int R, int l, int r) {
+    if (r &lt; L || R &lt; l) return 0;
+    if (l &lt;= L &amp;&amp; R &lt;= r) return square[p];
+    push(p, L, R);
+    int m = (L + R) / 2;
+    return queryQ(2*p, L, m, l, r) + queryQ(2*p+1, m+1, R, l, r);
+}</code></pre>
+  <p>rangeAdd 与 6.3 相同，只是把 apply 换成 applySquare、结尾用 pull(p)（同时重算 sum 与 square）。叶子存 <code>S = a[i]</code>、<code>Q = a[i]²</code>。注意 applySquare 里要先算 square（用旧的 sum），再更新 sum——顺序不能反。</p>
+
+  <h3 id="lec18-p8-4">8.4 完整走查（329 与 217） <span class="en">Full Walkthrough: 329 and 217</span></h3>
+  <p>全区间 +2 后根节点 S=47、Q=329；再 <code>rangeAdd(3,5,3)</code>，根节点变 S=56、Q=452；<code>queryQ(3,5)</code> 返回 [3,4] 的 117 + [5,5] 的 100 = <b>217</b>（当前值 9、6、10，9²+6²+10² = 81+36+100 = 217）。</p>
+  <div class="thm box">
+    <div class="box-title">🎯 线段树设计心法</div>
+    <p>选择「让整段更新能 O(1) 算出来」的额外信息：加法 + 区间和 → 存 sum；加法 + 平方和 → 存 sum 与 square；更多次幂同理要存各次幂和。信息既要支持 merge，又要支持整段 O(1) 更新。</p>
+  </div>
+</section>
+
+<section id="lec18-p9">
+  <h2>Part 9 · 总结与词汇表 <span class="en">Summary &amp; Vocabulary</span></h2>
+
+  <h3 id="lec18-p9-1">9.1 四种方法对照表 <span class="en">Comparison of Four Approaches</span></h3>
+  <table>
+    <tr><th>方法</th><th>如何做区间操作</th><th>代价</th></tr>
+    <tr><td>永久加法标记</td><td>全覆段 tag += d；点查询 = 原值 + 路径 tag 之和</td><td>O(log n)</td></tr>
+    <tr><td>永久下界标记</td><td>全覆段 floorTag = max(floorTag, v)；点查询 = max(原值, 路径 tag)</td><td>O(log n)</td></tr>
+    <tr><td>懒惰传播</td><td>全覆段立即改 sum、记 lazy；进孩子前 push pending</td><td>O(log n)</td></tr>
+    <tr><td>平方和</td><td>同时存 sum 与 square sum，整段更新时两个量一起改</td><td>O(log n)</td></tr>
+  </table>
+  <p>收尾一句：<b>存的信息要既支持 merge 又支持整段 O(1) 更新</b>。点查询读路径 → 永久标记；区间查询读全覆段 → lazy 即时改汇总；更复杂的查询 → 存更多能被 O(1) 更新的量。</p>
+
+  <h3 id="lec18-p9-2">9.2 词汇表 <span class="en">Vocabulary</span></h3>
+
+<div class="vocab">
+  <div class="vocab-title">词汇表 Key Vocabulary</div>
+  <ul>
+    <li><b>range update</b> — 区间更新：一次改动 [l,r] 内所有位置</li>
+    <li><b>point query</b> — 单点查询：只问一个位置的值</li>
+    <li><b>range query</b> — 区间查询：问 [l,r] 的汇总（和、最大值、平方和等）</li>
+    <li><b>permanent tag</b> — 永久标记：挂在树段上、原地不动的标记，单点查沿路径收集</li>
+    <li><b>lazy propagation / lazy tag</b> — 懒惰传播/懒标记：把欠孩子的加量记下来，进孩子前才下发</li>
+    <li><b>tag</b> — 标记：代表「这一段被整体做过某种更新」的记录</li>
+    <li><b>lower bound</b> — 下界：chmax 抬升后所有元素都不低于的值</li>
+    <li><b>chmax</b> — 区间抬到下限：a[i] ← max(a[i], v)</li>
+    <li><b>push</b> — 下推：把 lazy 下发给两孩子并清空自己</li>
+    <li><b>pull</b> — 回溯重算：用两个孩子重算父亲的汇总值</li>
+    <li><b>apply</b> — 整段施加更新：改该段汇总并记 lazy</li>
+    <li><b>pending addition</b> — 待下发的加法：lazy 里记着的、还没给孩子加上去的量</li>
+    <li><b>sum of squares</b> — 平方和：Σa[i]²，需要配合和 S 才能 O(1) 更新</li>
+    <li><b>flush</b> — 冲刷到叶子：把更新一路推到叶子使所有 sum 立刻正确</li>
+    <li><b>eager</b> — 急切：每次更新立刻把所有相关节点改对（代价 Θ(n)）</li>
+  </ul>
+</div>
+</section>
 
 </div>
 </main>
