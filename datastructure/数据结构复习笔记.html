@@ -1450,6 +1450,58 @@ window.MathJax = {
   </div>
 </div>
 
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第19课 · Balanced Binary Search Trees</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec19-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec19-p1">Part 1 · 回顾与动机</a>
+        <a class="lv2" href="#lec19-p1-1">1.1 有序 Map 接口与 BST 性质</a>
+        <a class="lv2" href="#lec19-p1-2">1.2 三棵树，选哪棵？</a>
+        <a class="lv2" href="#lec19-p1-3">1.3 按频率权衡：加权深度</a>
+        <a class="lv2" href="#lec19-p1-4">1.4 退化成链与「完全」的代价</a>
+        <a class="lv1" href="#lec19-p2">Part 2 · 旋转</a>
+        <a class="lv2" href="#lec19-p2-1">2.1 右旋：左孩子上提</a>
+        <a class="lv2" href="#lec19-p2-2">2.2 左旋：右孩子上提</a>
+        <a class="lv2" href="#lec19-p2-3">2.3 大图里的旋转</a>
+        <a class="lv1" href="#lec19-p3">Part 3 · AVL 树：定义与高度</a>
+        <a class="lv2" href="#lec19-p3-1">3.1 高度与平衡因子</a>
+        <a class="lv2" href="#lec19-p3-2">3.2 AVL 定义</a>
+        <a class="lv2" href="#lec19-p3-3">3.3 高度 h 最少需要几个节点</a>
+        <a class="lv2" href="#lec19-p3-4">3.4 高度上界 ≈ 1.44 log₂(n+1)</a>
+        <a class="lv1" href="#lec19-p4">Part 4 · AVL 插入</a>
+        <a class="lv2" href="#lec19-p4-1">4.1 平衡因子变化与第一个违例点</a>
+        <a class="lv2" href="#lec19-p4-2">4.2 从 z 读两个方向</a>
+        <a class="lv2" href="#lec19-p4-3">4.3 LL：在 z 处右旋一次</a>
+        <a class="lv2" href="#lec19-p4-4">4.4 LR：两次旋转</a>
+        <a class="lv2" href="#lec19-p4-5">4.5 RR / RL 与「修一次就够」</a>
+        <a class="lv1" href="#lec19-p5">Part 5 · AVL 删除</a>
+        <a class="lv2" href="#lec19-p5-1">5.1 BST 删除规则</a>
+        <a class="lv2" href="#lec19-p5-2">5.2 从删除点向上检查</a>
+        <a class="lv2" href="#lec19-p5-3">5.3 比较 y 的两个孩子</a>
+        <a class="lv2" href="#lec19-p5-4">5.4 复杂度</a>
+        <a class="lv1" href="#lec19-p6">Part 6 · 红黑树：规则与黑高</a>
+        <a class="lv2" href="#lec19-p6-1">6.1 历史与四条规则</a>
+        <a class="lv2" href="#lec19-p6-2">6.2 黑高 bh</a>
+        <a class="lv2" href="#lec19-p6-3">6.3 红黑树高度上界</a>
+        <a class="lv1" href="#lec19-p7">Part 7 · 红黑插入</a>
+        <a class="lv2" href="#lec19-p7-1">7.1 为什么新节点插成红色</a>
+        <a class="lv2" href="#lec19-p7-2">7.2 红叔叔：变色上移</a>
+        <a class="lv2" href="#lec19-p7-3">7.3 黑叔叔：拉直 + 旋转</a>
+        <a class="lv1" href="#lec19-p8">Part 8 · 红黑删除</a>
+        <a class="lv2" href="#lec19-p8-1">8.1 追踪缺失的黑色</a>
+        <a class="lv2" href="#lec19-p8-2">8.2 四个案例</a>
+        <a class="lv2" href="#lec19-p8-3">8.3 复杂度</a>
+        <a class="lv1" href="#lec19-p9">Part 9 · 总结</a>
+        <a class="lv2" href="#lec19-p9-1">9.1 AVL 与红黑树对照</a>
+        <a class="lv2" href="#lec19-p9-2">9.2 C++ 中的应用</a>
+        <a class="lv2" href="#lec19-p9-3">9.3 词汇表</a>
+      </div>
+    </div>
+
 </nav>
 </aside>
 
@@ -1458,7 +1510,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–18</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–19</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -12364,6 +12416,374 @@ long long queryQ(int p, int L, int R, int l, int r) {
     <li><b>sum of squares</b> — 平方和：Σa[i]²，需要配合和 S 才能 O(1) 更新</li>
     <li><b>flush</b> — 冲刷到叶子：把更新一路推到叶子使所有 sum 立刻正确</li>
     <li><b>eager</b> — 急切：每次更新立刻把所有相关节点改对（代价 Θ(n)）</li>
+  </ul>
+</div>
+</section>
+
+<!-- ============ 第19课 ============ -->
+<div class="lecture-banner">第19课 · Balanced Binary Search Trees <span class="zh">（平衡二叉搜索树：AVL 树与红黑树）</span></div>
+
+<section id="lec19-overview">
+  <div class="toc">
+    <div class="toc-title">本讲导览</div>
+    <ol>
+      <li>回顾有序 Map 接口与 BST 性质，抛出「树长得歪了怎么办」</li>
+      <li>三棵存同样键的树怎么选：最坏深度 vs 高频键；BST 如何退化成链 Θ(n²)</li>
+      <li>旋转（右旋 / 左旋）：把键往根上提、保持中序不变</li>
+      <li>为什么不让 BST 一直保持「完全」——一次插入会改 Θ(n) 个位置</li>
+      <li>AVL 树：平衡因子 BF、|BF|≤1、高度上界 ≈ 1.44 log₂(n+1)</li>
+      <li>AVL 插入：LL/LR/RR/RL 四种情况、修复一次就停</li>
+      <li>AVL 删除：从删除点向上检查、可能传播、O(log n)</li>
+      <li>红黑树：四条颜色规则、黑高 bh、高度上界 2 log₂(n+1)</li>
+      <li>红黑插入（红叔叔/黑叔叔）与删除（双黑四个案例）、C++ 应用与总结</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <div class="box-title">本讲主线</div>
+    <p>第 11 课讲过 BST，最坏情况下查找退化成 O(n)——比如按递增顺序插入，树就变成一条链。这一讲要解决的问题是：<b>在键不断增删的前提下，怎么保证树始终「矮」、查找始终 O(log n)</b>。答案分两派：AVL 树用「高度差 ≤ 1」这种<b>严格但很直观</b>的规则，红黑树用「颜色」这种<b>放松但更难记</b>的规则。两者的共同工具都是<b>旋转（rotation）</b>——不破坏中序、只在局部重接几条边。</p>
+  </div>
+</section>
+
+<section id="lec19-p1">
+  <h2>Part 1 · 回顾与动机 <span class="en">Review &amp; Motivation</span></h2>
+
+  <h3 id="lec19-p1-1">1.1 有序 Map 接口与 BST 性质 <span class="en">The Ordered Map Interface &amp; BST Property</span></h3>
+  <p>有序 Map（ordered map）给每个不同的键（key）关联一个值（value），本课里两者都是整数。三个接口：</p>
+<pre><code>bool find(int key, int&amp; value);   // 找到就把 value 写进去并返回 true，否则返回 false 且 value 不动
+bool insert(int key, int value); // 插入新记录返回 true；键已存在则保留原值、返回 false
+bool deleteKey(int key);         // 删掉一条记录返回 true，否则返回 false</code></pre>
+  <p>BST 性质（回顾第 11 课）：<b>每个节点，左子树所有键都更小，右子树所有键都更大</b>。每次比较只选一边子树，到其根再按同一规则比。中序遍历（inorder）把这些键从小到大排好。</p>
+
+  <h3 id="lec19-p1-2">1.2 三棵树，选哪棵？ <span class="en">Which Tree Would You Choose?</span></h3>
+  <p>下面三棵 BST 存的是<b>完全相同</b>的键 1–7，只是形状不同：</p>
+  <table>
+    <tr><th>树</th><th>形状</th><th>最坏查找比较次数</th><th>找 7 的比较次数</th></tr>
+    <tr><td>A（完全平衡）</td><td>根 4，左右各三层</td><td>3</td><td>3</td></tr>
+    <tr><td>B（7 在根）</td><td>7 为根，其余在左</td><td>4</td><td>1</td></tr>
+    <tr><td>C（一条链）</td><td>1→2→…→7</td><td>7</td><td>7</td></tr>
+  </table>
+  <ul>
+    <li><b>只看最坏情况</b>：A 最坏 3 次、B 最坏 4 次、C 最坏 7 次 → 选 <b>A</b>。最坏情况是「对任意一次查找都有上界」。</li>
+    <li><b>如果大多数查询都在找 7</b>：树 B 把 7 放在根，找它只要 1 次 → 选 <b>B</b>。</li>
+  </ul>
+  <p>这说明「哪棵树最好」取决于<b>访问模式</b>：没有访问信息时，让最坏路径尽量短（平衡）；知道访问频率时，让高频键尽量浅（加权）。</p>
+
+  <h3 id="lec19-p1-3">1.3 按频率权衡：加权深度 <span class="en">Weighted Depth</span></h3>
+  <p>若键 1–6 各被请求一次、键 7 被请求 24 次，总比较次数 = 每个键的「(深度+1) × 请求次数」之和：</p>
+  <p><code>总比较次数 = Σ<sub>key k</sub> count(k) · (depth(k) + 1)</code></p>
+  <ul>
+    <li>树 A（平衡）：键 1–6 合计 14 次，键 7 是 24×3=72 次 → <b>86</b>。</li>
+    <li>树 B（7 在根）：键 1–6 合计 20 次，键 7 是 24×1=24 次 → <b>44</b>。</li>
+  </ul>
+  <p>高频键放根上大获全胜。那「每次把最高频的键当根」这个贪心对不对？</p>
+  <div class="ex box">
+    <div class="box-title">✏️ 贪心反例</div>
+    <p>键 1,2,3 分别被请求 5,4,3 次。</p>
+    <ul>
+      <li><b>贪心</b>（最频繁的 1 当根）：1 在根、2 和 3 在右链 → 5×1 + 4×2 + 3×3 = <b>22</b>。</li>
+      <li><b>换成 2 当根</b>：1 在左、3 在右 → 5×2 + 4×1 + 3×2 = <b>20</b>。</li>
+    </ul>
+    <p>把某个键提为根，会<b>同时改变其他键的深度</b>，所以「最高频当根」不一定最优，要比较<b>总加权深度</b>。最优二叉搜索树是更高级的专题，本课只追求「最坏情况 O(log n)」。</p>
+  </div>
+
+  <h3 id="lec19-p1-4">1.4 BST 如何退化成链、为什么不能保持完全 <span class="en">How a BST Becomes a Chain</span></h3>
+  <p>按<b>递增顺序</b>插入 1,2,…,n，每个新键都比之前的大，一直往右插，树就变成一条链：</p>
+  <ul>
+    <li>建链的插入比较次数：0 + 1 + ⋯ + (n−1) = <b>n(n−1)/2</b>，即 <b>Θ(n²)</b>。</li>
+    <li>链上查一个键最坏要<b>访问全部 n 个键</b>。</li>
+  </ul>
+  <div class="warn box">
+    <div class="box-title">⚠️ 为什么不让 BST 一直保持「完全」</div>
+    <p>直观想法：每次插入后把树重新摆成完全二叉树（complete tree），树高就永远 ⌈log₂n⌉。但「完全」对<b>形状</b>的要求太死：n = 2ᵏ−1 个节点时，插入一个新的最大值，会让<b>每一个旧键都换位置</b>——一次更新强制 Θ(n) 次搬动。所以「完全」做不到 O(log n) 更新，必须换一条路：<b>允许轻微不平衡，只在某个局部旋转</b>。这就是平衡二叉搜索树（balanced BST）的由来。</p>
+  </div>
+</section>
+
+<section id="lec19-p2">
+  <h2>Part 2 · 旋转 <span class="en">Rotations</span></h2>
+
+  <h3 id="lec19-p2-1">2.1 右旋：左孩子上提 <span class="en">Right Rotation: Raise the Left Child</span></h3>
+  <p>旋转是平衡树的原子操作：<b>只重接局部几条边，保持中序不变</b>。右旋（right rotation）把 x 的左孩子 y 提上来，x 降为 y 的右孩子。</p>
+  <table>
+    <tr><th></th><th>结构</th><th>中序</th></tr>
+    <tr><td>旋转前</td><td>x 为根，左孩子 y（左子树 A、右子树 B），右子树 C</td><td>A, y, B, x, C</td></tr>
+    <tr><td>右旋后</td><td>y 为根，左子树 A，右孩子 x（左子树 B、右子树 C）</td><td>A, y, B, x, C</td></tr>
+  </table>
+  <p>关键一步：<b>把 B（y 原来的右孩子）摘下来，接到 x 的左孩子</b>。为什么合法？B 里每个键都大于 y、小于 x，正好夹在 y 和 x 之间，接成 x 的左子树后中序仍是 A, y, B, x, C。</p>
+
+  <h3 id="lec19-p2-2">2.2 左旋：右孩子上提 <span class="en">Left Rotation: Raise the Right Child</span></h3>
+  <p>左旋（left rotation）是右旋的镜像：把 x 的右孩子 y 提上来，x 降为 y 的左孩子。</p>
+  <table>
+    <tr><th></th><th>结构</th><th>中序</th></tr>
+    <tr><td>旋转前</td><td>x 为根，左子树 A，右孩子 y（左子树 B、右子树 C）</td><td>A, x, B, y, C</td></tr>
+    <tr><td>左旋后</td><td>y 为根，左孩子 x（左子树 A、右子树 B），右子树 C</td><td>A, x, B, y, C</td></tr>
+  </table>
+  <p>关键一步：<b>把 B（y 原来的左孩子）摘下来，接到 x 的右孩子</b>。B 里每个键都大于 x、小于 y，接成 x 的右子树后中序仍是 A, x, B, y, C。</p>
+
+  <h3 id="lec19-p2-3">2.3 大图里的旋转 <span class="en">Rotation Inside a Larger Tree</span></h3>
+  <p>旋转发生在一棵大树的某个局部。以右旋为例：x 的父节点 P 原来用右指针指着 x（P 的右子树 D）。右旋后，把 x 换成 y 接回 P 的右孩子。旋转的子树的<b>键集合没变</b>（还是 A,B,C 加 x,y），全部键仍大于 P，整棵树的中序保持不变。所以旋转是「局部手术」，不影响树的其他部分。</p>
+</section>
+
+<section id="lec19-p3">
+  <h2>Part 3 · AVL 树：定义与高度 <span class="en">AVL Trees: Definition &amp; Height</span></h2>
+
+  <h3 id="lec19-p3-1">3.1 高度与平衡因子 <span class="en">Height and Balance Factor</span></h3>
+  <p>高度按<b>边数</b>算：空子树高度 −1，叶子高度 0。节点 v 的高度是它到叶子的最长路径的边数：</p>
+  <p><code>h(v) = 1 + max(h(L), h(R))</code></p>
+  <p>平衡因子（balance factor）是左子树高度减右子树高度：</p>
+  <div class="def box">
+    <div class="box-title">📌 平衡因子 BF</div>
+    <p><code>BF(v) = h(左子树) − h(右子树)</code>。例：某节点左子树高 2、右子树高 0，则 BF = 2 − 0 = <b>+2</b>。</p>
+  </div>
+
+  <h3 id="lec19-p3-2">3.2 AVL 定义 <span class="en">The AVL Rule</span></h3>
+  <div class="thm box">
+    <div class="box-title">🎯 AVL 树定义</div>
+    <p><b>AVL 树 = 每个节点都满足 |BF(v)| ≤ 1 的二叉搜索树</b>（1962 年由 Adelson-Velsky 与 Landis 提出）。</p>
+  </div>
+  <p>例：键 1,2,3,4,6,8,9,10 的树 A 各节点 BF 都在 {−1,0,+1}，是 AVL；树 B 中节点 3 的 BF = +2（左子树高 2、右子树高 0），违反规则，不是 AVL。只要<b>有一个节点</b> BF 越界，整棵树就不是 AVL。</p>
+
+  <h3 id="lec19-p3-3">3.3 高度 h 最少需要几个节点 <span class="en">Minimum Nodes N(h)</span></h3>
+  <p>要证明 AVL 的查找是 O(log n)，先问：<b>高度 h 的 AVL 树最少能有多少个节点？</b>记这个最小值为 N(h)。</p>
+  <ul>
+    <li>空树：N(−1) = 0；叶子：N(0) = 1。</li>
+    <li>高 1：根 + 一个孩子，N(1) = 2；高 2：根 + 一个高 1 的孩子 + 一个至少高 0 的孩子，N(2) = 1 + 2 + 1 = 4。</li>
+  </ul>
+  <p>要凑出高度 h，两个孩子里<b>必须有一个达到 h−1</b>；另一个至少 h−2（再矮的话 |BF| ≥ 2 就违反 AVL）。取两个都是「对应高度的最小 AVL」就达到下界：</p>
+  <div class="thm box">
+    <div class="box-title">🎯 递推</div>
+    <p><code>N(h) = 1 + N(h−1) + N(h−2)　(h ≥ 1)</code>，初值 N(−1)=0、N(0)=1。</p>
+  </div>
+  <table>
+    <tr><th>h</th><th>−1</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+    <tr><td>N(h)</td><td>0</td><td>1</td><td>2</td><td>4</td><td>7</td><td>12</td><td>20</td></tr>
+  </table>
+  <p>为什么是指数增长：高 h−1 的孩子自己就含一个高 h−2 的子树，所以每个孩子至少 N(h−2) 个节点，N(h) ≥ 1 + 2N(h−2)。两边 +1 得 <code>N(h)+1 ≥ 2·(N(h−2)+1)</code>，每往下跳两层翻一倍，于是 <code>N(h)+1 ≥ 2<sup>⌊(h+1)/2⌋</sup></code>。</p>
+
+  <h3 id="lec19-p3-4">3.4 高度上界 ≈ 1.44 log₂(n+1) <span class="en">Height Bound</span></h3>
+  <p>n 个节点的 AVL 树高度为 h，则 n ≥ N(h)。由上面的下界：</p>
+  <ul>
+    <li><code>n + 1 ≥ N(h)+1 ≥ 2<sup>⌊(h+1)/2⌋</sup></code>，取 log₂，因 ⌊(h+1)/2⌋ ≥ h/2，得 <b>h ≤ 2 log₂(n+1)</b>（松界）。</li>
+    <li>更紧：N(h)+1 恰好是斐波那契数列 F<sub>h+3</sub>（初值 F₂=1、F₃=2），而 F 以 φᵗ 增长（φ=(1+√5)/2），所以 <b>h ≤ log_φ(n+1) + O(1)</b>，log₂ 的系数是 1/log₂φ ≈ <b>1.44</b>。</li>
+  </ul>
+  <p>查找沿一条根到叶的路径走，每层比较一次，路径上最多 h+1 个节点，所以 <b>AVL 查找最坏 O(log n)</b>（n ≥ 2）。</p>
+</section>
+
+<section id="lec19-p4">
+  <h2>Part 4 · AVL 插入 <span class="en">AVL Insertion</span></h2>
+
+  <h3 id="lec19-p4-1">4.1 平衡因子变化与第一个违例点 <span class="en">How BF Changes and the First Violation</span></h3>
+  <p>插入一个新键后，只可能影响它<b>祖先</b>的高度。沿插入路径往上更新高度：只要子树高度在增长，就继续检查上一层祖先。可能走到根都还满足 |BF| ≤ 1——<b>零次旋转</b>。</p>
+  <p>若出现违例，记<b>最低的失衡节点为 z</b>（即最深的 BF=±2 的节点）。插入后要回答两个问题：① 能否只靠旋转让 z 这棵子树重新平衡？② 修好的子树会以<b>多高</b>交回给父节点 p？</p>
+
+  <h3 id="lec19-p4-2">4.2 从 z 读两个方向 <span class="en">Read Two Directions</span></h3>
+  <p>从 z 出发，往「长了层的那一侧」走一步到孩子 y，再从 y 往「它的孩子里长了层的那个」走一步。两步方向构成四种情况（图示以 z 左倾、BF=+2 为例，右倾镜像）：</p>
+  <ul>
+    <li><b>LL（左-左）</b>：z → 左 y → 左 x。两次都向左。</li>
+    <li><b>LR（左-右）</b>：z → 左 y → 右 x。先左后右（弯）。</li>
+    <li><b>RR（右-右）</b>：两次都向右。</li>
+    <li><b>RL（右-左）</b>：先右后左（弯）。</li>
+  </ul>
+
+  <h3 id="lec19-p4-3">4.3 LL：在 z 处右旋一次 <span class="en">LL: One Right Rotation at z</span></h3>
+  <p>插入前 z 高 k+2（左孩子 y 高 k+1、右子树 C 高 k）。插完后左子树的某处多了一层，z 的 BF 变 +2。做法：<b>在 z 处右旋一次</b>，y 提为根。旋完后：</p>
+  <ul>
+    <li>z 的两个孩子（B 和 C）高度都是 k，y 的两个孩子（A 和 B）高度都是 k+1；</li>
+    <li>y 与 z 的 BF 都变 0，子树高度回到原来的 k+2。</li>
+  </ul>
+  <p>LL 是「直线」冲突，<b>一次右旋</b>解决。</p>
+
+  <h3 id="lec19-p4-4">4.4 LR：两次旋转 <span class="en">LR: Two Rotations</span></h3>
+  <p>LR 是「弯」冲突：z 的左孩子 y 的<b>右孩子 x</b>长了层。做法：<b>先在 y 处左旋</b>（把 x 提上来、拉直成 LL 的样子），<b>再在 z 处右旋</b>。旋完后 x 成为根、回到原来的高度 k+2，下面的 y 和 z 各得一个高 k 的孩子和一个「差一层」的孩子，BF 分别落在 {0,+1} 与 {0,−1}，仍满足 AVL。</p>
+  <p>一句话：<b>弯的先拉直，再按直线处理</b>。</p>
+
+  <h3 id="lec19-p4-5">4.5 RR / RL 与「为什么修一次就够」 <span class="en">RR/RL and Why One Repair Suffices</span></h3>
+  <ul>
+    <li><b>RR</b>：在 z 处左旋一次（LL 的镜像）。</li>
+    <li><b>RL</b>：先在 y 处右旋、再在 z 处左旋（LR 的镜像）。</li>
+  </ul>
+  <div class="thm box">
+    <div class="box-title">🎯 为什么修复停在 z 就够</div>
+    <p>插入让 z 的子树高度从 k+2 长到 k+3；旋转修复后又把它压回 <b>k+2</b>。z 的父节点 p 看到的是<b>和插入前一模一样的高度</b>，所以 p 及以上的平衡因子全部不变，<b>不会再出现新的违例</b>。结论：<b>AVL 插入最多 2 次旋转（LL/RR 一次、LR/RL 两次），沿一条路径下去再上来，O(log n)</b>。</p>
+  </div>
+</section>
+
+<section id="lec19-p5">
+  <h2>Part 5 · AVL 删除 <span class="en">AVL Deletion</span></h2>
+
+  <h3 id="lec19-p5-1">5.1 BST 删除规则 <span class="en">BST Deletion Rules</span></h3>
+  <p>AVL 的删除先按普通 BST 规则：</p>
+  <ul>
+    <li><b>叶子</b>：直接删。</li>
+    <li><b>一个孩子</b>：让孩子顶替上来（one-child rule）。</li>
+    <li><b>两个孩子</b>：用<b>中序后继</b>（inorder successor，右子树里最小的键）的<b>记录</b>替换要删的节点，再去删后继的旧位置（后继最多只有一个右孩子，回到前两条规则）。</li>
+  </ul>
+
+  <h3 id="lec19-p5-2">5.2 从删除点向上检查 <span class="en">Check Upward from the Removal Point</span></h3>
+  <p>删除让某一边的子树变矮。从<b>物理上被删掉的节点</b>的父节点开始，沿路径向上检查高度与 BF。删除后 z 的 BF 可能从 +1 变 +2（左倾更严重），这时<b>先往高的那侧走一步到 y</b>，再看 y 的两个孩子谁高，决定怎么转。</p>
+
+  <h3 id="lec19-p5-3">5.3 比较 y 的两个孩子（以 z 左倾为例） <span class="en">Compare y's Two Children</span></h3>
+  <table>
+    <tr><th>情形</th><th>做法</th><th>修好后子树高度</th></tr>
+    <tr><td>A 更高（LL）</td><td>在 z 处右旋一次</td><td>k+1（比删除前 k+2 矮一层）</td></tr>
+    <tr><td>A、B 一样高</td><td>在 z 处右旋一次</td><td>k+2（不变）</td></tr>
+    <tr><td>B 更高（LR）</td><td>先在 y 处左旋、再在 z 处右旋</td><td>k+1（矮一层）</td></tr>
+  </table>
+  <ul>
+    <li>A、B 一样高时，右旋后新根 y 的 BF 变 −1、高度仍是 k+2，父节点看到的高度没变 → <b>修复可以就此停住</b>。</li>
+    <li>其余两种（或镜像）修完后子树<b>矮了一层</b>，父节点的 BF 要重新检查 → <b>删除可能一路向上传播</b>。</li>
+  </ul>
+  <div class="warn box">
+    <div class="box-title">⚠️ 插入与删除的关键区别</div>
+    <p>插入后旋转<b>总能恢复原高度</b>，所以一次修复就停；删除后旋转<b>可能让子树矮一层</b>，于是失衡可能向上传播。这就是为什么 AVL 插入最多 2 次旋转、删除却可能 O(log n) 次旋转。</p>
+  </div>
+
+  <h3 id="lec19-p5-4">5.4 复杂度 <span class="en">Cost</span></h3>
+  <p>删除路径上最多 O(log n) 个祖先，每个祖先最多 2 次旋转、每次旋转 O(1)（只重接常数条边、改常数个高度）。所以 <b>AVL 删除 O(log n)</b>。一个删除甚至可能触发多处修复（如删一个叶子后连续几层都失衡），但总代价仍被 O(log n) 兜住。</p>
+</section>
+
+<section id="lec19-p6">
+  <h2>Part 6 · 红黑树：规则与黑高 <span class="en">Red–Black Trees: Rules &amp; Black Height</span></h2>
+
+  <h3 id="lec19-p6-1">6.1 历史与四条规则 <span class="en">History and Four Rules</span></h3>
+  <p>红黑树源于 1972 年 Rudolf Bayer 的「对称二叉 B 树」，1978 年 Guibas 与 Sedgewick 用每节点<b>一个比特</b>记平衡信息，两个取值叫红/黑。AVL 用「高度差 ≤ 1」控制平衡，红黑树改用<b>颜色</b>控制路径长度。</p>
+  <div class="def box">
+    <div class="box-title">📌 红黑树四条规则</div>
+    <ul>
+      <li>每个真实节点不是红就是黑；把每个缺失的孩子看作一个黑色的叶子，叫 <b>NIL</b>。</li>
+      <li><b>根是黑</b>。</li>
+      <li><b>红节点的两个孩子必须都是黑</b>（可以是 NIL），即不能有相邻的两个红节点。</li>
+      <li>从任意节点出发，<b>到 NIL 的所有路径上黑节点数相同</b>（黑高相等）。</li>
+    </ul>
+  </div>
+
+  <h3 id="lec19-p6-2">6.2 黑高 bh <span class="en">Black Height</span></h3>
+  <p>黑高 bh(v) = 从 v 往下到 NIL 的路径上、<b>v 之下的黑节点数</b>（不算 v 自己；若 v 是真实节点，要算上最后的 NIL）。</p>
+  <ul>
+    <li><code>bh(NIL) = 0</code>。</li>
+    <li>例：路径 8 → 12 → 14 → NIL 上，8 之下数到 12 和 NIL 两个黑节点，所以 bh(8)=2（中间的 14 是红，不计数）。</li>
+  </ul>
+
+  <h3 id="lec19-p6-3">6.3 红黑树高度上界 <span class="en">Height Bound</span></h3>
+  <p>两个观察合起来给出 O(log n)：</p>
+  <div class="thm box">
+    <div class="box-title">🎯 红黑树高度 ≤ 2 log₂(n+1)</div>
+    <ul>
+      <li><b>红节点规则限制边数</b>：每两个黑节点之间最多夹一个红节点（红的孩子必须是黑），所以根到 NIL 的路径上边数 <b>h ≤ 2·bh(根)</b>。</li>
+      <li><b>黑高限制节点数</b>：黑高 k 的子树至少有 2ᵏ − 1 个键（全黑完全树达到最小；加红节点或改形状只会更多，可用归纳证 n ≥ 2<sup>bh(根)</sup> − 1）。</li>
+    </ul>
+    <p>于是 <code>h ≤ 2·bh(根) ≤ 2 log₂(n+1)</code>，查找 O(log n)。</p>
+  </div>
+</section>
+
+<section id="lec19-p7">
+  <h2>Part 7 · 红黑插入 <span class="en">Red–Black Insertion</span></h2>
+
+  <h3 id="lec19-p7-1">7.1 为什么新节点插成红色 <span class="en">Why Insert Red</span></h3>
+  <p>新节点若插成<b>黑</b>，只会在它这一侧多出一个黑节点，立刻破坏「所有路径黑高相同」。所以<b>先插成红</b>：黑高保持不变，唯一可能破坏的规则是「红节点不能有红父亲」。</p>
+  <ul>
+    <li>插进<b>空树</b>：把新节点重新涂黑当根，完成。</li>
+    <li>父节点是<b>黑</b>：什么也不用修，完成。</li>
+    <li>父节点是<b>红</b>：要看叔叔（uncle，祖父的另一个孩子）的颜色。</li>
+  </ul>
+
+  <h3 id="lec19-p7-2">7.2 红叔叔：变色上移 <span class="en">Red Uncle: Recolor and Climb</span></h3>
+  <p>父和叔叔都红：把<b>父和叔叔涂黑、祖父涂红</b>。这样「红-红」冲突被消掉，但祖父可能跟它的父节点又形成红-红，于是<b>从祖父继续</b>重复这套检查，冲突向上传。若一路传到根，最后把根涂黑收尾。</p>
+
+  <h3 id="lec19-p7-3">7.3 黑叔叔：拉直 + 旋转 <span class="en">Black Uncle: Straighten Then Rotate</span></h3>
+  <p>叔叔是黑（NIL 也算黑）：看从祖父到新节点走的两步方向。</p>
+  <ul>
+    <li><b>直线（LL 或 RR）</b>：在祖父处旋转（LL 右旋 / RR 左旋），被提上来的节点涂黑、旧祖父涂红，<b>结束</b>。</li>
+    <li><b>弯（LR 或 RL）</b>：先在父节点处旋转拉直，再用上面的直线情形收尾。</li>
+  </ul>
+  <div class="thm box">
+    <div class="box-title">🎯 插入案例回顾</div>
+    <table>
+      <tr><th>看到什么</th><th>改什么</th><th>下一步</th></tr>
+      <tr><td>红叔叔</td><td>父、叔叔涂黑，祖父涂红</td><td>从祖父继续（到根则涂黑停）</td></tr>
+      <tr><td>黑叔叔 + 弯路径</td><td>在父处旋转拉直</td><td>进入直线情形</td></tr>
+      <tr><td>黑叔叔 + 直线路径</td><td>在祖父处旋转，提上来的涂黑、旧祖父涂红</td><td>停</td></tr>
+    </table>
+    <p>红叔叔只变色不旋转、可能上移；黑叔叔最多 2 次旋转就停。整次插入 O(log n)。</p>
+  </div>
+</section>
+
+<section id="lec19-p8">
+  <h2>Part 8 · 红黑删除 <span class="en">Red–Black Deletion</span></h2>
+
+  <h3 id="lec19-p8-1">8.1 追踪缺失的黑色 <span class="en">Track the Missing Black Node</span></h3>
+  <p>先用普通 BST 规则删，<b>记下物理被删位置上那个节点的颜色</b>：</p>
+  <ul>
+    <li>删掉的是<b>红</b>节点：不影响黑高，直接完成。</li>
+    <li>删掉的是<b>黑</b>节点：这一侧少了一个黑，出现「<b>双黑 / double black</b>」的亏空（bookkeeping 用语），要从删除点向上修补。</li>
+  </ul>
+
+  <h3 id="lec19-p8-2">8.2 四个案例 <span class="en">Four Cases</span></h3>
+  <p>设亏空在节点 40 的某一侧，看它的兄弟 S 及 S 的近/远孩子（以亏空在左、兄弟在右为例，镜像互换左右）：</p>
+  <table>
+    <tr><th>案例</th><th>看到什么</th><th>怎么做</th></tr>
+    <tr><td>1</td><td>兄弟是<b>红</b></td><td>旋转把兄弟提上来、与父交换颜色 → 转为黑兄弟（案例 2.1/3/4）</td></tr>
+    <tr><td>2.1</td><td>黑兄弟、两个孩子都黑、<b>父是红</b></td><td>兄弟涂红、父涂黑 → 父补上亏空，<b>停</b></td></tr>
+    <tr><td>2.2</td><td>黑兄弟、两个孩子都黑、<b>父是黑</b></td><td>兄弟涂红，亏空<b>上移到父</b></td></tr>
+    <tr><td>3</td><td>黑兄弟、近孩子红、远孩子黑</td><td>在兄弟处旋转、与近孩子交换颜色 → 案例 4</td></tr>
+    <tr><td>4</td><td>黑兄弟、远孩子红（近孩子任意）</td><td>把兄弟提上来、继承旧父的颜色，旧父和远孩子涂黑 → <b>停</b></td></tr>
+  </table>
+  <p>核心直觉：<b>远孩子是红就能一次性补上亏空（案例 4）；近孩子红而远孩子黑时，先转一下把红逼到远侧（案例 3）</b>；兄弟全黑时靠变色，父红就吸收亏空、父黑就上移。</p>
+
+  <h3 id="lec19-p8-3">8.3 复杂度 <span class="en">Cost</span></h3>
+  <div class="thm box">
+    <div class="box-title">🎯 红黑删除最多 3 次旋转</div>
+    <p>案例 1（≤1 次旋转）→ 案例 3（≤1 次）→ 案例 4（1 次）；案例 2.2 只变色不上移。所以<b>红黑删除最多 3 次旋转</b>，加上查找与向上检查，<b>O(log n)</b>。</p>
+  </div>
+</section>
+
+<section id="lec19-p9">
+  <h2>Part 9 · 总结 <span class="en">Summary</span></h2>
+
+  <h3 id="lec19-p9-1">9.1 AVL 与红黑树对照 <span class="en">AVL vs Red–Black</span></h3>
+  <table>
+    <tr><th></th><th>AVL</th><th>红黑树</th></tr>
+    <tr><td>平衡规则</td><td>左右子树高度差 ≤ 1</td><td>无相邻红节点；到 NIL 黑高相等</td></tr>
+    <tr><td>高度上界</td><td>≈ 1.44 log₂(n+1)（更矮）</td><td>2 log₂(n+1)（略高）</td></tr>
+    <tr><td>插入</td><td>最多 2 次旋转</td><td>最多 2 次旋转；变色可能上移</td></tr>
+    <tr><td>删除</td><td>可能 O(log n) 次旋转</td><td>最多 3 次旋转；亏空可能上移</td></tr>
+  </table>
+  <p>两者都保证<b>查找/插入/删除最坏 O(log n)</b>。直觉上：AVL 规则严、树更矮、查找更快，但删除旋转多；红黑规则松、删除旋转少，工程上（如 STL 容器）更常用。</p>
+
+  <h3 id="lec19-p9-2">9.2 C++ 中的应用 <span class="en">Red–Black Trees in C++</span></h3>
+  <p>GCC 的 libstdc++ 里，<b>std::set 和 std::map 就是用红黑树实现的</b>（C++ 标准只规定行为和复杂度，实现交给库）。GNU PBDS（Policy-Based Data Structures）是 libstdc++ 的扩展，用 <code>__gnu_pbds::tree</code> 配 <code>rb_tree_tag</code> 选红黑树，并支持「顺序统计」策略：</p>
+<pre><code>// 键 3 7 11 20 存入一棵带顺序统计的红黑树
+order_of_key(11);  // 返回 2：比 11 小的键有 3、7 两个
+find_by_order(2);  // 返回 11：按升序第 2 个位置（位置从 0 开始）</code></pre>
+
+  <h3 id="lec19-p9-3">9.3 词汇表 <span class="en">Vocabulary</span></h3>
+
+<div class="vocab">
+  <div class="vocab-title">词汇表 Key Vocabulary</div>
+  <ul>
+    <li><b>balanced binary search tree</b> — 平衡二叉搜索树：保证最坏 O(log n) 查找/插入/删除的 BST</li>
+    <li><b>ordered map</b> — 有序 Map：按键有序、支持 find/insert/delete 的键值集合</li>
+    <li><b>inorder traversal</b> — 中序遍历：按递增顺序列出所有键</li>
+    <li><b>chain</b> — 链：递增插入把 BST 退化成一条链，最坏 O(n)</li>
+    <li><b>weighted depth</b> — 加权深度：Σ count(k)·(depth(k)+1)，衡量总比较次数</li>
+    <li><b>rotation</b> — 旋转：只重接局部几条边、保持中序不变的树调整操作</li>
+    <li><b>right / left rotation</b> — 右旋 / 左旋：把左 / 右孩子上提为根</li>
+    <li><b>AVL tree</b> — AVL 树：每个节点 |BF| ≤ 1 的 BST（Adelson-Velsky &amp; Landis, 1962）</li>
+    <li><b>balance factor (BF)</b> — 平衡因子：h(左子树) − h(右子树)</li>
+    <li><b>height (in edges)</b> — 高度（按边数）：空子树 −1、叶子 0</li>
+    <li><b>N(h)</b> — 高度 h 的 AVL 树最少节点数：N(h)=1+N(h−1)+N(h−2)</li>
+    <li><b>Fibonacci bound</b> — 斐波那契界：N(h)+1 = F<sub>h+3</sub>，得 h ≈ 1.44 log₂(n+1)</li>
+    <li><b>LL / LR / RR / RL</b> — 插入的四种失衡情形（左-左 / 左-右 / 右-右 / 右-左）</li>
+    <li><b>inorder successor</b> — 中序后继：右子树里最小的键，用于两个孩子节点的删除</li>
+    <li><b>red–black tree</b> — 红黑树：用颜色规则保证平衡的 BST</li>
+    <li><b>NIL</b> — 红黑树里代表「缺失孩子」的黑色叶子哨兵</li>
+    <li><b>black height bh(v)</b> — 黑高：v 到 NIL 路径上 v 之下的黑节点数</li>
+    <li><b>uncle</b> — 叔叔：祖父节点的另一个孩子</li>
+    <li><b>recolor</b> — 变色：只改节点颜色、不动结构的修复操作</li>
+    <li><b>double black</b> — 双黑：删除黑节点后一侧少一个黑的 bookkeeping 记号</li>
+    <li><b>near / far child</b> — 近 / 远孩子：兄弟的两个孩子里离亏空侧近 / 远的那一个</li>
+    <li><b>red–black rotation</b> — 红黑树的旋转：配合变色修复颜色规则</li>
+    <li><b>__gnu_pbds::tree</b> — GNU PBDS 的顺序统计树，<b>rb_tree_tag</b> 选红黑实现</li>
+    <li><b>order_of_key / find_by_order</b> — 数比某键小的个数 / 取第 k 个键（位置从 0 起）</li>
   </ul>
 </div>
 </section>

@@ -4666,12 +4666,13 @@ window.MathJax = {
 <div class="ex box">
   <span class="box-title">✏️ 例：一条腿短了一截的桌子</span>
   <p>四腿桌，三条腿等长，第四条腿短了 \(d\)（\(d\ll L\)）。求各腿受力。</p>
-  <p>每条腿受压都满足胡克定律：三条等长腿受力 \(F_1=F_2=F_3=A Y\dfrac{\Delta L}{L}\)。第四条短腿要压到同一水平，压缩量是 \(\Delta L+d\)：</p>
-  <p class="formula">\(F_4=A Y\dfrac{\Delta L+d}{L+d}\approx A Y\dfrac{\Delta L+d}{L}=F_1+A Y\dfrac{d}{L}\)</p>
+  <p>设三条等长腿原长 \(L\)，短腿原长 \(L-d\)。桌子放上后，四脚要落到<b>同一水平面</b>：三条长腿各被压缩 \(\Delta L\)，短腿因为本身短一截，压缩量只有 \(\Delta L-d\)（<b>少压一段，不是多压</b>）。</p>
+  <p>胡克定律（令 \(k=\dfrac{AY}{L}\)，则 \(F=k\Delta L\)）：</p>
+  <p class="formula">\(F_1=F_2=F_3=A Y\dfrac{\Delta L}{L},\qquad F_4=A Y\dfrac{\Delta L-d}{L}=F_1-\dfrac{A Y d}{L}\)</p>
   <p>整体力平衡（桌子总重 \(Mg\)）：</p>
-  <p class="formula">\(F_1+F_2+F_3+F_4=Mg\quad\Longrightarrow\quad 4F_1+A Y\dfrac{d}{L}=Mg\)</p>
-  <p class="formula">\(F_1=\dfrac{Mg}{4}-\dfrac{A Y d}{4L},\qquad F_4=\dfrac{Mg}{4}+\dfrac{3A Y d}{4L}\)</p>
-  <p><b>结论</b>：短腿比等长腿多承担 \(\dfrac{3A Y d}{4L}\) 的额外力——桌腿越硬（\(Y\) 大）、越粗（\(A\) 大）、短得越多（\(d\) 大），这条腿"顶"得越狠。</p>
+  <p class="formula">\(3F_1+F_4=Mg\quad\Longrightarrow\quad 4F_1-\dfrac{A Y d}{L}=Mg\)</p>
+  <p class="formula">\(F_1=F_2=F_3=\dfrac{Mg}{4}+\dfrac{A Y d}{4L},\qquad F_4=\dfrac{Mg}{4}-\dfrac{3A Y d}{4L}\)</p>
+  <p><b>结论</b>：短腿比等长腿<b>少</b>承担 \(\dfrac{3A Y d}{4L}\) 的力，三条长腿各<b>多</b>承担 \(\dfrac{A Y d}{4L}\)。直觉：短腿够不到地、发不上力，所以是长腿在"顶"。若 \(Mg<\dfrac{3A Y d}{L}\)，则 \(F_4<0\)——短腿根本压不到地，桌子只剩三条腿着地，会晃。</p>
 </div>
 </section>
 
