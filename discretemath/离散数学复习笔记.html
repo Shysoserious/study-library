@@ -409,6 +409,20 @@ window.MathJax = {
     <a class="lv2" href="#ln8-15">8.15 欧拉环与欧拉路径</a>
     <a class="lv2" href="#ln8-16">8.16 有向图</a>
     <a class="lv2" href="#ln8-17">8.17 总结</a>
+
+    <a class="lv1" href="#ln9">LN9 · 图匹配 Graph Matching</a>
+    <a class="lv2" href="#ln9-1">9.1 匹配的动机与定义</a>
+    <a class="lv2" href="#ln9-2">9.2 稳定匹配问题与不稳定对</a>
+    <a class="lv2" href="#ln9-3">9.3 稳定室友问题：三角反例</a>
+    <a class="lv2" href="#ln9-4">9.4 Gale–Shapley 结婚程序</a>
+    <a class="lv2" href="#ln9-5">9.5 Gale–Shapley 定理的三步证明</a>
+    <a class="lv2" href="#ln9-6">9.6 稳定匹配不唯一</a>
+    <a class="lv2" href="#ln9-7">9.7 男孩最优与女孩最差</a>
+    <a class="lv2" href="#ln9-8">9.8 二分图与完美匹配</a>
+    <a class="lv2" href="#ln9-9">9.9 Hall 定理</a>
+    <a class="lv2" href="#ln9-10">9.10 应用</a>
+    <a class="lv2" href="#ln9-11">9.11 Hall 定理的证明（选学）</a>
+    <a class="lv2" href="#ln9-12">9.12 总结</a>
   </nav>
 </aside>
 
@@ -3110,6 +3124,293 @@ window.MathJax = {
     <li><b>Eulerian path / Eulerian cycle</b> — 欧拉路径 / 欧拉环</li>
     <li><b>arc / tail / head</b> — 弧 / 尾 / 头；<b>in-degree / out-degree</b> — 入度 / 出度</li>
     <li><b>weakly / strongly connected</b> — 弱连通 / 强连通；<b>directed cycle</b> — 有向环</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN9 图匹配 ============ -->
+<!-- ================================================= -->
+<section id="ln9">
+<h2>LN9 · 图匹配 <span class="zh">Graph Matching</span></h2>
+<p>本讲研究图论中一个极其重要的问题——<b>匹配（matching）</b>。用 Gale 和 Shapley（1962）开创的「男孩女孩」比喻：把一类实体（男孩）与另一类实体（女孩）两两配对，两边的偏好各不相同，怎么「配对」才叫好？本讲分两条主线：<b>稳定匹配（stable matching）</b>——Gale–Shapley 结婚程序保证稳定匹配一定存在；<b>二分匹配（bipartite matching）</b>——Hall 定理给出「完美匹配是否存在」的充要条件。两者都是运筹学、算法、经济学（Shapley 因此获 2012 年诺贝尔经济学奖）的基石。</p>
+
+<h3 id="ln9-1">9.1 匹配的动机与定义 <span class="zh">Matching</span></h3>
+<p>今天的目标：把 n 个男孩和 n 个女孩「配好」。先问什么叫<b>匹配</b>、什么叫<b>好</b>：</p>
+<div class="def box">
+  <span class="box-title">📌 匹配（matching）</span>
+  <ul>
+    <li>每个男孩至多配对一个女孩；</li>
+    <li>每个女孩至多配对一个男孩。</li>
+  </ul>
+  <p>即：<b>一夫一妻、不重不漏、但允许有人落单</b>（不完全匹配）。</p>
+</div>
+<p>「好」有两种含义，取决于我们掌握多少信息：</p>
+<ul>
+  <li><b>稳定匹配（stable matching）</b>：配对双方<b>没有动机拆散重配</b>——这需要知道每个人的<b>偏好列表</b>；</li>
+  <li><b>最大匹配（maximum matching）</b>：<b>尽可能多</b>地配对——这只需要知道「谁和谁<b>可以</b>配」，不需要偏好。</li>
+</ul>
+
+<h3 id="ln9-2">9.2 稳定匹配问题与不稳定对 <span class="zh">The Stable Matching Problem &amp; Unstable Pairs</span></h3>
+<p><b>稳定匹配问题（Stable Matching Problem）</b>：有 n 个男孩和 n 个女孩；每个男孩对 n 个女孩有一个<b>偏好列表</b>，每个女孩对 n 个男孩也有一个偏好列表。要找一个「稳定」的匹配。</p>
+<p>沿用课件里的例子（5 男 5 女，字母 A–E 表女孩、数字 1–5 表男孩，列表从最偏好排到最不偏好）：</p>
+<table class="truth">
+  <tr><th>Boys</th><th>偏好列表</th><th>Girls</th><th>偏好列表</th></tr>
+  <tr><td>1</td><td>C B E A D</td><td>A</td><td>3 5 2 1 4</td></tr>
+  <tr><td>2</td><td>A B E C D</td><td>B</td><td>5 2 1 4 3</td></tr>
+  <tr><td>3</td><td>D C B A E</td><td>C</td><td>4 3 5 1 2</td></tr>
+  <tr><td>4</td><td>A C D B E</td><td>D</td><td>1 2 3 4 5</td></tr>
+  <tr><td>5</td><td>A B D E C</td><td>E</td><td>2 3 4 1 5</td></tr>
+</table>
+<p>什么叫「不稳定」？考虑一个匹配 M，其中男孩 4 配着女孩 B、男孩 1 配着女孩 C。若：</p>
+<ul>
+  <li>男孩 4 比起现任 B 更偏好 C（4 的列表是 A C D B E，C 排在 B 前）；</li>
+  <li>女孩 C 比起现任 1 更偏好 4（C 的列表是 4 3 5 1 2，4 排在 1 前）；</li>
+</ul>
+<p>那么 4 和 C 就有动机双双离开现任、跑去配对方——把这样的对子称为<b>不稳定对（unstable pair）</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 不稳定对（unstable pair）</span>
+  <p>给定匹配 M，称 \((v,w)\) 是不稳定对，若存在已在 M 中的两对 \((v,w')\) 与 \((v',w)\)（\(v\ne v'\)，\(w\ne w'\)），且同时满足：</p>
+  <ol>
+    <li>\(v\) 偏好 \(w\) 甚于 \(w'\)；</li>
+    <li>\(w\) 偏好 \(v\) 甚于 \(v'\)。</li>
+  </ol>
+</div>
+<div class="def box">
+  <span class="box-title">📌 稳定匹配（stable matching）</span>
+  <p>一个匹配若<b>没有不稳定对、且人人已婚</b>，就称它是稳定匹配。</p>
+</div>
+
+<h3 id="ln9-3">9.3 稳定室友问题：三角反例 <span class="zh">The Stable Roommate Problem</span></h3>
+<p>稳定匹配一定存在吗？直觉上并不显然。先看一个更难的变体——<b>稳定室友问题（Stable Roommate Problem）</b>：</p>
+<div class="def box">
+  <span class="box-title">📌 稳定室友问题</span>
+  <ul>
+    <li>有 \(2n\) 个人；</li>
+    <li>有 n 间房，每间住 2 人；</li>
+    <li>每个人对另外 \(2n-1\) 个人有一个偏好列表；</li>
+    <li>要求找一个稳定匹配（人人配对且无不稳定对）。</li>
+  </ul>
+</div>
+<p>什么时候会找不到？课件给出<b>三角关系（triangle relationship）</b>反例：a 偏好 b 甚于 c，b 偏好 c 甚于 a，c 偏好 a 甚于 b，而 d 谁也不喜欢。检查所有可能的配对：</p>
+<ul>
+  <li>\(\{(a,b),(c,d)\}\)：b 更想要 c、c 更想要 b → \((b,c)\) 是不稳定对；</li>
+  <li>\(\{(a,c),(b,d)\}\)：a 更想要 b、b 更想要 a → \((a,b)\) 不稳定；</li>
+  <li>\(\{(a,d),(b,c)\}\)：a 更想要 c、c 更想要 a → \((a,c)\) 不稳定。</li>
+</ul>
+<p>三种配对全不稳定，所以<b>稳定室友问题可能无解</b>。这引出一个关键问题：稳定匹配问题凭什么一定有解？</p>
+<div class="warn box">
+  <span class="box-title">⚠️ 稳定婚姻 vs 稳定室友的根本差别</span>
+  <p>差别在<b>集合的划分（partitioning of the set）</b>：稳定婚姻把实体分成<b>两方</b>（男孩一方、女孩一方，只有跨方的偏好），而稳定室友是<b>同一方内部</b>互相配对。两方结构能「只满足一边」就够，这就是下文 Gale–Shapley 程序成立的直觉来源。</p>
+</div>
+
+<h3 id="ln9-4">9.4 Gale–Shapley 结婚程序 <span class="zh">The Marrying Procedure</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 Gale–Shapley 定理（1962）</span>
+  <p>稳定婚姻问题<b>总有稳定匹配</b>。这不止是一个智力题的解：Gale &amp; Shapley 的原论文就是<b>大学录取（College Admissions）</b>；它还用于<b>医院—住院医师匹配</b>。Shapley 因此获 <b>2012 年诺贝尔经济学奖</b>（Gale 2008 年去世）。</p>
+</div>
+<p>证明基于一个「结婚程序（marrying procedure）」。直觉：<b>只要满足一边就够了（it is enough if we only satisfy one side）</b>——让男孩主动求婚。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 结婚程序（GS 算法）</span>
+  <p>每天重复以下三步，直到所有男孩都向不同的女孩求婚为止：</p>
+  <ol>
+    <li><b>早晨（Morning）</b>：每个（尚未被接受的）男孩向自己列表里<b>还没划掉的最喜欢</b>的女孩求婚；</li>
+    <li><b>下午（Afternoon）</b>：每个女孩从收到的所有求婚里，<b>只留下最喜欢的一个</b>，拒绝其余；</li>
+    <li><b>晚上（Evening）</b>：被拒绝的男孩把那个女孩<b>从自己列表里划掉</b>。</li>
+  </ol>
+</div>
+<p>要点：女孩可以「暂订」一个男孩，后来遇到更喜欢的就换成新的、退回旧的；被退回的男孩划掉该女孩，下次求婚对象顺延。男孩的求婚对象只会一路「变差」，女孩的暂订对象只会一路「变好」——这个单调性正是证明的关键。</p>
+
+<h3 id="ln9-5">9.5 Gale–Shapley 定理的三步证明 <span class="zh">Proof of the GS Theorem</span></h3>
+<p>要证明程序总是得到一个稳定匹配，需要验证三件事。</p>
+<div class="thm box">
+  <span class="box-title">🎯 Claim 1：程序至多 \(n^2\) 天终止</span>
+  <ol>
+    <li>若每个女孩至多被一个男孩求婚，则每个女孩都已婚（因为 #男孩 = #女孩），程序终止；</li>
+    <li>否则必有某个女孩收到多于一个求婚；</li>
+    <li>此时她至少拒绝一个男孩，被拒男孩划掉她、转向下一个更喜欢的女孩；</li>
+    <li>共有 n 个男孩、每人列表长 n，共 \(n^2\) 个条目，<b>每天至少划掉一个名字</b>，所以至多 \(n^2\) 天。</li>
+  </ol>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 Claim 2：程序停止时人人已婚</span>
+  <p>（反证法）假设男孩 B 未婚且他的列表已空。</p>
+  <ol>
+    <li>列表空 ⟹ B 被<b>所有女孩都拒绝过</b>；</li>
+    <li>女孩拒绝一个男孩，<b>只可能</b>是因为她已经有一个更喜欢的对象；</li>
+    <li>所以每个女孩都有自己的对象，即<b>所有女孩都已婚</b>；</li>
+    <li>但有些男孩（如 B）未婚，推出男孩比女孩多，矛盾（#男孩 = #女孩）。</li>
+  </ol>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 Claim 3：没有不稳定对</span>
+  <p>考虑程序结束时任意一对 \((B,G)\)，证明 B 没有动机离开：</p>
+  <ul>
+    <li><b>情形 1</b>：G 是 B 的最爱。B 娶到了最爱，自然无动机离开。</li>
+    <li><b>情形 2</b>：G 不是 B 的最爱。若 \((B,G')\) 是不稳定对，则 B 偏好 \(G'\) 甚于 G，说明 \(G'\) 在 B 的列表里排在 G 前面——于是 B <b>一定先向 \(G'\) 求过婚、且被 \(G'\) 拒绝过</b>。女孩拒绝男孩只可能因为已有更喜欢的对象，所以 \(G'\) 有了比 B 更好的对象，\(G'\) 无动机离开。</li>
+  </ul>
+  <p>两种情况 B 都无动机，而 G 同理（女孩只会越换越好），故无任何不稳定对。</p>
+</div>
+
+<h3 id="ln9-6">9.6 稳定匹配不唯一 <span class="zh">Non-uniqueness</span></h3>
+<p>稳定匹配存在，但<b>不一定唯一</b>。看一个 \(2\times2\) 的例子：</p>
+<table class="truth">
+  <tr><th>Boys</th><th>偏好</th><th>Girls</th><th>偏好</th></tr>
+  <tr><td>1</td><td>B A</td><td>A</td><td>1 2</td></tr>
+  <tr><td>2</td><td>A B</td><td>B</td><td>2 1</td></tr>
+</table>
+<ul>
+  <li>\(\{(1,B),(2,A)\}\) 是稳定匹配；</li>
+  <li>\(\{(1,A),(2,B)\}\) 也是稳定匹配。</li>
+</ul>
+<p>两个都是稳定匹配，所以稳定匹配<b>不唯一</b>。那么问题来了：结婚程序算出来的那个稳定匹配，到底偏向谁？</p>
+
+<h3 id="ln9-7">9.7 男孩最优与女孩最差 <span class="zh">Boy Optimality &amp; Girl Pessimality</span></h3>
+<p>答案很「偏」：GS 程序（男孩主动求婚版）给出的稳定匹配里，<b>所有男孩都拿到最好的合法对象，所有女孩都拿到最差的合法对象</b>。直觉仍是那句话——只要满足一边就够了。</p>
+<div class="def box">
+  <span class="box-title">📌 合法对象 / 最优 / 最差</span>
+  <p>称女孩 G 是男孩 B 的<b>合法对象（valid partner）</b>，若存在某个稳定匹配包含 \((B,G)\)。若 G 是合法对象、且 B 喜欢的女孩里没有别的合法对象排在 G 前，则 G 是 B 的<b>最优合法对象（best valid partner）</b>。对称地可定义女孩的<b>最差合法对象（worst valid partner）</b>。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 Claim 1：男孩最优（Boy Optimality）</span>
+  <p>（反证）假设某次执行 E 得到的稳定匹配 M 里，有男孩没配到他的最优合法对象，于是有男孩被某个合法对象拒绝过。取<b>第一个被合法对象拒绝的男孩 B</b>，拒绝他的是 G——G 必是 B 的最优合法对象。设 G 拒绝 B 时正与 B′ 订着（G 偏好 B′ 甚于 B）。</p>
+  <ul>
+    <li>G 是 B 的合法对象 ⟹ 存在另一个稳定匹配 M′ 含 \((B,G)\)；设 M′ 里 B′ 配着 G′。</li>
+    <li>执行 E 中，B′ 与 G 订下时，B′ 还没被任何合法对象拒绝过 ⟹ B′ 偏好 G 甚于 G′。</li>
+    <li>于是 \((B',G)\) 不在 M′ 里，却在 M′ 中构成不稳定对（B′ 和 G 互相更偏好对方），与 M′ 稳定矛盾。</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 Claim 2：女孩最差（Girl Pessimality）</span>
+  <p>（反证）假设 GS 匹配 M 里女孩 G 配着 B，而 G 有更差的合法对象 B′（即 G 偏好 B 甚于 B′）。</p>
+  <ul>
+    <li>\((B',G)\) 是另一个稳定匹配 M′ 里的一对；设 M′ 里 B 配着 G′。</li>
+    <li>由 Claim 1，G 是 B 的最优合法对象 ⟹ B 偏好 G 甚于 G′。</li>
+    <li>于是 \((B,G)\) 不在 M′ 里，却在 M′ 中构成不稳定对，矛盾。</li>
+  </ul>
+</div>
+
+<h3 id="ln9-8">9.8 二分图与完美匹配 <span class="zh">Bipartite Graphs &amp; Perfect Matching</span></h3>
+<p>第二主线换个角度：不关心偏好，只关心「谁和谁<b>可以</b>配」。这就是<b>二分匹配问题（Bipartite Marriage Problem）</b>：n 男 n 女，每人只能和若干（部分）异性结婚，目标<b>最大化配对数</b>。</p>
+<div class="def box">
+  <span class="box-title">📌 二分图（bipartite graph）</span>
+  <p>一个图是二分图，若其顶点集可以划分成两部分 A、B，使得<b>每条边都是一个端点在 A、另一个端点在 B</b>。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 匹配 / 完美匹配</span>
+  <ul>
+    <li><b>匹配</b>：一个边子集，使<b>每个顶点度数至多 1</b>（每条边配一对，一个顶点最多被一条匹配边覆盖）；</li>
+    <li><b>最大匹配（maximum matching）</b>：边数最多的匹配；</li>
+    <li><b>完美匹配（perfect matching）</b>：<b>每个顶点都被匹配</b>（度数恰为 1）的匹配。</li>
+  </ul>
+  <p>二分匹配问题 = 找最大匹配；完美匹配问题 = 判断是否存在完美匹配。<b>会解完美匹配，也就会解最大匹配</b>（可加虚顶点归约）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 给国王打工</span>
+  <p>你是国王的谋士，要判断 200 男 200 女之间有没有完美匹配。若有，直接摆给国王看即可；若<b>没有</b>，怎么让国王相信「真的没有、而不是你无能」？逐一穷举所有可能太慢，国王没耐心。要的是一个<b>「不存在」的简洁证明（certificate）</b>——这就是 Hall 定理的价值。</p>
+</div>
+
+<h3 id="ln9-9">9.9 Hall 定理 <span class="zh">Hall's Theorem</span></h3>
+<p>先引入记号：对顶点子集 S，记 <b>N(S)</b> 为「S 中某个顶点的邻居」构成的集合。</p>
+<div class="def box">
+  <span class="box-title">📌 邻居集 N(S)</span>
+  <p class="formula">\(N(S) = \{\, v \mid v \text{ 是 } S \text{ 中某个顶点的邻居}\,\}\)</p>
+  <p>\(|S|\) 是 S 的顶点数，\(|N(S)|\) 是 S 的邻居数。</p>
+</div>
+<p>一个<b>必要条件</b>立刻浮现：若某一边的某个子集 S 满足 \(|N(S)| &lt; |S|\)，那么 S 里这些人总共只有不到 \(|S|\) 个可选对象，<b>不可能全配出去</b>。所以要有完美匹配，必须对<b>任一边的任一子集 S</b> 都有 \(|N(S)| \ge |S|\)。</p>
+<div class="thm box">
+  <span class="box-title">🎯 Hall 定理（Hall, 1935）</span>
+  <p>二分图 \(G=(V,W;E)\) 有完美匹配 <b>当且仅当</b>对 V 的每个子集 S 都有 \(|N(S)| \ge |S|\)，<b>且</b>对 W 的每个子集 S 也都有 \(|N(S)| \ge |S|\)。</p>
+  <p>这是个深刻的定理：它<b>精确刻画</b>了二分图何时没有完美匹配。有了它，你就能向国王出示那个「无解证明」。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 当 |V| = |W| 时只需查一边</span>
+  <p>若 \(|V|=|W|\)，定理可化简为「对 V 的每个子集 S 都有 \(|N(S)|\ge|S|\)」。原因：取 S=V 时 \(|V|\le|N(V)|\le|W|\)，取 S=W 时 \(|W|\le|N(W)|\le|V|\)——两边子集的条件互相蕴含，查一边即可。</p>
+</div>
+
+<h3 id="ln9-10">9.10 应用 <span class="zh">Reductions &amp; Applications</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 应用一：工作分配（Job Assignment）</span>
+  <p>n 个人、n 份工作，每人愿意做其中一部分工作。能否让每份工作都有人做、且每人至多负责一份？</p>
+  <p>建模：每个人一个顶点、每份工作一个顶点；若某人愿意做某工作就加一条边。于是<b>完美分配 ⟺ 完美匹配</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 应用二：多米诺拼图（Domino Puzzle）</span>
+  <p>能否用多米诺骨牌（覆盖两个相邻格子）铺满一个（不规则）棋盘？</p>
+  <p>建模：每个格子一个顶点，相邻格子之间加边。棋盘黑白染色后，这是<b>二分图</b>（黑格一边、白格一边）。<b>完美匹配 ⟺ 一套多米诺铺法</b>。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 应用三：部分拉丁方（Partial Latin Square）</span>
+  <p>拉丁方：\(n\times n\) 方格，填入 1 到 n，使<b>每行、每列都恰好出现 1 到 n 各一次</b>。问题：给一个部分填好的拉丁方（某些行已填满），能否扩展成完整拉丁方？<b>答案：总能</b>，用二分匹配证明。</p>
+  <p>证明两步：</p>
+  <ol>
+    <li><b>解释成二分匹配</b>：为了填「下一行」，给每个<b>列</b>一个顶点、每个<b>数字</b>一个顶点；若数字 j 可以放进列 i，就加边 \((i,j)\)。一个<b>完美匹配</b> = 下一行的一个合法填法。逐行归纳，能一直填下一行就完成。</li>
+    <li><b>用 Hall 定理证这些图总有完美匹配</b>：关键引理是——<b>每个 k-正则二分图都有完美匹配</b>（k-regular = 每个顶点度数都是 k）。拉丁方构造出的图是正则的：设还有 k 行未填，则每列还需要 k 个数字（连 k 个数字）、每个数字还需要填进 k 个列（连 k 个列），故为 k-正则。</li>
+  </ol>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 引理：每个 k-正则二分图都有完美匹配</span>
+  <p>（反证）用 Hall 定理，只需验证每个子集 S 满足 \(|N(S)| \ge |S|\)。假设存在 S 使 \(|S| &gt; |N(S)|\)：</p>
+  <ol>
+    <li>每条从 S 出发的边，终点都在 \(N(S)\) 里；</li>
+    <li>从 S 出发的边总数为 \(k|S|\)（每个顶点度 k）；</li>
+    <li>而 \(N(S)\) 所有顶点总度数为 \(k|N(S)|\)，它必须 \(\ge k|S|\)，但由假设 \(k|N(S)| &lt; k|S|\)；</li>
+    <li>矛盾。故 \(|N(S)|\ge|S|\) 恒成立，Hall 定理给出完美匹配。</li>
+  </ol>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 选学：与最大流的关系</span>
+  <p>二分匹配的一个重要应用是<b>最大流问题（maximum flow）</b>：源点到汇点、每条边容量 1 单位时，一个最大流正对应「申请者—工作」间的二分匹配。这是把匹配问题归约到网络流的经典桥梁（本课仅作介绍）。</p>
+</div>
+
+<h3 id="ln9-11">9.11 Hall 定理的证明（选学） <span class="zh">Proof of Hall's Theorem (Optional)</span></h3>
+<p>设 \(|V|=|W|\)，重述为：\(G=(V,W;E)\) 有完美匹配 ⟺ 对每个子集 \(S\subseteq V\) 有 \(|N(S)|\ge|S|\)。</p>
+<div class="thm box">
+  <span class="box-title">🎯 正向（容易方向）</span>
+  <p>若有完美匹配，则对每个 S，只看匹配里 S 这些顶点配给谁——它们的匹配对象互不相同且都在 \(N(S)\) 里，所以 \(|N(S)| \ge |S|\)。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 反向（困难方向）：对边数 m 做强归纳</span>
+  <p>命题 \(P(m)\)：对 \(|E|\le m\) 的所有满足「\(|N(S)|\ge|S|\)，\(\forall S\subseteq V\)」的图，都有完美匹配。</p>
+  <ul>
+    <li><b>基例 m = 0</b>：没有完美匹配；此时必有某 S 使 \(0=|N(S)| &lt; |S|\)。取逆否命题即成立。</li>
+    <li><b>归纳步</b>：假设 \(P(m)\) 成立，考虑 \(P(m+1)\)。分两种情形：</li>
+  </ul>
+  <p><b>情形 1</b>：每个<b>真子集</b> S 都满足 \(|N(S)| &gt; |S|\)。随便删一条边，每个 \(|N(S)|\) 至多减 1，于是删边后仍有 \(|N(S)|\ge|S|\)。这得到边数 m 的较小图，由 \(P(m)\) 有完美匹配，故原图也有。</p>
+  <p><b>情形 2</b>：存在真子集 S 满足 \(|N(S)| = |S|\)。把图拆成两个较小图 \(G_1,G_2\) 分别归纳：</p>
+  <ul>
+    <li>\(G_2\)（S 与 \(N(S)\) 之间）：对任意 \(T\subseteq S\)，\(N(T)\subseteq N(S)\) 落在 \(G_2\) 里，故 \(|N(T)\cap G_2|=|N(T)|\ge|T|\)，由归纳有完美匹配；</li>
+    <li>\(G_1\)（\(V\setminus S\) 与 \(W\setminus N(S)\) 之间）：对任意 \(T\subseteq V\setminus S\)，考虑 \(S\cup T\)。由假设 \(|N(S\cup T)|\ge|S\cup T|\)，且 \(N(S)\subseteq N(S\cup T)\)，于是
+      \(|N(S\cup T)\setminus N(S)| = |N(S\cup T)| - |N(S)| \ge |S\cup T| - |S| = |T|\)，
+      而左边正是 \(|N(T)\cap G_1|\)，故 \(|N(T)\cap G_1|\ge|T|\)，由归纳有完美匹配。</li>
+  </ul>
+  <p>两边拼起来即得原图的完美匹配。</p>
+</div>
+
+<h3 id="ln9-12">9.12 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>匹配</b>：每个顶点至多被一条匹配边覆盖；<b>完美匹配</b>：每个顶点都被覆盖。</p>
+  <p><b>稳定匹配</b>：无不稳定对且人人已婚。Gale–Shapley 结婚程序（男孩求婚、女孩留最优、被拒者划名单）保证<b>稳定匹配一定存在</b>，至多 \(n^2\) 天，且<b>男孩最优、女孩最差</b>。</p>
+  <p><b>稳定室友问题</b>：同一方内部配对，可能无解（三角关系反例）——差别在「集合是否划分成两方」。</p>
+  <p><b>二分匹配</b>：二分图 + 匹配/最大匹配/完美匹配。</p>
+  <p><b>Hall 定理</b>：二分图有完美匹配 ⟺ 任一边任一子集 S 都有 \(|N(S)|\ge|S|\)。应用：工作分配、多米诺、拉丁方（k-正则二分图必有完美匹配）。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>matching</b> — 匹配；<b>stable matching</b> — 稳定匹配；<b>maximum matching</b> — 最大匹配</li>
+    <li><b>preference list</b> — 偏好列表；<b>unstable pair</b> — 不稳定对</li>
+    <li><b>stable roommate problem</b> — 稳定室友问题</li>
+    <li><b>Gale–Shapley procedure / marrying procedure</b> — Gale–Shapley（结婚）程序</li>
+    <li><b>propose / reject / write off</b> — 求婚 / 拒绝 / 划掉</li>
+    <li><b>valid partner</b> — 合法对象；<b>best / worst valid partner</b> — 最优 / 最差合法对象</li>
+    <li><b>boy optimality / girl pessimality</b> — 男孩最优性 / 女孩最差性</li>
+    <li><b>bipartite graph</b> — 二分图；<b>bipartite matching</b> — 二分匹配</li>
+    <li><b>perfect matching</b> — 完美匹配；<b>neighbor set N(S)</b> — 邻居集</li>
+    <li><b>Hall's theorem</b> — Hall 定理；<b>k-regular graph</b> — k-正则图</li>
+    <li><b>Latin square</b> — 拉丁方；<b>domino puzzle</b> — 多米诺拼图</li>
+    <li><b>maximum flow</b> — 最大流；<b>strong induction</b> — 强归纳</li>
   </ul>
 </div>
 </section>

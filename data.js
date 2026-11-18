@@ -46,7 +46,7 @@ window.DATA = {
       category: "数学",
       status: "active",           // active = 进行中 | done = 已完成 | self = 自学
       teacher: "",
-      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法 · 递归（递推/汉诺塔/卡特兰数/生成函数/记忆化与动态规划/回文）· 最大公约数（欧几里得算法/算术基本定理）· 模算术与中国剩余定理 · 图论导论（握手引理/同构/树/欧拉环）",
+      desc: "命题逻辑 · 集合 · 一阶逻辑 · 证明方法 · 数学归纳法 · 递归（递推/汉诺塔/卡特兰数/生成函数/记忆化与动态规划/回文）· 最大公约数（欧几里得算法/算术基本定理）· 模算术与中国剩余定理 · 图论导论（握手引理/同构/树/欧拉环）· 图匹配（稳定匹配/Gale-Shapley结婚程序/男孩最优女孩最差/二分匹配/Hall定理/拉丁方）",
       notes: [
         { title: "离散数学复习笔记", file: "discretemath/离散数学复习笔记.html" }
       ],
@@ -346,7 +346,25 @@ window.DATA = {
       { en: "Arc / Tail / Head", zh: "弧 / 尾 / 头" },
       { en: "In-degree / Out-degree", zh: "入度 / 出度" },
       { en: "Weakly / Strongly Connected", zh: "弱连通 / 强连通" },
-      { en: "Directed Cycle", zh: "有向环" }
+      { en: "Directed Cycle", zh: "有向环" },
+      { en: "Matching", zh: "匹配" },
+      { en: "Stable Matching", zh: "稳定匹配" },
+      { en: "Maximum Matching", zh: "最大匹配" },
+      { en: "Preference List", zh: "偏好列表" },
+      { en: "Unstable Pair", zh: "不稳定对" },
+      { en: "Stable Roommate Problem", zh: "稳定室友问题" },
+      { en: "Gale-Shapley Procedure", zh: "Gale-Shapley 结婚程序" },
+      { en: "Valid Partner", zh: "合法对象" },
+      { en: "Best / Worst Valid Partner", zh: "最优 / 最差合法对象" },
+      { en: "Boy Optimality / Girl Pessimality", zh: "男孩最优性 / 女孩最差性" },
+      { en: "Bipartite Graph", zh: "二分图" },
+      { en: "Bipartite Matching", zh: "二分匹配" },
+      { en: "Perfect Matching", zh: "完美匹配" },
+      { en: "Neighbor Set N(S)", zh: "邻居集" },
+      { en: "Hall's Theorem", zh: "Hall 定理" },
+      { en: "k-regular Graph", zh: "k-正则图" },
+      { en: "Latin Square", zh: "拉丁方" },
+      { en: "Maximum Flow", zh: "最大流" }
     ]},
     { course: "optimization", terms: [
       { en: "Optimization", zh: "最优化" },
