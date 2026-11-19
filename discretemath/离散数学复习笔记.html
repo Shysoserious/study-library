@@ -423,6 +423,48 @@ window.MathJax = {
     <a class="lv2" href="#ln9-10">9.10 应用</a>
     <a class="lv2" href="#ln9-11">9.11 Hall 定理的证明（选学）</a>
     <a class="lv2" href="#ln9-12">9.12 总结</a>
+    <a class="lv1" href="#ln10">LN10 · 图染色 Graph Coloring</a>
+    <a class="lv2" href="#ln10-1">10.1 图染色问题与色数</a>
+    <a class="lv2" href="#ln10-2">10.2 几类特殊图的色数</a>
+    <a class="lv2" href="#ln10-3">10.3 二分图与 2-可染色</a>
+    <a class="lv2" href="#ln10-4">10.4 团与色数的下界</a>
+    <a class="lv2" href="#ln10-5">10.5 判定 k-可染色有多难</a>
+    <a class="lv2" href="#ln10-6">10.6 三个应用</a>
+    <a class="lv2" href="#ln10-7">10.7 最大度上界 χ ≤ Δ+1</a>
+    <a class="lv2" href="#ln10-8">10.8 好排序：fore 邻居</a>
+    <a class="lv2" href="#ln10-9">10.9 区间图 χ = ω</a>
+    <a class="lv2" href="#ln10-10">10.10 平面图与地图染色</a>
+    <a class="lv2" href="#ln10-11">10.11 面与欧拉公式</a>
+    <a class="lv2" href="#ln10-12">10.12 平面图边数上界与 6-染色</a>
+    <a class="lv2" href="#ln10-13">10.13 总结</a>
+    <a class="lv1" href="#ln11">LN11 · 组合证明及其原理 Combinatorial Proofs</a>
+    <a class="lv2" href="#ln11-1">11.1 二项式定理与二项式系数</a>
+    <a class="lv2" href="#ln11-2">11.2 二项式系数的两个推论</a>
+    <a class="lv2" href="#ln11-3">11.3 组合证明的框架</a>
+    <a class="lv2" href="#ln11-4">11.4 Pascal 公式的两种证明</a>
+    <a class="lv2" href="#ln11-5">11.5 组合证明范例：红蓝球</a>
+    <a class="lv2" href="#ln11-6">11.6 容斥原理</a>
+    <a class="lv2" href="#ln11-7">11.7 容斥原理的例子</a>
+    <a class="lv2" href="#ln11-8">11.8 容斥应用：礼物与错排</a>
+    <a class="lv2" href="#ln11-9">11.9 鸽笼原理</a>
+    <a class="lv2" href="#ln11-10">11.10 鸽笼原理的应用</a>
+    <a class="lv2" href="#ln11-11">11.11 鸽笼应用：俱乐部与陌生人</a>
+    <a class="lv2" href="#ln11-12">11.12 总结</a>
+    <a class="lv1" href="#ln12">LN12 · 计数映射 Counting by Mapping</a>
+    <a class="lv2" href="#ln12-1">12.1 函数与三个集合</a>
+    <a class="lv2" href="#ln12-2">12.2 单射、满射、双射</a>
+    <a class="lv2" href="#ln12-3">12.3 双射计数法则</a>
+    <a class="lv2" href="#ln12-4">12.4 例子：幂集与二进制串</a>
+    <a class="lv2" href="#ln12-5">12.5 例子：扑克牌</a>
+    <a class="lv2" href="#ln12-6">12.6 例子：棋盘问题</a>
+    <a class="lv2" href="#ln12-7">12.7 例子：甜甜圈选择</a>
+    <a class="lv2" href="#ln12-8">12.8 例子：计数循环</a>
+    <a class="lv2" href="#ln12-9">12.9 例子：非负整数解</a>
+    <a class="lv2" href="#ln12-10">12.10 例子：选不相邻的书</a>
+    <a class="lv2" href="#ln12-11">12.11 除法法则</a>
+    <a class="lv2" href="#ln12-12">12.12 除法法则的例子</a>
+    <a class="lv2" href="#ln12-13">12.13 Catalan 数</a>
+    <a class="lv2" href="#ln12-14">12.14 总结</a>
   </nav>
 </aside>
 
@@ -3415,6 +3457,736 @@ window.MathJax = {
 </div>
 </section>
 
+
+<!-- ================================================= -->
+<!-- ============ LN10 图染色 ============ -->
+<!-- ================================================= -->
+<section id="ln10">
+<h2>LN10 · 图染色 <span class="zh">Graph Coloring</span></h2>
+<p>本讲研究图论中另一个重要问题——<b>图染色（graph coloring）</b>：给图的每个顶点涂颜色，使<b>相邻顶点颜色不同</b>，目标是用<b>最少的颜色</b>。它有无数的实际应用，最著名的就是<b>四色定理（four color theorem）</b>——任何地图只需 4 种颜色就能让相邻国家颜色不同。本讲主线：①染色问题与色数 \(\chi(G)\)；②一些能精确求出色数的特殊图（树、偶环、完全图、二分图）；③三个建模应用（航班登机口、考试排期、寄存器分配）；④两个「好结果」——最大度上界与区间图 \(\chi=\omega\)；⑤平面图与欧拉公式、以及「每个平面图都可 6-染色」。</p>
+
+<h3 id="ln10-1">10.1 图染色问题与色数 <span class="zh">The Coloring Problem &amp; Chromatic Number</span></h3>
+<div class="def box">
+  <span class="box-title">📌 图染色问题（Graph Coloring Problem）</span>
+  <p>给定一个图，给<b>所有顶点</b>染色，使<b>相邻顶点颜色不同</b>；目标是使所用的颜色数<b>最少</b>。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 k-可染色（k-colorable）</span>
+  <p>一个图是 <b>k-可染色</b>，若它的顶点可以被 k 种颜色染色，且相邻顶点颜色不同。</p>
+</div>
+<div class="def box">
+  <span class="box-title">📌 色数（chromatic number）</span>
+  <p>给图 G 染色所需的最少颜色数，称为它的<b>色数</b>，记为 \(\chi(G)\)。即：</p>
+  <p class="formula">\(\chi(G) = \min\{\, k \mid G \text{ 是 } k\text{-可染色}\,\}\)</p>
+</div>
+
+<h3 id="ln10-2">10.2 几类特殊图的色数 <span class="zh">Chromatic Numbers of Special Graphs</span></h3>
+<p>先看哪些图色数为 1、为 2、以及大于 2：</p>
+<ul>
+  <li><b>\(\chi(G)=1\)</b>：当且仅当图中<b>没有边</b>（全是孤立顶点，涂一种颜色即可）。</li>
+  <li><b>\(\chi(G)=2\)</b>：路径（path）、<b>偶环（even cycle）</b> \(C_{2k}\) 都是 2-可染色；<b>三角形（triangle）</b>、<b>奇环（odd cycle）</b> \(C_{2k+1}\) 需要 3 色。</li>
+</ul>
+<div class="def box">
+  <span class="box-title">📌 完全图（complete graph）</span>
+  <p>若图中<b>任意两个不同顶点之间都有边</b>，则称它为完全图，n 个顶点的完全图记为 \(K_n\)。</p>
+</div>
+<p>完全图 \(K_n\) 的每个顶点都与其他 \(n-1\) 个顶点相邻，所以每个顶点都需要不同的颜色：</p>
+<p class="formula">\(\chi(K_n)=n\)</p>
+<div class="def box">
+  <span class="box-title">📌 轮图（wheel）\(W_n\)</span>
+  <p>轮图 \(W_n\) 是一个环 \(C_n\) 外加一个「中心」顶点，中心与环上每个顶点都相连。</p>
+  <ul>
+    <li><b>偶轮</b> \(W_{2k}\)（环长偶数）：\(\chi(W_{2k})=3\)（环用 2 色交替，中心用第 3 色）。</li>
+    <li><b>奇轮</b> \(W_{2k+1}\)（环长奇数）：\(\chi(W_{2k+1})=4\)（环用 3 色，中心用第 4 色）。</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 树的色数：\(\chi(\text{tree})=2\)（≥2 个顶点）</span>
+  <p><b>证明：</b></p>
+  <ol>
+    <li>取任意顶点 u 作「根（root）」，每个顶点到 u 的<b>唯一路径</b>长度要么是偶数、要么是奇数；</li>
+    <li>按路径长度奇偶涂两种颜色：偶数涂红、奇数涂蓝。相邻顶点到根的距离奇偶性必相反，所以颜色不同——于是树是 <b>2-可染色</b>，即 \(\chi\le 2\)；</li>
+    <li>又因为树有边，相邻顶点不能同色，所以 \(\chi\ge 2\)；</li>
+    <li>故 \(\chi(G)=2\)。□</li>
+  </ol>
+</div>
+
+<h3 id="ln10-3">10.3 二分图与 2-可染色 <span class="zh">Bipartite Graphs &amp; 2-Colorability</span></h3>
+<p>什么时候一个图恰好是 2-可染色的？答案就是上一讲刚学的<b>二分图</b>。</p>
+<div class="thm box">
+  <span class="box-title">🎯 2-可染色 ⟺ 二分图</span>
+  <p>一个图是 <b>2-可染色</b>的，当且仅当它是<b>二分图（bipartite graph）</b>。</p>
+  <p>直觉：把两种颜色当作二分图的两部分，每条边恰好连接「两种颜色」，也就是「两部分」。所以「2-可染色」和「二分」是同一回事。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 二分图 ⟺ 无奇环</span>
+  <p>一个图是二分图，当且仅当它<b>没有奇环（odd cycle）</b>。</p>
+  <ul>
+    <li><b>（二分图 ⟹ 无奇环）</b>：绕一圈回到同一边，需要走<b>偶数</b>条边（奇偶交替），所以环长必为偶数。</li>
+    <li><b>（无奇环 ⟹ 二分图）</b>：像染树一样——任取一点涂红，其邻居全涂绿，绿点的邻居全涂红，重复直到全部染色。因为不存在三角形、5-环等奇环，不会出现「同色相邻」的冲突。两种颜色就是二分图的两部分。</li>
+  </ul>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 综合推论</span>
+  <p>一个图是 <b>2-可染色 ⟺ 无奇环</b>（习题）。三个等价说法：2-可染色、二分图、无奇环。</p>
+</div>
+
+<h3 id="ln10-4">10.4 团与色数的下界 <span class="zh">Cliques &amp; a Lower Bound</span></h3>
+<p>怎么估计一个图的色数？一个明显的下界来自「团（clique）」。</p>
+<div class="def box">
+  <span class="box-title">📌 团数（clique number）\(\omega(G)\)</span>
+  <p>记 \(\omega(G)\) 为 G 中<b>最大完全子图</b>的大小（最大团）。</p>
+</div>
+<p>若图中有一个大小为 k 的完全子图，那么这 k 个顶点两两相邻，<b>至少需要 k 种颜色</b>。所以：</p>
+<p class="formula">\(\chi(G) \ge \omega(G)\)</p>
+<p>那么逆命题成立吗——「色数等于 4 的图，一定包含一个 \(K_4\) 子图吗」？<b>不成立。</b></p>
+<div class="warn box">
+  <span class="box-title">⚠️ 团数不是好的色数估计</span>
+  <ul>
+    <li>奇轮 \(W_5\)：\(\chi(W_5)=4\)，但它<b>不含 \(K_4\)</b>（只有中心 + 相邻两个环点构成三角形），即 \(\omega(W_5)=3\)。所以 \(\chi\) 可以严格大于 \(\omega\)。</li>
+    <li>更糟的是，存在 \(\omega(G)=2\)（即<b>没有三角形</b>）而 \(\chi(G)\) 任意大的图（Mycielski 构造）。</li>
+  </ul>
+  <p>结论：\(\omega(G)\) 只能给色数一个下界，<b>不是好的估计</b>。</p>
+</div>
+
+<h3 id="ln10-5">10.5 判定 k-可染色有多难 <span class="zh">Working for the King, Take 2</span></h3>
+<p>回到「给国王打工」的场景：国王雇你判断一个图能否 <b>3-染色</b>。</p>
+<ul>
+  <li>若能找到一个 3-染色，直接摆给国王看即可；</li>
+  <li>若<b>不能</b> 3-染色，怎么让国王相信？有时你运气好，可以指出一个 \(K_4\)（需要 4 色）来证明不可 3-染色；</li>
+  <li>但也可能<b>没有 \(K_4\)，却仍然不可 3-染色</b>——这时你该怎么办？</li>
+</ul>
+<div class="warn box">
+  <span class="box-title">⚠️ 没有「简洁证明」</span>
+  <p>一般来说，世界上<b>没有人知道</b>一个「简洁」的方法来证明某图不可 3-染色，且人们普遍相信这样的简洁证明<b>不存在</b>：判定 k-可染色是 <b>NP-完全（NP-complete）</b>问题，求色数是 <b>NP-难（NP-hard）</b>问题。所以如果国王脾气不好，最好的建议是<b>辞掉这份工</b>——否则你可能因为「无能」被砍头。</p>
+</div>
+
+<h3 id="ln10-6">10.6 三个应用 <span class="zh">Applications</span></h3>
+<p>把实际问题建模成图染色的标准配方：把<b>资源</b>（登机口、时间段、寄存器）想成<b>颜色</b>，把<b>对象</b>（航班、课程、变量）想成<b>顶点</b>，把<b>冲突</b>想成<b>边</b>。于是「用最少颜色涂完所有顶点」=「用最少资源安排所有对象且无冲突」。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 应用一：航班登机口（Flight Gates）</span>
+  <p>多架航班需要登机口，但时间可能重叠。最少需要几个登机口？</p>
+  <p>建模：每个航班一个顶点；两航班若<b>时间重叠</b>（需要同时占用登机口）就加一条边，得到<b>冲突图（conflict graph）</b>。</p>
+  <p class="formula">航班可用 k 个登机口安排 ⟺ 冲突图 k-可染色</p>
+  <p>每种颜色 = 一个登机口；同一颜色的航班可共用同一登机口（不冲突）。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 应用二：考试排期（Exam Scheduling）</span>
+  <p>若一个学生同时选了两门课，这两门课考试就不能排在同一时间段。考试周期最短能有多短？</p>
+  <p>建模：每门课一个顶点；两门课有共同学生（冲突）就加边。考试能用 k 个时间段排完 ⟺ 图 k-可染色。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 应用三：寄存器分配（Register Allocation）</span>
+  <p>程序执行时，把值放在<b>寄存器（register）</b>里算得最快，但寄存器数量少且贵，要高效使用。</p>
+  <p><b>正确建模</b>：每个变量的<b>活跃区间（live range）</b>是一个顶点；两个活跃区间<b>重叠</b>就加边（不能共用寄存器，否则后者覆盖前者的值）。所需最少寄存器数 = 色数。</p>
+  <p><b>错误建模</b>：把「每个变量」当顶点、把「出现在同一步」当边——这会漏判（如变量 a 在第 1–5 步活跃、e 在第 3–4 步活跃，它们活跃区间重叠但可能不同步出现），所以必须按<b>活跃区间</b>而非变量本身来建图。</p>
+</div>
+
+<h3 id="ln10-7">10.7 最大度上界：\(\chi \le \Delta+1\) <span class="zh">Maximum Degree Bound</span></h3>
+<p>若每个顶点度数至多 d，需要多少种颜色？</p>
+<div class="thm box">
+  <span class="box-title">🎯 贪心染色：\(\chi(G)\le d+1\)（d = 最大度 \(\Delta\)）</span>
+  <p>一个未染色顶点 v 至多有 d 个邻居，也就至多占了 d 种颜色；只要我们有 <b>d+1 种颜色</b>，总能选出一个没被邻居占用的颜色涂上去。</p>
+  <p>换句话说：<b>按任意顶点顺序</b>逐个染色，最多用 d+1 种颜色就能涂完。</p>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 这是充分条件，远非必要</span>
+  <p>例如树的最大度可以很大，但树只需 2 色。所以这个上界很松。能否改进？关键在于找一个<b>好的染色顺序</b>。</p>
+</div>
+
+<h3 id="ln10-8">10.8 好排序：fore 邻居 <span class="zh">Maximum Degree Ordering</span></h3>
+<div class="def box">
+  <span class="box-title">📌 fore 邻居（fore neighbor）</span>
+  <p>在顶点排序 \(v_1,v_2,\dots,v_n\) 里，\(v_j\) 的<b>fore 邻居</b>指「下标更小」的邻居 \(v_i\)（\(i\le j\)）。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 好排序引理</span>
+  <p>若存在一个顶点排序 \(v_1,\dots,v_n\)，使<b>每个顶点的 fore 邻居数 ≤ d</b>，则该图可用 <b>d+1</b> 种颜色染色。</p>
+  <p><b>证明：</b></p>
+  <ol>
+    <li>按排序顺序逐个染色；</li>
+    <li>染 \(v_i\) 时，它的 fore 邻居（已染色的）至多用了 d 种颜色；</li>
+    <li>所以 \(v_i\) 可以用第 d+1 种颜色；</li>
+    <li>逐点染下去，所有顶点都能被 d+1 色染完。□</li>
+  </ol>
+</div>
+<p><b>怎么构造这样的好排序？</b>想法：<b>删掉一个低度数顶点</b>会使图整体度数下降。于是——任取一个度数 ≤ d 的顶点放到排序末尾，删掉它，再在剩余图上重复。树的例子：树的叶子度数为 1，总把叶子放末尾，就得到 d=1 的好排序，故树可 2-染色。</p>
+<div class="ex box">
+  <span class="box-title">✏️ 例：色数为 3 的图</span>
+  <p>对一个图反复「取度数 ≤ 2 的顶点放到末尾再删掉」，得到一个 d=2 的排序（如 F→E→B→A→C→D），于是它能被 2+1=3 色染色，且确实需要 3 色（含三角形），所以 \(\chi=3\)。</p>
+</div>
+
+<h3 id="ln10-9">10.9 区间图：\(\chi=\omega\) <span class="zh">Interval Graphs</span></h3>
+<p>好消息是，对某些特殊图我们<b>能精确</b>求出色数。<b>区间图（interval graph）</b>（也称区间的冲突图）：每个顶点是一个区间，两区间<b>相交</b>就连边。航班登机口、寄存器分配问题正是区间图。</p>
+<div class="thm box">
+  <span class="box-title">🎯 区间图定理：\(\chi(G)=\omega(G)\)</span>
+  <p>对区间图 G，<b>最少颜色数 = 最大完全子图大小</b>。所以航班登机口、寄存器分配这两个问题可以精确求解。</p>
+  <p>已知 \(\chi(G)\ge\omega(G)\)（团内顶点两两相邻都要不同色），所以只需证 \(\chi(G)\le\omega(G)\)，即「用 ≤ \(\omega(G)\) 种颜色就能涂完」。方法还是找一个好排序，关键是用下面这个引理。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 引理：区间图必有低度顶点</span>
+  <p>区间图 G 中，存在一个顶点度数 ≤ \(\omega(G)-1\)。</p>
+  <p><b>证明：</b>令 \(k=\omega(G)\)。取<b>右端点最靠左</b>（最早结束）的区间 v：</p>
+  <ol>
+    <li>任何与 v 相交的区间，一定与 v 的右端点相交（因为 v 的右端点最靠左）；</li>
+    <li>所以<b>所有与 v 相交的区间彼此两两相交</b>，它们构成一个完全子图；</li>
+    <li>这个完全子图大小 ≤ k（因为 \(\omega(G)=k\)），故 v 至多有 \(k-1\) 个邻居。□</li>
+  </ol>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 区间图定理的证明</span>
+  <ol>
+    <li>取引理里的低度顶点 v；</li>
+    <li>删掉 v（及其边），剩下仍是区间图，但更小；</li>
+    <li>在新图中又有一个度数 ≤ k−1 的顶点；</li>
+    <li>反复「取低度顶点放末尾再删」，直到只剩一个顶点；</li>
+    <li>这样就得到每个顶点 fore 邻居数 ≤ k−1 的好排序；</li>
+    <li>由好排序引理，图是 k-可染色的，故 \(\chi(G)\le k=\omega(G)\)。□</li>
+  </ol>
+</div>
+
+<h3 id="ln10-10">10.10 平面图与地图染色 <span class="zh">Planar Graphs &amp; Map Coloring</span></h3>
+<p><b>地图染色问题：</b>用最少的颜色给地图上色，使相邻国家颜色不同。能不能画出一张有 5 个国家、且任意两国都相邻的地图？</p>
+<div class="def box">
+  <span class="box-title">📌 平面图（planar graph）</span>
+  <p>一个图是平面图，若存在一种把它画在平面上的方式，使<b>边与边不相交</b>（只在端点相交）。</p>
+  <p>把地图转成图：每个<b>区域</b>一个顶点，两区域<b>共享边界</b>就加边。这样得到的图是平面图。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 四色定理（Four Color Theorem）</span>
+  <ul>
+    <li><b>猜想（1852）</b>：每张地图都可 4-染色。</li>
+    <li><b>Kempe「证明」（1879）</b>：11 年后被发现证明有错。</li>
+    <li><b>Kempe（1879）</b>：每张地图都可 5-染色（这个证明是对的）。</li>
+    <li><b>Appel &amp; Haken（1977）</b>：用<b>计算机辅助</b>证明了四色定理——有些数学家对此不太满意（证明依赖计算机穷举）。</li>
+  </ul>
+  <p>「5 个国家两两相邻」是<b>不可能</b>的——这可以由欧拉公式严格说明。</p>
+</div>
+
+<h3 id="ln10-11">10.11 面与欧拉公式 <span class="zh">Faces &amp; Euler's Formula</span></h3>
+<div class="def box">
+  <span class="box-title">📌 面（face）与面长（face length）</span>
+  <ul>
+    <li>平面图的一个<b>面</b>，是由一个环（cycle）围成的区域，且该区域内不含任何（不与该环相连的）顶点。</li>
+    <li>一个面的<b>面长</b>，是它的边界上边的条数。</li>
+    <li>注意 <b>桥（bridge）</b>（割边）在走面边界时会被走<b>两次</b>，所以桥对「边数贡献」要算 2 次（课件里 bridge 的外面边界如 <code>abcda</code> 与 <code>efge</code> 合并成 <code>abcefgecda</code>）。</li>
+  </ul>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 欧拉公式（Euler's Formula）</span>
+  <p>若一个<b>连通</b>平面图有 n 个顶点、m 条边、f 个面，则：</p>
+  <p class="formula">\(n - m + f = 2\)</p>
+  <p>它对<b>多重图（multigraph）</b>也成立。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 欧拉公式的证明（对顶点数归纳）</span>
+  <p><b>基例 n=1</b>：只有 1 个顶点、m 条自环（每条自环多出一个面），所以 f = m + 1，故 n − m + f = 1 − m + (m+1) = 2。</p>
+  <p><b>归纳步 n&gt;1</b>：假设对 ≤ n−1 个顶点成立。取 n 个顶点的图，<b>收缩（contract）</b>某条边（把 k 条平行边一起收缩）：收缩后 n′ = n−1，m′ = m−k，f′ = f−(k−1)（k 条边收缩会合并掉 k−1 个面）。由归纳假设 n′ − m′ + f′ = 2，代回即得 n − m + f = 2。□</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 不连通图的推广</span>
+  <p>若平面图有 k 个连通分量（connected components），每个分量满足 \(n_i-m_i+f_i=2\)，把 k 个加起来时，外部的无界面被重复算了 k 次、实际只算 1 次，即 \(f=\sum f_i-(k-1)\)。于是：</p>
+  <p class="formula">\(n - m + f = k + 1\)</p>
+</div>
+<p>另一个观察：欧拉公式对同一图的不同画法结果一样吗？<b>是</b>——因为同构图保持（简单）环的结构不变。</p>
+
+<h3 id="ln10-12">10.12 平面图边数上界与 6-染色 <span class="zh">Six-Coloring Planar Graphs</span></h3>
+<p>目标定理：<b>每个平面图都可 6-染色</b>。策略与「最大度排序」一致：找一个低度顶点（这里能保证度数 ≤ 5），再用归纳。证明分三步。</p>
+<div class="thm box">
+  <span class="box-title">🎯 边数上界：\(m \le 3n-6\)</span>
+  <p>设各面长为 \(F_1,F_2,\dots,F_f\)。每条边对面长总和贡献 2（一条边被两个面（含外面）各算一次），故 \(\sum F_i = 2m\)。又因为图是<b>简单</b>图（无重边无自环），每个面长至少 3，所以 \(3f \le \sum F_i = 2m\)，即 \(f \le \dfrac{2m}{3}\)。代入欧拉公式 \(m = n + f - 2\)：</p>
+  <p class="formula">\(m \le n + \tfrac{2m}{3} - 2 \quad\Longrightarrow\quad \tfrac{m}{3} \le n - 2 \quad\Longrightarrow\quad m \le 3n-6\)</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 平面图必有度数 ≤ 5 的顶点</span>
+  <p><b>证明（反证）</b>：假设每个顶点度数 ≥ 6。由握手引理（Handshaking Lemma），\(2m = \sum \deg(v) \ge 6n\)，即 \(m \ge 3n\)，与刚证的 \(m\le 3n-6\) 矛盾。所以存在顶点度数 ≤ 5。□</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 定理：每个平面图都可 6-染色</span>
+  <p><b>证明（对顶点数归纳）</b>：</p>
+  <ol>
+    <li>取度数 ≤ 5 的顶点 v；</li>
+    <li>删掉 v，得到平面图 G−v（仍是平面图）；</li>
+    <li>由归纳假设 G−v 可 6-染色；</li>
+    <li>v 至多有 5 个邻居，最多占 5 种颜色，于是 v 可用第 6 种颜色；</li>
+    <li>故 G 也可 6-染色。□</li>
+  </ol>
+</div>
+<div class="warn box">
+  <span class="box-title">⚠️ 能否加强到 5-染色？</span>
+  <p>能否总找到一个度数 ≤ 4 的顶点，从而把定理推广到 5-染色？<b>不能</b>——<b>正二十面体（icosahedron）</b>就是一个 5-正则平面图（每个顶点度都为 5），找不到度数 ≤ 4 的顶点。不过稍加讨论仍能证明「每个平面图可 5-染色」（Kempe），再进一步就是著名的四色定理。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 用 \(m\le 3n-6\) 证明 K5 非平面</span>
+  <p>\(K_5\) 有 n=5 个顶点、m=10 条边。若它能平面嵌入，应满足 \(m\le 3n-6\)，即 \(10\le 3\cdot5-6=9\)，矛盾。所以 \(K_5\) <b>不是平面图</b>——这也说明「5 个国家两两相邻」的地图画不出来。</p>
+</div>
+
+<h3 id="ln10-13">10.13 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>色数 \(\chi(G)\)</b>：最少染色数。\(\chi=1\) 无图；偶环/树/二分图 \(\chi=2\)；奇环 \(\chi=3\)；\(K_n\) 的 \(\chi=n\)；偶轮 \(\chi=3\)、奇轮 \(\chi=4\)。</p>
+  <p><b>等价关系</b>：2-可染色 ⟺ 二分图 ⟺ 无奇环。</p>
+  <p><b>下界</b>：\(\chi(G)\ge\omega(G)\)（团数），但一般不相等（\(W_5\)、Mycielski 图）。判定 k-可染色是 NP-完全，求色数 NP-难。</p>
+  <p><b>上界</b>：\(\chi(G)\le\Delta+1\)；有「每顶点 fore 邻居 ≤ d」的好排序时 \(\chi\le d+1\)。</p>
+  <p><b>区间图</b>：\(\chi=\omega\)（左端最靠右的区间是低度顶点，反复删得好排序）。</p>
+  <p><b>平面图</b>：欧拉公式 \(n-m+f=2\)（连通）或 \(n-m+f=k+1\)（k 个分量）；简单平面图 \(m\le 3n-6\)，必有度数 ≤ 5 的顶点，故每个平面图可 <b>6-染色</b>；四色定理（Appel–Haken，计算机辅助）说每张地图 4 色足矣。</p>
+  <p><b>建模心法</b>：资源=颜色、对象=顶点、冲突=边；用最少颜色 = 用最少资源且无冲突。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>graph coloring</b> — 图染色；<b>k-colorable</b> — k-可染色；<b>chromatic number \(\chi(G)\)</b> — 色数</li>
+    <li><b>complete graph \(K_n\)</b> — 完全图；<b>wheel \(W_n\)</b> — 轮图</li>
+    <li><b>bipartite graph</b> — 二分图；<b>odd cycle</b> — 奇环</li>
+    <li><b>clique</b> — 团；<b>clique number \(\omega(G)\)</b> — 团数</li>
+    <li><b>maximum degree \(\Delta\)</b> — 最大度；<b>fore neighbor</b> — fore 邻居</li>
+    <li><b>conflict graph</b> — 冲突图；<b>interval graph</b> — 区间图；<b>live range</b> — 活跃区间</li>
+    <li><b>register allocation</b> — 寄存器分配；<b>exam scheduling</b> — 考试排期</li>
+    <li><b>planar graph</b> — 平面图；<b>face</b> — 面；<b>face length</b> — 面长；<b>bridge</b> — 桥</li>
+    <li><b>Euler's formula</b> — 欧拉公式；<b>connected component</b> — 连通分量</li>
+    <li><b>map coloring</b> — 地图染色；<b>four color theorem</b> — 四色定理</li>
+    <li><b>NP-complete / NP-hard</b> — NP-完全 / NP-难；<b>greedy coloring</b> — 贪心染色</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN11 组合证明及其原理 ============ -->
+<!-- ================================================= -->
+<section id="ln11">
+<h2>LN11 · 组合证明及其原理 <span class="zh">Combinatorial Proofs and its Principles</span></h2>
+<p>本讲研究计数（counting）的三大原理：<b>组合证明（combinatorial proof）</b>、<b>容斥原理（inclusion-exclusion principle）</b>、<b>鸽笼原理（pigeonhole principle）</b>。它们是离散数学里最实用的技巧，从进化生物学到计算机科学都有应用。核心思想一句话：<b>很多代数恒等式，其实是「同一个集合用两种方法数出来」的结果</b>。</p>
+
+<h3 id="ln11-1">11.1 二项式定理与二项式系数 <span class="zh">Binomial Theorem &amp; Coefficients</span></h3>
+<p>展开 \((1+x)^3=(1+x)(1+x)(1+x)\)：从每个因子里取 1 或 x 再相乘。取 k 个 x 的方式数就是 \(x^k\) 的系数 \(c_k\)：</p>
+<p class="formula">\((1+x)^3 = 1 + 3x + 3x^2 + 1x^3\)，即 \(c_0=1, c_1=3, c_2=3, c_3=1\)</p>
+<p>推广到 n 个因子：系数 \(c_k\) = 「从 n 个因子中选 k 个取 x」的方式数 = \(\binom{n}{k}\)。这些系数就叫<b>二项式系数（binomial coefficients）</b>。</p>
+<div class="thm box">
+  <span class="box-title">🎯 二项式定理（Binomial Theorem）</span>
+  <p class="formula">\((x+y)^n = \sum_{k=0}^{n} \binom{n}{k}\, x^k y^{n-k}\)</p>
+  <p>Pascal 三角形各行的系数是上一行相邻两数之和（Pascal 公式，下面会证明）。</p>
+</div>
+
+<h3 id="ln11-2">11.2 二项式系数的两个推论 <span class="zh">Two Corollaries</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 推论一：系数和 = \(2^n\)</span>
+  <p>令 \(x=1, y=1\)，二项式定理给出 \((1+1)^n = \sum_k \binom{n}{k}\)，即：</p>
+  <p class="formula">\(\sum_{k=0}^{n}\binom{n}{k} = 2^n\)</p>
+  <p>（也可从组合理解：每个元素「选或不选」，n 个元素共 \(2^n\) 个子集。）</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 推论二：奇系数和 = 偶系数和</span>
+  <p>令 \(x=-1, y=1\)，二项式定理给出 \((1-1)^n = \sum_k \binom{n}{k}(-1)^k = 0\)，即：</p>
+  <p class="formula">\(\sum_{k \text{ 奇}}\binom{n}{k} \;=\; \sum_{k \text{ 偶}}\binom{n}{k}\)</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 对称性：\(\binom{n}{k}=\binom{n}{n-k}\)</span>
+  <p>选 k 个元素 = 选 n−k 个「不选」的元素，两种选法一一对应。</p>
+</div>
+
+<h3 id="ln11-3">11.3 组合证明的框架 <span class="zh">The Framework: Double Counting</span></h3>
+<div class="def box">
+  <span class="box-title">📌 组合证明（combinatorial proof）</span>
+  <p>组合证明是用<b>计数原理</b>建立代数事实的论证。多数组合证明遵循同一框架（<b>双重计数 double counting</b>）：</p>
+  <ol>
+    <li>定义一个集合 S；</li>
+    <li>用<b>一种方法</b>数出 \(|S|=n\)；</li>
+    <li>用<b>另一种方法</b>数出 \(|S|=m\)；</li>
+    <li>结论：\(n=m\)。</li>
+  </ol>
+</div>
+
+<h3 id="ln11-4">11.4 Pascal 公式的两种证明 <span class="zh">Pascal's Formula</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 Pascal 公式</span>
+  <p class="formula">\(\binom{n+1}{k} = \binom{n}{k-1} + \binom{n}{k}\)</p>
+  <p><b>直接证明（代数）</b>：\(\binom{n}{k-1}+\binom{n}{k}=\dfrac{n!}{(k-1)!(n-k+1)!}+\dfrac{n!}{k!(n-k)!}=\dfrac{n!\,k+n!\,(n-k+1)}{k!(n-k+1)!}=\dfrac{(n+1)!}{k!(n+1-k)!}=\binom{n+1}{k}\)。</p>
+  <p><b>组合证明</b>：LHS 是从 \(n+1\) 个元素里选 k 个的方法数。固定其中一个元素 x，把选法分成两类：</p>
+  <ol>
+    <li><b>包含 x</b>：还需从其余 n 个里选 \(k-1\) 个，共 \(\binom{n}{k-1}\) 种；</li>
+    <li><b>不包含 x</b>：从其余 n 个里选 k 个，共 \(\binom{n}{k}\) 种。</li>
+  </ol>
+  <p>两类互斥且穷尽，故 \(\binom{n+1}{k}=\binom{n}{k-1}+\binom{n}{k}\)。□</p>
+</div>
+
+<h3 id="ln11-5">11.5 组合证明范例：红蓝球 <span class="zh">Example: Red &amp; Blue Balls</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 证明 \(\sum_{i=0}^{n}\binom{n}{i}^2 = \binom{2n}{n}\)</span>
+  <p>考虑 <b>2n 个球，一半红一半蓝</b>。RHS = 从 2n 个球中选 n 个球的方法数。</p>
+  <p>另一方面，选 n 个球可分成：选 0 红 + n 蓝、选 1 红 + (n−1) 蓝、…、选 i 红 + (n−i) 蓝、…、选 n 红 + 0 蓝。第 i 类有 \(\binom{n}{i}\binom{n}{n-i}=\binom{n}{i}^2\) 种。故 LHS = RHS。□</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 用「算系数」证明恒等式</span>
+  <p>同一个恒等式也可以「用两种方法算同一个系数」证明：</p>
+  <p class="formula">\((1+x)^{2n} = (1+x)^n(1+x)^n\)</p>
+  <p>LHS 中 \(x^n\) 的系数是 \(\binom{2n}{n}\)；RHS 中 \(x^n\) 的系数是 \(\sum_{i}\binom{n}{i}\binom{n}{n-i}=\sum_i\binom{n}{i}^2\)。两边系数相等，即得恒等式。□</p>
+</div>
+
+<h3 id="ln11-6">11.6 容斥原理 <span class="zh">Inclusion-Exclusion Principle</span></h3>
+<p>若集合 A、B <b>不相交</b>，则 \(|A\cup B|=|A|+|B|\)（和法则）。若 A、B <b>相交</b>呢？</p>
+<div class="thm box">
+  <span class="box-title">🎯 容斥原理（2 个集合）</span>
+  <p class="formula">\(|A\cup B| = |A| + |B| - |A\cap B|\)</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 容斥原理（3 个集合）</span>
+  <p class="formula">\(|A\cup B\cup C| = |A|+|B|+|C| - |A\cap B|-|A\cap C|-|B\cap C| + |A\cap B\cap C|\)</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 容斥原理（n 个集合，一般形式）</span>
+  <p class="formula">\(\left|\bigcup_{i=1}^{n}A_i\right| = \sum_{i}|A_i| - \sum_{i&lt;j}|A_i\cap A_j| + \sum_{i&lt;j&lt;k}|A_i\cap A_j\cap A_k| - \cdots + (-1)^{n+1}|A_1\cap\cdots\cap A_n|\)</p>
+  <p>规律：<b>奇数个集合的交</b>取正号，<b>偶数个集合的交</b>取负号；单集合是 +、二交集是 −、三交集是 +，依此类推。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 容斥公式的正确性（对单个元素计数）</span>
+  <p>证明思路：看任意一个元素 x 在 RHS 被数了几次。设 x 恰好属于 r 个集合。x 对「单集合和」贡献 r 次，对「二交集和」贡献 \(\binom{r}{2}\) 次，对「三交集和」贡献 \(\binom{r}{3}\) 次，……于是总贡献为：</p>
+  <p class="formula">\(r - \binom{r}{2} + \binom{r}{3} - \cdots + (-1)^{r+1}\binom{r}{r} = 1\)</p>
+  <p>（由 \((1-1)^r=\sum_{k=0}^r\binom{r}{k}(-1)^k=0\) 移项得 \(\sum_{k=1}^r\binom{r}{k}(-1)^{k+1}=1\)。）所以每个属于并集的元素恰好被数 1 次。□</p>
+</div>
+
+<h3 id="ln11-7">11.7 容斥原理的例子 <span class="zh">Examples</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 例一：3 或 5 的倍数</span>
+  <p>求 1 到 1000 中是 3 或 5 的倍数的整数个数。令 A = {3 的倍数}，B = {5 的倍数}。A、B 相交（如 15）。</p>
+  <p class="formula">\(|A|=333,\ |B|=200,\ |A\cap B|=\lfloor 1000/15\rfloor=66\)</p>
+  <p class="formula">\(|A\cup B| = 333 + 200 - 66 = 467\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例二：三种语言</span>
+  <p>50 名学生中：30 会 Java、18 会 C++、26 会 C#；9 会 Java&C++、16 会 Java&C#、8 会 C++&C#；47 人至少会一种。求三种都会的人数？</p>
+  <p>设三种都会 x 人，代入三集合容斥：</p>
+  <p class="formula">\(47 = 30+18+26 - 9 - 16 - 8 + x = 41 + x\)</p>
+  <p>得 \(x=6\)。□</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例三：\(a+b+c=11\) 且 \(a\le 3\) 的解数</span>
+  <p>全集 \(U=\{(a,b,c)\mid a+b+c=11,\ a,b,c\ge0\}\)，其大小 \(N=\binom{13}{2}\)（13 个格子放 11 个球、2 个分隔符，等价于上一讲/下一讲的「隔板法」）。</p>
+  <p>令 \(P_1=\{a&gt;3\}=\{a\ge4\}\)，同理 \(P_2=\{b&gt;3\},P_3=\{c&gt;3\}\)。所求为 \(|U|-|P_1\cup P_2\cup P_3|\)。</p>
+  <p>数 \(|P_1|\)：令 \(a'=a-4\ge0\)，则 \(a'+b+c=7\)，共 \(\binom{9}{2}\) 种。用容斥逐层算即可。</p>
+</div>
+
+<h3 id="ln11-8">11.8 容斥应用：圣诞礼物与错排 <span class="zh">Christmas Presents &amp; Derangements</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 圣诞礼物问题（derangement 错排）</span>
+  <p>n 个人各带一份礼物，主持人收齐打乱后每人随机拿一份。求<b>没有人拿到自己礼物</b>的概率。</p>
+  <p>全集 U = {人-礼物 的配对}，\(|U|=n!\)。令 \(P_i=\{\)第 i 人拿到自己的礼物\(\}\)。所求为 \(|U|-|P_1\cup\cdots\cup P_n|\)。</p>
+  <p>\(|P_i|=(n-1)!\)，\(|P_i\cap P_j|=(n-2)!\)，…… 由容斥：</p>
+  <p class="formula">\(n! - \binom{n}{1}(n-1)! + \binom{n}{2}(n-2)! - \cdots + (-1)^n\binom{n}{n}0! = n!\sum_{k=0}^{n}\frac{(-1)^k}{k!}\)</p>
+  <p>概率 = \(\sum_{k=0}^{n}\frac{(-1)^k}{k!}\)。回忆泰勒展开 \(e^{-1}=\sum_{k=0}^{\infty}\frac{(-1)^k}{k!}\)，所以当 \(n\to\infty\) 时：</p>
+  <p class="formula">\(p \to e^{-1} = \dfrac{1}{e} \approx 0.3679\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 欧拉函数（Euler's totient）</span>
+  <p>1 到 n 中与 n <b>互素</b>的数的个数记为 \(\varphi(n)\)（欧拉函数）。设 n 的素因子为 \(p_1,\dots,p_r\)，用容斥排除「能被某 \(p_i\) 整除」的数可得：</p>
+  <p class="formula">\(\varphi(n) = n\left(1-\dfrac{1}{p_1}\right)\left(1-\dfrac{1}{p_2}\right)\cdots\left(1-\dfrac{1}{p_r}\right)\)</p>
+</div>
+
+<h3 id="ln11-9">11.9 鸽笼原理 <span class="zh">Pigeonhole Principle</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 鸽笼原理（Pigeonhole Principle）</span>
+  <p>若鸽子比鸽笼多，则<b>某个笼子里至少有两只鸽子</b>。</p>
+  <p>等价表述：<b>从较大集合到较小集合的函数不可能是单射</b>（定义域里必有两个元素被映到同一个值）。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 广义鸽笼原理（Generalized Pigeonhole Principle）</span>
+  <p>若 n 只鸽子放进 h 个笼子，则某个笼子至少有：</p>
+  <p class="formula">\(\left\lceil \dfrac{n}{h} \right\rceil\)</p>
+  <p>只鸽子。（例如 13 只鸽子 4 个笼 → 某笼至少 \(\lceil 13/4\rceil=4\) 只。）</p>
+</div>
+
+<h3 id="ln11-10">11.10 鸽笼原理的应用 <span class="zh">Applications</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 凑出和为 9 的数对</span>
+  <p>从 \(A=\{1,2,\dots,8\}\) 中选 5 个不同的数，是否必有一对的和为 9？</p>
+  <p>考虑配对 \(\{1,8\},\{2,7\},\{3,6\},\{4,5\}\)——这 4 对恰好覆盖所有数、每对和为 9。选 5 个数相当于从 4 对里取 5 个，由鸽笼原理必有一对被整对选中，其和为 9。□</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 握手次数</span>
+  <p>n 人的聚会中，是否总有两人与<b>相同人数</b>握过手？</p>
+  <p>每人握 0 到 n−1 次手，看似有 n 个可能值对应 n 人，并不显然。分两种情形：</p>
+  <ul>
+    <li><b>有人 0 次</b>：则其余人最多握 n−2 次，n 人落在 0 到 n−2 这 n−1 个值上，鸽笼原理 → 有两人相同；</li>
+    <li><b>没人 0 次</b>：n 人落在 1 到 n−1 这 n−1 个值上，同样有两人相同。</li>
+  </ul>
+  <p>两种情形答案都是「是」。□</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 生日问题（birthday problem）</span>
+  <p>367 人中必有两人同一天生日（365 个「笼」）。若 n ≤ 365，n 人中有人同生日的概率 = \(1 - \dfrac{365\cdot364\cdots(365-n+1)}{365^n}\)。n=23 时已低于 50%，n=57 时低于 1%。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 子集和（subset sum）</span>
+  <p>给定 90 个（至多 25 位的）数，能否找到两个<b>不同子集</b>和相等？</p>
+  <p>令 X = {90 个数的所有子集}，Y = {这些子集可能的和}。若 \(|X|&gt;|Y|\)，则映射「子集 → 和」不是单射，必有两个子集和相同。</p>
+  <p class="formula">\(|X| = 2^{90} \ge 1.237\times10^{27}\)</p>
+  <p class="formula">\(|Y| \le 90\times10^{25} \le 0.901\times10^{27}\)</p>
+  <p>故 \(|X|&gt;|Y|\)，由鸽笼原理必有两个不同子集和相等。□</p>
+</div>
+
+<h3 id="ln11-11">11.11 鸽笼应用：俱乐部与陌生人（Ramsey 理论） <span class="zh">Club vs Strangers</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 定理：6 人中必有 3 人俱乐部或 3 人陌生人</span>
+  <p>约定任意两人要么「见过」要么「没见过」。若一组内人人互相见过叫<b>俱乐部（club）</b>；人人互不相识叫<b>陌生人组（strangers）</b>。</p>
+  <p><b>证明：</b>任取一人 x，看其余 5 人与 x 的关系。</p>
+  <p><b>Claim</b>（广义鸽笼）：5 人中必有 3 人与 x 都见过，或有 3 人与 x 都没见过。</p>
+  <ul>
+    <li><b>情形一</b>：有 3 人与 x 见过。若这 3 人中某两人彼此见过，则这两人 + x 构成 3 人俱乐部；若这 3 人两两互不相识，则他们就是 3 人陌生人组。</li>
+    <li><b>情形二</b>：有 3 人与 x 没见过。若这 3 人两两见过，则是 3 人俱乐部；若其中某两人互不相识，则这两人 + x 构成 3 人陌生人组。</li>
+  </ul>
+  <p>两种情形都满足结论。□</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 推广：Ramsey 理论</span>
+  <p>对每个 k，只要人数足够多，就必然存在<b>k 人俱乐部</b>或<b>k 人陌生人组</b>。直觉：<b>足够大的结构不可能完全无序</b>。这是 Ramsey 理论的基本结论。</p>
+</div>
+
+<h3 id="ln11-12">11.12 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>二项式定理</b>：\((x+y)^n=\sum_k\binom{n}{k}x^ky^{n-k}\)。推论：\(\sum_k\binom{n}{k}=2^n\)（x=y=1）；奇系数和 = 偶系数和（x=−1,y=1）；\(\binom{n}{k}=\binom{n}{n-k}\)。</p>
+  <p><b>组合证明</b>：同一个集合 S 用两种方法计数 → 恒等式（double counting）。Pascal 公式 \(\binom{n+1}{k}=\binom{n}{k-1}+\binom{n}{k}\)。</p>
+  <p><b>容斥原理</b>：并集大小 = 单集之和 − 二交之和 + 三交之和 − …（奇交正、偶交负）。应用：倍数计数、三语言、错排 \(n!\sum(-1)^k/k!\to n!/e\)、欧拉函数 \(\varphi(n)=n\prod(1-1/p_i)\)。</p>
+  <p><b>鸽笼原理</b>：鸽子多于笼 → 某笼 ≥2 只；广义版某笼 ≥ \(\lceil n/h\rceil\)。应用：凑和 9、握手、生日、子集和、俱乐部 vs 陌生人（Ramsey）。</p>
+  <p><b>心法</b>：计数题先问「哪个集合、数几次」；代数恒等式试着用「选集合」的语言重述；「必然存在」往往用鸽笼原理。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>binomial theorem</b> — 二项式定理；<b>binomial coefficient</b> — 二项式系数</li>
+    <li><b>combinatorial proof</b> — 组合证明；<b>double counting</b> — 双重计数</li>
+    <li><b>Pascal's formula / Pascal's triangle</b> — Pascal 公式 / Pascal 三角形</li>
+    <li><b>inclusion-exclusion principle</b> — 容斥原理；<b>union / intersection</b> — 并集 / 交集</li>
+    <li><b>derangement</b> — 错排；<b>Euler's totient function \(\varphi(n)\)</b> — 欧拉函数</li>
+    <li><b>pigeonhole principle</b> — 鸽笼原理；<b>generalized pigeonhole</b> — 广义鸽笼原理</li>
+    <li><b>injective</b> — 单射；<b>birthday problem</b> — 生日问题</li>
+    <li><b>subset sum</b> — 子集和；<b>club / strangers</b> — 俱乐部 / 陌生人组</li>
+    <li><b>Ramsey theory</b> — Ramsey 理论；<b>Taylor series</b> — 泰勒级数</li>
+  </ul>
+</div>
+</section>
+
+<!-- ================================================= -->
+<!-- ============ LN12 计数映射 ============ -->
+<!-- ================================================= -->
+<section id="ln12">
+<h2>LN12 · 计数映射 <span class="zh">Counting by Mapping</span></h2>
+<p>本讲研究如何通过<b>定义映射（mapping）</b>来计数。核心是一个「偷懒」技巧：要数一个难数的集合 A，不直接数它，而是<B>找一个与 A 一一对应的、更好数的集合 B</b>，把 \(|A|\) 换成 \(|B|\)。这就是<b>双射法则（bijection rule）</b>；再推广一步就是<b>除法法则（division rule）</b>（k 对 1 映射）。最后用这套方法推出著名的<b>Catalan 数</b>。</p>
+
+<h3 id="ln12-1">12.1 函数与三个集合 <span class="zh">Functions: Domain, Codomain, Range</span></h3>
+<div class="def box">
+  <span class="box-title">📌 函数 \(f:A\to B\)</span>
+  <p>函数 f 把输入集 A 的元素映到输出集 B 的元素：<b>每个输入恰好一个输出</b>（同一输入不能对应多个输出）。</p>
+  <ul>
+    <li><b>定义域（domain）</b>：A；</li>
+    <li><b>陪域（codomain）</b>：B；</li>
+    <li><b>值域（range）</b>：\(\{f(x)\mid x\in A\}\subseteq B\)（实际能取到的输出集合）。</li>
+  </ul>
+  <p>注意「学生姓名 → 学号」是函数，但「姓名 → 学号」若允许同名对应多个学号就<b>不是</b>函数。</p>
+</div>
+
+<h3 id="ln12-2">12.2 单射、满射、双射 <span class="zh">Injection, Surjection, Bijection</span></h3>
+<div class="def box">
+  <span class="box-title">📌 三类函数</span>
+  <ul>
+    <li><b>单射（injection）</b>：没有两个不同输入有相同输出（每个 B 元素至多 1 支箭头指入）⟹ \(|A|\le|B|\)。</li>
+    <li><b>满射（surjection）</b>：每个输出都可能取到（每个 B 元素至少 1 支箭头指入）⟹ \(|A|\ge|B|\)。</li>
+    <li><b>双射（bijection）</b>：既单射又满射（每个 B 元素恰 1 支箭头指入）⟹ \(|A|=|B|\)。</li>
+  </ul>
+  <p>注：若存在一个单射和一个满射，则双射存在，且 \(|A|=|B|\)。</p>
+</div>
+
+<h3 id="ln12-3">12.3 双射计数法则 <span class="zh">The Bijection Rule</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 双射法则（Bijection Rule）</span>
+  <p>若 \(f:A\to B\) 是双射，则 \(|A|=|B|\)。</p>
+  <p>计数套路四步：</p>
+  <ol>
+    <li>构造一个好数的集合 B；</li>
+    <li>构造映射 f；</li>
+    <li>证明 f 是双射（或给一单射 + 一满射）；</li>
+    <li>直接算出 \(|B|\)，即得 \(|A|\)。</li>
+  </ol>
+  <p>通常前两步最困难。</p>
+</div>
+
+<h3 id="ln12-4">12.4 例子：幂集与二进制串 <span class="zh">Power Set ↔ Binary Strings</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ \(|Pow(S)|=2^n\)</span>
+  <p>S 有 n 个元素，问幂集 \(Pow(S)\)（所有子集）的大小。</p>
+  <p>定义双射 f：A = S 的所有子集，B = 所有 n 位二进制串。子集 \(\{s_1,s_3,s_4,\dots\}\) 对应串「1011…」——第 i 位为 1 表示 \(s_i\) 在子集里，为 0 表示不在。</p>
+  <ul>
+    <li>两个不同子集对应两个不同串（单射）；</li>
+    <li>每个二进制串都由某个子集对应（满射）。</li>
+  </ul>
+  <p>故 \(|Pow(S)|=|n\text{-位二进制串}|=2^n\)。□</p>
+</div>
+
+<h3 id="ln12-5">12.5 例子：扑克牌 <span class="zh">Poker Hands &amp; Full House</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 五张牌的手牌数</span>
+  <p>一副牌 52 张（4 花色 × 13 点数）。五张牌手牌（不计顺序）数 = \(\binom{52}{5}\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 葫芦（Full House）</span>
+  <p>葫芦 = 三张同点数 + 两张另一同点数。用双射：A = 所有葫芦，B = 满足条件的序列：</p>
+  <ol>
+    <li>选「三张」的点数：13 种；</li>
+    <li>选这三点数的 3 张花色：\(\binom{4}{3}=4\) 种；</li>
+    <li>选「两张」的另一点数：12 种；</li>
+    <li>选这两点数的 2 张花色：\(\binom{4}{2}=6\) 种。</li>
+  </ol>
+  <p class="formula">\(|A| = 13 \times 4 \times 12 \times 6 = 3744\)</p>
+</div>
+
+<h3 id="ln12-6">12.6 例子：棋盘问题 <span class="zh">A Chess Problem</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 兵、马、象各一个，互不同行同列</span>
+  <p>8×8 棋盘上放一个兵（p）、一个马（k）、一个象（b），要求<b>任意两子不同行、不同列</b>。有多少种放法？</p>
+  <p>定义双射 f：配置 → 序列 \((r(p),c(p),r(k),c(k),r(b),c(b))\)，其中三子的行互不相同、列互不相同。</p>
+  <p>计数受限序列：\(r(p)\) 有 8 选、\(c(p)\) 8 选、\(r(k)\) 7 选、\(c(k)\) 7 选、\(r(b)\) 6 选、\(c(b)\) 6 选：</p>
+  <p class="formula">\(|A| = (8\times7\times6)^2 = 112896\)</p>
+  <p>（单射：不同配置对应不同序列；满射：每个受限序列都对应一个合法配置。）</p>
+</div>
+
+<h3 id="ln12-7">12.7 例子：甜甜圈选择 <span class="zh">Doughnut Selections</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 5 种甜甜圈选一打（12 个）</span>
+  <p>5 种甜甜圈，选 12 个（同种可重复），有多少种选法？</p>
+  <p>构造双射：A = 选法，B = 恰含 4 个 1 的 16 位二进制串。用 <b>0</b> 表示甜甜圈、用 <b>1</b> 分隔 5 种口味：</p>
+  <p class="formula">\(0^c\,1\,0^l\,1\,0^s\,1\,0^g\,1\,0^p\)　（c 巧克力、l 柠檬、s 糖、g 糖霜、p 原味）</p>
+  <p>共 12 个 0 + 4 个 1 = 16 位。这是双射（不同选法对应不同串；每个串对应合法选法）。故：</p>
+  <p class="formula">\(|A| = \binom{16}{4}\)</p>
+</div>
+
+<h3 id="ln12-8">12.8 例子：计数循环 <span class="zh">Counting Loops</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 三重嵌套循环打印多少次</span>
+  <pre><code>for i = 1 to n
+  for j = 1 to i
+    for k = 1 to j
+      printf("hello world\n")</code></pre>
+  <p>打印次数 = 满足 \(1\le k\le j\le i\le n\) 的三元组 (i,j,k) 的个数。</p>
+  <p>双射：A = 所有 (i,j,k) 三元组，B = 含 n−1 个 1、3 个 0 的串。三个 0 的位置分别对应 k、j、i 的值（i 有 n 个可能值，用 n−1 个 1 作分隔）。串总长 = (n−1)+3 = n+2，选 3 个 0 的位置：</p>
+  <p class="formula">\(\text{打印次数} = \binom{n+2}{3}\)</p>
+</div>
+
+<h3 id="ln12-9">12.9 例子：非负整数解 <span class="zh">Non-Negative Integer Solutions</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ \(a+b+c=11\) 的非负整数解数</span>
+  <p>A = 所有非负整数解，B = 恰含 11 个 0 的 13 位二进制串。把 11 个 0（球）用 2 个 1（分隔符）隔成 3 组，三组的 0 的个数就是 a、b、c。</p>
+  <p class="formula">\(|A| = \binom{13}{2} = \binom{13}{11}\)</p>
+  <p>一般地，\(x_1+\cdots+x_m=n\) 的非负整数解数为 \(\binom{n+m-1}{m-1}\)。</p>
+</div>
+
+<h3 id="ln12-10">12.10 例子：选不相邻的书 <span class="zh">Choosing Non-Adjacent Books</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 20 本书选 6 本，任意两本不相邻</span>
+  <p>20 本书排成一排，选 6 本且任意两本不相邻。</p>
+  <p>双射一：A = 合法选法，B = 恰含 6 个 1 的 15 位二进制串。规则：每个 0 映射到「一本未选的书」，前 5 个 1 各映射到「一本选中的书 + 紧随其后的一本未选书」，最后一个 1 映射到「一本选中的书」。这是双射，故：</p>
+  <p class="formula">\(|A| = \binom{15}{6}\)</p>
+  <p>双射二（变量法）：令 \(x_1\ge1,\ x_2,\dots,x_6\ge2\) 表示相邻选中书之间的间隔，且 \(x_1+\cdots+x_6\le20\)。作代换得非负的 \(x_1'+\cdots+x_6'\le9\)，再加松弛变量 \(x_7\ge0\) 化为 \(=9\)，于是解数为 \(\binom{9+7-1}{7-1}=\binom{15}{6}\)。</p>
+</div>
+
+<h3 id="ln12-11">12.11 除法法则 <span class="zh">The Division Rule</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 除法法则（Division Rule）</span>
+  <p>若函数 \(f:A\to B\) 是 <b>k-对-1</b> 的（B 中每个元素恰好被 A 中 k 个元素映到），则：</p>
+  <p class="formula">\(|A| = k\,|B|\)，即 \(|B| = \dfrac{|A|}{k}\)</p>
+  <p>这是双射法则的推广（k=1 时退化为双射）。例：耳朵映射到人 是 2-对-1，所以 #耳朵 = 2 × #人。</p>
+</div>
+
+<h3 id="ln12-12">12.12 除法法则的例子 <span class="zh">Examples of the Division Rule</span></h3>
+<div class="ex box">
+  <span class="box-title">✏️ 握手引理（Handshaking Lemma）</span>
+  <p>图论里见过：A = 弧（有向的「半边」），B = 边。映射「弧 → 它所在的边」是 2-对-1（每条边贡献两个弧），故 \(|A|=2|B|\)，即 \(\sum_v\deg(v)=2|E|\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 两个相同的车（rook）</span>
+  <p>8×8 棋盘放两个<b>完全相同</b>的车，不同行不同列。A = 序列 \((r(1),c(1),r(2),c(2))\)（行、列各自不同），B = 合法配置。</p>
+  <p>映射 A→B 是 2-对-1（(1,8,8,1) 和 (8,1,1,8) 对应同一配置）。\(|A|=8\times8\times7\times7=3136\)，故：</p>
+  <p class="formula">\(|B| = \dfrac{|A|}{2} = \dfrac{3136}{2} = 1568\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 圆桌座位</span>
+  <p>n 个不同的人围圆桌坐，旋转视为同一种坐法。A = n 人的所有排列（\(n!\) 个），B = 圆桌坐法。映射「排列 → 圆桌坐法」是 n-对-1（同一坐法对应 n 个旋转排列），故：</p>
+  <p class="formula">\(|B| = \dfrac{n!}{n} = (n-1)!\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 计数子集：\(\binom{13}{4}\)</span>
+  <p>求 {1,…,13} 的 4 元子集个数。A = 13 个元素的所有排列（13! 个），B = 4 元子集。映射「排列 → 其前 4 个元素构成的子集」。每个子集对应 \(4!\)（前 4 个的排列）× \(9!\)（后 9 个的排列）个排列，即 \(4!9!\)-对-1，故：</p>
+  <p class="formula">\(|B| = \dfrac{13!}{4!\,9!} = \binom{13}{4}\)</p>
+  <p>一般地，n 元集的 m 元子集数 = \(\dfrac{n!}{m!(n-m)!}=\binom{n}{m}\)。</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ MISSISSIPPI 的重排</span>
+  <p>重排「MISSISSIPPI」的 11 个字母（4 个 S、4 个 I、2 个 P、1 个 M），有多少种不同拼法？</p>
+  <p>映射「11 个字母的排列 → 拼法」是 \(4!4!2!\)-对-1（4 个 S 的排列、4 个 I 的排列、2 个 P 的排列都给出同一拼法），故：</p>
+  <p class="formula">\(\dfrac{11!}{4!\,4!\,2!}\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 20 英里步行</span>
+  <p>机器人走 20 英里：5 次向北、5 次向南、5 次向东、5 次向西各 1 英里，有多少种走法？</p>
+  <p>与「含 5 个 N、5 个 E、5 个 S、5 个 W」的词一一对应，数目：</p>
+  <p class="formula">\(\dfrac{20!}{5!\,5!\,5!\,5!}\)</p>
+</div>
+
+<h3 id="ln12-13">12.13 Catalan 数 <span class="zh">Catalan Number</span></h3>
+<div class="def box">
+  <span class="box-title">📌 单调路径与四个等价问题</span>
+  <ul>
+    <li><b>单调路径（monotone path）</b>：从 (0,0) 到 (n,n)，每步向右（x+1）或向上（y+1）。</li>
+    <li><b>lower-right 路径</b>：路径上每点 \((x_i,y_i)\) 满足 \(x_i\ge y_i\)（始终在对角线下方或之上，不越过对角线）。</li>
+  </ul>
+  <p>四个问题答案相同（相互有双射）：<b>(A)</b> lower-right 单调路径、<b>(B)</b> Dyck 词（n 个 x、n 个 y，且任意前缀中 y 不多于 x）、<b>(C)</b> n 对括号的合法配对、<b>(D)</b> 由 n 个上坡/n 个下坡构成、不落到水平线以下的山脉。</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 Catalan 数公式</span>
+  <p>这四个问题的答案记为 Catalan 数 \(C_n\)：</p>
+  <p class="formula">\(C_n = \dfrac{1}{n+1}\binom{2n}{n}\)</p>
+  <p>（回忆我们用生成函数证过同一个公式；这里用双射法再证一次。）</p>
+</div>
+<div class="thm box">
+  <span class="box-title">🎯 证明（反射原理 reflection principle）</span>
+  <p>先数<b>补集</b>——「非 lower-right」的单调路径（即越过对角线、某个前缀里 y 比 x 多）。</p>
+  <ol>
+    <li>总单调路径数 = \(\binom{2n}{n}\)（n 步右 + n 步上的排列数）；</li>
+    <li>对每条非 lower-right 路径，找到它<b>第一次越过对角线</b>的点，把此后的一段「右↔上」翻转，得到一条从 (0,0) 到 <b>(n−1, n+1)</b> 的单调路径（因为翻转前越过时 #U = #R + 1，翻转后 #U = #R + 2）；</li>
+    <li>这个「首次越过点处翻转」的映射是双射（可逆：任何到 (n−1,n+1) 的路径必越过对角线，找到首次越过点翻转回来即得原路径）；</li>
+    <li>到 (n−1,n+1) 的路径数 = \(\binom{2n}{n+1}\)。</li>
+  </ol>
+  <p>于是 lower-right 路径数：</p>
+  <p class="formula">\(C_n = \binom{2n}{n} - \binom{2n}{n+1} = \dfrac{1}{n+1}\binom{2n}{n}\)</p>
+</div>
+<div class="ex box">
+  <span class="box-title">✏️ 例：3 对括号有 5 种合法配对</span>
+  <p>\(C_3 = \tfrac14\binom{6}{3} = \tfrac14\times20 = 5\)：</p>
+  <p class="formula">\(((()))\quad(()())\quad(())()\quad()(())\quad()()()\)</p>
+</div>
+
+<h3 id="ln12-14">12.14 总结 <span class="zh">Summary</span></h3>
+<div class="thm box">
+  <span class="box-title">🎯 本讲核心结论速查</span>
+  <p><b>双射法则</b>：\(f:A\to B\) 双射 ⟹ \(|A|=|B|\)。套路：构造好数的 B → 构造 f → 证双射 → 算 \(|B|\)。</p>
+  <p><b>经典双射</b>：幂集 ↔ n 位二进制串（\(2^n\)）；甜甜圈选择/非负整数解 ↔ 带分隔符的二进制串（\(\binom{n+m-1}{m-1}\)）；三重循环 ↔ 选 0 位置的串（\(\binom{n+2}{3}\)）；不相邻选书 ↔ \(\binom{n-k+1}{k}\)。</p>
+  <p><b>除法法则</b>：k-对-1 映射 ⟹ \(|A|=k|B|\)。例：圆桌 (n−1)!、子集 \(\binom{n}{m}\)、MISSISSIPPI \(11!/(4!4!2!)\)、握手引理 \(\sum\deg=2m\)。</p>
+  <p><b>Catalan 数</b>：lower-right 路径 / Dyck 词 / 合法括号 / 山脉 四者同数，\(C_n=\frac{1}{n+1}\binom{2n}{n}\)（反射原理：补集双射到 (n−1,n+1) 路径）。</p>
+  <p><b>心法</b>：计数题先想「能不能映射到二进制串」；有对称/重复时用除法法则除掉「重复计数」；「定义映射（a.k.a. 归约 reduction）」是计算机科学最重要的思想之一。</p>
+</div>
+<div class="vocab">
+  <span class="vocab-title">📖 本讲需要掌握的英语词汇（Key Vocabulary）</span>
+  <ul>
+    <li><b>function / mapping</b> — 函数 / 映射；<b>domain / codomain / range</b> — 定义域 / 陪域 / 值域</li>
+    <li><b>injection</b> — 单射；<b>surjection</b> — 满射；<b>bijection</b> — 双射</li>
+    <li><b>bijection rule</b> — 双射法则；<b>division rule</b> — 除法法则；<b>k-to-1</b> — k 对 1</li>
+    <li><b>power set</b> — 幂集；<b>binary string</b> — 二进制串</li>
+    <li><b>poker hand</b> — 手牌；<b>full house</b> — 葫芦</li>
+    <li><b>doughnut selection</b> — 甜甜圈选择；<b>non-negative integer solutions</b> — 非负整数解</li>
+    <li><b>non-adjacent books</b> — 不相邻选书；<b>round table</b> — 圆桌</li>
+    <li><b>monotone path</b> — 单调路径；<b>Dyck word</b> — Dyck 词；<b>mountain range</b> — 山脉</li>
+    <li><b>Catalan number</b> — Catalan 数；<b>reflection principle</b> — 反射原理</li>
+  </ul>
+</div>
+</section>
 </div>
 </main>
 </body>

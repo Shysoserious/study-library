@@ -5359,6 +5359,28 @@ window.MathJax = {
   </ul>
 </div>
 
+<div class="figure">
+  <svg viewBox="0 0 360 250" width="430" role="img" aria-label="引力势能曲线">
+    <defs>
+      <marker id="up-r" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--muted)"/></marker>
+      <marker id="up-u" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--muted)"/></marker>
+    </defs>
+    <line x1="50" y1="205" x2="345" y2="205" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#up-r)"/>
+    <text x="352" y="209" class="svg-muted">r</text>
+    <line x1="50" y1="205" x2="50" y2="30" style="stroke: var(--muted); stroke-width: 1.5" marker-end="url(#up-u)"/>
+    <text x="40" y="34" class="svg-muted" text-anchor="middle">U</text>
+    <line x1="50" y1="80" x2="345" y2="80" style="stroke: var(--muted); stroke-width: 1" stroke-dasharray="4 4"/>
+    <text x="60" y="72" class="svg-muted">U = 0（r→∞ 参考点）</text>
+    <path d="M 45 169 C 62 143 84 125 112 114 C 150 100 200 92 255 89 C 300 87 335 86 348 85" style="fill: none; stroke: var(--accent); stroke-width: 2.5"/>
+    <circle cx="112" cy="114" r="5" style="fill: var(--sv-neg)"/>
+    <line x1="112" y1="114" x2="112" y2="205" style="stroke: var(--muted); stroke-width: 1" stroke-dasharray="3 3"/>
+    <line x1="50" y1="114" x2="112" y2="114" style="stroke: var(--muted); stroke-width: 1" stroke-dasharray="3 3"/>
+    <text x="118" y="110" class="svg-muted" style="fill: var(--sv-neg)">有限距离处 U &lt; 0</text>
+    <text x="200" y="235" class="svg-muted" text-anchor="middle">U = −GMm/r：随 r 增大单调上升、逼近 0；越近越负</text>
+  </svg>
+  <div class="figcap">图：引力势能曲线 \(U=-GMm/r\)——以无穷远为零势能点，任意有限距离处 \(U\) 都为负；距离越近势能越负，\(r\to\infty\) 时 \(U\to0\)。曲线斜率的负值就是引力 \(F=-dU/dr\)。</div>
+</div>
+
 <h3 id="lec13-p6-2">6.2 证明：从 P 到无穷远 <span class="zh">Proof of U</span></h3>
 <p>把一个质量 \(m\) 的质点从距地心 \(R\) 的 P 点沿径向直接推到无穷远，引力做的功为（引力沿径向朝内，径向分量是 \(-GMm/r^2\)）：</p>
 <p class="formula">\(W=\int_R^\infty -\dfrac{GMm}{r^2}\,dr=\left[\dfrac{GMm}{r}\right]_R^\infty=0-\dfrac{GMm}{R}=-\dfrac{GMm}{R}\)</p>
@@ -5429,6 +5451,27 @@ window.MathJax = {
 
 <h3 id="lec13-p8-1">8.1 圆轨道：力与能量 <span class="zh">Circular Orbits</span></h3>
 <p>卫星绕地球做半径为 \(r\) 的匀速圆周运动，引力提供向心力。</p>
+<div class="figure">
+  <svg viewBox="0 0 360 260" width="430" role="img" aria-label="圆轨道引力提供向心力">
+    <defs>
+      <marker id="co-v" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+      <marker id="co-f" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+    </defs>
+    <circle cx="180" cy="140" r="30" style="fill: var(--fig-bg); stroke: var(--sv-hl); stroke-width: 2"/>
+    <text x="180" y="144" class="svg-text" text-anchor="middle">地球 M</text>
+    <circle cx="180" cy="140" r="100" style="fill: none; stroke: var(--muted); stroke-width: 1.5" stroke-dasharray="5 4"/>
+    <line x1="180" y1="140" x2="180" y2="40" style="stroke: var(--muted); stroke-width: 1.2" stroke-dasharray="4 3"/>
+    <text x="188" y="90" class="svg-muted">r</text>
+    <circle cx="180" cy="40" r="5" style="fill: var(--sv-pos)"/>
+    <text x="168" y="30" class="svg-muted" text-anchor="middle">卫星 m</text>
+    <line x1="180" y1="40" x2="250" y2="40" style="stroke: var(--sv-pos); stroke-width: 2.5" marker-end="url(#co-v)"/>
+    <text x="252" y="44" class="svg-muted" style="fill: var(--sv-pos)">v（切线）</text>
+    <line x1="180" y1="40" x2="180" y2="95" style="stroke: var(--sv-neg); stroke-width: 2.5" marker-end="url(#co-f)"/>
+    <text x="192" y="80" class="svg-muted" style="fill: var(--sv-neg)">F = GMm/r²</text>
+    <text x="180" y="245" class="svg-muted" text-anchor="middle">引力 = 向心力：GMm/r² = mv²/r　⟹　v = √(GM/r)</text>
+  </svg>
+  <div class="figcap">图：圆轨道——卫星受引力指向地球中心，恰好充当向心力。引力方向与速度方向始终垂直，故只改变速度方向、不改变速率，卫星做匀速圆周运动。</div>
+</div>
 <div class="thm box">
   <span class="box-title">🎯 圆轨道：力、能与能量关系</span>
   <p class="formula">\(\dfrac{GMm}{r^2}=\dfrac{mv^2}{r}\)</p>
@@ -5470,6 +5513,49 @@ window.MathJax = {
     <li><b>周期定律（law of periods）</b>：周期的平方与半长轴的立方成正比：\(T^2=\dfrac{4\pi^2}{GM}a^3\)。</li>
   </ol>
 </div>
+<div class="thm box">
+  <span class="box-title">🎯 开普勒第二定律的证明（面积定律 · 重点）</span>
+  <p>第二定律「相等时间扫过相等面积」本质是<b>角动量守恒</b>的几何表达。证明分五步：</p>
+  <ol>
+    <li><b>引力是中心力</b>：太阳对行星的引力始终沿行星—太阳连线（径向）方向，即 \(\vec F \parallel \vec r\)。</li>
+    <li><b>力矩为零</b>：对太阳取矩，\(\vec\tau = \vec r \times \vec F = 0\)（因为 \(\vec r \parallel \vec F\)，叉积为零）。</li>
+    <li><b>角动量守恒</b>：由转动形式的牛顿第二定律 \(\vec\tau = \dfrac{d\vec L}{dt}\)，得 \(\dfrac{d\vec L}{dt}=0\)，故 \(\vec L = \vec r \times \vec p = \vec r \times (m\vec v)\) 是<b>常矢量</b>（大小、方向都不变）。</li>
+    <li><b>面积速度 = 角动量的一半</b>：在极短时间 \(dt\) 内，行星位移 \(d\vec r = \vec v\,dt\)，位置矢量 \(\vec r\) 扫过一个细三角形，面积 \(dA=\tfrac12|\vec r\times d\vec r|=\tfrac12|\vec r\times\vec v|\,dt\)；于是面积速度 \(\dfrac{dA}{dt}=\dfrac12|\vec r\times\vec v|=\dfrac{1}{2m}|\vec r\times m\vec v|=\dfrac{L}{2m}\)。</li>
+    <li><b>结论</b>：\(L\) 守恒 ⟹ \(\dfrac{dA}{dt}=\dfrac{L}{2m}\) 为常量，即行星与太阳的连线在<b>相等时间内扫过相等面积</b>——开普勒第二定律。</li>
+  </ol>
+  <p><b>推论（近日点最快、远日点最慢）</b>：近日点（距离 \(r_p\)、速度 \(v_p\)）与远日点（距离 \(r_a\)、速度 \(v_a\)）处角动量大小守恒给出 \(m v_p r_p = m v_a r_a\)，即 \(v_p r_p = v_a r_a\)；由 \(r_p < r_a\) 得 \(v_p > v_a\)。</p>
+  <p><b>考试主线</b>：中心力 ⟹ 力矩为零 ⟹ 角动量守恒 ⟹ 面积速度 \(dA/dt = L/(2m)\) 恒定。老师强调此证明可能考。</p>
+</div>
+<div class="figure">
+  <svg viewBox="0 0 400 270" width="430" role="img" aria-label="开普勒第二定律面积定律椭圆轨道">
+    <defs>
+      <marker id="kep-vp" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-pos)"/></marker>
+      <marker id="kep-va" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" style="fill: var(--sv-neg)"/></marker>
+    </defs>
+    <ellipse cx="200" cy="135" rx="150" ry="85" style="fill: none; stroke: var(--accent); stroke-width: 2"/>
+    <polygon points="76,135 72,90 72,180" style="fill: var(--sv-hl); fill-opacity: 0.18"/>
+    <polygon points="76,135 348,120 348,150" style="fill: var(--sv-hl); fill-opacity: 0.18"/>
+    <line x1="200" y1="135" x2="350" y2="135" style="stroke: var(--muted); stroke-width: 1.2" stroke-dasharray="4 3"/>
+    <text x="272" y="152" class="svg-muted">半长轴 a</text>
+    <circle cx="76" cy="135" r="6" style="fill: var(--sv-neg)"/>
+    <text x="76" y="158" class="svg-muted" text-anchor="middle">太阳（焦点）</text>
+    <circle cx="324" cy="135" r="4" style="fill: none; stroke: var(--muted); stroke-width: 1.5"/>
+    <circle cx="50" cy="135" r="5" style="fill: var(--sv-pos)"/>
+    <line x1="50" y1="135" x2="50" y2="72" style="stroke: var(--sv-pos); stroke-width: 2.5" marker-end="url(#kep-vp)"/>
+    <text x="38" y="100" class="svg-muted" style="fill: var(--sv-pos)">v_p 快</text>
+    <text x="26" y="196" class="svg-muted" text-anchor="middle">近日点</text>
+    <circle cx="350" cy="135" r="5" style="fill: var(--sv-pos)"/>
+    <line x1="350" y1="135" x2="350" y2="168" style="stroke: var(--sv-neg); stroke-width: 2.5" marker-end="url(#kep-va)"/>
+    <text x="362" y="158" class="svg-muted" style="fill: var(--sv-neg)">v_a 慢</text>
+    <text x="368" y="196" class="svg-muted" text-anchor="middle">远日点</text>
+    <text x="68" y="70" class="svg-muted" text-anchor="middle">Δt 扫过</text>
+    <text x="72" y="200" class="svg-muted" text-anchor="middle">相等面积</text>
+    <text x="220" y="92" class="svg-muted" style="fill: var(--sv-hl)">Δt 扫过相等面积</text>
+    <text x="200" y="252" class="svg-muted" text-anchor="middle">近日点 r 小 → 速度快；远日点 r 大 → 速度慢　　dA/dt = L/(2m) = 常数</text>
+  </svg>
+  <div class="figcap">图：开普勒第二定律（面积定律）——行星沿椭圆轨道运动，太阳在焦点。行星离太阳近（近日点）时速度快、离得远（远日点）时速度慢，使得「行星—太阳连线」在相等时间 \(\Delta t\) 内扫过相等面积（绿色阴影）。本质是角动量守恒：中心力 ⟹ 力矩为零 ⟹ \(L\) 恒定 ⟹ \(dA/dt=L/(2m)\) 恒定。</div>
+</div>
+
 <p>一句话总结：面积定律 = <b>角动量守恒</b>，周期定律 = <b>引力 + 向心力</b>的必然结果——开普勒的「经验」背后，正是牛顿引力定律。</p>
 
 <h3 id="lec13-p8-4">8.4 行星运动与质心 <span class="zh">Planetary Motion &amp; COM</span></h3>
