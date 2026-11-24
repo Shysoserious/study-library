@@ -1540,6 +1540,49 @@ window.MathJax = {
         <a class="lv2" href="#lec20-p6-2">6.2 词汇表</a>
       </div>
     </div>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第21课 · Splay Trees</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec21-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec21-p1">Part 1 · 回顾：Treap 与摊还分析</a>
+        <a class="lv2" href="#lec21-p1-1">1.1 Treap 回顾：期望 O(log n) 但可能成链</a>
+        <a class="lv2" href="#lec21-p1-2">1.2 三种代价分析</a>
+        <a class="lv2" href="#lec21-p1-3">1.3 MultiPop 栈：三种方法回顾</a>
+        <a class="lv1" href="#lec21-p2">Part 2 · 两个摊还热身例子</a>
+        <a class="lv2" href="#lec21-p2-1">2.1 懒删除 BST：重建阈值 2D ≥ M</a>
+        <a class="lv2" href="#lec21-p2-2">2.2 并查集路径压缩</a>
+        <a class="lv1" href="#lec21-p3">Part 3 · 动机与三种旋转</a>
+        <a class="lv2" href="#lec21-p3-1">3.1 move-to-root 为什么失败</a>
+        <a class="lv2" href="#lec21-p3-2">3.2 Splay 树的诞生</a>
+        <a class="lv2" href="#lec21-p3-3">3.3 zig / zig-zig / zig-zag</a>
+        <a class="lv1" href="#lec21-p4">Part 4 · Splay 的三个操作</a>
+        <a class="lv2" href="#lec21-p4-1">4.1 find(key)</a>
+        <a class="lv2" href="#lec21-p4-2">4.2 insert(key, value)</a>
+        <a class="lv2" href="#lec21-p4-3">4.3 deleteKey(key)</a>
+        <a class="lv2" href="#lec21-p4-4">4.4 查找序列如何重塑树</a>
+        <a class="lv1" href="#lec21-p5">Part 5 · 势能与 Access Lemma</a>
+        <a class="lv2" href="#lec21-p5-1">5.1 势能 Φ = Σ log₂ s(v)</a>
+        <a class="lv2" href="#lec21-p5-2">5.2 每个旋转组的代价上界</a>
+        <a class="lv2" href="#lec21-p5-3">5.3 为什么 zig-zig 顺序重要</a>
+        <a class="lv2" href="#lec21-p5-4">5.4 Access Lemma</a>
+        <a class="lv1" href="#lec21-p6">Part 6 · 查找 / 插入 / 删除的摊还代价</a>
+        <a class="lv2" href="#lec21-p6-1">6.1 查找序列总代价</a>
+        <a class="lv2" href="#lec21-p6-2">6.2 插入摊还 O(log n)</a>
+        <a class="lv2" href="#lec21-p6-3">6.3 删除摊还 O(log n)</a>
+        <a class="lv1" href="#lec21-p7">Part 7 · 加权与静态最优</a>
+        <a class="lv2" href="#lec21-p7-1">7.1 如果提前知道访问频率</a>
+        <a class="lv2" href="#lec21-p7-2">7.2 加权 Access Lemma</a>
+        <a class="lv2" href="#lec21-p7-3">7.3 静态最优性</a>
+        <a class="lv1" href="#lec21-p8">Part 8 · 总结与词汇表</a>
+        <a class="lv2" href="#lec21-p8-1">8.1 小结</a>
+        <a class="lv2" href="#lec21-p8-2">8.2 词汇表</a>
+      </div>
+    </div>
+
 </nav>
 </aside>
 
@@ -1548,7 +1591,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–20</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–21</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -13527,6 +13570,299 @@ find_by_order(2);  // 返回 11：按升序第 2 个位置（位置从 0 开始�
   </ul>
 </div>
 </section>
+<!-- ============ 第21课 ============ -->
+<div class="lecture-banner">第21课 · Splay Trees <span class="zh">（伸展树：zig / zig-zig / zig-zag 旋转 · 势能分析 · Access Lemma · O(log n) 摊还）</span></div>
+
+<section id="lec21-overview">
+  <div class="toc">
+    <div class="toc-title">本讲导览</div>
+    <ol>
+      <li>回顾 Treap（随机优先级）与摊还分析三种方法（最坏 / 平均 / 摊还）</li>
+      <li>两个摊还热身：懒删除 BST（势能 Φ=2D）与并查集路径压缩（势能 Φ=深度≥2 的节点数）</li>
+      <li>动机：能不能让「一次搜索」顺手把树改好？move-to-root 失败（下降扫描 Θ(n²)）</li>
+      <li>Splay 树（Sleator &amp; Tarjan 1985）：每次访问用 zig / zig-zig / zig-zag 把目标转到根</li>
+      <li>三个操作 find / insert / deleteKey 都是「先 splay 到根再处理」</li>
+      <li>势能分析：Φ = Σ log₂ s(v)，推出 Access Lemma → 三种操作摊还 O(log n)</li>
+      <li>加权版 Access Lemma → 静态最优性：splay 与「最优静态 BST」只差常数因子</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <div class="box-title">本讲主线</div>
+    <p>上一讲 Treap 用<b>随机优先级</b>对付「输入顺序」这一不可控因素，拿到<b>期望</b> O(log n)——但最坏情况下仍是 Θ(n)（一条链）。这一讲换个思路：<b>不要随机性，改用摊还分析</b>。Splay 树的核心只有一句话：<b>每次访问（查 / 插 / 删）都把被访问的键「转」到根上</b>，让「热门键」自然浮到浅处。虽然<b>单次操作可能 Θ(n)</b>，但用势能方法能证明<b>任意一串 m 次操作的总代价是 O(m log n)</b>——摊还下来每个操作 O(log n)。这一讲也是全书摊还分析的巅峰案例：把「势能」这一抽象记账工具用到一棵会自己变形的树上。</p>
+  </div>
+</section>
+
+<section id="lec21-p1">
+  <h2>Part 1 · 回顾：Treap 与摊还分析 <span class="en">Review: Treap &amp; Amortized Analysis</span></h2>
+
+  <h3 id="lec21-p1-1">1.1 Treap 回顾：期望 O(log n) 但可能成链 <span class="en">Treap Recap</span></h3>
+  <p>Treap = <b>BST（键）</b> + <b>堆（优先级）</b>：每个节点带一个键和一个优先级，键满足 BST 性质（左子树键小、右子树键大），优先级满足堆性质（每条边上 parent 的优先级 &lt; child 的优先级）。上一讲证明了它的期望深度：</p>
+  <p class="formula">\(E[\text{depth}(i)] = H_{i-1} + H_{n-i+1} - 1,\qquad E[\text{比较次数}] = H_i + H_{n-i+1} - 1 \le 2H_n - 1 = O(\log(n+1)).\)</p>
+  <div class="warn box">
+    <div class="box-title">但最坏情况呢？</div>
+    <p>如果优先级<b>恰好随键递增</b>（每个最小剩余键都当根），Treap 就退化成一条链，搜索要 Θ(n) 次比较。这种优先级顺序出现的概率是 \(1/n!\)——所以「平均」很矮，「最坏」却可以很糟。这就是 Treap 的局限：<b>保证是「期望」意义上的，不是「每次」意义上的</b>。</p>
+  </div>
+
+  <h3 id="lec21-p1-2">1.2 三种代价分析 <span class="en">Three Ways to Analyze Cost</span></h3>
+  <table class="truth">
+    <tr><th>分析方式</th><th>考虑什么代价</th><th>典型例子</th></tr>
+    <tr><td>最坏情况 worst case</td><td>单个操作的最大代价</td><td>AVL / 红黑树查找每棵树都 O(log(n+1))</td></tr>
+    <tr><td>平均 / 期望 expected</td><td>指定分布下的平均代价</td><td>Treap：固定查询、对随机优先级求期望</td></tr>
+    <tr><td>摊还 amortized</td><td>从指定初始状态出发、任意合法操作序列的总代价</td><td>栈 MultiPop、本讲的 splay</td></tr>
+  </table>
+  <p>摊还分析的关键定义：<b>若任意 m 次操作的序列总代价 ≤ T(m)，则摊还代价 ≤ T(m)/m</b>。它<b>不需要随机性</b>，但<b>单个操作仍可能很贵</b>——只是贵操作被便宜操作「平均掉」了。</p>
+
+  <h3 id="lec21-p1-3">1.3 MultiPop 栈：三种方法回顾 <span class="en">The MultiPop Stack: Three Methods</span></h3>
+  <p>一个空栈依次执行 8 次调用：Push A、Push B、Push C、Push D、MultiPop(3)、Push E、Pop、MultiPop(4)。MultiPop(k) 从栈顶弹至多 k 个元素（栈空即停）。问哪次调用最费力、8 次一共多少步？答案：Call 5（MultiPop(3)）最费力，整串一共 5 push + 5 pop = <b>10 步</b>。</p>
+  <div class="ex box">
+    <div class="box-title">三种方法各怎么说</div>
+    <ul>
+      <li><b>聚合方法 aggregate</b>：设 P = push 次数、R = 成功 pop 次数。空栈出发有 \(R \le P\)，每次调用至多一次 push 有 \(P \le m\)，故总步数 \(P+R \le 2P \le 2m\)。</li>
+      <li><b>记账方法 accounting</b>：给每个 push 记 2 单位信用——1 单位付 push 本身，另 1 单位预付给「它将来被 pop」。这样每个 pop 都已被预付过。</li>
+      <li><b>势能方法 potential</b>：定义势能 \(\Phi(S)=|S|\)（栈里元素个数），摊还代价 \(\hat{c}_i = c_i + \Delta\Phi = c_i + \Phi(S_i) - \Phi(S_{i-1})\)。Push：\(\hat{c}=1+(+1)=2\)；Pop：\(\hat{c}=1+(-1)=0\)；MultiPop 弹 r 个：\(\hat{c}=r+(-r)=0\)。</li>
+    </ul>
+    <p>势能方法的灵魂是<b>求和时的望远镜抵消</b>：\(\sum \hat{c}_i = \sum c_i + [\Phi(S_m) - \Phi(S_0)]\)，中间项全部抵消，只留首尾。本讲 splay 的整个分析就是这一招的升级版。</p>
+  </div>
+</section>
+
+<section id="lec21-p2">
+  <h2>Part 2 · 两个摊还热身例子 <span class="en">Two Warm-Up Examples</span></h2>
+
+  <h3 id="lec21-p2-1">2.1 懒删除 BST：重建阈值 2D ≥ M <span class="en">Lazy Deletion in a BST</span></h3>
+  <p>删除 BST 里的键时，与其真正删掉节点、调整一堆指针，不如<b>先把它标记成「已删除」</b>，节点和链接都留着：查找键 1 时仍会路过被标记的节点 2；查找键 2 时报告「不存在」。代价是<b>被标记节点仍占空间</b>。于是定期重建：</p>
+  <ul>
+    <li>记 \(M\) = 存储的节点数，\(D\) = 被标记的节点数。</li>
+    <li><b>当 \(2D \ge M\) 时重建</b>：把未删除的键收起来，建成一棵平衡 BST。</li>
+  </ul>
+  <div class="def box">
+    <div class="box-title">势能与代价上界</div>
+    <p>取势能 \(\Phi(T) = 2 \cdot D(T)\)（每个被标记节点记 2 单位）。为什么是 2？因为在重建阈值处 \(D \ge M/2\)，<b>每标记节点 2 单位刚好够付一次重建</b>。</p>
+    <ul>
+      <li>只标记：\(D' = D+1\)，\(c_i = 1\)，\(\Delta\Phi = 2\)，\(\hat{c}_i = 1 + 2 = 3\)。</li>
+      <li>标记并触发重建：\(c_i = 1 + M\)，\(\Delta\Phi = -2D\)，代入 \(M \le 2(D+1)\) 得 \(\hat{c}_i = 1 + M - 2D \le 3\)。</li>
+    </ul>
+    <p>于是维护（标记+重建）摊还 <b>O(1)/次删除</b>；加上每次查找 O(log(n₀+1))，m 次删除共 \(O(m\log(n_0+1))\)。</p>
+  </div>
+
+  <h3 id="lec21-p2-2">2.2 并查集路径压缩 <span class="en">Union-Find Path Compression</span></h3>
+  <p>在固定森林上只做 m 次 find（带路径压缩、不合并）。能不能证明这些 find 总共访问 ≤ \(2m + n\) 个节点？</p>
+  <div class="def box">
+    <div class="box-title">势能 Φ = 深度 ≥ 2 的节点数</div>
+    <p>取 \(\Phi(F)\) = 森林中<b>深度 ≥ 2 的节点个数</b>。find 一个深度为 \(d \ge 1\) 的节点时，到根的路径上有 \(d+1\) 个节点，其中 \(d-1\) 个深度 ≥ 2、1 个深度 = 1、1 个是根。</p>
+    <p>路径压缩把所有深节点都拉到深度 1，深度只减不增，故 \(\Delta\Phi \le -(d-1)\)。于是</p>
+    <p class="formula">\(\hat{c}_i = c_i + \Delta\Phi \le (d+1) - (d-1) = 2.\)</p>
+    <p>对根直接 find 时访问 1 个节点、\(\Delta\Phi=0\)，\(\hat{c}_i = 1\)。求和：\(\sum c_i \le 2m + n\)（\(n\) 是 \(\Phi(F_0)\) 的上界）。路径压缩每次访问至多改一个父指针，故总时间 \(O(m+n)\)。</p>
+  </div>
+</section>
+
+<section id="lec21-p3">
+  <h2>Part 3 · 动机与三种旋转 <span class="en">Motivation and the Three Rotations</span></h2>
+
+  <h3 id="lec21-p3-1">3.1 move-to-root 为什么失败 <span class="en">Why Move-to-Root Fails</span></h3>
+  <p>从一个链形 BST 出发，连续 find 键 6 两次：第一次搜索摸遍所有节点。能不能趁这次访问<b>顺手把树改好</b>，让第二次更便宜？</p>
+  <div class="warn box">
+    <div class="box-title">第一个想法：把访问键转到根（move-to-root）</div>
+    <p>把被访问键沿父边<b>一次一步</b>转到根。它确实能让刚访问的键到根，但有致命问题：对链形树做<b>下降扫描</b>（依次搜 6, 5, 4, 3, 2, 1，每次把目标转到根），旋转次数是 \(n-1, n-1, n-2, \dots, 1\)，总共 <b>Θ(n²)</b>。树被翻来覆去，并没有变好。</p>
+  </div>
+
+  <h3 id="lec21-p3-2">3.2 Splay 树的诞生 <span class="en">The Birth of the Splay Tree</span></h3>
+  <div class="def box">
+    <div class="box-title">Splay Tree（Sleator &amp; Tarjan, 1985）</div>
+    <p><b>Daniel Sleator 和 Robert Tarjan</b> 在 1985 年的 JACM 论文里提出并分析了 splay 树。核心想法：<b>每次访问都用旋转改变树形，把访问键 splay（伸展）到根</b>。splay 树<b>可能暂时是一条链</b>，但摊还分析保证一串操作总代价低。它<b>不需要存储任何平衡信息</b>（没有高度、没有颜色、没有优先级）。</p>
+  </div>
+
+  <h3 id="lec21-p3-3">3.3 zig / zig-zig / zig-zag <span class="en">Zig, Zig-zig, Zig-zag</span></h3>
+  <p>splay 一次<b>看两条边</b>：跟踪被访问节点 \(x\)、它的父 \(p\)、祖父 \(g\)，重复直到 \(x\) 成为根。所有旋转都保持 BST 中序不变，具体走哪一步由 \(x\) 上方的两条边决定。</p>
+  <div class="def box">
+    <div class="box-title">三种情况</div>
+    <ul>
+      <li><b>Zig（单边）</b>：父 \(p\) 就是根，\(x\) 只剩一条边要爬。在 \(p\) 处旋转一次（\(x\) 上提）。</li>
+      <li><b>Zig-zig（同向）</b>：\(g \to p \to x\) 两条边方向相同（都向左或都向右）。<b>先抬 \(p\)、再抬 \(x\)</b>——先在祖父 \(g\) 处旋转（把 \(p\) 抬上来），再在新的 \(p\) 处旋转（把 \(x\) 抬上来）。</li>
+      <li><b>Zig-zag（异向）</b>：两条边方向相反（一左一右）。<b>把 \(x\) 连抬两次</b>——先在父 \(p\) 处旋转一次，再在新父处旋转一次，让 \(p\) 和 \(g\) 分别落到 \(x\) 两侧。</li>
+    </ul>
+    <table class="truth">
+      <tr><th>边的形态</th><th>步骤</th><th>旋转顺序</th></tr>
+      <tr><td>同向</td><td>zig-zig</td><td>先抬 p，再抬 x</td></tr>
+      <tr><td>异向</td><td>zig-zag</td><td>把 x 连抬两次</td></tr>
+      <tr><td>只剩一条边到根</td><td>zig</td><td>把 x 抬一次</td></tr>
+    </table>
+  </div>
+  <p>例：从链底把 7 splay 到根（六次 zig-zig），7 从深度 6 升到根，键 6 深度变 3。find(4) 走 zig-zig、zig-zag，最后一步 zig 收尾把 4 送到根。<b>若在非空树里查找失败，就把最后访问的节点 splay 到根</b>。</p>
+</section>
+
+<section id="lec21-p4">
+  <h2>Part 4 · Splay 的三个操作 <span class="en">The Three Splay Operations</span></h2>
+
+  <h3 id="lec21-p4-1">4.1 find(key) <span class="en">find(key)</span></h3>
+  <p>沿普通 BST 搜索路径找到目标（或走到空孩子），<b>然后把目标 splay 到根</b>。若查找在深度 \(d\) 命中，它访问 \(d+1\) 个节点、做 \(d\) 次旋转。查找失败时 splay 最后访问的节点。</p>
+
+  <h3 id="lec21-p4-2">4.2 insert(key, value) <span class="en">insert(key, value)</span></h3>
+  <p>沿 BST 搜索路径走到一个空孩子，把新键作为<b>新叶</b>挂上去，<b>再把它 splay 到根</b>。若键已存在（重复），保留原值、splay 该节点并返回 false；否则返回 true。</p>
+
+  <h3 id="lec21-p4-3">4.3 deleteKey(key) <span class="en">deleteKey(key)</span></h3>
+  <ol>
+    <li>找到目标键，<b>把它 splay 到根</b>。</li>
+    <li>删掉根，把剩下的树分成<b>左树 L</b> 和<b>右树 R</b>。</li>
+    <li><b>把 L 的最大键 splay 到 L 的根</b>，此时它的右孩子为空。</li>
+    <li>把 R 挂成那个右孩子。</li>
+  </ol>
+  <p>若 L 为空，直接保留 R。返回是否真的删除了键。直觉：L 的每个键都比 R 小，把 R 接到 L 最大值（已 splay 到根）的右边，中序正好续上。</p>
+
+  <h3 id="lec21-p4-4">4.4 查找序列如何重塑树 <span class="en">How a Lookup Sequence Reshapes the Tree</span></h3>
+  <div class="ex box">
+    <div class="box-title">例：一串查找让树变浅</div>
+    <p>对同一棵树依次查找键 \(6, 7, 15, 5, 14, 12, 5, 3, 5, 8\)。树高从 9 一路降到 4；结束时高度从初始的 14 降到 4，<b>平均深度从 7.00 降到 2.33</b>。这说明 splay 有「自适应」的苗头：热门键浮到浅处。接下来的任务就是把「一串操作的总工作量」严格算出来。</p>
+  </div>
+</section>
+
+<section id="lec21-p5">
+  <h2>Part 5 · 势能与 Access Lemma <span class="en">Potential and the Access Lemma</span></h2>
+
+  <h3 id="lec21-p5-1">5.1 势能 Φ = Σ log₂ s(v) <span class="en">Potential Φ = Σ log₂ s(v)</span></h3>
+  <p>设 \(s(v)\) = 以 \(v\) 为根的子树的<b>节点数</b>（含 \(v\) 自己），定义每个节点的<b>秩（rank）</b> \(r(v) = \log_2 s(v)\)，整棵树的势能：</p>
+  <p class="formula">\(\Phi(T) = \sum_{v \in T} r(v) = \log_2\!\left(\prod_{v \in T} s(v)\right).\)</p>
+  <div class="def box">
+    <div class="box-title">为什么这么选</div>
+    <p>每个子树大小至少 1，故 \(\Phi(T) \ge 0\)，且 \(\Phi(\emptyset)=0\)。同一组键，<b>深链的势能大、均衡树的势能小</b>：例如 7 个键的链 \(\Phi = \log_2 5040\)，而较均衡的树 \(\Phi = \log_2 63\)。深链给出很多大秩——势能正好度量了「树有多不平衡」。旋转只改变被旋转节点附近的形状，于是每次旋转的 \(\Delta\Phi\) 可以局部算。</p>
+  </div>
+
+  <h3 id="lec21-p5-2">5.2 每个旋转组的代价上界 <span class="en">Bounding Each Rotation Group</span></h3>
+  <p>一次 splay 由若干组（每组 1 或 2 次旋转）组成。对一组，只有 \(x, p, g\) 三个节点的秩会变（附着的子树和祖先保持后代不变），摊还代价：</p>
+  <p class="formula">\(\hat{c}_{\text{step}} = (\text{旋转次数}) + \Delta\Phi = R + \Phi(\text{after}) - \Phi(\text{before}).\)</p>
+  <p>分析的关键是一条<b>双子树的乘积不等式</b>：若两个不相交子树大小分别为 \(a, b\)，都在一个大小为 \(S\) 的子树里，则</p>
+  <p class="formula">\(a + b \le S \;\Longrightarrow\; \log_2 a + \log_2 b \le 2\log_2 S - 2 \;\Longleftrightarrow\; s(x)+s(y)\le s(z) \;\Rightarrow\; r(x)+r(y)\le 2r(z)-2.\)</p>
+  <p>（因为 \(ab \le ((a+b)/2)^2 \le (S/2)^2\)，取对数即得。）用这条不等式逐组推导：</p>
+  <table class="truth">
+    <tr><th>旋转组</th><th>代价上界</th></tr>
+    <tr><td>zig（最后一步，若有）</td><td>\(\hat{c} \le 1 + 3[r'(x) - r(x)]\)</td></tr>
+    <tr><td>zig-zig / zig-zag</td><td>\(\hat{c} \le 3[r'(x) - r(x)]\)</td></tr>
+  </table>
+  <p>其中带撇记号 \(r'(x)\) 表示该组旋转后 \(x\) 的新秩。zig-zag 用「\(x\) 的两个新孩子」这一快照看出 \(s'(p)+s'(g)\le s'(x)\)；zig-zig 用「旧 \(x\) 子树与新 \(g\) 子树键集不相交」看出 \(s(x)+s'(g)\le s'(x)\)，再配合 \(r(p)\ge r(x)\)、\(r'(p)\le r'(x)\) 消去中间项。细节见课件推导，结论都是同一个漂亮形式。</p>
+
+  <h3 id="lec21-p5-3">5.3 为什么 zig-zig 顺序重要、zig-zag 先转父 <span class="en">Why Order Matters</span></h3>
+  <div class="warn box">
+    <div class="box-title">zig-zig：必须先转祖父 g</div>
+    <p>zig-zig 若<b>颠倒顺序</b>（先在 p 处转、再在 g 处转），会得到不同的树：子树 B 会被同时算进「旧 \(x\) 子树」和「新 \(g\) 子树」，于是 \(s(x)+s'(g) = s'(x)+|B| \gt s'(x)\)（当 \(|B|>0\)），上面那条乘积不等式失效，对数上界就推不出来了。<b>正确的 zig-zig 把 B 留在新 g 子树之外</b>，才保住不等式。</p>
+  </div>
+  <div class="warn box">
+    <div class="box-title">zig-zag：必须先转父 p</div>
+    <p>zig-zag 若<b>先转祖父 g</b>，\(x\) 第一次移动后深度不变，最终需要 3 次旋转而不是 2 次。正确做法是<b>先转父 p</b>（把 \(x\) 抬起来），再转新父，两次就到位。</p>
+  </div>
+
+  <h3 id="lec21-p5-4">5.4 Access Lemma <span class="en">The Access Lemma</span></h3>
+  <p>把一次 splay 的 k 组代价加起来。每组开始时的秩 = 上一组结束时的秩，中间全部抵消，只剩起点 \(r_{\text{start}}\) 和终点 \(r_{\text{root}}\)：</p>
+  <p class="formula">\(\hat{c}_i \le 2 + 3\big[(r_1 - r_{\text{start}}) + \cdots + (r_{\text{root}} - r_{k-1})\big] = 2 + 3\,(r_{\text{root}} - r_{\text{start}}).\)</p>
+  <div class="thm box">
+    <div class="box-title">Access Lemma（一次 splay 到根）</div>
+    <p>对一次在深度 \(d\) 命中、访问 \(n\) 个键的树里、目标子树大小为 \(s(x)\) 的查找：</p>
+    <p class="formula">\(\hat{c}_i \le 2 + 3\log_2\!\left(\frac{n}{s(x)}\right).\)</p>
+    <p>因为 \(r_{\text{root}} - r_{\text{start}} = \log_2 n - \log_2 s(x) = \log_2(n/s(x))\)；前面的「2」来自搜索本身的 1 步 + 可能存在的最后一步 zig 多出的 1。</p>
+  </div>
+</section>
+
+<section id="lec21-p6">
+  <h2>Part 6 · 查找 / 插入 / 删除的摊还代价 <span class="en">Amortized Cost of Search, Insert, Delete</span></h2>
+
+  <h3 id="lec21-p6-1">6.1 查找序列总代价 <span class="en">Total Cost of Lookups</span></h3>
+  <p>对每次访问，\(s_i \ge 1\)，故 Access Lemma 给出 \(\hat{c}_i \le 2 + 3\log_2(n/s_i) \le 2 + 3\log_2 n\)。对 m 次访问求和，再补上首尾势能差（\(\Phi(T_0) \le n\log_2 n\)，\(\Phi(T_m) \ge 0\)）：</p>
+  <p class="formula">\(\sum c_i \le \sum \hat{c}_i + n\log_2 n \le m\,(2 + 3\log_2 n) + n\log_2 n = O\big((m+n)\log(n+1)\big).\)</p>
+  <p>即 m 次查找总共 \(O((m+n)\log(n+1))\)。空树出发时 \(\Phi=0\)，还要补上插入/删除的代价才能分析完整序列。</p>
+
+  <h3 id="lec21-p6-2">6.2 插入摊还 O(log n) <span class="en">Insertion: Amortized O(log n)</span></h3>
+  <p>插入分两段：先挂叶（只改变祖先的子树大小），再 splay。</p>
+  <ul>
+    <li><b>挂叶的势能增量</b>：只有从根到新叶路径上的祖先各多 1 个节点。祖先旧大小 k 的秩增量为 \(\log_2(k+1)-\log_2 k\)，这些 k 互不相同，故</li>
+  </ul>
+  <p class="formula">\(\Delta\Phi_{\text{attach}} \le \sum_{k=1}^{n} \log_2\!\frac{k+1}{k} = \log_2\!\left[\frac{2}{1}\cdot\frac{3}{2}\cdots\frac{n+1}{n}\right] = \log_2(n+1).\)</p>
+  <ul>
+    <li><b>splay 段</b>：用 Access Lemma，取新树 \(n+1\) 个节点、\(s(x)=1\)，得 \(c_{\text{insert}} + \Delta\Phi_{\text{splay}} \le 2 + 3\log_2(n+1)\)。</li>
+  </ul>
+  <p class="formula">\(\hat{c}_{\text{insert}} \le [2 + 3\log_2(n+1)] + \log_2(n+1) = 2 + 4\log_2(n+1).\)</p>
+  <p>故插入摊还 \(O(\log(n+2))\)。</p>
+
+  <h3 id="lec21-p6-3">6.3 删除摊还 O(log n) <span class="en">Deletion: Amortized O(log n)</span></h3>
+  <p>设删除前有 n 个键，左树 L 有 \(\ell = |L| \gt 0\) 个键。删除 = splay 目标 x（\(\hat{c}_{\text{target}}\)）+ 摘掉 x + splay L 的最大值 p（\(\hat{c}_{\text{max}}\)）+ 把 R 挂成 p 的右孩子（\(c_{\text{links}} = O(1)\)）。</p>
+  <ul>
+    <li>摘掉 x：\(\Delta\Phi_{\text{remove}} = -\log_2 n\)（根上最大的子树消失）。</li>
+    <li>挂 R：\(\Delta\Phi_{\text{attach}} = \log_2((n-1)/\ell)\)（只改 p 的子树大小）。</li>
+    <li>两项对数之和 \(\log_2((n-1)/(n\ell)) \le 0\)，不添麻烦。</li>
+  </ul>
+  <p class="formula">\(\hat{c}_{\text{delete}} \le (2 + 3\log_2 n) + (2 + 3\log_2 \ell) + O(1) = O(\log(n+1)).\)</p>
+  <p>若 L 为空则直接保留 R；找不到键按普通失败查找处理。三种操作都有：</p>
+  <div class="thm box">
+    <div class="box-title">Splay 树的摊还复杂度</div>
+    <p><b>查找、插入、删除每次摊还 \(O(\log(n+2))\)</b>，其中 n 是操作前的键数。空树出发、m 次操作总时间 \(O(\sum_i \log(n_i+2))\)。<b>单次操作仍可能 Θ(n)</b>——摊还保证的是整串序列的总账。</p>
+  </div>
+</section>
+
+<section id="lec21-p7">
+  <h2>Part 7 · 加权与静态最优 <span class="en">Weights and Static Optimality</span></h2>
+
+  <h3 id="lec21-p7-1">7.1 如果提前知道访问频率 <span class="en">What If We Knew the Frequencies</span></h3>
+  <div class="ex box">
+    <div class="box-title">例：键 1、2、3 各被访问 10、10、80 次</div>
+    <p>把 2 放根：比较次数 \(20 + 10 + 160 = 190\)；把 3 放根：\(30 + 20 + 80 = 130\)。<b>把高频键 3 放根，总共省 60 次比较</b>。问题是：splay 只能「边看请求边调整」，并不知道未来频率，它能自动做到接近这个效果吗？</p>
+  </div>
+
+  <h3 id="lec21-p7-2">7.2 加权 Access Lemma <span class="en">The Weighted Access Lemma</span></h3>
+  <p>给每个键 v 一个<b>正的固定权重</b> \(w(v)\)（仅用于证明），定义子树权重 \(s(v)=\sum_{u\in\text{subtree}(v)} w(u)\)、秩 \(r(v)=\log_2 s(v)\)。同样的旋转组证明（乘积不等式对正实数权重也成立）给出：</p>
+  <p class="formula">\(\hat{c}_i \le 2 + 3\log_2\!\left(\frac{W}{s(x)}\right),\qquad W = \sum_v w(v).\)</p>
+  <p>把<b>访问频率当权重</b>：\(w(v) = f(v) + 1\)（+1 保证 ≥ 1），\(W = \sum_v w(v) = m + n\)。求和得</p>
+  <p class="formula">\(\sum_i c_i \le 2m + 3\sum_v f(v)\log_2\!\frac{W}{w(v)} + n\log_2 W = O\!\left(m + \sum_v f(v)\log_2\frac{W}{w(v)} + n\log_2 W\right).\)</p>
+
+  <h3 id="lec21-p7-3">7.3 静态最优性 <span class="en">Static Optimality</span></h3>
+  <div class="thm box">
+    <div class="box-title">静态最优性（Static Optimality）</div>
+    <p>基准：提前知道同一串 m 次成功查找，选<b>一棵固定 BST</b> 使总比较次数最少。设频率份额 \(p_v = f(v)/m\)、熵 \(H(p)=\sum_v p_v \log_2(1/p_v)\)（假设每个键至少被访问一次），则</p>
+    <p class="formula">\(C_{\text{fixed}} \ge \frac{m}{2}\big(1 + H(p)\big) \qquad\text{（熵下界）},\)</p>
+    <p class="formula">\(C_{\text{splay}} \le m\,(2 + 4H(p)) \qquad\text{（取权重 } w(v)=p_v,\ W=1\text{）}.\)</p>
+    <p>两者相除：<b>\(C_{\text{splay}} / C_{\text{fixed}} = O(1)\)</b>。也就是说，splay 树在<b>完全不知道未来请求</b>的情况下，其代价也在<b>最优静态 BST 的常数因子以内</b>——这就是 splay 树最有名的理论结果。</p>
+  </div>
+</section>
+
+<section id="lec21-p8">
+  <h2>Part 8 · 总结与词汇表 <span class="en">Summary &amp; Vocabulary</span></h2>
+
+  <h3 id="lec21-p8-1">8.1 小结 <span class="en">Summary</span></h3>
+  <div class="thm box">
+    <div class="box-title">📌 第 21 课小结</div>
+    <ul>
+      <li><b>操作</b>：根据搜索路径最后两条边的方向，选 zig / zig-zig / zig-zag，把目标一步步抬到根；始终保 BST 中序。</li>
+      <li><b>势能</b>：\(\Phi(T)=\sum_v \log_2 s(v)\)（子树大小的对数之和），度量树的「不平衡程度」。</li>
+      <li><b>Access Lemma</b>：一次 splay 摊还 \(\hat{c} \le 2 + 3\log_2(n/s(x))\)，由各旋转组 \(\le 3[r'(x)-r(x)]\) 望远镜求和得到。</li>
+      <li><b>复杂度</b>：查找 / 插入 / 删除每次摊还 \(O(\log(n+2))\)；单次可 Θ(n)。</li>
+      <li><b>加权与静态最优</b>：用频率作权重，splay 代价在最优静态 BST 的常数因子内。</li>
+    </ul>
+  </div>
+
+  <h3 id="lec21-p8-2">8.2 词汇表 <span class="en">Vocabulary</span></h3>
+
+<div class="vocab">
+  <div class="vocab-title">词汇表 Key Vocabulary</div>
+  <ul>
+    <li><b>splay tree</b> — 伸展树：每次访问把目标转到根的自调整 BST（Sleator &amp; Tarjan 1985）</li>
+    <li><b>splay / splay operation</b> — 伸展：通过一系列旋转把某节点转到根的过程</li>
+    <li><b>zig / zig-zig / zig-zag</b> — 伸展的三种步型：单边 / 同向两边 / 异向两边</li>
+    <li><b>rotate / rotation</b> — 旋转：保持中序不变的局部改边操作（左旋 / 右旋）</li>
+    <li><b>move-to-root</b> — 移到根：一次一步把访问键转到根的朴素想法（下降扫描 Θ(n²)）</li>
+    <li><b>self-adjusting</b> — 自调整：数据结构的形状随访问历史自动改变，无需存储平衡信息</li>
+    <li><b>amortized analysis</b> — 摊还分析：给任意 m 次操作总代价上界，摊还 = 总/m</li>
+    <li><b>potential method</b> — 势能方法：ĉ = c + ΔΦ，中间项抵消、只留首尾势能差</li>
+    <li><b>potential function Φ</b> — 势能函数：只由状态决定的记账量（本讲是 Σ log₂ 子树大小）</li>
+    <li><b>rank r(v)</b> — 秩：\(r(v)=\log_2 s(v)\)，子树大小的对数</li>
+    <li><b>subtree size s(v)</b> — 子树大小：v 及其所有后代（加权版为权重之和）</li>
+    <li><b>Access Lemma</b> — 访问引理：一次 splay 摊还 ≤ \(2 + 3\log_2(n/s(x))\)</li>
+    <li><b>weighted version</b> — 加权版：给键赋正权重，推广 Access Lemma</li>
+    <li><b>static optimality</b> — 静态最优性：splay 代价在最优静态 BST 的常数因子内</li>
+    <li><b>entropy H(p)</b> — 熵：\(H(p)=\sum_v p_v\log_2(1/p_v)\)，衡量频率分布的分散度</li>
+    <li><b>lazy deletion</b> — 懒删除：先标记不真删，攒多了再重建（阈值 2D ≥ M）</li>
+    <li><b>path compression</b> — 路径压缩：find 时把路径上节点直接挂到根</li>
+    <li><b>MultiPop(k)</b> — 弹至多 k 个元素、栈空即停的栈操作</li>
+    <li><b>harmonic number H<sub>n</sub></b> — 调和数：1 + 1/2 + ⋯ + 1/n ≈ ln n</li>
+  </ul>
+</div>
+</section>
+
 </div>
 </main>
 </body>
