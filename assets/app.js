@@ -22,7 +22,15 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function href(p) { return encodeURI(p); }
+  var VERSION = window.SITE_VERSION || '';
+  function href(p) {
+    var u = encodeURI(p);
+    // 给笔记/PDF 带上版本号：每次发布后链接自动变化，绕开浏览器与 CDN 的旧缓存
+    if (VERSION && /\.(html?|pdf)$/i.test(p)) {
+      u += (u.indexOf('?') === -1 ? '?' : '&') + 'v=' + encodeURIComponent(VERSION);
+    }
+    return u;
+  }
   function $(sel, root) { return (root || document).querySelector(sel); }
   function attInfo(a) {
     if (typeof a === 'string') {
@@ -360,6 +368,16 @@
       localStorage.setItem(LS.theme, next);
       applyTheme(next);
     });
+    // 刷新到最新
+    var refreshBtn = $('#refreshBtn');
+    if (refreshBtn) refreshBtn.addEventListener('click', hardRefresh);
+    var updateNow = $('#updateNow');
+    if (updateNow) updateNow.addEventListener('click', hardRefresh);
+    var updateClose = $('#updateClose');
+    if (updateClose) updateClose.addEventListener('click', function () {
+      var bar = $('#updateBar');
+      if (bar) bar.classList.remove('show');
+    });
     // 移动端抽屉
     $('#menuBtn').addEventListener('click', function () {
       $('#drawer').classList.add('open');
@@ -397,6 +415,53 @@
     if (pctEl) pctEl.textContent = pct + '%';
   }
 
+  /* ── 刷新到最新内容 ─────────────────────────────────────── */
+  // 清掉 Service Worker 缓存与注册，再带时间戳重载，确保拿到服务器上的最新文件。
+  function hardRefresh() {
+    toast('正在刷新…');
+    var go = function () {
+      try {
+        var u = new URL(location.href);
+        u.searchParams.set('v', Date.now());
+        location.replace(u.toString());
+      } catch (e) {
+        location.reload();
+      }
+    };
+    var jobs = [];
+    try {
+      if (window.caches && caches.keys) {
+        jobs.push(caches.keys().then(function (keys) {
+          return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+        }));
+      }
+    } catch (e) {}
+    try {
+      if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+        jobs.push(navigator.serviceWorker.getRegistrations().then(function (rs) {
+          return Promise.all(rs.map(function (r) { return r.unregister(); }));
+        }));
+      }
+    } catch (e) {}
+    if (!jobs.length) { go(); return; }
+    Promise.all(jobs).then(go, go);
+  }
+
+  // 对比线上 version.js：版本不同就亮出「有新内容」提示条
+  function checkUpdate() {
+    if (!window.fetch || !VERSION) return;
+    fetch('version.js?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (txt) {
+        var m = /SITE_VERSION\s*=\s*["']([^"']+)["']/.exec(txt || '');
+        if (m && m[1] && m[1] !== VERSION) {
+          var bar = $('#updateBar');
+          if (bar) bar.classList.add('show');
+        }
+      })
+      .catch(function () {});
+  }
+
   /* ── 初始化 ─────────────────────────────────────────────── */
   function init() {
     // 主题（head 内联脚本已先行设置，这里再同步 UI）
@@ -404,7 +469,10 @@
 
     var meta = $('#heroMeta');
     if (meta && DATA.site) {
-      meta.textContent = DATA.site.author + ' · 最后更新 ' + DATA.site.lastUpdated;
+      var stamp = DATA.site.lastUpdated;
+      var vm = /^(\d{4})(\d{2})(\d{2})\d{6}$/.exec(VERSION);
+      if (vm) stamp = vm[1] + '-' + vm[2] + '-' + vm[3];
+      meta.textContent = DATA.site.author + ' · 最后更新 ' + stamp;
     }
 
     renderStats();
@@ -413,6 +481,7 @@
     renderRecent();
     renderMain();
     bind();
+    checkUpdate();
   }
 
   if (document.readyState === 'loading') {

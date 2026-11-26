@@ -358,6 +358,30 @@ button { font-family: inherit; cursor: pointer; }
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* ───────────── 有新内容提示条 ────────────── */
+.update-bar {
+  position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
+  display: flex; align-items: center; gap: 10px;
+  max-width: calc(100vw - 28px);
+  background: var(--accent); color: #fff;
+  padding: 8px 10px 8px 18px; border-radius: 999px;
+  font-size: 13.5px; box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
+  opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 210;
+}
+.update-bar.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.update-bar .ub-text { white-space: nowrap; }
+.ub-btn {
+  background: #fff; color: var(--accent); border: none; border-radius: 999px;
+  padding: 5px 14px; font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer;
+  font-family: inherit;
+}
+.ub-btn:hover { background: var(--surface-2); }
+.ub-x {
+  background: transparent; border: none; color: rgba(255, 255, 255, .75);
+  font-size: 18px; line-height: 1; padding: 0 4px; cursor: pointer;
+}
+.ub-x:hover { color: #fff; }
+
 /* ───────────── 响应式 ────────────── */
 @media (max-width: 1080px) {
   .sidebar { display: none; }

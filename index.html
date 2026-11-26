@@ -42,6 +42,10 @@
           <span id="themeIcon"></span>
           <span class="btn-label" id="themeLabel">暗色</span>
         </button>
+        <button class="icon-btn" id="refreshBtn" aria-label="刷新到最新内容" title="刷新到最新内容">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <span class="btn-label">刷新</span>
+        </button>
         <a class="icon-btn" href="glossary.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           <span class="btn-label">词汇表</span>
@@ -101,8 +105,16 @@
     </div>
   </div>
 
+  <!-- ═══════════ 有新内容提示 ═══════════ -->
+  <div class="update-bar" id="updateBar" role="status">
+    <span class="ub-text">网站有新内容</span>
+    <button class="ub-btn" id="updateNow">立即刷新</button>
+    <button class="ub-x" id="updateClose" aria-label="关闭提示">&#215;</button>
+  </div>
+
   <div class="toast" id="toast" role="status"></div>
 
+  <script src="version.js"></script>
   <script src="data.js"></script>
   <script src="search-index.js"></script>
   <script src="assets/app.js"></script>
