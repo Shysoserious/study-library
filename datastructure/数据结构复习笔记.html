@@ -1583,7 +1583,58 @@ window.MathJax = {
       </div>
     </div>
 
-</nav>
+    <div class="lecture-group">
+      <button class="lecture-toggle" type="button">
+        <span class="lt-title">第22课 · Splay Trees II · 上界定理与期末</span>
+        <span class="lt-arrow">▾</span>
+      </button>
+      <div class="lecture-body">
+        <a href="#lec22-overview">📖 本讲导览</a>
+        <div class="divider"></div>
+        <a class="lv1" href="#lec22-p1">Part 1 · 回顾：Splay 与势能套路</a>
+        <a class="lv2" href="#lec22-p1-1">1.1 三旋转与三操作</a>
+        <a class="lv2" href="#lec22-p1-2">1.2 势能方法三步清单</a>
+        <a class="lv2" href="#lec22-p1-3">1.3 Access Lemma 再走一遍</a>
+        <a class="lv1" href="#lec22-p2">Part 2 · 加权势能</a>
+        <a class="lv2" href="#lec22-p2-1">2.1 为什么需要权重</a>
+        <a class="lv2" href="#lec22-p2-2">2.2 加权 Access Lemma</a>
+        <a class="lv2" href="#lec22-p2-3">2.3 用频率作权重</a>
+        <a class="lv2" href="#lec22-p2-4">2.4 频率与熵</a>
+        <a class="lv1" href="#lec22-p3">Part 3 · 静态最优性</a>
+        <a class="lv2" href="#lec22-p3-1">3.1 静态最优 BST</a>
+        <a class="lv2" href="#lec22-p3-2">3.2 界定势能落差</a>
+        <a class="lv2" href="#lec22-p3-3">3.3 定理与熵下界</a>
+        <a class="lv1" href="#lec22-p4">Part 4 · 工作集定理</a>
+        <a class="lv2" href="#lec22-p4-1">4.1 同频率，不同近因</a>
+        <a class="lv2" href="#lec22-p4-2">4.2 工作集的定义</a>
+        <a class="lv2" href="#lec22-p4-3">4.3 定理陈述</a>
+        <a class="lv2" href="#lec22-p4-4">4.4 证明①：按近因赋权 1/j²</a>
+        <a class="lv2" href="#lec22-p4-5">4.5 证明②：用旧权重 splay</a>
+        <a class="lv2" href="#lec22-p4-6">4.6 证明③：重新赋权 ΔΦ ≤ 0</a>
+        <a class="lv2" href="#lec22-p4-7">4.7 证明④：求和与势能落差</a>
+        <a class="lv1" href="#lec22-p5">Part 5 · 手指定理</a>
+        <a class="lv2" href="#lec22-p5-1">5.1 手指距离</a>
+        <a class="lv2" href="#lec22-p5-2">5.2 静态手指定理</a>
+        <a class="lv2" href="#lec22-p5-3">5.3 动态手指定理</a>
+        <a class="lv2" href="#lec22-p5-4">5.4 顺序访问定理</a>
+        <a class="lv1" href="#lec22-p6">Part 6 · 统一定理与两个猜想</a>
+        <a class="lv2" href="#lec22-p6-1">6.1 统一定理</a>
+        <a class="lv2" href="#lec22-p6-2">6.2 改变形状的代价</a>
+        <a class="lv2" href="#lec22-p6-3">6.3 动态最优性猜想</a>
+        <a class="lv2" href="#lec22-p6-4">6.4 双端队列猜想</a>
+        <a class="lv2" href="#lec22-p6-5">6.5 定理与猜想总表</a>
+        <a class="lv1" href="#lec22-p7">Part 7 · 期末样题预览</a>
+        <a class="lv2" href="#lec22-p7-1">7.1 题型</a>
+        <a class="lv2" href="#lec22-p7-2">7.2 单选题</a>
+        <a class="lv2" href="#lec22-p7-3">7.3 多选题</a>
+        <a class="lv2" href="#lec22-p7-4">7.4 填空题</a>
+        <a class="lv2" href="#lec22-p7-5">7.5 追踪程序</a>
+        <a class="lv2" href="#lec22-p7-6">7.6 补全程序</a>
+        <a class="lv2" href="#lec22-p7-7">7.7 备考要点</a>
+        <a class="lv1" href="#lec22-p8">📖 词汇表</a>
+      </div>
+    </div>
+      </nav>
 </aside>
 
 <!-- ============ 主内容 ============ -->
@@ -1591,7 +1642,7 @@ window.MathJax = {
 <div class="content-inner">
 
 <h1 class="title">数据结构 · 复习笔记</h1>
-<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–21</p>
+<p class="course-meta">CSC 3200 Data Structures and Advanced Programming · 教师 Jingbang Chen · 中英对照 · 已覆盖 Lecture 1–13、15–22</p>
 
 <!-- ============ 第1课 ============ -->
 <div class="lecture" id="lec1">
@@ -13863,6 +13914,608 @@ find_by_order(2);  // 返回 11：按升序第 2 个位置（位置从 0 开始�
 </div>
 </section>
 
+<!-- ============ 第22课 ============ -->
+<div class="lecture-banner">第22课 · Splay Trees II <span class="zh">（伸展树（二）：加权势能 · 静态最优性 · 工作集定理 · 手指定理 · 动态最优性猜想 · 期末样题）</span></div>
+
+<section id="lec22-overview">
+  <div class="toc">
+    <div class="toc-title">本讲导览</div>
+    <ol>
+      <li>回顾：三旋转、三操作、势能方法三步清单、Access Lemma</li>
+      <li>加权势能：把「子树大小」换成「子树权重」，热门键权重更大</li>
+      <li>静态最优性：用频率当权重 → splay 代价 ≤ \(m(2+4H(p))\)，最优静态 BST ≥ \(\frac{m}{2}(1+H(p))\)</li>
+      <li>工作集定理：只数「两次请求之间出现过几个不同键」，总代价 \(O(n\log n + m + \sum\log(1+t_i))\)</li>
+      <li>手指定理：静态手指（到固定键的秩距离）、动态手指（到上一次请求的秩距离）、顺序访问 \(O(n)\)</li>
+      <li>统一定理：每个请求取三项最小值；两个未解猜想（动态最优性、双端队列）</li>
+      <li>期末样题：五类题型 + 16 道例题与答案</li>
+    </ol>
+  </div>
+  <div class="warn box">
+    <div class="box-title">本讲主线</div>
+    <p>上一讲证明了 splay 的<b>基本盘</b>：任何操作序列摊还 \(O(\log n)\)。但「\(O(\log n)\)」只是把每个键看得同样重的结论——现实里键有冷热。这一讲做三件事：①<b>把势能里的「大小」换成「权重」</b>，让分析能反映访问频率；②用加权势能证明<b>一串定理</b>——静态最优性、工作集、静态手指、动态手指、顺序访问，每一个都说「splay 在某类访问模式下几乎是最优的」；③把这些结论收进<b>统一定理</b>，再引出计算机科学里最有名的未解问题之一——<b>动态最优性猜想</b>（splay 是否对任意序列都 \(O(OPT+n)\)），它至今仍是猜想，2026 年 7 月才有 \(O(\log\log n)\) 因子的突破。最后一部分是<b>期末样题预览</b>，把本学期考什么、怎么考讲清楚。</p>
+  </div>
+</section>
+
+<section id="lec22-p1">
+  <h2>Part 1 · 回顾：Splay 与势能套路 <span class="en">Review: Splay and the Potential Playbook</span></h2>
+
+  <h3 id="lec22-p1-1">1.1 三旋转与三操作 <span class="en">Three Rotations, Three Operations</span></h3>
+  <p>Splay 树（Sleator &amp; Tarjan, 1985 JACM）每次访问都用旋转改变形状，把被访问键转到根；它<b>可能暂时是一条链</b>，靠摊还分析保证总体不亏。</p>
+  <table class="truth">
+    <tr><th>形态</th><th>步型</th><th>旋转顺序</th></tr>
+    <tr><td>父 \(p\) 就是根（只剩一条边）</td><td>zig</td><td>在 \(p\) 处转一次，\(x\) 上提一层</td></tr>
+    <tr><td>\(g \to p \to x\) 同向</td><td>zig-zig</td><td><b>先抬 \(p\)</b>（在 \(g\) 处转），<b>再抬 \(x\)</b>（在 \(p\) 处转）</td></tr>
+    <tr><td>\(g \to p \to x\) 异向</td><td>zig-zag</td><td><b>把 \(x\) 连抬两次</b>（先在 \(p\) 处转，再在新父处转）</td></tr>
+  </table>
+  <p>zig-zig 里 B 会落到 \(p\) 下面；zig-zag 里 C 会落到 \(g\) 下面。两种双旋转都让 \(x\) <b>升高两层</b>，且全部保持 BST 中序。</p>
+  <div class="ex box">
+    <div class="box-title">三个操作都是「先转到根，再处理」</div>
+    <ul>
+      <li><b>find</b>：沿 BST 搜索路径找到 4，再 splay；最后由一步 zig 把 4 送上根。查找失败（非空树）时 splay 最后访问的那个节点。</li>
+      <li><b>insert</b>：走到空孩子，挂新叶 7，再 splay；在 9 处右旋收尾，7 到根，小的在左、大的在右。</li>
+      <li><b>deleteKey</b>：先把 7 splay 到根，删根分成左树 L、右树 R，把 L 的最大值 5 splay 到 L 的根，再把 R 挂到它的右孩子上（R 里每个键都大于 L 里每个键）。</li>
+    </ul>
+  </div>
+
+  <h3 id="lec22-p1-2">1.2 势能方法三步清单 <span class="en">The Potential Method Checklist</span></h3>
+  <div class="def box">
+    <div class="box-title">三步走</div>
+    <ol>
+      <li><b>选势能。</b>定义操作 \(i\) 之后的状态 \(T_i\)，找一个量：<b>工作被推迟时它变大、工作做完时它能掉下来</b>。</li>
+      <li><b>界定每次的摊还代价。</b>定义实际代价 \(c_i\)，覆盖<b>每一种</b>操作类型：\(\hat{c}_i = c_i + \Phi(T_i) - \Phi(T_{i-1})\)。</li>
+      <li><b>把 charges 加起来。</b>中间项抵消，只查两个端点：\(\sum c_i = \sum \hat{c}_i + \Phi(T_0) - \Phi(T_m)\)。</li>
+    </ol>
+    <table class="truth">
+      <tr><th>从零开始、始终非负</th><th>直接界定势能落差</th></tr>
+      <tr><td>\(\Phi(T_0)=0,\ \Phi(T_m)\ge 0\)</td><td>\(\Phi(T_0)-\Phi(T_m)\le B\)</td></tr>
+      <tr><td>\(\sum c_i \le \sum \hat{c}_i\)</td><td>\(\sum c_i \le \sum \hat{c}_i + B\)</td></tr>
+    </table>
+    <p>本讲后半段（工作集证明）就会用到右列这种「两个端点都不为零」的情形。</p>
+  </div>
+
+  <h3 id="lec22-p1-3">1.3 Access Lemma 再走一遍 <span class="en">The Access Lemma, Once More</span></h3>
+  <p>子树大小 \(s(v)\)（含 \(v\) 自己及其全部后代）、秩 \(r(v)=\log_2 s(v)\)、势能 \(\Phi(T)=\sum_v r(v)=\log_2\prod_v s(v)\)。同一深度的 3 和 7 秩不同：\(r(3)=\log_2 4=2\)、\(r(7)=\log_2 3\approx 1.58\)——<b>子树大小翻倍，秩加 1</b>。</p>
+  <p>七节点链 \(\Phi=\log_2 5040\)，同样七个键的均衡树 \(\Phi=\log_2 63\)：<b>链的势能大得多</b>，这就是「深链 = 很多大秩」。</p>
+  <p>双旋转的势能变化：因为 \(s'(x)=s(g)\) 故 \(r'(x)=r(g)\)，<b>旧的 \(g\) 的秩与新的 \(x\) 的秩正好抵消</b>，只剩</p>
+  <p class="formula">\(\Delta\Phi = r'(p) + r'(g) - r(p) - r(x).\)</p>
+  <div class="ex box">
+    <div class="box-title">两个双旋转的上界（用双子乘积不等式）</div>
+    <p>基础不等式：若两个不相交子树大小 \(a,b\) 都在大小 \(S\) 的子树里，则 \(a+b\le S \Rightarrow \log_2 a+\log_2 b \le 2\log_2 S - 2\)，即 \(s(x)+s(y)\le s(z)\Rightarrow r(x)+r(y)\le 2r(z)-2\)。</p>
+    <ul>
+      <li><b>zig-zag</b>：旋转后新的 \(p\)、\(g\) 子树正好是 \(x\) 的左右两个孩子，故 \(s'(p)+s'(g)\le s'(x)\)，于是
+        <p class="formula">\(2+\Delta\Phi \le 2 + [2r'(x)-2] - 2r(x) = 2[r'(x)-r(x)].\)</p></li>
+      <li><b>zig-zig</b>：旧图里 \(x\) 的子树与新图里 \(g\) 的子树<b>键集不相交</b>，且都装在新 \(x\) 的子树里，故 \(s(x)+s'(g)\le s'(x)\)；再配合 \(r(p)\ge r(x)\)、\(r'(p)\le r'(x)\)，得
+        <p class="formula">\(2+\Delta\Phi \le 2 + r'(x) + [2r'(x)-2] - 3r(x) = 3[r'(x)-r(x)].\)</p></li>
+    </ul>
+    <p>两种双旋转里，<b>不等式带来的 −2 正好抵掉两次旋转的代价 2</b>。这就是「一次双旋转几乎是免费的，只付 \(3\Delta r\)」。</p>
+  </div>
+  <p>再看一次具体的望远镜求和：splay 4 之前 \(s(4)=3,\ r(4)=\log_2 3\)；zig-zag 后 \(s(4)=7,\ r(4)=\log_2 7\)；最后一步 zig 后 \(s(4)=9,\ r(4)=\log_2 9\)。中间那个 \(\log_2 7\) 出现两次互相抵消：</p>
+  <p class="formula">\((\log_2 7 - \log_2 3) + (\log_2 9 - \log_2 7) = \log_2 9 - \log_2 3.\)</p>
+  <div class="thm box">
+    <div class="box-title">Access Lemma</div>
+    <p>一次完整访问的实际代价 \(c_i = 1 + (\text{旋转次数})\)，上界允许 1 给基础查找、1 再多给最后的 zig：</p>
+    <p class="formula">\(\hat{c}_i \le 2 + 3(r_{\text{root}} - r_{\text{start}}) = 2 + 3\log_2\frac{n}{s(x)}.\)</p>
+    <p>其中 \(s(x)\) 是被访问键 splay <b>之前</b>的子树大小；到根时它的子树含全部 \(n\) 个键。</p>
+  </div>
+  <p>对 m 次查找求和：每次 \(\hat{c}_i\le 2+3\log_2 n\)（因为 \(s\ge 1\)）；任意初始树的初始势能 ≤ \(n\log_2 n\)，终势能非负，故</p>
+  <p class="formula">\(\sum c_i \le \sum\hat{c}_i + n\log_2 n \le m(2+3\log_2 n) + n\log_2 n = O\big((m+n)\log(n+1)\big).\)</p>
+  <p><b>单次查找仍可能是线性时间</b>——摊还只保证 m 次的总额。</p>
+  <div class="warn box">
+    <div class="box-title">下一步的动机</div>
+    <p>但上面这个势能把每个键看得<b>一样重</b>：\(s(v)\) 数的是节点个数。如果键 1、2、3 被请求 10、10、80 次，直觉上高频的 3 应该更浅——可当前的界对此一无所知。怎么让「被访问得多的键」权重更大？这就是下一部分。</p>
+  </div>
+</section>
+
+<section id="lec22-p2">
+  <h2>Part 2 · 加权势能：从子树大小到子树权重 <span class="en">Weighted Potential: From Size to Weight</span></h2>
+
+  <h3 id="lec22-p2-1">2.1 为什么需要权重 <span class="en">Why Weights</span></h3>
+  <p>键 1、2、3 分别收到 10、10、80 次请求。若把频率<b>除以 100</b> 变成份额 \(0.1, 0.1, 0.8\)，那么以 2 为根的子树份额 \(s(2)/W = 0.2/1 = 20\%\)——<b>整棵树总权重变成 1</b>，各子树的相对占比不变。</p>
+  <p>关键观察：把「节点数」换成「权重之和」后，前面所有推导都不用改，因为用到的只有两件事——<b>子树权重包含自己</b>、<b>不相交子树权重相加不超过父树</b>。这两条对正实数权重同样成立。</p>
+
+  <h3 id="lec22-p2-2">2.2 加权 Access Lemma <span class="en">The Weighted Access Lemma</span></h3>
+  <div class="thm box">
+    <div class="box-title">加权版</div>
+    <p>给定固定权重 \(w(v)&gt;0\)，定义 \(s(v)=\sum_{u\in\text{subtree}(v)} w(u)\)、\(r(v)=\log_2 s(v)\)、\(\Phi(T)=\sum_v r(v)\)，总权重 \(W=\sum_{v\in T}w(v)\)。则</p>
+    <p class="formula">\(\hat{c}_i \le 2 + 3(r_{\text{root}} - r_{\text{start}}) = 2 + 3\log_2\frac{W}{s(x)} \le 2 + 3\log_2\frac{W}{w(x)}.\)</p>
+    <p>最后一个不等号用了 \(s(x)\ge w(x)\)（\(x\) 的子树含 \(x\) 自己）——这是<b>更松但更好算</b>的版本。</p>
+  </div>
+
+  <h3 id="lec22-p2-3">2.3 用频率作权重 <span class="en">Use Frequencies as Weights</span></h3>
+  <p>固定 n 个键、m 次成功请求，\(f(v)\) 是键 \(v\) 被请求的次数（设每个键至少被请求一次）。取</p>
+  <p class="formula">\(w(v) = p_v = \frac{f(v)}{m},\qquad W = \sum_v p_v = 1.\)</p>
+  <p>这些权重<b>在整个序列中保持不变</b>（这是「静态」的含义）。对第 i 次请求（目标是 \(x_i\)）用加权 Access Lemma：</p>
+  <p class="formula">\(\hat{c}_i \le 2 + 3\log_2\frac{W}{w(x_i)} = 2 + 3\log_2\frac{1}{p_{x_i}}.\)</p>
+  <p>势能对 n 个键各记一个秩；总 charge 对 m 次请求各记一项。</p>
+
+  <h3 id="lec22-p2-4">2.4 频率与熵 <span class="en">Frequency and Entropy</span></h3>
+  <p>把对数项加起来。键 \(v\) 被请求 \(f(v)\) 次，每次都贡献 \(\log_2(1/p_v)\)：</p>
+  <p class="formula">\(\sum_i \log_2\frac{1}{p_{x_i}} = \sum_v f(v)\log_2\frac{1}{p_v} = m\sum_v p_v\log_2\frac{1}{p_v} = m\,H(p),\)</p>
+  <p>其中 \(H(p)=-\sum_v p_v\log_2 p_v=\sum_v p_v\log_2(1/p_v)\) 是频率分布的<b>香农熵（Shannon entropy）</b>。于是</p>
+  <p class="formula">\(\sum_i \hat{c}_i \le 2m + 3m\,H(p).\)</p>
+</section>
+
+<section id="lec22-p3">
+  <h2>Part 3 · 静态最优性 <span class="en">Static Optimality</span></h2>
+
+  <h3 id="lec22-p3-1">3.1 静态最优 BST <span class="en">The Static Optimal BST</span></h3>
+  <div class="def box">
+    <div class="box-title">定义</div>
+    <p>给定访问频率，<b>静态最优 BST</b> 是「在所有同键的 BST 形状中，使总比较次数最小」的那一个固定形状。一个形状的成本是</p>
+    <p class="formula">\(\text{cost} = \sum_v f(v)\big(\text{depth}(v)+1\big).\)</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">例：4 个键，f = (10, 15, 35, 40)，共 14 种形状</div>
+    <p>按根分类（根 1 有 5 种、根 2 有 2 种、根 3 有 2 种、根 4 有 5 种），各形状成本：</p>
+    <table class="truth">
+      <tr><th>根</th><th>成本</th></tr>
+      <tr><td>1</td><td>305, 300, 245, 275, 255</td></tr>
+      <tr><td>2</td><td>225, 220</td></tr>
+      <tr><td>3</td><td>180, <b>175</b></td></tr>
+      <tr><td>4</td><td>245, 225, 205, 200, 195</td></tr>
+    </table>
+    <p>14 种形状里最小是 <b>175</b>：\(10\times3 + 15\times2 + 35\times1 + 40\times2 = 30+30+35+80 = 175\)（高频的 3、4 靠近根）。这个 175 就是 \(C_{\text{fixed}}\)。</p>
+  </div>
+
+  <h3 id="lec22-p3-2">3.2 界定势能落差 <span class="en">Bounding the Potential Drop</span></h3>
+  <p>总实际代价 = 总摊还 charge + 首尾势能差。charge 已经算出来了，还差首尾那一项。取 \(w(v)=p_v,\ W=1\)，则每个子树权重满足</p>
+  <p class="formula">\(p_v \le s(v) \le 1 \;\Longrightarrow\; \log_2 p_v \le r(v) \le 0,\)</p>
+  <p>于是整树势能被夹住：\(\sum_v \log_2 p_v \le \Phi(T) = \sum_v r(v) \le 0\)。所以</p>
+  <p class="formula">\(\Phi(T_0) \le 0,\qquad \Phi(T_m) \ge \sum_v \log_2 p_v,\)</p>
+  <p class="formula">\(\Phi(T_0)-\Phi(T_m) \le -\sum_v\log_2 p_v = \sum_v \log_2\frac{1}{p_v} \le \sum_v f(v)\log_2\frac{1}{p_v} = m\,H(p).\)</p>
+  <p>（倒数第二个不等号用了 \(f(v)\ge 1\)，所以 \(f(v)\log_2(1/p_v)\ge \log_2(1/p_v)\)。）</p>
+
+  <h3 id="lec22-p3-3">3.3 定理与熵下界 <span class="en">The Theorem and the Entropy Lower Bound</span></h3>
+  <div class="thm box">
+    <div class="box-title">静态最优性（Static Optimality）</div>
+    <p>把两边拼起来：</p>
+    <p class="formula">\(\sum_i c_i = \sum_i \hat{c}_i + [\Phi(T_0)-\Phi(T_m)] \le (2m+3mH(p)) + mH(p) = m\big(2+4H(p)\big).\)</p>
+    <p>而<b>任何</b>固定 BST 在同一串请求上的总比较次数有信息论下界（前缀码熵界，见 MIT 6.450 Theorem 2.5.1）：</p>
+    <p class="formula">\(C_{\text{fixed}} \ge \frac{m}{2}\big(1+H(p)\big).\)</p>
+    <p>两者一比：<b>splay 的总代价在最优固定 BST 的常数因子之内</b>（\(C_{\text{splay}}/C_{\text{fixed}} = O(1)\)），而 splay <b>完全不知道</b>未来的请求频率。</p>
+  </div>
+  <div class="thm box">
+    <div class="box-title">这就是 splay 树最著名的理论性质</div>
+    <p><b>免学习的自适应（learning-free adaptivity）</b>——不用预先知道分布、不用存任何平衡信息，自己就能达到接近最优静态树的性能。下面几个定理（工作集、手指）会进一步说明：splay 在<b>局部性</b>上也是一流的。</p>
+  </div>
+</section>
+
+<section id="lec22-p4">
+  <h2>Part 4 · 工作集定理 <span class="en">The Working Set Theorem</span></h2>
+
+  <h3 id="lec22-p4-1">4.1 同频率，不同近因 <span class="en">Same Frequencies, Different Recency</span></h3>
+  <p>静态最优性只看<b>总频率</b>，看不见<b>局部性（locality）</b>。看两个序列（请求 1、2、3、4 各两次）：</p>
+  <table class="truth">
+    <tr><th>模式</th><th>序列</th><th>第二次请求 2 时要比较几次</th></tr>
+    <tr><td>成批 batched</td><td>1 1 2 <b>2</b> 3 3 4 4</td><td>1 次（窗口 [2]，2 就在根）</td></tr>
+    <tr><td>交错 interleaved</td><td>1 2 3 4 1 <b>2</b> 3 4</td><td>3 次（窗口 [2,3,4,1]，路径 1→4→2）</td></tr>
+  </table>
+  <p>频率完全相同，但<b>「刚刚访问过的键」应该很便宜</b>。这就是「工作集」要捕捉的东西。</p>
+
+  <h3 id="lec22-p4-2">4.2 工作集的定义 <span class="en">What Is the Working Set</span></h3>
+  <div class="def box">
+    <div class="box-title">工作集（working set）</div>
+    <p>对第 i 次请求（键 \(x_i\)），\(t_i\) = <b>它上一次被请求与这一次之间，出现过的「不同键」的个数</b>（不重复计数）；若是第一次请求，则数此前已经出现过的不同键。则键 \(x_i\) 的<b>工作集大小</b>为 \(1+t_i\)（自己加上那些介入的不同键）。</p>
+    <p>例：序列 2 3 4 3 1 4 <b>2</b>，第二次请求 2 时，介入的不同键是 {3,4,1}，共 3 个，故 \(t_i=3\)、工作集 \(\{2,3,4,1\}\) 大小 4。</p>
+  </div>
+
+  <h3 id="lec22-p4-3">4.3 定理陈述 <span class="en">Statement</span></h3>
+  <div class="thm box">
+    <div class="box-title">工作集定理（Working Set Theorem）</div>
+    <p class="formula">总代价 \(= O\!\left(n\log_2(n+1) + m + \sum_i \log_2(1+t_i)\right).\)</p>
+    <p>对数里<b>只出现「介入的不同键数」</b>——重复出现同一个键不增加成本。所以「刚访问过的键」以及「小范围里来回访问」都很便宜。</p>
+  </div>
+
+  <h3 id="lec22-p4-4">4.4 证明①：按近因赋权 \(1/j^2\) <span class="en">Proof 1: Weight by Recency</span></h3>
+  <p>维护一张<b>最近优先表（most-recent-first list）</b>：刚被请求的键放第 1 位，其余依次后移。第 i 次请求之前，目标 \(x_i\) 在表中第 \(j_i\) 位，且<b>关键等式</b></p>
+  <p class="formula">\(j_i = 1 + t_i.\)</p>
+  <p>（第 1 位是自己，后面 \(t_i\) 位正好是那些介入的不同键。）赋权</p>
+  <p class="formula">\(w_i(x_i) = \frac{1}{j_i^{\,2}}.\)</p>
+  <p>初始表按「首次出现的顺序」排好，这样第一次请求也适用同一条规则。总权重</p>
+  <p class="formula">\(W = \sum_v w_i(v) = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \cdots + \frac{1}{n^2}.\)</p>
+  <p>用望远镜不等式 \(\frac{1}{k^2}\le\frac{1}{k(k-1)}=\frac{1}{k-1}-\frac{1}{k}\ (k\ge 2)\)：</p>
+  <p class="formula">\(W \le 1 + \left(1-\frac12\right) + \left(\frac12-\frac13\right) + \cdots + \left(\frac{1}{n-1}-\frac1n\right) = 1 + \left(1-\frac1n\right) \le 2.\)</p>
+  <p>中间项两两抵消，只剩 \(1-1/n\)——所以 \(W\le 2\)，这是一个<b>与 n 无关的常数</b>，正是这个定理漂亮的地方。</p>
+
+  <h3 id="lec22-p4-5">4.5 证明②：用旧权重 splay <span class="en">Proof 2: Splay with the Old Weights</span></h3>
+  <p>一个「状态」同时记录<b>树和它的权重</b>。splay \(x_i\) 时用<b>旧的</b>权重（第 i−1 次之后的权重），splay 后记为 \(S_i^*\)。于是可以直接套加权 Access Lemma：</p>
+  <p class="formula">\(c_i + \Delta\Phi_{\text{splay}} \le 2 + 3\log_2\frac{W}{s_i(x_i)} \le 2 + 3\log_2\frac{W}{w_i(x_i)},\)</p>
+  <p>其中 \(\Delta\Phi_{\text{splay}} = \Phi(S_i^*)-\Phi(S_{i-1})\)。</p>
+
+  <h3 id="lec22-p4-6">4.6 证明③：重新赋权 \(\Delta\Phi \le 0\) <span class="en">Proof 3: Reweight the Same Tree</span></h3>
+  <p>splay 完成后，把 \(x_i\) 移到最近优先表的第 1 位，于是权重变化：\(x_i\) 从 \(1/j_i^2\) 变成 \(1\)（变大），其它键各后退一位、权重变小。</p>
+  <div class="ex box">
+    <div class="box-title">例：n = 4，splay 2 之后</div>
+    <p>旧位置 1,2,3,4 对应 1,4,3,2；新位置 1,2,3,4 对应 2,1,4,3。权重变化如 \(1\to 1\)、\(1/4\to 1/16\)、\(1/9\to1/9\)（此处按课件示例数值）、\(1/16\to1/4\)…关键是看<b>各子树权重和</b>的变化。</p>
+    <p>课件该例中：\(\Phi(S_i^*) = \log_2 W + \log_2 1 + \log_2\frac{13}{36}+\log_2\frac19\)，而 \(\Phi(S_i)=\log_2 W+\log_2\frac14+\log_2\frac{25}{144}+\log_2\frac{1}{16}\)，比较得</p>
+    <p class="formula">\(\Delta\Phi_{\text{reweight}} = \Phi(S_i)-\Phi(S_i^*) \le 0.\)</p>
+  </div>
+  <div class="thm box">
+    <div class="box-title">为什么一般地 \(\Delta\Phi_{\text{reweight}} \le 0\)</div>
+    <p>重新赋权时，<b>只有被访问的键 \(x_i\) 的权重可能变大</b>（它从 \(1/j_i^2\) 升到 1）。而它此时<b>就在根上</b>，所以「\(x_i\) 的权重变大」只会让根及其祖先的子树和变大——根没有祖先，其它键的权重都变小或不变，<b>没有哪个子树的权重和会变重</b>。于是摊还势能不升反降。</p>
+  </div>
+
+  <h3 id="lec22-p4-7">4.7 证明④：求和与势能落差 <span class="en">Proof 4: Sum the Charges</span></h3>
+  <p>一次访问的势能变化分两段（先 splay、再重新赋权）：</p>
+  <p class="formula">\(\hat{c}_i = c_i + [\Phi(S_i)-\Phi(S_{i-1})] = c_i + \Delta\Phi_{\text{splay}} + \Delta\Phi_{\text{reweight}} \le 2 + 3\log_2\frac{W}{w_i(x_i)}.\)</p>
+  <p>代入 \(w_i(x_i)=1/j_i^2\)：</p>
+  <p class="formula">\(\sum_i \hat{c}_i \le 2m + 3\sum_i \log_2(W\cdot j_i^2) = m(2+3\log_2 W) + 6\sum_i \log_2 j_i \le 5m + 6\sum_i \log_2(1+t_i),\)</p>
+  <p>最后一步用了 \(W\le 2\)（故 \(2+3\log_2 W \le 2+3 = 5\)）与 \(j_i = 1+t_i\)。</p>
+  <p>再界首尾势能。因为 \(w(v)\le s(v)\le W\) 且 \(\frac{1}{n^2}\le w(v),\ W\le 2\)：</p>
+  <p class="formula">\(-2\log_2 n \le r(v) = \log_2 s(v) \le 1 \;\Longrightarrow\; \Phi(S_0)\le n,\quad \Phi(S_m)\ge -2n\log_2 n.\)</p>
+  <p class="formula">\(\Phi(S_0)-\Phi(S_m) \le n + 2n\log_2 n.\)</p>
+  <div class="thm box">
+    <div class="box-title">合并</div>
+    <p class="formula">\(\sum_i c_i \le \left(5m + 6\sum_i\log_2(1+t_i)\right) + \left(n+2n\log_2 n\right) = O\!\left(n\log(n+1) + m + \sum_i\log_2(1+t_i)\right).\)</p>
+  </div>
+</section>
+
+<section id="lec22-p5">
+  <h2>Part 5 · 手指定理 <span class="en">Finger Theorems</span></h2>
+
+  <h3 id="lec22-p5-1">5.1 手指距离 <span class="en">Finger Distance</span></h3>
+  <p><b>手指（finger）</b>是一个「参考键」。把全部键按有序排列（rank 从小到大），从参考键走到目标键要跨过多少名次，就是<b>秩距离</b>。</p>
+  <div class="ex box">
+    <div class="box-title">例：9 个键的有序表</div>
+    <p>rank 1…9 对应 10, 20, 50, 70, 5000, 6000, 9000, 13000, 50000。若手指在 70（rank 4），目标是 5000（rank 5），则</p>
+    <p class="formula">\(d_i = |5-4| = 1.\)</p>
+  </div>
+
+  <h3 id="lec22-p5-2">5.2 静态手指定理 <span class="en">Static Finger Theorem</span></h3>
+  <div class="thm box">
+    <div class="box-title">Static Finger</div>
+    <p>整串序列中<b>固定</b>一个参考键 F（例中取 5000），\(d_i\) 是第 i 个请求与 F 的秩距离，则</p>
+    <p class="formula">总代价 \(= O\!\left(n\log_2(n+1) + m + \sum_i \log_2(1+d_i)\right).\)</p>
+    <p>课件序列 6000, 9000, 70 中第三个请求只在手指左边 1 个名次处，而手指始终没动。</p>
+  </div>
+
+  <h3 id="lec22-p5-3">5.3 动态手指定理 <span class="en">Dynamic Finger Theorem</span></h3>
+  <div class="thm box">
+    <div class="box-title">Dynamic Finger（Cole, 2000, Part I &amp; II）</div>
+    <p>把<b>上一次请求</b>当作参考（手指会跟着走），\(d_i\) 是本次请求与上一次请求的秩距离，则</p>
+    <p class="formula">总代价 \(= O\!\left(n + m + \sum_{2\le i\le m}\log_2(1+d_i)\right).\)</p>
+    <p>例中从 5000 到 6000，秩距离是 1。①注意第一项从 \(n\log n\) 降到了 \(n\)——因为不需要「一次性」的排序开销了；②代价是<b>证明极难</b>：Cole 与其合作者的两篇论文共 <b>85 页</b>（43 + 42）。</p>
+  </div>
+
+  <h3 id="lec22-p5-4">5.4 顺序访问定理 <span class="en">Sequential Access Theorem</span></h3>
+  <div class="thm box">
+    <div class="box-title">Sequential Access（Tarjan, 1985）</div>
+    <p>从<b>任意</b>初始形状出发，按有序顺序访问全部键（例：1,2,…,9），每次从当前根开始搜索，总代价 \(O(n)\)。</p>
+    <p>直觉：每次连续请求只差一个名次，所以「每对相邻请求的秩距离都是 1」。splay 9 之后，搜索 9 之前的路径只有 8→9 两个节点。</p>
+  </div>
+</section>
+
+<section id="lec22-p6">
+  <h2>Part 6 · 统一定理与两个大猜想 <span class="en">The Unified Theorem and Two Big Conjectures</span></h2>
+
+  <h3 id="lec22-p6-1">6.1 统一定理 <span class="en">Unified Theorem</span></h3>
+  <div class="thm box">
+    <div class="box-title">统一定理（Unified Theorem）</div>
+    <p>对第 i 个请求，在三个量里<b>取最小的那个</b>：</p>
+    <table class="truth">
+      <tr><th>来源</th><th>量</th><th>含义</th></tr>
+      <tr><td>静态最优性</td><td>\(m/f(x_i)\)</td><td>\(f(x_i)\) 是 \(x_i\) 在整串序列中被请求的次数</td></tr>
+      <tr><td>静态手指</td><td>\(1+d_i\)</td><td>\(d_i\) 是 \(x_i\) 到固定键 F 的秩距离</td></tr>
+      <tr><td>工作集</td><td>\(1+t_i\)</td><td>\(t_i\) 是上次请求 \(x_i\) 以来出现过的不同键数</td></tr>
+    </table>
+    <p class="formula">总代价 \(= O\!\left(n\log_2(n+1) + m + \sum_i \log_2\min\left\{\frac{m}{f(x_i)},\ 1+d_i,\ 1+t_i\right\}\right).\)</p>
+    <p>例：某请求的 \(m/f=9\)、\(1+d=5\)、\(1+t=1\)（刚请求过 9，中间没有别的键）→ 取 1。</p>
+  </div>
+  <p>这个定理的威力在于「<b>自动取最好</b>」：不管你的访问模式更像「频率不均」「集中在某个区域」还是「时间局部性」，splay 都能拿到对应的界，而不需要你告诉它。</p>
+
+  <h3 id="lec22-p6-2">6.2 改变形状的代价：Splay 12 vs OPT 8 <span class="en">The Cost of Changing Shape</span></h3>
+  <div class="ex box">
+    <div class="box-title">例：同一棵起始树，同一串请求 2 4 4 6 6 6</div>
+    <p>起始树：4 为根，左 2（孩子 1、3），右 6（孩子 5、8（孩子 7、9））。计价模型：每次查找从根出发，<b>每检查一个键记 1，每旋转记 1</b>。</p>
+    <ul>
+      <li><b>Splay</b>：会为了「长远」把 2 转到根——结果总代价 <b>12</b>（例中某步为 1 次检查 + 0 次旋转，但来回改形付出了额外的旋转）。</li>
+      <li><b>离线 OPT</b>（预先知道整串请求的最优计划）：<b>不转</b>，直接承受这 6 次请求——总代价 <b>8</b>。</li>
+    </ul>
+    <p>六次检查是<b>无论如何都要付</b>的；任何计划至少还要多付 2 个单位（因为在 \(2\to4\) 和 \(4\to6\) 的切换里，树必须提供正确的路径），所以 OPT = 8。Splay 的 12 = OPT + 4。</p>
+  </div>
+  <p>这说明：<b>splay 的「顺手改形」并不总是赚</b>——有时改形是为未来投资，而未来可能根本不来。于是自然的问题就是：<b>splay 会不会在某些序列上比最优计划差很多（甚至差一个 n 的因子）？</b></p>
+
+  <h3 id="lec22-p6-3">6.3 动态最优性猜想 <span class="en">The Dynamic Optimality Conjecture</span></h3>
+  <div class="warn box">
+    <div class="box-title">动态最优性猜想（Sleator &amp; Tarjan, 1985）</div>
+    <p>问题：<b>即使从任意起始树出发，splay 的代价是否总是 \(O(OPT + n)\)？</b>其中 OPT 是「预先知道整串请求、允许任意旋转」的最优离线计划（offline optimal BST）。</p>
+    <p>如果成立，splay 就是<b>动态最优</b>的——对任何序列都在最优的常数因子内，这是 BST 能达到的最强性质。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">2026 年 7 月的进展</div>
+    <p>预印本（Petr Chmel, Bernhard Haeupler, Richard Hladík, Michal Koucký, Antti Roeyskoe, Václav Rozhoň, Ondřej Sladký, 与 Robert E. Tarjan 本人）：</p>
+    <p class="formula">\(\text{Splay 代价} = O\big((OPT+n)\cdot \log\log n\cdot(\log\log\log n)^2\big).\)</p>
+    <p>也就是说，目前已经证明「只差一个 \(\log\log n\) 级别的因子」——但<b> conjectured 的 \(O(1)\) 因子仍未解决</b>。这个猜想从 1985 年提出，至今 40 余年。</p>
+  </div>
+
+  <h3 id="lec22-p6-4">6.4 双端队列猜想 <span class="en">The Deque Conjecture</span></h3>
+  <div class="def box">
+    <div class="box-title">模型</div>
+    <p>把双端队列（deque）的内容按有序顺序存在 splay 树里，push / pop 只发生在<b>两个端点</b>。总共 n 个键上做 m 次合法操作（例：删掉 9 之后 deque 是 1 2 3 4 5 6 7 8）。</p>
+    <p>一次 pop 可能很贵（要把它 splay 到根，再把它的左子树提上来），但猜想界的是<b>总代价</b>。</p>
+  </div>
+  <table class="truth">
+    <tr><th>时间</th><th>结果</th></tr>
+    <tr><td>1985 · Tarjan</td><td>猜想总代价 \(O(m+n)\)（线性界，至今未证）</td></tr>
+    <tr><td>2008 · Pettie</td><td>\(O((m+n)\cdot\alpha^*(m+n))\) 次旋转</td></tr>
+    <tr><td>2026-11 · Mirrokni, Woodruff, Yingchareonthawornchai, Zuzic</td><td>\(O((m+n)\cdot\alpha^{\omega}(m+n))\) 次旋转</td></tr>
+  </table>
+
+  <h3 id="lec22-p6-5">6.5 定理与猜想总表 <span class="en">Theorems and Conjectures at a Glance</span></h3>
+  <table class="truth">
+    <tr><th>结论</th><th>证明</th><th>界 / 量</th></tr>
+    <tr><td>Access Lemma</td><td>1985 · Sleator &amp; Tarjan</td><td>\(O(1+\log(W/s(x)))\) 摊还</td></tr>
+    <tr><td>Balance Theorem</td><td>同上</td><td>每操作摊还 \(O(\log n)\)</td></tr>
+    <tr><td>Static Optimality</td><td>同上</td><td>整串序列的访问频率</td></tr>
+    <tr><td>Static Finger</td><td>同上</td><td>到固定键的秩距离</td></tr>
+    <tr><td>Working Set</td><td>同上</td><td>两次重复请求之间的不同键数</td></tr>
+    <tr><td>Unified Theorem</td><td>同上</td><td>三者逐请求取最小</td></tr>
+    <tr><td>Sequential Access</td><td>1985 · Tarjan</td><td>有序扫描 \(O(n)\)</td></tr>
+    <tr><td>Dynamic Finger</td><td>2000 · Cole（Part I &amp; II）</td><td>\(O(n+m+\sum\log(1+d_i))\) 总</td></tr>
+    <tr><td><b>Dynamic Optimality</b>（未解）</td><td>1985 · Sleator &amp; Tarjan</td><td>目标 \(O(OPT+n)\) 总</td></tr>
+    <tr><td>↳ 部分结果</td><td>2026-07 · Chmel et al.</td><td>\(O(\log\log n\cdot(\log\log\log n)^2)\) 因子</td></tr>
+    <tr><td><b>Deque Conjecture</b>（未解）</td><td>1985 · Tarjan</td><td>目标 \(O(m+n)\) 总</td></tr>
+    <tr><td>↳ 部分结果</td><td>2008 · Pettie / 2026-11 · Mirrokni et al.</td><td>\(O((m+n)\alpha^*)\) / \(O((m+n)\alpha^{\omega})\) 次旋转</td></tr>
+  </table>
+  <p>读这张表的正确姿势：<b>上半张是「已经证明的、splay 在某方面接近最优」</b>，下半张是<b>「还没证明的、但我们相信是对的」</b>。数据结构这门课最有意思的地方之一，就是这些 40 年的猜想至今还开着。</p>
+</section>
+
+<section id="lec22-p7">
+  <h2>Part 7 · 期末样题预览 <span class="en">Final Exam Preview</span></h2>
+
+  <h3 id="lec22-p7-1">7.1 五类题型 <span class="en">Five Question Types</span></h3>
+  <table class="truth">
+    <tr><th>题型</th><th>考什么</th></tr>
+    <tr><td>Single Choice 单选</td><td>从代码或数据结构得出<b>唯一正确</b>的结论</td></tr>
+    <tr><td>Multiple Choice 多选</td><td>逐条独立判断，<b>选出所有成立</b>的选项</td></tr>
+    <tr><td>Fill in the Answer 填空</td><td>算出一个<b>精确</b>结果、输出或结构性质</td></tr>
+    <tr><td>Trace a Program 追踪程序</td><td>跟着控制流走，跟踪状态与输出怎么变</td></tr>
+    <tr><td>Complete a Program 补全程序</td><td>填出<b>保持算法不变量</b>的那一步</td></tr>
+  </table>
+
+  <h3 id="lec22-p7-2">7.2 单选题 <span class="en">Single Choice</span></h3>
+  <div class="ex box">
+    <div class="box-title">题 1 · C++ 成员访问</div>
+<pre><code>class Counter {
+    int value = 0;
+    int raw() const { return value; }
+public:
+    void add(int d) { value += d; }
+    int get() const { return raw(); }
+};
+int main() {
+    const Counter c{};
+    // Insert one statement here.
+}</code></pre>
+    <p>A. <code>c.add(1);</code>　B. <code>int x = c.value;</code>　C. <code>int x = c.get();</code>　D. <code>int x = c.raw();</code></p>
+    <p><b>答案 C。</b><code>get()</code> 是 public 且 const；<code>add()</code> 需要非 const 对象；<code>value</code> 和 <code>raw()</code> 都是 private。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 2 · Fenwick 树</div>
+    <p>1-indexed 的 Fenwick 树里，从 i = 7 开始重复 <code>i -= lowbit(i)</code> 直到 0，依次加上哪些存储区间？</p>
+    <p>A. [1,4], [5,6], [7,7]　B. [7,7], [5,6], [1,4]　C. [7,7], [6,6], [4,4]　D. [7,8], [5,6], [1,4]</p>
+    <p><b>答案 B。</b>路径 7→6→4→0；每个存储块<b>以 i 结尾、长度 = lowbit(i)</b>：c[7] 覆盖 [7,7]，c[6] 覆盖 [5,6]，c[4] 覆盖 [1,4]。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 3 · 二分边界</div>
+    <p>有序数组可能有重复。要找<b>第一个</b>满足 <code>a[i] &gt;= 4</code> 的下标，当前区间 [L,R] 包含答案。中点 m 处 <code>a[m] == 4</code>，哪种更新<b>总能</b>把答案留在区间里？</p>
+    <p>A. <code>L = m + 1;</code>　B. <code>R = m - 1;</code>　C. <code>L = m;</code>　D. <code>R = m;</code></p>
+    <p><b>答案 D。</b>第一个达标的下标可能是 m 本身，也可能更早，所以要保留 [L, m]。<b>易错点</b>：<code>R = m - 1</code> 会把「m 就是答案」直接扔掉。</p>
+  </div>
+
+  <h3 id="lec22-p7-3">7.3 多选题 <span class="en">Multiple Choice</span></h3>
+  <div class="ex box">
+    <div class="box-title">题 4 · C++ 参数传递</div>
+<pre><code>void update(vector&lt;int&gt; a, vector&lt;int&gt;&amp; b) {
+    a[0] += 5;
+    b[0] += 5;
+}
+int main() {
+    vector&lt;int&gt; x{1, 2}, y{3, 4};
+    update(x, y);
+}</code></pre>
+    <p>函数返回后哪些成立？A. <code>x[0] == 1</code>　B. <code>x[0] == 6</code>　C. <code>y[0] == 8</code>　D. 两个 vector 大小都还是 2</p>
+    <p><b>答案 A、C、D。</b>调用把 x <b>拷贝</b>给 a（改 a 不影响 x）；引用 b 让函数能改 y；大小都没变。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 5 · 图遍历（BFS from 0）</div>
+    <p>从 0 出发跑 BFS，出边按升序访问，入队时标记。图：0→1, 0→2；1→3；3→4；5 孤立。</p>
+    <p>A. 出队顺序 0, 1, 2, 3, 4　B. 搜索能到达 5　C. 0→4 的最短路有 3 条边　D. 3 会入队两次　E. 一个拓扑序是 0,1,2,3,4,5</p>
+    <p><b>答案 A、C、E。</b>第一次发现就标记，所以 D 错；5 不可达，B 错；但拓扑序里孤立点 5 可以放在任意位置，所以 E 仍成立——这是本题的<b>陷阱</b>。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 6 · Trie 与哈希表</div>
+    <p>两种结构都存 car、cart、cat。哪些成立？A. trie 精确查 ca 成功　B. trie 前缀查 ca 成功　C. car 与 cart 共享前三条 trie 边　D. 哈希表可以把不同键放在同一个桶　E. 哈希值相等的两个字符串一定相同</p>
+    <p><b>答案 B、C、D。</b>精确查找要查<b>词尾标记（terminal）</b>，ca 不是完整词，A 错；哈希碰撞可以由比较存储的键来解决，E 错。</p>
+  </div>
+
+  <h3 id="lec22-p7-4">7.4 填空题 <span class="en">Fill in the Answer</span></h3>
+  <div class="ex box">
+    <div class="box-title">题 7 · C++ 字符串</div>
+<pre><code>std::string word = "banana";
+std::string piece = word.substr(1, 3);</code></pre>
+    <p><b>答案 "ana"。</b>从下标 1 开始取 3 个字符（b<b>a n a</b>na）。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 8 · 二叉搜索树（高度按边数、每访问一个节点算一次比较、BF = 左高 − 右高）</div>
+    <p>树：8 为根；8 的左 4（孩子 2、6（右孩子 7））、右 12（孩子 10、14）。求 A 树高、B 叶数、C 4 的子树大小、D 4 的平衡因子、E 中序遍历、F 查找 7 的比较次数。</p>
+    <p><b>答案</b>：A. 3；B. 4（2、7、10、14）；C. 4（4,2,6,7）；D. −1（左高 1、右高 2）；E. 2, 4, 6, 7, 8, 10, 12, 14；F. 4（8→4→6→7）。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 9 · 归并与计数</div>
+    <p>左 [2, 6, 9] 与右 [1, 5, 8] 归并。求 A 归并结果、B 关键比较次数、C 跨半区的逆序对数。</p>
+    <p><b>答案</b>：A. [1, 2, 5, 6, 8, 9]；B. 5（2v1, 2v5, 6v5, 6v8, 9v8）；C. 6。取 1、5、8 从右半过来时分别贡献 3、2、1 个跨区逆序对；最后 9 直接追加、不产生比较。</p>
+  </div>
+
+  <h3 id="lec22-p7-5">7.5 追踪程序 <span class="en">Trace a Program</span></h3>
+  <div class="ex box">
+    <div class="box-title">题 10 · 嵌套循环</div>
+<pre><code>int s = 0;
+for (int i = 1; i &lt;= 3; ++i) {
+    for (int j = 1; j &lt;= i; ++j) {
+        if (j == 2) continue;
+        s += 10*i + j;
+    }
+}
+cout &lt;&lt; s;</code></pre>
+    <p><b>答案 96。</b>外层 3 轮，内层共 6 次迭代，其中 4 次真的加了：i=1 加 11 → 11；i=2 加 21 → 32；i=3 加 31（→63）和 33（→96）。<b><code>continue</code> 跳过的是 j=2 那一次。</b></p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 11 · 递归</div>
+<pre><code>void f(int n) {
+    if (n &lt;= 0) return;
+    cout &lt;&lt; n;
+    f(n - 2);
+    cout &lt;&lt; n;
+}
+int main() { f(5); }</code></pre>
+    <p><b>答案 531135。</b>进入阶段打印 5, 3, 1（→"531"）；f(−1) 立即返回什么也不打；返回阶段依次打印 1, 3, 5（→"135"）。两段拼起来且没有空格换行。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 12 · 指针</div>
+<pre><code>int a[] = {2, 5, 8, 11};
+int* p = a + 1;
+int* q = p;
+*p += 3;
+++p;
+*q = *p - 1;
+cout &lt;&lt; a[1] &lt;&lt; ' ' &lt;&lt; *p;</code></pre>
+    <p><b>答案 7 8。</b>把「指针指向」与「数组值」分开跟踪：<code>*p += 3</code> 后 a[1] = 8；<code>++p</code> 后 p 指向 a[2]；<code>*q = *p - 1</code> 即 a[1] = 8 − 1 = 7。输出 a[1] = 7 与 *p = 8。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 13 · 栈与队列</div>
+<pre><code>queue&lt;int&gt; q;  stack&lt;int&gt; s;
+for (int x : {4, 7, 2}) q.push(x);
+s.push(q.front()); q.pop();
+s.push(q.front()); q.pop();
+q.push(s.top()); s.pop();
+cout &lt;&lt; q.front() &lt;&lt; ' ' &lt;&lt; s.top();</code></pre>
+    <p><b>答案 2 4。</b>跟踪过程：q = [4,7,2]；s 收 4，q = [7,2]；s 收 7，q = [2]；q 收 s 顶 7（s 剩 [4]），此时 q = [2,7]。输出 <code>q.front() = 2</code> 与 <code>s.top() = 4</code>。</p>
+  </div>
+
+  <h3 id="lec22-p7-6">7.6 补全程序 <span class="en">Complete a Program</span></h3>
+  <div class="ex box">
+    <div class="box-title">题 14 · 区间最小值（线段树）</div>
+    <p>输入 n、q、n 个数、q 组 l r（1 ≤ l ≤ r ≤ n ≤ 100,000），每组输出闭区间最小值。样例：<code>4 1 / -8 -3 -6 -4 / 2 3</code> → <code>-6</code>。填 A–D。</p>
+<pre><code>void build(int p, int L, int R) {
+    if (L == R) { mn[p] = ___A___; return; }
+    int m = (L + R) / 2;
+    build(2*p, L, m);
+    build(2*p+1, m+1, R);
+    mn[p] = ___B___;
+}
+int query(int p, int L, int R, int l, int r) {
+    if (___C___) return INT_MAX;
+    if (l &lt;= L &amp;&amp; R &lt;= r) return mn[p];
+    int m = (L + R) / 2;
+    int x = query(2*p, L, m, l, r);
+    int y = query(2*p+1, m+1, R, l, r);
+    return ___D___;
+}</code></pre>
+    <p><b>答案</b>：A. <code>a[L]</code>　B. <code>min(mn[2*p], mn[2*p+1])</code>　C. <code>R &lt; l || r &lt; L</code>　D. <code>min(x, y)</code>。</p>
+    <p>要点：叶子存单点值；内部节点由两个孩子合并（min 的单位元是 <code>INT_MAX</code>，所以「不相交」返回它不影响答案）。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 15 · 约瑟夫环（循环链表）</div>
+    <p>输入 n、k（≤ 1000），圆圈 1…n，从 1 开始每数到第 k 个人删掉、从下一个继续，输出幸存者。样例 <code>5 2</code> → <code>3</code>。填 A–E。</p>
+<pre><code>Node* makeCircle(int n) {
+    Node* tail = new Node{1, nullptr};
+    tail-&gt;next = tail;
+    for (int i = 2; i &lt;= n; ++i) {
+        Node* added = new Node{i, tail-&gt;next};
+        tail-&gt;next = added;
+        tail = added;
+    }
+    return ___A___;
+}
+int main() {
+    ...
+    Node* prev = makeCircle(n);
+    while (prev-&gt;next != prev) {
+        for (int i = 1; i &lt; k; ++i)
+            prev = ___B___;
+        Node* removed = ___C___;
+        prev-&gt;next = ___D___;
+        delete removed;
+    }
+    cout &lt;&lt; prev-&gt;id &lt;&lt; '\n';
+    delete ___E___;
+}</code></pre>
+    <p><b>答案</b>：A. <code>tail</code>　B. <code>prev-&gt;next</code>　C. <code>prev-&gt;next</code>　D. <code>removed-&gt;next</code>　E. <code>prev</code>。</p>
+    <p>要点：<code>makeCircle</code> 返回<b>尾节点</b>（这样 <code>tail-&gt;next</code> 就是 1 号）；<code>prev</code> 始终是「要删节点的前驱」，所以先走 k−1 步，再摘掉 <code>prev-&gt;next</code>。</p>
+  </div>
+  <div class="ex box">
+    <div class="box-title">题 16 · 连通点对（并查集）</div>
+    <p>输入 n、m，按顺序加 m 条无向边（1…n 编号），每加一条输出「有多少对不同的点在同一分量」。样例 <code>5 4 / 1 2 / 3 4 / 2 3 / 1 4</code> → <code>1 2 6 6</code>。填 A–D。</p>
+<pre><code>int find(int x) {
+    if (x != p[x]) p[x] = ___A___;
+    return p[x];
+}
+long long addEdge(int a, int b) {
+    a = find(a); b = find(b);
+    if (___B___) return 0;
+    if (sz[a] &lt; sz[b]) swap(a, b);
+    long long added = ___C___;
+    p[b] = a;
+    sz[a] += ___D___;
+    return added;
+}</code></pre>
+    <p><b>答案</b>：A. <code>find(p[x])</code>　B. <code>a == b</code>　C. <code>1LL * sz[a] * sz[b]</code>　D. <code>sz[b]</code>。</p>
+    <p>要点：合并两个大小为 <code>sz[a]</code>、<code>sz[b]</code> 的分量，新增的点对数正好是两边的<b>笛卡尔积</b>；必须写 <code>1LL *</code> 防止 int 溢出。走一遍样例：加 1-2 → 1；加 3-4 → 1+1 = 2；加 2-3 → 2+2×2 = 6；加 1-4 已在同一分量 → 6。</p>
+  </div>
+
+  <h3 id="lec22-p7-7">7.7 备考要点 <span class="en">How to Prepare</span></h3>
+  <div class="thm box">
+    <div class="box-title">📌 从样题反推的复习清单</div>
+    <ul>
+      <li><b>C++ 语言细节</b>：访问控制（private / public）、const 成员函数、值传递 vs 引用传递、<code>substr</code> 等 string 成员。</li>
+      <li><b>数据结构性质</b>：Fenwick 的 <code>lowbit</code> 路径与块区间、BST 的高度 / 叶数 / 子树大小 / 平衡因子 / 中序 / 比较次数。</li>
+      <li><b>算法不变量</b>：二分「第一个 ≥ x」的边界更新、归并时数跨区逆序对（<code>count += 剩余左半长度</code>）、线段树 merge 与单位元、并查集合并贡献 <code>sz[a]*sz[b]</code>、约瑟夫环的「前驱」指针。</li>
+      <li><b>手工跟踪能力</b>：嵌套循环 + <code>continue</code>、递归的「进入 / 返回两段打印」、指针的「指向」与「值」分开跟、栈与队列的顶 / 头。</li>
+    </ul>
+    <p>共同点：所有题都<b>不需要写完整程序</b>，考的是「读懂 + 算出精确结果」，所以复习时多练<b>手工走查</b>比多写代码更划算。</p>
+  </div>
+</section>
+
+<section id="lec22-p8">
+<div class="vocab">
+  <div class="vocab-title">词汇表 Key Vocabulary</div>
+  <ul>
+    <li><b>weighted potential</b> — 加权势能：把子树大小换成子树权重之和后的势能</li>
+    <li><b>weight w(v)</b> — 权重：每个键分配的正实数，仅用于证明</li>
+    <li><b>subtree weight s(v)</b> — 子树权重：v 及其全部后代的权重之和</li>
+    <li><b>total weight W</b> — 总权重：全树权重之和</li>
+    <li><b>weighted Access Lemma</b> — 加权访问引理：ĉ ≤ 2 + 3log₂(W/s(x))</li>
+    <li><b>frequency f(v)</b> — 频率：键 v 在整串序列中被请求的次数</li>
+    <li><b>frequency share p<sub>v</sub></b> — 频率份额：p_v = f(v)/m</li>
+    <li><b>Shannon entropy H(p)</b> — 香农熵：H(p) = Σ p_v log₂(1/p_v)</li>
+    <li><b>static optimal BST</b> — 静态最优二叉搜索树：给定频率下总比较最小的固定形状</li>
+    <li><b>static optimality</b> — 静态最优性：splay ≤ m(2+4H(p))，最优静态 BST ≥ (m/2)(1+H(p))</li>
+    <li><b>entropy bound</b> — 熵下界：前缀码的信息论下界（MIT 6.450 Thm 2.5.1）</li>
+    <li><b>working set</b> — 工作集：本请求的键加上两次请求之间出现过的不同键</li>
+    <li><b>distinct intervening keys t<sub>i</sub></b> — 介入的不同键数（不重复计数）</li>
+    <li><b>working set theorem</b> — 工作集定理：O(n log(n+1) + m + Σ log(1+t_i))</li>
+    <li><b>most-recent-first list</b> — 最近优先表：最近访问的键排最前</li>
+    <li><b>recency</b> — 近因：一个键距离上次被访问有多近</li>
+    <li><b>reweight</b> — 重新赋权：访问后更新最近优先表并改权重（ΔΦ ≤ 0）</li>
+    <li><b>finger</b> — 手指：作为参考的键</li>
+    <li><b>rank distance d<sub>i</sub></b> — 秩距离：参考键与目标键之间有向名次差</li>
+    <li><b>static finger theorem</b> — 静态手指定理：固定参考键，Σ log(1+d_i)</li>
+    <li><b>dynamic finger theorem</b> — 动态手指定理：以上一次请求为参考（Cole 2000）</li>
+    <li><b>sequential access theorem</b> — 顺序访问定理：有序扫描总 O(n)（Tarjan 1985）</li>
+    <li><b>unified theorem</b> — 统一定理：每请求取三项最小值</li>
+    <li><b>offline optimal (OPT)</b> — 离线最优：预先知道整串请求的最优计划代价</li>
+    <li><b>dynamic optimality conjecture</b> — 动态最优性猜想：splay ≤ O(OPT + n)（1985 提出，未解）</li>
+    <li><b>deque conjecture</b> — 双端队列猜想：deque 上 m 次操作总 O(m+n)（1985 提出，未解）</li>
+    <li><b>inverse Ackermann α(n)</b> — 逆阿克曼函数：增长极慢（&lt; 5），出现在并查集与 deque 界里</li>
+    <li><b>amortized bound</b> — 摊还界：整串操作总代价的上界</li>
+    <li><b>terminal marker</b> — 词尾标记：trie 里标记「这是一个完整词」</li>
+    <li><b>lowbit</b> — lowbit：x &amp; (−x)，Fenwick 存储块的长度</li>
+    <li><b>balance factor (BF)</b> — 平衡因子：左子树高 − 右子树高</li>
+    <li><b>cross inversion</b> — 跨区逆序对：一个键来自左半、一个来自右半的逆序对</li>
+  </ul>
+</div>
+</section>
 </div>
 </main>
 </body>
